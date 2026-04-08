@@ -17,6 +17,7 @@
 @import url("./components/card.css");
 @import url("./components/dialog.css");
 @import url("./components/tabs.css");
+@import url("./components/empty-state.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");

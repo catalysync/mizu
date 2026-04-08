@@ -1,4 +1,46 @@
-/* TODO: input component styles */
 .mizu-input {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 var(--mizu-spacing-3);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-primary);
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-md);
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.mizu-input::placeholder {
+  color: var(--mizu-text-disabled);
+}
+
+.mizu-input:hover {
+  border-color: var(--mizu-border-strong);
+}
+
+.mizu-input:focus-visible {
+  border-color: var(--mizu-action-primary-default);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mizu-action-primary-default) 20%, transparent);
+}
+
+.mizu-input:disabled {
+  background: var(--mizu-surface-secondary);
+  color: var(--mizu-text-disabled);
+  cursor: not-allowed;
+}
+
+.mizu-input--sm {
+  height: 2rem;
+  font-size: var(--mizu-font-size-xs);
+}
+
+.mizu-input--lg {
+  height: 2.75rem;
+  font-size: var(--mizu-font-size-base);
 }

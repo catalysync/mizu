@@ -1,4 +1,54 @@
-/* TODO: card component styles */
 .mizu-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-lg);
+  overflow: hidden;
+}
+
+.mizu-card--interactive {
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.mizu-card--interactive:hover {
+  border-color: var(--mizu-border-strong);
+  box-shadow: var(--mizu-shadow-sm);
+}
+
+.mizu-card__header {
+  padding: var(--mizu-spacing-4) var(--mizu-spacing-5);
+  border-bottom: 1px solid var(--mizu-border-default);
+}
+
+.mizu-card__title {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-base);
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-primary);
+  margin: 0;
+}
+
+.mizu-card__description {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-secondary);
+  margin: var(--mizu-spacing-1) 0 0;
+}
+
+.mizu-card__body {
+  padding: var(--mizu-spacing-5);
+  flex: 1;
+}
+
+.mizu-card__footer {
+  padding: var(--mizu-spacing-3) var(--mizu-spacing-5);
+  border-top: 1px solid var(--mizu-border-default);
+  background: var(--mizu-surface-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-3);
 }
