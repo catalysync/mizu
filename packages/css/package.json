@@ -5,11 +5,11 @@
   "type": "module",
   "exports": {
     ".": "./dist/mizu.css",
-    "./components/*": "./src/components/*.css",
-    "./layouts/*": "./src/layouts/*.css"
+    "./components/*": "./dist/components/*.css",
+    "./layouts/*": "./dist/layouts/*.css"
   },
   "scripts": {
-    "build": "lightningcss --bundle src/index.css -o dist/mizu.css",
+    "build": "node build.mjs",
     "lint": "stylelint 'src/**/*.css'",
     "clean": "rm -rf dist"
   },
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@aspect/tokens": "workspace:^",
-    "lightningcss-cli": "^1.32.0"
+    "lightningcss": "^1.32.0"
   },
   "files": [
     "dist",
