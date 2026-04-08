@@ -6,6 +6,7 @@
   "style": "./dist/mizu.css",
   "exports": {
     ".": "./dist/mizu.css",
+    "./typography": "./dist/typography.css",
     "./components/*": "./dist/components/*.css",
     "./layouts/*": "./dist/layouts/*.css"
   },

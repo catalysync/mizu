@@ -14,6 +14,9 @@ function build(input, output) {
 // Bundled barrel — single import for the whole library
 build('src/index.css', 'dist/mizu.css');
 
+// Standalone typography sheet — opt-in via "@aspect/css/typography"
+build('src/typography.css', 'dist/typography.css');
+
 // Per-file outputs so cherry-pick imports survive future @import chains
 for (const subdir of ['components', 'layouts']) {
   for (const file of readdirSync(join('src', subdir))) {

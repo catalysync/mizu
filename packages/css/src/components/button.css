@@ -3,6 +3,7 @@
  * No Tailwind required. Consumers can override any --mizu-* variable.
  */
 .mizu-button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -54,10 +55,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.mizu-button {
-  position: relative;
 }
 
 /* Variants */

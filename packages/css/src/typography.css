@@ -1,0 +1,58 @@
+/*
+ * Standalone typography sheet. Import only when you want type utility classes.
+ *   @import "@aspect/css/typography";
+ */
+
+.mizu-h1,
+.mizu-h2,
+.mizu-h3,
+.mizu-h4 {
+  font-family: var(--mizu-font-family-sans);
+  font-weight: var(--mizu-font-weight-semibold);
+  line-height: var(--mizu-font-line-height-tight);
+  color: var(--mizu-text-primary);
+  margin: 0;
+}
+
+.mizu-h1 {
+  font-size: var(--mizu-font-size-4xl);
+}
+
+.mizu-h2 {
+  font-size: var(--mizu-font-size-3xl);
+}
+
+.mizu-h3 {
+  font-size: var(--mizu-font-size-2xl);
+}
+
+.mizu-h4 {
+  font-size: var(--mizu-font-size-xl);
+}
+
+.mizu-body {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-base);
+  font-weight: var(--mizu-font-weight-regular);
+  line-height: var(--mizu-font-line-height-normal);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-body--sm {
+  font-size: var(--mizu-font-size-sm);
+}
+
+.mizu-body--lg {
+  font-size: var(--mizu-font-size-lg);
+}
+
+.mizu-caption {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-mono {
+  font-family: var(--mizu-font-family-mono);
+  font-size: var(--mizu-font-size-sm);
+}
