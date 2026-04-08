@@ -59,3 +59,52 @@ export const AllSizes: Story = {
 export const Disabled: Story = {
   args: { disabled: true },
 };
+
+export const Loading: Story = {
+  args: { loading: true, children: 'Saving' },
+};
+
+/**
+ * Deliberately broken: an icon-only button with no accessible label.
+ * The a11y addon panel should flag this story; vitest-axe also catches it.
+ */
+export const Inaccessible: Story = {
+  name: 'Icon — Inaccessible (intentional)',
+  args: {
+    size: 'icon',
+    children: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        width="16"
+        height="16"
+      >
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    ),
+  },
+};
+
+export const Accessible: Story = {
+  name: 'Icon — Accessible',
+  args: {
+    size: 'icon',
+    'aria-label': 'Continue',
+    children: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        width="16"
+        height="16"
+      >
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    ),
+  },
+};
