@@ -5,6 +5,26 @@
       "hover": { "$value": "{color.blue.700}", "$type": "color" },
       "active": { "$value": "{color.blue.800}", "$type": "color" },
       "disabled": { "$value": "{color.slate.300}", "$type": "color" }
+    },
+    "destructive": {
+      "default": { "$value": "{color.red.600}", "$type": "color" },
+      "hover": { "$value": "{color.red.700}", "$type": "color" },
+      "active": { "$value": "{color.red.800}", "$type": "color" },
+      "disabled": { "$value": "{color.slate.300}", "$type": "color" }
+    }
+  },
+  "feedback": {
+    "success": {
+      "default": { "$value": "{color.emerald.600}", "$type": "color" },
+      "subtle": { "$value": "{color.emerald.50}", "$type": "color" }
+    },
+    "warning": {
+      "default": { "$value": "{color.amber.500}", "$type": "color" },
+      "subtle": { "$value": "{color.amber.50}", "$type": "color" }
+    },
+    "danger": {
+      "default": { "$value": "{color.red.600}", "$type": "color" },
+      "subtle": { "$value": "{color.red.50}", "$type": "color" }
     }
   },
   "surface": {
