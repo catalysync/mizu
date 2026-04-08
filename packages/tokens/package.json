@@ -1,0 +1,21 @@
+{
+  "name": "@aspect/tokens",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node --loader ts-node/esm build/config.ts",
+    "clean": "rm -rf dist"
+  },
+  "exports": {
+    "./css": "./dist/css/variables.css",
+    "./json": "./dist/json/tokens.json",
+    "./ts": "./dist/ts/tokens.ts",
+    "./rn": "./dist/rn/tokens.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "style-dictionary": "^5.4.0"
+  }
+}

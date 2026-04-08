@@ -1,0 +1,25 @@
+{
+  "action": {
+    "primary": {
+      "default": { "$value": "{color.blue.600}", "$type": "color" },
+      "hover": { "$value": "{color.blue.700}", "$type": "color" },
+      "active": { "$value": "{color.blue.800}", "$type": "color" },
+      "disabled": { "$value": "{color.slate.300}", "$type": "color" }
+    }
+  },
+  "surface": {
+    "default": { "$value": "{color.white}", "$type": "color" },
+    "secondary": { "$value": "{color.slate.50}", "$type": "color" },
+    "inverse": { "$value": "{color.slate.900}", "$type": "color" }
+  },
+  "text": {
+    "primary": { "$value": "{color.slate.900}", "$type": "color" },
+    "secondary": { "$value": "{color.slate.600}", "$type": "color" },
+    "inverse": { "$value": "{color.white}", "$type": "color" },
+    "disabled": { "$value": "{color.slate.400}", "$type": "color" }
+  },
+  "border": {
+    "default": { "$value": "{color.slate.200}", "$type": "color" },
+    "strong": { "$value": "{color.slate.400}", "$type": "color" }
+  }
+}

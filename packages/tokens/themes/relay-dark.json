@@ -1,0 +1,17 @@
+{
+  "surface": {
+    "default": { "$value": "{color.slate.950}", "$type": "color" },
+    "secondary": { "$value": "{color.slate.900}", "$type": "color" },
+    "inverse": { "$value": "{color.white}", "$type": "color" }
+  },
+  "text": {
+    "primary": { "$value": "{color.white}", "$type": "color" },
+    "secondary": { "$value": "{color.slate.400}", "$type": "color" },
+    "inverse": { "$value": "{color.slate.900}", "$type": "color" },
+    "disabled": { "$value": "{color.slate.600}", "$type": "color" }
+  },
+  "border": {
+    "default": { "$value": "{color.slate.800}", "$type": "color" },
+    "strong": { "$value": "{color.slate.600}", "$type": "color" }
+  }
+}
