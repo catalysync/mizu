@@ -1,0 +1,32 @@
+{
+  "name": "@aspect/react",
+  "version": "0.1.0",
+  "description": "React components for the mizu design system",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@aspect/css": ">=0.1.0",
+    "@aspect/tokens": ">=0.1.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "@aspect/css": "workspace:^",
+    "@aspect/tokens": "workspace:^",
+    "@aspect/tsconfig": "workspace:^",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
