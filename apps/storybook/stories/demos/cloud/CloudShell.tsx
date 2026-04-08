@@ -44,7 +44,7 @@ export function CloudShell({
   children,
 }: CloudShellProps) {
   return (
-    <AppLayout style={{ minHeight: '720px' }}>
+    <AppLayout style={{ minHeight: '720px' }} data-mizu-theme="cloud">
       <AppHeader
         brand={
           <>

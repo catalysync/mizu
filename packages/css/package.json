@@ -9,7 +9,8 @@
     "./typography": "./dist/typography.css",
     "./components/*": "./dist/components/*.css",
     "./layouts/*": "./dist/layouts/*.css",
-    "./shell/*": "./dist/shell/*.css"
+    "./shell/*": "./dist/shell/*.css",
+    "./themes/*": "./dist/themes/*.css"
   },
   "scripts": {
     "build": "node build.mjs",

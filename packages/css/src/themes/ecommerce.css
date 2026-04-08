@@ -1,0 +1,12 @@
+/*
+ * Ecommerce demo theme override.
+ * Warmer, more saturated — Shopify/Stripe vibe.
+ * Apply by wrapping in <div data-mizu-theme="ecommerce">.
+ */
+
+[data-mizu-theme="ecommerce"] {
+  --mizu-action-primary-default: #008060;
+  --mizu-action-primary-hover: #006e51;
+  --mizu-action-primary-active: #005c44;
+  --mizu-action-primary-disabled: #b3d9cf;
+}

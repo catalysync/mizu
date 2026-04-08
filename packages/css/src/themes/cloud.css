@@ -1,0 +1,12 @@
+/*
+ * Cloud demo theme override.
+ * Heroku/Railway-flavored: deeper purple primary, slightly cooler grays.
+ * Apply by wrapping in <div data-mizu-theme="cloud">.
+ */
+
+[data-mizu-theme="cloud"] {
+  --mizu-action-primary-default: #6f5ad9;
+  --mizu-action-primary-hover: #5b46c2;
+  --mizu-action-primary-active: #4a37a6;
+  --mizu-action-primary-disabled: #cdc7ed;
+}

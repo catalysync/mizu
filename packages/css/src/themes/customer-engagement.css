@@ -1,0 +1,12 @@
+/*
+ * Customer engagement demo theme override.
+ * Friendly, conversational — Intercom vibe.
+ * Apply by wrapping in <div data-mizu-theme="customer-engagement">.
+ */
+
+[data-mizu-theme="customer-engagement"] {
+  --mizu-action-primary-default: #1f8ded;
+  --mizu-action-primary-hover: #1576cf;
+  --mizu-action-primary-active: #105fa8;
+  --mizu-action-primary-disabled: #b8dcf6;
+}

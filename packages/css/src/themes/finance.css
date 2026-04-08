@@ -1,0 +1,12 @@
+/*
+ * Finance demo theme override.
+ * Cool, restrained — Mercury/Linear vibe.
+ * Apply by wrapping in <div data-mizu-theme="finance">.
+ */
+
+[data-mizu-theme="finance"] {
+  --mizu-action-primary-default: #1e293b;
+  --mizu-action-primary-hover: #0f172a;
+  --mizu-action-primary-active: #020617;
+  --mizu-action-primary-disabled: #cbd5e1;
+}
