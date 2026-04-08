@@ -1,0 +1,57 @@
+export const metadata = {
+  title: 'Getting started — mizu',
+};
+
+# Getting Started
+
+## Installation
+
+### React projects
+
+```bash
+pnpm add @aspect/react @aspect/css @aspect/tokens
+```
+
+```css
+/* globals.css */
+@import '@aspect/tokens/css';
+@import '@aspect/css';
+```
+
+```tsx
+import { Button } from '@aspect/react';
+
+export default function Page() {
+  return <Button variant="primary">Get started</Button>;
+}
+```
+
+### Vue / Svelte / vanilla HTML
+
+```bash
+pnpm add @aspect/css @aspect/tokens
+```
+
+```css
+@import '@aspect/tokens/css';
+@import '@aspect/css';
+```
+
+```html
+<button class="mizu-button mizu-button--primary mizu-button--md">Get started</button>
+```
+
+### With Tailwind v4 (any framework)
+
+```bash
+pnpm add -D @aspect/tailwind-preset
+```
+
+```css
+@import 'tailwindcss';
+@import '@aspect/tokens/css';
+@import '@aspect/tailwind-preset';
+```
+
+You can now use `bg-primary`, `text-text-primary`, `rounded-lg`, `p-4`,
+etc. — every utility resolves to a mizu token.
