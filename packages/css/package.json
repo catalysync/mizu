@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Framework-agnostic component CSS for the mizu design system",
   "type": "module",
+  "style": "./dist/mizu.css",
   "exports": {
     ".": "./dist/mizu.css",
     "./components/*": "./dist/components/*.css",
