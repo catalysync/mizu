@@ -32,4 +32,11 @@ describe('Button', () => {
     const { container } = render(<Button>Accessible</Button>);
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it('shows a spinner and sets aria-busy when loading', () => {
+    render(<Button loading>Save</Button>);
+    const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('aria-busy', 'true');
+    expect(button).toBeDisabled();
+  });
 });

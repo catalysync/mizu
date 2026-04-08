@@ -27,13 +27,27 @@ const buttonVariants = cva('mizu-button', {
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  loading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    { className, variant, size, asChild = false, loading = false, disabled, children, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : 'button';
     return (
-      <Comp ref={ref} className={cn(buttonVariants({ variant, size, className }))} {...props} />
+      <Comp
+        ref={ref}
+        className={cn(buttonVariants({ variant, size, className }))}
+        data-loading={loading || undefined}
+        aria-busy={loading || undefined}
+        disabled={disabled ?? loading}
+        {...props}
+      >
+        <span className="mizu-button__label">{children}</span>
+        {loading && <span className="mizu-button__spinner" aria-hidden="true" />}
+      </Comp>
     );
   },
 );

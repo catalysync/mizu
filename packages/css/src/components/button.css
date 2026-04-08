@@ -31,6 +31,35 @@
   pointer-events: none;
 }
 
+.mizu-button[data-loading="true"] {
+  cursor: progress;
+  pointer-events: none;
+}
+
+.mizu-button[data-loading="true"] .mizu-button__label {
+  visibility: hidden;
+}
+
+.mizu-button__spinner {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentcolor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: mizu-button-spin 600ms linear infinite;
+}
+
+@keyframes mizu-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mizu-button {
+  position: relative;
+}
+
 /* Variants */
 .mizu-button--primary {
   background-color: var(--mizu-action-primary-default);
