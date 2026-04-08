@@ -1,0 +1,27 @@
+/* mizu Design System — Component CSS
+ * Framework-agnostic. Requires @aspect/tokens CSS variables to be loaded.
+ *
+ * Usage (any framework):
+ *   @import "@aspect/tokens/css";
+ *   @import "@aspect/css";
+ *
+ * Usage (cherry-pick):
+ *   @import "@aspect/css/components/button";
+ *   @import "@aspect/css/layouts/stack";
+ */
+
+/* Components */
+@import "./components/button.css";
+@import "./components/input.css";
+@import "./components/badge.css";
+@import "./components/card.css";
+@import "./components/dialog.css";
+@import "./components/tabs.css";
+
+/* Layouts */
+@import "./layouts/stack.css";
+@import "./layouts/inline.css";
+@import "./layouts/grid.css";
+@import "./layouts/split.css";
+@import "./layouts/center.css";
+@import "./layouts/cluster.css";

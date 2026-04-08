@@ -1,0 +1,5 @@
+/* TODO: split layout */
+.mizu-split {
+  display: flex;
+  justify-content: space-between;
+}

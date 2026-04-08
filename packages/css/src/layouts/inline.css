@@ -1,0 +1,5 @@
+/* TODO: inline layout */
+.mizu-inline {
+  display: flex;
+  flex-direction: row;
+}

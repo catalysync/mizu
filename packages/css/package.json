@@ -1,0 +1,26 @@
+{
+  "name": "@aspect/css",
+  "version": "0.1.0",
+  "description": "Framework-agnostic component CSS for the mizu design system",
+  "type": "module",
+  "exports": {
+    ".": "./dist/mizu.css",
+    "./components/*": "./src/components/*.css",
+    "./layouts/*": "./src/layouts/*.css"
+  },
+  "scripts": {
+    "build": "lightningcss --bundle src/index.css -o dist/mizu.css",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "@aspect/tokens": ">=0.1.0"
+  },
+  "devDependencies": {
+    "@aspect/tokens": "workspace:^",
+    "lightningcss-cli": "^1.32.0"
+  },
+  "files": [
+    "dist",
+    "src"
+  ]
+}

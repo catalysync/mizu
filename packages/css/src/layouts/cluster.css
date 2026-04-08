@@ -1,0 +1,5 @@
+/* TODO: cluster layout */
+.mizu-cluster {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,99 @@
+/*
+ * Button component styles — uses CSS custom properties only.
+ * No Tailwind required. Consumers can override any --mizu-* variable.
+ */
+.mizu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mizu-spacing-2);
+  white-space: nowrap;
+  font-family: var(--mizu-font-family-sans);
+  font-weight: var(--mizu-font-weight-medium);
+  font-size: var(--mizu-font-size-sm);
+  line-height: var(--mizu-font-line-height-tight);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+  outline: none;
+}
+
+.mizu-button:focus-visible {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: 2px;
+}
+
+.mizu-button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Variants */
+.mizu-button--primary {
+  background-color: var(--mizu-action-primary-default);
+  color: var(--mizu-text-inverse);
+  border-radius: var(--mizu-radius-lg);
+}
+
+.mizu-button--primary:hover {
+  background-color: var(--mizu-action-primary-hover);
+}
+
+.mizu-button--primary:active {
+  background-color: var(--mizu-action-primary-active);
+}
+
+.mizu-button--secondary {
+  background-color: transparent;
+  color: var(--mizu-text-primary);
+  border-color: var(--mizu-border-default);
+  border-radius: var(--mizu-radius-lg);
+}
+
+.mizu-button--secondary:hover {
+  background-color: var(--mizu-surface-secondary);
+}
+
+.mizu-button--ghost {
+  background-color: transparent;
+  color: var(--mizu-text-primary);
+  border-radius: var(--mizu-radius-lg);
+}
+
+.mizu-button--ghost:hover {
+  background-color: var(--mizu-surface-secondary);
+}
+
+.mizu-button--destructive {
+  background-color: var(--mizu-action-destructive-default, #dc2626);
+  color: var(--mizu-text-inverse);
+  border-radius: var(--mizu-radius-lg);
+}
+
+/* Sizes */
+.mizu-button--sm {
+  height: 2rem;
+  padding: 0 var(--mizu-spacing-3);
+  font-size: var(--mizu-font-size-xs);
+}
+
+.mizu-button--md {
+  height: 2.5rem;
+  padding: 0 var(--mizu-spacing-4);
+  font-size: var(--mizu-font-size-sm);
+}
+
+.mizu-button--lg {
+  height: 2.75rem;
+  padding: 0 var(--mizu-spacing-5);
+  font-size: var(--mizu-font-size-base);
+}
+
+.mizu-button--icon {
+  height: 2.5rem;
+  width: 2.5rem;
+  padding: 0;
+}
