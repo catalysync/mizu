@@ -17,6 +17,11 @@
   "peerDependencies": {
     "@aspect/tokens": ">=0.1.0"
   },
+  "peerDependenciesMeta": {
+    "@aspect/tokens": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@aspect/tokens": "workspace:^",
     "lightningcss": "^1.32.0"
