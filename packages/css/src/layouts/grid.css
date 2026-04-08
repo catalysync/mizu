@@ -1,4 +1,5 @@
-/* TODO: grid layout */
 .mizu-grid {
   display: grid;
+  gap: var(--mizu-grid-gap, var(--mizu-spacing-4));
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--mizu-grid-min, 16rem), 100%), 1fr));
 }

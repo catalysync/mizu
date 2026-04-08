@@ -1,5 +1,21 @@
-/* TODO: stack layout */
 .mizu-stack {
   display: flex;
   flex-direction: column;
+  gap: var(--mizu-stack-gap, var(--mizu-spacing-4));
+}
+
+.mizu-stack--align-start {
+  align-items: flex-start;
+}
+
+.mizu-stack--align-center {
+  align-items: center;
+}
+
+.mizu-stack--align-end {
+  align-items: flex-end;
+}
+
+.mizu-stack--align-stretch {
+  align-items: stretch;
 }

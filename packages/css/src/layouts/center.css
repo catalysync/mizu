@@ -1,6 +1,12 @@
-/* TODO: center layout */
 .mizu-center {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  max-width: var(--mizu-center-max, 60rem);
+  margin-inline: auto;
+  padding-inline: var(--mizu-center-padding, var(--mizu-spacing-4));
+}
+
+.mizu-center--column {
+  flex-direction: column;
 }

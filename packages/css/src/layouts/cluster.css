@@ -1,5 +1,7 @@
-/* TODO: cluster layout */
 .mizu-cluster {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mizu-cluster-gap, var(--mizu-spacing-2));
+  justify-content: var(--mizu-cluster-justify, flex-start);
 }
