@@ -11,17 +11,17 @@
  */
 
 /* Components */
-@import "./components/button.css";
-@import "./components/input.css";
-@import "./components/badge.css";
-@import "./components/card.css";
-@import "./components/dialog.css";
-@import "./components/tabs.css";
+@import url("./components/button.css");
+@import url("./components/input.css");
+@import url("./components/badge.css");
+@import url("./components/card.css");
+@import url("./components/dialog.css");
+@import url("./components/tabs.css");
 
 /* Layouts */
-@import "./layouts/stack.css";
-@import "./layouts/inline.css";
-@import "./layouts/grid.css";
-@import "./layouts/split.css";
-@import "./layouts/center.css";
-@import "./layouts/cluster.css";
+@import url("./layouts/stack.css");
+@import url("./layouts/inline.css");
+@import url("./layouts/grid.css");
+@import url("./layouts/split.css");
+@import url("./layouts/center.css");
+@import url("./layouts/cluster.css");
