@@ -1,0 +1,22 @@
+{
+  "name": "@aspect/tailwind-preset",
+  "version": "0.1.0",
+  "description": "Tailwind v4 theme bridge for the mizu design system",
+  "type": "module",
+  "exports": {
+    ".": "./src/preset.css"
+  },
+  "scripts": {
+    "lint": "stylelint 'src/**/*.css'"
+  },
+  "peerDependencies": {
+    "@aspect/tokens": ">=0.1.0",
+    "tailwindcss": ">=4.0.0"
+  },
+  "devDependencies": {
+    "@aspect/tokens": "workspace:^"
+  },
+  "files": [
+    "src"
+  ]
+}

@@ -76,6 +76,16 @@ importers:
         specifier: ^8.5.1
         version: 8.5.1(postcss@8.5.9)(typescript@5.9.2)(yaml@2.8.3)
 
+  packages/tailwind-preset:
+    dependencies:
+      tailwindcss:
+        specifier: '>=4.0.0'
+        version: 4.2.2
+    devDependencies:
+      '@aspect/tokens':
+        specifier: workspace:^
+        version: link:../tokens
+
   packages/tokens:
     devDependencies:
       style-dictionary:
@@ -1625,6 +1635,9 @@ packages:
     resolution: {integrity: sha512-9kY+CygyYM6j02t5YFHbNz2FN5QmYGv9zAjVp4lCDjlCw7amdckXlEt/bjMhUIfj4ThGRE4gCUH5+yGnNuPo5A==}
     engines: {node: '>=10.0.0'}
 
+  tailwindcss@4.2.2:
+    resolution: {integrity: sha512-KWBIxs1Xb6NoLdMVqhbhgwZf2PGBpPEiwOqgI4pFIYbNTfBXiKYyWoTsXgBQ9WFg/OlhnvHaY+AEpW7wSmFo2Q==}
+
   thenify-all@1.6.0:
     resolution: {integrity: sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==}
     engines: {node: '>=0.8'}
@@ -3160,6 +3173,8 @@ snapshots:
       slice-ansi: 4.0.0
       string-width: 4.2.3
       strip-ansi: 6.0.1
+
+  tailwindcss@4.2.2: {}
 
   thenify-all@1.6.0:
     dependencies:
