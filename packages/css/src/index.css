@@ -25,3 +25,10 @@
 @import url("./layouts/split.css");
 @import url("./layouts/center.css");
 @import url("./layouts/cluster.css");
+
+/* Shell */
+@import url("./shell/app-layout.css");
+@import url("./shell/app-header.css");
+@import url("./shell/app-sidebar.css");
+@import url("./shell/app-content.css");
+@import url("./shell/app-breadcrumbs.css");

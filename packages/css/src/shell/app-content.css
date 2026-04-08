@@ -1,0 +1,41 @@
+.mizu-app-content {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: var(--mizu-spacing-6) var(--mizu-spacing-8);
+  gap: var(--mizu-spacing-6);
+}
+
+.mizu-app-content[data-content-type="form"] {
+  max-width: 48rem;
+}
+
+.mizu-app-content[data-content-type="dashboard"] {
+  max-width: none;
+}
+
+.mizu-app-content[data-content-type="table"] {
+  padding: var(--mizu-spacing-4) var(--mizu-spacing-6);
+}
+
+.mizu-app-content__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-2);
+}
+
+.mizu-app-content__title {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-2xl);
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-primary);
+  margin: 0;
+}
+
+.mizu-app-content__description {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-secondary);
+  margin: 0;
+}

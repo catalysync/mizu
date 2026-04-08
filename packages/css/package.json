@@ -8,7 +8,8 @@
     ".": "./dist/mizu.css",
     "./typography": "./dist/typography.css",
     "./components/*": "./dist/components/*.css",
-    "./layouts/*": "./dist/layouts/*.css"
+    "./layouts/*": "./dist/layouts/*.css",
+    "./shell/*": "./dist/shell/*.css"
   },
   "scripts": {
     "build": "node build.mjs",

@@ -1,0 +1,41 @@
+.mizu-app-header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-4);
+  padding: 0 var(--mizu-spacing-6);
+  height: 3.5rem;
+  background: var(--mizu-surface-default);
+  border-bottom: 1px solid var(--mizu-border-default);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.mizu-app-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mizu-spacing-2);
+  font-family: var(--mizu-font-family-sans);
+  font-weight: var(--mizu-font-weight-semibold);
+  font-size: var(--mizu-font-size-base);
+  color: var(--mizu-text-primary);
+  text-decoration: none;
+}
+
+.mizu-app-header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-1);
+  margin-left: var(--mizu-spacing-4);
+}
+
+.mizu-app-header__spacer {
+  flex: 1;
+}
+
+.mizu-app-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-2);
+}
