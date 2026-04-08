@@ -1,4 +1,93 @@
-/* TODO: dialog component styles */
-.mizu-dialog {
-  display: block;
+.mizu-dialog__overlay {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, var(--mizu-color-slate-950) 60%, transparent);
+  z-index: 50;
+  animation: mizu-dialog-fade-in 150ms ease;
+}
+
+.mizu-dialog__content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 32rem;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--mizu-surface-default);
+  border-radius: var(--mizu-radius-lg);
+  box-shadow: var(--mizu-shadow-xl);
+  z-index: 51;
+  animation: mizu-dialog-scale-in 150ms ease;
+}
+
+.mizu-dialog__content:focus {
+  outline: none;
+}
+
+.mizu-dialog__header {
+  padding: var(--mizu-spacing-5);
+  border-bottom: 1px solid var(--mizu-border-default);
+}
+
+.mizu-dialog__title {
+  margin: 0;
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-lg);
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-dialog__description {
+  margin: var(--mizu-spacing-1) 0 0;
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-dialog__body {
+  padding: var(--mizu-spacing-5);
+}
+
+.mizu-dialog__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--mizu-spacing-2);
+  padding: var(--mizu-spacing-4) var(--mizu-spacing-5);
+  border-top: 1px solid var(--mizu-border-default);
+  background: var(--mizu-surface-secondary);
+}
+
+.mizu-dialog__close {
+  position: absolute;
+  top: var(--mizu-spacing-3);
+  right: var(--mizu-spacing-3);
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--mizu-radius-md);
+  color: var(--mizu-text-secondary);
+  cursor: pointer;
+}
+
+.mizu-dialog__close:hover {
+  background: var(--mizu-surface-secondary);
+  color: var(--mizu-text-primary);
+}
+
+@keyframes mizu-dialog-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes mizu-dialog-scale-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
 }
