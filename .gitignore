@@ -25,6 +25,7 @@ coverage
 .next/
 out/
 build
+!packages/*/build
 dist
 
 

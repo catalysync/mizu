@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "build": "node --loader ts-node/esm build/config.ts",
+    "build": "node build/config.mjs",
     "clean": "rm -rf dist"
   },
   "exports": {
