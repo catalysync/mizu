@@ -4,7 +4,8 @@
   "description": "Tailwind v4 theme bridge for the mizu design system",
   "type": "module",
   "exports": {
-    ".": "./src/preset.css"
+    ".": "./src/preset.css",
+    "./legacy": "./src/legacy-preset.js"
   },
   "scripts": {
     "lint": "stylelint 'src/**/*.css'"
