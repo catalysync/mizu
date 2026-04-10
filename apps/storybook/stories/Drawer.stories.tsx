@@ -1,0 +1,72 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerBody,
+  DrawerFooter,
+  Button,
+  Stack,
+  Input,
+} from '@aspect/react';
+
+const meta = {
+  title: 'Components/Overlays/Drawer',
+  parameters: { layout: 'centered' },
+} satisfies Meta;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Right: Story = {
+  render: () => (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button>Open drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent side="right">
+        <DrawerHeader>
+          <DrawerTitle>App settings</DrawerTitle>
+          <DrawerDescription>Update your app configuration.</DrawerDescription>
+        </DrawerHeader>
+        <DrawerBody>
+          <Stack gap="1rem">
+            <label>
+              <span className="mizu-caption">App name</span>
+              <Input defaultValue="frosty-mountain-1234" aria-label="App name" />
+            </label>
+            <label>
+              <span className="mizu-caption">Region</span>
+              <Input defaultValue="us-east" aria-label="Region" />
+            </label>
+          </Stack>
+        </DrawerBody>
+        <DrawerFooter>
+          <Button variant="ghost">Cancel</Button>
+          <Button variant="primary">Save</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  ),
+};
+
+export const Left: Story = {
+  render: () => (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button variant="secondary">Open left</Button>
+      </DrawerTrigger>
+      <DrawerContent side="left">
+        <DrawerHeader>
+          <DrawerTitle>Navigation</DrawerTitle>
+        </DrawerHeader>
+        <DrawerBody>
+          <p style={{ margin: 0 }}>Sidebar content here.</p>
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
+  ),
+};
