@@ -1,0 +1,56 @@
+{
+  "name": "@aspect/commerce",
+  "version": "0.1.0",
+  "description": "Commerce industry components for the mizu design system",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./css": "./src/css/commerce.css"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "tsup && node scripts/prepend-use-client.mjs",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "@aspect/css": ">=0.2.0",
+    "@aspect/react": ">=0.2.0",
+    "@aspect/tokens": ">=0.2.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "files": [
+    "dist",
+    "src/css"
+  ],
+  "devDependencies": {
+    "@aspect/css": "workspace:^",
+    "@aspect/react": "workspace:^",
+    "@aspect/tokens": "workspace:^",
+    "@aspect/tsconfig": "workspace:^",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "class-variance-authority": "^0.7.1",
+    "jsdom": "^25.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.0.0"
+  }
+}

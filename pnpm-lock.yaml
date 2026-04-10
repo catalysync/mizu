@@ -151,6 +151,54 @@ importers:
         specifier: ^7.0.0
         version: 7.3.2(@types/node@22.19.17)(lightningcss@1.32.0)(yaml@2.8.3)
 
+  packages/commerce:
+    devDependencies:
+      '@aspect/css':
+        specifier: workspace:^
+        version: link:../css
+      '@aspect/react':
+        specifier: workspace:^
+        version: link:../react
+      '@aspect/tokens':
+        specifier: workspace:^
+        version: link:../tokens
+      '@aspect/tsconfig':
+        specifier: workspace:^
+        version: link:../tsconfig
+      '@testing-library/jest-dom':
+        specifier: ^6.6.0
+        version: 6.9.1
+      '@testing-library/react':
+        specifier: ^16.0.0
+        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      jsdom:
+        specifier: ^25.0.0
+        version: 25.0.1
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      tsup:
+        specifier: ^8.5.0
+        version: 8.5.1(postcss@8.5.9)(typescript@5.9.2)(yaml@2.8.3)
+      typescript:
+        specifier: ^5.9.0
+        version: 5.9.2
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.4(@types/debug@4.1.13)(@types/node@22.19.17)(jsdom@25.0.1)(lightningcss@1.32.0)(yaml@2.8.3)
+
   packages/css:
     devDependencies:
       '@aspect/tokens':

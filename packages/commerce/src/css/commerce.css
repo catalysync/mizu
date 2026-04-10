@@ -1,0 +1,183 @@
+/* @aspect/commerce — commerce industry CSS */
+
+.mizu-thumbnail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--mizu-radius-md);
+  border: 1px solid var(--mizu-border-default);
+  background: var(--mizu-surface-secondary);
+  flex-shrink: 0;
+}
+
+.mizu-thumbnail--xs {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.mizu-thumbnail--sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.mizu-thumbnail--md {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.mizu-thumbnail--lg {
+  width: 4rem;
+  height: 4rem;
+}
+
+.mizu-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mizu-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mizu-spacing-4);
+  padding: var(--mizu-spacing-3) 0;
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-pagination__buttons {
+  display: flex;
+  gap: var(--mizu-spacing-1);
+}
+
+.mizu-banner {
+  display: flex;
+  gap: var(--mizu-spacing-3);
+  padding: var(--mizu-spacing-4) var(--mizu-spacing-5);
+  border-radius: var(--mizu-radius-lg);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+}
+
+.mizu-banner--info {
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--mizu-action-primary-default) 20%, transparent);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-banner--success {
+  background: var(--mizu-feedback-success-subtle);
+  border: 1px solid color-mix(in srgb, var(--mizu-feedback-success-default) 25%, transparent);
+}
+
+.mizu-banner--warning {
+  background: var(--mizu-feedback-warning-subtle);
+  border: 1px solid color-mix(in srgb, var(--mizu-feedback-warning-default) 25%, transparent);
+}
+
+.mizu-banner--critical {
+  background: var(--mizu-feedback-danger-subtle);
+  border: 1px solid color-mix(in srgb, var(--mizu-feedback-danger-default) 25%, transparent);
+}
+
+.mizu-banner__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.0625rem;
+}
+
+.mizu-banner__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.mizu-banner__title {
+  font-weight: var(--mizu-font-weight-semibold);
+  margin-bottom: var(--mizu-spacing-1);
+}
+
+.mizu-banner__dismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: none;
+  border: none;
+  border-radius: var(--mizu-radius-md);
+  color: var(--mizu-text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.mizu-banner__dismiss:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
+}
+
+.mizu-resource-item {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-3);
+  padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
+  cursor: pointer;
+  transition: background-color 100ms ease;
+}
+
+.mizu-resource-item:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 3%, transparent);
+}
+
+.mizu-resource-item + .mizu-resource-item {
+  border-top: 1px solid var(--mizu-border-default);
+}
+
+.mizu-resource-item__media {
+  flex-shrink: 0;
+}
+
+.mizu-resource-item__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.mizu-resource-item__title {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-weight: var(--mizu-font-weight-medium);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-resource-item__meta {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-resource-item__actions {
+  display: flex;
+  gap: var(--mizu-spacing-1);
+  flex-shrink: 0;
+}
+
+.mizu-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-1);
+}
+
+.mizu-form-group__error {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  color: var(--mizu-feedback-danger-default);
+}
+
+.mizu-form-group__help {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  color: var(--mizu-text-secondary);
+}
