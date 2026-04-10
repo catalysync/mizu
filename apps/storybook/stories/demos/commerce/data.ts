@@ -83,6 +83,82 @@ export interface Order {
   status: 'fulfilled' | 'pending' | 'refunded';
 }
 
+export interface Customer {
+  id: string;
+  name: string;
+  email: string;
+  orders: number;
+  spent: number;
+  lastOrder: string;
+  status: 'active' | 'inactive';
+}
+
+export const customers: Customer[] = [
+  {
+    id: 'c1',
+    name: 'Sarah Chen',
+    email: 'sarah@example.com',
+    orders: 8,
+    spent: 2340,
+    lastOrder: 'Mar 28',
+    status: 'active',
+  },
+  {
+    id: 'c2',
+    name: 'James Okafor',
+    email: 'james@example.com',
+    orders: 3,
+    spent: 1890,
+    lastOrder: 'Mar 27',
+    status: 'active',
+  },
+  {
+    id: 'c3',
+    name: 'Priya Patel',
+    email: 'priya@example.com',
+    orders: 12,
+    spent: 4120,
+    lastOrder: 'Mar 26',
+    status: 'active',
+  },
+  {
+    id: 'c4',
+    name: 'Alex Kim',
+    email: 'alex@example.com',
+    orders: 1,
+    spent: 89,
+    lastOrder: 'Mar 25',
+    status: 'inactive',
+  },
+  {
+    id: 'c5',
+    name: 'Maria Santos',
+    email: 'maria@example.com',
+    orders: 6,
+    spent: 1780,
+    lastOrder: 'Mar 24',
+    status: 'active',
+  },
+  {
+    id: 'c6',
+    name: 'David Nguyen',
+    email: 'david@example.com',
+    orders: 15,
+    spent: 5430,
+    lastOrder: 'Mar 22',
+    status: 'active',
+  },
+  {
+    id: 'c7',
+    name: 'Emma Wilson',
+    email: 'emma@example.com',
+    orders: 2,
+    spent: 156,
+    lastOrder: 'Feb 14',
+    status: 'inactive',
+  },
+];
+
 export const orders: Order[] = [
   {
     id: '#1042',
