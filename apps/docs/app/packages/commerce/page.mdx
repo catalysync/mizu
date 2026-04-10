@@ -1,0 +1,77 @@
+export const metadata = { title: '@aspect/commerce — mizu' };
+
+# @aspect/commerce
+
+Commerce industry components for storefronts, catalogs, and admin dashboards.
+
+## Installation
+
+```bash
+pnpm add @aspect/commerce @aspect/react @aspect/css @aspect/tokens
+```
+
+## Components
+
+| Component      | Description                                                             |
+| -------------- | ----------------------------------------------------------------------- |
+| `ResourceItem` | List row with media, name, meta text, and action slot                   |
+| `Thumbnail`    | Image thumbnail with size variants (sm, md, lg)                         |
+| `Pagination`   | Previous/next navigation with label text                                |
+| `Banner`       | Dismissible notification bar with tone (info, success, warning, danger) |
+
+## ResourceItem
+
+A versatile list item for product lists, order lists, or any resource collection.
+
+```tsx
+import { ResourceItem, Thumbnail } from '@aspect/commerce';
+
+<ResourceItem
+  media={<Thumbnail source="/product.jpg" alt="Lamp" size="sm" />}
+  name="Minimal Desk Lamp"
+  meta="LAMP-001 · $89.00 · 124 in stock"
+  actions={<Badge tone="success">active</Badge>}
+/>;
+```
+
+## Thumbnail
+
+```tsx
+import { Thumbnail } from '@aspect/commerce';
+
+<Thumbnail source="/product.jpg" alt="Product" size="sm" />
+<Thumbnail source="/product.jpg" alt="Product" size="md" />
+<Thumbnail source="/product.jpg" alt="Product" size="lg" />
+```
+
+## Pagination
+
+```tsx
+import { Pagination } from '@aspect/commerce';
+
+<Pagination
+  label="Showing 1–10 of 42 products"
+  hasPrevious={false}
+  hasNext={true}
+  onPrevious={() => {}}
+  onNext={() => {}}
+/>;
+```
+
+## Banner
+
+```tsx
+import { Banner } from '@aspect/commerce';
+
+<Banner tone="info" title="Welcome" onDismiss={() => {}}>
+  Your store is live.
+</Banner>;
+```
+
+## CSS
+
+Import the commerce CSS alongside the base system:
+
+```tsx
+import '@aspect/commerce/css';
+```

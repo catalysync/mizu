@@ -1,0 +1,117 @@
+export const metadata = { title: 'Motion — mizu' };
+
+# Motion
+
+Animation primitives for entrance transitions and reduced-motion support.
+
+## React components
+
+```tsx
+import { FadeIn, SlideIn, ZoomIn, StaggeredEntrance } from '@aspect/react';
+```
+
+### FadeIn
+
+```tsx
+<FadeIn>
+  <Card>Content fades in on mount</Card>
+</FadeIn>
+
+<FadeIn direction="up" distance={16} duration={300}>
+  <Card>Slides up while fading</Card>
+</FadeIn>
+```
+
+| Prop        | Type                       | Default  | Description                 |
+| ----------- | -------------------------- | -------- | --------------------------- |
+| `direction` | `'up' \| 'down' \| 'none'` | `'none'` | Slide direction during fade |
+| `distance`  | `number`                   | `8`      | Slide distance in pixels    |
+| `duration`  | `number`                   | `200`    | Animation duration in ms    |
+
+### SlideIn
+
+```tsx
+<SlideIn from="right">
+  <Drawer>Slides in from the right</Drawer>
+</SlideIn>
+```
+
+| Prop       | Type                                     | Default  | Description              |
+| ---------- | ---------------------------------------- | -------- | ------------------------ |
+| `from`     | `'left' \| 'right' \| 'top' \| 'bottom'` | `'left'` | Slide origin             |
+| `duration` | `number`                                 | `250`    | Animation duration in ms |
+
+### ZoomIn
+
+```tsx
+<ZoomIn>
+  <Modal>Zooms in on mount</Modal>
+</ZoomIn>
+```
+
+### StaggeredEntrance
+
+Wraps multiple children and staggers their entrance animations.
+
+```tsx
+<StaggeredEntrance stagger={50}>
+  <FadeIn>
+    <Card>First</Card>
+  </FadeIn>
+  <FadeIn>
+    <Card>Second</Card>
+  </FadeIn>
+  <FadeIn>
+    <Card>Third</Card>
+  </FadeIn>
+</StaggeredEntrance>
+```
+
+## useIsReducedMotion
+
+Hook that returns `true` when the user has `prefers-reduced-motion: reduce` enabled.
+
+```tsx
+import { useIsReducedMotion } from '@aspect/react';
+
+function MyComponent() {
+  const reduceMotion = useIsReducedMotion();
+  // Skip animations when true
+}
+```
+
+## CSS animations
+
+The CSS package includes keyframe animations that work without React:
+
+```css
+@import '@aspect/css';
+```
+
+| Class                          | Effect                   |
+| ------------------------------ | ------------------------ |
+| `.mizu-animate-fade-in`        | Fade in from transparent |
+| `.mizu-animate-fade-in-up`     | Fade in + slide up       |
+| `.mizu-animate-fade-in-down`   | Fade in + slide down     |
+| `.mizu-animate-slide-in-right` | Slide in from right      |
+| `.mizu-animate-slide-in-left`  | Slide in from left       |
+| `.mizu-animate-zoom-in`        | Scale from 95% to 100%   |
+| `.mizu-animate-spin`           | Continuous rotation      |
+
+All animations are automatically disabled when `prefers-reduced-motion: reduce` is active.
+
+## Duration tokens
+
+| Token                    | Value   | Use                                  |
+| ------------------------ | ------- | ------------------------------------ |
+| `--mizu-duration-fast`   | `150ms` | Micro-interactions, hover states     |
+| `--mizu-duration-normal` | `250ms` | Panel transitions, modals            |
+| `--mizu-duration-slow`   | `400ms` | Page transitions, complex animations |
+
+## Easing tokens
+
+| Token                  | Value                            | Use                   |
+| ---------------------- | -------------------------------- | --------------------- |
+| `--mizu-easing-out`    | `cubic-bezier(0.16, 1, 0.3, 1)`  | Entrances             |
+| `--mizu-easing-in`     | `cubic-bezier(0.55, 0, 1, 0.45)` | Exits                 |
+| `--mizu-easing-in-out` | `cubic-bezier(0.45, 0, 0.55, 1)` | Symmetric transitions |

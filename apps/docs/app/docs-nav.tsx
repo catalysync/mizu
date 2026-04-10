@@ -27,6 +27,7 @@ const nav: NavSection[] = [
       { label: 'Colors', href: '/foundation/colors' },
       { label: 'Typography', href: '/foundation/typography' },
       { label: 'Spacing', href: '/foundation/spacing' },
+      { label: 'Motion', href: '/foundation/motion' },
     ],
   },
   {
@@ -102,6 +103,7 @@ const nav: NavSection[] = [
     title: 'Packages',
     items: [
       { label: '@aspect/finance', href: '/packages/finance' },
+      { label: '@aspect/commerce', href: '/packages/commerce' },
       { label: 'Tailwind preset', href: '/packages/tailwind-preset' },
     ],
   },
