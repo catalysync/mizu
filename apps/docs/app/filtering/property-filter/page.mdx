@@ -1,0 +1,102 @@
+export const metadata = { title: 'PropertyFilter — mizu' };
+
+# PropertyFilter
+
+A structured property:value filter with autocomplete suggestions and token pills.
+
+## Import
+
+```tsx
+import { PropertyFilter } from '@aspect/react';
+import type { PropertyFilterQuery, PropertyFilterProperty } from '@aspect/react';
+```
+
+## Usage
+
+```tsx
+const properties: PropertyFilterProperty[] = [
+  {
+    key: 'status',
+    label: 'Status',
+    operators: ['=', '!='],
+    options: ['running', 'idle', 'crashed'],
+  },
+  {
+    key: 'region',
+    label: 'Region',
+    operators: ['=', '!='],
+    options: ['us-east', 'us-west', 'eu-west'],
+  },
+  {
+    key: 'framework',
+    label: 'Framework',
+    operators: ['=', 'contains'],
+  },
+];
+
+function FilteredTable() {
+  const [query, setQuery] = React.useState<PropertyFilterQuery>({
+    operation: 'and',
+    tokens: [],
+  });
+
+  return (
+    <PropertyFilter
+      query={query}
+      onQueryChange={setQuery}
+      properties={properties}
+      countText={`${query.tokens.length} active`}
+      placeholder="Filter by status, region, framework…"
+    />
+  );
+}
+```
+
+## How it works
+
+1. User focuses the input — suggestions show all available properties
+2. User types or selects a property — input fills with `PropertyName: `
+3. User types a value and presses Enter — a token pill appears
+4. Token pills can be individually removed or cleared all at once
+
+The query object uses the format `{ operation: 'and' | 'or', tokens: [...] }` where each token has `propertyKey`, `operator`, and `value`.
+
+## Types
+
+```tsx
+type PropertyFilterOperator = '=' | '!=' | '>' | '<' | '>=' | '<=' | 'contains' | 'startsWith';
+
+interface PropertyFilterProperty {
+  key: string;
+  label: string;
+  operators?: PropertyFilterOperator[];
+  options?: string[];
+}
+
+interface PropertyFilterToken {
+  propertyKey: string;
+  operator: PropertyFilterOperator;
+  value: string;
+}
+
+interface PropertyFilterQuery {
+  operation: 'and' | 'or';
+  tokens: PropertyFilterToken[];
+}
+```
+
+## Props
+
+| Prop            | Type                                   | Default                         | Description                                     |
+| --------------- | -------------------------------------- | ------------------------------- | ----------------------------------------------- |
+| `query`         | `PropertyFilterQuery`                  | —                               | Current filter state                            |
+| `onQueryChange` | `(query: PropertyFilterQuery) => void` | —                               | Called when tokens change                       |
+| `properties`    | `PropertyFilterProperty[]`             | —                               | Available filter properties                     |
+| `placeholder`   | `string`                               | `'Filter by property or value'` | Input placeholder                               |
+| `countText`     | `string`                               | —                               | Text shown next to the input (e.g. "3 matches") |
+
+## When to use
+
+- Tables or lists with many filterable columns
+- When users need structured queries without learning SQL syntax
+- When you want autocomplete for property names and known values

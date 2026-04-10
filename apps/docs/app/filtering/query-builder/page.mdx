@@ -1,0 +1,243 @@
+export const metadata = { title: 'QueryBuilder — mizu' };
+
+# QueryBuilder
+
+A visual rule builder with AND/OR combinators that exports to SQL, JSON, or parameterized queries. Wraps `react-querybuilder` with mizu styling.
+
+## Installation
+
+```bash
+pnpm add @aspect/query-builder react-querybuilder
+```
+
+## Import
+
+```tsx
+import { MizuQueryBuilder, formatQuery } from '@aspect/query-builder';
+import type { RuleGroupType } from '@aspect/query-builder';
+```
+
+## Basic usage
+
+```tsx
+const fields = [
+  { name: 'status', label: 'Status' },
+  { name: 'region', label: 'Region' },
+  { name: 'deploys', label: 'Deploys', inputType: 'number' },
+];
+
+function QueryDemo() {
+  const [query, setQuery] = React.useState<RuleGroupType>({
+    combinator: 'and',
+    rules: [{ field: 'status', operator: '=', value: 'running' }],
+  });
+
+  return (
+    <>
+      <MizuQueryBuilder fields={fields} query={query} onQueryChange={setQuery} />
+      <pre>{formatQuery(query, 'sql')}</pre>
+    </>
+  );
+}
+```
+
+## Field configuration
+
+Fields control what appears in the field selector and how the value editor renders.
+
+```tsx
+const fields = [
+  // Text input (default)
+  { name: 'name', label: 'Name' },
+
+  // Number input
+  { name: 'deploys', label: 'Deploys', inputType: 'number' },
+
+  // Date input
+  { name: 'createdAt', label: 'Created', inputType: 'date' },
+
+  // Dropdown select
+  {
+    name: 'status',
+    label: 'Status',
+    valueEditorType: 'select',
+    values: [
+      { name: 'running', label: 'Running' },
+      { name: 'idle', label: 'Idle' },
+    ],
+  },
+
+  // Checkbox
+  {
+    name: 'active',
+    label: 'Active',
+    valueEditorType: 'checkbox',
+    defaultValue: true,
+  },
+];
+```
+
+## Output formats
+
+`formatQuery` serializes the query tree into different representations:
+
+```tsx
+// SQL WHERE clause (for display only — not injection-safe)
+formatQuery(query, 'sql');
+// → "status = 'running' AND deploys > 10"
+
+// Parameterized (safe for prepared statements)
+formatQuery(query, 'parameterized');
+// → { sql: "status = ? AND deploys > ?", params: ["running", 10] }
+
+// JSON
+formatQuery(query, 'json');
+
+// JSON without IDs (clean, for API transport)
+formatQuery(query, 'json_without_ids');
+```
+
+Use `"parameterized"` or `"parameterized_named"` when sending queries to a backend. The `"sql"` format produces a raw string — only use it for display.
+
+## Custom operators
+
+```tsx
+import { MizuQueryBuilder } from '@aspect/query-builder';
+
+const getOperators = (field: string) => {
+  if (field === 'deploys') {
+    return [
+      { name: '=', label: 'equals' },
+      { name: '>', label: 'greater than' },
+      { name: '<', label: 'less than' },
+    ];
+  }
+  return [
+    { name: '=', label: 'equals' },
+    { name: '!=', label: 'not equals' },
+    { name: 'contains', label: 'contains' },
+  ];
+};
+
+<MizuQueryBuilder
+  fields={fields}
+  query={query}
+  onQueryChange={setQuery}
+  getOperators={getOperators}
+/>;
+```
+
+## Custom value editor
+
+Replace the default value editor to use custom widgets per field type:
+
+```tsx
+import { ValueEditor as DefaultValueEditor, ValueEditorProps } from 'react-querybuilder';
+
+const CustomValueEditor = (props: ValueEditorProps) => {
+  if (props.operator === 'null' || props.operator === 'notNull') {
+    return null; // no value needed
+  }
+  if (props.fieldData.datatype === 'date') {
+    return <MyDatePicker {...props} />;
+  }
+  return <DefaultValueEditor {...props} />;
+};
+
+<MizuQueryBuilder
+  fields={fields}
+  query={query}
+  onQueryChange={setQuery}
+  controlElements={{ valueEditor: CustomValueEditor }}
+/>;
+```
+
+## Removing features
+
+Hide the "Add Group" button to prevent nested rule groups:
+
+```tsx
+<MizuQueryBuilder
+  fields={fields}
+  query={query}
+  onQueryChange={setQuery}
+  controlElements={{ addGroupAction: () => null }}
+/>
+```
+
+Replace the combinator selector with radio buttons or remove it entirely:
+
+```tsx
+controlElements={{
+  combinatorSelector: () => null,  // hide it
+  addGroupAction: () => null,       // no nesting
+}}
+```
+
+## Internationalization
+
+```tsx
+<MizuQueryBuilder
+  fields={fields}
+  query={query}
+  onQueryChange={setQuery}
+  translations={{
+    addRule: { label: 'Agregar regla' },
+    addGroup: { label: 'Agregar grupo' },
+    removeRule: { label: 'Eliminar' },
+    removeGroup: { label: 'Eliminar grupo' },
+  }}
+  combinators={[
+    { name: 'and', label: 'Y' },
+    { name: 'or', label: 'O' },
+  ]}
+/>
+```
+
+## Bulk editing
+
+The query builder can also be used for bulk edit operations — defining "set to", "increase by", or "decrease by" rules instead of filter conditions:
+
+```tsx
+const getOperatorsForUpdate = (field: string) => {
+  if (['deploys', 'unit_price'].includes(field)) {
+    return [
+      { name: '=', label: 'set to' },
+      { name: '+', label: 'increase by' },
+      { name: '-', label: 'decrease by' },
+    ];
+  }
+  return [{ name: '=', label: 'set to' }];
+};
+
+<MizuQueryBuilder
+  fields={fields}
+  query={updateQuery}
+  onQueryChange={setUpdateQuery}
+  getOperators={getOperatorsForUpdate}
+  controlElements={{
+    addGroupAction: () => null,
+    combinatorSelector: () => null,
+  }}
+/>;
+```
+
+## Props
+
+`MizuQueryBuilder` accepts all props from `react-querybuilder`'s `QueryBuilder` component plus:
+
+| Prop        | Type     | Default | Description                         |
+| ----------- | -------- | ------- | ----------------------------------- |
+| `className` | `string` | —       | Additional CSS class on the wrapper |
+
+All other props (`fields`, `query`, `onQueryChange`, `controlElements`, `getOperators`, `translations`, `combinators`, etc.) are passed through to `react-querybuilder`.
+
+## CSS class
+
+The wrapper applies `.mizu-query-builder` which styles all child elements (selects, inputs, buttons, rule groups) using mizu design tokens.
+
+```html
+<div class="mizu-query-builder">
+  <!-- react-querybuilder renders here -->
+</div>
+```

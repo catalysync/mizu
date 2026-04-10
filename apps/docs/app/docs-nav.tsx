@@ -58,6 +58,16 @@ const nav: NavSection[] = [
     ],
   },
   {
+    title: 'Filtering',
+    items: [
+      { label: 'Overview', href: '/filtering/overview' },
+      { label: 'FilterBar', href: '/filtering/filter-bar' },
+      { label: 'PropertyFilter', href: '/filtering/property-filter' },
+      { label: 'QueryBuilder', href: '/filtering/query-builder' },
+      { label: 'AdvancedQueryBuilder', href: '/filtering/advanced-query-builder' },
+    ],
+  },
+  {
     title: 'Overlays',
     items: [
       { label: 'Modal', href: '/components/modal' },
@@ -92,7 +102,6 @@ const nav: NavSection[] = [
     title: 'Packages',
     items: [
       { label: '@aspect/finance', href: '/packages/finance' },
-      { label: '@aspect/commerce', href: '/packages/tailwind-preset' },
       { label: 'Tailwind preset', href: '/packages/tailwind-preset' },
     ],
   },

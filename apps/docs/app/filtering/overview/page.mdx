@@ -1,0 +1,53 @@
+export const metadata = { title: 'Filtering overview — mizu' };
+
+# Filtering
+
+mizu provides four filtering approaches, each suited to a different level of complexity. They all follow the same architecture: a filter input component produces a structured query, which your application sends to an API, and the results feed into any visualization (table, chart, map).
+
+## The four options
+
+| Component                  | Package                          | Best for                                                 | Complexity |
+| -------------------------- | -------------------------------- | -------------------------------------------------------- | ---------- |
+| `FilterBar`                | `@aspect/react`                  | Simple search + applied filter pills                     | Low        |
+| `PropertyFilter`           | `@aspect/react`                  | Structured property:value queries with autocomplete      | Medium     |
+| `MizuQueryBuilder`         | `@aspect/query-builder`          | Visual rule builder with combinators, exports SQL/JSON   | High       |
+| `MizuAdvancedQueryBuilder` | `@aspect/advanced-query-builder` | Full-featured query builder with typed widgets per field | Very high  |
+
+## Architecture
+
+All four components are **input layers** in a filter-fetch-display pipeline:
+
+```
+┌─────────────────┐     ┌─────────┐     ┌─────────────┐
+│  Filter component │ ──▶ │   API   │ ──▶ │  Display     │
+│  (produces query) │     │ (runs   │     │  (table,     │
+│                   │     │  query) │     │   chart, map)│
+└─────────────────┘     └─────────┘     └─────────────┘
+```
+
+The filter component does not know or care what renders the results. It produces a structured query object. Your backend interprets it and returns data. Your frontend renders that data however it needs to.
+
+## Choosing an option
+
+**Use FilterBar** when you have a small number of known filter dimensions and want a simple, Polaris-style search bar with removable filter pills. No query logic — the host app handles filtering.
+
+**Use PropertyFilter** when users need to construct typed queries on known fields (e.g. `status = running AND region != us-east`). The component handles autocomplete suggestions and token management. Inspired by Cloudscape.
+
+**Use MizuQueryBuilder** when users need to build arbitrary boolean logic with AND/OR combinators that exports to SQL, JSON, or parameterized queries. Wraps `react-querybuilder` with mizu styling. Supports custom operators, value editors, i18n, and all `react-querybuilder` features.
+
+**Use MizuAdvancedQueryBuilder** when you need typed widgets per field (date pickers, multi-select, sliders), nested groups, and output to JsonLogic, SQL, MongoDB, or SpEL. Wraps `react-awesome-query-builder` with mizu styling.
+
+## Multi-dataset support
+
+All four components accept field definitions as props. Switching datasets is as simple as swapping the field array:
+
+```tsx
+const fields = {
+  sales: [{ name: 'region', label: 'Region', ... }],
+  logistics: [{ name: 'port', label: 'Port', ... }],
+};
+
+<MizuQueryBuilder fields={fields[currentDataset]} ... />
+```
+
+Same component, different data shape. Combine with `data-mizu-theme` to also change the visual identity per dataset.

@@ -1,0 +1,62 @@
+export const metadata = { title: 'FilterBar — mizu' };
+
+# FilterBar
+
+A simple search bar with applied filter pills. Best for resource lists with a few known filter dimensions.
+
+## Import
+
+```tsx
+import { FilterBar } from '@aspect/react';
+```
+
+## Usage
+
+```tsx
+function ResourceList() {
+  const [search, setSearch] = React.useState('');
+  const [filters, setFilters] = React.useState([
+    { key: 'status', label: 'Status', value: 'running' },
+  ]);
+
+  return (
+    <FilterBar
+      searchValue={search}
+      onSearchChange={setSearch}
+      appliedFilters={filters}
+      onRemoveFilter={(key) => setFilters((f) => f.filter((x) => x.key !== key))}
+      onClearAll={() => setFilters([])}
+      placeholder="Search apps…"
+    />
+  );
+}
+```
+
+## Props
+
+| Prop             | Type                                              | Default     | Description                                |
+| ---------------- | ------------------------------------------------- | ----------- | ------------------------------------------ |
+| `searchValue`    | `string`                                          | —           | Current search input value                 |
+| `onSearchChange` | `(value: string) => void`                         | —           | Called when search input changes           |
+| `appliedFilters` | `{ key: string; label: string; value: string }[]` | `[]`        | Active filter pills                        |
+| `onRemoveFilter` | `(key: string) => void`                           | —           | Called when a filter pill is dismissed     |
+| `onClearAll`     | `() => void`                                      | —           | Called when "Clear all" is clicked         |
+| `placeholder`    | `string`                                          | `'Search…'` | Input placeholder text                     |
+| `actions`        | `React.ReactNode`                                 | —           | Slot for action buttons next to the search |
+
+## When to use
+
+- Simple resource lists with a few known filter dimensions
+- When the host app manages all filtering logic
+- When you want removable filter pills without structured query building
+
+## CSS class
+
+```html
+<div class="mizu-filter-bar">
+  <div class="mizu-filter-bar__controls">...</div>
+  <div class="mizu-filter-bar__pills">
+    <span class="mizu-filter-pill">...</span>
+  </div>
+</div>
+```

@@ -1,0 +1,150 @@
+export const metadata = { title: 'AdvancedQueryBuilder — mizu' };
+
+# AdvancedQueryBuilder
+
+A full-featured query builder with typed widgets per field type. Wraps `react-awesome-query-builder` with mizu styling.
+
+## Installation
+
+```bash
+pnpm add @aspect/advanced-query-builder @react-awesome-query-builder/ui
+```
+
+## Import
+
+```tsx
+import { MizuAdvancedQueryBuilder, BasicConfig, Utils } from '@aspect/advanced-query-builder';
+import type { Config, ImmutableTree, JsonGroup } from '@aspect/advanced-query-builder';
+```
+
+## Basic usage
+
+```tsx
+const config: Config = {
+  ...BasicConfig,
+  fields: {
+    status: {
+      label: 'Status',
+      type: 'select',
+      valueSources: ['value'],
+      fieldSettings: {
+        listValues: [
+          { value: 'running', title: 'Running' },
+          { value: 'idle', title: 'Idle' },
+          { value: 'crashed', title: 'Crashed' },
+        ],
+      },
+    },
+    framework: {
+      label: 'Framework',
+      type: 'text',
+      valueSources: ['value'],
+    },
+    deploys: {
+      label: 'Deploys',
+      type: 'number',
+      valueSources: ['value'],
+      fieldSettings: { min: 0 },
+    },
+  },
+};
+
+function AdvancedDemo() {
+  const handleChange = (tree: ImmutableTree, cfg: Config) => {
+    const jsonLogic = Utils.jsonLogicFormat(tree, cfg);
+    console.log(jsonLogic);
+  };
+
+  return <MizuAdvancedQueryBuilder config={config} onChange={handleChange} />;
+}
+```
+
+## Field types
+
+The advanced query builder provides typed widgets automatically based on the field `type`:
+
+| Type          | Widget          | Description                 |
+| ------------- | --------------- | --------------------------- |
+| `text`        | Text input      | Free-text entry             |
+| `number`      | Number input    | Numeric entry with min/max  |
+| `select`      | Dropdown        | Single value from a list    |
+| `multiselect` | Multi-select    | Multiple values from a list |
+| `boolean`     | Checkbox        | True/false toggle           |
+| `date`        | Date picker     | Calendar date selection     |
+| `datetime`    | Datetime picker | Date and time selection     |
+
+## Output formats
+
+Use `Utils` to serialize the query tree:
+
+```tsx
+// JsonLogic (common for rule engines)
+Utils.jsonLogicFormat(tree, config);
+
+// SQL
+Utils.sqlFormat(tree, config);
+
+// MongoDB query
+Utils.mongodbFormat(tree, config);
+
+// SpEL (Spring Expression Language)
+Utils.spelFormat(tree, config);
+```
+
+## Initial value
+
+Pass an initial query tree via the `value` prop:
+
+```tsx
+const initialValue: JsonGroup = {
+  id: '1',
+  type: 'group',
+  children1: [
+    {
+      type: 'rule',
+      properties: {
+        field: 'status',
+        operator: 'select_equals',
+        value: ['running'],
+        valueSrc: ['value'],
+        valueType: ['select'],
+      },
+    },
+  ],
+};
+
+<MizuAdvancedQueryBuilder config={config} value={initialValue} onChange={handleChange} />;
+```
+
+## Props
+
+| Prop        | Type                                            | Default     | Description                                     |
+| ----------- | ----------------------------------------------- | ----------- | ----------------------------------------------- |
+| `config`    | `Config`                                        | —           | Field definitions, operators, widgets, settings |
+| `value`     | `JsonGroup`                                     | Empty group | Initial query tree                              |
+| `onChange`  | `(tree: ImmutableTree, config: Config) => void` | —           | Called when the query changes                   |
+| `className` | `string`                                        | —           | Additional CSS class on the wrapper             |
+
+## When to use
+
+- Complex reporting and analytics interfaces
+- When you need typed widgets per field (date pickers, multi-selects, sliders)
+- When you need output in JsonLogic, SQL, MongoDB, or SpEL format
+- When users need deeply nested boolean logic with multiple group levels
+
+## Comparison with QueryBuilder
+
+| Feature        | QueryBuilder             | AdvancedQueryBuilder              |
+| -------------- | ------------------------ | --------------------------------- |
+| Bundle size    | Smaller (~50KB)          | Larger (~200KB+)                  |
+| Field widgets  | HTML native inputs       | Typed widgets per field           |
+| Output formats | SQL, JSON, parameterized | JsonLogic, SQL, MongoDB, SpEL     |
+| Nested groups  | Supported                | Supported with more controls      |
+| Drag and drop  | Via addon                | Built-in                          |
+| Dependencies   | `react-querybuilder`     | `@react-awesome-query-builder/ui` |
+
+Choose `QueryBuilder` for simpler needs with smaller bundle size. Choose `AdvancedQueryBuilder` when you need rich field-specific widgets and diverse output formats.
+
+## CSS class
+
+The wrapper applies `.mizu-advanced-query-builder` which styles all child elements using mizu design tokens.
