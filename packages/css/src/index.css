@@ -18,6 +18,11 @@
 @import url("./components/dialog.css");
 @import url("./components/tabs.css");
 @import url("./components/empty-state.css");
+@import url("./components/table.css");
+@import url("./components/drawer.css");
+@import url("./components/tooltip.css");
+@import url("./components/kv-pairs.css");
+@import url("./components/activity-entry.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");

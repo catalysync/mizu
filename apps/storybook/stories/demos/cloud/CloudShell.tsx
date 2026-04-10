@@ -54,9 +54,12 @@ export function CloudShell({
         }
         actions={
           <>
-            <div style={{ position: 'relative', width: '14rem' }}>
-              <Input size="sm" placeholder="Search apps, add-ons…" aria-label="Search" />
-            </div>
+            <Input
+              size="sm"
+              placeholder="Search apps, add-ons…"
+              aria-label="Search"
+              className="mizu-app-header__search"
+            />
             <Button size="sm" variant="primary">
               <IconPlus />
               <span>New app</span>

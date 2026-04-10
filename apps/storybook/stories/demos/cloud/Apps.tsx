@@ -21,9 +21,7 @@ function AppCard({ app }: { app: AppRecord }) {
     <Card interactive>
       <CardHeader>
         <Inline align="center" gap="0.5rem">
-          <h3 className="mizu-card__title" style={{ flex: 1 }}>
-            {app.name}
-          </h3>
+          <h3 className="mizu-card__title">{app.name}</h3>
           <Badge tone={STATUS_TONE[app.status]} dot>
             {STATUS_LABEL[app.status]}
           </Badge>
@@ -33,21 +31,13 @@ function AppCard({ app }: { app: AppRecord }) {
         </p>
       </CardHeader>
       <CardBody>
-        <dl
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'auto 1fr',
-            gap: '0.5rem 1rem',
-            margin: 0,
-            fontSize: '0.875rem',
-          }}
-        >
-          <dt style={{ color: 'var(--mizu-text-secondary)' }}>URL</dt>
-          <dd style={{ margin: 0 }}>{app.url}</dd>
-          <dt style={{ color: 'var(--mizu-text-secondary)' }}>Last deploy</dt>
-          <dd style={{ margin: 0 }}>{app.lastDeploy}</dd>
-          <dt style={{ color: 'var(--mizu-text-secondary)' }}>Add-ons</dt>
-          <dd style={{ margin: 0 }}>
+        <dl className="mizu-kv-pairs">
+          <dt>URL</dt>
+          <dd>{app.url}</dd>
+          <dt>Last deploy</dt>
+          <dd>{app.lastDeploy}</dd>
+          <dt>Add-ons</dt>
+          <dd>
             {app.addons.length > 0 ? (
               <Inline gap="0.25rem">
                 {app.addons.map((a) => (
@@ -57,7 +47,7 @@ function AppCard({ app }: { app: AppRecord }) {
                 ))}
               </Inline>
             ) : (
-              <span style={{ color: 'var(--mizu-text-disabled)' }}>None</span>
+              <span className="mizu-caption">None</span>
             )}
           </dd>
         </dl>

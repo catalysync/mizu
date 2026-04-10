@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button } from '@aspect/react';
+import { Button, Inline } from '@aspect/react';
 
 const meta = {
   title: 'Components/Button',
@@ -42,7 +42,7 @@ export const Destructive: Story = {
 
 export const AllSizes: Story = {
   render: (args) => (
-    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+    <Inline gap="1rem" align="center">
       <Button {...args} size="sm">
         Small
       </Button>
@@ -52,7 +52,7 @@ export const AllSizes: Story = {
       <Button {...args} size="lg">
         Large
       </Button>
-    </div>
+    </Inline>
   ),
 };
 

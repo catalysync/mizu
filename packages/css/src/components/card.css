@@ -25,6 +25,7 @@
 }
 
 .mizu-card__title {
+  flex: 1;
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-base);
   font-weight: var(--mizu-font-weight-semibold);

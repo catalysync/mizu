@@ -1,0 +1,28 @@
+.mizu-activity-entry {
+  display: flex;
+  gap: var(--mizu-spacing-3);
+  align-items: flex-start;
+  padding: var(--mizu-spacing-4) var(--mizu-spacing-5);
+}
+
+.mizu-activity-entry + .mizu-activity-entry {
+  border-top: 1px solid var(--mizu-border-default);
+}
+
+.mizu-activity-entry__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.mizu-activity-entry__message {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-activity-entry__meta {
+  margin-top: var(--mizu-spacing-1);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  color: var(--mizu-text-secondary);
+}

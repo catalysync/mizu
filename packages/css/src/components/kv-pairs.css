@@ -1,0 +1,17 @@
+.mizu-kv-pairs {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--mizu-spacing-2) var(--mizu-spacing-4);
+  margin: 0;
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+}
+
+.mizu-kv-pairs dt {
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-kv-pairs dd {
+  margin: 0;
+  color: var(--mizu-text-primary);
+}

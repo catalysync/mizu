@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardHeader, CardBody, CardFooter, Badge, Button, Grid } from '@aspect/react';
+import { Card, CardHeader, CardBody, CardFooter, Badge, Button, Grid, Inline } from '@aspect/react';
 import { mockTemplates, type Template } from './data';
 
 const CATEGORY_LABEL: Record<Template['category'], string> = {
@@ -22,24 +22,14 @@ export function TemplatesPage() {
       {mockTemplates.map((tpl) => (
         <Card key={tpl.id} interactive>
           <CardHeader>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-              <h3 className="mizu-card__title" style={{ flex: 1 }}>
-                {tpl.name}
-              </h3>
+            <Inline align="start" gap="0.5rem">
+              <h3 className="mizu-card__title">{tpl.name}</h3>
               <Badge tone={CATEGORY_TONE[tpl.category]}>{CATEGORY_LABEL[tpl.category]}</Badge>
-            </div>
+            </Inline>
             <p className="mizu-card__description">{tpl.description}</p>
           </CardHeader>
           <CardBody>
-            <p
-              style={{
-                margin: 0,
-                fontSize: '0.75rem',
-                color: 'var(--mizu-text-secondary)',
-              }}
-            >
-              {tpl.deploys.toLocaleString()} deploys
-            </p>
+            <p className="mizu-caption">{tpl.deploys.toLocaleString()} deploys</p>
           </CardBody>
           <CardFooter>
             <Button size="sm" variant="primary">

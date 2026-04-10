@@ -25,29 +25,14 @@ export function ActivityPage() {
   return (
     <Card>
       <Stack gap="0">
-        {mockActivity.map((entry, i) => (
-          <div
-            key={entry.id}
-            style={{
-              padding: '1rem 1.25rem',
-              borderTop: i === 0 ? 'none' : '1px solid var(--mizu-border-default)',
-              display: 'flex',
-              gap: '0.75rem',
-              alignItems: 'flex-start',
-            }}
-          >
+        {mockActivity.map((entry) => (
+          <div key={entry.id} className="mizu-activity-entry">
             <Badge tone={TYPE_TONE[entry.type]}>{entry.type}</Badge>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: '0.875rem', color: 'var(--mizu-text-primary)' }}>
+            <div className="mizu-activity-entry__body">
+              <div className="mizu-activity-entry__message">
                 <strong>{entry.app}</strong> — {entry.message}
               </div>
-              <div
-                style={{
-                  marginTop: '0.25rem',
-                  fontSize: '0.75rem',
-                  color: 'var(--mizu-text-secondary)',
-                }}
-              >
+              <div className="mizu-activity-entry__meta">
                 {entry.user} · {entry.when}
               </div>
             </div>
