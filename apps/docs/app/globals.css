@@ -1,37 +1,31 @@
-html,
-body {
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+body {
   font-family: var(--mizu-font-family-sans);
   color: var(--mizu-text-primary);
   background: var(--mizu-surface-default);
-}
-
-main {
-  max-width: 48rem;
-  margin: 0 auto;
-  padding: var(--mizu-spacing-12) var(--mizu-spacing-6);
   line-height: 1.6;
 }
 
-main h1 {
-  font-size: var(--mizu-font-size-4xl);
+a {
+  color: var(--mizu-action-primary-default);
+  text-decoration: none;
 }
-main h2 {
-  margin-top: var(--mizu-spacing-12);
-  font-size: var(--mizu-font-size-2xl);
-}
-main h3 {
-  margin-top: var(--mizu-spacing-8);
-  font-size: var(--mizu-font-size-xl);
-}
-main pre {
-  padding: var(--mizu-spacing-4);
-  background: var(--mizu-surface-secondary);
-  border-radius: var(--mizu-radius-md);
-  overflow-x: auto;
-}
-main code {
-  font-family: var(--mizu-font-family-mono);
-  font-size: var(--mizu-font-size-sm);
+
+a:hover {
+  text-decoration: underline;
 }
