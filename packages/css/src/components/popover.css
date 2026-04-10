@@ -1,0 +1,25 @@
+.mizu-popover {
+  min-width: 12rem;
+  max-width: 24rem;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-lg);
+  padding: var(--mizu-spacing-4);
+  box-shadow: var(--mizu-shadow-lg);
+  z-index: 50;
+  outline: none;
+  animation: mizu-popover-in 120ms ease;
+}
+
+.mizu-popover__arrow {
+  fill: var(--mizu-surface-default);
+  stroke: var(--mizu-border-default);
+  stroke-width: 1px;
+}
+
+@keyframes mizu-popover-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
