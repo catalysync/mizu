@@ -1,0 +1,34 @@
+.mizu-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-1);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.mizu-breadcrumb__link {
+  color: var(--mizu-text-secondary);
+  text-decoration: none;
+}
+
+.mizu-breadcrumb__link:hover {
+  color: var(--mizu-text-primary);
+  text-decoration: underline;
+}
+
+.mizu-breadcrumb__separator {
+  color: var(--mizu-text-disabled);
+  margin: 0 var(--mizu-spacing-1);
+  user-select: none;
+}
+
+.mizu-breadcrumb__current {
+  color: var(--mizu-text-primary);
+  font-weight: var(--mizu-font-weight-medium);
+}

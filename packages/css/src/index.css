@@ -34,6 +34,15 @@
 @import url("./components/filter-bar.css");
 @import url("./components/query-builder.css");
 @import url("./components/advanced-query-builder.css");
+@import url("./components/avatar.css");
+@import url("./components/tag.css");
+@import url("./components/alert.css");
+@import url("./components/breadcrumb.css");
+@import url("./components/accordion.css");
+@import url("./components/progress.css");
+@import url("./components/skeleton.css");
+@import url("./components/toast.css");
+@import url("./components/command-menu.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");

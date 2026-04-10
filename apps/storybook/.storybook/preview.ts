@@ -28,6 +28,7 @@ import '@aspect/css/themes/playful';
 import '@aspect/css/themes/clinical';
 import '@aspect/css/themes/editorial';
 import '@aspect/css/themes/neon';
+import '@aspect/css/themes/sage';
 import '@aspect/finance/css';
 import '@aspect/finance/themes/reports';
 import '@aspect/finance/themes/insights';
@@ -101,6 +102,7 @@ const preview: Preview = {
           { value: 'clinical', title: 'Clinical' },
           { value: 'editorial', title: 'Editorial' },
           { value: 'neon', title: 'Neon' },
+          { value: 'sage', title: 'Sage' },
         ],
         dynamicTitle: true,
       },

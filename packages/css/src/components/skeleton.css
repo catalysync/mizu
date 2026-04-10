@@ -1,0 +1,41 @@
+.mizu-skeleton {
+  background: var(--mizu-surface-secondary);
+  border-radius: var(--mizu-radius-md);
+  animation: mizu-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.mizu-skeleton--text {
+  height: 0.875rem;
+  border-radius: var(--mizu-radius-sm);
+}
+
+.mizu-skeleton--heading {
+  height: 1.5rem;
+  width: 60%;
+  border-radius: var(--mizu-radius-sm);
+}
+
+.mizu-skeleton--circle {
+  border-radius: var(--mizu-radius-full);
+}
+
+.mizu-skeleton--button {
+  height: 2.5rem;
+  width: 6rem;
+}
+
+@keyframes mizu-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mizu-skeleton {
+    animation: none;
+  }
+}

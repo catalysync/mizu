@@ -78,6 +78,43 @@
       "interface": "EmptyStateProps"
     }
   ],
+  "filterbar": [
+    {
+      "name": "searchValue",
+      "type": "string",
+      "interface": "FilterBarProps"
+    },
+    {
+      "name": "searchPlaceholder",
+      "type": "string",
+      "interface": "FilterBarProps"
+    },
+    {
+      "name": "onSearchChange",
+      "type": "(value: string) => void",
+      "interface": "FilterBarProps"
+    },
+    {
+      "name": "appliedFilters",
+      "type": "AppliedFilter[]",
+      "interface": "FilterBarProps"
+    },
+    {
+      "name": "onRemoveFilter",
+      "type": "(key: string) => void",
+      "interface": "FilterBarProps"
+    },
+    {
+      "name": "onClearAll",
+      "type": "() => void",
+      "interface": "FilterBarProps"
+    },
+    {
+      "name": "actions",
+      "type": "React.ReactNode",
+      "interface": "FilterBarProps"
+    }
+  ],
   "input": [
     {
       "name": "error",
@@ -93,6 +130,33 @@
       "name": "label",
       "type": "string",
       "interface": "InputProps"
+    }
+  ],
+  "propertyfilter": [
+    {
+      "name": "query",
+      "type": "PropertyFilterQuery",
+      "interface": "PropertyFilterProps"
+    },
+    {
+      "name": "onQueryChange",
+      "type": "(query: PropertyFilterQuery) => void",
+      "interface": "PropertyFilterProps"
+    },
+    {
+      "name": "properties",
+      "type": "PropertyFilterProperty[]",
+      "interface": "PropertyFilterProps"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "interface": "PropertyFilterProps"
+    },
+    {
+      "name": "countText",
+      "type": "string",
+      "interface": "PropertyFilterProps"
     }
   ],
   "radio": [

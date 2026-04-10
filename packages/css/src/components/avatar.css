@@ -1,0 +1,43 @@
+.mizu-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--mizu-radius-full);
+  background: var(--mizu-surface-secondary);
+  color: var(--mizu-text-secondary);
+  font-family: var(--mizu-font-family-sans);
+  font-weight: var(--mizu-font-weight-medium);
+  overflow: hidden;
+  user-select: none;
+}
+
+.mizu-avatar--sm {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: var(--mizu-font-size-xs);
+}
+
+.mizu-avatar--md {
+  width: 2rem;
+  height: 2rem;
+  font-size: var(--mizu-font-size-sm);
+}
+
+.mizu-avatar--lg {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: var(--mizu-font-size-base);
+}
+
+.mizu-avatar--xl {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: var(--mizu-font-size-lg);
+}
+
+.mizu-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

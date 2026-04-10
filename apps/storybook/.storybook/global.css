@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Nunito+Sans:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&family=Roboto:wght@400;500;700&family=Lato:wght@400;700&family=Public+Sans:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif:wght@400;700&family=Courier+Prime:wght@400;700&display=swap");
 
 body {
   font-family: var(--mizu-font-family-sans);

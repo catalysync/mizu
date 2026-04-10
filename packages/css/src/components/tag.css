@@ -1,0 +1,33 @@
+.mizu-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mizu-spacing-1);
+  padding: 0.125rem var(--mizu-spacing-2);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  font-weight: var(--mizu-font-weight-medium);
+  line-height: var(--mizu-line-height-normal);
+  color: var(--mizu-text-primary);
+  background: var(--mizu-surface-secondary);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-sm);
+}
+
+.mizu-tag__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: var(--mizu-radius-full);
+  color: var(--mizu-text-secondary);
+  cursor: pointer;
+}
+
+.mizu-tag__remove:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 10%, transparent);
+  color: var(--mizu-text-primary);
+}

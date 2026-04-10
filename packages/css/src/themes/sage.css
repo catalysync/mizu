@@ -1,0 +1,105 @@
+/*
+ * Sage — accounting-grade, slate-tinted neutrals, pill buttons.
+ * Green accent, "DM Sans" font, 8px cards, 32px button radius.
+ * Inspired by Sage Carbon (carbon.sage.com).
+ */
+
+[data-mizu-identity="sage"] {
+  --mizu-font-family-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --mizu-radius-sm: 0.125rem;
+  --mizu-radius-md: 0.5rem;
+  --mizu-radius-lg: 0.5rem;
+  --mizu-radius-xl: 1rem;
+  --mizu-radius-2xl: 2rem;
+  --mizu-shadow-sm: 0 2px 4px 0 rgb(0 20 30 / 15%), 0 3px 3px 0 rgb(0 20 30 / 20%);
+  --mizu-shadow-md: 0 5px 5px 0 rgb(0 20 30 / 20%), 0 10px 10px 0 rgb(0 20 30 / 10%);
+  --mizu-shadow-lg: 0 10px 20px 0 rgb(0 20 30 / 20%), 0 20px 40px 0 rgb(0 20 30 / 10%);
+  --mizu-shadow-xl: 0 10px 30px 0 rgb(0 20 30 / 10%), 0 30px 60px 0 rgb(0 20 30 / 10%);
+  --mizu-action-primary-default: #007e45;
+  --mizu-action-primary-hover: #006738;
+  --mizu-action-primary-active: #004f2b;
+  --mizu-feedback-success-default: #007e45;
+  --mizu-feedback-warning-default: #ef6700;
+  --mizu-feedback-danger-default: #cb374a;
+  --mizu-feedback-info-default: #0060a7;
+  --mizu-font-weight-medium: 500;
+  --mizu-font-weight-semibold: 700;
+  --mizu-font-weight-bold: 700;
+  --mizu-text-primary: rgba(0, 0, 0, 0.9);
+  --mizu-text-secondary: rgba(0, 0, 0, 0.55);
+  --mizu-text-disabled: rgba(0, 0, 0, 0.3);
+  --mizu-border-default: #ccd6db;
+  --mizu-surface-secondary: #f2f5f6;
+  --mizu-duration-fast: 100ms;
+  --mizu-duration-normal: 150ms;
+  --mizu-easing-out: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Sage structural: pill buttons with 2px border */
+[data-mizu-identity="sage"] .mizu-button {
+  border-radius: 2rem;
+  border-width: 2px;
+  font-weight: 500;
+}
+
+[data-mizu-identity="sage"] .mizu-button:focus-visible {
+  outline: 3px solid #ffbc19;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Sage structural: inputs with 8px radius */
+[data-mizu-identity="sage"] .mizu-input,
+[data-mizu-identity="sage"] .mizu-textarea,
+[data-mizu-identity="sage"] .mizu-select__trigger {
+  border-color: #668494;
+  border-radius: 0.5rem;
+}
+
+[data-mizu-identity="sage"] .mizu-input:focus,
+[data-mizu-identity="sage"] .mizu-textarea:focus {
+  outline: 3px solid #ffbc19;
+  outline-offset: 0;
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Sage structural: cards with shadow, no border */
+[data-mizu-identity="sage"] .mizu-card {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: var(--mizu-shadow-sm);
+}
+
+/* Sage structural: table with dark slate header */
+[data-mizu-identity="sage"] .mizu-table thead {
+  background: #335b70;
+  color: #fff;
+}
+
+[data-mizu-identity="sage"] .mizu-table thead th {
+  font-weight: 500;
+  border-right: 1px solid #668494;
+}
+
+[data-mizu-identity="sage"] .mizu-table thead th:last-child {
+  border-right: none;
+}
+
+[data-mizu-identity="sage"] .mizu-table tbody tr {
+  border-bottom-color: #ccd6db;
+}
+
+[data-mizu-identity="sage"] .mizu-table tbody tr:nth-child(even) {
+  background: #fafbfb;
+}
+
+/* Sage structural: badges are pill-shaped */
+[data-mizu-identity="sage"] .mizu-badge {
+  border-radius: 2rem;
+}
+
+/* Sage structural: alert with left validation bar */
+[data-mizu-identity="sage"] .mizu-alert {
+  border-left-width: 3px;
+  border-radius: 0.5rem;
+}
