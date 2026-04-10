@@ -1,4 +1,50 @@
-/* TODO: tabs component styles */
 .mizu-tabs {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-4);
+}
+
+.mizu-tabs__list {
+  display: flex;
+  gap: var(--mizu-spacing-1);
+  border-bottom: 1px solid var(--mizu-border-default);
+  padding: 0;
+  margin: 0;
+}
+
+.mizu-tabs__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mizu-spacing-2);
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-4);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-weight: var(--mizu-font-weight-medium);
+  color: var(--mizu-text-secondary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.mizu-tabs__trigger:hover {
+  color: var(--mizu-text-primary);
+}
+
+.mizu-tabs__trigger[data-state="active"] {
+  color: var(--mizu-action-primary-default);
+  border-bottom-color: var(--mizu-action-primary-default);
+}
+
+.mizu-tabs__content {
+  outline: none;
+}
+
+.mizu-tabs__content[data-state="inactive"] {
+  display: none;
 }
