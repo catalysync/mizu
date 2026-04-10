@@ -19,12 +19,36 @@ describe('Card', () => {
     expect(screen.getByText('Desc')).toBeInTheDocument();
   });
 
+  it('renders footer', () => {
+    render(
+      <Card>
+        <CardFooter>Footer</CardFooter>
+      </Card>,
+    );
+    expect(screen.getByText('Footer')).toBeInTheDocument();
+  });
+
+  it('applies interactive class', () => {
+    const { container } = render(<Card interactive>Content</Card>);
+    expect(container.firstChild).toHaveClass('mizu-card--interactive');
+  });
+
+  it('forwards className', () => {
+    const { container } = render(<Card className="custom">X</Card>);
+    expect(container.firstChild).toHaveClass('custom');
+  });
+
+  it('renders header without description', () => {
+    render(<CardHeader title="Only title" />);
+    expect(screen.getByText('Only title')).toBeInTheDocument();
+  });
+
   it('has no a11y violations', async () => {
     const { container } = render(
       <Card>
-        <CardHeader title="Accessible card" />
+        <CardHeader title="Accessible" />
         <CardBody>Content</CardBody>
-        <CardFooter>Footer</CardFooter>
+        <CardFooter>Foot</CardFooter>
       </Card>,
     );
     expect(await axe(container)).toHaveNoViolations();

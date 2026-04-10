@@ -29,6 +29,41 @@ describe('RadioGroup', () => {
     expect(onChange).toHaveBeenCalledWith('md');
   });
 
+  it('respects defaultValue', () => {
+    render(
+      <RadioGroup aria-label="Size" defaultValue="md">
+        <RadioItem value="sm" label="Small" />
+        <RadioItem value="md" label="Medium" />
+      </RadioGroup>,
+    );
+    const radios = screen.getAllByRole('radio');
+    expect(radios[1]).toHaveAttribute('data-state', 'checked');
+  });
+
+  it('respects disabled on items', () => {
+    render(
+      <RadioGroup aria-label="Size">
+        <RadioItem value="sm" label="Small" />
+        <RadioItem value="md" label="Medium" disabled />
+      </RadioGroup>,
+    );
+    expect(screen.getAllByRole('radio')[1]).toBeDisabled();
+  });
+
+  it('only one item is checked at a time', async () => {
+    const user = userEvent.setup();
+    render(
+      <RadioGroup aria-label="Size" defaultValue="sm">
+        <RadioItem value="sm" label="Small" />
+        <RadioItem value="md" label="Medium" />
+      </RadioGroup>,
+    );
+    await user.click(screen.getByText('Medium'));
+    const radios = screen.getAllByRole('radio');
+    expect(radios[0]).toHaveAttribute('data-state', 'unchecked');
+    expect(radios[1]).toHaveAttribute('data-state', 'checked');
+  });
+
   it('has no a11y violations', async () => {
     const { container } = render(
       <RadioGroup aria-label="Size" defaultValue="sm">
