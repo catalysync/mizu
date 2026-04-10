@@ -1,0 +1,111 @@
+/* Advanced Query Builder — styling overlay for react-awesome-query-builder */
+
+.mizu-advanced-query-builder {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-advanced-query-builder .group {
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-md);
+  background: var(--mizu-surface-primary);
+  padding: var(--mizu-spacing-3);
+}
+
+.mizu-advanced-query-builder .group .group {
+  margin-top: var(--mizu-spacing-2);
+  margin-left: var(--mizu-spacing-4);
+  background: var(--mizu-surface-secondary);
+}
+
+.mizu-advanced-query-builder .group--header {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-2);
+  margin-bottom: var(--mizu-spacing-2);
+}
+
+.mizu-advanced-query-builder .group--children {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-2);
+}
+
+.mizu-advanced-query-builder .rule {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-2);
+  flex-wrap: wrap;
+}
+
+.mizu-advanced-query-builder select,
+.mizu-advanced-query-builder .rule--field select,
+.mizu-advanced-query-builder .rule--operator select,
+.mizu-advanced-query-builder .group--conjunctions select {
+  appearance: none;
+  padding: var(--mizu-spacing-1) var(--mizu-spacing-6) var(--mizu-spacing-1) var(--mizu-spacing-2);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-primary);
+  background-color: var(--mizu-surface-primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m3 4.5 3 3 3-3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-sm);
+  cursor: pointer;
+}
+
+.mizu-advanced-query-builder select:focus {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: -1px;
+}
+
+.mizu-advanced-query-builder input[type="text"],
+.mizu-advanced-query-builder input[type="number"] {
+  padding: var(--mizu-spacing-1) var(--mizu-spacing-2);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-primary);
+  background: var(--mizu-surface-primary);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-sm);
+}
+
+.mizu-advanced-query-builder input:focus {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: -1px;
+}
+
+.mizu-advanced-query-builder button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mizu-spacing-1);
+  padding: var(--mizu-spacing-1) var(--mizu-spacing-2);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  font-weight: var(--mizu-font-weight-medium);
+  color: var(--mizu-text-primary);
+  background: var(--mizu-surface-primary);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-sm);
+  cursor: pointer;
+  transition: background var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+.mizu-advanced-query-builder button:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 6%, transparent);
+}
+
+.mizu-advanced-query-builder .rule--header .rule--drag-handler {
+  cursor: grab;
+  color: var(--mizu-text-tertiary);
+}
+
+.mizu-advanced-query-builder .group--conjunctions .ant-btn-group,
+.mizu-advanced-query-builder .group--conjunctions .MuiButtonGroup-root {
+  display: flex;
+  gap: var(--mizu-spacing-1);
+}

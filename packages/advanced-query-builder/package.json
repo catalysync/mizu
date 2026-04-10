@@ -1,0 +1,43 @@
+{
+  "name": "@aspect/advanced-query-builder",
+  "version": "0.1.0",
+  "description": "Advanced query builder wrapper for the mizu design system",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "peerDependencies": {
+    "@aspect/css": ">=0.2.0",
+    "@aspect/react": ">=0.2.0",
+    "react": ">=18",
+    "react-dom": ">=18",
+    "@react-awesome-query-builder/ui": ">=6"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@aspect/css": "workspace:^",
+    "@aspect/react": "workspace:^",
+    "@aspect/tsconfig": "workspace:^",
+    "@react-awesome-query-builder/ui": "^6.6.3",
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.0"
+  }
+}
