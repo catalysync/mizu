@@ -30,24 +30,39 @@ const nav: NavSection[] = [
     ],
   },
   {
-    title: 'Components',
+    title: 'General',
     items: [
       { label: 'Button', href: '/components/button' },
       { label: 'Badge', href: '/components/badge' },
       { label: 'Card', href: '/components/card' },
-      { label: 'Input', href: '/components/input' },
-      { label: 'Select', href: '/components/select' },
-      { label: 'Switch', href: '/components/switch' },
-      { label: 'Textarea', href: '/components/textarea' },
-      { label: 'Table', href: '/components/table' },
-      { label: 'Tabs', href: '/components/tabs' },
-      { label: 'Modal', href: '/components/modal' },
-      { label: 'Drawer', href: '/components/drawer' },
-      { label: 'Tooltip', href: '/components/tooltip' },
-      { label: 'Popover', href: '/components/popover' },
-      { label: 'DropdownMenu', href: '/components/dropdown-menu' },
       { label: 'Separator', href: '/components/separator' },
       { label: 'EmptyState', href: '/components/empty-state' },
+    ],
+  },
+  {
+    title: 'Form controls',
+    items: [
+      { label: 'Input', href: '/components/input' },
+      { label: 'Textarea', href: '/components/textarea' },
+      { label: 'Select', href: '/components/select' },
+      { label: 'Switch', href: '/components/switch' },
+    ],
+  },
+  {
+    title: 'Data display',
+    items: [
+      { label: 'Table', href: '/components/table' },
+      { label: 'Tabs', href: '/components/tabs' },
+    ],
+  },
+  {
+    title: 'Overlays',
+    items: [
+      { label: 'Modal', href: '/components/modal' },
+      { label: 'Drawer', href: '/components/drawer' },
+      { label: 'Popover', href: '/components/popover' },
+      { label: 'Tooltip', href: '/components/tooltip' },
+      { label: 'DropdownMenu', href: '/components/dropdown-menu' },
     ],
   },
   {
@@ -62,7 +77,7 @@ const nav: NavSection[] = [
     ],
   },
   {
-    title: 'Shell',
+    title: 'App shell',
     items: [
       { label: 'AppLayout', href: '/shell/app-layout' },
       { label: 'AppHeader', href: '/shell/app-header' },
@@ -75,7 +90,8 @@ const nav: NavSection[] = [
     title: 'Packages',
     items: [
       { label: '@aspect/finance', href: '/packages/finance' },
-      { label: '@aspect/tailwind-preset', href: '/packages/tailwind-preset' },
+      { label: '@aspect/commerce', href: '/packages/tailwind-preset' },
+      { label: 'Tailwind preset', href: '/packages/tailwind-preset' },
     ],
   },
 ];
