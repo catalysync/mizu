@@ -108,6 +108,9 @@ importers:
 
   apps/storybook:
     devDependencies:
+      '@aspect/commerce':
+        specifier: workspace:^
+        version: link:../../packages/commerce
       '@aspect/css':
         specifier: workspace:^
         version: link:../../packages/css
