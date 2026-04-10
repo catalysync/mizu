@@ -17,7 +17,7 @@
   --mizu-font-family-mono: "Geist Mono", "Fira Code", monospace;
   --mizu-action-primary-default: #171717;
   --mizu-action-primary-hover: #0a0a0a;
-  --mizu-action-primary-active: #000000;
+  --mizu-action-primary-active: #000;
   --mizu-duration-fast: 100ms;
   --mizu-duration-normal: 150ms;
   --mizu-easing-out: cubic-bezier(0.16, 1, 0.3, 1);

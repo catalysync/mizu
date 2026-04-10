@@ -12,7 +12,7 @@
   --mizu-shadow-md: none;
   --mizu-shadow-lg: none;
   --mizu-shadow-xl: none;
-  --mizu-font-family-sans: "Source Sans 3", Georgia, serif;
+  --mizu-font-family-sans: "Source Sans 3", georgia, serif;
   --mizu-border-default: var(--mizu-color-slate-300);
   --mizu-action-primary-default: var(--mizu-color-slate-900);
   --mizu-action-primary-hover: var(--mizu-color-slate-800);

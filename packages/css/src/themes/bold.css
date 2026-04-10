@@ -8,8 +8,8 @@
   --mizu-radius-md: 0.5rem;
   --mizu-radius-lg: 9999px;
   --mizu-radius-xl: 9999px;
-  --mizu-shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-  --mizu-shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.12);
+  --mizu-shadow-sm: 0 2px 4px 0 rgb(0 0 0 / 8%);
+  --mizu-shadow-md: 0 4px 8px -2px rgb(0 0 0 / 12%);
   --mizu-font-family-sans: "DM Sans", system-ui, sans-serif;
   --mizu-font-weight-medium: 600;
   --mizu-font-weight-semibold: 700;

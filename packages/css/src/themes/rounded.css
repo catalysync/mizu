@@ -10,10 +10,10 @@
   --mizu-radius-xl: 1.25rem;
   --mizu-radius-2xl: 1.5rem;
   --mizu-radius-full: 9999px;
-  --mizu-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
-  --mizu-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
-  --mizu-shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.1);
-  --mizu-shadow-xl: 0 24px 48px -8px rgba(0, 0, 0, 0.12);
+  --mizu-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 4%);
+  --mizu-shadow-md: 0 4px 12px -2px rgb(0 0 0 / 8%);
+  --mizu-shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 10%);
+  --mizu-shadow-xl: 0 24px 48px -8px rgb(0 0 0 / 12%);
   --mizu-font-family-sans: "Nunito Sans", system-ui, sans-serif;
   --mizu-action-primary-default: #6366f1;
   --mizu-action-primary-hover: #4f46e5;
