@@ -1,5 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Card, CardHeader, CardBody, CardFooter, Button } from '@aspect/react';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Button,
+  Badge,
+  Inline,
+  Stack,
+} from '@aspect/react';
 
 const meta = {
   title: 'Components/Atoms/Card',
@@ -15,14 +24,25 @@ export const Default: Story = {
     <Card style={{ width: '20rem' }}>
       <CardHeader title="Card title" description="A short description of the card." />
       <CardBody>
-        <p style={{ margin: 0 }}>Body content goes here.</p>
+        <p className="mizu-body--sm">Body content goes here.</p>
+      </CardBody>
+    </Card>
+  ),
+};
+
+export const WithFooter: Story = {
+  render: () => (
+    <Card style={{ width: '20rem' }}>
+      <CardHeader title="Confirm action" description="This cannot be undone." />
+      <CardBody>
+        <p className="mizu-body--sm">Are you sure you want to proceed?</p>
       </CardBody>
       <CardFooter>
         <Button size="sm" variant="ghost">
           Cancel
         </Button>
         <Button size="sm" variant="primary">
-          Save
+          Confirm
         </Button>
       </CardFooter>
     </Card>
@@ -32,10 +52,74 @@ export const Default: Story = {
 export const Interactive: Story = {
   render: () => (
     <Card interactive style={{ width: '20rem' }}>
-      <CardHeader title="Clickable card" description="Hover to see the interactive state." />
+      <CardHeader title="Clickable card" description="Hover to see the effect." />
       <CardBody>
-        <p style={{ margin: 0 }}>Click anywhere on this card.</p>
+        <p className="mizu-body--sm">Click anywhere on this card.</p>
       </CardBody>
     </Card>
+  ),
+};
+
+export const HeaderOnly: Story = {
+  render: () => (
+    <Card style={{ width: '20rem' }}>
+      <CardHeader title="Header only" description="No body or footer." />
+    </Card>
+  ),
+};
+
+export const WithBadge: Story = {
+  render: () => (
+    <Card style={{ width: '20rem' }}>
+      <CardHeader>
+        <Inline align="center" gap="0.5rem">
+          <h3 className="mizu-card__title">Deploy status</h3>
+          <Badge tone="success" dot>
+            Running
+          </Badge>
+        </Inline>
+        <p className="mizu-card__description">frosty-mountain-1234</p>
+      </CardHeader>
+      <CardBody>
+        <dl className="mizu-kv-pairs">
+          <dt>Region</dt>
+          <dd>us-east</dd>
+          <dt>Last deploy</dt>
+          <dd>2 hours ago</dd>
+        </dl>
+      </CardBody>
+    </Card>
+  ),
+};
+
+export const Grid: Story = {
+  name: 'Card grid',
+  render: () => (
+    <div className="mizu-grid" style={{ maxWidth: '44rem' }}>
+      {['Analytics', 'Billing', 'Settings'].map((t) => (
+        <Card key={t} interactive>
+          <CardHeader title={t} description={`Manage your ${t.toLowerCase()}.`} />
+        </Card>
+      ))}
+    </div>
+  ),
+};
+
+export const Stacked: Story = {
+  render: () => (
+    <Stack gap="1rem" style={{ width: '20rem' }}>
+      <Card>
+        <CardHeader title="First card" />
+        <CardBody>
+          <p className="mizu-body--sm">Stacked vertically.</p>
+        </CardBody>
+      </Card>
+      <Card>
+        <CardHeader title="Second card" />
+        <CardBody>
+          <p className="mizu-body--sm">Below the first.</p>
+        </CardBody>
+      </Card>
+    </Stack>
   ),
 };
