@@ -15,7 +15,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "build": "tsup && node scripts/prepend-use-client.mjs",
+    "build": "tsup && node scripts/prepend-use-client.mjs && node scripts/validate-build.mjs",
     "dev": "tsup --watch",
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit",
