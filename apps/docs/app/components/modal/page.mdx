@@ -2,7 +2,7 @@ export const metadata = { title: 'Modal — mizu' };
 
 # Modal
 
-A centered overlay dialog built on Radix Dialog. Includes backdrop, close button, and focus trap.
+A centered overlay dialog. Built on Radix Dialog with focus trap, escape-to-close, and backdrop click.
 
 ## Import
 
@@ -20,20 +20,72 @@ import {
 } from '@aspect/react';
 ```
 
-## CSS class
+## Usage
 
-```css
-.mizu-dialog__content {
-  /* ... */
-}
+```tsx
+<Modal>
+  <ModalTrigger asChild>
+    <Button>Open</Button>
+  </ModalTrigger>
+  <ModalContent>
+    <ModalHeader>
+      <ModalTitle>Confirm action</ModalTitle>
+      <ModalDescription>This cannot be undone.</ModalDescription>
+    </ModalHeader>
+    <ModalBody>
+      <p>Are you sure?</p>
+    </ModalBody>
+    <ModalFooter>
+      <ModalClose asChild>
+        <Button variant="ghost">Cancel</Button>
+      </ModalClose>
+      <Button variant="destructive">Delete</Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
 ```
 
-## Props
+## Compound components
 
-Compound component pattern. Wrap in `<Modal>`, trigger with `<ModalTrigger>`, content in `<ModalContent>`.
+| Part               | Purpose                          |
+| ------------------ | -------------------------------- |
+| `Modal`            | Root — manages open/close state  |
+| `ModalTrigger`     | Opens the dialog when clicked    |
+| `ModalContent`     | The overlay + dialog container   |
+| `ModalHeader`      | Title area with bottom border    |
+| `ModalTitle`       | Heading with `aria-labelledby`   |
+| `ModalDescription` | Subtitle with `aria-describedby` |
+| `ModalBody`        | Scrollable content area          |
+| `ModalFooter`      | Action buttons area              |
+| `ModalClose`       | Closes the dialog                |
+
+## Controlled usage
+
+```tsx
+const [open, setOpen] = React.useState(false);
+
+<Modal open={open} onOpenChange={setOpen}>
+  <ModalContent>...</ModalContent>
+</Modal>;
+```
+
+## Guidelines
+
+**Do:**
+
+- Always include a `ModalTitle` for accessibility
+- Put the primary action on the right in the footer
+- Use `variant="destructive"` for irreversible confirmations
+
+**Don't:**
+
+- Don't nest modals inside modals
+- Don't use modals for simple confirmations that could be inline
+- Don't put complex forms in modals — use a full page instead
 
 ## Accessibility
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+- Focus is trapped inside the dialog while open
+- Escape key closes the dialog
+- Focus returns to the trigger element on close
+- `aria-labelledby` and `aria-describedby` are set automatically

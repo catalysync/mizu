@@ -2,33 +2,93 @@ export const metadata = { title: 'Table — mizu' };
 
 # Table
 
-A composable data table with density modes, sticky headers, and selection state.
+Displays structured data in rows and columns. Supports density modes, sticky headers, selection, striped rows, and sticky first/last columns.
 
 ## Import
 
 ```tsx
-import { Table, TableHead, TableBody, TableRow, TableHeader, TableCell } from '@aspect/react';
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableHeader,
+  TableCell,
+  TableCaption,
+} from '@aspect/react';
 ```
 
-## CSS class
+## Density
 
-```css
-.mizu-table {
-  /* ... */
-}
+Control row padding with the `density` prop.
+
+```tsx
+<Table density="compact">...</Table>
+<Table density="comfortable">...</Table>
 ```
 
-## Props
+## Sticky header
 
-| Prop           | Type                                      | Default     | Description         |
-| -------------- | ----------------------------------------- | ----------- | ------------------- |
-| `density`      | `'compact' \| 'default' \| 'comfortable'` | `'default'` | Row padding         |
-| `stickyHeader` | `boolean`                                 | `false`     | Pins the header row |
+Pin the header row when scrolling vertically.
 
-`TableRow` accepts `selected?: boolean` for selection styling.
+```tsx
+<Table stickyHeader>...</Table>
+```
 
-## Accessibility
+## Sticky columns
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+Pin the first or last column for wide tables that scroll horizontally.
+
+```html
+<table class="mizu-table mizu-table--sticky-first">
+  ...
+</table>
+<table class="mizu-table mizu-table--sticky-last">
+  ...
+</table>
+```
+
+## Row selection
+
+```tsx
+<TableRow selected>...</TableRow>
+```
+
+## Variants
+
+Striped rows and bordered cells:
+
+```html
+<table class="mizu-table mizu-table--striped">
+  ...
+</table>
+<table class="mizu-table mizu-table--bordered">
+  ...
+</table>
+```
+
+## Props (Table)
+
+| Prop           | Type                                      | Default     | Description          |
+| -------------- | ----------------------------------------- | ----------- | -------------------- |
+| `density`      | `'compact' \| 'default' \| 'comfortable'` | `'default'` | Row padding          |
+| `stickyHeader` | `boolean`                                 | `false`     | Pin header on scroll |
+
+## Props (TableRow)
+
+| Prop       | Type      | Default | Description   |
+| ---------- | --------- | ------- | ------------- |
+| `selected` | `boolean` | `false` | Highlight row |
+
+## Guidelines
+
+**Do:**
+
+- Use compact density for data-heavy admin views
+- Use sticky header for long lists
+- Align numbers to the right
+
+**Don't:**
+
+- Don't use tables for layout
+- Don't exceed 8-10 columns without sticky first/last

@@ -1,8 +1,21 @@
+import { Badge, Inline } from '@aspect/react';
+import { Preview } from '../preview';
+
 export const metadata = { title: 'Badge — mizu' };
 
 # Badge
 
-A small status indicator. Supports tones for semantic meaning and an optional dot indicator.
+Displays a short status label. Use tones to communicate meaning.
+
+<Preview>
+  <Badge tone="neutral">Neutral</Badge>
+  <Badge tone="success" dot>
+    Success
+  </Badge>
+  <Badge tone="warning">Warning</Badge>
+  <Badge tone="danger">Danger</Badge>
+  <Badge tone="info">Info</Badge>
+</Preview>
 
 ## Import
 
@@ -10,23 +23,44 @@ A small status indicator. Supports tones for semantic meaning and an optional do
 import { Badge } from '@aspect/react';
 ```
 
-## CSS class
+## Tones
 
-```css
-.mizu-badge {
-  /* ... */
-}
+- **Neutral** — default, no semantic meaning
+- **Success** — positive outcomes, healthy states
+- **Warning** — needs attention
+- **Danger** — errors, failures, destructive states
+- **Info** — informational, new items
+
+## Dot indicator
+
+Add `dot` to show a small colored circle before the label. Useful for status lists.
+
+```tsx
+<Badge tone="success" dot>Running</Badge>
+<Badge tone="danger" dot>Failed</Badge>
 ```
 
 ## Props
 
-| Prop   | Type                                                        | Default     | Description                          |
-| ------ | ----------------------------------------------------------- | ----------- | ------------------------------------ |
-| `tone` | `'neutral' \| 'success' \| 'warning' \| 'danger' \| 'info'` | `'neutral'` | Color intent                         |
-| `dot`  | `boolean`                                                   | `false`     | Shows a colored dot before the label |
+| Prop   | Type                                                        | Default     | Description                  |
+| ------ | ----------------------------------------------------------- | ----------- | ---------------------------- |
+| `tone` | `'neutral' \| 'success' \| 'warning' \| 'danger' \| 'info'` | `'neutral'` | Color intent                 |
+| `dot`  | `boolean`                                                   | `false`     | Shows a dot before the label |
 
-## Accessibility
+## CSS class
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+```html
+<span class="mizu-badge mizu-badge--success">Active</span>
+```
+
+## Guidelines
+
+**Do:**
+
+- Use consistent tones across the app (success = green = positive everywhere)
+- Keep labels short — one or two words
+
+**Don't:**
+
+- Don't use badges for long text or sentences
+- Don't mix tone meanings — if success means "active" in one place, don't use it for "new" elsewhere
