@@ -13,8 +13,9 @@
   --mizu-shadow-md: 0 4px 12px rgb(0 0 0 / 6%);
   --mizu-shadow-lg: 0 8px 24px rgb(0 0 0 / 8%);
   --mizu-shadow-xl: 0 12px 48px rgb(0 0 0 / 10%);
-  --mizu-font-family-sans: "Lyon Text", georgia, "Times New Roman", serif;
-  --mizu-font-family-mono: "SFMono-Regular", "Consolas", monospace;
+  --mizu-font-family-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
+  --mizu-font-family-mono: "iawriter-mono", "Nitti", Menlo, Consolas, monospace;
   --mizu-font-weight-medium: 500;
   --mizu-font-weight-semibold: 600;
   --mizu-font-weight-bold: 700;
