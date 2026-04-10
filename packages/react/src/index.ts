@@ -17,3 +17,7 @@ export * from './components/Separator';
 export * from './layouts';
 export * from './shell';
 export { cn } from './utils/cn';
+export { mergeRefs } from './utils/merge-refs';
+export { useValidateProps } from './utils/validate-props';
+export { removeNonHTMLProps } from './utils/remove-non-html-props';
+export type { ControlledValueProps, ActionProps } from './types/props';

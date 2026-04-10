@@ -39,4 +39,35 @@ describe('Button', () => {
     expect(button).toHaveAttribute('aria-busy', 'true');
     expect(button).toBeDisabled();
   });
+
+  it('fires onClick on enter key', async () => {
+    const onClick = vi.fn();
+    const user = userEvent.setup();
+    render(<Button onClick={onClick}>Submit</Button>);
+    screen.getByRole('button').focus();
+    await user.keyboard('{Enter}');
+    expect(onClick).toHaveBeenCalledOnce();
+  });
+
+  it('fires onClick on space key', async () => {
+    const onClick = vi.fn();
+    const user = userEvent.setup();
+    render(<Button onClick={onClick}>Submit</Button>);
+    screen.getByRole('button').focus();
+    await user.keyboard(' ');
+    expect(onClick).toHaveBeenCalledOnce();
+  });
+
+  it('does not fire onClick when disabled and key pressed', async () => {
+    const onClick = vi.fn();
+    const user = userEvent.setup();
+    render(
+      <Button onClick={onClick} disabled>
+        No
+      </Button>,
+    );
+    screen.getByRole('button').focus();
+    await user.keyboard('{Enter}');
+    expect(onClick).not.toHaveBeenCalled();
+  });
 });

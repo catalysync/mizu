@@ -31,6 +31,9 @@
     "react": ">=18",
     "react-dom": ">=18"
   },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist",
     "src/css",
