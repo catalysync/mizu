@@ -1,0 +1,19 @@
+/*
+ * Dark mode override. Apply via <html data-theme="dark"> or any container.
+ * Only overrides semantic tokens that change between light and dark.
+ * Base palette (color.blue.*, color.slate.*, etc.) stays the same.
+ */
+
+[data-theme="dark"] {
+  --mizu-surface-default: var(--mizu-color-slate-950);
+  --mizu-surface-secondary: var(--mizu-color-slate-900);
+  --mizu-surface-inverse: var(--mizu-color-white);
+
+  --mizu-text-primary: var(--mizu-color-white);
+  --mizu-text-secondary: var(--mizu-color-slate-400);
+  --mizu-text-inverse: var(--mizu-color-slate-900);
+  --mizu-text-disabled: var(--mizu-color-slate-600);
+
+  --mizu-border-default: var(--mizu-color-slate-800);
+  --mizu-border-strong: var(--mizu-color-slate-600);
+}

@@ -1,5 +1,6 @@
 import '@aspect/tokens/css';
 import '@aspect/css';
+import '@aspect/css/themes/dark';
 import '@aspect/css/themes/cloud';
 import '@aspect/css/themes/ecommerce';
 import '@aspect/css/themes/finance';

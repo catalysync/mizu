@@ -11,41 +11,26 @@ const sd = new StyleDictionary({
         {
           destination: 'variables.css',
           format: 'css/variables',
-          options: { outputReferences: true }
-        }
-      ]
+          options: { outputReferences: true },
+        },
+      ],
     },
     json: {
       transformGroup: 'js',
       buildPath: 'dist/json/',
-      files: [
-        {
-          destination: 'tokens.json',
-          format: 'json/flat'
-        }
-      ]
+      files: [{ destination: 'tokens.json', format: 'json/flat' }],
     },
     ts: {
       transformGroup: 'js',
       buildPath: 'dist/ts/',
-      files: [
-        {
-          destination: 'tokens.ts',
-          format: 'javascript/es6'
-        }
-      ]
+      files: [{ destination: 'tokens.ts', format: 'javascript/es6' }],
     },
     'react-native': {
       transformGroup: 'react-native',
       buildPath: 'dist/rn/',
-      files: [
-        {
-          destination: 'tokens.ts',
-          format: 'javascript/es6'
-        }
-      ]
-    }
-  }
+      files: [{ destination: 'tokens.ts', format: 'javascript/es6' }],
+    },
+  },
 });
 
 await sd.buildAllPlatforms();
