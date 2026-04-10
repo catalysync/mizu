@@ -19,3 +19,7 @@
 .mizu-inline--align-baseline {
   align-items: baseline;
 }
+
+.mizu-inline--nowrap {
+  flex-wrap: nowrap;
+}

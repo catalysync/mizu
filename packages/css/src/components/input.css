@@ -35,6 +35,14 @@
   cursor: not-allowed;
 }
 
+.mizu-input--error {
+  border-color: var(--mizu-feedback-danger-default);
+}
+
+.mizu-input--error:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mizu-feedback-danger-default) 20%, transparent);
+}
+
 .mizu-input--sm {
   height: 2rem;
   font-size: var(--mizu-font-size-xs);
