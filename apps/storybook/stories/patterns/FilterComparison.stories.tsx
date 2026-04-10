@@ -89,7 +89,7 @@ function FilterComparisonDemo() {
     <Stack gap="2rem">
       <div>
         <h3 className="mizu-heading-sm" style={{ marginBottom: '0.5rem' }}>
-          1. FilterBar (Polaris-style)
+          1. FilterBar
         </h3>
         <p className="mizu-caption" style={{ marginBottom: '0.75rem' }}>
           Simple search + applied filter pills. Best for basic table filtering.
@@ -108,7 +108,7 @@ function FilterComparisonDemo() {
 
       <div>
         <h3 className="mizu-heading-sm" style={{ marginBottom: '0.5rem' }}>
-          2. PropertyFilter (Cloudscape-style)
+          2. PropertyFilter
         </h3>
         <p className="mizu-caption" style={{ marginBottom: '0.75rem' }}>
           Structured property:value input with autocomplete. Best for typed queries on known fields.
@@ -125,7 +125,7 @@ function FilterComparisonDemo() {
 
       <div>
         <h3 className="mizu-heading-sm" style={{ marginBottom: '0.5rem' }}>
-          3. QueryBuilder (react-querybuilder)
+          3. QueryBuilder
         </h3>
         <p className="mizu-caption" style={{ marginBottom: '0.75rem' }}>
           Visual rule builder with combinators. Best for user-constructed queries that export to
@@ -141,7 +141,7 @@ function FilterComparisonDemo() {
 
       <div>
         <h3 className="mizu-heading-sm" style={{ marginBottom: '0.5rem' }}>
-          4. AdvancedQueryBuilder (react-awesome-query-builder)
+          4. AdvancedQueryBuilder
         </h3>
         <p className="mizu-caption" style={{ marginBottom: '0.75rem' }}>
           Full-featured query builder with typed widgets per field. Best for complex reporting and
