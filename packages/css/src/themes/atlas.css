@@ -1,0 +1,38 @@
+/*
+ * Atlas — productivity-focused, token-driven, compact.
+ * Blue accent, rounded buttons, tight spacing, system font.
+ */
+
+[data-mizu-identity="atlas"] {
+  --mizu-radius-sm: 0.1875rem;
+  --mizu-radius-md: 0.25rem;
+  --mizu-radius-lg: 0.5rem;
+  --mizu-radius-xl: 0.5rem;
+  --mizu-radius-2xl: 0.75rem;
+  --mizu-shadow-sm: 0 1px 1px rgb(9 30 66 / 25%), 0 0 1px 0 rgb(9 30 66 / 31%);
+  --mizu-shadow-md: 0 4px 8px -2px rgb(9 30 66 / 25%), 0 0 1px 0 rgb(9 30 66 / 31%);
+  --mizu-shadow-lg: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 1px 0 rgb(9 30 66 / 31%);
+  --mizu-shadow-xl: 0 12px 24px -6px rgb(9 30 66 / 25%), 0 0 1px 0 rgb(9 30 66 / 31%);
+  --mizu-font-family-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif;
+  --mizu-font-weight-medium: 500;
+  --mizu-font-weight-semibold: 600;
+  --mizu-font-weight-bold: 700;
+  --mizu-action-primary-default: #0c66e4;
+  --mizu-action-primary-hover: #0055cc;
+  --mizu-action-primary-active: #09326c;
+  --mizu-duration-fast: 100ms;
+  --mizu-duration-normal: 200ms;
+  --mizu-easing-out: cubic-bezier(0.15, 1, 0.3, 1);
+}
+
+/* Atlas structural: buttons get pill radius */
+[data-mizu-identity="atlas"] .mizu-button {
+  border-radius: var(--mizu-radius-2xl);
+}
+
+/* Atlas structural: cards have no shadow by default, border only */
+[data-mizu-identity="atlas"] .mizu-card {
+  box-shadow: none;
+  border: 1px solid var(--mizu-border-default);
+}

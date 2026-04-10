@@ -1,0 +1,55 @@
+/*
+ * Editorial — print-inspired, serif display, content-driven.
+ * Dark accent, Georgia/serif headings, tight columns, minimal chrome.
+ */
+
+[data-mizu-identity="editorial"] {
+  --mizu-radius-sm: 0;
+  --mizu-radius-md: 0.125rem;
+  --mizu-radius-lg: 0.125rem;
+  --mizu-radius-xl: 0.25rem;
+  --mizu-radius-2xl: 0.25rem;
+  --mizu-shadow-sm: none;
+  --mizu-shadow-md: none;
+  --mizu-shadow-lg: none;
+  --mizu-shadow-xl: 0 0 0 1px var(--mizu-border-default);
+  --mizu-font-family-sans: Georgia, "Times New Roman", "Noto Serif", serif;
+  --mizu-font-family-mono: "Courier Prime", "Courier New", monospace;
+  --mizu-font-weight-medium: 400;
+  --mizu-font-weight-semibold: 700;
+  --mizu-font-weight-bold: 700;
+  --mizu-action-primary-default: #121212;
+  --mizu-action-primary-hover: #000;
+  --mizu-action-primary-active: #000;
+  --mizu-duration-fast: 0ms;
+  --mizu-duration-normal: 0ms;
+}
+
+/* Editorial structural: buttons are underlined text, not filled */
+[data-mizu-identity="editorial"] .mizu-button--ghost {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Editorial structural: cards have no border, just separator lines */
+[data-mizu-identity="editorial"] .mizu-card {
+  border: none;
+  border-top: 1px solid var(--mizu-border-default);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Editorial structural: table has minimal chrome */
+[data-mizu-identity="editorial"] .mizu-table {
+  border-collapse: collapse;
+}
+
+[data-mizu-identity="editorial"] .mizu-table th {
+  border-bottom: 2px solid var(--mizu-text-primary);
+  font-style: italic;
+  font-weight: 400;
+}
+
+[data-mizu-identity="editorial"] .mizu-table td {
+  border-bottom: 1px solid var(--mizu-border-default);
+}

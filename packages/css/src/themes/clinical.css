@@ -1,0 +1,54 @@
+/*
+ * Clinical — accessible-first, high contrast, large touch targets.
+ * Blue accent, large type, thick focus rings, gov/healthcare.
+ */
+
+[data-mizu-identity="clinical"] {
+  --mizu-radius-sm: 0;
+  --mizu-radius-md: 0.25rem;
+  --mizu-radius-lg: 0.25rem;
+  --mizu-radius-xl: 0.25rem;
+  --mizu-radius-2xl: 0.25rem;
+  --mizu-shadow-sm: none;
+  --mizu-shadow-md: none;
+  --mizu-shadow-lg: 0 4px 8px rgb(0 0 0 / 15%);
+  --mizu-shadow-xl: 0 8px 16px rgb(0 0 0 / 20%);
+  --mizu-font-family-sans: "Public Sans", "Source Sans Pro", -apple-system, sans-serif;
+  --mizu-font-weight-medium: 500;
+  --mizu-font-weight-semibold: 700;
+  --mizu-font-weight-bold: 700;
+  --mizu-action-primary-default: #005ea2;
+  --mizu-action-primary-hover: #1a4480;
+  --mizu-action-primary-active: #162e51;
+  --mizu-duration-fast: 100ms;
+  --mizu-duration-normal: 200ms;
+  --mizu-easing-out: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Clinical structural: thicker borders and focus rings */
+[data-mizu-identity="clinical"] .mizu-button {
+  border-width: 2px;
+  min-height: 2.75rem;
+  padding: 0.625rem 1.25rem;
+}
+
+[data-mizu-identity="clinical"] .mizu-button:focus-visible {
+  outline: 3px solid var(--mizu-action-primary-default);
+  outline-offset: 2px;
+}
+
+[data-mizu-identity="clinical"] .mizu-input {
+  border-width: 2px;
+  min-height: 2.75rem;
+  font-size: 1rem;
+}
+
+[data-mizu-identity="clinical"] .mizu-input:focus {
+  outline: 3px solid var(--mizu-action-primary-default);
+  outline-offset: 0;
+}
+
+/* Clinical structural: tables have thick top border on header */
+[data-mizu-identity="clinical"] .mizu-table thead {
+  border-top: 3px solid var(--mizu-action-primary-default);
+}

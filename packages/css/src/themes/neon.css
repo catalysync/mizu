@@ -1,0 +1,64 @@
+/*
+ * Neon — dark-first, vibrant accent, modern dev tools.
+ * Cyan/teal glow, dark surfaces, monospace accents.
+ */
+
+[data-mizu-identity="neon"] {
+  --mizu-radius-sm: 0.375rem;
+  --mizu-radius-md: 0.5rem;
+  --mizu-radius-lg: 0.75rem;
+  --mizu-radius-xl: 0.75rem;
+  --mizu-radius-2xl: 1rem;
+  --mizu-shadow-sm: 0 0 4px rgb(0 245 212 / 10%);
+  --mizu-shadow-md: 0 0 12px rgb(0 245 212 / 8%);
+  --mizu-shadow-lg: 0 0 24px rgb(0 245 212 / 10%);
+  --mizu-shadow-xl: 0 0 48px rgb(0 245 212 / 12%);
+  --mizu-font-family-sans: "Inter", system-ui, sans-serif;
+  --mizu-font-family-mono: "JetBrains Mono", "Fira Code", monospace;
+  --mizu-font-weight-medium: 500;
+  --mizu-font-weight-semibold: 600;
+  --mizu-action-primary-default: #00f5d4;
+  --mizu-action-primary-hover: #00e5c6;
+  --mizu-action-primary-active: #00d4b8;
+  --mizu-duration-fast: 100ms;
+  --mizu-duration-normal: 200ms;
+  --mizu-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Neon structural: primary buttons have glow */
+[data-mizu-identity="neon"] .mizu-button--primary {
+  box-shadow:
+    0 0 12px rgb(0 245 212 / 30%),
+    0 0 4px rgb(0 245 212 / 20%);
+  color: #000;
+}
+
+[data-mizu-identity="neon"] .mizu-button--primary:hover {
+  box-shadow:
+    0 0 20px rgb(0 245 212 / 40%),
+    0 0 8px rgb(0 245 212 / 30%);
+}
+
+/* Neon structural: inputs have subtle glow on focus */
+[data-mizu-identity="neon"] .mizu-input:focus {
+  box-shadow: 0 0 0 2px rgb(0 245 212 / 30%);
+  border-color: var(--mizu-action-primary-default);
+}
+
+/* Neon structural: cards have border glow */
+[data-mizu-identity="neon"] .mizu-card {
+  border-color: color-mix(in srgb, var(--mizu-action-primary-default) 15%, transparent);
+}
+
+[data-mizu-identity="neon"] .mizu-card:hover {
+  border-color: color-mix(in srgb, var(--mizu-action-primary-default) 30%, transparent);
+}
+
+/* Neon structural: badges use glow */
+[data-mizu-identity="neon"] .mizu-badge--success {
+  box-shadow: 0 0 6px rgb(52 211 153 / 30%);
+}
+
+[data-mizu-identity="neon"] .mizu-badge--danger {
+  box-shadow: 0 0 6px rgb(248 113 113 / 30%);
+}
