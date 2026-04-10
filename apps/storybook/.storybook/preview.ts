@@ -62,6 +62,8 @@ const preview: Preview = {
       const theme = context.globals.theme ?? 'light';
       if (typeof document !== 'undefined') {
         document.documentElement.dataset.theme = theme;
+        document.body.style.backgroundColor = theme === 'dark' ? 'var(--mizu-surface-default)' : '';
+        document.body.style.color = theme === 'dark' ? 'var(--mizu-text-primary)' : '';
       }
       const strict = context.globals.strictMode === 'on';
       const story = Story();
