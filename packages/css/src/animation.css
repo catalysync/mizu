@@ -1,0 +1,78 @@
+/* Enter animations */
+@keyframes mizu-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes mizu-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+@keyframes mizu-fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}
+
+@keyframes mizu-slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes mizu-slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes mizu-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes mizu-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Utility classes */
+.mizu-animate-fade-in {
+  animation: mizu-fade-in var(--mizu-duration-normal) var(--mizu-easing-out);
+}
+
+.mizu-animate-fade-in-up {
+  animation: mizu-fade-in-up var(--mizu-duration-normal) var(--mizu-easing-out);
+}
+
+.mizu-animate-fade-in-down {
+  animation: mizu-fade-in-down var(--mizu-duration-normal) var(--mizu-easing-out);
+}
+
+.mizu-animate-zoom-in {
+  animation: mizu-zoom-in var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+.mizu-animate-spin {
+  animation: mizu-spin var(--mizu-duration-slower) linear infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -23,9 +23,9 @@
   cursor: pointer;
   outline: none;
   transition:
-    background-color 150ms ease,
-    border-color 150ms ease,
-    color 150ms ease;
+    background-color var(--mizu-duration-fast) var(--mizu-easing-out),
+    border-color var(--mizu-duration-fast) var(--mizu-easing-out),
+    color var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
 .mizu-button:hover {

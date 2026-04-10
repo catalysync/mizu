@@ -47,5 +47,8 @@
 @import url("./shell/app-content.css");
 @import url("./shell/app-breadcrumbs.css");
 
+/* Animation */
+@import url("./animation.css");
+
 /* Density */
 @import url("./density.css");
