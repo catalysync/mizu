@@ -11,6 +11,7 @@
     "lint": "eslint ."
   },
   "devDependencies": {
+    "@aspect/commerce": "workspace:^",
     "@aspect/css": "workspace:^",
     "@aspect/finance": "workspace:^",
     "@aspect/react": "workspace:^",
