@@ -26,3 +26,39 @@
   --mizu-easing-out: cubic-bezier(0.05, 0.7, 0.1, 1);
   --mizu-easing-in-out: cubic-bezier(0.2, 0, 0, 1);
 }
+
+/* Layered structural: buttons get pill shape */
+[data-mizu-identity="layered"] .mizu-button {
+  border-radius: 9999px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Layered structural: cards have tonal surface tint */
+[data-mizu-identity="layered"] .mizu-card {
+  background: color-mix(
+    in srgb,
+    var(--mizu-action-primary-default) 4%,
+    var(--mizu-surface-primary)
+  );
+}
+
+/* Layered structural: inputs have filled background */
+[data-mizu-identity="layered"] .mizu-input {
+  border: none;
+  border-radius: var(--mizu-radius-sm);
+  background: var(--mizu-surface-secondary);
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+[data-mizu-identity="layered"] .mizu-input:focus {
+  outline: 2px solid var(--mizu-action-primary-default);
+}
+
+/* Layered structural: badges get rounded pill shape */
+[data-mizu-identity="layered"] .mizu-badge {
+  border-radius: 0.5rem;
+  border: none;
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 12%, transparent);
+}

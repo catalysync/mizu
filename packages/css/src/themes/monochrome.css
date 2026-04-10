@@ -24,3 +24,21 @@
   --mizu-duration-normal: 200ms;
   --mizu-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Monochrome structural: primary buttons invert (white text on black) */
+[data-mizu-identity="monochrome"] .mizu-button--primary {
+  color: #fff;
+}
+
+/* Monochrome structural: cards are border-driven, no shadow */
+[data-mizu-identity="monochrome"] .mizu-card {
+  box-shadow: none;
+  border: 1px solid var(--mizu-border-default);
+}
+
+/* Monochrome structural: inputs have 1px border, no shadow */
+[data-mizu-identity="monochrome"] .mizu-input:focus {
+  box-shadow: none;
+  outline: 2px solid #000;
+  outline-offset: -1px;
+}

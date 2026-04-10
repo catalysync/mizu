@@ -24,3 +24,22 @@
   --mizu-duration-normal: 200ms;
   --mizu-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Precise structural: compact button with tighter padding */
+[data-mizu-identity="precise"] .mizu-button {
+  padding: 0.3125rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+/* Precise structural: table compact by default */
+[data-mizu-identity="precise"] .mizu-table td,
+[data-mizu-identity="precise"] .mizu-table th {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+/* Precise structural: cards use border, not shadow */
+[data-mizu-identity="precise"] .mizu-card {
+  box-shadow: none;
+  border: 1px solid var(--mizu-border-default);
+}

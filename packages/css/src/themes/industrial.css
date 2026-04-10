@@ -26,3 +26,36 @@
   --mizu-easing-out: cubic-bezier(0, 0, 0.38, 0.9);
   --mizu-easing-in-out: cubic-bezier(0.2, 0, 0.38, 0.9);
 }
+
+/* Industrial structural: flat layered surfaces instead of shadows */
+[data-mizu-identity="industrial"] .mizu-card {
+  box-shadow: none;
+  border: 1px solid var(--mizu-border-default);
+  border-radius: 0;
+}
+
+/* Industrial structural: inputs have bottom-border emphasis */
+[data-mizu-identity="industrial"] .mizu-input {
+  border-radius: 0;
+  border-color: transparent;
+  border-bottom-color: var(--mizu-border-default);
+  background: var(--mizu-surface-secondary);
+}
+
+[data-mizu-identity="industrial"] .mizu-input:focus {
+  border-bottom-color: var(--mizu-action-primary-default);
+  border-bottom-width: 2px;
+}
+
+/* Industrial structural: table has no rounded corners, strong header */
+[data-mizu-identity="industrial"] .mizu-table th {
+  background: var(--mizu-surface-secondary);
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+}
+
+/* Industrial structural: buttons have no radius */
+[data-mizu-identity="industrial"] .mizu-button {
+  border-radius: 0;
+}
