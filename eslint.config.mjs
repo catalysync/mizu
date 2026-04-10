@@ -45,6 +45,7 @@ export default tseslint.config(
       ...jsxA11y.configs.recommended.rules,
       'react/prop-types': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
     },
   },
   prettier,
