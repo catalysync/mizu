@@ -1,0 +1,23 @@
+/*
+ * Elevated — material-inspired depth system.
+ * Medium radii, layered shadows, blue primary.
+ */
+
+[data-mizu-identity="elevated"] {
+  --mizu-radius-sm: 0.25rem;
+  --mizu-radius-md: 0.5rem;
+  --mizu-radius-lg: 0.75rem;
+  --mizu-radius-xl: 1rem;
+  --mizu-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --mizu-shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --mizu-shadow-lg: 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --mizu-shadow-xl: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --mizu-font-family-sans: "Roboto", system-ui, sans-serif;
+  --mizu-action-primary-default: #1976d2;
+  --mizu-action-primary-hover: #1565c0;
+  --mizu-action-primary-active: #0d47a1;
+  --mizu-duration-fast: 150ms;
+  --mizu-duration-normal: 300ms;
+  --mizu-easing-out: cubic-bezier(0, 0, 0.2, 1);
+  --mizu-easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}

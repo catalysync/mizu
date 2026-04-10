@@ -1,0 +1,24 @@
+/*
+ * Bold — high contrast, expressive, brand-forward.
+ * Large radii on buttons (pills), vibrant colors, heavy weight.
+ */
+
+[data-mizu-identity="bold"] {
+  --mizu-radius-sm: 0.25rem;
+  --mizu-radius-md: 0.5rem;
+  --mizu-radius-lg: 9999px;
+  --mizu-radius-xl: 9999px;
+  --mizu-shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+  --mizu-shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.12);
+  --mizu-font-family-sans: "DM Sans", system-ui, sans-serif;
+  --mizu-font-weight-medium: 600;
+  --mizu-font-weight-semibold: 700;
+  --mizu-font-weight-bold: 800;
+  --mizu-action-primary-default: #e11d48;
+  --mizu-action-primary-hover: #be123c;
+  --mizu-action-primary-active: #9f1239;
+  --mizu-action-destructive-default: #dc2626;
+  --mizu-duration-fast: 120ms;
+  --mizu-duration-normal: 200ms;
+  --mizu-easing-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+}

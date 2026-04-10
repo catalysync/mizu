@@ -1,0 +1,22 @@
+/*
+ * Minimal — stripped back, content-first, documentation-style.
+ * No shadows, hairline borders, serif headings.
+ */
+
+[data-mizu-identity="minimal"] {
+  --mizu-radius-sm: 0;
+  --mizu-radius-md: 0;
+  --mizu-radius-lg: 0.125rem;
+  --mizu-radius-xl: 0.25rem;
+  --mizu-shadow-sm: none;
+  --mizu-shadow-md: none;
+  --mizu-shadow-lg: none;
+  --mizu-shadow-xl: none;
+  --mizu-font-family-sans: "Source Sans 3", Georgia, serif;
+  --mizu-border-default: var(--mizu-color-slate-300);
+  --mizu-action-primary-default: var(--mizu-color-slate-900);
+  --mizu-action-primary-hover: var(--mizu-color-slate-800);
+  --mizu-action-primary-active: var(--mizu-color-slate-700);
+  --mizu-duration-fast: 0ms;
+  --mizu-duration-normal: 0ms;
+}

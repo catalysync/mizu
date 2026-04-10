@@ -1,0 +1,24 @@
+/*
+ * Sharp — minimal, editorial, developer-tool.
+ * Small radii, flat borders, tight spacing, monochrome.
+ */
+
+[data-mizu-identity="sharp"] {
+  --mizu-radius-sm: 0.125rem;
+  --mizu-radius-md: 0.1875rem;
+  --mizu-radius-lg: 0.25rem;
+  --mizu-radius-xl: 0.375rem;
+  --mizu-radius-2xl: 0.5rem;
+  --mizu-shadow-sm: none;
+  --mizu-shadow-md: none;
+  --mizu-shadow-lg: none;
+  --mizu-shadow-xl: 0 0 0 1px var(--mizu-border-default);
+  --mizu-font-family-sans: "Geist", system-ui, sans-serif;
+  --mizu-font-family-mono: "Geist Mono", "Fira Code", monospace;
+  --mizu-action-primary-default: #171717;
+  --mizu-action-primary-hover: #0a0a0a;
+  --mizu-action-primary-active: #000000;
+  --mizu-duration-fast: 100ms;
+  --mizu-duration-normal: 150ms;
+  --mizu-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
