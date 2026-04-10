@@ -1,0 +1,17 @@
+/* Story-level utility classes for layout constraints. NOT part of the design system. */
+
+.story-sm {
+  width: 14rem;
+}
+
+.story-md {
+  width: 20rem;
+}
+
+.story-lg {
+  width: 32rem;
+}
+
+.story-full {
+  width: 100%;
+}

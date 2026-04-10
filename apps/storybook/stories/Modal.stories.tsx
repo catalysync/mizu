@@ -63,13 +63,13 @@ export const WithForm: Story = {
         <ModalBody>
           <Stack gap="0.75rem">
             <div>
-              <label className="mizu-body--sm" style={{ fontWeight: 500 }} htmlFor="modal-name">
+              <label className="mizu-label" htmlFor="modal-name">
                 App name
               </label>
               <Input id="modal-name" defaultValue="frosty-mountain-1234" />
             </div>
             <div>
-              <label className="mizu-body--sm" style={{ fontWeight: 500 }} htmlFor="modal-region">
+              <label className="mizu-label" htmlFor="modal-region">
                 Region
               </label>
               <Input id="modal-region" defaultValue="us-east" />

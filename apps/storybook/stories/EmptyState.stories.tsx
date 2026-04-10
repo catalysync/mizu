@@ -64,7 +64,7 @@ export const Minimal: Story = {
 
 export const InCard: Story = {
   render: () => (
-    <div className="mizu-card" style={{ width: '24rem' }}>
+    <div className="mizu-card story-lg">
       <EmptyState
         title="No transactions"
         description="Transactions will appear here once you start processing payments."

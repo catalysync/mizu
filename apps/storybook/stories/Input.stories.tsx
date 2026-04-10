@@ -23,7 +23,7 @@ export const WithValue: Story = { args: { defaultValue: 'hello@example.com' } };
 
 export const AllSizes: Story = {
   render: () => (
-    <Stack gap="0.75rem" style={{ width: '18rem' }}>
+    <Stack gap="0.75rem" className="story-md">
       <Input size="sm" placeholder="Small" aria-label="Small" />
       <Input size="md" placeholder="Medium" aria-label="Medium" />
       <Input size="lg" placeholder="Large" aria-label="Large" />
@@ -33,8 +33,8 @@ export const AllSizes: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <Stack gap="0.25rem" style={{ width: '18rem' }}>
-      <label htmlFor="email-input" className="mizu-body--sm" style={{ fontWeight: 500 }}>
+    <Stack gap="0.25rem" className="story-md">
+      <label htmlFor="email-input" className="mizu-label">
         Email
       </label>
       <Input id="email-input" type="email" placeholder="you@example.com" />

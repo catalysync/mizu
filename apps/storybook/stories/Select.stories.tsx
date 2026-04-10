@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <div style={{ width: '14rem' }}>
+    <div className="story-sm">
       <Select>
         <SelectTrigger aria-label="Region">
           <SelectValue placeholder="Choose region" />

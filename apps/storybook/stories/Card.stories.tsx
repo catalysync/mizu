@@ -21,7 +21,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <Card style={{ width: '20rem' }}>
+    <Card className="story-md">
       <CardHeader title="Card title" description="A short description of the card." />
       <CardBody>
         <p className="mizu-body--sm">Body content goes here.</p>
@@ -32,7 +32,7 @@ export const Default: Story = {
 
 export const WithFooter: Story = {
   render: () => (
-    <Card style={{ width: '20rem' }}>
+    <Card className="story-md">
       <CardHeader title="Confirm action" description="This cannot be undone." />
       <CardBody>
         <p className="mizu-body--sm">Are you sure you want to proceed?</p>
@@ -51,7 +51,7 @@ export const WithFooter: Story = {
 
 export const Interactive: Story = {
   render: () => (
-    <Card interactive style={{ width: '20rem' }}>
+    <Card interactive className="story-md">
       <CardHeader title="Clickable card" description="Hover to see the effect." />
       <CardBody>
         <p className="mizu-body--sm">Click anywhere on this card.</p>
@@ -62,7 +62,7 @@ export const Interactive: Story = {
 
 export const HeaderOnly: Story = {
   render: () => (
-    <Card style={{ width: '20rem' }}>
+    <Card className="story-md">
       <CardHeader title="Header only" description="No body or footer." />
     </Card>
   ),
@@ -70,7 +70,7 @@ export const HeaderOnly: Story = {
 
 export const WithBadge: Story = {
   render: () => (
-    <Card style={{ width: '20rem' }}>
+    <Card className="story-md">
       <CardHeader>
         <Inline align="center" gap="0.5rem">
           <h3 className="mizu-card__title">Deploy status</h3>
@@ -95,7 +95,7 @@ export const WithBadge: Story = {
 export const Grid: Story = {
   name: 'Card grid',
   render: () => (
-    <div className="mizu-grid" style={{ maxWidth: '44rem' }}>
+    <div className="mizu-grid story-lg">
       {['Analytics', 'Billing', 'Settings'].map((t) => (
         <Card key={t} interactive>
           <CardHeader title={t} description={`Manage your ${t.toLowerCase()}.`} />
@@ -107,7 +107,7 @@ export const Grid: Story = {
 
 export const Stacked: Story = {
   render: () => (
-    <Stack gap="1rem" style={{ width: '20rem' }}>
+    <Stack gap="1rem" className="story-md">
       <Card>
         <CardHeader title="First card" />
         <CardBody>
