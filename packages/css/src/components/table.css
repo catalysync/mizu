@@ -73,6 +73,22 @@
   background: var(--mizu-surface-secondary);
 }
 
+.mizu-table--sticky-first th:first-child,
+.mizu-table--sticky-first td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: inherit;
+}
+
+.mizu-table--sticky-last th:last-child,
+.mizu-table--sticky-last td:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background: inherit;
+}
+
 .mizu-table[data-density="compact"] th,
 .mizu-table[data-density="compact"] td {
   padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
