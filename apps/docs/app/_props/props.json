@@ -1,9 +1,45 @@
 {
+  "alert": [
+    {
+      "name": "icon",
+      "type": "React.ReactNode",
+      "interface": "AlertProps"
+    },
+    {
+      "name": "onDismiss",
+      "type": "() => void",
+      "interface": "AlertProps"
+    }
+  ],
+  "avatar": [
+    {
+      "name": "src",
+      "type": "string",
+      "interface": "AvatarProps"
+    },
+    {
+      "name": "alt",
+      "type": "string",
+      "interface": "AvatarProps"
+    },
+    {
+      "name": "initials",
+      "type": "string",
+      "interface": "AvatarProps"
+    }
+  ],
   "badge": [
     {
       "name": "dot",
       "type": "boolean",
       "interface": "BadgeProps"
+    }
+  ],
+  "breadcrumb": [
+    {
+      "name": "separator",
+      "type": "React.ReactNode",
+      "interface": "BreadcrumbProps"
     }
   ],
   "button": [
@@ -132,6 +168,23 @@
       "interface": "InputProps"
     }
   ],
+  "progress": [
+    {
+      "name": "label",
+      "type": "string",
+      "interface": "ProgressProps"
+    },
+    {
+      "name": "showValue",
+      "type": "boolean",
+      "interface": "ProgressProps"
+    },
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "interface": "ProgressProps"
+    }
+  ],
   "propertyfilter": [
     {
       "name": "query",
@@ -166,6 +219,18 @@
       "interface": "RadioItemProps"
     }
   ],
+  "skeleton": [
+    {
+      "name": "width",
+      "type": "string | number",
+      "interface": "SkeletonProps"
+    },
+    {
+      "name": "height",
+      "type": "string | number",
+      "interface": "SkeletonProps"
+    }
+  ],
   "table": [
     {
       "name": "density",
@@ -181,6 +246,13 @@
       "name": "selected",
       "type": "boolean",
       "interface": "TableRowProps"
+    }
+  ],
+  "tag": [
+    {
+      "name": "onDismiss",
+      "type": "() => void",
+      "interface": "TagProps"
     }
   ],
   "tooltip": [

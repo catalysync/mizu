@@ -5,7 +5,7 @@
  */
 
 [data-mizu-identity="sage"] {
-  --mizu-font-family-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --mizu-font-family-sans: "DM Sans", -apple-system, blinkmacsystemfont, sans-serif;
   --mizu-radius-sm: 0.125rem;
   --mizu-radius-md: 0.5rem;
   --mizu-radius-lg: 0.5rem;
@@ -25,9 +25,9 @@
   --mizu-font-weight-medium: 500;
   --mizu-font-weight-semibold: 700;
   --mizu-font-weight-bold: 700;
-  --mizu-text-primary: rgba(0, 0, 0, 0.9);
-  --mizu-text-secondary: rgba(0, 0, 0, 0.55);
-  --mizu-text-disabled: rgba(0, 0, 0, 0.3);
+  --mizu-text-primary: rgb(0 0 0 / 90%);
+  --mizu-text-secondary: rgb(0 0 0 / 55%);
+  --mizu-text-disabled: rgb(0 0 0 / 30%);
   --mizu-border-default: #ccd6db;
   --mizu-surface-secondary: #f2f5f6;
   --mizu-duration-fast: 100ms;
@@ -45,7 +45,7 @@
 [data-mizu-identity="sage"] .mizu-button:focus-visible {
   outline: 3px solid #ffbc19;
   outline-offset: 3px;
-  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 0 6px rgb(0 0 0 / 90%);
 }
 
 /* Sage structural: inputs with 8px radius */
@@ -60,7 +60,7 @@
 [data-mizu-identity="sage"] .mizu-textarea:focus {
   outline: 3px solid #ffbc19;
   outline-offset: 0;
-  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 0 6px rgb(0 0 0 / 90%);
 }
 
 /* Sage structural: cards with shadow, no border */

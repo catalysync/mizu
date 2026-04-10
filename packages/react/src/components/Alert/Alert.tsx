@@ -22,7 +22,13 @@ export interface AlertProps
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   ({ className, tone, icon, onDismiss, children, ...props }, ref) => (
-    <div ref={ref} role="alert" className={cn(alertVariants({ tone, className }))} {...props}>
+    <div
+      ref={ref}
+      role="alert"
+      data-component="mizu-alert"
+      className={cn(alertVariants({ tone, className }))}
+      {...props}
+    >
       {icon && (
         <span className="mizu-alert__icon" aria-hidden="true">
           {icon}

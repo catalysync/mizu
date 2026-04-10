@@ -13,11 +13,11 @@
   --mizu-shadow-md: 0 2px 4px rgb(0 0 0 / 12%);
   --mizu-shadow-lg: 0 4px 8px rgb(0 0 0 / 12%);
   --mizu-shadow-xl: 0 8px 16px rgb(0 0 0 / 15%);
-  --mizu-font-family-sans: "Amazon Ember", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mizu-font-family-sans: "Amazon Ember", "Helvetica Neue", helvetica, arial, sans-serif;
   --mizu-font-weight-medium: 500;
   --mizu-font-weight-semibold: 700;
   --mizu-font-weight-bold: 700;
-  --mizu-action-primary-default: #ff9900;
+  --mizu-action-primary-default: #f90;
   --mizu-action-primary-hover: #e88b00;
   --mizu-action-primary-active: #cc7a00;
   --mizu-duration-fast: 100ms;

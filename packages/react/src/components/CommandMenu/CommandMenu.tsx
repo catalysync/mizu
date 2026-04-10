@@ -9,7 +9,11 @@ export const CommandMenu = ({ children, ...props }: CommandMenuProps) => (
   <Dialog.Root {...props}>
     <Dialog.Portal>
       <Dialog.Overlay className="mizu-command-menu__overlay" />
-      <Dialog.Content className="mizu-command-menu__dialog" aria-label="Command menu">
+      <Dialog.Content
+        data-component="mizu-command-menu"
+        className="mizu-command-menu__dialog"
+        aria-label="Command menu"
+      >
         <CommandPrimitive>{children}</CommandPrimitive>
       </Dialog.Content>
     </Dialog.Portal>

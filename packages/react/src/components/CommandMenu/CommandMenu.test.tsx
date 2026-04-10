@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { axe } from 'vitest-axe';
-import { beforeAll, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
   CommandMenu,
   CommandMenuInput,
@@ -20,10 +20,6 @@ const renderCommandMenu = () =>
       </CommandMenuList>
     </CommandMenu>,
   );
-
-beforeAll(() => {
-  Element.prototype.scrollIntoView = () => {};
-});
 
 describe('CommandMenu', () => {
   it('renders input and items', () => {

@@ -14,12 +14,12 @@
   --mizu-shadow-lg: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 1px 0 rgb(9 30 66 / 31%);
   --mizu-shadow-xl: 0 12px 24px -6px rgb(9 30 66 / 25%), 0 0 1px 0 rgb(9 30 66 / 31%);
   --mizu-font-family-sans:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif;
+    -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Noto Sans", ubuntu, sans-serif;
   --mizu-font-weight-medium: 500;
   --mizu-font-weight-semibold: 600;
   --mizu-font-weight-bold: 700;
   --mizu-action-primary-default: #0c66e4;
-  --mizu-action-primary-hover: #0055cc;
+  --mizu-action-primary-hover: #05c;
   --mizu-action-primary-active: #09326c;
   --mizu-duration-fast: 100ms;
   --mizu-duration-normal: 200ms;

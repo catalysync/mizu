@@ -12,6 +12,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
     return (
       <nav
         ref={ref}
+        data-component="mizu-breadcrumb"
         aria-label="Breadcrumb"
         className={cn('mizu-breadcrumb', className)}
         {...props}

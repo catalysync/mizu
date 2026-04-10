@@ -14,8 +14,8 @@
   --mizu-shadow-lg: 0 8px 24px rgb(140 149 159 / 20%);
   --mizu-shadow-xl: 0 12px 28px rgb(140 149 159 / 30%);
   --mizu-font-family-sans:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-  --mizu-font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    -apple-system, blinkmacsystemfont, "Segoe UI", "Noto Sans", helvetica, arial, sans-serif;
+  --mizu-font-family-mono: "SFMono-Regular", consolas, "Liberation Mono", menlo, monospace;
   --mizu-font-weight-medium: 500;
   --mizu-font-weight-semibold: 600;
   --mizu-font-weight-bold: 700;

@@ -25,6 +25,7 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
   ({ className, variant, width, height, style, ...props }, ref) => (
     <div
       ref={ref}
+      data-component="mizu-skeleton"
       className={cn(skeletonVariants({ variant, className }))}
       style={{ width, height, ...style }}
       aria-hidden="true"

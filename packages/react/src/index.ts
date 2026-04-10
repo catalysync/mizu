@@ -34,6 +34,9 @@ export { cn } from './utils/cn';
 export { mergeRefs } from './utils/merge-refs';
 export { useValidateProps } from './utils/validate-props';
 export { removeNonHTMLProps } from './utils/remove-non-html-props';
+export { invariant } from './utils/invariant';
+export { tagComponent } from './utils/tag-component';
+export * from './i18n';
 export type {
   ControlledValueProps,
   Action,

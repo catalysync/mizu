@@ -49,6 +49,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         ref={ref}
+        data-component="mizu-button"
         className={cn(buttonVariants({ variant, size, className }))}
         data-loading={loading || undefined}
         aria-busy={loading || undefined}

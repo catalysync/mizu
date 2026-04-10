@@ -33,7 +33,12 @@ export interface ToastProps
 
 export const Toast = React.forwardRef<React.ElementRef<typeof ToastPrimitive.Root>, ToastProps>(
   ({ className, tone, ...props }, ref) => (
-    <ToastPrimitive.Root ref={ref} className={cn(toastVariants({ tone, className }))} {...props} />
+    <ToastPrimitive.Root
+      ref={ref}
+      data-component="mizu-toast"
+      className={cn(toastVariants({ tone, className }))}
+      {...props}
+    />
   ),
 );
 Toast.displayName = 'Toast';

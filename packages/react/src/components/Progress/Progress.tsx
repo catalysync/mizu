@@ -32,6 +32,7 @@ export const Progress = React.forwardRef<
 
   return (
     <div
+      data-component="mizu-progress"
       className={cn('mizu-progress', indeterminate && 'mizu-progress--indeterminate', className)}
     >
       {(label || showValue) && (

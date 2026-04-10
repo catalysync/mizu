@@ -13,7 +13,7 @@
   --mizu-shadow-md: none;
   --mizu-shadow-lg: none;
   --mizu-shadow-xl: 0 0 0 1px var(--mizu-border-default);
-  --mizu-font-family-sans: Georgia, "Times New Roman", "Noto Serif", serif;
+  --mizu-font-family-sans: georgia, "Times New Roman", "Noto Serif", serif;
   --mizu-font-family-mono: "Courier Prime", "Courier New", monospace;
   --mizu-font-weight-medium: 400;
   --mizu-font-weight-semibold: 700;

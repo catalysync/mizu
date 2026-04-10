@@ -6,7 +6,12 @@ export const Accordion = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
 >(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Root ref={ref} className={cn('mizu-accordion', className)} {...props} />
+  <AccordionPrimitive.Root
+    ref={ref}
+    data-component="mizu-accordion"
+    className={cn('mizu-accordion', className)}
+    {...props}
+  />
 ));
 Accordion.displayName = 'Accordion';
 

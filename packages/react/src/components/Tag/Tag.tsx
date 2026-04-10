@@ -22,7 +22,12 @@ export interface TagProps
 
 export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
   ({ className, tone, onDismiss, children, ...props }, ref) => (
-    <span ref={ref} className={cn(tagVariants({ tone, className }))} {...props}>
+    <span
+      ref={ref}
+      data-component="mizu-tag"
+      className={cn(tagVariants({ tone, className }))}
+      {...props}
+    >
       <span className="mizu-tag__label">{children}</span>
       {onDismiss && (
         <button type="button" className="mizu-tag__dismiss" onClick={onDismiss} aria-label="Remove">
