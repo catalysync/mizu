@@ -1,3 +1,4 @@
+import './global.css';
 import '@aspect/tokens/css';
 import '@aspect/css';
 import '@aspect/css/themes/dark';
@@ -5,6 +6,10 @@ import '@aspect/css/themes/cloud';
 import '@aspect/css/themes/ecommerce';
 import '@aspect/css/themes/finance';
 import '@aspect/css/themes/customer-engagement';
+import '@aspect/finance/css';
+import '@aspect/finance/themes/reports';
+import '@aspect/finance/themes/insights';
+import '@aspect/finance/themes/analytics';
 import type { Preview } from '@storybook/react-vite';
 
 const preview: Preview = {

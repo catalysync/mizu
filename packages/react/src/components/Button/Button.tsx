@@ -56,8 +56,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled ?? loading}
         {...props}
       >
-        <span className="mizu-button__label">{children}</span>
-        {loading && <span className="mizu-button__spinner" aria-hidden="true" />}
+        {loading ? (
+          <>
+            <span className="mizu-button__label">{children}</span>
+            <span className="mizu-button__spinner" aria-hidden="true" />
+          </>
+        ) : (
+          children
+        )}
       </Comp>
     );
   },

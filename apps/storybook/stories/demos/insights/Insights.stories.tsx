@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import '@aspect/finance/css';
-import '@aspect/finance/themes/insights';
 import {
   DeltaIndicator,
   MetricTile,

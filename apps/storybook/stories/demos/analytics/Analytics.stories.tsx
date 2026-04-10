@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import '@aspect/finance/themes/analytics';
 import { formatCompact } from '@aspect/finance';
 import {
   AppLayout,

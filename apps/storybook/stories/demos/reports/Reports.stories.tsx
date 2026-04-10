@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import '@aspect/finance/css';
-import '@aspect/finance/themes/reports';
 import { formatAccounting } from '@aspect/finance';
 import { profitAndLoss, type ReportRow } from './data';
 
