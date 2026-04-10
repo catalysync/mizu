@@ -26,6 +26,9 @@
 @import url("./components/dropdown-menu.css");
 @import url("./components/select.css");
 @import url("./components/switch.css");
+@import url("./components/textarea.css");
+@import url("./components/popover.css");
+@import url("./components/separator.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
