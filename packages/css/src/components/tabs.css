@@ -28,8 +28,8 @@
   cursor: pointer;
   margin-bottom: -1px;
   transition:
-    color 150ms ease,
-    border-color 150ms ease;
+    color var(--mizu-duration-fast) var(--mizu-easing-out),
+    border-color var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
 .mizu-tabs__trigger:hover {

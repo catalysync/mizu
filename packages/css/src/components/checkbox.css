@@ -9,8 +9,8 @@
   background: var(--mizu-surface-default);
   cursor: pointer;
   transition:
-    background-color 150ms ease,
-    border-color 150ms ease;
+    background-color var(--mizu-duration-fast) var(--mizu-easing-out),
+    border-color var(--mizu-duration-fast) var(--mizu-easing-out);
   flex-shrink: 0;
 }
 
@@ -53,7 +53,7 @@
   border-radius: var(--mizu-radius-full);
   background: var(--mizu-surface-default);
   cursor: pointer;
-  transition: border-color 150ms ease;
+  transition: border-color var(--mizu-duration-fast) var(--mizu-easing-out);
   flex-shrink: 0;
 }
 

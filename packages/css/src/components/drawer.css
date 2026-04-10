@@ -3,7 +3,7 @@
   inset: 0;
   background: color-mix(in srgb, var(--mizu-color-slate-950) 50%, transparent);
   z-index: 50;
-  animation: mizu-drawer-fade-in 200ms ease;
+  animation: mizu-drawer-fade-in var(--mizu-duration-normal) var(--mizu-easing-out);
 }
 
 .mizu-drawer__content {
@@ -20,7 +20,7 @@
   right: 0;
   bottom: 0;
   width: min(28rem, 90vw);
-  animation: mizu-drawer-slide-in-right 200ms ease;
+  animation: mizu-drawer-slide-in-right var(--mizu-duration-normal) var(--mizu-easing-out);
 }
 
 .mizu-drawer__content[data-side="left"] {
@@ -28,7 +28,7 @@
   left: 0;
   bottom: 0;
   width: min(28rem, 90vw);
-  animation: mizu-drawer-slide-in-left 200ms ease;
+  animation: mizu-drawer-slide-in-left var(--mizu-duration-normal) var(--mizu-easing-out);
 }
 
 .mizu-drawer__content[data-side="top"] {
@@ -36,7 +36,7 @@
   left: 0;
   right: 0;
   max-height: 90vh;
-  animation: mizu-drawer-slide-in-top 200ms ease;
+  animation: mizu-drawer-slide-in-top var(--mizu-duration-normal) var(--mizu-easing-out);
 }
 
 .mizu-drawer__content[data-side="bottom"] {
@@ -44,7 +44,7 @@
   left: 0;
   right: 0;
   max-height: 90vh;
-  animation: mizu-drawer-slide-in-bottom 200ms ease;
+  animation: mizu-drawer-slide-in-bottom var(--mizu-duration-normal) var(--mizu-easing-out);
 }
 
 .mizu-drawer__header {

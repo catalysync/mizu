@@ -16,8 +16,8 @@
   border-radius: var(--mizu-radius-md);
   outline: none;
   transition:
-    border-color 150ms ease,
-    box-shadow 150ms ease;
+    border-color var(--mizu-duration-fast) var(--mizu-easing-out),
+    box-shadow var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
 .mizu-input::placeholder {

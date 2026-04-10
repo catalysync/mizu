@@ -15,8 +15,8 @@
   cursor: pointer;
   outline: none;
   transition:
-    border-color 150ms ease,
-    box-shadow 150ms ease;
+    border-color var(--mizu-duration-fast) var(--mizu-easing-out),
+    box-shadow var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
 .mizu-select__trigger:hover {
