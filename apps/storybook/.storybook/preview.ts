@@ -12,6 +12,7 @@ import '@aspect/finance/css';
 import '@aspect/finance/themes/reports';
 import '@aspect/finance/themes/insights';
 import '@aspect/finance/themes/analytics';
+import React from 'react';
 import type { Preview } from '@storybook/react-vite';
 
 const preview: Preview = {
@@ -26,6 +27,13 @@ const preview: Preview = {
         { name: 'dark', value: '#020617' },
       ],
     },
+    viewport: {
+      viewports: {
+        mobile: { name: 'Mobile', styles: { width: '375px', height: '667px' } },
+        tablet: { name: 'Tablet', styles: { width: '768px', height: '1024px' } },
+        desktop: { name: 'Desktop', styles: { width: '1280px', height: '800px' } },
+      },
+    },
   },
   globalTypes: {
     theme: {
@@ -38,6 +46,16 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    strictMode: {
+      description: 'React StrictMode',
+      defaultValue: 'off',
+      toolbar: {
+        title: 'Strict',
+        icon: 'shield',
+        items: ['off', 'on'],
+        dynamicTitle: true,
+      },
+    },
   },
   decorators: [
     (Story, context) => {
@@ -45,7 +63,9 @@ const preview: Preview = {
       if (typeof document !== 'undefined') {
         document.documentElement.dataset.theme = theme;
       }
-      return Story();
+      const strict = context.globals.strictMode === 'on';
+      const story = Story();
+      return strict ? React.createElement(React.StrictMode, null, story) : story;
     },
   ],
 };
