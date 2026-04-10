@@ -1,0 +1,137 @@
+/* @aspect/finance — industry-specific CSS */
+
+.mizu-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mizu-spacing-1);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-weight: var(--mizu-font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.mizu-delta--positive {
+  color: var(--mizu-feedback-success-default);
+}
+
+.mizu-delta--negative {
+  color: var(--mizu-feedback-danger-default);
+}
+
+.mizu-delta--neutral {
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-delta__arrow {
+  display: inline-flex;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.mizu-kpi-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-2);
+  padding: var(--mizu-spacing-5);
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-lg);
+}
+
+.mizu-kpi-card__label {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  font-weight: var(--mizu-font-weight-medium);
+  color: var(--mizu-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mizu-kpi-card__value {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-3xl);
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.mizu-kpi-card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-2);
+}
+
+.mizu-metric-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-3);
+  padding: var(--mizu-spacing-4);
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-lg);
+}
+
+.mizu-metric-tile__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mizu-metric-tile__label {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-metric-tile__value {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-2xl);
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.mizu-metric-tile__chart {
+  flex: 1;
+  min-height: 3rem;
+}
+
+.mizu-annotation-card {
+  display: flex;
+  gap: var(--mizu-spacing-3);
+  padding: var(--mizu-spacing-4);
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--mizu-action-primary-default) 15%, transparent);
+  border-radius: var(--mizu-radius-lg);
+}
+
+.mizu-annotation-card__icon {
+  display: inline-flex;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  color: var(--mizu-action-primary-default);
+  margin-top: 0.125rem;
+}
+
+.mizu-annotation-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.mizu-annotation-card__title {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-primary);
+  margin: 0;
+}
+
+.mizu-annotation-card__text {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-secondary);
+  margin: var(--mizu-spacing-1) 0 0;
+  line-height: var(--mizu-font-line-height-normal);
+}
