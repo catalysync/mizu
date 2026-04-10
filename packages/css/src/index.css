@@ -30,6 +30,7 @@
 @import url("./components/popover.css");
 @import url("./components/separator.css");
 @import url("./components/checkbox.css");
+@import url("./components/chat-bubble.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");

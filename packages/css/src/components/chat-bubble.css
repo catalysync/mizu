@@ -1,0 +1,89 @@
+.mizu-chat-bubble {
+  max-width: 70%;
+  padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
+  border-radius: var(--mizu-radius-lg);
+  font-size: var(--mizu-font-size-sm);
+  line-height: var(--mizu-font-line-height-normal);
+}
+
+.mizu-chat-bubble--inbound {
+  align-self: flex-start;
+  background: var(--mizu-surface-secondary);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-chat-bubble--outbound {
+  align-self: flex-end;
+  background: var(--mizu-action-primary-default);
+  color: var(--mizu-text-inverse);
+}
+
+.mizu-chat-bubble--bot {
+  align-self: flex-end;
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 10%, transparent);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-chat-bubble__sender {
+  font-weight: var(--mizu-font-weight-semibold);
+  font-size: var(--mizu-font-size-xs);
+  margin-bottom: var(--mizu-spacing-1);
+}
+
+.mizu-chat-thread {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-3);
+}
+
+.mizu-conversation-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-1);
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  border-radius: var(--mizu-radius-md);
+  cursor: pointer;
+}
+
+.mizu-conversation-item:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 5%, transparent);
+}
+
+.mizu-conversation-item[aria-current="page"] {
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 8%, transparent);
+}
+
+.mizu-conversation-item__header {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-2);
+}
+
+.mizu-conversation-item__avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--mizu-radius-full);
+  background: var(--mizu-action-primary-default);
+  color: var(--mizu-text-inverse);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--mizu-font-size-xs);
+  font-weight: var(--mizu-font-weight-semibold);
+  flex-shrink: 0;
+}
+
+.mizu-conversation-item__name {
+  flex: 1;
+  font-size: var(--mizu-font-size-sm);
+}
+
+.mizu-conversation-item__name--unread {
+  font-weight: var(--mizu-font-weight-semibold);
+}
+
+.mizu-conversation-item__preview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

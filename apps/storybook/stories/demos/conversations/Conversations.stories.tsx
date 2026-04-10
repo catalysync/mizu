@@ -17,87 +17,36 @@ import { conversations, activeThread, type Conversation, type Message } from './
 
 function ConversationItem({ conv, active }: { conv: Conversation; active?: boolean }) {
   return (
-    <div
-      className="mizu-app-sidebar__item"
-      aria-current={active ? 'page' : undefined}
-      style={{ flexDirection: 'column', alignItems: 'stretch', gap: '0.25rem' }}
-    >
-      <Inline align="center" gap="0.5rem">
+    <div className="mizu-conversation-item" aria-current={active ? 'page' : undefined}>
+      <div className="mizu-conversation-item__header">
+        <span className="mizu-conversation-item__avatar">{conv.avatar}</span>
         <span
-          style={{
-            width: '2rem',
-            height: '2rem',
-            borderRadius: 'var(--mizu-radius-full)',
-            background: 'var(--mizu-action-primary-default)',
-            color: 'var(--mizu-text-inverse)',
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 'var(--mizu-font-size-xs)',
-            fontWeight: 'var(--mizu-font-weight-semibold)',
-            flexShrink: 0,
-          }}
-        >
-          {conv.avatar}
-        </span>
-        <span
-          style={{
-            flex: 1,
-            fontWeight: conv.unread ? 'var(--mizu-font-weight-semibold)' : undefined,
-          }}
+          className={`mizu-conversation-item__name ${conv.unread ? 'mizu-conversation-item__name--unread' : ''}`}
         >
           {conv.name}
         </span>
         <span className="mizu-caption">{conv.time}</span>
-      </Inline>
-      <span
-        className="mizu-caption"
-        style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
-      >
-        {conv.preview}
-      </span>
+      </div>
+      <span className="mizu-caption mizu-conversation-item__preview">{conv.preview}</span>
     </div>
   );
 }
 
 function ChatBubble({ msg }: { msg: Message }) {
-  const isCustomer = msg.sender === 'customer';
-  const isBot = msg.sender === 'bot';
+  const variant = msg.sender === 'customer' ? 'inbound' : msg.sender === 'bot' ? 'bot' : 'outbound';
   return (
-    <div style={{ display: 'flex', justifyContent: isCustomer ? 'flex-start' : 'flex-end' }}>
-      <div
-        style={{
-          maxWidth: '70%',
-          padding: 'var(--mizu-spacing-3) var(--mizu-spacing-4)',
-          borderRadius: 'var(--mizu-radius-lg)',
-          background: isCustomer
-            ? 'var(--mizu-surface-secondary)'
-            : isBot
-              ? 'color-mix(in srgb, var(--mizu-action-primary-default) 10%, transparent)'
-              : 'var(--mizu-action-primary-default)',
-          color: !isCustomer && !isBot ? 'var(--mizu-text-inverse)' : 'var(--mizu-text-primary)',
-          fontSize: 'var(--mizu-font-size-sm)',
-          lineHeight: 'var(--mizu-font-line-height-normal)',
-        }}
-      >
-        <div
-          style={{
-            fontWeight: 'var(--mizu-font-weight-semibold)',
-            marginBottom: '0.25rem',
-            fontSize: 'var(--mizu-font-size-xs)',
-          }}
-        >
-          {msg.name} · {msg.time}
-        </div>
-        {msg.text}
+    <div className={`mizu-chat-bubble mizu-chat-bubble--${variant}`}>
+      <div className="mizu-chat-bubble__sender">
+        {msg.name} · {msg.time}
       </div>
+      {msg.text}
     </div>
   );
 }
 
 function ConversationsInbox() {
   return (
-    <AppLayout style={{ minHeight: '720px' }} data-mizu-theme="customer-engagement">
+    <AppLayout data-mizu-theme="customer-engagement">
       <AppHeader
         brand={<>aspect support</>}
         actions={
@@ -110,7 +59,7 @@ function ConversationsInbox() {
         }
       />
       <AppSidebar ariaLabel="Conversations">
-        <div style={{ padding: '0 var(--mizu-spacing-2) var(--mizu-spacing-2)' }}>
+        <div className="mizu-form-group">
           <Input size="sm" placeholder="Search conversations…" aria-label="Search" />
         </div>
         <Stack gap="0">
@@ -133,12 +82,10 @@ function ConversationsInbox() {
           </Button>
         </Inline>
         <Separator />
-        <div style={{ flex: 1, overflowY: 'auto' }}>
-          <Stack gap="0.75rem">
-            {activeThread.map((msg) => (
-              <ChatBubble key={msg.id} msg={msg} />
-            ))}
-          </Stack>
+        <div className="mizu-chat-thread">
+          {activeThread.map((msg) => (
+            <ChatBubble key={msg.id} msg={msg} />
+          ))}
         </div>
         <Separator />
         <Inline gap="0.5rem" align="end">
