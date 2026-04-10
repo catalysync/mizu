@@ -17,6 +17,7 @@ export * from './components/Separator';
 export * from './components/Checkbox';
 export * from './components/Radio';
 export * from './components/FilterBar';
+export * from './components/PropertyFilter';
 export * from './motion';
 export * from './layouts';
 export * from './shell';
