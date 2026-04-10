@@ -9,8 +9,13 @@ const inputVariants = cva('mizu-input', {
       md: '',
       lg: 'mizu-input--lg',
     },
+    appearance: {
+      outline: '',
+      filled: 'mizu-input--filled',
+      underline: 'mizu-input--underline',
+    },
   },
-  defaultVariants: { size: 'md' },
+  defaultVariants: { size: 'md', appearance: 'outline' },
 });
 
 export interface InputProps
@@ -23,7 +28,7 @@ export interface InputProps
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, size, type = 'text', error, helpText, label, id, ...props }, ref) => {
+  ({ className, size, appearance, type = 'text', error, helpText, label, id, ...props }, ref) => {
     const inputId = id || (label ? `input-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
     const errorId = error && typeof error === 'string' ? `${inputId}-error` : undefined;
     const helpId = helpText ? `${inputId}-help` : undefined;
@@ -33,7 +38,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         id={inputId}
         type={type}
-        className={cn(inputVariants({ size, className }), error && 'mizu-input--error')}
+        className={cn(inputVariants({ size, appearance, className }), error && 'mizu-input--error')}
         aria-invalid={!!error || undefined}
         aria-describedby={errorId || helpId || undefined}
         {...props}

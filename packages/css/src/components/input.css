@@ -54,3 +54,36 @@
   height: 2.75rem;
   font-size: var(--mizu-font-size-base);
 }
+
+/* Appearance: filled — no visible border, tinted background */
+.mizu-input--filled {
+  border-color: transparent;
+  background: var(--mizu-surface-secondary);
+}
+
+.mizu-input--filled:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 8%, var(--mizu-surface-secondary));
+}
+
+.mizu-input--filled:focus-visible {
+  border-color: var(--_focus-color);
+  background: var(--mizu-surface-default);
+}
+
+/* Appearance: underline — only bottom border */
+.mizu-input--underline {
+  border-color: transparent;
+  border-bottom-color: var(--_border);
+  border-radius: 0;
+  background: transparent;
+}
+
+.mizu-input--underline:hover {
+  border-bottom-color: var(--_border-hover);
+}
+
+.mizu-input--underline:focus-visible {
+  border-bottom-color: var(--_focus-color);
+  border-bottom-width: 2px;
+  box-shadow: none;
+}
