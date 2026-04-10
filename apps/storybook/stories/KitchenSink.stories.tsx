@@ -186,6 +186,7 @@ export const Light: Story = {
 };
 
 export const Dark: Story = {
+  parameters: { layout: 'fullscreen' },
   render: () => (
     <div data-theme="dark" className="story-dark-wrapper">
       <AllComponents />
@@ -203,6 +204,7 @@ export const Compact: Story = {
 
 export const DarkCompact: Story = {
   name: 'Dark + Compact',
+  parameters: { layout: 'fullscreen' },
   render: () => (
     <div data-theme="dark" data-mizu-density="compact" className="story-dark-wrapper">
       <AllComponents />
