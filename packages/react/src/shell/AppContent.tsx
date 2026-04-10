@@ -30,8 +30,8 @@ export interface AppContentHeaderProps extends Omit<React.HTMLAttributes<HTMLDiv
 export const AppContentHeader = React.forwardRef<HTMLDivElement, AppContentHeaderProps>(
   ({ className, title, description, actions, children, ...props }, ref) => (
     <div ref={ref} className={cn('mizu-app-content__header', className)} {...props}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
-        <div style={{ flex: 1 }}>
+      <div className="mizu-app-content__header-row">
+        <div className="mizu-app-content__header-text">
           <h1 className="mizu-app-content__title">{title}</h1>
           {description && <p className="mizu-app-content__description">{description}</p>}
         </div>

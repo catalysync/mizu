@@ -1,6 +1,7 @@
 {
   "name": "@aspect/tsconfig",
   "version": "0.0.0",
+  "description": "Shared TypeScript configs for the mizu monorepo",
   "private": true,
   "files": [
     "*.json"

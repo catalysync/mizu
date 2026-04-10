@@ -25,6 +25,16 @@
   gap: var(--mizu-spacing-2);
 }
 
+.mizu-app-content__header-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mizu-spacing-4);
+}
+
+.mizu-app-content__header-text {
+  flex: 1;
+}
+
 .mizu-app-content__title {
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-2xl);

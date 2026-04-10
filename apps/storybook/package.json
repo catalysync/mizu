@@ -1,6 +1,7 @@
 {
   "name": "@aspect/storybook",
   "version": "0.0.0",
+  "description": "Storybook for the mizu design system",
   "private": true,
   "type": "module",
   "scripts": {
