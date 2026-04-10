@@ -1,0 +1,27 @@
+/*
+ * Organic — warm, content-focused, editorial.
+ * Muted accent, serif headings, generous spacing, soft corners.
+ */
+
+[data-mizu-identity="organic"] {
+  --mizu-radius-sm: 0.1875rem;
+  --mizu-radius-md: 0.25rem;
+  --mizu-radius-lg: 0.375rem;
+  --mizu-radius-xl: 0.5rem;
+  --mizu-radius-2xl: 0.5rem;
+  --mizu-shadow-sm: 0 1px 2px rgb(0 0 0 / 4%);
+  --mizu-shadow-md: 0 4px 12px rgb(0 0 0 / 6%);
+  --mizu-shadow-lg: 0 8px 24px rgb(0 0 0 / 8%);
+  --mizu-shadow-xl: 0 12px 48px rgb(0 0 0 / 10%);
+  --mizu-font-family-sans: "Lyon Text", georgia, "Times New Roman", serif;
+  --mizu-font-family-mono: "SFMono-Regular", "Consolas", monospace;
+  --mizu-font-weight-medium: 500;
+  --mizu-font-weight-semibold: 600;
+  --mizu-font-weight-bold: 700;
+  --mizu-action-primary-default: #2f3437;
+  --mizu-action-primary-hover: #1e2224;
+  --mizu-action-primary-active: #0f1112;
+  --mizu-duration-fast: 100ms;
+  --mizu-duration-normal: 200ms;
+  --mizu-easing-out: cubic-bezier(0.25, 1, 0.5, 1);
+}

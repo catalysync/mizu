@@ -13,6 +13,16 @@ import '@aspect/css/themes/sharp';
 import '@aspect/css/themes/elevated';
 import '@aspect/css/themes/bold';
 import '@aspect/css/themes/minimal';
+import '@aspect/css/themes/precise';
+import '@aspect/css/themes/structured';
+import '@aspect/css/themes/refined';
+import '@aspect/css/themes/monochrome';
+import '@aspect/css/themes/utilitarian';
+import '@aspect/css/themes/fluent';
+import '@aspect/css/themes/layered';
+import '@aspect/css/themes/industrial';
+import '@aspect/css/themes/organic';
+import '@aspect/css/themes/muted';
 import '@aspect/finance/css';
 import '@aspect/finance/themes/reports';
 import '@aspect/finance/themes/insights';
@@ -58,6 +68,33 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    identity: {
+      description: 'Visual identity',
+      defaultValue: 'none',
+      toolbar: {
+        title: 'Identity',
+        icon: 'paintbrush',
+        items: [
+          { value: 'none', title: 'Default' },
+          { value: 'rounded', title: 'Rounded' },
+          { value: 'sharp', title: 'Sharp' },
+          { value: 'elevated', title: 'Elevated' },
+          { value: 'bold', title: 'Bold' },
+          { value: 'minimal', title: 'Minimal' },
+          { value: 'precise', title: 'Precise' },
+          { value: 'structured', title: 'Structured' },
+          { value: 'refined', title: 'Refined' },
+          { value: 'monochrome', title: 'Monochrome' },
+          { value: 'utilitarian', title: 'Utilitarian' },
+          { value: 'fluent', title: 'Fluent' },
+          { value: 'layered', title: 'Layered' },
+          { value: 'industrial', title: 'Industrial' },
+          { value: 'organic', title: 'Organic' },
+          { value: 'muted', title: 'Muted' },
+        ],
+        dynamicTitle: true,
+      },
+    },
     strictMode: {
       description: 'React StrictMode',
       defaultValue: 'off',
@@ -73,8 +110,14 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       const theme = context.globals.theme ?? 'light';
+      const identity = context.globals.identity ?? 'none';
       if (typeof document !== 'undefined') {
         document.documentElement.dataset.theme = theme;
+        if (identity && identity !== 'none') {
+          document.documentElement.dataset.mizuIdentity = identity;
+        } else {
+          delete document.documentElement.dataset.mizuIdentity;
+        }
         document.body.style.backgroundColor = theme === 'dark' ? 'var(--mizu-surface-default)' : '';
         document.body.style.color = theme === 'dark' ? 'var(--mizu-text-primary)' : '';
       }

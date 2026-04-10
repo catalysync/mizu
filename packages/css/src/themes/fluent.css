@@ -1,0 +1,27 @@
+/*
+ * Fluent — clean, airy, layered depth.
+ * Blue accent, Segoe UI, rounded corners, gentle elevation.
+ */
+
+[data-mizu-identity="fluent"] {
+  --mizu-radius-sm: 0.125rem;
+  --mizu-radius-md: 0.25rem;
+  --mizu-radius-lg: 0.5rem;
+  --mizu-radius-xl: 0.75rem;
+  --mizu-radius-2xl: 0.75rem;
+  --mizu-shadow-sm: 0 2px 4px rgb(0 0 0 / 14%);
+  --mizu-shadow-md: 0 4px 8px rgb(0 0 0 / 14%);
+  --mizu-shadow-lg: 0 8px 16px rgb(0 0 0 / 14%);
+  --mizu-shadow-xl: 0 16px 64px rgb(0 0 0 / 24%);
+  --mizu-font-family-sans: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --mizu-font-weight-medium: 600;
+  --mizu-font-weight-semibold: 600;
+  --mizu-font-weight-bold: 700;
+  --mizu-action-primary-default: #0078d4;
+  --mizu-action-primary-hover: #106ebe;
+  --mizu-action-primary-active: #005a9e;
+  --mizu-duration-fast: 100ms;
+  --mizu-duration-normal: 200ms;
+  --mizu-easing-out: cubic-bezier(0.1, 0.9, 0.2, 1);
+  --mizu-easing-in-out: cubic-bezier(0.8, 0, 0.1, 1);
+}

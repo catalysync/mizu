@@ -1,0 +1,26 @@
+/*
+ * Precise — clean, dark-first, keyboard-centric.
+ * Indigo accent, snappy animations, dense layout, Inter font.
+ */
+
+[data-mizu-identity="precise"] {
+  --mizu-radius-sm: 0.25rem;
+  --mizu-radius-md: 0.375rem;
+  --mizu-radius-lg: 0.5rem;
+  --mizu-radius-xl: 0.5rem;
+  --mizu-radius-2xl: 0.5rem;
+  --mizu-shadow-sm: 0 1px 2px rgb(0 0 0 / 6%);
+  --mizu-shadow-md: 0 2px 8px rgb(0 0 0 / 8%);
+  --mizu-shadow-lg: 0 8px 24px rgb(0 0 0 / 16%);
+  --mizu-shadow-xl: 0 16px 64px rgb(0 0 0 / 25%);
+  --mizu-font-family-sans: "Inter", system-ui, sans-serif;
+  --mizu-font-family-mono: "JetBrains Mono", "Fira Code", monospace;
+  --mizu-font-weight-medium: 500;
+  --mizu-font-weight-semibold: 600;
+  --mizu-action-primary-default: #5e6ad2;
+  --mizu-action-primary-hover: #7c85d8;
+  --mizu-action-primary-active: #4e5bc0;
+  --mizu-duration-fast: 120ms;
+  --mizu-duration-normal: 200ms;
+  --mizu-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+}

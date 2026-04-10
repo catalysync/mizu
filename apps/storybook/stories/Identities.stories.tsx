@@ -61,6 +61,16 @@ const identities = [
   { name: 'Elevated', attr: 'elevated' },
   { name: 'Bold', attr: 'bold' },
   { name: 'Minimal', attr: 'minimal' },
+  { name: 'Precise', attr: 'precise' },
+  { name: 'Structured', attr: 'structured' },
+  { name: 'Refined', attr: 'refined' },
+  { name: 'Monochrome', attr: 'monochrome' },
+  { name: 'Utilitarian', attr: 'utilitarian' },
+  { name: 'Fluent', attr: 'fluent' },
+  { name: 'Layered', attr: 'layered' },
+  { name: 'Industrial', attr: 'industrial' },
+  { name: 'Organic', attr: 'organic' },
+  { name: 'Muted', attr: 'muted' },
 ];
 
 const meta = {
@@ -130,6 +140,86 @@ export const Bold: Story = {
 export const Minimal: Story = {
   render: () => (
     <div data-mizu-identity="minimal" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Precise: Story = {
+  render: () => (
+    <div data-mizu-identity="precise" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Structured: Story = {
+  render: () => (
+    <div data-mizu-identity="structured" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Refined: Story = {
+  render: () => (
+    <div data-mizu-identity="refined" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Monochrome: Story = {
+  render: () => (
+    <div data-mizu-identity="monochrome" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Utilitarian: Story = {
+  render: () => (
+    <div data-mizu-identity="utilitarian" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Fluent: Story = {
+  render: () => (
+    <div data-mizu-identity="fluent" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Layered: Story = {
+  render: () => (
+    <div data-mizu-identity="layered" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Industrial: Story = {
+  render: () => (
+    <div data-mizu-identity="industrial" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Organic: Story = {
+  render: () => (
+    <div data-mizu-identity="organic" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Muted: Story = {
+  render: () => (
+    <div data-mizu-identity="muted" style={{ padding: '2rem' }}>
       <SampleUI />
     </div>
   ),
