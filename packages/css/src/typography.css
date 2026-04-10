@@ -56,3 +56,12 @@
   font-family: var(--mizu-font-family-mono);
   font-size: var(--mizu-font-size-sm);
 }
+
+.mizu-label {
+  display: block;
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-weight: var(--mizu-font-weight-medium);
+  color: var(--mizu-text-primary);
+  margin-bottom: var(--mizu-spacing-1);
+}
