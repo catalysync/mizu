@@ -10,6 +10,7 @@ export * from './components/Tooltip';
 export * from './components/Tabs';
 export * from './components/DropdownMenu';
 export * from './components/Select';
+export * from './components/Switch';
 export * from './layouts';
 export * from './shell';
 export { cn } from './utils/cn';

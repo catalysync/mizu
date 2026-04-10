@@ -25,6 +25,7 @@
 @import url("./components/activity-entry.css");
 @import url("./components/dropdown-menu.css");
 @import url("./components/select.css");
+@import url("./components/switch.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");

@@ -1,0 +1,35 @@
+.mizu-switch {
+  display: inline-flex;
+  align-items: center;
+  width: 2.5rem;
+  height: 1.5rem;
+  padding: 2px;
+  background: var(--mizu-border-strong);
+  border-radius: var(--mizu-radius-full);
+  border: none;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.mizu-switch[data-state="checked"] {
+  background: var(--mizu-action-primary-default);
+}
+
+.mizu-switch[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mizu-switch__thumb {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: var(--mizu-color-white);
+  border-radius: var(--mizu-radius-full);
+  box-shadow: var(--mizu-shadow-sm);
+  transition: transform 150ms ease;
+}
+
+.mizu-switch[data-state="checked"] .mizu-switch__thumb {
+  transform: translateX(1rem);
+}
