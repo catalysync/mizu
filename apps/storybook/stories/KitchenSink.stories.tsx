@@ -8,7 +8,11 @@ import {
   CardFooter,
   Input,
   Textarea,
+  Select,
   Switch,
+  Checkbox,
+  RadioGroup,
+  RadioItem,
   Separator,
   EmptyState,
   Table,
@@ -21,35 +25,51 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
+  FilterBar,
+  PropertyFilter,
   Stack,
   Inline,
   Grid,
 } from '@aspect/react';
+import type { PropertyFilterQuery, PropertyFilterProperty } from '@aspect/react';
+import React from 'react';
+
+const properties: PropertyFilterProperty[] = [
+  { key: 'status', label: 'Status', operators: ['=', '!='], options: ['running', 'idle'] },
+  { key: 'region', label: 'Region', operators: ['='], options: ['us-east', 'eu-west'] },
+];
 
 function AllComponents() {
+  const [pfQuery, setPfQuery] = React.useState<PropertyFilterQuery>({
+    operation: 'and',
+    tokens: [],
+  });
+
   return (
-    <Stack gap="2rem">
-      <Stack gap="0.75rem">
-        <h2 className="mizu-h3">Buttons</h2>
-        <Inline gap="0.5rem" align="center">
-          <Button variant="primary">Primary</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button loading>Loading</Button>
-          <Button disabled>Disabled</Button>
-        </Inline>
-        <Inline gap="0.5rem" align="center">
-          <Button size="sm">Small</Button>
-          <Button size="md">Medium</Button>
-          <Button size="lg">Large</Button>
-        </Inline>
-      </Stack>
+    <Stack gap="2.5rem">
+      <section>
+        <h2 className="mizu-h3 story-section-title">Buttons</h2>
+        <Stack gap="0.75rem">
+          <Inline gap="0.5rem" align="center">
+            <Button variant="primary">Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="ghost">Ghost</Button>
+            <Button variant="destructive">Destructive</Button>
+            <Button loading>Loading</Button>
+            <Button disabled>Disabled</Button>
+          </Inline>
+          <Inline gap="0.5rem" align="center">
+            <Button size="sm">Small</Button>
+            <Button size="md">Medium</Button>
+            <Button size="lg">Large</Button>
+          </Inline>
+        </Stack>
+      </section>
 
       <Separator />
 
-      <Stack gap="0.75rem">
-        <h2 className="mizu-h3">Badges</h2>
+      <section>
+        <h2 className="mizu-h3 story-section-title">Badges</h2>
         <Inline gap="0.5rem">
           <Badge tone="neutral">Neutral</Badge>
           <Badge tone="success" dot>
@@ -59,25 +79,29 @@ function AllComponents() {
           <Badge tone="danger">Danger</Badge>
           <Badge tone="info">Info</Badge>
         </Inline>
-      </Stack>
+      </section>
 
       <Separator />
 
-      <Stack gap="0.75rem">
-        <h2 className="mizu-h3">Form Controls</h2>
-        <Grid gap="1rem" min="14rem">
-          <Stack gap="0.25rem">
-            <label htmlFor="ks-input" className="mizu-label">
-              Text input
-            </label>
-            <Input id="ks-input" placeholder="Type something" />
+      <section>
+        <h2 className="mizu-h3 story-section-title">Form Controls</h2>
+        <Grid gap="1.25rem" min="14rem">
+          <Input label="Text input" placeholder="Type something" />
+          <Textarea label="Textarea" placeholder="Notes" rows={2} />
+          <Select label="Select">
+            <option value="">Choose…</option>
+            <option value="a">Option A</option>
+            <option value="b">Option B</option>
+          </Select>
+          <Stack gap="0.5rem">
+            <span className="mizu-label">Checkboxes</span>
+            <Checkbox label="Option one" defaultChecked />
+            <Checkbox label="Option two" />
           </Stack>
-          <Stack gap="0.25rem">
-            <label htmlFor="ks-textarea" className="mizu-label">
-              Textarea
-            </label>
-            <Textarea id="ks-textarea" placeholder="Notes" rows={2} />
-          </Stack>
+          <RadioGroup label="Radio group">
+            <RadioItem value="a" label="Choice A" />
+            <RadioItem value="b" label="Choice B" />
+          </RadioGroup>
           <Inline gap="0.5rem" align="center">
             <Switch id="ks-switch" aria-label="Toggle" />
             <label htmlFor="ks-switch" className="mizu-body--sm">
@@ -85,13 +109,13 @@ function AllComponents() {
             </label>
           </Inline>
         </Grid>
-      </Stack>
+      </section>
 
       <Separator />
 
-      <Stack gap="0.75rem">
-        <h2 className="mizu-h3">Card</h2>
-        <Grid gap="1rem" min="16rem">
+      <section>
+        <h2 className="mizu-h3 story-section-title">Cards</h2>
+        <Grid gap="1.25rem" min="16rem">
           <Card>
             <CardHeader title="Default card" description="With header and body." />
             <CardBody>
@@ -110,12 +134,12 @@ function AllComponents() {
             </CardBody>
           </Card>
         </Grid>
-      </Stack>
+      </section>
 
       <Separator />
 
-      <Stack gap="0.75rem">
-        <h2 className="mizu-h3">Table</h2>
+      <section>
+        <h2 className="mizu-h3 story-section-title">Table</h2>
         <Table>
           <TableHead>
             <TableRow>
@@ -139,14 +163,21 @@ function AllComponents() {
               </TableCell>
               <TableCell>eu-west</TableCell>
             </TableRow>
+            <TableRow>
+              <TableCell>wild-sun</TableCell>
+              <TableCell>
+                <Badge tone="danger">crashed</Badge>
+              </TableCell>
+              <TableCell>ap-south</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
-      </Stack>
+      </section>
 
       <Separator />
 
-      <Stack gap="0.75rem">
-        <h2 className="mizu-h3">Tabs</h2>
+      <section>
+        <h2 className="mizu-h3 story-section-title">Tabs</h2>
         <Tabs defaultValue="one">
           <TabsList>
             <TabsTrigger value="one">Tab One</TabsTrigger>
@@ -157,18 +188,40 @@ function AllComponents() {
           <TabsContent value="two">Second tab content.</TabsContent>
           <TabsContent value="three">Third tab content.</TabsContent>
         </Tabs>
-      </Stack>
+      </section>
 
       <Separator />
 
-      <Stack gap="0.75rem">
-        <h2 className="mizu-h3">Empty State</h2>
+      <section>
+        <h2 className="mizu-h3 story-section-title">Filtering</h2>
+        <Stack gap="1rem">
+          <FilterBar
+            searchValue=""
+            onSearchChange={() => {}}
+            appliedFilters={[{ key: 'status', label: 'Status', value: 'running' }]}
+            onRemoveFilter={() => {}}
+            onClearAll={() => {}}
+            placeholder="Search…"
+          />
+          <PropertyFilter
+            query={pfQuery}
+            onQueryChange={setPfQuery}
+            properties={properties}
+            placeholder="Filter by property…"
+          />
+        </Stack>
+      </section>
+
+      <Separator />
+
+      <section>
+        <h2 className="mizu-h3 story-section-title">Empty State</h2>
         <EmptyState
           title="No results"
           description="Try adjusting your search or filters."
           actions={<Button variant="primary">Clear filters</Button>}
         />
-      </Stack>
+      </section>
     </Stack>
   );
 }
