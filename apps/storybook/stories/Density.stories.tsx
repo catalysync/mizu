@@ -103,3 +103,33 @@ export const Comfortable: Story = {
     </div>
   ),
 };
+
+export const DarkDefault: Story = {
+  name: 'Dark — Default',
+  parameters: { layout: 'fullscreen' },
+  render: () => (
+    <div data-theme="dark" className="story-dark-wrapper">
+      <DensitySample />
+    </div>
+  ),
+};
+
+export const DarkCompact: Story = {
+  name: 'Dark — Compact',
+  parameters: { layout: 'fullscreen' },
+  render: () => (
+    <div data-theme="dark" data-mizu-density="compact" className="story-dark-wrapper">
+      <DensitySample />
+    </div>
+  ),
+};
+
+export const DarkComfortable: Story = {
+  name: 'Dark — Comfortable',
+  parameters: { layout: 'fullscreen' },
+  render: () => (
+    <div data-theme="dark" data-mizu-density="comfortable" className="story-dark-wrapper">
+      <DensitySample />
+    </div>
+  ),
+};
