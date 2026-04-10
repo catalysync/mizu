@@ -7,6 +7,33 @@ export interface ReportRow {
   negative?: boolean;
 }
 
+export const balanceSheet: ReportRow[] = [
+  { label: 'Assets', current: 0, prior: 0, type: 'section' },
+  { label: 'Cash and equivalents', current: 1204000, prior: 982000, type: 'item', drillDown: true },
+  { label: 'Accounts receivable', current: 94200, prior: 112800, type: 'item', drillDown: true },
+  { label: 'Inventory', current: 38400, prior: 42100, type: 'item', drillDown: true },
+  { label: 'Prepaid expenses', current: 12600, prior: 11400, type: 'item' },
+  { label: 'Total Current Assets', current: 1349200, prior: 1148300, type: 'subtotal' },
+  { label: 'Property & equipment', current: 186000, prior: 192200, type: 'item', drillDown: true },
+  { label: 'Intangible assets', current: 24000, prior: 28000, type: 'item' },
+  { label: 'Total Assets', current: 1559200, prior: 1368500, type: 'subtotal' },
+
+  { label: 'Liabilities', current: 0, prior: 0, type: 'section' },
+  { label: 'Accounts payable', current: 67800, prior: 58200, type: 'item', drillDown: true },
+  { label: 'Accrued expenses', current: 34200, prior: 31400, type: 'item', drillDown: true },
+  { label: 'Deferred revenue', current: 89400, prior: 72600, type: 'item', drillDown: true },
+  { label: 'Total Current Liabilities', current: 191400, prior: 162200, type: 'subtotal' },
+  { label: 'Long-term debt', current: 250000, prior: 250000, type: 'item' },
+  { label: 'Total Liabilities', current: 441400, prior: 412200, type: 'subtotal' },
+
+  { label: 'Equity', current: 0, prior: 0, type: 'section' },
+  { label: 'Common stock', current: 500000, prior: 500000, type: 'item' },
+  { label: 'Retained earnings', current: 617800, prior: 456300, type: 'item', drillDown: true },
+  { label: 'Total Equity', current: 1117800, prior: 956300, type: 'subtotal' },
+
+  { label: 'Total Liabilities & Equity', current: 1559200, prior: 1368500, type: 'total' },
+];
+
 export const profitAndLoss: ReportRow[] = [
   { label: 'Income', current: 0, prior: 0, type: 'section' },
   { label: 'Product revenue', current: 284500, prior: 241200, type: 'item', drillDown: true },
