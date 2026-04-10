@@ -16,6 +16,7 @@ export * from './components/Popover';
 export * from './components/Separator';
 export * from './components/Checkbox';
 export * from './components/Radio';
+export * from './components/FilterBar';
 export * from './motion';
 export * from './layouts';
 export * from './shell';

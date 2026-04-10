@@ -31,6 +31,7 @@
 @import url("./components/separator.css");
 @import url("./components/checkbox.css");
 @import url("./components/chat-bubble.css");
+@import url("./components/filter-bar.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
