@@ -1,8 +1,22 @@
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@aspect/react';
+import { Preview } from '../preview';
+
 export const metadata = { title: 'Tabs — mizu' };
 
 # Tabs
 
-Tabbed content navigation built on Radix Tabs.
+Tabbed content navigation. Built on Radix Tabs.
+
+<Preview>
+  <Tabs defaultValue="one" className="story-lg">
+    <TabsList>
+      <TabsTrigger value="one">Overview</TabsTrigger>
+      <TabsTrigger value="two">Settings</TabsTrigger>
+    </TabsList>
+    <TabsContent value="one">Overview content.</TabsContent>
+    <TabsContent value="two">Settings content.</TabsContent>
+  </Tabs>
+</Preview>
 
 ## Import
 
@@ -10,20 +24,36 @@ Tabbed content navigation built on Radix Tabs.
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@aspect/react';
 ```
 
-## CSS class
+## Usage
 
-```css
-.mizu-tabs {
-  /* ... */
-}
+```tsx
+<Tabs defaultValue="overview">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="settings">Settings</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">...</TabsContent>
+  <TabsContent value="settings">...</TabsContent>
+</Tabs>
 ```
 
-## Props
+## Controlled
 
-Compound component pattern. Wrap in `<Tabs defaultValue="...">`, use `<TabsList>` + `<TabsTrigger>` + `<TabsContent>`.
+```tsx
+const [tab, setTab] = useState('overview');
+<Tabs value={tab} onValueChange={setTab}>
+  ...
+</Tabs>;
+```
 
-## Accessibility
+## Guidelines
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+**Do:**
+
+- Use for switching between views of the same content
+- Keep tab labels short (1-2 words)
+
+**Don't:**
+
+- Don't use tabs for sequential steps — use a wizard or stepper
+- Don't use more than 6-7 tabs without an overflow strategy

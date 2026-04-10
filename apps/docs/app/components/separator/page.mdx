@@ -2,7 +2,7 @@ export const metadata = { title: 'Separator — mizu' };
 
 # Separator
 
-A visual divider between content sections. Built on Radix Separator.
+A visual divider. Built on Radix Separator.
 
 ## Import
 
@@ -10,12 +10,11 @@ A visual divider between content sections. Built on Radix Separator.
 import { Separator } from '@aspect/react';
 ```
 
-## CSS class
+## Usage
 
-```css
-.mizu-separator {
-  /* ... */
-}
+```tsx
+<Separator />
+<Separator orientation="vertical" />
 ```
 
 ## Props
@@ -23,9 +22,3 @@ import { Separator } from '@aspect/react';
 | Prop          | Type                         | Default        | Description |
 | ------------- | ---------------------------- | -------------- | ----------- |
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Direction   |
-
-## Accessibility
-
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe

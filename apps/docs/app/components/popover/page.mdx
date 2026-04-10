@@ -2,7 +2,7 @@ export const metadata = { title: 'Popover — mizu' };
 
 # Popover
 
-An anchored overlay for inline editing or contextual content. Built on Radix Popover.
+An anchored overlay for inline editing. Built on Radix Popover.
 
 ## Import
 
@@ -10,20 +10,26 @@ An anchored overlay for inline editing or contextual content. Built on Radix Pop
 import { Popover, PopoverTrigger, PopoverContent } from '@aspect/react';
 ```
 
-## CSS class
+## Usage
 
-```css
-.mizu-popover {
-  /* ... */
-}
+```tsx
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="secondary">Edit</Button>
+  </PopoverTrigger>
+  <PopoverContent showArrow>
+    <Input label="Name" defaultValue="frosty-mountain" />
+    <Button size="sm" variant="primary">
+      Save
+    </Button>
+  </PopoverContent>
+</Popover>
 ```
 
-## Props
+## Props (PopoverContent)
 
-Use `showArrow` on `<PopoverContent>` to display a connecting arrow.
-
-## Accessibility
-
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+| Prop         | Type                                     | Default    | Description           |
+| ------------ | ---------------------------------------- | ---------- | --------------------- |
+| `showArrow`  | `boolean`                                | `false`    | Connecting arrow      |
+| `side`       | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Placement             |
+| `sideOffset` | `number`                                 | `6`        | Distance from trigger |

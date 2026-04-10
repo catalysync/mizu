@@ -2,28 +2,58 @@ export const metadata = { title: 'Select — mizu' };
 
 # Select
 
-A dropdown select built on Radix Select. Supports grouped items, search, and custom rendering.
+A dropdown select. Built on Radix Select with groups, labels, and search.
 
 ## Import
 
 ```tsx
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@aspect/react';
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectValue,
+  SelectGroup,
+  SelectLabel,
+} from '@aspect/react';
 ```
 
-## CSS class
+## Usage
 
-```css
-.mizu-select__trigger {
-  /* ... */
-}
+```tsx
+<Select>
+  <SelectTrigger aria-label="Region">
+    <SelectValue placeholder="Choose region" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>Americas</SelectLabel>
+      <SelectItem value="us-east">US East</SelectItem>
+      <SelectItem value="us-west">US West</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>
 ```
 
-## Props
+## Compound components
 
-Compound component pattern. Wrap in `<Select>` root, use `<SelectTrigger>` + `<SelectContent>` + `<SelectItem>`.
+| Part            | Purpose                                |
+| --------------- | -------------------------------------- |
+| `Select`        | Root state container                   |
+| `SelectTrigger` | The button that opens the dropdown     |
+| `SelectValue`   | Displays selected value or placeholder |
+| `SelectContent` | The dropdown panel                     |
+| `SelectItem`    | An option                              |
+| `SelectGroup`   | Groups options with a label            |
+| `SelectLabel`   | Group heading                          |
 
-## Accessibility
+## Guidelines
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+**Do:**
+
+- Always provide an `aria-label` on the trigger
+- Use groups for long option lists
+
+**Don't:**
+
+- Don't use Select for fewer than 3 options — use Radio instead

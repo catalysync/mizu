@@ -1,8 +1,19 @@
+import { EmptyState, Button } from '@aspect/react';
+import { Preview } from '../preview';
+
 export const metadata = { title: 'EmptyState — mizu' };
 
 # EmptyState
 
-A placeholder for screens with no data. Includes icon, title, description, and action slots.
+A placeholder for screens with no data.
+
+<Preview>
+  <EmptyState
+    title="No results"
+    description="Try adjusting your search."
+    actions={<Button variant="primary">Clear filters</Button>}
+  />
+</Preview>
 
 ## Import
 
@@ -10,25 +21,32 @@ A placeholder for screens with no data. Includes icon, title, description, and a
 import { EmptyState } from '@aspect/react';
 ```
 
-## CSS class
+## With icon
 
-```css
-.mizu-empty-state {
-  /* ... */
-}
+```tsx
+<EmptyState
+  icon={<svg>...</svg>}
+  title="Inbox empty"
+  description="All conversations are resolved."
+/>
 ```
 
 ## Props
 
-| Prop          | Type        | Default | Description                     |
-| ------------- | ----------- | ------- | ------------------------------- |
-| `icon`        | `ReactNode` | —       | Decorative icon above the title |
-| `title`       | `ReactNode` | —       | Heading text                    |
-| `description` | `ReactNode` | —       | Supporting text                 |
-| `actions`     | `ReactNode` | —       | CTA buttons                     |
+| Prop          | Type        | Default  | Description     |
+| ------------- | ----------- | -------- | --------------- |
+| `icon`        | `ReactNode` | —        | Decorative icon |
+| `title`       | `ReactNode` | required | Heading         |
+| `description` | `ReactNode` | —        | Supporting text |
+| `actions`     | `ReactNode` | —        | CTA buttons     |
 
-## Accessibility
+## Guidelines
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+**Do:**
+
+- Always include a title
+- Suggest an action when possible
+
+**Don't:**
+
+- Don't use for loading states — use a skeleton or spinner

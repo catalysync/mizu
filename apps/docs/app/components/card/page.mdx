@@ -1,8 +1,26 @@
+import { Card, CardHeader, CardBody, CardFooter, Button } from '@aspect/react';
+import { Preview } from '../preview';
+
 export const metadata = { title: 'Card — mizu' };
 
 # Card
 
-A container with optional header, body, and footer sections. Use `interactive` for clickable cards.
+A container with optional header, body, and footer. Use `interactive` for clickable cards.
+
+<Preview>
+  <Card className="story-md">
+    <CardHeader title="Deploy status" description="frosty-mountain-1234" />
+    <CardBody>Last deploy: 2 hours ago</CardBody>
+    <CardFooter>
+      <Button size="sm" variant="ghost">
+        Logs
+      </Button>
+      <Button size="sm" variant="primary">
+        Open
+      </Button>
+    </CardFooter>
+  </Card>
+</Preview>
 
 ## Import
 
@@ -10,24 +28,39 @@ A container with optional header, body, and footer sections. Use `interactive` f
 import { Card, CardHeader, CardBody, CardFooter } from '@aspect/react';
 ```
 
-## CSS class
+## Compound components
 
-```css
-.mizu-card {
-  /* ... */
-}
+| Part         | Purpose                                |
+| ------------ | -------------------------------------- |
+| `Card`       | Container                              |
+| `CardHeader` | Title + description with bottom border |
+| `CardBody`   | Main content area                      |
+| `CardFooter` | Actions area with top border           |
+
+## Interactive
+
+```tsx
+<Card interactive>
+  <CardHeader title="Click me" />
+</Card>
 ```
 
 ## Props
 
-| Prop          | Type      | Default | Description                           |
-| ------------- | --------- | ------- | ------------------------------------- |
-| `interactive` | `boolean` | `false` | Adds hover effect for clickable cards |
+| Prop          | Type      | Default | Description                      |
+| ------------- | --------- | ------- | -------------------------------- |
+| `interactive` | `boolean` | `false` | Hover effect for clickable cards |
 
-Sub-components: `CardHeader` (title, description), `CardBody`, `CardFooter`.
+`CardHeader` accepts `title` and `description` props.
 
-## Accessibility
+## Guidelines
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+**Do:**
+
+- Use cards to group related content
+- Keep card titles short
+
+**Don't:**
+
+- Don't nest cards inside cards
+- Don't use interactive cards without an action destination

@@ -1,21 +1,20 @@
+import { Input } from '@aspect/react';
+import { Preview } from '../preview';
+
 export const metadata = { title: 'Input — mizu' };
 
 # Input
 
-A text input field. Supports sizes, labels, error states, and help text.
+A text input with sizes, labels, error states, and help text.
+
+<Preview>
+  <Input label="Email" placeholder="you@example.com" className="story-md" />
+</Preview>
 
 ## Import
 
 ```tsx
 import { Input } from '@aspect/react';
-```
-
-## Sizes
-
-```tsx
-<Input size="sm" placeholder="Small" />
-<Input size="md" placeholder="Medium" />
-<Input size="lg" placeholder="Large" />
 ```
 
 ## With label and help text
@@ -30,15 +29,23 @@ import { Input } from '@aspect/react';
 <Input label="Price" error="Must be greater than 0" />
 ```
 
+## Sizes
+
+```tsx
+<Input size="sm" placeholder="Small" />
+<Input size="md" placeholder="Medium" />
+<Input size="lg" placeholder="Large" />
+```
+
 ## Props
 
-| Prop       | Type                   | Default | Description                  |
-| ---------- | ---------------------- | ------- | ---------------------------- |
-| `size`     | `'sm' \| 'md' \| 'lg'` | `'md'`  | Input height                 |
-| `label`    | `string`               | —       | Auto-wraps in a form group   |
-| `error`    | `string \| boolean`    | —       | Error message or error state |
-| `helpText` | `ReactNode`            | —       | Help text below input        |
-| `disabled` | `boolean`              | `false` | Disables the input           |
+| Prop       | Type                   | Default | Description                |
+| ---------- | ---------------------- | ------- | -------------------------- |
+| `size`     | `'sm' \| 'md' \| 'lg'` | `'md'`  | Input height               |
+| `label`    | `string`               | —       | Auto-wraps in a form group |
+| `error`    | `string \| boolean`    | —       | Error message or state     |
+| `helpText` | `ReactNode`            | —       | Help text below            |
+| `disabled` | `boolean`              | `false` | Disables the input         |
 
 All native `<input>` attributes are also accepted.
 
@@ -47,7 +54,7 @@ All native `<input>` attributes are also accepted.
 **Do:**
 
 - Always provide a visible label or `aria-label`
-- Show validation errors inline, not in toasts
+- Show validation errors inline
 
 **Don't:**
 

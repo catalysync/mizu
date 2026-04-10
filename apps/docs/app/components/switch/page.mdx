@@ -1,8 +1,20 @@
+import { Switch, Inline } from '@aspect/react';
+import { Preview } from '../preview';
+
 export const metadata = { title: 'Switch — mizu' };
 
 # Switch
 
-A boolean toggle built on Radix Switch.
+A boolean toggle. Built on Radix Switch.
+
+<Preview>
+  <Inline gap="0.5rem" align="center">
+    <Switch id="doc-switch" aria-label="Toggle" defaultChecked />
+    <label htmlFor="doc-switch" className="mizu-body--sm">
+      Dark mode
+    </label>
+  </Inline>
+</Preview>
 
 ## Import
 
@@ -10,12 +22,18 @@ A boolean toggle built on Radix Switch.
 import { Switch } from '@aspect/react';
 ```
 
-## CSS class
+## Usage
 
-```css
-.mizu-switch {
-  /* ... */
-}
+```tsx
+<Switch aria-label="Notifications" />
+<Switch defaultChecked aria-label="Enabled" />
+```
+
+## Controlled
+
+```tsx
+const [on, setOn] = useState(false);
+<Switch checked={on} onCheckedChange={setOn} />;
 ```
 
 ## Props
@@ -27,8 +45,13 @@ import { Switch } from '@aspect/react';
 | `onCheckedChange` | `(checked: boolean) => void` | —       | Change handler             |
 | `disabled`        | `boolean`                    | `false` | Disables the switch        |
 
-## Accessibility
+## Guidelines
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+**Do:**
+
+- Always pair with a visible label
+- Use for instant-effect toggles (dark mode, notifications)
+
+**Don't:**
+
+- Don't use for form submissions that require a save button — use Checkbox instead
