@@ -1,0 +1,43 @@
+export const metadata = { title: 'Button — mizu' };
+
+# Button
+
+Triggers an action. Supports variants, sizes, loading state, and polymorphic rendering via `asChild`.
+
+## Import
+
+```tsx
+import { Button } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-button {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-button mizu-button--primary mizu-button--md">Label</button>
+```
+
+## Props
+
+| Prop       | Type                                                   | Default     | Description                                        |
+| ---------- | ------------------------------------------------------ | ----------- | -------------------------------------------------- |
+| `variant`  | `'primary' \| 'secondary' \| 'ghost' \| 'destructive'` | `'primary'` | Visual style                                       |
+| `size`     | `'sm' \| 'md' \| 'lg' \| 'icon'`                       | `'md'`      | Size preset                                        |
+| `loading`  | `boolean`                                              | `false`     | Shows spinner, disables interaction                |
+| `disabled` | `boolean`                                              | `false`     | Disables the button                                |
+| `asChild`  | `boolean`                                              | `false`     | Render as child element (e.g. Link) via Radix Slot |
+| `type`     | `'button' \| 'submit' \| 'reset'`                      | `'button'`  | HTML button type                                   |
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

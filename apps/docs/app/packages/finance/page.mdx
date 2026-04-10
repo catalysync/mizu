@@ -1,0 +1,43 @@
+export const metadata = { title: '@aspect/finance — mizu' };
+
+# @aspect/finance
+
+Finance industry components and utilities for the mizu design system. Builds on `@aspect/react` with finance-specific compositions.
+
+## Installation
+
+```bash
+pnpm add @aspect/finance @aspect/react @aspect/css @aspect/tokens
+```
+
+## Components
+
+| Component        | Description                            |
+| ---------------- | -------------------------------------- |
+| `DeltaIndicator` | Auto-colored +/- percentage with arrow |
+| `KpiCard`        | Label + big value + footer slot        |
+| `MetricTile`     | Dashboard card with chart slot         |
+| `AnnotationCard` | AI insight callout with icon + body    |
+| `TransactionRow` | Date + description + amount + category |
+| `AccountSummary` | Account name + balance + delta         |
+
+## Utilities
+
+```ts
+import { formatCurrency, formatAccounting, formatDelta, formatCompact } from '@aspect/finance';
+
+formatCurrency(1234.5); // "$1,234.50"
+formatAccounting(-500); // "($500.00)"
+formatDelta(0.024); // "+2.4%"
+formatCompact(1234567); // "1.2M"
+```
+
+## Themes
+
+```css
+@import '@aspect/finance/themes/reports'; /* monochrome, print-ready */
+@import '@aspect/finance/themes/insights'; /* vibrant accent for dashboards */
+@import '@aspect/finance/themes/analytics'; /* cool slate for dense workspaces */
+```
+
+Apply via `data-mizu-theme` attribute on any container.

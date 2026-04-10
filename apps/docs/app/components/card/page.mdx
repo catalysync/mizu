@@ -1,0 +1,40 @@
+export const metadata = { title: 'Card — mizu' };
+
+# Card
+
+A container with optional header, body, and footer sections. Use `interactive` for clickable cards.
+
+## Import
+
+```tsx
+import { Card, CardHeader, CardBody, CardFooter } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-card {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-card mizu-card--primary mizu-card--md">Label</button>
+```
+
+## Props
+
+| Prop          | Type      | Default | Description                           |
+| ------------- | --------- | ------- | ------------------------------------- |
+| `interactive` | `boolean` | `false` | Adds hover effect for clickable cards |
+
+Sub-components: `CardHeader` (title, description), `CardBody`, `CardFooter`.
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

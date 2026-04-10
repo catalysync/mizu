@@ -1,0 +1,36 @@
+export const metadata = { title: 'Textarea — mizu' };
+
+# Textarea
+
+A multi-line text input.
+
+## Import
+
+```tsx
+import { Textarea } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-textarea {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-textarea mizu-textarea--primary mizu-textarea--md">Label</button>
+```
+
+## Props
+
+Accepts all native `<textarea>` attributes. Styled with the same focus ring and border tokens as Input.
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

@@ -1,0 +1,39 @@
+export const metadata = { title: 'Badge — mizu' };
+
+# Badge
+
+A small status indicator. Supports tones for semantic meaning and an optional dot indicator.
+
+## Import
+
+```tsx
+import { Badge } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-badge {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-badge mizu-badge--primary mizu-badge--md">Label</button>
+```
+
+## Props
+
+| Prop   | Type                                                        | Default     | Description                          |
+| ------ | ----------------------------------------------------------- | ----------- | ------------------------------------ |
+| `tone` | `'neutral' \| 'success' \| 'warning' \| 'danger' \| 'info'` | `'neutral'` | Color intent                         |
+| `dot`  | `boolean`                                                   | `false`     | Shows a colored dot before the label |
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

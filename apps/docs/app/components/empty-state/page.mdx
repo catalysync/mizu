@@ -1,0 +1,41 @@
+export const metadata = { title: 'EmptyState — mizu' };
+
+# EmptyState
+
+A placeholder for screens with no data. Includes icon, title, description, and action slots.
+
+## Import
+
+```tsx
+import { EmptyState } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-empty-state {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-empty-state mizu-empty-state--primary mizu-empty-state--md">Label</button>
+```
+
+## Props
+
+| Prop          | Type        | Default | Description                     |
+| ------------- | ----------- | ------- | ------------------------------- |
+| `icon`        | `ReactNode` | —       | Decorative icon above the title |
+| `title`       | `ReactNode` | —       | Heading text                    |
+| `description` | `ReactNode` | —       | Supporting text                 |
+| `actions`     | `ReactNode` | —       | CTA buttons                     |
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

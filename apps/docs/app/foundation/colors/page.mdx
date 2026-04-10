@@ -1,0 +1,50 @@
+export const metadata = { title: 'Colors — mizu' };
+
+# Colors
+
+The mizu color system is built on a base palette with semantic aliases. Components never reference raw hex values — they use semantic tokens that can be overridden for theming.
+
+## Base palette
+
+The base palette provides raw color ramps. These are the building blocks — not meant to be used directly in components.
+
+| Token                      | Value     |
+| -------------------------- | --------- |
+| `--mizu-color-blue-500`    | `#3b82f6` |
+| `--mizu-color-blue-600`    | `#2563eb` |
+| `--mizu-color-blue-700`    | `#1d4ed8` |
+| `--mizu-color-slate-50`    | `#f8fafc` |
+| `--mizu-color-slate-900`   | `#0f172a` |
+| `--mizu-color-red-600`     | `#dc2626` |
+| `--mizu-color-emerald-600` | `#059669` |
+| `--mizu-color-amber-500`   | `#f59e0b` |
+
+## Semantic tokens
+
+Semantic tokens map intent to color. Use these in your components and layouts.
+
+| Token                           | Light value                   | Purpose                          |
+| ------------------------------- | ----------------------------- | -------------------------------- |
+| `--mizu-action-primary-default` | `var(--mizu-color-blue-600)`  | Primary actions (buttons, links) |
+| `--mizu-action-primary-hover`   | `var(--mizu-color-blue-700)`  | Hover state for primary actions  |
+| `--mizu-surface-default`        | `#ffffff`                     | Page background                  |
+| `--mizu-surface-secondary`      | `var(--mizu-color-slate-50)`  | Card backgrounds, sidebars       |
+| `--mizu-text-primary`           | `var(--mizu-color-slate-900)` | Body text                        |
+| `--mizu-text-secondary`         | `var(--mizu-color-slate-600)` | Secondary text, labels           |
+| `--mizu-border-default`         | `var(--mizu-color-slate-200)` | Borders, dividers                |
+
+## Dark mode
+
+Apply `data-theme="dark"` to any container to switch to dark mode. Only semantic tokens change — the base palette stays the same.
+
+```html
+<html data-theme="dark"></html>
+```
+
+## Feedback colors
+
+| Token                             | Value                           | Use            |
+| --------------------------------- | ------------------------------- | -------------- |
+| `--mizu-feedback-success-default` | `var(--mizu-color-emerald-600)` | Success states |
+| `--mizu-feedback-warning-default` | `var(--mizu-color-amber-500)`   | Warning states |
+| `--mizu-feedback-danger-default`  | `var(--mizu-color-red-600)`     | Error states   |

@@ -1,0 +1,42 @@
+export const metadata = { title: 'Typography — mizu' };
+
+# Typography
+
+mizu uses **Inter** for body text and **JetBrains Mono** for code. The type scale follows a modular progression from `xs` to `4xl`.
+
+## Type scale
+
+| Token                   | Size       | Use                      |
+| ----------------------- | ---------- | ------------------------ |
+| `--mizu-font-size-xs`   | `0.75rem`  | Badges, labels, captions |
+| `--mizu-font-size-sm`   | `0.875rem` | Body text, table cells   |
+| `--mizu-font-size-base` | `1rem`     | Default body             |
+| `--mizu-font-size-lg`   | `1.125rem` | Subheadings              |
+| `--mizu-font-size-xl`   | `1.25rem`  | Section headings         |
+| `--mizu-font-size-2xl`  | `1.5rem`   | Page headings            |
+| `--mizu-font-size-3xl`  | `1.875rem` | Large headings           |
+| `--mizu-font-size-4xl`  | `2.25rem`  | Hero headings            |
+
+## Font weights
+
+| Token                         | Value | Use                |
+| ----------------------------- | ----- | ------------------ |
+| `--mizu-font-weight-regular`  | `400` | Body text          |
+| `--mizu-font-weight-medium`   | `500` | Buttons, labels    |
+| `--mizu-font-weight-semibold` | `600` | Headings, emphasis |
+| `--mizu-font-weight-bold`     | `700` | Strong emphasis    |
+
+## Typography utility classes
+
+Import `@aspect/css/typography` to use these classes:
+
+| Class            | Output              |
+| ---------------- | ------------------- |
+| `.mizu-h1`       | 4xl, semibold       |
+| `.mizu-h2`       | 3xl, semibold       |
+| `.mizu-h3`       | 2xl, semibold       |
+| `.mizu-h4`       | xl, semibold        |
+| `.mizu-body`     | base, regular       |
+| `.mizu-body--sm` | sm, regular         |
+| `.mizu-caption`  | xs, secondary color |
+| `.mizu-mono`     | sm, monospace       |

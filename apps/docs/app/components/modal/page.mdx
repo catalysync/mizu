@@ -1,0 +1,48 @@
+export const metadata = { title: 'Modal — mizu' };
+
+# Modal
+
+A centered overlay dialog built on Radix Dialog. Includes backdrop, close button, and focus trap.
+
+## Import
+
+```tsx
+import {
+  Modal,
+  ModalTrigger,
+  ModalContent,
+  ModalHeader,
+  ModalTitle,
+  ModalDescription,
+  ModalBody,
+  ModalFooter,
+  ModalClose,
+} from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-dialog__content {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-dialog__content mizu-dialog__content--primary mizu-dialog__content--md">
+  Label
+</button>
+```
+
+## Props
+
+Compound component pattern. Wrap in `<Modal>`, trigger with `<ModalTrigger>`, content in `<ModalContent>`.
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

@@ -1,0 +1,38 @@
+export const metadata = { title: 'Separator — mizu' };
+
+# Separator
+
+A visual divider between content sections. Built on Radix Separator.
+
+## Import
+
+```tsx
+import { Separator } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-separator {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-separator mizu-separator--primary mizu-separator--md">Label</button>
+```
+
+## Props
+
+| Prop          | Type                         | Default        | Description |
+| ------------- | ---------------------------- | -------------- | ----------- |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Direction   |
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

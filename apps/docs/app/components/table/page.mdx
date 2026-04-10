@@ -1,0 +1,41 @@
+export const metadata = { title: 'Table — mizu' };
+
+# Table
+
+A composable data table with density modes, sticky headers, and selection state.
+
+## Import
+
+```tsx
+import { Table, TableHead, TableBody, TableRow, TableHeader, TableCell } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-table {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-table mizu-table--primary mizu-table--md">Label</button>
+```
+
+## Props
+
+| Prop           | Type                                      | Default     | Description         |
+| -------------- | ----------------------------------------- | ----------- | ------------------- |
+| `density`      | `'compact' \| 'default' \| 'comfortable'` | `'default'` | Row padding         |
+| `stickyHeader` | `boolean`                                 | `false`     | Pins the header row |
+
+`TableRow` accepts `selected?: boolean` for selection styling.
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

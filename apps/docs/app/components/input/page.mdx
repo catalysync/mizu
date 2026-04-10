@@ -1,0 +1,41 @@
+export const metadata = { title: 'Input — mizu' };
+
+# Input
+
+A text input field with size variants.
+
+## Import
+
+```tsx
+import { Input } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-input {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-input mizu-input--primary mizu-input--md">Label</button>
+```
+
+## Props
+
+| Prop       | Type                   | Default | Description        |
+| ---------- | ---------------------- | ------- | ------------------ |
+| `size`     | `'sm' \| 'md' \| 'lg'` | `'md'`  | Input height       |
+| `disabled` | `boolean`              | `false` | Disables the input |
+
+Accepts all native `<input>` attributes.
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

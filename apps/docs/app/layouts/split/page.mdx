@@ -1,0 +1,37 @@
+export const metadata = { title: 'Split — mizu' };
+
+# Split
+
+A layout primitive from the `@aspect/react` package.
+
+## Import
+
+```tsx
+import { Split } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-split {
+  /* ... */
+}
+```
+
+## Usage
+
+```tsx
+<Split gap="1rem">
+  <div>Child 1</div>
+  <div>Child 2</div>
+</Split>
+```
+
+## Props
+
+| Prop        | Type     | Default       | Description        |
+| ----------- | -------- | ------------- | ------------------ |
+| `gap`       | `string` | Token default | CSS gap value      |
+| `className` | `string` | —             | Additional classes |
+
+See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples.

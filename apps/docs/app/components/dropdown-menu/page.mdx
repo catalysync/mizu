@@ -1,0 +1,45 @@
+export const metadata = { title: 'DropdownMenu — mizu' };
+
+# DropdownMenu
+
+A contextual action menu. Built on Radix DropdownMenu.
+
+## Import
+
+```tsx
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+} from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-dropdown-menu {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-dropdown-menu mizu-dropdown-menu--primary mizu-dropdown-menu--md">Label</button>
+```
+
+## Props
+
+| Prop (DropdownMenuItem) | Type      | Default | Description                          |
+| ----------------------- | --------- | ------- | ------------------------------------ |
+| `danger`                | `boolean` | `false` | Styles the item as destructive (red) |
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

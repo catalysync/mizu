@@ -1,0 +1,36 @@
+export const metadata = { title: 'Popover — mizu' };
+
+# Popover
+
+An anchored overlay for inline editing or contextual content. Built on Radix Popover.
+
+## Import
+
+```tsx
+import { Popover, PopoverTrigger, PopoverContent } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-popover {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-popover mizu-popover--primary mizu-popover--md">Label</button>
+```
+
+## Props
+
+Use `showArrow` on `<PopoverContent>` to display a connecting arrow.
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

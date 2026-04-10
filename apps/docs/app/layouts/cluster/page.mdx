@@ -1,0 +1,37 @@
+export const metadata = { title: 'Cluster — mizu' };
+
+# Cluster
+
+A layout primitive from the `@aspect/react` package.
+
+## Import
+
+```tsx
+import { Cluster } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-cluster {
+  /* ... */
+}
+```
+
+## Usage
+
+```tsx
+<Cluster gap="1rem">
+  <div>Child 1</div>
+  <div>Child 2</div>
+</Cluster>
+```
+
+## Props
+
+| Prop        | Type     | Default       | Description        |
+| ----------- | -------- | ------------- | ------------------ |
+| `gap`       | `string` | Token default | CSS gap value      |
+| `className` | `string` | —             | Additional classes |
+
+See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples.

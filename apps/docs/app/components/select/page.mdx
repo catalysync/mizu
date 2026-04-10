@@ -1,0 +1,38 @@
+export const metadata = { title: 'Select — mizu' };
+
+# Select
+
+A dropdown select built on Radix Select. Supports grouped items, search, and custom rendering.
+
+## Import
+
+```tsx
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-select__trigger {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-select__trigger mizu-select__trigger--primary mizu-select__trigger--md">
+  Label
+</button>
+```
+
+## Props
+
+Compound component pattern. Wrap in `<Select>` root, use `<SelectTrigger>` + `<SelectContent>` + `<SelectItem>`.
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

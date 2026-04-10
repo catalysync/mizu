@@ -1,0 +1,48 @@
+export const metadata = { title: 'Drawer — mizu' };
+
+# Drawer
+
+A side panel overlay built on Radix Dialog. Slides in from any edge.
+
+## Import
+
+```tsx
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerBody,
+  DrawerFooter,
+} from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-drawer__content {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-drawer__content mizu-drawer__content--primary mizu-drawer__content--md">
+  Label
+</button>
+```
+
+## Props
+
+| Prop (DrawerContent) | Type                                     | Default   | Description     |
+| -------------------- | ---------------------------------------- | --------- | --------------- |
+| `side`               | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | Slide direction |
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

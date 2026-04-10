@@ -1,0 +1,34 @@
+export const metadata = { title: 'Spacing — mizu' };
+
+# Spacing
+
+The spacing scale uses `rem` values for consistent, scalable spacing. All components reference these tokens for padding, gaps, and margins.
+
+## Scale
+
+| Token               | Value     | Pixels (at 16px base) |
+| ------------------- | --------- | --------------------- |
+| `--mizu-spacing-0`  | `0`       | 0                     |
+| `--mizu-spacing-1`  | `0.25rem` | 4px                   |
+| `--mizu-spacing-2`  | `0.5rem`  | 8px                   |
+| `--mizu-spacing-3`  | `0.75rem` | 12px                  |
+| `--mizu-spacing-4`  | `1rem`    | 16px                  |
+| `--mizu-spacing-5`  | `1.25rem` | 20px                  |
+| `--mizu-spacing-6`  | `1.5rem`  | 24px                  |
+| `--mizu-spacing-8`  | `2rem`    | 32px                  |
+| `--mizu-spacing-10` | `2.5rem`  | 40px                  |
+| `--mizu-spacing-12` | `3rem`    | 48px                  |
+| `--mizu-spacing-16` | `4rem`    | 64px                  |
+| `--mizu-spacing-20` | `5rem`    | 80px                  |
+| `--mizu-spacing-24` | `6rem`    | 96px                  |
+
+## Density modes
+
+Apply `data-mizu-density` to tighten or loosen spacing globally:
+
+```html
+<div data-mizu-density="compact"><!-- tighter --></div>
+<div data-mizu-density="comfortable"><!-- looser --></div>
+```
+
+Compact reduces all spacing by ~25% and shrinks font sizes by one step. Comfortable increases them by ~25%.

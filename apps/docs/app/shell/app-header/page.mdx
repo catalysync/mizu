@@ -1,0 +1,25 @@
+export const metadata = { title: 'AppHeader — mizu' };
+
+# AppHeader
+
+Part of the composable app shell. Import from `@aspect/react`.
+
+## Import
+
+```tsx
+import { AppHeader } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-app-header {
+  /* ... */
+}
+```
+
+## Architecture
+
+The shell is compositional, not monolithic. Each piece (`AppHeader`, `AppSidebar`, `AppContent`, `AppBreadcrumbs`) can be used independently. `AppLayout` is a convenience wrapper that arranges them in a CSS Grid.
+
+See the [Cloud demo](https://mizu-storybook.vercel.app/?path=/story/demos-cloud--apps) for a full example.

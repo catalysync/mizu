@@ -1,0 +1,41 @@
+export const metadata = { title: 'Switch — mizu' };
+
+# Switch
+
+A boolean toggle built on Radix Switch.
+
+## Import
+
+```tsx
+import { Switch } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-switch {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-switch mizu-switch--primary mizu-switch--md">Label</button>
+```
+
+## Props
+
+| Prop              | Type                         | Default | Description                |
+| ----------------- | ---------------------------- | ------- | -------------------------- |
+| `checked`         | `boolean`                    | —       | Controlled state           |
+| `defaultChecked`  | `boolean`                    | —       | Uncontrolled initial state |
+| `onCheckedChange` | `(checked: boolean) => void` | —       | Change handler             |
+| `disabled`        | `boolean`                    | `false` | Disables the switch        |
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples

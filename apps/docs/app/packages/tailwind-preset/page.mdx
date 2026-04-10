@@ -1,0 +1,34 @@
+export const metadata = { title: '@aspect/tailwind-preset — mizu' };
+
+# @aspect/tailwind-preset
+
+Tailwind v4 theme bridge for the mizu design system. Maps Tailwind utility classes to mizu design tokens.
+
+## Installation
+
+```bash
+pnpm add -D @aspect/tailwind-preset
+```
+
+## Usage (Tailwind v4)
+
+```css
+@import 'tailwindcss';
+@import '@aspect/tokens/css';
+@import '@aspect/tailwind-preset';
+```
+
+Now you can use Tailwind utilities that resolve to mizu tokens:
+
+```html
+<div class="bg-primary text-text-primary p-4 rounded-lg shadow-md">Token-driven Tailwind</div>
+```
+
+## Legacy (Tailwind v3)
+
+```js
+const preset = require('@aspect/tailwind-preset/legacy');
+module.exports = { presets: [preset] };
+```
+
+The v3 legacy preset uses a `flattenValue` helper to convert DTCG `$value` format to Tailwind's expected shape.

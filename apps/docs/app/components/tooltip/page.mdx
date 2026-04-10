@@ -1,0 +1,36 @@
+export const metadata = { title: 'Tooltip — mizu' };
+
+# Tooltip
+
+A small popup that appears on hover. Built on Radix Tooltip.
+
+## Import
+
+```tsx
+import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@aspect/react';
+```
+
+## CSS class
+
+```css
+.mizu-tooltip {
+  /* ... */
+}
+```
+
+For non-React usage:
+
+```html
+<button class="mizu-tooltip mizu-tooltip--primary mizu-tooltip--md">Label</button>
+```
+
+## Props
+
+Wrap your app in `<TooltipProvider>` once. Then use `<Tooltip>` + `<TooltipTrigger>` + `<TooltipContent>`.
+
+## Accessibility
+
+- Uses semantic HTML elements with proper ARIA roles
+- Keyboard navigable (Enter, Space where applicable)
+- Tested with vitest-axe for WCAG compliance
+- See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples
