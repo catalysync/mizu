@@ -1,19 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import '@aspect/css/themes/customer-engagement';
-import {
-  AppLayout,
-  AppHeader,
-  AppSidebar,
-  AppContent,
-  Badge,
-  Button,
-  Input,
-  Textarea,
-  Stack,
-  Inline,
-  Separator,
-} from '@aspect/react';
+import { Badge, Button, Textarea, Stack, Inline, Separator } from '@aspect/react';
 import { conversations, activeThread, type Conversation, type Message } from './data';
+import { ConversationsShell } from './ConversationsShell';
+import { ContactsPage } from './ContactsPage';
+import { SavedRepliesPage } from './SavedRepliesPage';
 
 function ConversationItem({ conv, active }: { conv: Conversation; active?: boolean }) {
   return (
@@ -44,58 +35,35 @@ function ChatBubble({ msg }: { msg: Message }) {
   );
 }
 
-function ConversationsInbox() {
+function InboxPage() {
   return (
-    <AppLayout data-mizu-theme="customer-engagement">
-      <AppHeader
-        brand={<>aspect support</>}
-        actions={
-          <Inline gap="0.5rem" align="center">
-            <Badge tone="info">2 unread</Badge>
-            <Button size="sm" variant="primary">
-              New conversation
-            </Button>
-          </Inline>
-        }
-      />
-      <AppSidebar ariaLabel="Conversations">
-        <div className="mizu-form-group">
-          <Input size="sm" placeholder="Search conversations…" aria-label="Search" />
+    <>
+      <Inline align="center" gap="0.5rem">
+        <h2 className="mizu-h4" style={{ flex: 1 }}>
+          Sarah Chen
+        </h2>
+        <Badge tone="success">Open</Badge>
+        <Button size="sm" variant="ghost">
+          Resolve
+        </Button>
+        <Button size="sm" variant="ghost">
+          Snooze
+        </Button>
+      </Inline>
+      <Separator />
+      <div className="mizu-chat-thread">
+        {activeThread.map((msg) => (
+          <ChatBubble key={msg.id} msg={msg} />
+        ))}
+      </div>
+      <Separator />
+      <Inline gap="0.5rem" align="end">
+        <div style={{ flex: 1 }}>
+          <Textarea placeholder="Type a reply…" aria-label="Reply" rows={2} />
         </div>
-        <Stack gap="0">
-          {conversations.map((c, i) => (
-            <ConversationItem key={c.id} conv={c} active={i === 0} />
-          ))}
-        </Stack>
-      </AppSidebar>
-      <AppContent>
-        <Inline align="center" gap="0.5rem">
-          <h2 className="mizu-h4" style={{ flex: 1 }}>
-            Sarah Chen
-          </h2>
-          <Badge tone="success">Open</Badge>
-          <Button size="sm" variant="ghost">
-            Resolve
-          </Button>
-          <Button size="sm" variant="ghost">
-            Snooze
-          </Button>
-        </Inline>
-        <Separator />
-        <div className="mizu-chat-thread">
-          {activeThread.map((msg) => (
-            <ChatBubble key={msg.id} msg={msg} />
-          ))}
-        </div>
-        <Separator />
-        <Inline gap="0.5rem" align="end">
-          <div style={{ flex: 1 }}>
-            <Textarea placeholder="Type a reply…" aria-label="Reply" rows={2} />
-          </div>
-          <Button variant="primary">Send</Button>
-        </Inline>
-      </AppContent>
-    </AppLayout>
+        <Button variant="primary">Send</Button>
+      </Inline>
+    </>
   );
 }
 
@@ -108,5 +76,25 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Inbox: Story = {
-  render: () => <ConversationsInbox />,
+  render: () => (
+    <ConversationsShell active="inbox">
+      <InboxPage />
+    </ConversationsShell>
+  ),
+};
+
+export const Contacts: Story = {
+  render: () => (
+    <ConversationsShell active="contacts">
+      <ContactsPage />
+    </ConversationsShell>
+  ),
+};
+
+export const SavedReplies: Story = {
+  render: () => (
+    <ConversationsShell active="saved-replies">
+      <SavedRepliesPage />
+    </ConversationsShell>
+  ),
 };
