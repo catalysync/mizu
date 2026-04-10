@@ -29,7 +29,7 @@ import {
 function AllComponents() {
   return (
     <Stack gap="2rem">
-      <section>
+      <Stack gap="0.75rem">
         <h2 className="mizu-h3">Buttons</h2>
         <Inline gap="0.5rem" align="center">
           <Button variant="primary">Primary</Button>
@@ -44,11 +44,11 @@ function AllComponents() {
           <Button size="md">Medium</Button>
           <Button size="lg">Large</Button>
         </Inline>
-      </section>
+      </Stack>
 
       <Separator />
 
-      <section>
+      <Stack gap="0.75rem">
         <h2 className="mizu-h3">Badges</h2>
         <Inline gap="0.5rem">
           <Badge tone="neutral">Neutral</Badge>
@@ -59,15 +59,25 @@ function AllComponents() {
           <Badge tone="danger">Danger</Badge>
           <Badge tone="info">Info</Badge>
         </Inline>
-      </section>
+      </Stack>
 
       <Separator />
 
-      <section>
+      <Stack gap="0.75rem">
         <h2 className="mizu-h3">Form Controls</h2>
         <Grid gap="1rem" min="14rem">
-          <Input placeholder="Text input" aria-label="Text" />
-          <Textarea placeholder="Textarea" aria-label="Notes" rows={2} />
+          <Stack gap="0.25rem">
+            <label htmlFor="ks-input" className="mizu-label">
+              Text input
+            </label>
+            <Input id="ks-input" placeholder="Type something" />
+          </Stack>
+          <Stack gap="0.25rem">
+            <label htmlFor="ks-textarea" className="mizu-label">
+              Textarea
+            </label>
+            <Textarea id="ks-textarea" placeholder="Notes" rows={2} />
+          </Stack>
           <Inline gap="0.5rem" align="center">
             <Switch id="ks-switch" aria-label="Toggle" />
             <label htmlFor="ks-switch" className="mizu-body--sm">
@@ -75,11 +85,11 @@ function AllComponents() {
             </label>
           </Inline>
         </Grid>
-      </section>
+      </Stack>
 
       <Separator />
 
-      <section>
+      <Stack gap="0.75rem">
         <h2 className="mizu-h3">Card</h2>
         <Grid gap="1rem" min="16rem">
           <Card>
@@ -100,11 +110,11 @@ function AllComponents() {
             </CardBody>
           </Card>
         </Grid>
-      </section>
+      </Stack>
 
       <Separator />
 
-      <section>
+      <Stack gap="0.75rem">
         <h2 className="mizu-h3">Table</h2>
         <Table>
           <TableHead>
@@ -131,11 +141,11 @@ function AllComponents() {
             </TableRow>
           </TableBody>
         </Table>
-      </section>
+      </Stack>
 
       <Separator />
 
-      <section>
+      <Stack gap="0.75rem">
         <h2 className="mizu-h3">Tabs</h2>
         <Tabs defaultValue="one">
           <TabsList>
@@ -147,18 +157,18 @@ function AllComponents() {
           <TabsContent value="two">Second tab content.</TabsContent>
           <TabsContent value="three">Third tab content.</TabsContent>
         </Tabs>
-      </section>
+      </Stack>
 
       <Separator />
 
-      <section>
+      <Stack gap="0.75rem">
         <h2 className="mizu-h3">Empty State</h2>
         <EmptyState
           title="No results"
           description="Try adjusting your search or filters."
           actions={<Button variant="primary">Clear filters</Button>}
         />
-      </section>
+      </Stack>
     </Stack>
   );
 }
@@ -177,14 +187,7 @@ export const Light: Story = {
 
 export const Dark: Story = {
   render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        background: 'var(--mizu-surface-default)',
-        padding: '2rem',
-        borderRadius: 'var(--mizu-radius-lg)',
-      }}
-    >
+    <div data-theme="dark" className="mizu-app-content">
       <AllComponents />
     </div>
   ),
@@ -201,15 +204,7 @@ export const Compact: Story = {
 export const DarkCompact: Story = {
   name: 'Dark + Compact',
   render: () => (
-    <div
-      data-theme="dark"
-      data-mizu-density="compact"
-      style={{
-        background: 'var(--mizu-surface-default)',
-        padding: '2rem',
-        borderRadius: 'var(--mizu-radius-lg)',
-      }}
-    >
+    <div data-theme="dark" data-mizu-density="compact" className="mizu-app-content">
       <AllComponents />
     </div>
   ),
