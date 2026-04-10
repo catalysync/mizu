@@ -2,7 +2,7 @@ export const metadata = { title: 'Drawer — mizu' };
 
 # Drawer
 
-A side panel overlay built on Radix Dialog. Slides in from any edge.
+A side panel that slides in from any edge. Built on Radix Dialog.
 
 ## Import
 
@@ -18,22 +18,33 @@ import {
 } from '@aspect/react';
 ```
 
-## CSS class
+## Usage
 
-```css
-.mizu-drawer__content {
-  /* ... */
-}
+```tsx
+<Drawer>
+  <DrawerTrigger asChild>
+    <Button>Open drawer</Button>
+  </DrawerTrigger>
+  <DrawerContent side="right">
+    <DrawerHeader>
+      <DrawerTitle>Settings</DrawerTitle>
+    </DrawerHeader>
+    <DrawerBody>Content here</DrawerBody>
+  </DrawerContent>
+</Drawer>
 ```
 
-## Props
+## Side
 
-| Prop (DrawerContent) | Type                                     | Default   | Description     |
-| -------------------- | ---------------------------------------- | --------- | --------------- |
-| `side`               | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | Slide direction |
+```tsx
+<DrawerContent side="left">...</DrawerContent>
+<DrawerContent side="right">...</DrawerContent>
+<DrawerContent side="top">...</DrawerContent>
+<DrawerContent side="bottom">...</DrawerContent>
+```
 
-## Accessibility
+## Props (DrawerContent)
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+| Prop   | Type                                     | Default   | Description     |
+| ------ | ---------------------------------------- | --------- | --------------- |
+| `side` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | Slide direction |

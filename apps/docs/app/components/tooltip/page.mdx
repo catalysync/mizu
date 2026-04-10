@@ -2,7 +2,7 @@ export const metadata = { title: 'Tooltip — mizu' };
 
 # Tooltip
 
-A small popup that appears on hover. Built on Radix Tooltip.
+A small popup on hover. Built on Radix Tooltip.
 
 ## Import
 
@@ -10,20 +10,25 @@ A small popup that appears on hover. Built on Radix Tooltip.
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@aspect/react';
 ```
 
-## CSS class
+## Usage
 
-```css
-.mizu-tooltip {
-  /* ... */
-}
+Wrap your app in `TooltipProvider` once. Then use Tooltip anywhere.
+
+```tsx
+<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button>Hover me</Button>
+    </TooltipTrigger>
+    <TooltipContent>Helpful text</TooltipContent>
+  </Tooltip>
+</TooltipProvider>
 ```
 
-## Props
+## Props (TooltipContent)
 
-Wrap your app in `<TooltipProvider>` once. Then use `<Tooltip>` + `<TooltipTrigger>` + `<TooltipContent>`.
-
-## Accessibility
-
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+| Prop         | Type                                     | Default | Description                |
+| ------------ | ---------------------------------------- | ------- | -------------------------- |
+| `showArrow`  | `boolean`                                | `true`  | Display a connecting arrow |
+| `side`       | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'` | Placement                  |
+| `sideOffset` | `number`                                 | `6`     | Distance from trigger      |

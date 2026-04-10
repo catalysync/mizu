@@ -2,7 +2,7 @@ export const metadata = { title: 'Input — mizu' };
 
 # Input
 
-A text input field with size variants.
+A text input field. Supports sizes, labels, error states, and help text.
 
 ## Import
 
@@ -10,25 +10,45 @@ A text input field with size variants.
 import { Input } from '@aspect/react';
 ```
 
-## CSS class
+## Sizes
 
-```css
-.mizu-input {
-  /* ... */
-}
+```tsx
+<Input size="sm" placeholder="Small" />
+<Input size="md" placeholder="Medium" />
+<Input size="lg" placeholder="Large" />
+```
+
+## With label and help text
+
+```tsx
+<Input label="Email" helpText="We won't share this." />
+```
+
+## Error state
+
+```tsx
+<Input label="Price" error="Must be greater than 0" />
 ```
 
 ## Props
 
-| Prop       | Type                   | Default | Description        |
-| ---------- | ---------------------- | ------- | ------------------ |
-| `size`     | `'sm' \| 'md' \| 'lg'` | `'md'`  | Input height       |
-| `disabled` | `boolean`              | `false` | Disables the input |
+| Prop       | Type                   | Default | Description                  |
+| ---------- | ---------------------- | ------- | ---------------------------- |
+| `size`     | `'sm' \| 'md' \| 'lg'` | `'md'`  | Input height                 |
+| `label`    | `string`               | —       | Auto-wraps in a form group   |
+| `error`    | `string \| boolean`    | —       | Error message or error state |
+| `helpText` | `ReactNode`            | —       | Help text below input        |
+| `disabled` | `boolean`              | `false` | Disables the input           |
 
-Accepts all native `<input>` attributes.
+All native `<input>` attributes are also accepted.
 
-## Accessibility
+## Guidelines
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+**Do:**
+
+- Always provide a visible label or `aria-label`
+- Show validation errors inline, not in toasts
+
+**Don't:**
+
+- Don't use placeholder text as a label substitute

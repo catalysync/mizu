@@ -17,22 +17,31 @@ import {
 } from '@aspect/react';
 ```
 
-## CSS class
+## Usage
 
-```css
-.mizu-dropdown-menu {
-  /* ... */
-}
+```tsx
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="secondary">Actions</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>App</DropdownMenuLabel>
+    <DropdownMenuItem>Edit</DropdownMenuItem>
+    <DropdownMenuItem>Duplicate</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem danger>Delete</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
 ```
 
-## Props
+## Destructive items
 
-| Prop (DropdownMenuItem) | Type      | Default | Description                          |
-| ----------------------- | --------- | ------- | ------------------------------------ |
-| `danger`                | `boolean` | `false` | Styles the item as destructive (red) |
+```tsx
+<DropdownMenuItem danger>Delete permanently</DropdownMenuItem>
+```
 
-## Accessibility
+## Props (DropdownMenuItem)
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+| Prop     | Type      | Default | Description             |
+| -------- | --------- | ------- | ----------------------- |
+| `danger` | `boolean` | `false` | Red destructive styling |
