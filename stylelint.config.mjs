@@ -17,5 +17,6 @@ export default {
     ],
     // comments preceding custom props are intentional grouping headers
     'custom-property-empty-line-before': null,
+    'custom-property-pattern': null,
   },
 };
