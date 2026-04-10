@@ -135,3 +135,116 @@
   margin: var(--mizu-spacing-1) 0 0;
   line-height: var(--mizu-font-line-height-normal);
 }
+/*
+ * Report document layout — the "clickable PDF" pattern.
+ * A white centered page floating in the app chrome.
+ */
+
+.mizu-report {
+  max-width: 52rem;
+  margin: 0 auto;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-lg);
+  box-shadow: var(--mizu-shadow-sm);
+  padding: var(--mizu-spacing-10) var(--mizu-spacing-12);
+  font-family: var(--mizu-font-family-sans);
+}
+
+.mizu-report__header {
+  text-align: center;
+  margin-bottom: var(--mizu-spacing-8);
+}
+
+.mizu-report__company {
+  font-size: var(--mizu-font-size-lg);
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-report__title {
+  font-size: var(--mizu-font-size-base);
+  color: var(--mizu-text-secondary);
+  margin: var(--mizu-spacing-1) 0 0;
+}
+
+.mizu-report__period {
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-secondary);
+  margin: var(--mizu-spacing-1) 0 0;
+}
+
+.mizu-report__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--mizu-font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.mizu-report__table th {
+  text-align: right;
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-secondary);
+  font-size: var(--mizu-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  border-bottom: 2px solid var(--mizu-border-default);
+}
+
+.mizu-report__table th:first-child {
+  text-align: left;
+}
+
+.mizu-report__section-header td {
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-primary);
+  padding: var(--mizu-spacing-4) var(--mizu-spacing-3) var(--mizu-spacing-2);
+}
+
+.mizu-report__row td {
+  padding: var(--mizu-spacing-1) var(--mizu-spacing-3);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-report__row td:first-child {
+  padding-left: var(--mizu-spacing-6);
+}
+
+.mizu-report__row td:not(:first-child) {
+  text-align: right;
+}
+
+.mizu-report__row--link td:first-child {
+  color: var(--mizu-action-primary-default);
+  cursor: pointer;
+}
+
+.mizu-report__row--link td:first-child:hover {
+  text-decoration: underline;
+}
+
+.mizu-report__row--negative td:not(:first-child) {
+  color: var(--mizu-feedback-danger-default);
+}
+
+.mizu-report__subtotal td {
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  font-weight: var(--mizu-font-weight-semibold);
+  border-top: 1px solid var(--mizu-border-default);
+}
+
+.mizu-report__subtotal td:not(:first-child) {
+  text-align: right;
+}
+
+.mizu-report__total td {
+  padding: var(--mizu-spacing-3) var(--mizu-spacing-3);
+  font-weight: var(--mizu-font-weight-bold);
+  border-top: 2px solid var(--mizu-text-primary);
+  border-bottom: 4px double var(--mizu-text-primary);
+}
+
+.mizu-report__total td:not(:first-child) {
+  text-align: right;
+}

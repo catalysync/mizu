@@ -1,13 +1,9 @@
 /*
- * Analytics theme — dense workspace aesthetic.
- * Cool slate primary, compact density assumed.
+ * Analytics theme — accent only. Use data-theme="dark" for dark mode.
  */
 
 [data-mizu-theme="analytics"] {
   --mizu-action-primary-default: #475569;
   --mizu-action-primary-hover: #334155;
   --mizu-action-primary-active: #1e293b;
-  --mizu-surface-default: #f8fafc;
-  --mizu-surface-secondary: #f1f5f9;
-  --mizu-border-default: #e2e8f0;
 }

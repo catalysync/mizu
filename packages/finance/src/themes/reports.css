@@ -1,15 +1,9 @@
 /*
- * Reports theme — QuickBooks "clickable PDF" aesthetic.
- * Comfortable density, near-monochrome, print-ready.
+ * Reports theme — accent only. Monochrome primary.
  */
 
 [data-mizu-theme="reports"] {
   --mizu-action-primary-default: #1a1a1a;
   --mizu-action-primary-hover: #000000;
   --mizu-action-primary-active: #000000;
-  --mizu-surface-default: #ffffff;
-  --mizu-surface-secondary: #fafafa;
-  --mizu-text-primary: #1a1a1a;
-  --mizu-text-secondary: #6b7280;
-  --mizu-border-default: #e5e7eb;
 }
