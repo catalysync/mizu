@@ -248,3 +248,19 @@
 .mizu-report__total td:not(:first-child) {
   text-align: right;
 }
+
+/* Report dark mode safety */
+[data-theme="dark"] .mizu-report {
+  background: var(--mizu-surface-secondary);
+}
+
+[data-theme="dark"] .mizu-report__row td,
+[data-theme="dark"] .mizu-report__subtotal td,
+[data-theme="dark"] .mizu-report__total td,
+[data-theme="dark"] .mizu-report__section-header td {
+  color: var(--mizu-text-primary);
+}
+
+[data-theme="dark"] .mizu-report th {
+  color: var(--mizu-text-secondary);
+}
