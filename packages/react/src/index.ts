@@ -14,6 +14,8 @@ export * from './components/Switch';
 export * from './components/Textarea';
 export * from './components/Popover';
 export * from './components/Separator';
+export * from './components/Checkbox';
+export * from './components/Radio';
 export * from './layouts';
 export * from './shell';
 export { cn } from './utils/cn';

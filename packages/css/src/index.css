@@ -29,6 +29,7 @@
 @import url("./components/textarea.css");
 @import url("./components/popover.css");
 @import url("./components/separator.css");
+@import url("./components/checkbox.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
