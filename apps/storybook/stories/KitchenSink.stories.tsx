@@ -187,7 +187,7 @@ export const Light: Story = {
 
 export const Dark: Story = {
   render: () => (
-    <div data-theme="dark" className="mizu-app-content">
+    <div data-theme="dark" className="story-dark-wrapper">
       <AllComponents />
     </div>
   ),
@@ -204,7 +204,7 @@ export const Compact: Story = {
 export const DarkCompact: Story = {
   name: 'Dark + Compact',
   render: () => (
-    <div data-theme="dark" data-mizu-density="compact" className="mizu-app-content">
+    <div data-theme="dark" data-mizu-density="compact" className="story-dark-wrapper">
       <AllComponents />
     </div>
   ),
