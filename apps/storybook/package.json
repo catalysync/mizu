@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@aspect/css": "workspace:^",
+    "@aspect/finance": "workspace:^",
     "@aspect/react": "workspace:^",
     "@aspect/tokens": "workspace:^",
     "@aspect/tsconfig": "workspace:^",
