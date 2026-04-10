@@ -19,7 +19,6 @@ import {
   IconActivity,
   IconBilling,
   IconSettings,
-  IconSearch,
   IconCloud,
   IconPlus,
 } from './icons';

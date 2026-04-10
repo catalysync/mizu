@@ -34,14 +34,14 @@ export const Right: Story = {
         </DrawerHeader>
         <DrawerBody>
           <Stack gap="1rem">
-            <label>
+            <div>
               <span className="mizu-caption">App name</span>
               <Input defaultValue="frosty-mountain-1234" aria-label="App name" />
-            </label>
-            <label>
+            </div>
+            <div>
               <span className="mizu-caption">Region</span>
               <Input defaultValue="us-east" aria-label="Region" />
-            </label>
+            </div>
           </Stack>
         </DrawerBody>
         <DrawerFooter>
