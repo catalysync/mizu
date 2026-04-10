@@ -3,6 +3,7 @@ import '@aspect/css/themes/customer-engagement';
 import {
   AppLayout,
   AppHeader,
+  AppSidebar,
   AppContent,
   Badge,
   Button,
@@ -108,11 +109,7 @@ function ConversationsInbox() {
           </Inline>
         }
       />
-      <aside
-        className="mizu-app-sidebar"
-        aria-label="Conversations"
-        style={{ width: '20rem', gridArea: 'sidebar' }}
-      >
+      <AppSidebar ariaLabel="Conversations">
         <div style={{ padding: '0 var(--mizu-spacing-2) var(--mizu-spacing-2)' }}>
           <Input size="sm" placeholder="Search conversations…" aria-label="Search" />
         </div>
@@ -121,7 +118,7 @@ function ConversationsInbox() {
             <ConversationItem key={c.id} conv={c} active={i === 0} />
           ))}
         </Stack>
-      </aside>
+      </AppSidebar>
       <AppContent>
         <Inline align="center" gap="0.5rem">
           <h2 className="mizu-h4" style={{ flex: 1 }}>

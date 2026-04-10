@@ -57,7 +57,6 @@ const SEVERITY_ICON: Record<Insight['severity'], React.ReactNode> = {
 function InsightsDashboard() {
   return (
     <div
-      data-theme="dark"
       data-mizu-theme="insights"
       style={{
         background: 'var(--mizu-surface-default)',
