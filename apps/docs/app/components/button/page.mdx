@@ -1,8 +1,18 @@
+import { Button } from '@aspect/react';
+import { Preview } from '../preview';
+
 export const metadata = { title: 'Button — mizu' };
 
 # Button
 
-Triggers an action. Supports variants, sizes, loading state, and polymorphic rendering via `asChild`.
+Triggers an action or event. Use buttons for the most important actions on a page.
+
+<Preview>
+  <Button variant="primary">Primary</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="ghost">Ghost</Button>
+  <Button variant="destructive">Destructive</Button>
+</Preview>
 
 ## Import
 
@@ -10,27 +20,89 @@ Triggers an action. Supports variants, sizes, loading state, and polymorphic ren
 import { Button } from '@aspect/react';
 ```
 
-## CSS class
+## Variants
 
-```css
-.mizu-button {
-  /* ... */
-}
+Use `variant` to communicate intent.
+
+- **Primary** — the main action on a page. Use once per section.
+- **Secondary** — alternative actions. Can appear alongside primary.
+- **Ghost** — low-emphasis actions like "Cancel" or inline actions.
+- **Destructive** — irreversible actions like "Delete".
+
+```tsx
+<Button variant="primary">Save</Button>
+<Button variant="secondary">Cancel</Button>
+<Button variant="ghost">Skip</Button>
+<Button variant="destructive">Delete</Button>
+```
+
+## Sizes
+
+```tsx
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+<Button size="icon" aria-label="Settings">⚙</Button>
+```
+
+## Loading state
+
+When `loading` is true, the button shows a spinner, sets `aria-busy`, and disables interaction.
+
+```tsx
+<Button loading>Saving...</Button>
+```
+
+## Polymorphic rendering
+
+Use `asChild` to render the button styles on a different element, like a Next.js `Link`:
+
+```tsx
+<Button asChild>
+  <a href="/dashboard">Go to dashboard</a>
+</Button>
 ```
 
 ## Props
 
-| Prop       | Type                                                   | Default     | Description                                        |
-| ---------- | ------------------------------------------------------ | ----------- | -------------------------------------------------- |
-| `variant`  | `'primary' \| 'secondary' \| 'ghost' \| 'destructive'` | `'primary'` | Visual style                                       |
-| `size`     | `'sm' \| 'md' \| 'lg' \| 'icon'`                       | `'md'`      | Size preset                                        |
-| `loading`  | `boolean`                                              | `false`     | Shows spinner, disables interaction                |
-| `disabled` | `boolean`                                              | `false`     | Disables the button                                |
-| `asChild`  | `boolean`                                              | `false`     | Render as child element (e.g. Link) via Radix Slot |
-| `type`     | `'button' \| 'submit' \| 'reset'`                      | `'button'`  | HTML button type                                   |
+| Prop       | Type                                                   | Default     | Description                            |
+| ---------- | ------------------------------------------------------ | ----------- | -------------------------------------- |
+| `variant`  | `'primary' \| 'secondary' \| 'ghost' \| 'destructive'` | `'primary'` | Visual style                           |
+| `size`     | `'sm' \| 'md' \| 'lg' \| 'icon'`                       | `'md'`      | Size preset                            |
+| `loading`  | `boolean`                                              | `false`     | Shows spinner, disables interaction    |
+| `disabled` | `boolean`                                              | `false`     | Disables the button                    |
+| `asChild`  | `boolean`                                              | `false`     | Render as child element via Radix Slot |
+| `type`     | `'button' \| 'submit' \| 'reset'`                      | `'button'`  | HTML button type                       |
+
+## CSS class
+
+For non-React usage, apply the BEM classes directly:
+
+```html
+<button class="mizu-button mizu-button--primary mizu-button--md">Save</button>
+```
+
+The button uses component-scoped custom properties internally (`--_bg`, `--_bg-hover`, `--_color`, `--_border`). Each variant modifier overrides only the properties it needs — pseudo-classes (`:hover`, `:active`) are defined once on the base class.
+
+## Guidelines
+
+**Do:**
+
+- Use primary for the single most important action in a section
+- Include a visible label — icon-only buttons must have `aria-label`
+- Default to `type="button"` to prevent accidental form submission
+
+**Don't:**
+
+- Don't use more than one primary button per section
+- Don't disable buttons without explaining why (use a tooltip or help text)
+- Don't use destructive variant for reversible actions
 
 ## Accessibility
 
-- Semantic HTML with proper ARIA roles
-- Keyboard accessible
-- Tested with vitest-axe
+- Renders as a native `<button>` element with proper keyboard handling (Enter, Space)
+- `type` defaults to `"button"` (not the browser default `"submit"`)
+- Loading state sets `aria-busy="true"` and disables the element
+- Icon-only buttons (`size="icon"`) require `aria-label`
+- Focus ring uses 2px outline with `outline-offset: 2px`
+- Tested with vitest-axe — paired `Inaccessible` / `Accessible` stories in Storybook
