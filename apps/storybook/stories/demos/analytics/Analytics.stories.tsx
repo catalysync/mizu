@@ -21,7 +21,7 @@ import {
   Stack,
   Inline,
 } from '@aspect/react';
-import { datasets, workspace, type WorkspaceItem } from './data';
+import { datasets, pipelines, workspace, type WorkspaceItem } from './data';
 
 const STATUS_TONE = {
   healthy: 'success' as const,
@@ -127,4 +127,84 @@ type Story = StoryObj<typeof meta>;
 
 export const Workspace: Story = {
   render: () => <AnalyticsWorkspace />,
+};
+
+const PIPELINE_TONE = {
+  success: 'success' as const,
+  running: 'info' as const,
+  failed: 'danger' as const,
+  queued: 'neutral' as const,
+};
+
+function PipelinesPage() {
+  return (
+    <AppLayout
+      style={{ minHeight: '720px' }}
+      data-mizu-theme="analytics"
+      data-mizu-density="compact"
+    >
+      <AppHeader
+        brand={<>aspect analytics</>}
+        actions={<Input size="sm" placeholder="Search pipelines…" aria-label="Search" />}
+      />
+      <AppSidebar ariaLabel="Workspace">
+        <AppSidebarSection label="Workspace">
+          {workspace.map((item) => (
+            <TreeItem key={item.id} item={item} />
+          ))}
+        </AppSidebarSection>
+      </AppSidebar>
+      <AppContent contentType="table">
+        <AppBreadcrumbs items={[{ label: 'Workspace', href: '#' }, { label: 'Pipelines' }]} />
+        <AppContentHeader
+          title="Pipelines"
+          description={`${pipelines.length} pipelines · ${pipelines.filter((p) => p.status === 'running').length} running`}
+          actions={
+            <Button size="sm" variant="primary">
+              New pipeline
+            </Button>
+          }
+        />
+        <Table density="compact" stickyHeader>
+          <TableHead>
+            <TableRow>
+              <TableHeader>Name</TableHeader>
+              <TableHeader>Owner</TableHeader>
+              <TableHeader>Schedule</TableHeader>
+              <TableHeader>Last Run</TableHeader>
+              <TableHeader>Duration</TableHeader>
+              <TableHeader>Status</TableHeader>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {pipelines.map((p) => (
+              <TableRow key={p.id}>
+                <TableCell>
+                  <span
+                    style={{ fontFamily: 'var(--mizu-font-family-mono)' }}
+                    className="mizu-body--sm"
+                  >
+                    {p.name}
+                  </span>
+                </TableCell>
+                <TableCell>{p.owner}</TableCell>
+                <TableCell>{p.schedule}</TableCell>
+                <TableCell>{p.lastRun}</TableCell>
+                <TableCell>{p.duration}</TableCell>
+                <TableCell>
+                  <Badge tone={PIPELINE_TONE[p.status]} dot>
+                    {p.status}
+                  </Badge>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </AppContent>
+    </AppLayout>
+  );
+}
+
+export const Pipelines: Story = {
+  render: () => <PipelinesPage />,
 };

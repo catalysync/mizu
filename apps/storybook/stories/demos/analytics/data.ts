@@ -81,6 +81,82 @@ export interface WorkspaceItem {
   children?: WorkspaceItem[];
 }
 
+export interface Pipeline {
+  id: string;
+  name: string;
+  schedule: string;
+  lastRun: string;
+  duration: string;
+  status: 'success' | 'running' | 'failed' | 'queued';
+  owner: string;
+}
+
+export const pipelines: Pipeline[] = [
+  {
+    id: 'p1',
+    name: 'etl_customer_events',
+    schedule: 'Every hour',
+    lastRun: '12 min ago',
+    duration: '3m 42s',
+    status: 'success',
+    owner: 'data-eng',
+  },
+  {
+    id: 'p2',
+    name: 'agg_order_facts',
+    schedule: 'Daily 2:00 AM',
+    lastRun: '8h ago',
+    duration: '12m 18s',
+    status: 'success',
+    owner: 'analytics',
+  },
+  {
+    id: 'p3',
+    name: 'sync_product_catalog',
+    schedule: 'Every 6h',
+    lastRun: '2h ago',
+    duration: '45s',
+    status: 'failed',
+    owner: 'data-eng',
+  },
+  {
+    id: 'p4',
+    name: 'ml_churn_prediction',
+    schedule: 'Weekly Mon 6:00 AM',
+    lastRun: '3d ago',
+    duration: '48m 5s',
+    status: 'success',
+    owner: 'data-science',
+  },
+  {
+    id: 'p5',
+    name: 'export_marketing_report',
+    schedule: 'Daily 8:00 AM',
+    lastRun: 'Running…',
+    duration: '—',
+    status: 'running',
+    owner: 'marketing',
+  },
+  {
+    id: 'p6',
+    name: 'ingest_error_logs',
+    schedule: 'Every 5 min',
+    lastRun: '1 min ago',
+    duration: '8s',
+    status: 'success',
+    owner: 'platform',
+  },
+  {
+    id: 'p7',
+    name: 'rebuild_search_index',
+    schedule: 'Daily 4:00 AM',
+    lastRun: 'Queued',
+    duration: '—',
+    status: 'queued',
+    owner: 'platform',
+  },
+];
+
 export const workspace: WorkspaceItem[] = [
   {
     id: 'analytics',
