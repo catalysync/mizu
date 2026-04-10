@@ -1,0 +1,37 @@
+.mizu-textarea {
+  display: block;
+  width: 100%;
+  min-height: 5rem;
+  padding: var(--mizu-spacing-3);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  color: var(--mizu-text-primary);
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-md);
+  outline: none;
+  resize: vertical;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.mizu-textarea::placeholder {
+  color: var(--mizu-text-disabled);
+}
+
+.mizu-textarea:hover {
+  border-color: var(--mizu-border-strong);
+}
+
+.mizu-textarea:focus-visible {
+  border-color: var(--mizu-action-primary-default);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mizu-action-primary-default) 20%, transparent);
+}
+
+.mizu-textarea:disabled {
+  background: var(--mizu-surface-secondary);
+  color: var(--mizu-text-disabled);
+  cursor: not-allowed;
+  resize: none;
+}
