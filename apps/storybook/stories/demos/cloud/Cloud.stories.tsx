@@ -4,6 +4,8 @@ import { CloudShell } from './CloudShell';
 import { AppsPage } from './Apps';
 import { TemplatesPage } from './Templates';
 import { ActivityPage } from './Activity';
+import { SettingsPage } from './SettingsPage';
+import { BillingPage } from './BillingPage';
 import { IconPlus } from './icons';
 
 const meta = {
@@ -58,6 +60,32 @@ export const Activity: Story = {
       description="Deploys, builds, config changes, and add-on events across all your apps."
     >
       <ActivityPage />
+    </CloudShell>
+  ),
+};
+
+export const Settings: Story = {
+  render: () => (
+    <CloudShell
+      active="settings"
+      breadcrumbs={[{ label: 'Home', href: '#' }, { label: 'Settings' }]}
+      title="Settings"
+      description="Manage your team, notifications, and account preferences."
+    >
+      <SettingsPage />
+    </CloudShell>
+  ),
+};
+
+export const Billing: Story = {
+  render: () => (
+    <CloudShell
+      active="billing"
+      breadcrumbs={[{ label: 'Home', href: '#' }, { label: 'Billing' }]}
+      title="Billing"
+      description="Your plan, usage, and invoice history."
+    >
+      <BillingPage />
     </CloudShell>
   ),
 };
