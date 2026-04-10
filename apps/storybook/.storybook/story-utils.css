@@ -15,3 +15,11 @@
 .story-full {
   width: 100%;
 }
+
+.story-dark-wrapper {
+  background: var(--mizu-surface-default);
+  color: var(--mizu-text-primary);
+  padding: 2rem;
+  border-radius: var(--mizu-radius-lg);
+  min-height: 20rem;
+}
