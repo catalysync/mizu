@@ -38,3 +38,6 @@
 @import url("./shell/app-sidebar.css");
 @import url("./shell/app-content.css");
 @import url("./shell/app-breadcrumbs.css");
+
+/* Density */
+@import url("./density.css");

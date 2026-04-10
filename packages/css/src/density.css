@@ -1,0 +1,33 @@
+/*
+ * Density overrides. Apply via data-mizu-density on any container.
+ * Compact: ~25% tighter spacing, one step smaller text.
+ * Comfortable: ~25% looser spacing, one step larger text.
+ */
+
+[data-mizu-density="compact"] {
+  --mizu-spacing-1: 0.125rem;
+  --mizu-spacing-2: 0.25rem;
+  --mizu-spacing-3: 0.5rem;
+  --mizu-spacing-4: 0.75rem;
+  --mizu-spacing-5: 1rem;
+  --mizu-spacing-6: 1.25rem;
+  --mizu-spacing-8: 1.5rem;
+  --mizu-font-size-xs: 0.625rem;
+  --mizu-font-size-sm: 0.75rem;
+  --mizu-font-size-base: 0.875rem;
+  --mizu-font-size-lg: 1rem;
+}
+
+[data-mizu-density="comfortable"] {
+  --mizu-spacing-1: 0.375rem;
+  --mizu-spacing-2: 0.75rem;
+  --mizu-spacing-3: 1rem;
+  --mizu-spacing-4: 1.25rem;
+  --mizu-spacing-5: 1.5rem;
+  --mizu-spacing-6: 2rem;
+  --mizu-spacing-8: 2.5rem;
+  --mizu-font-size-xs: 0.8125rem;
+  --mizu-font-size-sm: 0.9375rem;
+  --mizu-font-size-base: 1.0625rem;
+  --mizu-font-size-lg: 1.1875rem;
+}
