@@ -135,3 +135,55 @@ type Story = StoryObj<typeof meta>;
 export const Dashboard: Story = {
   render: () => <InsightsDashboard />,
 };
+
+function TransactionsPage() {
+  return (
+    <div
+      data-mizu-theme="insights"
+      style={{
+        background: 'var(--mizu-surface-default)',
+        minHeight: '100vh',
+        padding: 'var(--mizu-spacing-8)',
+        color: 'var(--mizu-text-primary)',
+      }}
+    >
+      <Stack gap="1.5rem">
+        <div>
+          <h1 className="mizu-h2" style={{ color: 'var(--mizu-text-primary)' }}>
+            Transactions
+          </h1>
+          <p className="mizu-caption">All financial transactions — March 2026</p>
+        </div>
+
+        <Grid gap="1rem" min="14rem">
+          <MetricTile label="Inflows" value="$47.1K" delta={<DeltaIndicator value={0.15} />} />
+          <MetricTile label="Outflows" value="$56.8K" delta={<DeltaIndicator value={0.04} />} />
+          <MetricTile label="Net" value="-$9.7K" delta={<DeltaIndicator value={-0.32} />} />
+        </Grid>
+
+        <Card>
+          <CardHeader title="All Transactions" />
+          <CardBody>
+            <Stack gap="0">
+              {recentTransactions.map((tx) => (
+                <TransactionRow
+                  key={tx.id}
+                  date={tx.date}
+                  description={tx.description}
+                  amount={tx.amount}
+                  category={
+                    <Badge tone={tx.amount > 0 ? 'success' : 'neutral'}>{tx.category}</Badge>
+                  }
+                />
+              ))}
+            </Stack>
+          </CardBody>
+        </Card>
+      </Stack>
+    </div>
+  );
+}
+
+export const Transactions: Story = {
+  render: () => <TransactionsPage />,
+};
