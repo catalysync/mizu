@@ -47,14 +47,7 @@ export const Light: Story = {
 
 export const Dark: Story = {
   render: () => (
-    <div
-      data-theme="dark"
-      style={{
-        background: 'var(--mizu-surface-default)',
-        padding: '2rem',
-        borderRadius: 'var(--mizu-radius-lg)',
-      }}
-    >
+    <div data-theme="dark" className="story-dark-wrapper">
       <DarkSample />
     </div>
   ),
@@ -63,15 +56,7 @@ export const Dark: Story = {
 export const DarkCompact: Story = {
   name: 'Dark + Compact',
   render: () => (
-    <div
-      data-theme="dark"
-      data-mizu-density="compact"
-      style={{
-        background: 'var(--mizu-surface-default)',
-        padding: '2rem',
-        borderRadius: 'var(--mizu-radius-lg)',
-      }}
-    >
+    <div data-theme="dark" data-mizu-density="compact" className="story-dark-wrapper">
       <DarkSample />
     </div>
   ),
