@@ -19,6 +19,10 @@ import '@aspect/finance/themes/insights';
 import '@aspect/finance/themes/analytics';
 import React from 'react';
 import type { Preview } from '@storybook/react-vite';
+import { initialize, mswLoader } from 'msw-storybook-addon';
+import { handlers } from '../mocks/handlers';
+
+initialize();
 
 const preview: Preview = {
   parameters: {
@@ -38,6 +42,9 @@ const preview: Preview = {
         tablet: { name: 'Tablet', styles: { width: '768px', height: '1024px' } },
         desktop: { name: 'Desktop', styles: { width: '1280px', height: '800px' } },
       },
+    },
+    msw: {
+      handlers,
     },
   },
   globalTypes: {
@@ -62,6 +69,7 @@ const preview: Preview = {
       },
     },
   },
+  loaders: [mswLoader],
   decorators: [
     (Story, context) => {
       const theme = context.globals.theme ?? 'light';
