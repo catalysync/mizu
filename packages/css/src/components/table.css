@@ -64,6 +64,15 @@
   z-index: 1;
 }
 
+.mizu-table--bordered td,
+.mizu-table--bordered th {
+  border: 1px solid var(--mizu-border-default);
+}
+
+.mizu-table--striped tbody tr:nth-child(even) {
+  background: var(--mizu-surface-secondary);
+}
+
 .mizu-table[data-density="compact"] th,
 .mizu-table[data-density="compact"] td {
   padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
