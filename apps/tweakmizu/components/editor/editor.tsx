@@ -5,60 +5,28 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DialogActionsProvider } from '@/hooks/use-dialog-actions';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useEditorStore } from '@/store/editor-store';
-import { Theme, ThemeStyles } from '@/types/theme';
+import { ThemeStyleProps } from '@/types/theme';
 import { Sliders } from 'lucide-react';
-import React, { use, useEffect } from 'react';
+import React from 'react';
 import { ActionBar } from './action-bar/action-bar';
 import ThemeControlPanel from './theme-control-panel';
 import ThemePreviewPanel from './theme-preview-panel';
 
-interface EditorProps {
-  themePromise: Promise<Theme | null>;
-}
-
-const isThemeStyles = (styles: unknown): styles is ThemeStyles => {
-  return (
-    !!styles &&
-    typeof styles === 'object' &&
-    styles !== null &&
-    'light' in styles &&
-    'dark' in styles
-  );
-};
-
-const Editor: React.FC<EditorProps> = ({ themePromise }) => {
+const Editor: React.FC = () => {
   const themeState = useEditorStore((state) => state.themeState);
   const setThemeState = useEditorStore((state) => state.setThemeState);
   const isMobile = useIsMobile();
 
-  const initialTheme = themePromise ? use(themePromise) : null;
-
   const handleStyleChange = React.useCallback(
-    (newStyles: ThemeStyles) => {
-      const prev = useEditorStore.getState().themeState;
-      setThemeState({ ...prev, styles: newStyles });
-    },
-    [setThemeState],
-  );
-
-  useEffect(() => {
-    if (initialTheme && isThemeStyles(initialTheme.styles)) {
+    (updates: Partial<ThemeStyleProps>) => {
       const prev = useEditorStore.getState().themeState;
       setThemeState({
         ...prev,
-        styles: initialTheme.styles,
-        preset: initialTheme.id,
+        styles: { ...prev.styles, ...updates },
       });
-    }
-  }, [initialTheme, setThemeState]);
-
-  if (initialTheme && !isThemeStyles(initialTheme.styles)) {
-    return (
-      <div className="text-destructive flex h-full items-center justify-center">
-        Fetched theme data is invalid.
-      </div>
-    );
-  }
+    },
+    [setThemeState],
+  );
 
   const styles = themeState.styles;
 
@@ -80,17 +48,13 @@ const Editor: React.FC<EditorProps> = ({ themePromise }) => {
               </TabsList>
               <TabsContent value="controls" className="mt-0 h-[calc(100%-2.5rem)]">
                 <div className="flex h-full flex-col">
-                  <ThemeControlPanel
-                    styles={styles}
-                    onChange={handleStyleChange}
-                    currentMode={themeState.currentMode}
-                  />
+                  <ThemeControlPanel styles={styles} onChange={handleStyleChange} />
                 </div>
               </TabsContent>
               <TabsContent value="preview" className="mt-0 h-[calc(100%-2.5rem)]">
                 <div className="flex h-full flex-col">
                   <ActionBar />
-                  <ThemePreviewPanel styles={styles} currentMode={themeState.currentMode} />
+                  <ThemePreviewPanel styles={styles} />
                 </div>
               </TabsContent>
             </Tabs>
@@ -108,11 +72,7 @@ const Editor: React.FC<EditorProps> = ({ themePromise }) => {
           <ResizablePanelGroup orientation="horizontal" className="isolate">
             <ResizablePanel defaultSize="30%" minSize="20%" maxSize="40%" className="z-1">
               <div className="relative isolate flex h-full flex-1 flex-col overflow-hidden">
-                <ThemeControlPanel
-                  styles={styles}
-                  onChange={handleStyleChange}
-                  currentMode={themeState.currentMode}
-                />
+                <ThemeControlPanel styles={styles} onChange={handleStyleChange} />
               </div>
             </ResizablePanel>
             <ResizableHandle />
@@ -120,7 +80,7 @@ const Editor: React.FC<EditorProps> = ({ themePromise }) => {
               <div className="flex h-full flex-col">
                 <div className="flex min-h-0 flex-1 flex-col">
                   <ActionBar />
-                  <ThemePreviewPanel styles={styles} currentMode={themeState.currentMode} />
+                  <ThemePreviewPanel styles={styles} />
                 </div>
               </div>
             </ResizablePanel>
