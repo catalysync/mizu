@@ -1,0 +1,115 @@
+{
+  "badge": [
+    {
+      "name": "dot",
+      "type": "boolean",
+      "interface": "BadgeProps"
+    }
+  ],
+  "button": [
+    {
+      "name": "asChild",
+      "type": "boolean",
+      "interface": "ButtonProps"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "interface": "ButtonProps"
+    }
+  ],
+  "card": [
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "interface": "CardProps"
+    },
+    {
+      "name": "title",
+      "type": "React.ReactNode",
+      "interface": "CardHeaderProps"
+    },
+    {
+      "name": "description",
+      "type": "React.ReactNode",
+      "interface": "CardHeaderProps"
+    }
+  ],
+  "drawer": [
+    {
+      "name": "side",
+      "type": "DrawerSide",
+      "interface": "DrawerContentProps"
+    }
+  ],
+  "dropdownmenu": [
+    {
+      "name": "danger",
+      "type": "boolean",
+      "interface": "DropdownMenuItemProps"
+    }
+  ],
+  "emptystate": [
+    {
+      "name": "icon",
+      "type": "React.ReactNode",
+      "interface": "EmptyStateProps"
+    },
+    {
+      "name": "title",
+      "type": "React.ReactNode",
+      "interface": "EmptyStateProps"
+    },
+    {
+      "name": "description",
+      "type": "React.ReactNode",
+      "interface": "EmptyStateProps"
+    },
+    {
+      "name": "actions",
+      "type": "React.ReactNode",
+      "interface": "EmptyStateProps"
+    }
+  ],
+  "input": [
+    {
+      "name": "error",
+      "type": "string | boolean",
+      "interface": "InputProps"
+    },
+    {
+      "name": "helpText",
+      "type": "React.ReactNode",
+      "interface": "InputProps"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "interface": "InputProps"
+    }
+  ],
+  "table": [
+    {
+      "name": "density",
+      "type": "TableDensity",
+      "interface": "TableProps"
+    },
+    {
+      "name": "stickyHeader",
+      "type": "boolean",
+      "interface": "TableProps"
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "interface": "TableRowProps"
+    }
+  ],
+  "tooltip": [
+    {
+      "name": "showArrow",
+      "type": "boolean",
+      "interface": "TooltipContentProps"
+    }
+  ]
+}
