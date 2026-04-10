@@ -1,9 +1,8 @@
 .mizu-app-layout {
   display: grid;
-  grid-template: "header header" auto "sidebar content" 1fr / var(
-      --mizu-app-layout-sidebar-width,
-      16rem
-    ) 1fr;
+  grid-template:
+    "header header" auto "sidebar content" 1fr / var(--mizu-app-layout-sidebar-width, 16rem)
+    1fr;
   min-height: 100vh;
   background: var(--mizu-surface-default);
   color: var(--mizu-text-primary);
