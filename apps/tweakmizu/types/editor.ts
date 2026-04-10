@@ -5,4 +5,6 @@ export interface ThemeEditorState {
   preset?: string;
   /** Full resolved styles (base defaults merged with preset overrides) */
   styles: ThemeStyleProps;
+  /** Current color mode (light or dark) */
+  currentMode: 'light' | 'dark';
 }

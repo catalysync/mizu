@@ -1,6 +1,6 @@
 'use client';
 
-import { ThemeStyleProps } from '@/types/theme';
+import type { ThemeStyleProps } from '@/types/theme';
 import { applyThemeToElement } from '@/utils/apply-theme';
 import { useEffect, useRef } from 'react';
 
@@ -193,7 +193,7 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
             className="inline-flex items-center px-2.5 py-0.5 text-xs font-medium text-white"
             style={{
               backgroundColor: styles['action-primary-default'],
-              borderRadius: styles['radius-full'] ?? '9999px',
+              borderRadius: '9999px',
             }}
           >
             Primary
@@ -202,7 +202,7 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
             className="inline-flex items-center border px-2.5 py-0.5 text-xs font-medium"
             style={{
               borderColor: styles['border-default'],
-              borderRadius: styles['radius-full'] ?? '9999px',
+              borderRadius: '9999px',
               color: styles['text-secondary'],
             }}
           >
@@ -213,7 +213,7 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
             style={{
               backgroundColor: styles['feedback-success-subtle'],
               color: styles['feedback-success-default'],
-              borderRadius: styles['radius-full'] ?? '9999px',
+              borderRadius: '9999px',
             }}
           >
             Success
@@ -223,7 +223,7 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
             style={{
               backgroundColor: styles['feedback-danger-subtle'],
               color: styles['feedback-danger-default'],
-              borderRadius: styles['radius-full'] ?? '9999px',
+              borderRadius: '9999px',
             }}
           >
             Danger

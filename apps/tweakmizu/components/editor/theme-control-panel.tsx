@@ -12,10 +12,10 @@ import { Label } from '@/components/ui/label';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList } from '@/components/ui/tabs';
 import { useControlsTabFromUrl, type ControlTab } from '@/hooks/use-controls-tab-from-url';
-import { ThemeStyleProps } from '@/types/theme';
+import type { ThemeStyleProps } from '@/types/theme';
 import { type FontInfo } from '@/types/fonts';
 import { buildFontFamily } from '@/utils/fonts';
-import { ColorPicker } from './color-picker';
+import ColorPicker from './color-picker';
 
 interface ThemeControlPanelProps {
   styles: ThemeStyleProps;

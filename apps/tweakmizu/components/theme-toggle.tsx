@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { Moon, Sun } from 'lucide-react';
 import { TooltipWrapper } from './tooltip-wrapper';
 
-interface ThemeToggleProps extends React.ComponentProps<typeof Button> {}
+type ThemeToggleProps = React.ComponentProps<typeof Button>;
 
 export function ThemeToggle({ className, ...props }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();

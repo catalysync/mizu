@@ -38,7 +38,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
     const root = document.documentElement;
     if (!root) return;
 
-    applyThemeToElement(themeState, root);
+    applyThemeToElement(root, themeState.styles);
   }, [themeState]);
 
   const handleThemeChange = (newMode: Theme) => {

@@ -1,4 +1,4 @@
-import { FileCode, Palette, RefreshCw, LucideIcon, Undo2 } from 'lucide-react';
+import { FileCode, Palette, RefreshCw, type LucideIcon, Undo2 } from 'lucide-react';
 import { Button } from '../ui/button';
 import {
   DropdownMenu,

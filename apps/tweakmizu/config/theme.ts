@@ -61,6 +61,9 @@ export const defaultStyles: ThemeStyleProps = {
   'easing-out': 'cubic-bezier(0, 0, 0.2, 1)',
 };
 
+export const COMMON_STYLES = Object.keys(defaultStyles);
+
 export const defaultThemeState: ThemeEditorState = {
   styles: defaultStyles,
+  currentMode: 'light',
 };

@@ -71,4 +71,10 @@ export type ThemePreset = {
   label: string;
   description?: string;
   styles: Partial<ThemeStyleProps>;
+  source?: 'BUILT_IN' | 'SAVED';
+};
+
+export type ThemeEditorPreviewProps = {
+  styles: ThemeStyleProps;
+  currentMode: 'light' | 'dark';
 };

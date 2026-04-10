@@ -1,5 +1,5 @@
 import CodePanel from './code-panel';
-import { ThemeEditorState } from '@/types/editor';
+import type { ThemeEditorState } from '@/types/editor';
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,

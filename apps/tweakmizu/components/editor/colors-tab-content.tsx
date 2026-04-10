@@ -8,8 +8,8 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { TooltipWrapper } from '@/components/tooltip-wrapper';
 import { cn } from '@/lib/utils';
-import { FocusColorId } from '@/store/color-control-focus-store';
-import { ThemeStyleProps } from '@/types/theme';
+import type { FocusColorId } from '@/store/color-control-focus-store';
+import type { ThemeStyleProps } from '@/types/theme';
 
 type ColorEntry = {
   key: keyof ThemeStyleProps;

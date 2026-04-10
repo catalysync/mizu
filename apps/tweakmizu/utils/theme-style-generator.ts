@@ -73,7 +73,7 @@ type OutputScope = 'root' | 'identity';
 export function generateThemeCode(
   state: ThemeEditorState,
   colorFormat: ColorFormat = 'hex',
-  scope: OutputScope = 'root',
+  scope: string = 'root',
 ): string {
   const { styles, preset } = state;
 
@@ -101,6 +101,24 @@ export function generateThemeCode(
     .join('\n');
 
   return `${header}\n\n${block}\n`;
+}
+
+/**
+ * Stub: generate a Tailwind v3 config snippet (not used in mizu, kept for code-panel compat).
+ */
+export function generateTailwindConfigCode(
+  state: ThemeEditorState,
+  _colorFormat: ColorFormat = 'hex',
+  _tailwindVersion: string = '4',
+): string {
+  return `// Tailwind config generation is not supported in tweakmizu.\n// Use the CSS output instead.\n`;
+}
+
+/**
+ * Stub: generate a layout.tsx snippet (not used in mizu, kept for code-panel compat).
+ */
+export function generateLayoutCode(_state: ThemeEditorState): string {
+  return `// Layout code generation is not supported in tweakmizu.\n`;
 }
 
 /**

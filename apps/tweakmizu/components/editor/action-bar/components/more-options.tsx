@@ -1,5 +1,5 @@
-import McpIcon from '@/assets/mcp.svg';
 import ContrastChecker from '@/components/editor/contrast-checker';
+import { PlugZap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -12,7 +12,7 @@ import { MoreVertical } from 'lucide-react';
 import { useState } from 'react';
 import { MCPDialog } from './mcp-dialog';
 
-interface MoreOptionsProps extends React.ComponentProps<typeof DropdownMenuTrigger> {}
+type MoreOptionsProps = React.ComponentProps<typeof DropdownMenuTrigger>;
 
 export function MoreOptions({ ...props }: MoreOptionsProps) {
   const [mcpDialogOpen, setMcpDialogOpen] = useState(false);
@@ -29,12 +29,12 @@ export function MoreOptions({ ...props }: MoreOptionsProps) {
         <DropdownMenuContent align="end" className="text-foreground">
           <DropdownMenuItem onClick={() => setMcpDialogOpen(true)} asChild>
             <Button variant="ghost" size="sm" className="w-full justify-start">
-              <McpIcon className="h-4 w-4" />
+              <PlugZap className="h-4 w-4" />
               <span className="text-sm">MCP</span>
             </Button>
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={(e) => e.preventDefault()} asChild>
-            <ContrastChecker currentStyles={themeState.styles[themeState.currentMode]} />
+            <ContrastChecker currentStyles={themeState.styles} />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

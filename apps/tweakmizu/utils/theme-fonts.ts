@@ -81,8 +81,14 @@ export const getAppliedThemeFont = (
   state: ThemeEditorState,
   fontKey: 'font-sans' | 'font-serif' | 'font-mono',
 ): string | null => {
-  const currentStyles = state.styles[state.currentMode];
-  const fontValue = currentStyles[fontKey];
+  const fontKey2 =
+    fontKey === 'font-sans'
+      ? 'font-family-sans'
+      : fontKey === 'font-mono'
+        ? 'font-family-mono'
+        : null;
+  if (!fontKey2) return null;
+  const fontValue = state.styles[fontKey2 as keyof typeof state.styles] as string | undefined;
 
   // Extract the font family name from the font value
   if (!fontValue) return null;

@@ -73,6 +73,7 @@ export const useEditorStore = create<EditorStore>()(
         const newState: ThemeEditorState = {
           preset,
           styles: newStyles,
+          currentMode: currentState.currentMode,
         };
 
         const entry = { state: currentState, timestamp: currentTime };

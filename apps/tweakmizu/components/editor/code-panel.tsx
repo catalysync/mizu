@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Copy, Check, Heart } from 'lucide-react';
-import { ThemeEditorState } from '@/types/editor';
+import type { ThemeEditorState } from '@/types/editor';
 import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 import { CodeBlock } from '@/components/ai-elements/code-block';
 import {
@@ -28,7 +28,7 @@ import {
 } from '@/utils/theme-style-generator';
 import { useThemePresetStore } from '@/store/theme-preset-store';
 import { useDialogActions } from '@/hooks/use-dialog-actions';
-import { ColorFormat } from '@/types';
+import type { ColorFormat } from '@/types';
 
 interface CodePanelProps {
   themeEditorState: ThemeEditorState;

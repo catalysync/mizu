@@ -19,9 +19,9 @@ import {
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { useDebouncedCallback } from '@/hooks/use-debounced-callback';
-import { FilterFontCategory, useFontSearch } from '@/hooks/use-font-search';
+import { type FilterFontCategory, useFontSearch } from '@/hooks/use-font-search';
 import { cn } from '@/lib/utils';
-import { FontInfo } from '@/types/fonts';
+import type { FontInfo } from '@/types/fonts';
 import { buildFontFamily, getDefaultWeights, waitForFont } from '@/utils/fonts';
 import { loadGoogleFont } from '@/utils/fonts/google-fonts';
 import { Check, ChevronDown, FunnelX, Loader2 } from 'lucide-react';

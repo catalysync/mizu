@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DialogActionsProvider } from '@/hooks/use-dialog-actions';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useEditorStore } from '@/store/editor-store';
-import { ThemeStyleProps } from '@/types/theme';
+import type { ThemeStyleProps } from '@/types/theme';
 import { Sliders } from 'lucide-react';
 import React from 'react';
 import { ActionBar } from './action-bar/action-bar';

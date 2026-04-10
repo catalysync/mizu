@@ -1,7 +1,7 @@
 import { DEBOUNCE_DELAY } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { useColorControlFocus } from '@/store/color-control-focus-store';
-import { ColorPickerProps } from '@/types';
+import type { ColorPickerProps } from '@/types';
 import { debounce } from '@/utils/debounce';
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { ColorSelectorPopover } from './color-selector-popover';
@@ -102,7 +102,15 @@ const ColorPicker = ({ color, onChange, label, name }: ColorPickerProps) => {
       <div
         className="relative flex size-7 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-md border shadow-sm"
         style={{ backgroundColor: color }}
+        role="button"
+        tabIndex={0}
         onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setIsOpen(!isOpen);
+          }
+        }}
       >
         <input
           type="color"

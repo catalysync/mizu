@@ -1,4 +1,4 @@
-import { ThemeEditorPreviewProps } from '@/types/theme';
+import type { ThemeEditorPreviewProps } from '@/types/theme';
 import { Settings, Info, AlertTriangle, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {

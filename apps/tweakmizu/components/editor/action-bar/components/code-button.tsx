@@ -62,7 +62,7 @@ export function CodeButton() {
 
         <div className="relative">
           <div className="absolute top-2 right-2 z-10">
-            <CopyButton value={code} />
+            <CopyButton textToCopy={code} />
           </div>
           <ScrollArea className="bg-muted h-[400px] rounded-md border">
             <pre className="p-4 text-sm">

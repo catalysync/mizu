@@ -1,6 +1,6 @@
 'use client';
 
-import { ThemeStyleProps } from '@/types/theme';
+import type { ThemeStyleProps } from '@/types/theme';
 
 interface MizuColorPreviewProps {
   styles: ThemeStyleProps;

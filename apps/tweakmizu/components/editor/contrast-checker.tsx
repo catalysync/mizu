@@ -12,7 +12,7 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import { ThemeStyleProps } from '@/types/theme';
+import type { ThemeStyleProps } from '@/types/theme';
 import { AlertTriangle, Check, Contrast, Moon, Sun } from 'lucide-react';
 import { useState } from 'react';
 import { useContrastChecker } from '../../hooks/use-contrast-checker';
@@ -42,108 +42,81 @@ const ContrastChecker = ({ currentStyles }: ContrastCheckerProps) => {
   const { theme, toggleTheme } = useTheme();
 
   const colorPairsToCheck: ColorPair[] = [
-    // Content - Base, background, cards, containers
+    // Content - Surfaces & text
     {
       id: 'base',
-      foregroundId: 'foreground',
-      backgroundId: 'background',
-      foreground: currentStyles?.['foreground'],
-      background: currentStyles?.['background'],
+      foregroundId: 'text-primary',
+      backgroundId: 'surface-default',
+      foreground: currentStyles?.['text-primary'],
+      background: currentStyles?.['surface-default'],
       label: 'Base',
       category: 'content',
     },
     {
-      id: 'card',
-      foregroundId: 'card-foreground',
-      backgroundId: 'card',
-      foreground: currentStyles?.['card-foreground'],
-      background: currentStyles?.['card'],
-      label: 'Card',
+      id: 'secondary-text',
+      foregroundId: 'text-secondary',
+      backgroundId: 'surface-default',
+      foreground: currentStyles?.['text-secondary'],
+      background: currentStyles?.['surface-default'],
+      label: 'Secondary Text',
       category: 'content',
     },
     {
-      id: 'popover',
-      foregroundId: 'popover-foreground',
-      backgroundId: 'popover',
-      foreground: currentStyles?.['popover-foreground'],
-      background: currentStyles?.['popover'],
-      label: 'Popover',
-      category: 'content',
-    },
-    {
-      id: 'muted',
-      foregroundId: 'muted-foreground',
-      backgroundId: 'muted',
-      foreground: currentStyles?.['muted-foreground'],
-      background: currentStyles?.['muted'],
-      label: 'Muted',
+      id: 'inverse',
+      foregroundId: 'text-inverse',
+      backgroundId: 'surface-inverse',
+      foreground: currentStyles?.['text-inverse'],
+      background: currentStyles?.['surface-inverse'],
+      label: 'Inverse',
       category: 'content',
     },
 
-    // Interactive - Buttons, links, actions
+    // Interactive - Actions
     {
-      id: 'primary',
-      foregroundId: 'primary-foreground',
-      backgroundId: 'primary',
-      foreground: currentStyles?.['primary-foreground'],
-      background: currentStyles?.['primary'],
-      label: 'Primary',
+      id: 'primary-action',
+      foregroundId: 'text-inverse',
+      backgroundId: 'action-primary-default',
+      foreground: currentStyles?.['text-inverse'],
+      background: currentStyles?.['action-primary-default'],
+      label: 'Primary Action',
       category: 'interactive',
     },
     {
-      id: 'secondary',
-      foregroundId: 'secondary-foreground',
-      backgroundId: 'secondary',
-      foreground: currentStyles?.['secondary-foreground'],
-      background: currentStyles?.['secondary'],
-      label: 'Secondary',
-      category: 'interactive',
-    },
-    {
-      id: 'accent',
-      foregroundId: 'accent-foreground',
-      backgroundId: 'accent',
-      foreground: currentStyles?.['accent-foreground'],
-      background: currentStyles?.['accent'],
-      label: 'Accent',
+      id: 'destructive-action',
+      foregroundId: 'text-inverse',
+      backgroundId: 'action-destructive-default',
+      foreground: currentStyles?.['text-inverse'],
+      background: currentStyles?.['action-destructive-default'],
+      label: 'Destructive Action',
       category: 'interactive',
     },
 
-    // Functional - Sidebar, destructive, special purposes
+    // Functional - Feedback
     {
-      id: 'destructive',
-      foregroundId: 'destructive-foreground',
-      backgroundId: 'destructive',
-      foreground: currentStyles?.['destructive-foreground'],
-      background: currentStyles?.['destructive'],
-      label: 'Destructive',
+      id: 'feedback-success',
+      foregroundId: 'text-primary',
+      backgroundId: 'feedback-success-subtle',
+      foreground: currentStyles?.['text-primary'],
+      background: currentStyles?.['feedback-success-subtle'],
+      label: 'Success Feedback',
       category: 'functional',
     },
     {
-      id: 'sidebar',
-      foregroundId: 'sidebar-foreground',
-      backgroundId: 'sidebar',
-      foreground: currentStyles?.['sidebar-foreground'],
-      background: currentStyles?.['sidebar'],
-      label: 'Sidebar Base',
+      id: 'feedback-warning',
+      foregroundId: 'text-primary',
+      backgroundId: 'feedback-warning-subtle',
+      foreground: currentStyles?.['text-primary'],
+      background: currentStyles?.['feedback-warning-subtle'],
+      label: 'Warning Feedback',
       category: 'functional',
     },
     {
-      id: 'sidebar-primary',
-      foregroundId: 'sidebar-primary-foreground',
-      backgroundId: 'sidebar-primary',
-      foreground: currentStyles?.['sidebar-primary-foreground'],
-      background: currentStyles?.['sidebar-primary'],
-      label: 'Sidebar Primary',
-      category: 'functional',
-    },
-    {
-      id: 'sidebar-accent',
-      foregroundId: 'sidebar-accent-foreground',
-      backgroundId: 'sidebar-accent',
-      foreground: currentStyles?.['sidebar-accent-foreground'],
-      background: currentStyles?.['sidebar-accent'],
-      label: 'Sidebar Accent',
+      id: 'feedback-danger',
+      foregroundId: 'text-primary',
+      backgroundId: 'feedback-danger-subtle',
+      foreground: currentStyles?.['text-primary'],
+      background: currentStyles?.['feedback-danger-subtle'],
+      label: 'Danger Feedback',
       category: 'functional',
     },
   ];

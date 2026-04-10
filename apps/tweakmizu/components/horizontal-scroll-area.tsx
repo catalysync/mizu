@@ -4,7 +4,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { useScrollStartEnd } from '@/hooks/use-scroll-start-end';
 import { cn } from '@/lib/utils';
 
-interface HorizontalScrollAreaProps extends React.ComponentPropsWithoutRef<typeof ScrollArea> {}
+type HorizontalScrollAreaProps = React.ComponentPropsWithoutRef<typeof ScrollArea>;
 
 export function HorizontalScrollArea({ className, children, ...props }: HorizontalScrollAreaProps) {
   const { isScrollStart, isScrollEnd, scrollStartRef, scrollEndRef } = useScrollStartEnd();

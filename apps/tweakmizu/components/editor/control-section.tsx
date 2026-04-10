@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { ControlSectionProps } from '@/types';
+import type { ControlSectionProps } from '@/types';
 import { SectionContext } from './section-context';
 
 const ControlSection = ({

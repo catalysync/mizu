@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList } from '@/components/ui/tabs';
 import { useFullscreen } from '@/hooks/use-fullscreen';
 import { cn } from '@/lib/utils';
-import { ThemeStyleProps } from '@/types/theme';
+import type { ThemeStyleProps } from '@/types/theme';
 import { Maximize, Minimize } from 'lucide-react';
 import { useQueryState } from 'nuqs';
 import TabsTriggerPill from './theme-preview/tabs-trigger-pill';

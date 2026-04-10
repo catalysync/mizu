@@ -4,8 +4,8 @@ import React, { useCallback, useMemo, useRef, useEffect, useState } from 'react'
 import { SliderWithInput } from './slider-with-input';
 import { useEditorStore } from '../../store/editor-store';
 import { COMMON_STYLES, defaultThemeState } from '../../config/theme';
-import { ThemeEditorState } from '@/types/editor';
-import { converter, formatHex, Hsl } from 'culori';
+import type { ThemeEditorState } from '@/types/editor';
+import { converter, formatHex, type Hsl } from 'culori';
 import { debounce } from '@/utils/debounce';
 import { isDeepEqual } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
