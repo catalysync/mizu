@@ -23,6 +23,11 @@ import '@aspect/css/themes/layered';
 import '@aspect/css/themes/industrial';
 import '@aspect/css/themes/organic';
 import '@aspect/css/themes/muted';
+import '@aspect/css/themes/atlas';
+import '@aspect/css/themes/playful';
+import '@aspect/css/themes/clinical';
+import '@aspect/css/themes/editorial';
+import '@aspect/css/themes/neon';
 import '@aspect/finance/css';
 import '@aspect/finance/themes/reports';
 import '@aspect/finance/themes/insights';
@@ -91,6 +96,11 @@ const preview: Preview = {
           { value: 'industrial', title: 'Industrial' },
           { value: 'organic', title: 'Organic' },
           { value: 'muted', title: 'Muted' },
+          { value: 'atlas', title: 'Atlas' },
+          { value: 'playful', title: 'Playful' },
+          { value: 'clinical', title: 'Clinical' },
+          { value: 'editorial', title: 'Editorial' },
+          { value: 'neon', title: 'Neon' },
         ],
         dynamicTitle: true,
       },

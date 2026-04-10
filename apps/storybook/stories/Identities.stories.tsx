@@ -71,6 +71,11 @@ const identities = [
   { name: 'Industrial', attr: 'industrial' },
   { name: 'Organic', attr: 'organic' },
   { name: 'Muted', attr: 'muted' },
+  { name: 'Atlas', attr: 'atlas' },
+  { name: 'Playful', attr: 'playful' },
+  { name: 'Clinical', attr: 'clinical' },
+  { name: 'Editorial', attr: 'editorial' },
+  { name: 'Neon', attr: 'neon' },
 ];
 
 const meta = {
@@ -220,6 +225,46 @@ export const Organic: Story = {
 export const Muted: Story = {
   render: () => (
     <div data-mizu-identity="muted" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Atlas: Story = {
+  render: () => (
+    <div data-mizu-identity="atlas" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Playful: Story = {
+  render: () => (
+    <div data-mizu-identity="playful" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Clinical: Story = {
+  render: () => (
+    <div data-mizu-identity="clinical" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Editorial: Story = {
+  render: () => (
+    <div data-mizu-identity="editorial" style={{ padding: '2rem' }}>
+      <SampleUI />
+    </div>
+  ),
+};
+
+export const Neon: Story = {
+  render: () => (
+    <div data-mizu-identity="neon" style={{ padding: '2rem' }}>
       <SampleUI />
     </div>
   ),
