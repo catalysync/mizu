@@ -23,6 +23,7 @@
 @import url("./components/tooltip.css");
 @import url("./components/kv-pairs.css");
 @import url("./components/activity-entry.css");
+@import url("./components/dropdown-menu.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");

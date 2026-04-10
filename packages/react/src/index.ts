@@ -8,6 +8,7 @@ export * from './components/Modal';
 export * from './components/Drawer';
 export * from './components/Tooltip';
 export * from './components/Tabs';
+export * from './components/DropdownMenu';
 export * from './layouts';
 export * from './shell';
 export { cn } from './utils/cn';
