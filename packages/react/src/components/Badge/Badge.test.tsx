@@ -9,9 +9,27 @@ describe('Badge', () => {
     expect(screen.getByText('Active')).toBeInTheDocument();
   });
 
-  it('applies the tone class', () => {
-    const { container } = render(<Badge tone="success">OK</Badge>);
-    expect(container.firstChild).toHaveClass('mizu-badge--success');
+  it.each(['neutral', 'success', 'warning', 'danger', 'info'] as const)(
+    'applies the %s tone class',
+    (tone) => {
+      const { container } = render(<Badge tone={tone}>Label</Badge>);
+      expect(container.firstChild).toHaveClass(`mizu-badge--${tone}`);
+    },
+  );
+
+  it('renders dot when dot prop is true', () => {
+    const { container } = render(<Badge dot>Running</Badge>);
+    expect(container.querySelector('.mizu-badge__dot')).toBeInTheDocument();
+  });
+
+  it('does not render dot by default', () => {
+    const { container } = render(<Badge>Draft</Badge>);
+    expect(container.querySelector('.mizu-badge__dot')).not.toBeInTheDocument();
+  });
+
+  it('forwards className', () => {
+    const { container } = render(<Badge className="custom">Test</Badge>);
+    expect(container.firstChild).toHaveClass('custom');
   });
 
   it('has no a11y violations', async () => {
