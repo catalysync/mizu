@@ -35,6 +35,13 @@
       "interface": "CardHeaderProps"
     }
   ],
+  "checkbox": [
+    {
+      "name": "label",
+      "type": "string",
+      "interface": "CheckboxProps"
+    }
+  ],
   "drawer": [
     {
       "name": "side",
@@ -86,6 +93,13 @@
       "name": "label",
       "type": "string",
       "interface": "InputProps"
+    }
+  ],
+  "radio": [
+    {
+      "name": "label",
+      "type": "string",
+      "interface": "RadioItemProps"
     }
   ],
   "table": [

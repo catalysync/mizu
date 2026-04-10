@@ -1,0 +1,40 @@
+export const metadata = { title: 'Checkbox — mizu' };
+
+# Checkbox
+
+A toggle for boolean values. Built on Radix Checkbox.
+
+## Import
+
+```tsx
+import { Checkbox } from '@aspect/react';
+```
+
+## With label
+
+```tsx
+<Checkbox label="I agree to the terms" />
+```
+
+## Controlled
+
+```tsx
+const [checked, setChecked] = useState(false);
+<Checkbox checked={checked} onCheckedChange={setChecked} label="Notify me" />;
+```
+
+## Props
+
+| Prop              | Type                         | Default | Description                       |
+| ----------------- | ---------------------------- | ------- | --------------------------------- |
+| `label`           | `string`                     | —       | Auto-renders with a label element |
+| `checked`         | `boolean`                    | —       | Controlled state                  |
+| `defaultChecked`  | `boolean`                    | —       | Uncontrolled initial state        |
+| `onCheckedChange` | `(checked: boolean) => void` | —       | Change handler                    |
+| `disabled`        | `boolean`                    | `false` | Disables the checkbox             |
+
+## Accessibility
+
+- Renders as a native checkbox role
+- Label is associated via `htmlFor`
+- Focus ring on keyboard navigation

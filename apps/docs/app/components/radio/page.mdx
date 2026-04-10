@@ -1,0 +1,37 @@
+export const metadata = { title: 'Radio — mizu' };
+
+# Radio
+
+A group of mutually exclusive options. Built on Radix RadioGroup.
+
+## Import
+
+```tsx
+import { RadioGroup, RadioItem } from '@aspect/react';
+```
+
+## Usage
+
+```tsx
+<RadioGroup aria-label="Plan" defaultValue="pro">
+  <RadioItem value="free" label="Free" />
+  <RadioItem value="pro" label="Pro — $9/mo" />
+  <RadioItem value="team" label="Team — $29/mo" />
+</RadioGroup>
+```
+
+## Props (RadioGroup)
+
+| Prop            | Type                      | Default | Description                |
+| --------------- | ------------------------- | ------- | -------------------------- |
+| `value`         | `string`                  | —       | Controlled selected value  |
+| `defaultValue`  | `string`                  | —       | Uncontrolled initial value |
+| `onValueChange` | `(value: string) => void` | —       | Change handler             |
+
+## Props (RadioItem)
+
+| Prop       | Type      | Default  | Description                       |
+| ---------- | --------- | -------- | --------------------------------- |
+| `value`    | `string`  | required | Option value                      |
+| `label`    | `string`  | —        | Auto-renders with a label element |
+| `disabled` | `boolean` | `false`  | Disables this option              |

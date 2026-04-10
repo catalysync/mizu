@@ -45,6 +45,8 @@ const nav: NavSection[] = [
       { label: 'Input', href: '/components/input' },
       { label: 'Textarea', href: '/components/textarea' },
       { label: 'Select', href: '/components/select' },
+      { label: 'Checkbox', href: '/components/checkbox' },
+      { label: 'Radio', href: '/components/radio' },
       { label: 'Switch', href: '/components/switch' },
     ],
   },
