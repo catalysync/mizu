@@ -1,6 +1,7 @@
 import './global.css';
 import '@aspect/tokens/css';
 import '@aspect/css';
+import '@aspect/css/typography';
 import '@aspect/css/themes/dark';
 import '@aspect/css/themes/cloud';
 import '@aspect/css/themes/ecommerce';
