@@ -1,0 +1,18 @@
+/*
+ * Insights theme — Digits "science book dashboard" aesthetic.
+ * Dark base, vibrant accent, editorial type scale.
+ */
+
+[data-mizu-theme="insights"] {
+  --mizu-action-primary-default: #4effaa;
+  --mizu-action-primary-hover: #3de098;
+  --mizu-action-primary-active: #2cc083;
+  --mizu-surface-default: #0a0f1a;
+  --mizu-surface-secondary: #111827;
+  --mizu-surface-inverse: #ffffff;
+  --mizu-text-primary: #f0f0f0;
+  --mizu-text-secondary: #9ca3af;
+  --mizu-text-inverse: #0a0f1a;
+  --mizu-border-default: #1f2937;
+  --mizu-border-strong: #374151;
+}

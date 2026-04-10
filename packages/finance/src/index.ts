@@ -7,3 +7,6 @@ export { formatCompact } from './utils/number';
 export { DeltaIndicator, type DeltaIndicatorProps } from './components/DeltaIndicator';
 export { KpiCard, type KpiCardProps } from './components/KpiCard';
 export { AnnotationCard, type AnnotationCardProps } from './components/AnnotationCard';
+export { MetricTile, type MetricTileProps } from './components/MetricTile';
+export { TransactionRow, type TransactionRowProps } from './components/TransactionRow';
+export { AccountSummary, type AccountSummaryProps } from './components/AccountSummary';
