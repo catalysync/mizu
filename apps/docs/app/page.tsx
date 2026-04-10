@@ -1,34 +1,34 @@
 import Link from 'next/link';
 
-const pillars = [
+const sections = [
   {
     title: 'Foundation',
-    description: 'Design tokens for colors, typography, spacing, shadows, and motion.',
+    description: 'Colors, typography, spacing, and tokens.',
     href: '/foundation/colors',
   },
   {
     title: 'Components',
-    description: '20+ React components with Radix primitives, vitest-axe tested.',
+    description: 'Buttons, inputs, tables, overlays, and more.',
     href: '/components/button',
   },
   {
     title: 'Layouts',
-    description: 'Stack, Inline, Grid, Split, Center, Cluster — composable primitives.',
+    description: 'Stack, Inline, Grid, Split, Center, Cluster.',
     href: '/layouts/stack',
   },
   {
     title: 'App Shell',
-    description: 'Header, Sidebar, Content, Breadcrumbs — build any admin layout.',
+    description: 'Header, sidebar, content, breadcrumbs.',
     href: '/shell/app-layout',
   },
   {
-    title: '@aspect/finance',
-    description: 'KPI cards, deltas, report tables, annotation cards for fintech.',
+    title: 'Finance',
+    description: 'KPI cards, deltas, reports, annotations.',
     href: '/packages/finance',
   },
   {
-    title: '@aspect/commerce',
-    description: 'Thumbnails, pagination, banners, resource items for storefronts.',
+    title: 'Commerce',
+    description: 'Thumbnails, pagination, banners, resource items.',
     href: '/packages/tailwind-preset',
   },
 ];
@@ -38,10 +38,7 @@ export default function HomePage() {
     <div className="docs-home">
       <div className="docs-home__hero">
         <h1 className="docs-home__title">mizu</h1>
-        <p className="docs-subtitle">
-          An open-source design system for building consistent interfaces across any framework. Ship
-          tokens, CSS, and React components from one monorepo.
-        </p>
+        <p className="docs-subtitle">An open-source design system for building web applications.</p>
         <div className="docs-home__ctas">
           <Link
             href="/getting-started"
@@ -67,16 +64,16 @@ export default function HomePage() {
       </div>
 
       <div className="docs-home__grid">
-        {pillars.map((p) => (
-          <Link key={p.title} href={p.href} className="docs-home__card">
-            <h3 className="docs-home__card-title">{p.title}</h3>
-            <p className="docs-home__card-desc">{p.description}</p>
+        {sections.map((s) => (
+          <Link key={s.title} href={s.href} className="docs-home__card">
+            <h3 className="docs-home__card-title">{s.title}</h3>
+            <p className="docs-home__card-desc">{s.description}</p>
           </Link>
         ))}
       </div>
 
       <div className="docs-home__install">
-        <h2>Quick install</h2>
+        <h2>Install</h2>
         <pre>
           <code>pnpm add @aspect/react @aspect/css @aspect/tokens</code>
         </pre>
