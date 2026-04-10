@@ -1,4 +1,8 @@
 .mizu-input {
+  --_border: var(--mizu-border-default);
+  --_border-hover: var(--mizu-border-strong);
+  --_focus-color: var(--mizu-action-primary-default);
+
   display: inline-flex;
   align-items: center;
   width: 100%;
@@ -8,7 +12,7 @@
   font-size: var(--mizu-font-size-sm);
   color: var(--mizu-text-primary);
   background: var(--mizu-surface-default);
-  border: 1px solid var(--mizu-border-default);
+  border: 1px solid var(--_border);
   border-radius: var(--mizu-radius-md);
   outline: none;
   transition:
@@ -21,12 +25,12 @@
 }
 
 .mizu-input:hover {
-  border-color: var(--mizu-border-strong);
+  border-color: var(--_border-hover);
 }
 
 .mizu-input:focus-visible {
-  border-color: var(--mizu-action-primary-default);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mizu-action-primary-default) 20%, transparent);
+  border-color: var(--_focus-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--_focus-color) 20%, transparent);
 }
 
 .mizu-input:disabled {
@@ -36,11 +40,9 @@
 }
 
 .mizu-input--error {
-  border-color: var(--mizu-feedback-danger-default);
-}
-
-.mizu-input--error:focus-visible {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mizu-feedback-danger-default) 20%, transparent);
+  --_border: var(--mizu-feedback-danger-default);
+  --_border-hover: var(--mizu-feedback-danger-default);
+  --_focus-color: var(--mizu-feedback-danger-default);
 }
 
 .mizu-input--sm {
