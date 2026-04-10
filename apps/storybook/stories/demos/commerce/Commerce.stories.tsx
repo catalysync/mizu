@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import '@aspect/css/themes/ecommerce';
+import '@aspect/commerce/css';
 import {
   AppLayout,
   AppHeader,
@@ -9,12 +9,9 @@ import {
   AppContent,
   AppContentHeader,
   AppBreadcrumbs,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableHeader,
-  TableCell,
+  Card,
+  CardHeader,
+  CardBody,
   Badge,
   Button,
   Input,
@@ -26,23 +23,22 @@ import {
   Stack,
 } from '@aspect/react';
 import { KpiCard, DeltaIndicator, formatCurrency } from '@aspect/finance';
+import { ResourceItem, Thumbnail, Pagination, Banner } from '@aspect/commerce';
 import { products, orders } from './data';
-
-const STATUS_TONE = {
-  active: 'success' as const,
-  draft: 'neutral' as const,
-  archived: 'danger' as const,
-  fulfilled: 'success' as const,
-  pending: 'warning' as const,
-  refunded: 'danger' as const,
-};
 
 function CommerceAdmin() {
   return (
-    <AppLayout style={{ minHeight: '720px' }} data-mizu-theme="ecommerce">
+    <AppLayout data-mizu-theme="ecommerce">
       <AppHeader
         brand={<>aspect store</>}
-        actions={<Input size="sm" placeholder="Search…" aria-label="Search" />}
+        actions={
+          <Input
+            size="sm"
+            placeholder="Search…"
+            aria-label="Search"
+            className="mizu-app-header__search"
+          />
+        }
       />
       <AppSidebar ariaLabel="Store admin">
         <AppSidebarSection>
@@ -61,6 +57,11 @@ function CommerceAdmin() {
       </AppSidebar>
       <AppContent contentType="dashboard">
         <AppBreadcrumbs items={[{ label: 'Store', href: '#' }, { label: 'Overview' }]} />
+
+        <Banner tone="info" title="Welcome to your store" onDismiss={() => {}}>
+          Your products are live. Start customizing your storefront.
+        </Banner>
+
         <Grid gap="1rem" min="14rem">
           <KpiCard label="Revenue" value="$12.4K" footer={<DeltaIndicator value={0.18} />} />
           <KpiCard label="Orders" value="42" footer={<DeltaIndicator value={0.08} />} />
@@ -71,6 +72,7 @@ function CommerceAdmin() {
             footer={<span className="mizu-caption">in catalog</span>}
           />
         </Grid>
+
         <Tabs defaultValue="products">
           <TabsList>
             <TabsTrigger value="products">Products</TabsTrigger>
@@ -87,65 +89,76 @@ function CommerceAdmin() {
                   </Button>
                 }
               />
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableHeader>Product</TableHeader>
-                    <TableHeader>SKU</TableHeader>
-                    <TableHeader>Price</TableHeader>
-                    <TableHeader>Stock</TableHeader>
-                    <TableHeader>Status</TableHeader>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
+              <Card>
+                <Stack gap="0">
                   {products.map((p) => (
-                    <TableRow key={p.id}>
-                      <TableCell>{p.name}</TableCell>
-                      <TableCell>
-                        <span className="mizu-mono">{p.sku}</span>
-                      </TableCell>
-                      <TableCell>{formatCurrency(p.price)}</TableCell>
-                      <TableCell>{p.stock}</TableCell>
-                      <TableCell>
-                        <Badge tone={STATUS_TONE[p.status]}>{p.status}</Badge>
-                      </TableCell>
-                    </TableRow>
+                    <ResourceItem
+                      key={p.id}
+                      media={
+                        <Thumbnail
+                          source={`https://picsum.photos/seed/${p.sku}/200`}
+                          alt={p.name}
+                          size="sm"
+                        />
+                      }
+                      name={p.name}
+                      meta={`${p.sku} · ${formatCurrency(p.price)} · ${p.stock > 0 ? `${p.stock} in stock` : 'Out of stock'}`}
+                      actions={
+                        <Badge
+                          tone={
+                            p.status === 'active'
+                              ? 'success'
+                              : p.status === 'draft'
+                                ? 'neutral'
+                                : 'danger'
+                          }
+                        >
+                          {p.status}
+                        </Badge>
+                      }
+                    />
                   ))}
-                </TableBody>
-              </Table>
+                </Stack>
+              </Card>
+              <Pagination
+                label={`Showing 1–${products.length} of ${products.length} products`}
+                hasPrevious={false}
+                hasNext={false}
+              />
             </Stack>
           </TabsContent>
           <TabsContent value="orders">
             <Stack gap="1rem">
               <AppContentHeader title="Orders" description={`${orders.length} recent orders`} />
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableHeader>Order</TableHeader>
-                    <TableHeader>Customer</TableHeader>
-                    <TableHeader>Items</TableHeader>
-                    <TableHeader>Total</TableHeader>
-                    <TableHeader>Date</TableHeader>
-                    <TableHeader>Status</TableHeader>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
+              <Card>
+                <Stack gap="0">
                   {orders.map((o) => (
-                    <TableRow key={o.id}>
-                      <TableCell>
-                        <span className="mizu-mono">{o.id}</span>
-                      </TableCell>
-                      <TableCell>{o.customer}</TableCell>
-                      <TableCell>{o.items}</TableCell>
-                      <TableCell>{formatCurrency(o.total)}</TableCell>
-                      <TableCell>{o.date}</TableCell>
-                      <TableCell>
-                        <Badge tone={STATUS_TONE[o.status]}>{o.status}</Badge>
-                      </TableCell>
-                    </TableRow>
+                    <ResourceItem
+                      key={o.id}
+                      name={o.id}
+                      meta={`${o.customer} · ${o.items} items · ${formatCurrency(o.total)} · ${o.date}`}
+                      actions={
+                        <Badge
+                          tone={
+                            o.status === 'fulfilled'
+                              ? 'success'
+                              : o.status === 'pending'
+                                ? 'warning'
+                                : 'danger'
+                          }
+                        >
+                          {o.status}
+                        </Badge>
+                      }
+                    />
                   ))}
-                </TableBody>
-              </Table>
+                </Stack>
+              </Card>
+              <Pagination
+                label={`Showing 1–${orders.length} of ${orders.length} orders`}
+                hasPrevious={false}
+                hasNext={false}
+              />
             </Stack>
           </TabsContent>
         </Tabs>
