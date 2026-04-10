@@ -1,3 +1,4 @@
+import { TooltipProvider } from '@/components/ui/tooltip';
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
@@ -24,7 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <TooltipProvider>{children}</TooltipProvider>
+      </body>
     </html>
   );
 }
