@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--mizu-surface-default);
+  --color-foreground: var(--mizu-text-primary);
+  --color-surface-secondary: var(--mizu-surface-secondary);
+  --color-surface-inverse: var(--mizu-surface-inverse);
+  --color-text-secondary: var(--mizu-text-secondary);
+  --color-text-inverse: var(--mizu-text-inverse);
+  --color-text-disabled: var(--mizu-text-disabled);
+
+  --color-primary: var(--mizu-action-primary-default);
+  --color-primary-hover: var(--mizu-action-primary-hover);
+  --color-primary-active: var(--mizu-action-primary-active);
+  --color-primary-disabled: var(--mizu-action-primary-disabled);
+
+  --color-destructive: var(--mizu-action-destructive-default);
+  --color-destructive-hover: var(--mizu-action-destructive-hover);
+  --color-destructive-active: var(--mizu-action-destructive-active);
+
+  --color-success: var(--mizu-feedback-success-default);
+  --color-success-subtle: var(--mizu-feedback-success-subtle);
+  --color-warning: var(--mizu-feedback-warning-default);
+  --color-warning-subtle: var(--mizu-feedback-warning-subtle);
+  --color-danger: var(--mizu-feedback-danger-default);
+  --color-danger-subtle: var(--mizu-feedback-danger-subtle);
+
+  --color-border: var(--mizu-border-default);
+  --color-border-strong: var(--mizu-border-strong);
+
+  --font-sans: var(--mizu-font-family-sans);
+  --font-mono: var(--mizu-font-family-mono);
+
+  --radius-sm: var(--mizu-radius-sm);
+  --radius-md: var(--mizu-radius-md);
+  --radius-lg: var(--mizu-radius-lg);
+  --radius-xl: var(--mizu-radius-xl);
+
+  --shadow-sm: var(--mizu-shadow-sm);
+  --shadow-md: var(--mizu-shadow-md);
+  --shadow-lg: var(--mizu-shadow-lg);
+  --shadow-xl: var(--mizu-shadow-xl);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-primary/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* View Transition Wave Effect */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+@keyframes reveal {
+  from {
+    clip-path: circle(0% at var(--x, 50%) var(--y, 50%));
+    opacity: 0.7;
+  }
+  to {
+    clip-path: circle(150% at var(--x, 50%) var(--y, 50%));
+    opacity: 1;
+  }
+}
+
+::view-transition-new(root) {
+  animation: reveal 0.4s ease-in-out forwards;
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+}
