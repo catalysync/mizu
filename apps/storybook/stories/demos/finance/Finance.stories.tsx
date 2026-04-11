@@ -3,6 +3,8 @@ import '@aspect/finance/css';
 import { FinanceShell } from './FinanceShell';
 import { OverviewPage } from './OverviewPage';
 import { SettingsPage } from './SettingsPage';
+import { InvoicesPage } from './InvoicesPage';
+import { CustomersPage } from './CustomersPage';
 
 const meta = {
   title: 'Demos/Finance',
@@ -19,6 +21,28 @@ export const Overview: Story = {
       breadcrumbs={[{ label: 'Home', href: '#' }, { label: 'Overview' }]}
     >
       <OverviewPage />
+    </FinanceShell>
+  ),
+};
+
+export const Invoices: Story = {
+  render: () => (
+    <FinanceShell
+      active="invoices"
+      breadcrumbs={[{ label: 'Home', href: '#' }, { label: 'Invoices' }]}
+    >
+      <InvoicesPage />
+    </FinanceShell>
+  ),
+};
+
+export const Customers: Story = {
+  render: () => (
+    <FinanceShell
+      active="customers"
+      breadcrumbs={[{ label: 'Home', href: '#' }, { label: 'Customers' }]}
+    >
+      <CustomersPage />
     </FinanceShell>
   ),
 };
