@@ -57,7 +57,7 @@ export function StudioEditorShell() {
         </Inline>
       </Inline>
 
-      <Split fraction="260px" gap="1.5rem">
+      <Split fraction="260px 1fr" gap="1.5rem">
         <Stack gap="0.75rem">
           <Stack as="nav" gap="0.25rem" aria-label="Editor tabs">
             {TABS.map((tab) => {

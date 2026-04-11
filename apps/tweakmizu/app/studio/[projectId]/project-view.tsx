@@ -139,7 +139,7 @@ function PreviewTab({
 }) {
   const Preview = pattern?.Preview;
   return (
-    <Split fraction="240px" gap="1.5rem">
+    <Split fraction="240px 1fr" gap="1.5rem">
       <Stack as="nav" gap="0.25rem" aria-label="Generated pages">
         {plan.entries.map((item, index) => {
           const active = index === activeIndex;
@@ -207,7 +207,7 @@ function CodeTab({
     }) ?? [];
 
   return (
-    <Split fraction="240px" gap="1.5rem">
+    <Split fraction="240px 1fr" gap="1.5rem">
       <Stack as="nav" gap="0.25rem" aria-label="Generated files">
         {plan.entries.map((item, index) => {
           const active = index === activeIndex;

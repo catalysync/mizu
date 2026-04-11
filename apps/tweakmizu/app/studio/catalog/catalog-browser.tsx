@@ -60,7 +60,7 @@ export function CatalogBrowser() {
         })}
       </Cluster>
 
-      <Split fraction="280px" gap="1.5rem">
+      <Split fraction="280px 1fr" gap="1.5rem">
         <Stack as="nav" gap="0.25rem" aria-label="Pattern list">
           {visible.length === 0 ? (
             <p className="text-sm text-muted-foreground">
