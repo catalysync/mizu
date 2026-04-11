@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aspect/css": "workspace:^",
+    "@aspect/react": "workspace:^",
+    "@aspect/tokens": "workspace:^",
     "@base-ui-components/react": "1.0.0-rc.0",
     "@hookform/resolvers": "^5.2.2",
     "@tanstack/react-query": "^5.97.0",
