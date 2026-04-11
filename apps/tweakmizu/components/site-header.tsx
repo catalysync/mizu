@@ -4,6 +4,7 @@ import { Button } from '@aspect/react';
 import { ChevronRight, Github, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { ThemeToggle } from './theme-toggle';
 
 const nav = [
   { label: 'Features', href: '#features' },
@@ -119,6 +120,7 @@ export function SiteHeader() {
           style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
           className="site-header__actions"
         >
+          <ThemeToggle />
           <Button variant="ghost" size="icon" asChild aria-label="Mizu on GitHub">
             <a href="https://github.com/catalysync/mizu" target="_blank" rel="noopener noreferrer">
               <Github size={18} />
