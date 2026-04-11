@@ -14,29 +14,55 @@ html[data-theme="dark"] {
   color-scheme: dark;
 }
 
-/*
- * Bridge a minimal set of mizu tokens into Tailwind v4's @theme block
- * so the tweakmizu chrome can use utility classes (bg-background, text-foreground).
- * This is only for tweakmizu's own layout utilities — the previews use mizu
- * components directly, not these utilities.
- */
 @theme inline {
+  /* Surfaces & text */
   --color-background: var(--mizu-surface-default);
   --color-foreground: var(--mizu-text-primary);
   --color-muted: var(--mizu-surface-secondary);
   --color-muted-foreground: var(--mizu-text-secondary);
-  --color-border: var(--mizu-border-default);
-  --color-primary: var(--mizu-action-primary-default);
-  --color-primary-foreground: var(--mizu-text-inverse);
-  --color-destructive: var(--mizu-action-destructive-default);
+  --color-inverse: var(--mizu-surface-inverse);
+  --color-inverse-foreground: var(--mizu-text-inverse);
+  --color-disabled: var(--mizu-text-disabled);
 
+  /* Borders */
+  --color-border: var(--mizu-border-default);
+  --color-border-strong: var(--mizu-border-strong);
+
+  /* Action — primary */
+  --color-primary: var(--mizu-action-primary-default);
+  --color-primary-hover: var(--mizu-action-primary-hover);
+  --color-primary-active: var(--mizu-action-primary-active);
+  --color-primary-foreground: var(--mizu-color-white);
+
+  /* Action — destructive */
+  --color-destructive: var(--mizu-action-destructive-default);
+  --color-destructive-hover: var(--mizu-action-destructive-hover);
+  --color-destructive-active: var(--mizu-action-destructive-active);
+  --color-destructive-foreground: var(--mizu-color-white);
+
+  /* Feedback */
+  --color-success: var(--mizu-feedback-success-default);
+  --color-success-subtle: var(--mizu-feedback-success-subtle);
+  --color-warning: var(--mizu-feedback-warning-default);
+  --color-warning-subtle: var(--mizu-feedback-warning-subtle);
+  --color-danger: var(--mizu-feedback-danger-default);
+  --color-danger-subtle: var(--mizu-feedback-danger-subtle);
+
+  /* Typography */
   --font-sans: var(--mizu-font-family-sans);
   --font-mono: var(--mizu-font-family-mono);
 
+  /* Radius */
   --radius-sm: var(--mizu-radius-sm);
   --radius-md: var(--mizu-radius-md);
   --radius-lg: var(--mizu-radius-lg);
   --radius-xl: var(--mizu-radius-xl);
+
+  /* Shadows */
+  --shadow-sm: var(--mizu-shadow-sm);
+  --shadow-md: var(--mizu-shadow-md);
+  --shadow-lg: var(--mizu-shadow-lg);
+  --shadow-xl: var(--mizu-shadow-xl);
 }
 
 @layer base {
