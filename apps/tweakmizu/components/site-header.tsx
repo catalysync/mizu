@@ -4,6 +4,7 @@ import { Button } from '@aspect/react';
 import { ChevronRight, Github, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { cn } from '@/utils/cn';
 import { ThemeToggle } from './theme-toggle';
 
 const nav = [
@@ -36,99 +37,54 @@ export function SiteHeader() {
 
   return (
     <header
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
-        width: '100%',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        background: scrolled
-          ? 'color-mix(in srgb, var(--mizu-surface-default) 90%, transparent)'
-          : 'transparent',
-        borderBottom: scrolled ? '1px solid var(--mizu-border-default)' : '1px solid transparent',
-        transition: 'background var(--mizu-duration-fast), border var(--mizu-duration-fast)',
-      }}
+      className={cn(
+        'sticky top-0 z-50 w-full backdrop-blur-lg transition-colors',
+        scrolled
+          ? 'border-b border-border bg-background/90'
+          : 'border-b border-transparent bg-transparent',
+      )}
     >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          height: '4rem',
-          padding: '0 1.5rem',
-          maxWidth: '80rem',
-          margin: '0 auto',
-          position: 'relative',
-        }}
-      >
+      <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link
           href="/"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            color: 'var(--mizu-text-primary)',
-            textDecoration: 'none',
-            fontWeight: 700,
-            fontSize: '1.125rem',
-          }}
+          className="flex items-center gap-2 text-lg font-bold text-foreground no-underline"
         >
           <span
             aria-hidden="true"
-            style={{
-              display: 'inline-block',
-              width: '1.5rem',
-              height: '1.5rem',
-              borderRadius: 'var(--mizu-radius-md)',
-              background:
-                'linear-gradient(135deg, var(--mizu-action-primary-default), var(--mizu-feedback-success-default))',
-            }}
+            className="inline-block size-6 rounded-md bg-gradient-to-br from-primary to-success"
           />
           tweakmizu
         </Link>
 
-        <nav
-          style={{
-            display: 'flex',
-            gap: '2rem',
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
-          }}
-          className="site-header__nav"
-        >
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 gap-8 md:flex">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={handleAnchor}
-              style={{
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                color: 'var(--mizu-text-secondary)',
-                textDecoration: 'none',
-                transition: 'color var(--mizu-duration-fast)',
-              }}
+              className="text-sm font-medium text-muted-foreground no-underline transition-colors hover:text-foreground"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div
-          style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
-          className="site-header__actions"
-        >
+        <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button variant="ghost" size="icon" asChild aria-label="Mizu on GitHub">
-            <a href="https://github.com/catalysync/mizu" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/catalysync/mizu"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Mizu on GitHub"
+            className="hidden md:inline-flex"
+          >
+            <Button variant="ghost" size="icon">
               <Github size={18} />
-            </a>
-          </Button>
-          <Link href="/editor">
+            </Button>
+          </a>
+          <Link href="/editor" className="hidden md:block">
             <Button variant="primary">
-              Open Editor <ChevronRight size={16} style={{ marginLeft: 4 }} />
+              Open Editor <ChevronRight size={16} className="ml-1" />
             </Button>
           </Link>
           <Button
@@ -136,7 +92,7 @@ export function SiteHeader() {
             size="icon"
             aria-label="Toggle menu"
             onClick={() => setMenuOpen((v) => !v)}
-            className="site-header__menu-toggle"
+            className="md:hidden"
           >
             {menuOpen ? <X size={18} /> : <Menu size={18} />}
           </Button>
@@ -144,31 +100,22 @@ export function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div
-          className="site-header__mobile"
-          style={{
-            borderTop: '1px solid var(--mizu-border-default)',
-            background: 'var(--mizu-surface-default)',
-            padding: '1rem 1.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.75rem',
-          }}
-        >
+        <div className="flex flex-col gap-3 border-t border-border bg-background px-6 py-4 md:hidden">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={handleAnchor}
-              style={{
-                color: 'var(--mizu-text-primary)',
-                textDecoration: 'none',
-                fontSize: '0.875rem',
-              }}
+              className="text-sm text-foreground no-underline"
             >
               {item.label}
             </a>
           ))}
+          <Link href="/editor" className="mt-1">
+            <Button variant="primary" className="w-full">
+              Open Editor <ChevronRight size={16} className="ml-1" />
+            </Button>
+          </Link>
         </div>
       )}
     </header>

@@ -5,53 +5,18 @@ import { SiteHeader } from '@/components/site-header';
 
 export default function NotFound() {
   return (
-    <div style={{ display: 'flex', minHeight: '100dvh', flexDirection: 'column' }}>
+    <div className="flex min-h-[100dvh] flex-col">
       <SiteHeader />
-      <main
-        style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '4rem 1.5rem',
-          textAlign: 'center',
-        }}
-      >
-        <span
-          style={{
-            fontSize: '6rem',
-            fontWeight: 800,
-            lineHeight: 1,
-            color: 'color-mix(in srgb, var(--mizu-text-secondary) 25%, transparent)',
-            letterSpacing: '-0.04em',
-          }}
-        >
+      <main className="flex flex-1 flex-col items-center justify-center px-6 py-16 text-center">
+        <span className="text-[6rem] font-extrabold leading-none tracking-tighter text-muted-foreground/25">
           404
         </span>
-        <h1
-          style={{
-            margin: '1rem 0 0.5rem',
-            fontSize: '1.875rem',
-            fontWeight: 700,
-            color: 'var(--mizu-text-primary)',
-          }}
-        >
-          Page not found
-        </h1>
-        <p
-          style={{
-            margin: 0,
-            maxWidth: '28rem',
-            color: 'var(--mizu-text-secondary)',
-            fontSize: '1rem',
-            lineHeight: 1.6,
-          }}
-        >
+        <h1 className="mb-2 mt-4 text-3xl font-bold text-foreground">Page not found</h1>
+        <p className="m-0 max-w-md text-base leading-relaxed text-muted-foreground">
           The page you are looking for does not exist or has moved. Head back to the landing page or
           jump straight into the editor.
         </p>
-        <div style={{ display: 'flex', gap: '0.75rem', marginTop: '2rem' }}>
+        <div className="mt-8 flex gap-3">
           <Link href="/">
             <Button variant="secondary">Back to home</Button>
           </Link>

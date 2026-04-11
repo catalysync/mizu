@@ -7,35 +7,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <article
-      style={{
-        maxWidth: '42rem',
-        margin: '0 auto',
-        padding: '4rem 1.5rem',
-        color: 'var(--mizu-text-primary)',
-        fontFamily: 'var(--mizu-font-family-sans)',
-        lineHeight: 1.65,
-      }}
-    >
-      <h1
-        style={{
-          margin: 0,
-          fontSize: '2.25rem',
-          fontWeight: 800,
-          letterSpacing: '-0.02em',
-        }}
-      >
-        Privacy Policy
-      </h1>
-      <p
-        style={{
-          margin: '0.5rem 0 2rem',
-          color: 'var(--mizu-text-secondary)',
-          fontSize: '0.875rem',
-        }}
-      >
-        Last updated: April 11, 2026
-      </p>
+    <article className="mx-auto max-w-2xl px-6 py-16 font-sans leading-relaxed text-foreground">
+      <h1 className="m-0 text-4xl font-extrabold tracking-tight">Privacy Policy</h1>
+      <p className="mt-2 mb-8 text-sm text-muted-foreground">Last updated: April 11, 2026</p>
 
       <Section title="1. Overview">
         tweakmizu is a static, client-side tool for editing themes in the mizu design system. It
@@ -79,7 +53,7 @@ export default function PrivacyPolicyPage() {
           href="https://github.com/catalysync/mizu/issues"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: 'var(--mizu-action-primary-default)' }}
+          className="text-primary"
         >
           mizu repository
         </a>
@@ -91,9 +65,9 @@ export default function PrivacyPolicyPage() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section style={{ marginBottom: '1.75rem' }}>
-      <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.125rem', fontWeight: 700 }}>{title}</h2>
-      <p style={{ margin: 0, color: 'var(--mizu-text-secondary)' }}>{children}</p>
+    <section className="mb-7">
+      <h2 className="mb-2 text-lg font-bold">{title}</h2>
+      <p className="m-0 text-muted-foreground">{children}</p>
     </section>
   );
 }

@@ -3,9 +3,9 @@ import { SiteHeader } from '@/components/site-header';
 
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ display: 'flex', minHeight: '100dvh', flexDirection: 'column' }}>
+    <div className="flex min-h-[100dvh] flex-col">
       <SiteHeader />
-      <main style={{ flex: 1 }}>{children}</main>
+      <main className="flex-1">{children}</main>
       <SiteFooter />
     </div>
   );

@@ -1,6 +1,5 @@
 'use client';
 
-import { Stack } from '@aspect/react';
 import { Box, Eye, FileCode, Layers, Palette, Zap } from 'lucide-react';
 
 const features = [
@@ -38,131 +37,42 @@ const features = [
 
 export function Features() {
   return (
-    <section
-      id="features"
-      style={{
-        position: 'relative',
-        padding: '6rem 1.5rem',
-      }}
-    >
-      <div style={{ maxWidth: '72rem', margin: '0 auto' }}>
-        <div
-          style={{
-            display: 'grid',
-            gap: '3rem',
-            gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 2fr)',
-            alignItems: 'start',
-          }}
-          className="features__grid"
-        >
-          <Stack gap="1rem">
-            <span
-              style={{
-                fontSize: '0.75rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                fontWeight: 600,
-                color: 'var(--mizu-action-primary-default)',
-              }}
-            >
+    <section id="features" className="relative px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="features__grid grid items-start gap-12 lg:grid-cols-[1fr_2fr]">
+          <div className="flex flex-col gap-4">
+            <span className="text-xs font-semibold uppercase tracking-widest text-primary">
               Features
             </span>
-            <h2
-              style={{
-                margin: 0,
-                fontSize: 'clamp(2rem, 4vw, 3rem)',
-                fontWeight: 700,
-                lineHeight: 1.1,
-                letterSpacing: '-0.02em',
-                color: 'var(--mizu-text-primary)',
-              }}
-            >
+            <h2 className="m-0 text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl">
               Everything the design system exposes —
               <br />
-              <span style={{ color: 'var(--mizu-text-secondary)' }}>now tweakable.</span>
+              <span className="text-muted-foreground">now tweakable.</span>
             </h2>
-            <p
-              style={{
-                margin: 0,
-                color: 'var(--mizu-text-secondary)',
-                fontSize: '1rem',
-                lineHeight: 1.6,
-                maxWidth: '24rem',
-              }}
-            >
-              tweakmizu gives you direct control of the same {`--mizu-*`} tokens that{' '}
-              <code
-                style={{
-                  fontFamily: 'var(--mizu-font-family-mono)',
-                  fontSize: '0.85em',
-                  background: 'var(--mizu-surface-secondary)',
-                  padding: '0.125rem 0.375rem',
-                  borderRadius: 'var(--mizu-radius-sm)',
-                }}
-              >
+            <p className="m-0 max-w-sm text-base leading-relaxed text-muted-foreground">
+              tweakmizu gives you direct control of the same{' '}
+              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">
+                --mizu-*
+              </code>{' '}
+              tokens that{' '}
+              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">
                 @aspect/tokens
               </code>{' '}
               ships to every app in the monorepo.
             </p>
-          </Stack>
+          </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-              gap: '1rem',
-            }}
-            className="features__list"
-          >
+          <div className="features__list grid gap-4 sm:grid-cols-2">
             {features.map(({ icon: Icon, title, body }) => (
               <div
                 key={title}
-                style={{
-                  padding: '1.5rem',
-                  borderRadius: 'var(--mizu-radius-lg)',
-                  border: '1px solid var(--mizu-border-default)',
-                  background: 'var(--mizu-surface-default)',
-                  transition:
-                    'transform var(--mizu-duration-fast), border-color var(--mizu-duration-fast), box-shadow var(--mizu-duration-fast)',
-                }}
-                className="feature-card"
+                className="feature-card rounded-lg border border-border bg-background p-6 transition-all"
               >
-                <div
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 40,
-                    height: 40,
-                    borderRadius: 'var(--mizu-radius-md)',
-                    background:
-                      'color-mix(in srgb, var(--mizu-action-primary-default) 10%, transparent)',
-                    color: 'var(--mizu-action-primary-default)',
-                    marginBottom: '0.875rem',
-                  }}
-                >
+                <div className="mb-3.5 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary">
                   <Icon size={20} />
                 </div>
-                <h3
-                  style={{
-                    margin: '0 0 0.375rem',
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    color: 'var(--mizu-text-primary)',
-                  }}
-                >
-                  {title}
-                </h3>
-                <p
-                  style={{
-                    margin: 0,
-                    color: 'var(--mizu-text-secondary)',
-                    fontSize: '0.875rem',
-                    lineHeight: 1.55,
-                  }}
-                >
-                  {body}
-                </p>
+                <h3 className="mb-1.5 text-base font-semibold text-foreground">{title}</h3>
+                <p className="m-0 text-sm leading-[1.55] text-muted-foreground">{body}</p>
               </div>
             ))}
           </div>

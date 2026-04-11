@@ -3,56 +3,20 @@ import { Github } from 'lucide-react';
 
 export function SiteFooter() {
   return (
-    <footer
-      style={{
-        borderTop: '1px solid var(--mizu-border-default)',
-        background: 'var(--mizu-surface-default)',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: '80rem',
-          margin: '0 auto',
-          padding: '2.5rem 1.5rem',
-          display: 'grid',
-          gap: '2rem',
-          gridTemplateColumns: 'minmax(0, 2fr) repeat(2, minmax(0, 1fr))',
-        }}
-      >
-        <div style={{ maxWidth: '28rem' }}>
+    <footer className="border-t border-border bg-background">
+      <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-[2fr_1fr_1fr]">
+        <div className="max-w-md">
           <Link
             href="/"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              color: 'var(--mizu-text-primary)',
-              textDecoration: 'none',
-              fontWeight: 700,
-              fontSize: '1.125rem',
-            }}
+            className="flex items-center gap-2 text-lg font-bold text-foreground no-underline"
           >
             <span
               aria-hidden="true"
-              style={{
-                display: 'inline-block',
-                width: '1.5rem',
-                height: '1.5rem',
-                borderRadius: 'var(--mizu-radius-md)',
-                background:
-                  'linear-gradient(135deg, var(--mizu-action-primary-default), var(--mizu-feedback-success-default))',
-              }}
+              className="inline-block size-6 rounded-md bg-gradient-to-br from-primary to-success"
             />
             tweakmizu
           </Link>
-          <p
-            style={{
-              marginTop: '0.75rem',
-              color: 'var(--mizu-text-secondary)',
-              fontSize: '0.875rem',
-              lineHeight: 1.6,
-            }}
-          >
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
             A visual editor for the mizu design system. Start from a preset, adjust tokens, preview
             in real time, and export the CSS.
           </p>
@@ -60,15 +24,7 @@ export function SiteFooter() {
             href="https://github.com/catalysync/mizu"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.375rem',
-              marginTop: '1rem',
-              color: 'var(--mizu-text-secondary)',
-              textDecoration: 'none',
-              fontSize: '0.875rem',
-            }}
+            className="mt-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
           >
             <Github size={16} /> GitHub
           </a>
@@ -93,27 +49,10 @@ export function SiteFooter() {
         />
       </div>
 
-      <div
-        style={{
-          borderTop: '1px solid var(--mizu-border-default)',
-          padding: '1rem 1.5rem',
-        }}
-      >
-        <div
-          style={{
-            maxWidth: '80rem',
-            margin: '0 auto',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '0.5rem',
-            color: 'var(--mizu-text-secondary)',
-            fontSize: '0.75rem',
-          }}
-        >
+      <div className="border-t border-border px-6 py-4">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
           <span>© {new Date().getFullYear()} mizu design system</span>
-          <Link href="/privacy-policy" style={{ color: 'inherit' }}>
+          <Link href="/privacy-policy" className="text-inherit no-underline">
             Privacy Policy
           </Link>
         </div>
@@ -131,28 +70,15 @@ function FooterGroup({
 }) {
   return (
     <div>
-      <h4
-        style={{
-          fontSize: '0.75rem',
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em',
-          fontWeight: 600,
-          color: 'var(--mizu-text-primary)',
-          margin: '0 0 0.75rem',
-        }}
-      >
+      <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-foreground">
         {title}
       </h4>
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.5rem' }}>
+      <ul className="grid list-none gap-2 p-0 m-0">
         {items.map((item) => (
           <li key={item.href}>
             <Link
               href={item.href}
-              style={{
-                color: 'var(--mizu-text-secondary)',
-                textDecoration: 'none',
-                fontSize: '0.875rem',
-              }}
+              className="text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
             >
               {item.label}
             </Link>

@@ -8,9 +8,9 @@ import { HowItWorks } from '@/components/home/how-it-works';
 
 export default function Home() {
   return (
-    <div style={{ display: 'flex', minHeight: '100dvh', flexDirection: 'column' }}>
+    <div className="flex min-h-[100dvh] flex-col">
       <SiteHeader />
-      <main style={{ flex: 1 }}>
+      <main className="flex-1">
         <Hero />
         <Features />
         <HowItWorks />

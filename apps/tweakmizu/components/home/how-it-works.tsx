@@ -18,105 +18,31 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section
-      id="how-it-works"
-      style={{
-        padding: '6rem 1.5rem',
-        background: 'var(--mizu-surface-secondary)',
-      }}
-    >
-      <div style={{ maxWidth: '72rem', margin: '0 auto' }}>
-        <div style={{ maxWidth: '40rem', marginBottom: '3rem' }}>
-          <span
-            style={{
-              fontSize: '0.75rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              fontWeight: 600,
-              color: 'var(--mizu-action-primary-default)',
-            }}
-          >
+    <section id="how-it-works" className="bg-muted px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 max-w-2xl">
+          <span className="text-xs font-semibold uppercase tracking-widest text-primary">
             Workflow
           </span>
-          <h2
-            style={{
-              margin: '0.75rem 0 0.75rem',
-              fontSize: 'clamp(2rem, 4vw, 3rem)',
-              fontWeight: 700,
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-              color: 'var(--mizu-text-primary)',
-            }}
-          >
+          <h2 className="mt-3 mb-3 text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl">
             Three steps from preset to CSS.
           </h2>
-          <p
-            style={{
-              margin: 0,
-              color: 'var(--mizu-text-secondary)',
-              fontSize: '1rem',
-              lineHeight: 1.6,
-            }}
-          >
+          <p className="m-0 text-base leading-relaxed text-muted-foreground">
             No account, no build step, no lock-in. The whole flow lives in your browser.
           </p>
         </div>
 
-        <div
-          className="how-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '2rem',
-          }}
-        >
+        <div className="how-grid grid gap-8 md:grid-cols-3">
           {steps.map((s) => (
             <div key={s.n}>
-              <div style={{ position: 'relative', marginBottom: '1rem' }}>
-                <span
-                  style={{
-                    display: 'block',
-                    fontSize: '5rem',
-                    fontWeight: 800,
-                    lineHeight: 1,
-                    color: 'color-mix(in srgb, var(--mizu-text-secondary) 15%, transparent)',
-                    letterSpacing: '-0.04em',
-                  }}
-                >
+              <div className="relative mb-4">
+                <span className="block text-[5rem] font-extrabold leading-none tracking-tighter text-muted-foreground/20">
                   {s.n}
                 </span>
-                <span
-                  style={{
-                    position: 'absolute',
-                    bottom: '0.25rem',
-                    left: '0.25rem',
-                    width: '2.5rem',
-                    height: '3px',
-                    borderRadius: '9999px',
-                    background: 'var(--mizu-action-primary-default)',
-                  }}
-                />
+                <span className="absolute bottom-1 left-1 h-[3px] w-10 rounded-full bg-primary" />
               </div>
-              <h3
-                style={{
-                  margin: '0 0 0.5rem',
-                  fontSize: '1.25rem',
-                  fontWeight: 700,
-                  color: 'var(--mizu-text-primary)',
-                }}
-              >
-                {s.title}
-              </h3>
-              <p
-                style={{
-                  margin: 0,
-                  color: 'var(--mizu-text-secondary)',
-                  fontSize: '0.9375rem',
-                  lineHeight: 1.6,
-                }}
-              >
-                {s.body}
-              </p>
+              <h3 className="mb-2 text-xl font-bold text-foreground">{s.title}</h3>
+              <p className="m-0 text-[0.9375rem] leading-relaxed text-muted-foreground">{s.body}</p>
             </div>
           ))}
         </div>
