@@ -1,0 +1,69 @@
+.mizu-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-1);
+  min-inline-size: 0;
+}
+
+.mizu-field__label-row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--mizu-spacing-2);
+  justify-content: space-between;
+}
+
+.mizu-field__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mizu-spacing-1);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-weight: var(--mizu-font-weight-medium);
+  color: var(--mizu-text-primary);
+  line-height: 1.25rem;
+}
+
+.mizu-field__required {
+  color: var(--mizu-feedback-danger-default);
+  font-weight: var(--mizu-font-weight-regular);
+}
+
+.mizu-field__optional {
+  color: var(--mizu-text-tertiary);
+  font-weight: var(--mizu-font-weight-regular);
+  font-size: var(--mizu-font-size-xs);
+}
+
+.mizu-field__info {
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  color: var(--mizu-text-secondary);
+  line-height: 1rem;
+  margin: 0;
+}
+
+.mizu-field__description {
+  margin: 0 0 var(--mizu-spacing-1) 0;
+}
+
+.mizu-field__error {
+  color: var(--mizu-feedback-danger-default);
+  font-weight: var(--mizu-font-weight-medium);
+}
+
+.mizu-field__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.mizu-field[data-disabled="true"] .mizu-field__label,
+.mizu-field[data-disabled="true"] .mizu-field__info {
+  opacity: 0.5;
+}
