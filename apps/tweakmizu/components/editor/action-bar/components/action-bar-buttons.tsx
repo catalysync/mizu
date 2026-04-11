@@ -5,6 +5,7 @@ import { useEditorStore } from '@/store/editor-store';
 import { CodeButton } from './code-button';
 import { ImportButton } from './import-button';
 import { ResetButton } from './reset-button';
+import { ShareButton } from './share-button';
 import { UndoRedoButtons } from './undo-redo-buttons';
 
 export function ActionBarButtons() {
@@ -17,6 +18,7 @@ export function ActionBarButtons() {
       <ResetButton onClick={resetToCurrentPreset} disabled={!hasUnsavedChanges()} />
       <Separator orientation="vertical" style={{ height: '1.5rem', margin: '0 0.25rem' }} />
       <ImportButton />
+      <ShareButton />
       <CodeButton />
     </>
   );

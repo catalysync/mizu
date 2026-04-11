@@ -10,6 +10,7 @@ import {
   TabsTrigger,
 } from '@aspect/react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useThemeFromUrl } from '@/hooks/use-theme-from-url';
 import { useEditorStore } from '@/store/editor-store';
 import type { ThemeStyleProps } from '@/types/theme';
 import { Sliders } from 'lucide-react';
@@ -22,6 +23,8 @@ const Editor: React.FC = () => {
   const themeState = useEditorStore((state) => state.themeState);
   const setThemeState = useEditorStore((state) => state.setThemeState);
   const isMobile = useIsMobile();
+
+  useThemeFromUrl();
 
   const handleStyleChange = React.useCallback(
     (updates: Partial<ThemeStyleProps>) => {
