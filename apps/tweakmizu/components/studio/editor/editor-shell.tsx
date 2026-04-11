@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
-import { Palette, Ruler, RotateCcw, Type, Undo2, Redo2 } from 'lucide-react';
+import { Palette, Ruler, RotateCcw, Sparkles, Type, Undo2, Redo2 } from 'lucide-react';
 import { useStudioStore } from '@/store/studio-store';
 import type { ThemeStyleProps } from '@/types/theme';
 import { cn } from '@/utils/cn';
+import { CommandPalette } from './command-palette';
 import { EditorPreviewPanel } from './preview-panel';
 import { ColorsTab } from './tabs/colors-tab';
 import { TypographyTab } from './tabs/typography-tab';
@@ -36,11 +37,13 @@ export function StudioEditorShell() {
 
   return (
     <Stack gap="1rem">
+      <CommandPalette />
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <Inline gap="0.5rem" align="center">
           <Badge tone="info">Editor</Badge>
           <span className="text-sm text-muted-foreground">
-            Live preview on the right reflects every token change.
+            Press <kbd className="rounded border border-border px-1 py-0.5 text-xs">⌘K</kbd> to edit
+            with AI.
           </span>
         </Inline>
         <Inline gap="0.375rem" align="center">
@@ -53,6 +56,21 @@ export function StudioEditorShell() {
           <Button size="sm" variant="ghost" onClick={resetExtensions}>
             <RotateCcw className="mr-1 h-4 w-4" />
             Reset
+          </Button>
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={() => {
+              const event = new KeyboardEvent('keydown', {
+                key: 'k',
+                metaKey: true,
+                bubbles: true,
+              });
+              window.dispatchEvent(event);
+            }}
+          >
+            <Sparkles className="mr-1 h-4 w-4" />
+            AI edit
           </Button>
         </Inline>
       </Inline>
