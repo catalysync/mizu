@@ -1,0 +1,108 @@
+.mizu-number-input {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  min-inline-size: 0;
+}
+
+.mizu-number-input__input {
+  padding-inline-end: 2.5rem;
+  text-align: start;
+  font-variant-numeric: tabular-nums;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.mizu-number-input__input::-webkit-outer-spin-button,
+.mizu-number-input__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.mizu-number-input[data-align="end"] .mizu-number-input__input {
+  text-align: end;
+}
+
+.mizu-number-input__prefix,
+.mizu-number-input__suffix {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--mizu-text-secondary);
+  font-size: var(--mizu-font-size-sm);
+  font-family: var(--mizu-font-family-sans);
+}
+
+.mizu-number-input__prefix {
+  inset-inline-start: var(--mizu-spacing-3);
+}
+
+.mizu-number-input[data-has-prefix="true"] .mizu-number-input__input {
+  padding-inline-start: 1.75rem;
+}
+
+.mizu-number-input__suffix {
+  inset-inline-end: 2.25rem;
+}
+
+.mizu-number-input__steppers {
+  position: absolute;
+  inset-inline-end: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.mizu-number-input__stepper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 0.95rem;
+  padding: 0;
+  background: transparent;
+  color: var(--mizu-text-secondary);
+  border: 1px solid transparent;
+  border-radius: var(--mizu-radius-sm);
+  cursor: pointer;
+  font-size: 0.65rem;
+  line-height: 1;
+  transition:
+    background-color var(--mizu-duration-fast) var(--mizu-easing-out),
+    color var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+.mizu-number-input__stepper:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-number-input__stepper:focus-visible {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: -1px;
+}
+
+.mizu-number-input__stepper:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mizu-number-input[data-hide-steppers="true"] .mizu-number-input__steppers {
+  display: none;
+}
+
+.mizu-number-input[data-hide-steppers="true"] .mizu-number-input__input {
+  padding-inline-end: var(--mizu-spacing-3);
+}
+
+.mizu-number-input[data-hide-steppers="true"][data-has-suffix="true"] .mizu-number-input__input {
+  padding-inline-end: 2.5rem;
+}
+
+.mizu-number-input[data-hide-steppers="true"] .mizu-number-input__suffix {
+  inset-inline-end: var(--mizu-spacing-3);
+}

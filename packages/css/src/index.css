@@ -51,6 +51,7 @@
 @import url("./components/link.css");
 @import url("./components/fieldset.css");
 @import url("./components/field.css");
+@import url("./components/number-input.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
