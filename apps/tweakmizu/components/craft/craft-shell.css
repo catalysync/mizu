@@ -1,0 +1,246 @@
+.craft-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--mizu-surface-default);
+  color: var(--mizu-text-primary);
+  font-family: var(--mizu-font-family-sans);
+}
+
+.craft-shell__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 3.25rem;
+  padding: 0 0.75rem;
+  background: var(--mizu-surface-default);
+  border-bottom: 1px solid var(--mizu-border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.craft-shell__menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  background: transparent;
+  color: var(--mizu-text-primary);
+  border: 1px solid transparent;
+  border-radius: var(--mizu-radius-md);
+  cursor: pointer;
+}
+
+.craft-shell__menu-btn:hover {
+  background: var(--mizu-surface-secondary);
+}
+
+.craft-shell__menu-btn:focus-visible {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: 1px;
+}
+
+/* Hide hamburger on desktop (sidebar is always visible). */
+@media (min-width: 768px) {
+  .craft-shell__menu-btn {
+    display: none;
+  }
+}
+
+.craft-shell__brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.craft-shell__brand-mark {
+  color: var(--mizu-action-primary-default);
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.craft-shell__brand-text {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+}
+
+.craft-shell__profile-name {
+  color: var(--mizu-text-secondary);
+  font-size: 0.8125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+  .craft-shell__profile-name {
+    display: none;
+  }
+}
+
+.craft-shell__header-actions {
+  margin-inline-start: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.craft-shell__export-label {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .craft-shell__export-label {
+    display: inline;
+    margin-inline-start: 0.375rem;
+  }
+}
+
+.craft-shell__body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  position: relative;
+}
+
+.craft-shell__nav {
+  position: fixed;
+  inset: 3.25rem 0 0 0;
+  transform: translateX(-100%);
+  transition: transform var(--mizu-duration-normal, 200ms) var(--mizu-easing-out, ease-out);
+  z-index: 20;
+  background: var(--mizu-surface-default);
+  border-right: 1px solid var(--mizu-border-subtle);
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.craft-shell__nav[data-mobile-open] {
+  transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  .craft-shell__nav {
+    position: sticky;
+    top: 3.25rem;
+    align-self: flex-start;
+    width: 15rem;
+    height: calc(100dvh - 3.25rem);
+    transform: none;
+    inset: auto;
+  }
+}
+
+.craft-shell__backdrop {
+  position: fixed;
+  inset: 3.25rem 0 0 0;
+  background: color-mix(in srgb, black 40%, transparent);
+  border: 0;
+  padding: 0;
+  z-index: 19;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .craft-shell__backdrop {
+    display: none;
+  }
+}
+
+.craft-shell__nav-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.craft-shell__nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.craft-shell__nav-heading {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--mizu-text-tertiary);
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.125rem;
+}
+
+.craft-shell__nav-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  padding: 0.4375rem 0.625rem;
+  border-radius: var(--mizu-radius-md);
+  color: var(--mizu-text-primary);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.craft-shell__nav-item:hover {
+  background: var(--mizu-surface-secondary);
+}
+
+.craft-shell__nav-item--active {
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 12%, transparent);
+  color: var(--mizu-action-primary-default);
+  font-weight: 500;
+}
+
+.craft-shell__nav-label {
+  font-weight: inherit;
+}
+
+.craft-shell__nav-hint {
+  color: var(--mizu-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+.craft-shell__nav-item--active .craft-shell__nav-hint {
+  color: color-mix(in srgb, var(--mizu-action-primary-default) 70%, transparent);
+}
+
+.craft-shell__nav-footer {
+  padding: 0.75rem 0.625rem 0;
+  border-top: 1px solid var(--mizu-border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.craft-shell__user-name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.craft-shell__user-email {
+  font-size: 0.6875rem;
+  color: var(--mizu-text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.craft-shell__main {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .craft-shell__main {
+    padding: 1.5rem 2rem 4rem;
+  }
+}

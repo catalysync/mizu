@@ -1,0 +1,206 @@
+.craft-foundation {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.craft-foundation__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 44rem;
+}
+
+.craft-foundation__title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.craft-foundation__lede {
+  color: var(--mizu-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.craft-foundation__grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .craft-foundation__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 26rem);
+    align-items: start;
+  }
+}
+
+.craft-foundation__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.craft-foundation__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.craft-foundation__section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.craft-foundation__section-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--mizu-text-primary);
+}
+
+.craft-foundation__section-hint {
+  color: var(--mizu-text-tertiary);
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.craft-foundation__chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.craft-foundation__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-md);
+  color: var(--mizu-text-primary);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.craft-foundation__chip:hover {
+  background: var(--mizu-surface-secondary);
+}
+
+.craft-foundation__chip[data-active] {
+  border-color: var(--mizu-action-primary-default);
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 10%, transparent);
+  color: var(--mizu-action-primary-default);
+}
+
+.craft-foundation__chip-swatch {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: var(--mizu-radius-sm);
+  border: 1px solid color-mix(in srgb, black 12%, transparent);
+}
+
+.craft-foundation__hue-slider {
+  width: 100%;
+  height: 0.75rem;
+  border-radius: 999px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: linear-gradient(
+    to right,
+    hsl(0 70% 50%),
+    hsl(60 70% 50%),
+    hsl(120 70% 50%),
+    hsl(180 70% 50%),
+    hsl(240 70% 50%),
+    hsl(300 70% 50%),
+    hsl(360 70% 50%)
+  );
+  cursor: pointer;
+}
+
+.craft-foundation__hue-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: #fff;
+  border: 2px solid var(--mizu-text-primary);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.craft-foundation__hue-slider::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  background: #fff;
+  border: 2px solid var(--mizu-text-primary);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.craft-foundation__options {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 560px) {
+  .craft-foundation__options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.craft-foundation__option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-md);
+  color: var(--mizu-text-primary);
+  font-family: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.craft-foundation__option:hover {
+  border-color: var(--mizu-border-default);
+}
+
+.craft-foundation__option[data-active] {
+  border-color: var(--mizu-action-primary-default);
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 8%, transparent);
+}
+
+.craft-foundation__option-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.craft-foundation__option-hint {
+  color: var(--mizu-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+.craft-foundation__preview {
+  position: sticky;
+  top: 4.5rem;
+}
+
+@media (max-width: 1023px) {
+  .craft-foundation__preview {
+    position: static;
+  }
+}

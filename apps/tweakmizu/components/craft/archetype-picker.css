@@ -1,0 +1,216 @@
+.craft-archetypes {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.craft-archetypes__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.craft-archetypes__title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.craft-archetypes__lede {
+  color: var(--mizu-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 44rem;
+}
+
+.craft-archetypes__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .craft-archetypes__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .craft-archetypes__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.craft-archetypes__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-lg);
+  overflow: hidden;
+  transition:
+    transform 180ms ease-out,
+    border-color 180ms ease-out;
+}
+
+.craft-archetypes__card:hover {
+  border-color: var(--mizu-border-default);
+  transform: translateY(-2px);
+}
+
+.craft-archetypes__card[data-active] {
+  border-color: var(--mizu-action-primary-default);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mizu-action-primary-default) 18%, transparent);
+}
+
+.craft-archetypes__swatch {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  min-height: 9rem;
+  background: var(--mizu-surface-default);
+  border-bottom: 1px solid var(--mizu-border-subtle);
+}
+
+.craft-archetypes__swatch-row {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.craft-archetypes__swatch-chip {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--mizu-radius-sm);
+  display: inline-block;
+}
+
+.craft-archetypes__swatch-chip--primary {
+  background: var(--mizu-action-primary-default);
+}
+
+.craft-archetypes__swatch-chip--success {
+  background: var(--mizu-feedback-success-default);
+}
+
+.craft-archetypes__swatch-chip--warning {
+  background: var(--mizu-feedback-warning-default);
+}
+
+.craft-archetypes__swatch-chip--danger {
+  background: var(--mizu-feedback-danger-default);
+}
+
+.craft-archetypes__swatch-mock {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.craft-archetypes__swatch-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-family: var(--mizu-font-family-sans);
+  border-radius: var(--mizu-radius-md);
+}
+
+.craft-archetypes__swatch-btn--primary {
+  background: var(--mizu-action-primary-default);
+  color: #fff;
+}
+
+.craft-archetypes__swatch-btn--ghost {
+  background: transparent;
+  color: var(--mizu-text-primary);
+  border: 1px solid var(--mizu-border-default);
+}
+
+.craft-archetypes__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.125rem 1.25rem;
+  flex: 1;
+}
+
+.craft-archetypes__card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.craft-archetypes__card-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.craft-archetypes__card-tagline {
+  font-size: 0.75rem;
+  color: var(--mizu-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.craft-archetypes__card-desc {
+  color: var(--mizu-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+
+.craft-archetypes__card-inspired {
+  color: var(--mizu-text-tertiary);
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.craft-archetypes__prompt {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: color-mix(
+    in srgb,
+    var(--mizu-action-primary-default) 8%,
+    var(--mizu-surface-default)
+  );
+  border: 1px solid color-mix(in srgb, var(--mizu-action-primary-default) 24%, transparent);
+  border-radius: var(--mizu-radius-lg);
+}
+
+.craft-archetypes__prompt-icon {
+  color: var(--mizu-action-primary-default);
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.craft-archetypes__prompt-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.craft-archetypes__prompt-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.craft-archetypes__prompt-desc {
+  color: var(--mizu-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  margin: 0;
+}
