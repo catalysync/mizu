@@ -1,28 +1,21 @@
 'use client';
 
 import React, { useCallback, useMemo, useState } from 'react';
-import { Button, Popover, PopoverContent, PopoverTrigger, ScrollArea, Stack } from '@aspect/react';
+import { Button, Popover, PopoverContent, PopoverTrigger, ScrollArea } from '@aspect/react';
 import { ArrowLeft, ArrowRight, Check, ChevronDown, Search, Shuffle } from 'lucide-react';
 import { useEditorStore } from '@/store/editor-store';
 import { useThemePresetStore } from '@/store/preset-store';
 import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
+import { cn } from '@/utils/cn';
 
 const ColorBox: React.FC<{ color: string }> = ({ color }) => (
-  <div
-    style={{
-      width: 12,
-      height: 12,
-      borderRadius: 'var(--mizu-radius-sm)',
-      border: '1px solid var(--mizu-border-default)',
-      backgroundColor: color,
-    }}
-  />
+  <div className="size-3 rounded-sm border border-border" style={{ backgroundColor: color }} />
 );
 
 const PresetSwatch: React.FC<{ name: string }> = ({ name }) => {
   const styles = getPresetThemeStyles(name);
   return (
-    <div style={{ display: 'flex', gap: 2 }}>
+    <div className="flex gap-0.5">
       <ColorBox color={styles['action-primary-default']} />
       <ColorBox color={styles['surface-default']} />
       <ColorBox color={styles['text-primary']} />
@@ -78,16 +71,13 @@ export default function ThemePresetSelect() {
   const currentLabel = presets[currentName]?.label ?? 'Default';
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', height: '3.5rem', padding: '0 0.5rem' }}>
+    <div className="flex h-14 items-center px-2">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <Button
-            variant="ghost"
-            style={{ flex: 1, justifyContent: 'space-between', gap: '0.75rem' }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
+          <Button variant="ghost" className="flex-1 justify-between gap-3">
+            <div className="flex min-w-0 items-center gap-3">
               {currentName !== 'default' && <PresetSwatch name={currentName} />}
-              <span style={{ fontWeight: 500, textTransform: 'capitalize' }}>
+              <span className="font-medium capitalize">
                 {currentLabel}
                 {hasUnsaved() && '*'}
               </span>
@@ -95,51 +85,24 @@ export default function ThemePresetSelect() {
             <ChevronDown size={16} />
           </Button>
         </PopoverTrigger>
-        <PopoverContent style={{ width: 360, padding: 0 }} align="start">
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.625rem',
-              padding: '0.75rem 1rem',
-              borderBottom: '1px solid var(--mizu-border-default)',
-            }}
-          >
-            <Search size={14} style={{ color: 'var(--mizu-text-secondary)', flexShrink: 0 }} />
+        <PopoverContent align="start" className="w-[360px] p-0">
+          <div className="flex items-center gap-2.5 border-b border-border px-4 py-3">
+            <Search size={14} className="shrink-0 text-muted-foreground" />
             <input
               placeholder="Search themes..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              style={{
-                flex: 1,
-                minWidth: 0,
-                border: 'none',
-                background: 'transparent',
-                padding: '0.125rem 0',
-                fontSize: '0.875rem',
-                fontFamily: 'var(--mizu-font-family-sans)',
-                color: 'var(--mizu-text-primary)',
-                outline: 'none',
-              }}
+              className="min-w-0 flex-1 border-none bg-transparent py-0.5 font-sans text-sm text-foreground outline-none"
             />
           </div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '0.5rem 1rem',
-              fontSize: 12,
-              color: 'var(--mizu-text-secondary)',
-            }}
-          >
+          <div className="flex items-center justify-between px-4 py-2 text-xs text-muted-foreground">
             <span>{filtered.length} themes</span>
             <Button variant="ghost" size="sm" onClick={randomize} aria-label="Random theme">
               <Shuffle size={14} />
             </Button>
           </div>
-          <ScrollArea style={{ height: 360 }}>
-            <Stack gap="0" style={{ padding: '0.25rem' }}>
+          <ScrollArea className="h-[360px]">
+            <div className="flex flex-col p-1">
               {filtered.map((name) => {
                 const isActive = name === currentName;
                 return (
@@ -151,40 +114,25 @@ export default function ThemePresetSelect() {
                       setSearch('');
                       setOpen(false);
                     }}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      padding: '0.5rem 0.625rem',
-                      borderRadius: 'var(--mizu-radius-sm)',
-                      border: 'none',
-                      background: isActive ? 'var(--mizu-surface-secondary)' : 'transparent',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                      width: '100%',
-                    }}
+                    className={cn(
+                      'flex w-full cursor-pointer items-center gap-2 rounded-sm border-none px-2.5 py-2 text-left',
+                      isActive ? 'bg-muted' : 'bg-transparent',
+                    )}
                   >
                     {name !== 'default' && <PresetSwatch name={name} />}
-                    <span
-                      style={{
-                        flex: 1,
-                        fontSize: 13,
-                        fontWeight: 500,
-                        textTransform: 'capitalize',
-                      }}
-                    >
+                    <span className="flex-1 text-[13px] font-medium capitalize">
                       {presets[name]?.label ?? 'Default'}
                     </span>
                     {isActive && <Check size={14} />}
                   </button>
                 );
               })}
-            </Stack>
+            </div>
           </ScrollArea>
         </PopoverContent>
       </Popover>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 2, marginLeft: '0.25rem' }}>
+      <div className="ml-1 flex items-center gap-0.5">
         <Button variant="ghost" size="sm" onClick={() => cycle('prev')} aria-label="Previous theme">
           <ArrowLeft size={14} />
         </Button>

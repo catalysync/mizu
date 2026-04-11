@@ -78,6 +78,199 @@
       "interface": "CheckboxProps"
     }
   ],
+  "calendar": [
+    {
+      "name": "value",
+      "type": "Date | null",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "onChange",
+      "type": "(date: Date) => void",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "min",
+      "type": "Date | null",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "max",
+      "type": "Date | null",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "rangeStart",
+      "type": "Date | null",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "rangeEnd",
+      "type": "Date | null",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "month",
+      "type": "Date",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "onMonthChange",
+      "type": "(month: Date) => void",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "weekStartsOn",
+      "type": "Weekday",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "locale",
+      "type": "string",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "footer",
+      "type": "React.ReactNode",
+      "interface": "CalendarProps"
+    },
+    {
+      "name": "dayDisabled",
+      "type": "(date: Date) => boolean",
+      "interface": "CalendarProps"
+    }
+  ],
+  "datepicker": [
+    {
+      "name": "value",
+      "type": "string | null",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string | null",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string | null) => void",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "min",
+      "type": "string | null",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "max",
+      "type": "string | null",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "locale",
+      "type": "string",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "weekStartsOn",
+      "type": "Weekday",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "clearable",
+      "type": "boolean",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "clearLabel",
+      "type": "string",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "todayLabel",
+      "type": "string",
+      "interface": "DatePickerProps"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "interface": "DatePickerProps"
+    }
+  ],
+  "daterangepicker": [
+    {
+      "name": "value",
+      "type": "DateRange | null",
+      "interface": "DateRangePickerProps"
+    },
+    {
+      "name": "defaultValue",
+      "type": "DateRange | null",
+      "interface": "DateRangePickerProps"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: DateRange) => void",
+      "interface": "DateRangePickerProps"
+    },
+    {
+      "name": "min",
+      "type": "string | null",
+      "interface": "DateRangePickerProps"
+    },
+    {
+      "name": "max",
+      "type": "string | null",
+      "interface": "DateRangePickerProps"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "interface": "DateRangePickerProps"
+    },
+    {
+      "name": "locale",
+      "type": "string",
+      "interface": "DateRangePickerProps"
+    },
+    {
+      "name": "weekStartsOn",
+      "type": "Weekday",
+      "interface": "DateRangePickerProps"
+    },
+    {
+      "name": "clearLabel",
+      "type": "string",
+      "interface": "DateRangePickerProps"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "interface": "DateRangePickerProps"
+    }
+  ],
+  "definitionlist": [
+    {
+      "name": "items",
+      "type": "DefinitionListItem[]",
+      "interface": "DefinitionListProps"
+    },
+    {
+      "name": "orientation",
+      "type": "DefinitionListOrientation",
+      "interface": "DefinitionListProps"
+    },
+    {
+      "name": "columns",
+      "type": "1 | 2 | 3",
+      "interface": "DefinitionListProps"
+    }
+  ],
   "drawer": [
     {
       "name": "side",
@@ -112,6 +305,107 @@
       "name": "actions",
       "type": "React.ReactNode",
       "interface": "EmptyStateProps"
+    }
+  ],
+  "field": [
+    {
+      "name": "label",
+      "type": "React.ReactNode",
+      "interface": "FieldProps"
+    },
+    {
+      "name": "description",
+      "type": "React.ReactNode",
+      "interface": "FieldProps"
+    },
+    {
+      "name": "errorMessage",
+      "type": "React.ReactNode",
+      "interface": "FieldProps"
+    },
+    {
+      "name": "info",
+      "type": "React.ReactNode",
+      "interface": "FieldProps"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "interface": "FieldProps"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "interface": "FieldProps"
+    },
+    {
+      "name": "optionalLabel",
+      "type": "string",
+      "interface": "FieldProps"
+    },
+    {
+      "name": "requiredLabel",
+      "type": "string",
+      "interface": "FieldProps"
+    },
+    {
+      "name": "showOptionalHint",
+      "type": "boolean",
+      "interface": "FieldProps"
+    },
+    {
+      "name": "htmlFor",
+      "type": "string",
+      "interface": "FieldProps"
+    }
+  ],
+  "fieldset": [
+    {
+      "name": "legend",
+      "type": "React.ReactNode",
+      "interface": "FieldsetProps"
+    },
+    {
+      "name": "description",
+      "type": "React.ReactNode",
+      "interface": "FieldsetProps"
+    }
+  ],
+  "fileinput": [
+    {
+      "name": "onFilesChange",
+      "type": "(files: File[]) => void",
+      "interface": "FileInputProps"
+    },
+    {
+      "name": "maxSize",
+      "type": "number",
+      "interface": "FileInputProps"
+    },
+    {
+      "name": "maxFiles",
+      "type": "number",
+      "interface": "FileInputProps"
+    },
+    {
+      "name": "hint",
+      "type": "React.ReactNode",
+      "interface": "FileInputProps"
+    },
+    {
+      "name": "browseLabel",
+      "type": "React.ReactNode",
+      "interface": "FileInputProps"
+    },
+    {
+      "name": "dropLabel",
+      "type": "React.ReactNode",
+      "interface": "FileInputProps"
+    },
+    {
+      "name": "inputClassName",
+      "type": "string",
+      "interface": "FileInputProps"
     }
   ],
   "filterbar": [
@@ -151,6 +445,60 @@
       "interface": "FilterBarProps"
     }
   ],
+  "form": [
+    {
+      "name": "title",
+      "type": "React.ReactNode",
+      "interface": "FormProps"
+    },
+    {
+      "name": "description",
+      "type": "React.ReactNode",
+      "interface": "FormProps"
+    },
+    {
+      "name": "layout",
+      "type": "FormLayout",
+      "interface": "FormProps"
+    },
+    {
+      "name": "columns",
+      "type": "2 | 3",
+      "interface": "FormProps"
+    },
+    {
+      "name": "actions",
+      "type": "React.ReactNode",
+      "interface": "FormProps"
+    },
+    {
+      "name": "actionsAlign",
+      "type": "'start' | 'end' | 'between'",
+      "interface": "FormProps"
+    },
+    {
+      "name": "errorSummary",
+      "type": "React.ReactNode",
+      "interface": "FormProps"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "interface": "FormProps"
+    }
+  ],
+  "heading": [
+    {
+      "name": "level",
+      "type": "HeadingLevel",
+      "interface": "HeadingProps"
+    },
+    {
+      "name": "size",
+      "type": "HeadingSize",
+      "interface": "HeadingProps"
+    }
+  ],
   "input": [
     {
       "name": "error",
@@ -166,6 +514,196 @@
       "name": "label",
       "type": "string",
       "interface": "InputProps"
+    }
+  ],
+  "label": [
+    {
+      "name": "required",
+      "type": "boolean",
+      "interface": "LabelProps"
+    },
+    {
+      "name": "requiredLabel",
+      "type": "string",
+      "interface": "LabelProps"
+    }
+  ],
+  "link": [
+    {
+      "name": "variant",
+      "type": "LinkVariant",
+      "interface": "LinkProps"
+    },
+    {
+      "name": "external",
+      "type": "boolean",
+      "interface": "LinkProps"
+    }
+  ],
+  "numberinput": [
+    {
+      "name": "value",
+      "type": "number | null",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "defaultValue",
+      "type": "number | null",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: number | null) => void",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "precision",
+      "type": "number",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "prefix",
+      "type": "React.ReactNode",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "suffix",
+      "type": "React.ReactNode",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "hideSteppers",
+      "type": "boolean",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "align",
+      "type": "'start' | 'end'",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "inputClassName",
+      "type": "string",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "incrementLabel",
+      "type": "string",
+      "interface": "NumberInputProps"
+    },
+    {
+      "name": "decrementLabel",
+      "type": "string",
+      "interface": "NumberInputProps"
+    }
+  ],
+  "pagination": [
+    {
+      "name": "page",
+      "type": "number",
+      "interface": "PaginationProps"
+    },
+    {
+      "name": "totalPages",
+      "type": "number",
+      "interface": "PaginationProps"
+    },
+    {
+      "name": "onPageChange",
+      "type": "(page: number) => void",
+      "interface": "PaginationProps"
+    },
+    {
+      "name": "hasNext",
+      "type": "boolean",
+      "interface": "PaginationProps"
+    },
+    {
+      "name": "hasPrevious",
+      "type": "boolean",
+      "interface": "PaginationProps"
+    },
+    {
+      "name": "onNext",
+      "type": "() => void",
+      "interface": "PaginationProps"
+    },
+    {
+      "name": "onPrevious",
+      "type": "() => void",
+      "interface": "PaginationProps"
+    },
+    {
+      "name": "label",
+      "type": "React.ReactNode",
+      "interface": "PaginationProps"
+    },
+    {
+      "name": "siblingCount",
+      "type": "number",
+      "interface": "PaginationProps"
+    },
+    {
+      "name": "showPageNumbers",
+      "type": "boolean",
+      "interface": "PaginationProps"
+    }
+  ],
+  "passwordinput": [
+    {
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "interface": "PasswordInputProps"
+    },
+    {
+      "name": "showToggle",
+      "type": "boolean",
+      "interface": "PasswordInputProps"
+    },
+    {
+      "name": "showToggleLabel",
+      "type": "string",
+      "interface": "PasswordInputProps"
+    },
+    {
+      "name": "hideToggleLabel",
+      "type": "string",
+      "interface": "PasswordInputProps"
+    },
+    {
+      "name": "strength",
+      "type": "PasswordStrength",
+      "interface": "PasswordInputProps"
+    },
+    {
+      "name": "strengthLabel",
+      "type": "(level: PasswordStrength) => string",
+      "interface": "PasswordInputProps"
+    },
+    {
+      "name": "inputClassName",
+      "type": "string",
+      "interface": "PasswordInputProps"
     }
   ],
   "progress": [
@@ -219,6 +757,13 @@
       "interface": "RadioItemProps"
     }
   ],
+  "scrollarea": [
+    {
+      "name": "Default",
+      "type": "\"vertical\" */\n  orientation?: 'vertical' | 'horizontal' | 'both'",
+      "interface": "ScrollAreaProps"
+    }
+  ],
   "skeleton": [
     {
       "name": "width",
@@ -229,6 +774,45 @@
       "name": "height",
       "type": "string | number",
       "interface": "SkeletonProps"
+    }
+  ],
+  "spinner": [
+    {
+      "name": "size",
+      "type": "SpinnerSize",
+      "interface": "SpinnerProps"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "interface": "SpinnerProps"
+    }
+  ],
+  "stepflow": [
+    {
+      "name": "steps",
+      "type": "StepFlowStep[]",
+      "interface": "StepFlowProps"
+    },
+    {
+      "name": "activeStep",
+      "type": "string",
+      "interface": "StepFlowProps"
+    },
+    {
+      "name": "onStepChange",
+      "type": "(id: string) => void",
+      "interface": "StepFlowProps"
+    },
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "interface": "StepFlowProps"
+    },
+    {
+      "name": "allowSkip",
+      "type": "boolean",
+      "interface": "StepFlowProps"
     }
   ],
   "table": [
@@ -253,6 +837,63 @@
       "name": "onDismiss",
       "type": "() => void",
       "interface": "TagProps"
+    }
+  ],
+  "timeinput": [
+    {
+      "name": "value",
+      "type": "string | null",
+      "interface": "TimeInputProps"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string | null",
+      "interface": "TimeInputProps"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string | null) => void",
+      "interface": "TimeInputProps"
+    },
+    {
+      "name": "format",
+      "type": "TimeFormat",
+      "interface": "TimeInputProps"
+    },
+    {
+      "name": "withSeconds",
+      "type": "boolean",
+      "interface": "TimeInputProps"
+    },
+    {
+      "name": "min",
+      "type": "string",
+      "interface": "TimeInputProps"
+    },
+    {
+      "name": "max",
+      "type": "string",
+      "interface": "TimeInputProps"
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "interface": "TimeInputProps"
+    },
+    {
+      "name": "size",
+      "type": "'sm' | 'md' | 'lg'",
+      "interface": "TimeInputProps"
+    },
+    {
+      "name": "showIcon",
+      "type": "boolean",
+      "interface": "TimeInputProps"
+    },
+    {
+      "name": "inputClassName",
+      "type": "string",
+      "interface": "TimeInputProps"
     }
   ],
   "tooltip": [
