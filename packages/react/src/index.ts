@@ -10,6 +10,7 @@ export * from './components/Field';
 export * from './components/NumberInput';
 export * from './components/PasswordInput';
 export * from './components/Form';
+export * from './components/TimeInput';
 export * from './components/Card';
 export * from './components/Input';
 export * from './components/EmptyState';

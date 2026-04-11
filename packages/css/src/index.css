@@ -54,6 +54,7 @@
 @import url("./components/number-input.css");
 @import url("./components/password-input.css");
 @import url("./components/form.css");
+@import url("./components/time-input.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
