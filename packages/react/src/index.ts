@@ -12,6 +12,7 @@ export * from './components/PasswordInput';
 export * from './components/Form';
 export * from './components/TimeInput';
 export * from './components/FileInput';
+export * from './components/DatePicker';
 export * from './components/Card';
 export * from './components/Input';
 export * from './components/EmptyState';
