@@ -2,13 +2,14 @@
 
 import { useMemo, useState } from 'react';
 import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
-import { Code2, Download, Eye, Sliders } from 'lucide-react';
+import { Code2, Download, Eye, Sliders, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { buildProjectZip, downloadBlob } from '@/lib/studio/exporter';
 import { resolvePatternsForPlan } from '@/lib/studio/composer';
 import { usePlansStore } from '@/store/plans-store';
 import { cn } from '@/utils/cn';
 import { StudioEditorShell } from '@/components/studio/editor/editor-shell';
+import { RefineModal } from '@/components/studio/refine-modal';
 
 type Tab = 'preview' | 'editor' | 'code' | 'export';
 
@@ -21,8 +22,11 @@ const TABS: Array<{ id: Tab; label: string; icon: typeof Eye }> = [
 
 export function ProjectView({ projectId }: { projectId: string }) {
   const plan = usePlansStore((state) => state.plans[projectId]);
+  const savePlan = usePlansStore((state) => state.savePlan);
+  const deletePlan = usePlansStore((state) => state.deletePlan);
   const [activeTab, setActiveTab] = useState<Tab>('preview');
   const [activeEntry, setActiveEntry] = useState<number>(0);
+  const [refineOpen, setRefineOpen] = useState(false);
 
   const patterns = useMemo(() => (plan ? resolvePatternsForPlan(plan) : []), [plan]);
 
@@ -33,20 +37,38 @@ export function ProjectView({ projectId }: { projectId: string }) {
   const entry = plan.entries[activeEntry];
   const pattern = patterns[activeEntry];
 
+  const handleRefined = (next: typeof plan) => {
+    savePlan(next);
+    if (next.id !== plan.id) {
+      deletePlan(plan.id);
+      window.location.pathname = `/studio/${next.id}`;
+    }
+  };
+
   return (
     <Stack gap="1.5rem">
       <Stack as="header" gap="0.75rem">
-        <Inline gap="0.5rem" align="center">
-          <h1 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-            {plan.intent.productName}
-          </h1>
-          <Badge tone="neutral">{plan.intent.industry}</Badge>
-          <Badge tone="info">{plan.intent.stack}</Badge>
-          <Badge tone="neutral">{plan.intent.tone}</Badge>
+        <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
+          <Inline gap="0.5rem" align="center">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+              {plan.intent.productName}
+            </h1>
+            <Badge tone="neutral">{plan.intent.industry}</Badge>
+            <Badge tone="info">{plan.intent.stack}</Badge>
+            <Badge tone="neutral">{plan.intent.tone}</Badge>
+          </Inline>
+          <Button variant="secondary" size="sm" onClick={() => setRefineOpen(true)}>
+            <Sparkles className="mr-2 h-4 w-4" />
+            Refine with AI
+          </Button>
         </Inline>
         <p className="text-sm text-muted-foreground">{plan.intent.description}</p>
         <p className="text-xs text-muted-foreground">{plan.rationale}</p>
       </Stack>
+
+      {refineOpen ? (
+        <RefineModal plan={plan} onRefined={handleRefined} onClose={() => setRefineOpen(false)} />
+      ) : null}
 
       <div role="tablist" aria-label="Project view tabs" className="border-b border-border">
         <Inline gap="0.25rem" align="center">
