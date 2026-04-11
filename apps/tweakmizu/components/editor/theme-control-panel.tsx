@@ -4,9 +4,11 @@ import React from 'react';
 import { ScrollArea, Slider, Stack, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
 import ControlSection from '@/components/editor/control-section';
 import ThemePresetSelect from '@/components/editor/theme-preset-select';
-import { useControlsTabFromUrl, type ControlTab } from '@/hooks/use-controls-tab-from-url';
 import type { ThemeStyleProps } from '@/types/theme';
+import { useQueryState } from 'nuqs';
 import { ColorPicker } from './color-picker';
+
+type ControlTab = 'colors' | 'typography' | 'other';
 
 interface ThemeControlPanelProps {
   styles: ThemeStyleProps;
@@ -17,7 +19,10 @@ const parseRem = (v: string | undefined) => (v ? parseFloat(v.replace('rem', '')
 const parseMs = (v: string | undefined) => (v ? parseInt(v.replace('ms', ''), 10) : 0);
 
 const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
-  const { tab, handleSetTab } = useControlsTabFromUrl();
+  const [tab, setTab] = useQueryState<ControlTab>('tab', {
+    defaultValue: 'colors',
+    parse: (v) => (['colors', 'typography', 'other'].includes(v) ? (v as ControlTab) : 'colors'),
+  });
 
   const update = React.useCallback(
     <K extends keyof ThemeStyleProps>(key: K, value: ThemeStyleProps[K]) => {
@@ -33,7 +38,7 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
       </div>
       <Tabs
         value={tab}
-        onValueChange={(v) => handleSetTab(v as ControlTab)}
+        onValueChange={(v) => setTab(v as ControlTab)}
         style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}
       >
         <TabsList style={{ padding: '0.5rem 1rem' }}>

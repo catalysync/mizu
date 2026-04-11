@@ -14,31 +14,11 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": [
-    "node_modules",
-    "components/editor/code-panel.tsx",
-    "components/editor/code-panel-dialog.tsx",
-    "components/editor/colors-tab-content.tsx",
-    "components/editor/css-import-dialog.tsx",
-    "components/editor/custom-textarea.tsx",
-    "components/editor/hsl-adjustment-controls.tsx",
-    "components/editor/hsl-preset-button.tsx",
-    "components/editor/shadow-control.tsx",
-    "components/editor/share-dialog.tsx",
-    "components/editor/theme-control-actions.tsx",
-    "components/editor/theme-save-dialog.tsx",
-    "components/editor/theme-preview/color-preview.tsx",
-    "components/editor/theme-preview/components-showcase.tsx",
-    "components/ui/chart.tsx"
-  ]
+  "exclude": ["node_modules"]
 }
