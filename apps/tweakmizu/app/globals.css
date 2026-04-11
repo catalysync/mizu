@@ -44,3 +44,50 @@
     cursor: pointer;
   }
 }
+
+/* Responsive helpers for site chrome */
+.site-header__menu-toggle,
+.site-header__mobile {
+  display: none;
+}
+@media (max-width: 767px) {
+  .site-header__nav {
+    display: none !important;
+  }
+  .site-header__actions a[aria-label="Mizu on GitHub"] {
+    display: none;
+  }
+  .site-header__menu-toggle {
+    display: inline-flex;
+  }
+  .site-header__mobile {
+    display: flex;
+  }
+}
+
+/* Fade-in animation used on landing sections */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: fade-up 0.6s var(--mizu-easing-out) both;
+}
+.fade-up-delay-1 {
+  animation-delay: 0.1s;
+}
+.fade-up-delay-2 {
+  animation-delay: 0.2s;
+}
+.fade-up-delay-3 {
+  animation-delay: 0.3s;
+}
+.fade-up-delay-4 {
+  animation-delay: 0.4s;
+}
