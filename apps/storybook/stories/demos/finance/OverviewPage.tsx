@@ -58,7 +58,7 @@ export function OverviewPage() {
         />
       </Grid>
 
-      <Grid gap="1rem" columns="minmax(0, 2fr) minmax(0, 1fr)">
+      <div className="finance-demo__overview-split">
         <Card>
           <CardHeader
             title="Invoice activity"
@@ -75,7 +75,7 @@ export function OverviewPage() {
                   <TableHeader>Number</TableHeader>
                   <TableHeader>Customer</TableHeader>
                   <TableHeader>Due</TableHeader>
-                  <TableHeader style={{ textAlign: 'end' }}>Balance</TableHeader>
+                  <TableHeader className="finance-demo__th-end">Balance</TableHeader>
                   <TableHeader>Status</TableHeader>
                 </TableRow>
               </TableHead>
@@ -85,7 +85,7 @@ export function OverviewPage() {
                     <TableCell>{inv.number}</TableCell>
                     <TableCell>{inv.customerName}</TableCell>
                     <TableCell>{inv.dueOn}</TableCell>
-                    <TableCell style={{ textAlign: 'end', fontVariantNumeric: 'tabular-nums' }}>
+                    <TableCell className="finance-demo__num--end">
                       {formatCurrency(inv.balance)}
                     </TableCell>
                     <TableCell>
@@ -112,7 +112,7 @@ export function OverviewPage() {
           />
           <MetricTile label="Net margin" value="64%" footer="+2 pts vs March" />
         </Stack>
-      </Grid>
+      </div>
 
       <Card>
         <CardHeader title="Aged receivables" />
@@ -125,7 +125,7 @@ export function OverviewPage() {
                 <TableHeader>31–60</TableHeader>
                 <TableHeader>61–90</TableHeader>
                 <TableHeader>90+</TableHeader>
-                <TableHeader style={{ textAlign: 'end' }}>Total</TableHeader>
+                <TableHeader className="finance-demo__th-end">Total</TableHeader>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -135,7 +135,7 @@ export function OverviewPage() {
                 <TableCell>{formatCurrency(4320)}</TableCell>
                 <TableCell>{formatCurrency(1230)}</TableCell>
                 <TableCell>{formatCurrency(800)}</TableCell>
-                <TableCell style={{ textAlign: 'end', fontWeight: 600 }}>
+                <TableCell className="finance-demo__aged-total">
                   {formatCurrency(overviewKpis.outstandingAr)}
                 </TableCell>
               </TableRow>
@@ -149,27 +149,15 @@ export function OverviewPage() {
         <CardBody>
           <Stack gap="0.5rem">
             {transactions.slice(0, 5).map((t) => (
-              <Inline
-                key={t.id}
-                gap="1rem"
-                align="center"
-                style={{ justifyContent: 'space-between' }}
-              >
+              <Inline key={t.id} gap="1rem" align="center" className="finance-demo__between">
                 <Stack gap="0.125rem">
                   <strong>{t.description}</strong>
-                  <span style={{ color: 'var(--mizu-text-secondary)', fontSize: '0.75rem' }}>
+                  <span className="finance-demo__hint">
                     {t.date} · {t.category}
                   </span>
                 </Stack>
                 <span
-                  style={{
-                    fontVariantNumeric: 'tabular-nums',
-                    color:
-                      t.credit > 0
-                        ? 'var(--mizu-feedback-success-default)'
-                        : 'var(--mizu-text-primary)',
-                    fontWeight: 500,
-                  }}
+                  className={t.credit > 0 ? 'finance-demo__tx-credit' : 'finance-demo__tx-debit'}
                 >
                   {t.credit > 0 ? `+${formatCurrency(t.credit)}` : `−${formatCurrency(t.debit)}`}
                 </span>

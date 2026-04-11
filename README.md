@@ -1,3 +1,7 @@
+<p align="left">
+  <img src=".github/mizu-logo.svg" alt="mizu" height="40" />
+</p>
+
 # mizu
 
 fluid design for saas

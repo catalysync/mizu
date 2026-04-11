@@ -1,0 +1,345 @@
+/* Finance demo — utility classes used across the finance storybook pages.
+ * This file is demo-only. Do not import from production mizu packages. */
+
+.finance-demo__num {
+  font-variant-numeric: tabular-nums;
+}
+
+.finance-demo__num--end {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+.finance-demo__num--strong {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.finance-demo__muted {
+  color: var(--mizu-text-secondary);
+}
+
+.finance-demo__muted-sm {
+  color: var(--mizu-text-secondary);
+  font-size: 0.875rem;
+}
+
+.finance-demo__hint {
+  color: var(--mizu-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.finance-demo__hint-sm {
+  color: var(--mizu-text-tertiary);
+  font-size: 0.875rem;
+}
+
+.finance-demo__section-title {
+  margin: 0;
+}
+
+.finance-demo__section-desc {
+  margin: 0;
+  color: var(--mizu-text-secondary);
+}
+
+.finance-demo__row-clickable {
+  cursor: pointer;
+}
+
+.finance-demo__between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.finance-demo__subtotal {
+  align-self: end;
+  min-width: 16rem;
+}
+
+/* Overview split */
+.finance-demo__overview-split {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+/* Transaction delta cell */
+.finance-demo__tx-credit {
+  font-variant-numeric: tabular-nums;
+  color: var(--mizu-feedback-success-default);
+  font-weight: 500;
+}
+
+.finance-demo__tx-debit {
+  font-variant-numeric: tabular-nums;
+  color: var(--mizu-text-primary);
+  font-weight: 500;
+}
+
+/* Transaction drawer balance */
+.finance-demo__drawer-balance {
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Settings page layout */
+.finance-demo__settings {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.finance-demo__settings-nav-item {
+  display: block;
+  width: 100%;
+  text-align: start;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  color: var(--mizu-text-secondary);
+  border: 0;
+  border-radius: var(--mizu-radius-md);
+  cursor: pointer;
+  font-weight: 400;
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+}
+
+.finance-demo__settings-nav-item[data-active="true"] {
+  background: var(--mizu-surface-secondary);
+  color: var(--mizu-text-primary);
+  font-weight: 500;
+}
+
+.finance-demo__flex-1 {
+  flex: 1;
+}
+
+/* Tx filter widths */
+.finance-demo__filter-date {
+  flex: 0 0 14rem;
+}
+
+.finance-demo__filter-category {
+  flex: 0 0 10rem;
+}
+
+/* Ledger table wrapper */
+.finance-demo__ledger {
+  border: 1px solid var(--mizu-border-default);
+  border-radius: 6px;
+}
+
+.finance-demo__ledger-head {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 2fr) 6rem 7rem 7rem 7rem;
+  gap: var(--mizu-spacing-2);
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  background: var(--mizu-surface-secondary);
+  border-bottom: 1px solid var(--mizu-border-default);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--mizu-text-secondary);
+}
+
+.finance-demo__ledger-head > span:nth-child(n + 4) {
+  text-align: end;
+}
+
+/* Chart of accounts header */
+.finance-demo__coa-head {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) 4rem 8rem;
+  gap: var(--mizu-spacing-2);
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3) var(--mizu-spacing-1);
+  border-bottom: 1px solid var(--mizu-border-default);
+  color: var(--mizu-text-secondary);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.finance-demo__coa-head > span:last-child {
+  text-align: end;
+}
+
+/* Reconciliation */
+.finance-demo__reconcile-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.finance-demo__reconcile-list {
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: 6px;
+}
+
+.finance-demo__reconcile-totals {
+  justify-content: center;
+}
+
+.finance-demo__reconcile-total-value {
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.finance-demo__reconcile-total-value--ok {
+  color: var(--mizu-feedback-success-default);
+}
+
+.finance-demo__reconcile-total-value--warn {
+  color: var(--mizu-feedback-warning-default);
+}
+
+.finance-demo__centered-stack {
+  align-items: center;
+}
+
+/* Invoices page */
+.finance-demo__invoice-search {
+  max-width: 260px;
+}
+
+.finance-demo__customer-search {
+  max-width: 320px;
+}
+
+/* Invoice drawer */
+.finance-demo__drawer-lines {
+  border-bottom: 1px solid var(--mizu-border-subtle);
+  padding-bottom: 4px;
+}
+
+.finance-demo__drawer-add-line {
+  margin-top: 4px;
+}
+
+.finance-demo__drawer-right {
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.finance-demo__drawer-content {
+  max-width: 640px;
+}
+
+.finance-demo__customer-drawer {
+  max-width: 520px;
+}
+
+/* Report tiles + viewer */
+.finance-demo__report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.finance-demo__report-table thead tr {
+  text-align: left;
+  color: var(--mizu-text-secondary);
+  border-bottom: 1px solid var(--mizu-border-default);
+}
+
+.finance-demo__report-table th,
+.finance-demo__report-table td {
+  padding: 0.5rem 0.75rem;
+}
+
+.finance-demo__report-table th:nth-child(n + 2),
+.finance-demo__report-table td:nth-child(n + 2) {
+  text-align: end;
+}
+
+.finance-demo__report-table tbody tr {
+  border-bottom: 1px solid var(--mizu-border-subtle);
+}
+
+.finance-demo__report-table td.finance-demo__report-prev {
+  color: var(--mizu-text-secondary);
+}
+
+.finance-demo__report-table td.finance-demo__report-delta--up {
+  color: var(--mizu-feedback-success-default);
+}
+
+.finance-demo__report-table td.finance-demo__report-delta--down {
+  color: var(--mizu-feedback-danger-default);
+}
+
+/* Onboarding */
+.finance-demo__onboarding {
+  min-height: 100vh;
+  background: var(--mizu-surface-secondary);
+  padding: 3rem 1.5rem;
+}
+
+.finance-demo__onboarding-header {
+  text-align: center;
+}
+
+.finance-demo__onboarding-nav {
+  justify-content: space-between;
+}
+
+.finance-demo__template-option {
+  display: block;
+  width: 100%;
+  text-align: start;
+  padding: 0.75rem 1rem;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-md);
+  cursor: pointer;
+  font-family: var(--mizu-font-family-sans);
+}
+
+.finance-demo__template-option[data-active="true"] {
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 8%, transparent);
+  border-color: var(--mizu-action-primary-default);
+}
+
+.finance-demo__bank-row {
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-md);
+}
+
+.finance-demo__onboarding-note {
+  color: var(--mizu-text-tertiary);
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+/* Reports page sparkline */
+.finance-demo__sparkline {
+  display: block;
+}
+
+/* TableHeader in overview — end aligned currency */
+.finance-demo__th-end {
+  text-align: end;
+}
+
+/* Balance amount in customer drawer when zero */
+.finance-demo__balance {
+  color: var(--mizu-text-primary);
+}
+
+.finance-demo__balance--zero {
+  color: var(--mizu-text-secondary);
+}
+
+/* Aged receivables total column */
+.finance-demo__aged-total {
+  text-align: end;
+  font-weight: 600;
+}

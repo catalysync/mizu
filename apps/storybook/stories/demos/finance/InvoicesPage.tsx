@@ -76,7 +76,7 @@ export function InvoicesPage() {
       <Card>
         <CardBody>
           <Stack gap="1rem">
-            <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
+            <Inline gap="0.5rem" align="center" className="finance-demo__between">
               <Inline gap="0.25rem">
                 {STATUSES.map((s) => (
                   <Button
@@ -95,7 +95,7 @@ export function InvoicesPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 aria-label="Search invoices"
-                style={{ maxWidth: 260 }}
+                className="finance-demo__invoice-search"
               />
             </Inline>
 
@@ -106,8 +106,8 @@ export function InvoicesPage() {
                   <TableHeader>Customer</TableHeader>
                   <TableHeader>Issued</TableHeader>
                   <TableHeader>Due</TableHeader>
-                  <TableHeader style={{ textAlign: 'end' }}>Amount</TableHeader>
-                  <TableHeader style={{ textAlign: 'end' }}>Balance</TableHeader>
+                  <TableHeader className="finance-demo__th-end">Amount</TableHeader>
+                  <TableHeader className="finance-demo__th-end">Balance</TableHeader>
                   <TableHeader>Status</TableHeader>
                 </TableRow>
               </TableHead>
@@ -116,7 +116,7 @@ export function InvoicesPage() {
                   <TableRow
                     key={inv.id}
                     onClick={() => setSelected(inv)}
-                    style={{ cursor: 'pointer' }}
+                    className="finance-demo__row-clickable"
                   >
                     <TableCell>
                       <strong>{inv.number}</strong>
@@ -124,10 +124,10 @@ export function InvoicesPage() {
                     <TableCell>{inv.customerName}</TableCell>
                     <TableCell>{inv.issuedOn}</TableCell>
                     <TableCell>{inv.dueOn}</TableCell>
-                    <TableCell style={{ textAlign: 'end', fontVariantNumeric: 'tabular-nums' }}>
+                    <TableCell className="finance-demo__num--end">
                       {formatCurrency(inv.amount)}
                     </TableCell>
-                    <TableCell style={{ textAlign: 'end', fontVariantNumeric: 'tabular-nums' }}>
+                    <TableCell className="finance-demo__num--end">
                       {formatCurrency(inv.balance)}
                     </TableCell>
                     <TableCell>
@@ -149,7 +149,7 @@ export function InvoicesPage() {
       </Card>
 
       <Drawer open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
-        <DrawerContent side="right" style={{ maxWidth: 640 }}>
+        <DrawerContent side="right" className="finance-demo__drawer-content">
           {selected && <InvoiceDrawer invoice={selected} />}
         </DrawerContent>
       </Drawer>
@@ -200,12 +200,12 @@ function InvoiceDrawer({ invoice }: { invoice: Invoice }) {
             <Input defaultValue={invoice.customerName} />
           </Field>
           <Inline gap="1rem">
-            <div style={{ flex: 1 }}>
+            <div className="finance-demo__flex-1">
               <Field label="Issued on">
                 <DatePicker defaultValue={invoice.issuedOn} />
               </Field>
             </div>
-            <div style={{ flex: 1 }}>
+            <div className="finance-demo__flex-1">
               <Field label="Due on">
                 <DatePicker defaultValue={invoice.dueOn} />
               </Field>
@@ -214,24 +214,19 @@ function InvoiceDrawer({ invoice }: { invoice: Invoice }) {
 
           <Stack gap="0.25rem">
             <strong>Line items</strong>
-            <div
-              style={{
-                borderBottom: '1px solid var(--mizu-border-subtle)',
-                paddingBottom: 4,
-              }}
-            >
+            <div className="finance-demo__drawer-lines">
               {lines.map((line) => (
                 <InvoiceLineItem key={line.id} value={line} onChange={update} onRemove={remove} />
               ))}
             </div>
-            <div style={{ marginTop: 4 }}>
+            <div className="finance-demo__drawer-add-line">
               <Button variant="ghost" size="sm" onClick={addLine}>
                 + Add line
               </Button>
             </div>
           </Stack>
 
-          <Stack gap="0.25rem" style={{ alignSelf: 'end', minWidth: 260 }}>
+          <Stack gap="0.25rem" className="finance-demo__subtotal">
             <Row label="Subtotal" value={formatCurrency(subtotal)} />
             <Row label="Tax" value={formatCurrency(tax)} />
             <Row label="Total" value={formatCurrency(total)} strong />
@@ -243,7 +238,7 @@ function InvoiceDrawer({ invoice }: { invoice: Invoice }) {
         </Stack>
       </DrawerBody>
       <DrawerFooter>
-        <Inline gap="0.5rem" style={{ justifyContent: 'flex-end', width: '100%' }}>
+        <Inline gap="0.5rem" className="finance-demo__drawer-right">
           <DrawerClose asChild>
             <Button variant="ghost">Close</Button>
           </DrawerClose>
@@ -257,16 +252,9 @@ function InvoiceDrawer({ invoice }: { invoice: Invoice }) {
 
 function Row({ label, value, strong }: { label: string; value: string; strong?: boolean }) {
   return (
-    <Inline gap="1rem" style={{ justifyContent: 'space-between' }}>
-      <span style={{ color: 'var(--mizu-text-secondary)' }}>{label}</span>
-      <span
-        style={{
-          fontVariantNumeric: 'tabular-nums',
-          fontWeight: strong ? 600 : 400,
-        }}
-      >
-        {value}
-      </span>
+    <Inline gap="1rem" className="finance-demo__between">
+      <span className="finance-demo__muted">{label}</span>
+      <span className={strong ? 'finance-demo__num--strong' : 'finance-demo__num'}>{value}</span>
     </Inline>
   );
 }

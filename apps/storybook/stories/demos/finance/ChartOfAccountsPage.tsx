@@ -18,24 +18,11 @@ export function ChartOfAccountsPage() {
 
       <Card>
         <CardBody>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '5rem minmax(0, 1fr) 4rem 8rem',
-              gap: 'var(--mizu-spacing-2)',
-              padding: 'var(--mizu-spacing-2) var(--mizu-spacing-3) var(--mizu-spacing-1)',
-              borderBottom: '1px solid var(--mizu-border-default)',
-              color: 'var(--mizu-text-secondary)',
-              fontFamily: 'var(--mizu-font-family-sans)',
-              fontSize: 'var(--mizu-font-size-xs)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.04em',
-            }}
-          >
+          <div className="finance-demo__coa-head">
             <span>Code</span>
             <span>Name</span>
             <span>Type</span>
-            <span style={{ textAlign: 'end' }}>Balance</span>
+            <span>Balance</span>
           </div>
           <ChartOfAccounts
             accounts={accounts}

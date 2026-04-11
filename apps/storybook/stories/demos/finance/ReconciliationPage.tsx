@@ -2,6 +2,7 @@ import {
   AppContentHeader,
   Badge,
   Button,
+  cn,
   Card,
   CardBody,
   Field,
@@ -35,7 +36,7 @@ export function ReconciliationPage() {
       <Card>
         <CardBody>
           <Inline gap="1rem">
-            <div style={{ flex: '0 0 14rem' }}>
+            <div className="finance-demo__filter-date">
               <Field label="Account">
                 <Select defaultValue="checking">
                   <SelectTrigger>
@@ -49,7 +50,7 @@ export function ReconciliationPage() {
                 </Select>
               </Field>
             </div>
-            <div style={{ flex: '0 0 10rem' }}>
+            <div className="finance-demo__filter-category">
               <Field label="Period">
                 <Select defaultValue="apr">
                   <SelectTrigger>
@@ -67,7 +68,7 @@ export function ReconciliationPage() {
         </CardBody>
       </Card>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+      <div className="finance-demo__reconcile-split">
         <Card>
           <CardBody>
             <Stack gap="0.75rem">
@@ -75,7 +76,7 @@ export function ReconciliationPage() {
                 <strong>Unmatched</strong>
                 <Badge tone="warning">{unmatched.length}</Badge>
               </Inline>
-              <div style={{ border: '1px solid var(--mizu-border-subtle)', borderRadius: 6 }}>
+              <div className="finance-demo__reconcile-list">
                 {unmatched.map((r) => (
                   <ReconciliationRow
                     key={r.id}
@@ -98,7 +99,7 @@ export function ReconciliationPage() {
                 <strong>Matched</strong>
                 <Badge tone="success">{matched.length}</Badge>
               </Inline>
-              <div style={{ border: '1px solid var(--mizu-border-subtle)', borderRadius: 6 }}>
+              <div className="finance-demo__reconcile-list">
                 {matched.map((r) => (
                   <ReconciliationRow
                     key={r.id}
@@ -117,30 +118,28 @@ export function ReconciliationPage() {
 
       <Card>
         <CardBody>
-          <Inline gap="2.5rem" style={{ justifyContent: 'center' }}>
-            <Stack gap="0.25rem" style={{ alignItems: 'center' }}>
-              <span style={{ color: 'var(--mizu-text-secondary)' }}>Bank total</span>
-              <strong style={{ fontSize: '1.25rem', fontVariantNumeric: 'tabular-nums' }}>
+          <Inline gap="2.5rem" className="finance-demo__reconcile-totals">
+            <Stack gap="0.25rem" className="finance-demo__centered-stack">
+              <span className="finance-demo__muted">Bank total</span>
+              <strong className="finance-demo__reconcile-total-value">
                 {formatCurrency(bankTotal)}
               </strong>
             </Stack>
-            <Stack gap="0.25rem" style={{ alignItems: 'center' }}>
-              <span style={{ color: 'var(--mizu-text-secondary)' }}>Matched in books</span>
-              <strong style={{ fontSize: '1.25rem', fontVariantNumeric: 'tabular-nums' }}>
+            <Stack gap="0.25rem" className="finance-demo__centered-stack">
+              <span className="finance-demo__muted">Matched in books</span>
+              <strong className="finance-demo__reconcile-total-value">
                 {formatCurrency(matchedTotal)}
               </strong>
             </Stack>
-            <Stack gap="0.25rem" style={{ alignItems: 'center' }}>
-              <span style={{ color: 'var(--mizu-text-secondary)' }}>Difference</span>
+            <Stack gap="0.25rem" className="finance-demo__centered-stack">
+              <span className="finance-demo__muted">Difference</span>
               <strong
-                style={{
-                  fontSize: '1.25rem',
-                  fontVariantNumeric: 'tabular-nums',
-                  color:
-                    difference === 0
-                      ? 'var(--mizu-feedback-success-default)'
-                      : 'var(--mizu-feedback-warning-default)',
-                }}
+                className={cn(
+                  'finance-demo__reconcile-total-value',
+                  difference === 0
+                    ? 'finance-demo__reconcile-total-value--ok'
+                    : 'finance-demo__reconcile-total-value--warn',
+                )}
               >
                 {formatCurrency(difference)}
               </strong>

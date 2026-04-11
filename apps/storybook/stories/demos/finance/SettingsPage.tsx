@@ -40,14 +40,7 @@ export function SettingsPage() {
         description="Manage your company profile, tax rules, users, and integrations."
       />
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '12rem minmax(0, 1fr)',
-          gap: '1.5rem',
-          alignItems: 'start',
-        }}
-      >
+      <div className="finance-demo__settings">
         <nav aria-label="Settings sections">
           <Stack gap="0.125rem">
             {SECTIONS.map((s) => (
@@ -56,21 +49,7 @@ export function SettingsPage() {
                 type="button"
                 onClick={() => setActive(s.id)}
                 data-active={active === s.id || undefined}
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  textAlign: 'start',
-                  padding: '0.5rem 0.75rem',
-                  background: active === s.id ? 'var(--mizu-surface-secondary)' : 'transparent',
-                  color:
-                    active === s.id ? 'var(--mizu-text-primary)' : 'var(--mizu-text-secondary)',
-                  border: 0,
-                  borderRadius: 'var(--mizu-radius-md)',
-                  cursor: 'pointer',
-                  fontWeight: active === s.id ? 500 : 400,
-                  fontFamily: 'var(--mizu-font-family-sans)',
-                  fontSize: 'var(--mizu-font-size-sm)',
-                }}
+                className="finance-demo__settings-nav-item"
               >
                 {s.label}
               </button>
@@ -128,12 +107,12 @@ function GeneralSection() {
             <Input defaultValue="101 Harbor Way" />
           </Field>
           <Inline gap="0.75rem">
-            <div style={{ flex: 1 }}>
+            <div className="finance-demo__flex-1">
               <Field label="City" required>
                 <Input defaultValue="Portland" />
               </Field>
             </div>
-            <div style={{ flex: 1 }}>
+            <div className="finance-demo__flex-1">
               <Field label="Postal code" required>
                 <Input defaultValue="97201" />
               </Field>
@@ -195,8 +174,8 @@ function TaxSection() {
 function IntegrationsSection() {
   return (
     <Stack gap="1rem">
-      <h3 style={{ margin: 0 }}>Integrations</h3>
-      <p style={{ color: 'var(--mizu-text-secondary)', margin: 0 }}>
+      <h3 className="finance-demo__section-title">Integrations</h3>
+      <p className="finance-demo__section-desc">
         Connect your bank, payment processor, and accounting tools.
       </p>
       {[
@@ -207,12 +186,10 @@ function IntegrationsSection() {
       ].map((i) => (
         <Card key={i.name}>
           <CardBody>
-            <Inline gap="1rem" align="center" style={{ justifyContent: 'space-between' }}>
+            <Inline gap="1rem" align="center" className="finance-demo__between">
               <Stack gap="0.125rem">
                 <strong>{i.name}</strong>
-                <span style={{ color: 'var(--mizu-text-secondary)', fontSize: '0.875rem' }}>
-                  {i.desc}
-                </span>
+                <span className="finance-demo__muted-sm">{i.desc}</span>
               </Stack>
               <Button variant={i.connected ? 'ghost' : 'primary'} size="sm">
                 {i.connected ? 'Disconnect' : 'Connect'}
@@ -263,9 +240,9 @@ function UsersSection() {
 function BillingSection() {
   return (
     <Stack gap="1rem">
-      <h3 style={{ margin: 0 }}>Billing</h3>
-      <p style={{ color: 'var(--mizu-text-secondary)', margin: 0 }}>
-        You're on the <strong>Team</strong> plan — $49/month, billed annually.
+      <h3 className="finance-demo__section-title">Billing</h3>
+      <p className="finance-demo__section-desc">
+        You&apos;re on the <strong>Team</strong> plan — $49/month, billed annually.
       </p>
       <Inline gap="0.5rem">
         <Button variant="primary">Change plan</Button>
@@ -278,8 +255,8 @@ function BillingSection() {
 function DataSection() {
   return (
     <Stack gap="1rem">
-      <h3 style={{ margin: 0 }}>Data export</h3>
-      <p style={{ color: 'var(--mizu-text-secondary)', margin: 0 }}>
+      <h3 className="finance-demo__section-title">Data export</h3>
+      <p className="finance-demo__section-desc">
         Download a full copy of your data in CSV or JSON.
       </p>
       <Inline gap="0.5rem">

@@ -1,0 +1,58 @@
+.mizu-welcome {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.mizu-welcome__lede {
+  color: var(--mizu-text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.mizu-welcome__para {
+  color: var(--mizu-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.mizu-welcome__arch-pkg {
+  font-size: 0.75rem;
+  color: var(--mizu-text-tertiary);
+  background: var(--mizu-surface-secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.mizu-welcome__arch-desc {
+  color: var(--mizu-text-secondary);
+  font-size: 0.875rem;
+}
+
+.mizu-welcome__section-card {
+  flex: 1 1 260px;
+  min-width: 260px;
+  padding: 1rem;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-lg);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.mizu-welcome__section-title {
+  color: var(--mizu-text-primary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.mizu-welcome__section-desc {
+  color: var(--mizu-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.mizu-welcome__arch-title {
+  color: var(--mizu-text-primary);
+}

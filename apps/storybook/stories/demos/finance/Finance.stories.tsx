@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import '@aspect/finance/css';
+import './finance-demo.css';
 import { FinanceShell } from './FinanceShell';
 import { OverviewPage } from './OverviewPage';
 import { SettingsPage } from './SettingsPage';
@@ -8,6 +9,8 @@ import { CustomersPage } from './CustomersPage';
 import { ChartOfAccountsPage } from './ChartOfAccountsPage';
 import { TransactionsPage } from './TransactionsPage';
 import { ReconciliationPage } from './ReconciliationPage';
+import { ReportsPage } from './ReportsPage';
+import { OnboardingFlow } from './OnboardingFlow';
 
 const meta = {
   title: 'Demos/Finance',
@@ -85,6 +88,21 @@ export const ChartOfAccounts: Story = {
       <ChartOfAccountsPage />
     </FinanceShell>
   ),
+};
+
+export const Reports: Story = {
+  render: () => (
+    <FinanceShell
+      active="reports"
+      breadcrumbs={[{ label: 'Home', href: '#' }, { label: 'Reports' }]}
+    >
+      <ReportsPage />
+    </FinanceShell>
+  ),
+};
+
+export const Onboarding: Story = {
+  render: () => <OnboardingFlow />,
 };
 
 export const Settings: Story = {

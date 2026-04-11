@@ -43,7 +43,6 @@ export function TransactionsPage() {
     [category, query],
   );
 
-  // Running balance from first to last row.
   const rows = useMemo(() => {
     let balance = 0;
     return visible.map((t) => {
@@ -67,12 +66,12 @@ export function TransactionsPage() {
         <CardBody>
           <Stack gap="1rem">
             <Inline gap="0.75rem" align="end">
-              <div style={{ flex: '0 0 14rem' }}>
+              <div className="finance-demo__filter-date">
                 <Field label="Date range">
                   <DateRangePicker value={range} onValueChange={setRange} />
                 </Field>
               </div>
-              <div style={{ flex: '0 0 10rem' }}>
+              <div className="finance-demo__filter-category">
                 <Field label="Category">
                   <Select value={category} onValueChange={setCategory}>
                     <SelectTrigger>
@@ -88,7 +87,7 @@ export function TransactionsPage() {
                   </Select>
                 </Field>
               </div>
-              <div style={{ flex: 1 }}>
+              <div className="finance-demo__flex-1">
                 <Field label="Search">
                   <Input
                     placeholder="Search description…"
@@ -99,32 +98,14 @@ export function TransactionsPage() {
               </div>
             </Inline>
 
-            <div
-              role="table"
-              aria-label="Transactions ledger"
-              style={{ border: '1px solid var(--mizu-border-default)', borderRadius: 6 }}
-            >
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '6rem minmax(0, 2fr) 6rem 7rem 7rem 7rem',
-                  gap: 'var(--mizu-spacing-2)',
-                  padding: 'var(--mizu-spacing-2) var(--mizu-spacing-3)',
-                  background: 'var(--mizu-surface-secondary)',
-                  borderBottom: '1px solid var(--mizu-border-default)',
-                  fontFamily: 'var(--mizu-font-family-sans)',
-                  fontSize: 'var(--mizu-font-size-xs)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.04em',
-                  color: 'var(--mizu-text-secondary)',
-                }}
-              >
+            <div role="table" aria-label="Transactions ledger" className="finance-demo__ledger">
+              <div className="finance-demo__ledger-head">
                 <span>Date</span>
                 <span>Description</span>
                 <span>Ref</span>
-                <span style={{ textAlign: 'end' }}>Debit</span>
-                <span style={{ textAlign: 'end' }}>Credit</span>
-                <span style={{ textAlign: 'end' }}>Balance</span>
+                <span>Debit</span>
+                <span>Credit</span>
+                <span>Balance</span>
               </div>
               {rows.map((t) => (
                 <LedgerRow
@@ -147,23 +128,15 @@ export function TransactionsPage() {
             </div>
 
             <Inline gap="2rem">
-              <span style={{ color: 'var(--mizu-text-secondary)' }}>
-                Debits:{' '}
-                <strong style={{ color: 'var(--mizu-text-primary)' }}>
-                  {formatCurrency(totalDebit)}
-                </strong>
+              <span className="finance-demo__muted">
+                Debits: <strong>{formatCurrency(totalDebit)}</strong>
               </span>
-              <span style={{ color: 'var(--mizu-text-secondary)' }}>
+              <span className="finance-demo__muted">
                 Credits:{' '}
-                <strong style={{ color: 'var(--mizu-feedback-success-default)' }}>
-                  {formatCurrency(totalCredit)}
-                </strong>
+                <strong className="finance-demo__tx-credit">{formatCurrency(totalCredit)}</strong>
               </span>
-              <span style={{ color: 'var(--mizu-text-secondary)' }}>
-                Net:{' '}
-                <strong style={{ color: 'var(--mizu-text-primary)' }}>
-                  {formatCurrency(totalCredit - totalDebit)}
-                </strong>
+              <span className="finance-demo__muted">
+                Net: <strong>{formatCurrency(totalCredit - totalDebit)}</strong>
               </span>
             </Inline>
           </Stack>

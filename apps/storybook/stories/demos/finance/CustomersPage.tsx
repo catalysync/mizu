@@ -3,6 +3,7 @@ import {
   AppContentHeader,
   Badge,
   Button,
+  cn,
   Card,
   CardBody,
   Drawer,
@@ -63,7 +64,7 @@ export function CustomersPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               aria-label="Search customers"
-              style={{ maxWidth: 320 }}
+              className="finance-demo__customer-search"
             />
 
             <Table>
@@ -71,27 +72,29 @@ export function CustomersPage() {
                 <TableRow>
                   <TableHeader>Customer</TableHeader>
                   <TableHeader>Email</TableHeader>
-                  <TableHeader style={{ textAlign: 'end' }}>Balance</TableHeader>
-                  <TableHeader style={{ textAlign: 'end' }}>Open invoices</TableHeader>
+                  <TableHeader className="finance-demo__th-end">Balance</TableHeader>
+                  <TableHeader className="finance-demo__th-end">Open invoices</TableHeader>
                   <TableHeader>Last transaction</TableHeader>
                   <TableHeader>Status</TableHeader>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {visible.map((c) => (
-                  <TableRow key={c.id} onClick={() => setSelected(c)} style={{ cursor: 'pointer' }}>
+                  <TableRow
+                    key={c.id}
+                    onClick={() => setSelected(c)}
+                    className="finance-demo__row-clickable"
+                  >
                     <TableCell>
                       <strong>{c.name}</strong>
                     </TableCell>
                     <TableCell>
-                      <span style={{ color: 'var(--mizu-text-secondary)' }}>{c.email}</span>
+                      <span className="finance-demo__muted">{c.email}</span>
                     </TableCell>
-                    <TableCell style={{ textAlign: 'end', fontVariantNumeric: 'tabular-nums' }}>
+                    <TableCell className="finance-demo__num--end">
                       {formatCurrency(c.balance)}
                     </TableCell>
-                    <TableCell style={{ textAlign: 'end', fontVariantNumeric: 'tabular-nums' }}>
-                      {c.openInvoices}
-                    </TableCell>
+                    <TableCell className="finance-demo__num--end">{c.openInvoices}</TableCell>
                     <TableCell>{c.lastTransaction}</TableCell>
                     <TableCell>
                       <Badge tone={toneFor(c.status)}>{c.status}</Badge>
@@ -105,7 +108,7 @@ export function CustomersPage() {
       </Card>
 
       <Drawer open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
-        <DrawerContent side="right" style={{ maxWidth: 520 }}>
+        <DrawerContent side="right" className="finance-demo__customer-drawer">
           {selected && <CustomerDrawer customer={selected} />}
         </DrawerContent>
       </Drawer>
@@ -128,8 +131,8 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
         <Stack gap="1rem">
           <Stack gap="0.25rem">
             <strong>Contact</strong>
-            <span style={{ color: 'var(--mizu-text-secondary)' }}>{customer.email}</span>
-            <span style={{ color: 'var(--mizu-text-secondary)' }}>
+            <span className="finance-demo__muted">{customer.email}</span>
+            <span className="finance-demo__muted">
               Last transaction: {customer.lastTransaction}
             </span>
           </Stack>
@@ -137,16 +140,14 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
           <Stack gap="0.25rem">
             <strong>Balance</strong>
             <span
-              style={{
-                fontSize: '1.5rem',
-                fontVariantNumeric: 'tabular-nums',
-                color:
-                  customer.balance > 0 ? 'var(--mizu-text-primary)' : 'var(--mizu-text-secondary)',
-              }}
+              className={cn(
+                'finance-demo__drawer-balance',
+                customer.balance > 0 ? 'finance-demo__balance' : 'finance-demo__balance--zero',
+              )}
             >
               {formatCurrency(customer.balance)}
             </span>
-            <span style={{ color: 'var(--mizu-text-secondary)' }}>
+            <span className="finance-demo__muted">
               {customer.openInvoices} open invoice{customer.openInvoices === 1 ? '' : 's'}
             </span>
           </Stack>
@@ -154,24 +155,14 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
           <Stack gap="0.5rem">
             <strong>Outstanding invoices</strong>
             {outstanding.length === 0 ? (
-              <span style={{ color: 'var(--mizu-text-secondary)' }}>None</span>
+              <span className="finance-demo__muted">None</span>
             ) : (
               outstanding.map((inv) => (
-                <Inline
-                  key={inv.id}
-                  gap="1rem"
-                  align="center"
-                  style={{ justifyContent: 'space-between' }}
-                >
+                <Inline key={inv.id} gap="1rem" align="center" className="finance-demo__between">
                   <span>
-                    {inv.number}{' '}
-                    <span style={{ color: 'var(--mizu-text-tertiary)', fontSize: '0.875rem' }}>
-                      due {inv.dueOn}
-                    </span>
+                    {inv.number} <span className="finance-demo__hint-sm">due {inv.dueOn}</span>
                   </span>
-                  <span style={{ fontVariantNumeric: 'tabular-nums' }}>
-                    {formatCurrency(inv.balance)}
-                  </span>
+                  <span className="finance-demo__num">{formatCurrency(inv.balance)}</span>
                 </Inline>
               ))
             )}
@@ -180,24 +171,14 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
           <Stack gap="0.5rem">
             <strong>Recently paid</strong>
             {paid.length === 0 ? (
-              <span style={{ color: 'var(--mizu-text-secondary)' }}>None</span>
+              <span className="finance-demo__muted">None</span>
             ) : (
               paid.map((inv) => (
-                <Inline
-                  key={inv.id}
-                  gap="1rem"
-                  align="center"
-                  style={{ justifyContent: 'space-between' }}
-                >
-                  <span style={{ color: 'var(--mizu-text-secondary)' }}>
+                <Inline key={inv.id} gap="1rem" align="center" className="finance-demo__between">
+                  <span className="finance-demo__muted">
                     {inv.number} · {inv.issuedOn}
                   </span>
-                  <span
-                    style={{
-                      fontVariantNumeric: 'tabular-nums',
-                      color: 'var(--mizu-text-secondary)',
-                    }}
-                  >
+                  <span className="finance-demo__num finance-demo__muted">
                     {formatCurrency(inv.amount)}
                   </span>
                 </Inline>
@@ -207,7 +188,7 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
         </Stack>
       </DrawerBody>
       <DrawerFooter>
-        <Inline gap="0.5rem" style={{ justifyContent: 'flex-end', width: '100%' }}>
+        <Inline gap="0.5rem" className="finance-demo__drawer-right">
           <DrawerClose asChild>
             <Button variant="ghost">Close</Button>
           </DrawerClose>

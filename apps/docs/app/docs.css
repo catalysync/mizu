@@ -300,6 +300,12 @@
   margin-bottom: 3rem;
 }
 
+.docs-home__logo {
+  display: block;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
 .docs-home__title {
   font-size: 2.5rem;
   font-weight: 700;

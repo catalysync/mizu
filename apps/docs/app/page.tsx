@@ -37,6 +37,7 @@ export default function HomePage() {
   return (
     <div className="docs-home">
       <div className="docs-home__hero">
+        <img src="/mizu-logo.svg" alt="mizu" className="docs-home__logo" />
         <h1 className="docs-home__title">mizu</h1>
         <p className="docs-subtitle">
           A base layer on top of Radix — tokens, CSS, React bindings, layout primitives, and shell
