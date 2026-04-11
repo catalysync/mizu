@@ -9,6 +9,7 @@ import { resolvePatternsForPlan } from '@/lib/studio/composer';
 import { usePlansStore } from '@/store/plans-store';
 import { cn } from '@/utils/cn';
 import { StudioEditorShell } from '@/components/studio/editor/editor-shell';
+import { RefactorPanel } from '@/components/studio/refactor-panel';
 import { RefineModal } from '@/components/studio/refine-modal';
 
 type Tab = 'preview' | 'editor' | 'code' | 'export';
@@ -221,12 +222,21 @@ function CodeTab({
   setActiveIndex: (n: number) => void;
   patterns: ResolvedPattern[];
 }) {
+  const [refactorPath, setRefactorPath] = useState<string | null>(null);
   const pattern = patterns[activeIndex];
   const files =
     pattern?.renderReact({
       productName: plan.intent.productName,
       description: plan.intent.description,
     }) ?? [];
+
+  const substrate = {
+    industry: plan.intent.industry,
+    stack: plan.intent.stack,
+    patterns: plan.entries.map((e) => e.patternId),
+    primitives: ['Stack', 'Inline', 'Cluster', 'Grid', 'Center', 'Split'],
+    importPath: '@aspect/react',
+  };
 
   return (
     <Split fraction="240px 1fr" gap="1.5rem">
@@ -257,11 +267,29 @@ function CodeTab({
             <header className="border-b border-border bg-muted/40 px-3 py-2 text-xs">
               <Inline align="center" gap="0.5rem" style={{ justifyContent: 'space-between' }}>
                 <code className="text-foreground">{file.path}</code>
-                <span className="text-muted-foreground">
-                  {file.contents.split('\n').length} lines
-                </span>
+                <Inline gap="0.5rem" align="center">
+                  <span className="text-muted-foreground">
+                    {file.contents.split('\n').length} lines
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setRefactorPath(refactorPath === file.path ? null : file.path)}
+                  >
+                    <Sparkles className="mr-1 h-3 w-3" />
+                    Refactor
+                  </Button>
+                </Inline>
               </Inline>
             </header>
+            {refactorPath === file.path ? (
+              <RefactorPanel
+                path={file.path}
+                contents={file.contents}
+                substrate={substrate}
+                onClose={() => setRefactorPath(null)}
+              />
+            ) : null}
             <pre className="max-h-[480px] overflow-auto bg-background p-4 text-xs leading-relaxed text-foreground">
               {file.contents}
             </pre>
