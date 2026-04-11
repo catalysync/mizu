@@ -275,6 +275,9 @@ function CodeTab({
 function ExportTab({ plan }: { plan: StoredPlan }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [shareBusy, setShareBusy] = useState(false);
+  const [shareError, setShareError] = useState<string | null>(null);
 
   const handleDownload = async () => {
     setBusy(true);
@@ -289,13 +292,39 @@ function ExportTab({ plan }: { plan: StoredPlan }) {
     }
   };
 
+  const handleShare = async () => {
+    setShareBusy(true);
+    setShareError(null);
+    try {
+      const response = await fetch('/api/studio/share', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plan }),
+      });
+      if (!response.ok) {
+        const text = await response.text();
+        setShareError(`Share failed: ${text}`);
+        return;
+      }
+      const data = (await response.json()) as { token: string; url: string };
+      const absoluteUrl = `${window.location.origin}${data.url}`;
+      setShareUrl(absoluteUrl);
+      await navigator.clipboard.writeText(absoluteUrl);
+    } catch (err) {
+      setShareError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setShareBusy(false);
+    }
+  };
+
   return (
     <Stack gap="1rem">
       <Stack gap="0.75rem" className="rounded-lg border border-border bg-background p-6">
         <h2 className="text-lg font-semibold text-foreground">Download as a zip</h2>
         <p className="text-sm text-muted-foreground">
           The generated project is a standalone Next.js app. Unzip, run <code>pnpm install</code>,
-          then <code>pnpm dev</code>.
+          then <code>pnpm dev</code>. Includes <code>.cursor/rules</code> and{' '}
+          <code>.claude/skills</code> so subsequent AI edits inherit the grammar.
         </p>
         <Inline gap="0.5rem" align="center">
           <Button onClick={handleDownload} variant="primary" loading={busy}>
@@ -305,12 +334,25 @@ function ExportTab({ plan }: { plan: StoredPlan }) {
           {error ? <span className="text-sm text-danger">{error}</span> : null}
         </Inline>
       </Stack>
-      <Stack gap="0.5rem" className="rounded-lg border border-dashed border-border p-6">
-        <h3 className="text-sm font-semibold text-foreground">Coming next</h3>
+
+      <Stack gap="0.75rem" className="rounded-lg border border-border bg-background p-6">
+        <h2 className="text-lg font-semibold text-foreground">Share link</h2>
         <p className="text-sm text-muted-foreground">
-          GitHub push and share link are queued up. Copy-to-Cursor-rules and Claude Code skill
-          generation are already baked into the substrate file inside the zip.
+          Create a read-only preview URL for this project. Sign-in required — the share is tied to
+          your account.
         </p>
+        <Inline gap="0.5rem" align="center">
+          <Button onClick={handleShare} variant="secondary" loading={shareBusy}>
+            Create share link
+          </Button>
+          {shareError ? <span className="text-sm text-danger">{shareError}</span> : null}
+        </Inline>
+        {shareUrl ? (
+          <Inline gap="0.5rem" align="center">
+            <code className="rounded bg-muted px-2 py-1 text-xs text-foreground">{shareUrl}</code>
+            <span className="text-xs text-muted-foreground">(copied to clipboard)</span>
+          </Inline>
+        ) : null}
       </Stack>
     </Stack>
   );
