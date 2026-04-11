@@ -32,7 +32,7 @@ describe('studio exporter', () => {
     }
   });
 
-  it('includes package.json, README, tsconfig, layout, globals.css', () => {
+  it('includes package.json, README, tsconfig, layout, globals.css, and ai substrate files', () => {
     const { plan } = compose(buildIntent());
     const paths = buildProjectFiles(plan).map((f) => f.path);
     expect(paths).toContain('package.json');
@@ -43,6 +43,8 @@ describe('studio exporter', () => {
     expect(paths).toContain('.gitignore');
     expect(paths).toContain('LICENSE');
     expect(paths).toContain('.tweakmizu/substrate.json');
+    expect(paths).toContain('.cursor/rules/tweakmizu.mdc');
+    expect(paths).toContain('.claude/skills/tweakmizu-design-system/SKILL.md');
   });
 
   it('emits a page file for every pattern in the plan', () => {
