@@ -1,8 +1,4 @@
-import Link from 'next/link';
-import { Button, Stack } from '@aspect/react';
-import { ArrowLeft } from 'lucide-react';
-import { SiteFooter } from '@/components/site-footer';
-import { SiteHeader } from '@/components/site-header';
+import { Stack } from '@aspect/react';
 import { CatalogBrowser } from './catalog-browser';
 
 export const metadata = {
@@ -13,36 +9,21 @@ export const metadata = {
 
 export default function StudioCatalog() {
   return (
-    <div className="flex min-h-[100dvh] flex-col">
-      <SiteHeader />
-      <main className="flex-1">
-        <section className="mx-auto w-full max-w-6xl px-4 py-12">
-          <Stack gap="2rem">
-            <Button asChild variant="ghost" size="sm" className="self-start">
-              <Link href="/studio">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to studio
-              </Link>
-            </Button>
+    <Stack gap="2rem">
+      <Stack gap="0.5rem">
+        <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+          Catalog
+        </span>
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+          Patterns available in the studio
+        </h1>
+        <p className="max-w-2xl text-lg text-muted-foreground">
+          Each pattern is a re-implementation on top of <code>@aspect/react</code>, grounded in an
+          attributed source. The free tier ships these; Pro unlocks the full catalog.
+        </p>
+      </Stack>
 
-            <Stack gap="0.75rem">
-              <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-                Catalog
-              </span>
-              <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-                Patterns available in the studio
-              </h1>
-              <p className="max-w-2xl text-lg text-muted-foreground">
-                Each pattern is a re-implementation on top of <code>@aspect/react</code>, grounded
-                in an attributed source. The free tier ships these; Pro unlocks the full catalog.
-              </p>
-            </Stack>
-
-            <CatalogBrowser />
-          </Stack>
-        </section>
-      </main>
-      <SiteFooter />
-    </div>
+      <CatalogBrowser />
+    </Stack>
   );
 }
