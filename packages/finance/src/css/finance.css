@@ -264,3 +264,237 @@
 [data-theme="dark"] .mizu-report th {
   color: var(--mizu-text-secondary);
 }
+
+/* CurrencyInput — NumberInput preset */
+.mizu-currency-input__input {
+  font-variant-numeric: tabular-nums;
+}
+
+/* TaxRateInput — NumberInput preset with % */
+.mizu-tax-rate-input__input {
+  font-variant-numeric: tabular-nums;
+}
+
+/* InvoiceLineItem — single row of an invoice */
+.mizu-invoice-line-item {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) 5rem 7rem 5rem 8rem auto;
+  gap: var(--mizu-spacing-2);
+  align-items: center;
+  padding: var(--mizu-spacing-2) 0;
+  border-bottom: 1px solid var(--mizu-border-subtle);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.mizu-invoice-line-item__cell {
+  min-width: 0;
+}
+
+.mizu-invoice-line-item__cell[data-align="end"] {
+  text-align: end;
+}
+
+.mizu-invoice-line-item__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--mizu-radius-sm);
+  color: var(--mizu-text-secondary);
+  font-size: var(--mizu-font-size-sm);
+  cursor: pointer;
+  transition: background-color var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+.mizu-invoice-line-item__remove:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
+  color: var(--mizu-feedback-danger-default);
+}
+
+.mizu-invoice-line-item__remove:focus-visible {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: 1px;
+}
+
+/* LedgerRow — debits/credits row */
+.mizu-ledger-row {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 2fr) 6rem 7rem 7rem 7rem;
+  gap: var(--mizu-spacing-2);
+  align-items: center;
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  border-bottom: 1px solid var(--mizu-border-subtle);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.mizu-ledger-row:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 3%, transparent);
+}
+
+.mizu-ledger-row__cell[data-align="end"] {
+  text-align: end;
+}
+
+.mizu-ledger-row__date {
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-ledger-row__debit {
+  color: var(--mizu-text-primary);
+}
+
+.mizu-ledger-row__credit {
+  color: var(--mizu-text-primary);
+}
+
+.mizu-ledger-row__balance {
+  font-weight: var(--mizu-font-weight-semibold);
+}
+
+.mizu-ledger-row__balance[data-negative="true"] {
+  color: var(--mizu-feedback-danger-default);
+}
+
+.mizu-ledger-row[data-kind="subtotal"] {
+  background: var(--mizu-surface-secondary);
+  font-weight: var(--mizu-font-weight-semibold);
+}
+
+/* ChartOfAccounts — tree of accounts */
+.mizu-chart-of-accounts {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.mizu-chart-of-accounts__row {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) 4rem 8rem;
+  gap: var(--mizu-spacing-2);
+  align-items: center;
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  border-bottom: 1px solid var(--mizu-border-subtle);
+}
+
+.mizu-chart-of-accounts__row:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 3%, transparent);
+}
+
+.mizu-chart-of-accounts__row[data-depth="1"] .mizu-chart-of-accounts__name {
+  padding-inline-start: 1.25rem;
+}
+
+.mizu-chart-of-accounts__row[data-depth="2"] .mizu-chart-of-accounts__name {
+  padding-inline-start: 2.5rem;
+}
+
+.mizu-chart-of-accounts__row[data-depth="3"] .mizu-chart-of-accounts__name {
+  padding-inline-start: 3.75rem;
+}
+
+.mizu-chart-of-accounts__row[data-parent="true"] {
+  font-weight: var(--mizu-font-weight-semibold);
+  background: color-mix(in srgb, var(--mizu-text-primary) 2%, transparent);
+}
+
+.mizu-chart-of-accounts__code {
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-chart-of-accounts__name {
+  color: var(--mizu-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mizu-chart-of-accounts__type {
+  color: var(--mizu-text-tertiary);
+  font-size: var(--mizu-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mizu-chart-of-accounts__balance {
+  text-align: end;
+  color: var(--mizu-text-primary);
+}
+
+.mizu-chart-of-accounts__balance[data-negative="true"] {
+  color: var(--mizu-feedback-danger-default);
+}
+
+/* ReconciliationRow — bank match row */
+.mizu-reconciliation-row {
+  display: grid;
+  grid-template-columns: 1.5rem 7rem minmax(0, 1fr) 8rem 7rem;
+  gap: var(--mizu-spacing-2);
+  align-items: center;
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  border-bottom: 1px solid var(--mizu-border-subtle);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.mizu-reconciliation-row:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 3%, transparent);
+}
+
+.mizu-reconciliation-row[data-status="matched"] {
+  background: color-mix(in srgb, var(--mizu-feedback-success-default) 6%, transparent);
+}
+
+.mizu-reconciliation-row[data-status="unmatched"] .mizu-reconciliation-row__status {
+  color: var(--mizu-feedback-warning-default);
+}
+
+.mizu-reconciliation-row[data-status="disputed"] .mizu-reconciliation-row__status {
+  color: var(--mizu-feedback-danger-default);
+}
+
+.mizu-reconciliation-row__status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  font-size: var(--mizu-font-size-xs);
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-reconciliation-row[data-status="matched"] .mizu-reconciliation-row__status {
+  color: var(--mizu-feedback-success-default);
+}
+
+.mizu-reconciliation-row__date {
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-reconciliation-row__description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mizu-reconciliation-row__amount {
+  text-align: end;
+  font-weight: var(--mizu-font-weight-medium);
+}
+
+.mizu-reconciliation-row__match {
+  color: var(--mizu-text-tertiary);
+  font-size: var(--mizu-font-size-xs);
+}
