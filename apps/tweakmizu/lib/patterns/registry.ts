@@ -4,6 +4,7 @@ import { cloudApps } from '@/catalog/cloud/apps';
 import { cloudBilling } from '@/catalog/cloud/billing';
 import { cloudSettings } from '@/catalog/cloud/settings';
 import { cloudTemplates } from '@/catalog/cloud/templates';
+import { commerceCustomers } from '@/catalog/commerce/customers';
 import type { PatternModule, PatternTier } from './types';
 
 export const patternRegistry: PatternModule[] = [
@@ -12,6 +13,7 @@ export const patternRegistry: PatternModule[] = [
   cloudTemplates,
   cloudBilling,
   cloudSettings,
+  commerceCustomers,
 ];
 
 export function getAllPatterns(): PatternModule[] {

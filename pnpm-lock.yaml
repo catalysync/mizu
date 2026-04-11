@@ -180,9 +180,15 @@ importers:
 
   apps/tweakmizu:
     dependencies:
+      '@aspect/commerce':
+        specifier: workspace:^
+        version: link:../../packages/commerce
       '@aspect/css':
         specifier: workspace:^
         version: link:../../packages/css
+      '@aspect/finance':
+        specifier: workspace:^
+        version: link:../../packages/finance
       '@aspect/react':
         specifier: workspace:^
         version: link:../../packages/react

@@ -6,7 +6,6 @@ import {
   CardHeader,
   Inline,
   Input,
-  Select,
   Separator,
   Stack,
   Switch,
@@ -23,12 +22,7 @@ function Preview() {
           <Stack gap="1rem">
             <Input label="Team name" defaultValue="Aspect Labs" />
             <Input label="Slug" defaultValue="aspect-labs" />
-            <Select label="Default region">
-              <option value="us-east">US East (Virginia)</option>
-              <option value="us-west">US West (Oregon)</option>
-              <option value="eu-west">EU West (Ireland)</option>
-              <option value="ap-south">AP South (Mumbai)</option>
-            </Select>
+            <Input label="Default region" defaultValue="US East (Virginia)" />
           </Stack>
         </CardBody>
         <CardFooter>

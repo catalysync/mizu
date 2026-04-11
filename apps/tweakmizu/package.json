@@ -16,7 +16,9 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@aspect/commerce": "workspace:^",
     "@aspect/css": "workspace:^",
+    "@aspect/finance": "workspace:^",
     "@aspect/react": "workspace:^",
     "@aspect/tokens": "workspace:^",
     "@neondatabase/serverless": "^1.0.2",
