@@ -4,12 +4,15 @@ import { cloudApps } from '@/catalog/cloud/apps';
 import { cloudBilling } from '@/catalog/cloud/billing';
 import { cloudSettings } from '@/catalog/cloud/settings';
 import { cloudTemplates } from '@/catalog/cloud/templates';
+import { aiChat } from '@/catalog/ai/chat';
 import { commerceCustomers } from '@/catalog/commerce/customers';
 import { commerceOrders } from '@/catalog/commerce/orders';
 import { commonEmptyState } from '@/catalog/common/empty-state';
 import { commonSignin } from '@/catalog/common/signin';
+import { commonTeamMembers } from '@/catalog/common/team-members';
 import { conversationsContacts } from '@/catalog/conversations/contacts';
 import { conversationsSavedReplies } from '@/catalog/conversations/saved-replies';
+import { fintechAccounts } from '@/catalog/fintech/accounts';
 import { saasDashboard } from '@/catalog/saas/dashboard';
 import type { PatternModule, PatternTier } from './types';
 
@@ -24,8 +27,11 @@ export const patternRegistry: PatternModule[] = [
   commerceOrders,
   conversationsContacts,
   conversationsSavedReplies,
+  fintechAccounts,
+  aiChat,
   commonSignin,
   commonEmptyState,
+  commonTeamMembers,
 ];
 
 export function getAllPatterns(): PatternModule[] {
