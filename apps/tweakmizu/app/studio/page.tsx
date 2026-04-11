@@ -1,5 +1,5 @@
 import { Button } from '@aspect/react';
-import { ArrowRight, Sliders, Sparkles } from 'lucide-react';
+import { ArrowRight, LayoutGrid, Sliders, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -37,6 +37,12 @@ export default function StudioHome() {
                 </Link>
               </Button>
               <Button asChild variant="secondary" size="lg">
+                <Link href="/studio/catalog">
+                  <LayoutGrid className="mr-2 h-4 w-4" />
+                  Browse catalog
+                </Link>
+              </Button>
+              <Button asChild variant="ghost" size="lg">
                 <Link href="/studio/editor">
                   <Sliders className="mr-2 h-4 w-4" />
                   Open the editor
