@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn';
 
 export type FormLayout = 'stack' | 'grid';
 
-export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
+export interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'title'> {
   title?: React.ReactNode;
   description?: React.ReactNode;
   layout?: FormLayout;

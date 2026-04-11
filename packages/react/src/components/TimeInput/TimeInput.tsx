@@ -6,7 +6,7 @@ export type TimeFormat = '24h' | '12h';
 
 export interface TimeInputProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
-  'type' | 'value' | 'defaultValue' | 'onChange' | 'size'
+  'type' | 'value' | 'defaultValue' | 'size'
 > {
   value?: string | null;
   defaultValue?: string | null;

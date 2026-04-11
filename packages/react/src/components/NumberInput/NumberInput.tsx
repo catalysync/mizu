@@ -4,7 +4,7 @@ import { useFieldContext } from '../Field/field-context';
 
 export interface NumberInputProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
-  'type' | 'size' | 'value' | 'defaultValue' | 'onChange' | 'prefix'
+  'type' | 'size' | 'value' | 'defaultValue' | 'prefix'
 > {
   value?: number | null;
   defaultValue?: number | null;
