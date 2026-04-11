@@ -4,6 +4,9 @@ import { db } from '@/db';
 import * as schema from '@/db/schema';
 
 function buildAuth() {
+  const hasGoogle = !!process.env.GOOGLE_CLIENT_ID && !!process.env.GOOGLE_CLIENT_SECRET;
+  const hasGithub = !!process.env.GITHUB_CLIENT_ID && !!process.env.GITHUB_CLIENT_SECRET;
+
   return betterAuth({
     database: drizzleAdapter(db, {
       provider: 'pg',
@@ -11,15 +14,24 @@ function buildAuth() {
     }),
     baseURL: process.env.BETTER_AUTH_URL ?? process.env.NEXT_PUBLIC_BASE_URL,
     secret: process.env.BETTER_AUTH_SECRET,
+    emailAndPassword: {
+      enabled: true,
+      autoSignIn: true,
+      minPasswordLength: 6,
+    },
     socialProviders: {
-      google: {
-        clientId: process.env.GOOGLE_CLIENT_ID ?? '',
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
-      },
-      github: {
-        clientId: process.env.GITHUB_CLIENT_ID ?? '',
-        clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
-      },
+      ...(hasGoogle && {
+        google: {
+          clientId: process.env.GOOGLE_CLIENT_ID!,
+          clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+        },
+      }),
+      ...(hasGithub && {
+        github: {
+          clientId: process.env.GITHUB_CLIENT_ID!,
+          clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+        },
+      }),
     },
   });
 }

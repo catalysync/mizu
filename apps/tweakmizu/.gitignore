@@ -1,0 +1,2 @@
+# Seed / one-off scripts kept local to the codespace
+scripts/seed-user.ts

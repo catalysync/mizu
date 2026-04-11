@@ -51,6 +51,7 @@
     "drizzle-kit": "^0.31.10",
     "jsdom": "^25.0.0",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5",
     "vitest": "^3.0.0",
     "vitest-axe": "^0.1.0"
