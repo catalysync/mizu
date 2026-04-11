@@ -46,6 +46,7 @@
 @import url("./components/slider.css");
 @import url("./components/scroll-area.css");
 @import url("./components/heading.css");
+@import url("./components/label.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
