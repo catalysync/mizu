@@ -37,22 +37,6 @@
   object-fit: cover;
 }
 
-.mizu-pagination {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--mizu-spacing-4);
-  padding: var(--mizu-spacing-3) 0;
-  font-family: var(--mizu-font-family-sans);
-  font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-secondary);
-}
-
-.mizu-pagination__buttons {
-  display: flex;
-  gap: var(--mizu-spacing-1);
-}
-
 .mizu-banner {
   display: flex;
   gap: var(--mizu-spacing-3);

@@ -4,6 +4,7 @@ import {
   Card,
   Inline,
   Input,
+  Pagination,
   Stack,
   Table,
   TableBody,
@@ -12,7 +13,6 @@ import {
   TableHeader,
   TableRow,
 } from '@aspect/react';
-import { Pagination } from '@aspect/commerce';
 import { formatCurrency } from '@aspect/finance';
 import { definePattern } from '@/lib/patterns/types';
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
@@ -160,6 +160,7 @@ const TEMPLATE = `import {
   Card,
   Inline,
   Input,
+  Pagination,
   Stack,
   Table,
   TableBody,
@@ -168,7 +169,6 @@ const TEMPLATE = `import {
   TableHeader,
   TableRow,
 } from '@aspect/react';
-import { Pagination } from '@aspect/commerce';
 import { formatCurrency } from '@aspect/finance';
 
 interface CustomerRow {

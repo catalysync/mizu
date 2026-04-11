@@ -13,9 +13,9 @@ import {
   TableHeader,
   TableCell,
   Separator,
+  Pagination,
 } from '@aspect/react';
 import { formatCurrency } from '@aspect/finance';
-import { Pagination } from '@aspect/commerce';
 import { orders } from './data';
 
 const statusTone = {

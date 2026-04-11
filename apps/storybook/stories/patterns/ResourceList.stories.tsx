@@ -14,8 +14,8 @@ import {
   TableHeader,
   TableCell,
   AppContentHeader,
+  Pagination,
 } from '@aspect/react';
-import { Pagination } from '@aspect/commerce';
 
 const items = [
   { name: 'frosty-mountain-1234', status: 'running', region: 'us-east', deploys: 142 },

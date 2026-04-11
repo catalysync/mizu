@@ -11,9 +11,10 @@ import {
   TabsContent,
   Grid,
   Stack,
+  Pagination,
 } from '@aspect/react';
 import { KpiCard, DeltaIndicator, formatCurrency } from '@aspect/finance';
-import { ResourceItem, Thumbnail, Pagination, Banner } from '@aspect/commerce';
+import { ResourceItem, Thumbnail, Banner } from '@aspect/commerce';
 import { products, orders } from './data';
 import { CommerceShell } from './CommerceShell';
 import { OrdersPage } from './OrdersPage';

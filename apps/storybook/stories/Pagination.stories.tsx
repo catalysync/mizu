@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import '@aspect/commerce/css';
-import { Pagination } from '@aspect/commerce';
+import { Pagination, Stack } from '@aspect/react';
+import { useState } from 'react';
 
 const meta = {
-  title: 'Commerce/Pagination',
+  title: 'Components/Atoms/Pagination',
   component: Pagination,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof Pagination>;
@@ -35,6 +35,22 @@ export const LastPage: Story = {
   },
 };
 
-export const NoLabel: Story = {
-  args: { hasPrevious: true, hasNext: true },
+export const WithPageNumbers: Story = {
+  args: { page: 4, totalPages: 10, label: '31–40 of 100' },
+};
+
+export const Collapsed: Story = {
+  args: { page: 12, totalPages: 40, label: '111–120 of 400' },
+};
+
+export const Controlled: Story = {
+  render: () => {
+    const [page, setPage] = useState(3);
+    return (
+      <Stack gap="0.5rem">
+        <Pagination page={page} totalPages={10} onPageChange={setPage} />
+        <p>Current page: {page}</p>
+      </Stack>
+    );
+  },
 };

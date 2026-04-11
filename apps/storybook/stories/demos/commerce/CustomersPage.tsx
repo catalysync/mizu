@@ -12,9 +12,9 @@ import {
   TableHeader,
   TableCell,
   Input,
+  Pagination,
 } from '@aspect/react';
 import { formatCurrency } from '@aspect/finance';
-import { Pagination } from '@aspect/commerce';
 import { customers } from './data';
 
 export function CustomersPage() {

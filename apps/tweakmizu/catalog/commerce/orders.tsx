@@ -4,6 +4,7 @@ import {
   Card,
   CardBody,
   Inline,
+  Pagination,
   Separator,
   Stack,
   Table,
@@ -13,7 +14,6 @@ import {
   TableHeader,
   TableRow,
 } from '@aspect/react';
-import { Pagination } from '@aspect/commerce';
 import { formatCurrency } from '@aspect/finance';
 import { definePattern } from '@/lib/patterns/types';
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
@@ -187,6 +187,7 @@ const TEMPLATE = `import {
   Card,
   CardBody,
   Inline,
+  Pagination,
   Separator,
   Stack,
   Table,
@@ -196,7 +197,6 @@ const TEMPLATE = `import {
   TableHeader,
   TableRow,
 } from '@aspect/react';
-import { Pagination } from '@aspect/commerce';
 import { formatCurrency } from '@aspect/finance';
 
 type OrderStatus = 'fulfilled' | 'pending' | 'refunded';
