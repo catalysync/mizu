@@ -49,6 +49,7 @@
 @import url("./components/label.css");
 @import url("./components/spinner.css");
 @import url("./components/link.css");
+@import url("./components/fieldset.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
