@@ -1,4 +1,5 @@
-.mizu-kv-pairs {
+.mizu-kv-pairs,
+.mizu-definition-list {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--mizu-spacing-2) var(--mizu-spacing-4);
@@ -7,11 +8,54 @@
   font-size: var(--mizu-font-size-sm);
 }
 
-.mizu-kv-pairs dt {
+.mizu-kv-pairs dt,
+.mizu-definition-list dt {
   color: var(--mizu-text-secondary);
+  font-weight: var(--mizu-font-weight-medium);
 }
 
-.mizu-kv-pairs dd {
+.mizu-kv-pairs dd,
+.mizu-definition-list dd {
   margin: 0;
   color: var(--mizu-text-primary);
+}
+
+.mizu-definition-list[data-orientation="vertical"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-3);
+}
+
+.mizu-definition-list[data-orientation="vertical"] .mizu-definition-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-1);
+}
+
+.mizu-definition-list[data-orientation="vertical"] dt {
+  font-size: var(--mizu-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mizu-definition-list[data-columns="2"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mizu-definition-list[data-columns="3"] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mizu-definition-list[data-columns="2"] .mizu-definition-list__item,
+.mizu-definition-list[data-columns="3"] .mizu-definition-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-1);
+}
+
+.mizu-definition-list[data-columns="2"] dt,
+.mizu-definition-list[data-columns="3"] dt {
+  font-size: var(--mizu-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }

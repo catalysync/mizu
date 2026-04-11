@@ -5,6 +5,7 @@ export * from './components/Label';
 export * from './components/Spinner';
 export * from './components/Link';
 export * from './components/Fieldset';
+export * from './components/DefinitionList';
 export * from './components/Card';
 export * from './components/Input';
 export * from './components/EmptyState';
