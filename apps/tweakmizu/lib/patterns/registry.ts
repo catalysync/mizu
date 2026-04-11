@@ -6,6 +6,8 @@ import { cloudSettings } from '@/catalog/cloud/settings';
 import { cloudTemplates } from '@/catalog/cloud/templates';
 import { commerceCustomers } from '@/catalog/commerce/customers';
 import { commerceOrders } from '@/catalog/commerce/orders';
+import { commonEmptyState } from '@/catalog/common/empty-state';
+import { commonSignin } from '@/catalog/common/signin';
 import { conversationsContacts } from '@/catalog/conversations/contacts';
 import { conversationsSavedReplies } from '@/catalog/conversations/saved-replies';
 import { saasDashboard } from '@/catalog/saas/dashboard';
@@ -22,6 +24,8 @@ export const patternRegistry: PatternModule[] = [
   commerceOrders,
   conversationsContacts,
   conversationsSavedReplies,
+  commonSignin,
+  commonEmptyState,
 ];
 
 export function getAllPatterns(): PatternModule[] {
