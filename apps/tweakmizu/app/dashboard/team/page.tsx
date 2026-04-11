@@ -1,14 +1,55 @@
 import Link from 'next/link';
-import { Button, Card, CardBody, CardHeader, Inline, Stack } from '@aspect/react';
-import { ArrowLeft, Users } from 'lucide-react';
+import { eq } from 'drizzle-orm';
+import { Badge, Button, Card, CardBody, CardHeader, Inline, Stack } from '@aspect/react';
+import { ArrowLeft } from 'lucide-react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { db } from '@/db';
+import { team, teamMember } from '@/db/schema';
+import { tryGetCurrentUserId } from '@/lib/shared';
+import { TeamClient } from './team-client';
 
 export const metadata = {
   title: 'Team — tweakmizu',
 };
 
-export default function TeamPage() {
+export const dynamic = 'force-dynamic';
+
+interface OwnedTeam {
+  id: string;
+  name: string;
+  slug: string;
+  role: 'owner' | 'admin' | 'member';
+}
+
+async function loadTeams(): Promise<OwnedTeam[]> {
+  const userId = await tryGetCurrentUserId().catch(() => null);
+  if (!userId) return [];
+
+  try {
+    const memberships = await db
+      .select({
+        team: team,
+        role: teamMember.role,
+      })
+      .from(teamMember)
+      .innerJoin(team, eq(team.id, teamMember.teamId))
+      .where(eq(teamMember.userId, userId));
+
+    return memberships.map((row) => ({
+      id: row.team.id,
+      name: row.team.name,
+      slug: row.team.slug,
+      role: row.role,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function TeamPage() {
+  const teams = await loadTeams();
+
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <SiteHeader />
@@ -28,35 +69,35 @@ export default function TeamPage() {
               </span>
               <h1 className="text-3xl font-bold tracking-tight text-foreground">Team workspace</h1>
               <p className="text-lg text-muted-foreground">
-                Share themes, projects, and pattern presets across your team. Available on the Team
-                tier.
+                Share themes, projects, and pattern presets across your team.
               </p>
             </Stack>
 
-            <Card>
-              <CardHeader
-                title="You don't have a team yet"
-                description="Create a team to share projects, invite members, and bill together."
-              />
-              <CardBody>
-                <Stack gap="1rem">
-                  <Inline gap="0.5rem" align="center">
-                    <Users className="h-5 w-5 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">
-                      Team tier: $39/mo for 3 seats + $12/mo per additional seat
-                    </span>
-                  </Inline>
-                  <Inline gap="0.5rem" align="center">
-                    <Button asChild variant="primary">
-                      <Link href="/pricing">Upgrade to Team</Link>
-                    </Button>
-                    <Button variant="secondary" disabled>
-                      Create team (coming soon)
-                    </Button>
-                  </Inline>
-                </Stack>
-              </CardBody>
-            </Card>
+            {teams.length === 0 ? (
+              <Card>
+                <CardHeader
+                  title="No teams yet"
+                  description="Create a team to share projects, invite members, and bill together."
+                />
+                <CardBody>
+                  <TeamClient existingTeams={teams} />
+                </CardBody>
+              </Card>
+            ) : (
+              <Stack gap="1rem">
+                {teams.map((t) => (
+                  <Card key={t.id}>
+                    <CardHeader title={t.name} description={`slug: ${t.slug}`} />
+                    <CardBody>
+                      <Inline gap="0.5rem" align="center">
+                        <Badge tone={t.role === 'owner' ? 'success' : 'info'}>{t.role}</Badge>
+                      </Inline>
+                    </CardBody>
+                  </Card>
+                ))}
+                <TeamClient existingTeams={teams} />
+              </Stack>
+            )}
           </Stack>
         </section>
       </main>
