@@ -1,0 +1,73 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+The Button component is mizu's canonical interactive control. It wraps a native
+`<button>` element with variant + size tokens, loading + disabled state, and an
+intentional `Inaccessible` / `Accessible` pair so you can see the a11y trap for
+icon-only buttons directly in Storybook.
+
+## Usage
+
+<Canvas of={ButtonStories.Primary} />
+
+```tsx
+import { Button } from '@aspect/react';
+
+<Button variant="primary" size="md" onClick={() => save()}>
+  Save changes
+</Button>;
+```
+
+## Variants
+
+mizu ships four visual variants for the default sample language. Your own
+design language (in tweakmizu) may add more or rename these — they are
+_not_ an invariant contract of the component.
+
+<Canvas of={ButtonStories.Secondary} />
+<Canvas of={ButtonStories.Ghost} />
+<Canvas of={ButtonStories.Destructive} />
+
+## Sizes
+
+Three sizes plus a dedicated `icon` size for icon-only controls. The `icon`
+size enforces square dimensions and expects an `aria-label`.
+
+<Canvas of={ButtonStories.AllSizes} />
+
+## Loading state
+
+Loading is modeled as a first-class prop, not a caller responsibility. Setting
+`loading` applies `data-loading`, `aria-busy`, and `disabled` together, and
+absolute-positions a spinner over a hidden label so the button retains its
+original width.
+
+<Canvas of={ButtonStories.Loading} />
+
+## Accessibility
+
+- Icon-only buttons **must** have an `aria-label`. The `Inaccessible` story
+  below is deliberately broken so the a11y addon panel flags it — compare
+  against `Accessible` to see the fix.
+- `Enter` and `Space` activate the button; `Tab` moves focus. The focus ring
+  uses `:focus-visible` so it only shows for keyboard users.
+- `loading` state sets `aria-busy` so screen readers announce the transition.
+  Focus is preserved while loading.
+
+<Canvas of={ButtonStories.Inaccessible} />
+<Canvas of={ButtonStories.Accessible} />
+
+## Props
+
+<Controls of={ButtonStories.Primary} />
+
+## Related
+
+- `Inline` + `Stack` for grouping multiple buttons.
+- `DropdownMenu` for a menu attached to a button.
+- `Tooltip` when you need to explain what a button does on hover (but don't
+  use a tooltip as a replacement for `aria-label` — screen readers need both).

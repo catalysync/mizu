@@ -13,10 +13,10 @@ const config: StorybookConfig = {
     // Welcome comes first so Storybook opens to it by default.
     '../stories/welcome/*.stories.@(ts|tsx|mdx)',
     ...storyGlobs,
-    // Co-located MDX docs inside the react package (e.g. Button.mdx next to Button.tsx).
-    '../../../packages/react/src/components/**/*.mdx',
+    // MDX docs live alongside the stories they reference.
+    '../stories/**/*.mdx',
   ],
-  addons: ['@storybook/addon-a11y'],
+  addons: ['@storybook/addon-a11y', '@storybook/addon-docs'],
   staticDirs: ['../public'],
   framework: {
     name: '@storybook/react-vite',

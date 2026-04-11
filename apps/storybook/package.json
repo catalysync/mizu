@@ -21,6 +21,7 @@
     "@aspect/tsconfig": "workspace:^",
     "@react-awesome-query-builder/ui": "^6.6.3",
     "@storybook/addon-a11y": "^10.3.0",
+    "@storybook/addon-docs": "^10.3.5",
     "@storybook/react-vite": "^10.3.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
