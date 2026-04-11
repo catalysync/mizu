@@ -1,6 +1,16 @@
 # mizu
 
-A design system that works across frameworks. Ship tokens, CSS, and React components from one monorepo.
+fluid design for saas
+
+## What mizu is
+
+**mizu is a base layer on top of Radix.** Radix handles the hard primitives (focus trap, overlay positioning, ARIA wiring, keyboard semantics); mizu adds the visual substrate — tokens, CSS, React bindings, layout primitives, shell composition, and framework bridges — so a product team can assemble an application without rebuilding the foundations.
+
+**mizu does not have a design language.** It ships with a neutral default theme as a starting point, but that theme is a _sample_, not the system's opinion. There is no "mizu believes X about UI" manifesto. The same components are meant to serve very different products — enterprise accounting, Palantir-style IDEs, commerce dashboards — and each of those has its own principles, vocabulary, grammar and voice. mizu stays deliberately language-absent so it can be the canvas for all of them.
+
+This matters for how you read the docs: guidance about accessibility, semantic HTML, component composition, and prop API usage is authoritative and applies everywhere. Guidance about _visual style_ — colors, radii, motion curves, voice — is only ever a recommendation from the default sample. Override freely.
+
+> The layer that **does** have a design language is [tweakmizu](https://github.com/catalysync/tweakmizu) — the studio that lets each product author its own language on top of mizu and export a themed, component-configured starter. mizu is the canvas; tweakmizu is where the painting happens.
 
 ## Quick start
 

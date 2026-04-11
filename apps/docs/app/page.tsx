@@ -38,7 +38,11 @@ export default function HomePage() {
     <div className="docs-home">
       <div className="docs-home__hero">
         <h1 className="docs-home__title">mizu</h1>
-        <p className="docs-subtitle">An open-source design system for building web applications.</p>
+        <p className="docs-subtitle">
+          A base layer on top of Radix — tokens, CSS, React bindings, layout primitives, and shell
+          composition for building web applications. mizu does not have a design language of its
+          own; it's the canvas, and tweakmizu is where the painting happens.
+        </p>
         <div className="docs-home__ctas">
           <Link
             href="/getting-started"
