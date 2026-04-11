@@ -46,7 +46,7 @@ export function ProjectView({ projectId }: { projectId: string }) {
         <p className="text-xs text-muted-foreground">{plan.rationale}</p>
       </header>
 
-      <nav
+      <div
         role="tablist"
         aria-label="Project view tabs"
         className="flex flex-wrap items-center gap-1 border-b border-border"
@@ -73,7 +73,7 @@ export function ProjectView({ projectId }: { projectId: string }) {
             </button>
           );
         })}
-      </nav>
+      </div>
 
       {activeTab === 'preview' ? (
         <PreviewTab
@@ -116,6 +116,10 @@ function MissingPlan() {
   );
 }
 
+type StoredPlan = NonNullable<ReturnType<typeof usePlansStore.getState>['plans'][string]>;
+type PlanEntry = StoredPlan['entries'][number];
+type ResolvedPattern = ReturnType<typeof resolvePatternsForPlan>[number];
+
 function PreviewTab({
   plan,
   activeIndex,
@@ -124,14 +128,12 @@ function PreviewTab({
   entry,
   pattern,
 }: {
-  plan: ReturnType<typeof usePlansStore.getState>['plans'][string];
+  plan: StoredPlan;
   activeIndex: number;
   setActiveIndex: (n: number) => void;
-  patterns: ReturnType<typeof resolvePatternsForPlan>;
-  entry: ReturnType<typeof resolvePatternsForPlan>[number] extends infer _
-    ? (typeof plan.entries)[number]
-    : never;
-  pattern: ReturnType<typeof resolvePatternsForPlan>[number] | undefined;
+  patterns: ResolvedPattern[];
+  entry: PlanEntry | undefined;
+  pattern: ResolvedPattern | undefined;
 }) {
   const Preview = pattern?.Preview;
   return (
@@ -195,10 +197,10 @@ function CodeTab({
   setActiveIndex,
   patterns,
 }: {
-  plan: ReturnType<typeof usePlansStore.getState>['plans'][string];
+  plan: StoredPlan;
   activeIndex: number;
   setActiveIndex: (n: number) => void;
-  patterns: ReturnType<typeof resolvePatternsForPlan>;
+  patterns: ResolvedPattern[];
 }) {
   const pattern = patterns[activeIndex];
   const files =

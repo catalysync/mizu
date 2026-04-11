@@ -24,8 +24,8 @@ export default function StudioNew() {
                 What are you building?
               </h1>
               <p className="text-lg text-muted-foreground">
-                Describe the product, pick an industry and tone, and we'll compose a starter from
-                the pattern catalog.
+                Describe the product, pick an industry and tone, and we&apos;ll compose a starter
+                from the pattern catalog.
               </p>
             </div>
 
