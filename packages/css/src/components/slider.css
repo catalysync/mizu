@@ -1,0 +1,58 @@
+.mizu-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  width: 100%;
+  height: 1.25rem;
+}
+
+.mizu-slider__track {
+  position: relative;
+  flex-grow: 1;
+  height: 0.25rem;
+  background: var(--mizu-border-default);
+  border-radius: var(--mizu-radius-full);
+  overflow: hidden;
+}
+
+.mizu-slider__range {
+  position: absolute;
+  height: 100%;
+  background: var(--mizu-action-primary-default);
+  border-radius: var(--mizu-radius-full);
+}
+
+.mizu-slider__thumb {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background: var(--mizu-surface-default);
+  border: 2px solid var(--mizu-action-primary-default);
+  border-radius: var(--mizu-radius-full);
+  box-shadow: var(--mizu-shadow-sm);
+  transition:
+    box-shadow var(--mizu-duration-fast) var(--mizu-easing-out),
+    border-color var(--mizu-duration-fast) var(--mizu-easing-out);
+  cursor: grab;
+}
+
+.mizu-slider__thumb:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--mizu-surface-default),
+    0 0 0 4px var(--mizu-action-primary-default);
+}
+
+.mizu-slider__thumb:hover {
+  border-color: var(--mizu-action-primary-hover);
+}
+
+.mizu-slider[data-disabled] {
+  opacity: 0.5;
+}
+
+.mizu-slider[data-disabled] .mizu-slider__thumb {
+  cursor: not-allowed;
+}

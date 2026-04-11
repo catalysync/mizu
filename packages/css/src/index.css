@@ -43,6 +43,7 @@
 @import url("./components/skeleton.css");
 @import url("./components/toast.css");
 @import url("./components/command-menu.css");
+@import url("./components/slider.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
