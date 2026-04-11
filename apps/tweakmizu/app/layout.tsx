@@ -1,4 +1,4 @@
-import { TooltipProvider } from '@/components/ui/tooltip';
+import { TooltipProvider } from '@aspect/react';
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 

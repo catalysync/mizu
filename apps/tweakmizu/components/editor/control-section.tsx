@@ -1,59 +1,64 @@
+'use client';
+
 import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import type { ControlSectionProps } from '@/types';
-import { SectionContext } from './section-context';
 
 const ControlSection = ({
   title,
   children,
   expanded = false,
-  className,
   headerAction,
 }: ControlSectionProps) => {
   const [isExpanded, setIsExpanded] = useState(expanded);
 
   return (
-    <SectionContext.Provider
-      value={{
-        isExpanded,
-        setIsExpanded,
-        toggleExpanded: () => setIsExpanded((prev) => !prev),
-      }}
-    >
-      <div className="group/accordion">
-        <div className="flex items-center gap-1 py-1">
-          <button
-            type="button"
-            className="group/section flex items-center transition-colors"
-            onClick={() => setIsExpanded(!isExpanded)}
-            aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
-          >
-            <div className="bg-muted group-hover/section:bg-muted/80 group-has-focus-within/accordion:bg-muted/70 flex items-center gap-1 rounded-md border border-transparent px-2 py-0.5 transition-all group-has-focus-within/accordion:border-ring/50">
-              <ChevronRight
-                className={cn(
-                  'text-muted-foreground size-3 transition-transform duration-200',
-                  isExpanded && 'rotate-90',
-                )}
-              />
-              <span className="text-muted-foreground text-[11px] font-semibold uppercase tracking-wider">
-                {title}
-              </span>
-            </div>
-          </button>
-          {headerAction}
-        </div>
-
-        <div
-          className={cn(
-            'overflow-hidden transition-all duration-200',
-            isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0',
-          )}
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0.25rem 0' }}>
+        <button
+          type="button"
+          onClick={() => setIsExpanded((v) => !v)}
+          aria-expanded={isExpanded}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.25rem',
+            padding: '0.125rem 0.5rem',
+            borderRadius: 'var(--mizu-radius-sm)',
+            background: 'var(--mizu-surface-secondary)',
+            color: 'var(--mizu-text-secondary)',
+            border: '1px solid transparent',
+            fontSize: '11px',
+            fontWeight: 600,
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase',
+            cursor: 'pointer',
+          }}
         >
-          <div className={cn('flex flex-col pt-1 pb-2', className)}>{children}</div>
-        </div>
+          <ChevronRight
+            size={12}
+            style={{
+              transform: isExpanded ? 'rotate(90deg)' : undefined,
+              transition: 'transform var(--mizu-duration-fast) var(--mizu-easing-out)',
+            }}
+          />
+          {title}
+        </button>
+        {headerAction}
       </div>
-    </SectionContext.Provider>
+      {isExpanded && (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem',
+            padding: '0.25rem 0 0.5rem',
+          }}
+        >
+          {children}
+        </div>
+      )}
+    </div>
   );
 };
 

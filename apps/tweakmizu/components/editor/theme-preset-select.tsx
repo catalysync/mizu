@@ -1,37 +1,28 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandList,
-} from '@/components/ui/command';
-import { Input } from '@/components/ui/input';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Separator } from '@/components/ui/separator';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { cn } from '@/lib/utils';
+import React, { useCallback, useMemo, useState } from 'react';
+import { Button, Popover, PopoverContent, PopoverTrigger, ScrollArea, Stack } from '@aspect/react';
+import { ArrowLeft, ArrowRight, Check, ChevronDown, Search, Shuffle } from 'lucide-react';
 import { useEditorStore } from '@/store/editor-store';
 import { useThemePresetStore } from '@/store/preset-store';
 import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
-import { ArrowLeft, ArrowRight, Check, ChevronDown, Search, Shuffle } from 'lucide-react';
-import React, { useCallback, useMemo, useState } from 'react';
-import { TooltipWrapper } from '../tooltip-wrapper';
-
-interface ThemePresetSelectProps extends React.ComponentProps<typeof Button> {
-  withCycleThemes?: boolean;
-}
 
 const ColorBox: React.FC<{ color: string }> = ({ color }) => (
-  <div className="border-muted h-3 w-3 rounded-sm border" style={{ backgroundColor: color }} />
+  <div
+    style={{
+      width: 12,
+      height: 12,
+      borderRadius: 'var(--mizu-radius-sm)',
+      border: '1px solid var(--mizu-border-default)',
+      backgroundColor: color,
+    }}
+  />
 );
 
-const ThemeColors: React.FC<{ presetName: string }> = ({ presetName }) => {
-  const styles = getPresetThemeStyles(presetName);
+const PresetSwatch: React.FC<{ name: string }> = ({ name }) => {
+  const styles = getPresetThemeStyles(name);
   return (
-    <div className="flex gap-0.5">
+    <div style={{ display: 'flex', gap: 2 }}>
       <ColorBox color={styles['action-primary-default']} />
       <ColorBox color={styles['surface-default']} />
       <ColorBox color={styles['text-primary']} />
@@ -40,217 +31,158 @@ const ThemeColors: React.FC<{ presetName: string }> = ({ presetName }) => {
   );
 };
 
-const ThemeControls = () => {
-  const applyThemePreset = useEditorStore((store) => store.applyThemePreset);
-  const presets = useThemePresetStore((store) => store.getAllPresets());
-  const presetNames = useMemo(() => ['default', ...Object.keys(presets)], [presets]);
+export default function ThemePresetSelect() {
+  const themeState = useEditorStore((s) => s.themeState);
+  const applyPreset = useEditorStore((s) => s.applyThemePreset);
+  const hasUnsaved = useEditorStore((s) => s.hasUnsavedChanges);
 
-  const randomize = useCallback(() => {
-    const random = Math.floor(Math.random() * presetNames.length);
-    applyThemePreset(presetNames[random]);
-  }, [presetNames, applyThemePreset]);
-
-  return (
-    <TooltipWrapper label="Random theme" asChild>
-      <Button variant="ghost" size="sm" className="size-6 p-1" onClick={randomize}>
-        <Shuffle className="h-3.5 w-3.5" />
-      </Button>
-    </TooltipWrapper>
-  );
-};
-
-const ThemeCycleButton: React.FC<
-  React.ComponentProps<typeof Button> & { direction: 'prev' | 'next' }
-> = ({ direction, onClick, className, ...props }) => (
-  <Tooltip>
-    <TooltipTrigger asChild>
-      <Button
-        variant="ghost"
-        size="icon"
-        className={cn('aspect-square h-full shrink-0', className)}
-        onClick={onClick}
-        {...props}
-      >
-        {direction === 'prev' ? (
-          <ArrowLeft className="h-4 w-4" />
-        ) : (
-          <ArrowRight className="h-4 w-4" />
-        )}
-      </Button>
-    </TooltipTrigger>
-    <TooltipContent>{direction === 'prev' ? 'Previous theme' : 'Next theme'}</TooltipContent>
-  </Tooltip>
-);
-
-const ThemePresetCycleControls: React.FC<
-  React.ComponentProps<typeof Button> & {
-    filteredPresets: string[];
-    currentPresetName: string;
-  }
-> = ({ filteredPresets, currentPresetName, className, ...props }) => {
-  const applyThemePreset = useEditorStore((store) => store.applyThemePreset);
-
-  const currentIndex = useMemo(
-    () => filteredPresets.indexOf(currentPresetName || 'default') ?? 0,
-    [filteredPresets, currentPresetName],
-  );
-
-  const cycleTheme = useCallback(
-    (direction: 'prev' | 'next') => {
-      const newIndex =
-        direction === 'next'
-          ? (currentIndex + 1) % filteredPresets.length
-          : (currentIndex - 1 + filteredPresets.length) % filteredPresets.length;
-      applyThemePreset(filteredPresets[newIndex]);
-    },
-    [currentIndex, filteredPresets, applyThemePreset],
-  );
-
-  return (
-    <>
-      <Separator orientation="vertical" className="min-h-8" />
-      <ThemeCycleButton
-        direction="prev"
-        size="icon"
-        className={cn('aspect-square min-h-8 w-auto', className)}
-        onClick={() => cycleTheme('prev')}
-        {...props}
-      />
-      <Separator orientation="vertical" className="min-h-8" />
-      <ThemeCycleButton
-        direction="next"
-        size="icon"
-        className={cn('aspect-square min-h-8 w-auto', className)}
-        onClick={() => cycleTheme('next')}
-        {...props}
-      />
-    </>
-  );
-};
-
-const ThemePresetSelect: React.FC<ThemePresetSelectProps> = ({
-  withCycleThemes = true,
-  className,
-  ...props
-}) => {
-  const themeState = useEditorStore((store) => store.themeState);
-  const applyThemePreset = useEditorStore((store) => store.applyThemePreset);
-  const hasUnsavedChanges = useEditorStore((store) => store.hasUnsavedChanges);
-  const currentPreset = themeState.preset;
-
-  const presets = useThemePresetStore((store) => store.getAllPresets());
+  const presets = useThemePresetStore((s) => s.getAllPresets());
   const [search, setSearch] = useState('');
+  const [open, setOpen] = useState(false);
 
   const presetNames = useMemo(() => ['default', ...Object.keys(presets)], [presets]);
-  const currentPresetName = presetNames.find((name) => name === currentPreset);
+  const currentName = presetNames.find((n) => n === themeState.preset) ?? 'default';
 
-  const filteredPresets = useMemo(() => {
-    const list =
-      search.trim() === ''
-        ? presetNames
-        : presetNames.filter((name) => {
-            if (name === 'default') return 'default'.includes(search.toLowerCase());
-            return presets[name]?.label?.toLowerCase().includes(search.toLowerCase());
-          });
-
-    const sorted = [...list].sort((a, b) => {
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    const list = q
+      ? presetNames.filter((n) => {
+          if (n === 'default') return 'default'.includes(q);
+          return presets[n]?.label?.toLowerCase().includes(q);
+        })
+      : presetNames;
+    return [...list].sort((a, b) => {
       if (a === 'default') return -1;
       if (b === 'default') return 1;
-      const labelA = presets[a]?.label || a;
-      const labelB = presets[b]?.label || b;
-      return labelA.localeCompare(labelB);
+      return (presets[a]?.label ?? a).localeCompare(presets[b]?.label ?? b);
     });
-
-    return sorted;
   }, [presetNames, search, presets]);
 
+  const randomize = useCallback(() => {
+    const i = Math.floor(Math.random() * presetNames.length);
+    applyPreset(presetNames[i]);
+  }, [presetNames, applyPreset]);
+
+  const cycle = useCallback(
+    (dir: 'prev' | 'next') => {
+      const idx = filtered.indexOf(currentName);
+      const next =
+        dir === 'next'
+          ? (idx + 1) % filtered.length
+          : (idx - 1 + filtered.length) % filtered.length;
+      applyPreset(filtered[next]);
+    },
+    [filtered, currentName, applyPreset],
+  );
+
+  const currentLabel = presets[currentName]?.label ?? 'Default';
+
   return (
-    <div className="flex w-full items-center">
-      <Popover>
+    <div style={{ display: 'flex', alignItems: 'center', height: '3.5rem', padding: '0 0.5rem' }}>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             variant="ghost"
-            className={cn('group relative w-full justify-between md:min-w-56', className)}
-            {...props}
+            style={{ flex: 1, justifyContent: 'space-between', gap: '0.75rem' }}
           >
-            <div className="flex w-full items-center gap-3 overflow-hidden">
-              <div className="flex gap-0.5">
-                <ColorBox color={themeState.styles['action-primary-default']} />
-                <ColorBox color={themeState.styles['surface-default']} />
-                <ColorBox color={themeState.styles['text-primary']} />
-                <ColorBox color={themeState.styles['border-default']} />
-              </div>
-              <span className="truncate text-left font-medium capitalize">
-                {presets[currentPresetName || 'default']?.label || currentPresetName || 'Default'}
-                {hasUnsavedChanges() && '*'}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
+              {currentName !== 'default' && <PresetSwatch name={currentName} />}
+              <span style={{ fontWeight: 500, textTransform: 'capitalize' }}>
+                {currentLabel}
+                {hasUnsaved() && '*'}
               </span>
             </div>
-            <ChevronDown className="size-4 shrink-0" />
+            <ChevronDown size={16} />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[400px] p-0" align="center">
-          <Command className="w-full">
-            <div className="flex w-full items-center border-b px-3 py-1">
-              <Search className="size-4 shrink-0 opacity-50" />
-              <Input
-                placeholder="Search themes..."
-                className="border-0 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center justify-between px-3 py-2">
-              <div className="text-muted-foreground text-sm">
-                {filteredPresets.length} theme{filteredPresets.length !== 1 ? 's' : ''}
-              </div>
-              <ThemeControls />
-            </div>
-            <Separator />
-            <CommandList className="max-h-[500px]">
-              <CommandEmpty>No themes found.</CommandEmpty>
-              <CommandGroup heading="Mizu Themes">
-                {filteredPresets.map((presetName, index) => (
-                  <CommandItem
-                    key={`${presetName}-${index}`}
-                    value={`${presetName}-${index}`}
-                    onSelect={() => {
-                      applyThemePreset(presetName);
+        <PopoverContent style={{ width: 360, padding: 0 }} align="start">
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.5rem 0.75rem',
+              borderBottom: '1px solid var(--mizu-border-default)',
+            }}
+          >
+            <Search size={14} style={{ color: 'var(--mizu-text-secondary)' }} />
+            <input
+              className="mizu-input"
+              placeholder="Search themes..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{ flex: 1, border: 'none', background: 'transparent', padding: 0 }}
+            />
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '0.375rem 0.75rem',
+              fontSize: 12,
+              color: 'var(--mizu-text-secondary)',
+            }}
+          >
+            <span>{filtered.length} themes</span>
+            <Button variant="ghost" size="sm" onClick={randomize}>
+              <Shuffle size={14} />
+            </Button>
+          </div>
+          <ScrollArea style={{ maxHeight: 380 }}>
+            <Stack gap="0" style={{ padding: '0.25rem' }}>
+              {filtered.map((name) => {
+                const isActive = name === currentName;
+                return (
+                  <button
+                    key={name}
+                    type="button"
+                    onClick={() => {
+                      applyPreset(name);
                       setSearch('');
+                      setOpen(false);
                     }}
-                    className="data-[highlighted]:bg-secondary/50 flex items-center gap-2 py-2"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      padding: '0.5rem 0.625rem',
+                      borderRadius: 'var(--mizu-radius-sm)',
+                      border: 'none',
+                      background: isActive ? 'var(--mizu-surface-secondary)' : 'transparent',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      width: '100%',
+                    }}
                   >
-                    {presetName !== 'default' && <ThemeColors presetName={presetName} />}
-                    <div className="flex flex-1 items-center gap-2">
-                      <span className="text-sm font-medium capitalize">
-                        {presets[presetName]?.label || 'Default'}
-                      </span>
-                      {presets[presetName]?.description && (
-                        <span className="text-muted-foreground truncate text-xs">
-                          {presets[presetName].description}
-                        </span>
-                      )}
-                    </div>
-                    {presetName === currentPresetName && (
-                      <Check className="h-4 w-4 shrink-0 opacity-70" />
-                    )}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </CommandList>
-          </Command>
+                    {name !== 'default' && <PresetSwatch name={name} />}
+                    <span
+                      style={{
+                        flex: 1,
+                        fontSize: 13,
+                        fontWeight: 500,
+                        textTransform: 'capitalize',
+                      }}
+                    >
+                      {presets[name]?.label ?? 'Default'}
+                    </span>
+                    {isActive && <Check size={14} />}
+                  </button>
+                );
+              })}
+            </Stack>
+          </ScrollArea>
         </PopoverContent>
       </Popover>
 
-      {withCycleThemes && (
-        <ThemePresetCycleControls
-          filteredPresets={filteredPresets}
-          currentPresetName={currentPresetName || 'default'}
-          className={className}
-          disabled={props.disabled}
-        />
-      )}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 2, marginLeft: '0.25rem' }}>
+        <Button variant="ghost" size="sm" onClick={() => cycle('prev')} aria-label="Previous theme">
+          <ArrowLeft size={14} />
+        </Button>
+        <Button variant="ghost" size="sm" onClick={() => cycle('next')} aria-label="Next theme">
+          <ArrowRight size={14} />
+        </Button>
+      </div>
     </div>
   );
-};
-
-export default ThemePresetSelect;
+}

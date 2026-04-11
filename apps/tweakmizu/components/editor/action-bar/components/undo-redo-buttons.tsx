@@ -1,38 +1,20 @@
-import { TooltipWrapper } from '@/components/tooltip-wrapper';
-import { Button } from '@/components/ui/button';
+'use client';
+
+import { Button } from '@aspect/react';
 import { useEditorStore } from '@/store/editor-store';
 import { Redo, Undo } from 'lucide-react';
 
-type UndoRedoButtonsProps = React.ComponentProps<typeof Button>;
-
-export function UndoRedoButtons({ disabled, ...props }: UndoRedoButtonsProps) {
+export function UndoRedoButtons() {
   const { undo, redo, canUndo, canRedo } = useEditorStore();
 
   return (
-    <div className="flex items-center gap-1">
-      <TooltipWrapper label="Undo" asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          disabled={disabled || !canUndo()}
-          {...props}
-          onClick={undo}
-        >
-          <Undo className="h-4 w-4" />
-        </Button>
-      </TooltipWrapper>
-
-      <TooltipWrapper label="Redo" asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          disabled={disabled || !canRedo()}
-          {...props}
-          onClick={redo}
-        >
-          <Redo className="h-4 w-4" />
-        </Button>
-      </TooltipWrapper>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Button variant="ghost" size="icon" disabled={!canUndo()} onClick={undo} aria-label="Undo">
+        <Undo size={16} />
+      </Button>
+      <Button variant="ghost" size="icon" disabled={!canRedo()} onClick={redo} aria-label="Redo">
+        <Redo size={16} />
+      </Button>
     </div>
   );
 }

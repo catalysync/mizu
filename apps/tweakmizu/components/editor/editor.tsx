@@ -1,8 +1,14 @@
 'use client';
 
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { DialogActionsProvider } from '@/hooks/use-dialog-actions';
+import {
+  ResizableGroup,
+  ResizablePanel,
+  ResizableHandle,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@aspect/react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useEditorStore } from '@/store/editor-store';
 import type { ThemeStyleProps } from '@/types/theme';
@@ -30,64 +36,58 @@ const Editor: React.FC = () => {
 
   const styles = themeState.styles;
 
-  // Mobile layout
   if (isMobile) {
     return (
-      <DialogActionsProvider>
-        <div className="relative isolate flex flex-1 overflow-hidden">
-          <div className="size-full flex-1 overflow-hidden">
-            <Tabs defaultValue="controls" className="h-full">
-              <TabsList className="w-full rounded-none">
-                <TabsTrigger value="controls" className="flex-1">
-                  <Sliders className="mr-2 h-4 w-4" />
-                  Controls
-                </TabsTrigger>
-                <TabsTrigger value="preview" className="flex-1">
-                  Preview
-                </TabsTrigger>
-              </TabsList>
-              <TabsContent value="controls" className="mt-0 h-[calc(100%-2.5rem)]">
-                <div className="flex h-full flex-col">
-                  <ThemeControlPanel styles={styles} onChange={handleStyleChange} />
-                </div>
-              </TabsContent>
-              <TabsContent value="preview" className="mt-0 h-[calc(100%-2.5rem)]">
-                <div className="flex h-full flex-col">
-                  <ActionBar />
-                  <ThemePreviewPanel styles={styles} />
-                </div>
-              </TabsContent>
-            </Tabs>
-          </div>
+      <div className="relative flex flex-1 overflow-hidden">
+        <div className="size-full flex-1 overflow-hidden">
+          <Tabs defaultValue="controls" className="h-full">
+            <TabsList className="w-full">
+              <TabsTrigger value="controls" className="flex-1">
+                <Sliders className="mr-2 h-4 w-4" />
+                Controls
+              </TabsTrigger>
+              <TabsTrigger value="preview" className="flex-1">
+                Preview
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="controls" className="mt-0 h-[calc(100%-2.5rem)]">
+              <div className="flex h-full flex-col">
+                <ThemeControlPanel styles={styles} onChange={handleStyleChange} />
+              </div>
+            </TabsContent>
+            <TabsContent value="preview" className="mt-0 h-[calc(100%-2.5rem)]">
+              <div className="flex h-full flex-col">
+                <ActionBar />
+                <ThemePreviewPanel styles={styles} />
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
-      </DialogActionsProvider>
+      </div>
     );
   }
 
-  // Desktop layout
   return (
-    <DialogActionsProvider>
-      <div className="relative isolate flex flex-1 overflow-hidden">
-        <div className="size-full">
-          <ResizablePanelGroup orientation="horizontal" className="isolate">
-            <ResizablePanel defaultSize="30%" minSize="20%" maxSize="40%" className="z-1">
-              <div className="relative isolate flex h-full flex-1 flex-col overflow-hidden">
-                <ThemeControlPanel styles={styles} onChange={handleStyleChange} />
+    <div className="relative flex flex-1 overflow-hidden">
+      <div className="size-full">
+        <ResizableGroup direction="horizontal">
+          <ResizablePanel defaultSize={30} minSize={20} maxSize={40}>
+            <div className="flex h-full flex-col overflow-hidden">
+              <ThemeControlPanel styles={styles} onChange={handleStyleChange} />
+            </div>
+          </ResizablePanel>
+          <ResizableHandle />
+          <ResizablePanel defaultSize={70}>
+            <div className="flex h-full flex-col">
+              <div className="flex min-h-0 flex-1 flex-col">
+                <ActionBar />
+                <ThemePreviewPanel styles={styles} />
               </div>
-            </ResizablePanel>
-            <ResizableHandle />
-            <ResizablePanel defaultSize="70%">
-              <div className="flex h-full flex-col">
-                <div className="flex min-h-0 flex-1 flex-col">
-                  <ActionBar />
-                  <ThemePreviewPanel styles={styles} />
-                </div>
-              </div>
-            </ResizablePanel>
-          </ResizablePanelGroup>
-        </div>
+            </div>
+          </ResizablePanel>
+        </ResizableGroup>
       </div>
-    </DialogActionsProvider>
+    </div>
   );
 };
 

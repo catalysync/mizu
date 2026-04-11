@@ -1,17 +1,15 @@
-import { TooltipWrapper } from '@/components/tooltip-wrapper';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+'use client';
+
+import { Button } from '@aspect/react';
 import { RefreshCw } from 'lucide-react';
 
 type ResetButtonProps = React.ComponentProps<typeof Button>;
 
-export function ResetButton({ className, ...props }: ResetButtonProps) {
+export function ResetButton(props: ResetButtonProps) {
   return (
-    <TooltipWrapper label="Reset to preset defaults" asChild>
-      <Button variant="ghost" size="sm" className={cn(className)} {...props}>
-        <RefreshCw className="size-3.5" />
-        <span className="hidden text-sm md:block">Reset</span>
-      </Button>
-    </TooltipWrapper>
+    <Button variant="ghost" size="sm" aria-label="Reset to preset defaults" {...props}>
+      <RefreshCw size={14} />
+      <span style={{ marginLeft: '0.375rem' }}>Reset</span>
+    </Button>
   );
 }

@@ -1,16 +1,10 @@
 'use client';
 
-import { HorizontalScrollArea } from '@/components/horizontal-scroll-area';
-import { TooltipWrapper } from '@/components/tooltip-wrapper';
-import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Tabs, TabsContent, TabsList } from '@/components/ui/tabs';
+import { Button, ScrollArea, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
 import { useFullscreen } from '@/hooks/use-fullscreen';
-import { cn } from '@/lib/utils';
 import type { ThemeStyleProps } from '@/types/theme';
 import { Maximize, Minimize } from 'lucide-react';
 import { useQueryState } from 'nuqs';
-import TabsTriggerPill from './theme-preview/tabs-trigger-pill';
 import MizuComponentsPreview from './theme-preview/mizu-components-preview';
 import MizuColorPreview from './theme-preview/mizu-color-preview';
 
@@ -20,61 +14,68 @@ interface ThemePreviewPanelProps {
 
 const ThemePreviewPanel = ({ styles }: ThemePreviewPanelProps) => {
   const { isFullscreen, toggleFullscreen } = useFullscreen();
-  const [activeTab, setActiveTab] = useQueryState('p', {
-    defaultValue: 'components',
-  });
+  const [activeTab, setActiveTab] = useQueryState('p', { defaultValue: 'components' });
 
   return (
     <div
-      className={cn(
-        'flex min-h-0 flex-1 flex-col',
-        isFullscreen && 'bg-background fixed inset-0 z-50',
-      )}
+      style={{
+        display: 'flex',
+        flex: 1,
+        minHeight: 0,
+        flexDirection: 'column',
+        ...(isFullscreen && {
+          position: 'fixed',
+          inset: 0,
+          zIndex: 50,
+          background: 'var(--mizu-surface-default)',
+        }),
+      }}
     >
       <Tabs
         value={activeTab}
         onValueChange={setActiveTab}
-        className="flex flex-1 flex-col overflow-hidden"
+        style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
       >
-        <HorizontalScrollArea className="mt-2 mb-1 flex w-full items-center justify-between px-4">
-          <TabsList className="bg-background text-muted-foreground inline-flex w-fit items-center justify-center rounded-full px-0">
-            <TabsTriggerPill value="components">Components</TabsTriggerPill>
-            <TabsTriggerPill value="colors">Color Palette</TabsTriggerPill>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '0.5rem 1rem',
+          }}
+        >
+          <TabsList>
+            <TabsTrigger value="components">Components</TabsTrigger>
+            <TabsTrigger value="colors">Color Palette</TabsTrigger>
           </TabsList>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleFullscreen}
+            aria-label={isFullscreen ? 'Exit full screen' : 'Full screen'}
+          >
+            {isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />}
+          </Button>
+        </div>
 
-          <div className="flex items-center gap-0.5">
-            <TooltipWrapper
-              label={isFullscreen ? 'Exit full screen' : 'Full screen'}
-              className="hidden md:inline-flex"
-              asChild
-            >
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleFullscreen}
-                className="group size-8"
-              >
-                {isFullscreen ? (
-                  <Minimize className="transition-all group-hover:scale-120" />
-                ) : (
-                  <Maximize className="transition-all group-hover:scale-120" />
-                )}
-              </Button>
-            </TooltipWrapper>
-          </div>
-        </HorizontalScrollArea>
-
-        <section className="relative size-full overflow-hidden p-4 pt-1">
-          <div className="relative isolate size-full overflow-hidden rounded-lg">
-            <TabsContent value="components" className="m-0 size-full">
-              <ScrollArea className="size-full">
+        <section style={{ position: 'relative', flex: 1, minHeight: 0, padding: '0 1rem 1rem' }}>
+          <div
+            style={{
+              position: 'relative',
+              height: '100%',
+              overflow: 'hidden',
+              borderRadius: 'var(--mizu-radius-lg)',
+              border: '1px solid var(--mizu-border-default)',
+            }}
+          >
+            <TabsContent value="components" style={{ height: '100%' }}>
+              <ScrollArea style={{ height: '100%' }}>
                 <MizuComponentsPreview styles={styles} />
               </ScrollArea>
             </TabsContent>
-
-            <TabsContent value="colors" className="m-0 size-full">
-              <ScrollArea className="size-full">
-                <div className="p-4">
+            <TabsContent value="colors" style={{ height: '100%' }}>
+              <ScrollArea style={{ height: '100%' }}>
+                <div style={{ padding: '1rem' }}>
                   <MizuColorPreview styles={styles} />
                 </div>
               </ScrollArea>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Separator } from '@/components/ui/separator';
+import { Separator } from '@aspect/react';
 import { useEditorStore } from '@/store/editor-store';
 import { CodeButton } from './code-button';
 import { ResetButton } from './reset-button';
@@ -10,12 +10,12 @@ export function ActionBarButtons() {
   const { resetToCurrentPreset, hasUnsavedChanges } = useEditorStore();
 
   return (
-    <div className="flex items-center gap-1">
+    <>
       <UndoRedoButtons />
-      <Separator orientation="vertical" className="mx-1 h-8" />
+      <Separator orientation="vertical" style={{ height: '1.5rem', margin: '0 0.25rem' }} />
       <ResetButton onClick={resetToCurrentPreset} disabled={!hasUnsavedChanges()} />
-      <Separator orientation="vertical" className="mx-1 h-8" />
+      <Separator orientation="vertical" style={{ height: '1.5rem', margin: '0 0.25rem' }} />
       <CodeButton />
-    </div>
+    </>
   );
 }

@@ -1,31 +1,25 @@
 'use client';
 
 import React from 'react';
-
+import { ScrollArea, Slider, Stack, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
 import ControlSection from '@/components/editor/control-section';
-import { FontPicker } from '@/components/editor/font-picker';
-import { SliderWithInput } from '@/components/editor/slider-with-input';
 import ThemePresetSelect from '@/components/editor/theme-preset-select';
-import TabsTriggerPill from '@/components/editor/theme-preview/tabs-trigger-pill';
-import { HorizontalScrollArea } from '@/components/horizontal-scroll-area';
-import { Label } from '@/components/ui/label';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Tabs, TabsContent, TabsList } from '@/components/ui/tabs';
 import { useControlsTabFromUrl, type ControlTab } from '@/hooks/use-controls-tab-from-url';
 import type { ThemeStyleProps } from '@/types/theme';
-import { type FontInfo } from '@/types/fonts';
-import { buildFontFamily } from '@/utils/fonts';
-import ColorPicker from './color-picker';
+import { ColorPicker } from './color-picker';
 
 interface ThemeControlPanelProps {
   styles: ThemeStyleProps;
   onChange: (updates: Partial<ThemeStyleProps>) => void;
 }
 
+const parseRem = (v: string | undefined) => (v ? parseFloat(v.replace('rem', '')) : 0);
+const parseMs = (v: string | undefined) => (v ? parseInt(v.replace('ms', ''), 10) : 0);
+
 const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
   const { tab, handleSetTab } = useControlsTabFromUrl();
 
-  const updateStyle = React.useCallback(
+  const update = React.useCallback(
     <K extends keyof ThemeStyleProps>(key: K, value: ThemeStyleProps[K]) => {
       onChange({ [key]: value } as Partial<ThemeStyleProps>);
     },
@@ -33,45 +27,43 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
   );
 
   return (
-    <>
-      <div className="border-b">
-        <ThemePresetSelect className="h-14 rounded-none" />
+    <Stack gap="0" style={{ height: '100%' }}>
+      <div style={{ borderBottom: '1px solid var(--mizu-border-default)' }}>
+        <ThemePresetSelect />
       </div>
-      <div className="flex min-h-0 flex-1 flex-col space-y-4">
-        <Tabs
-          value={tab}
-          onValueChange={(v) => handleSetTab(v as ControlTab)}
-          className="flex min-h-0 w-full flex-1 flex-col"
-        >
-          <HorizontalScrollArea className="mt-2 mb-1 px-4">
-            <TabsList className="bg-background text-muted-foreground inline-flex w-fit items-center justify-center rounded-full px-0">
-              <TabsTriggerPill value="colors">Colors</TabsTriggerPill>
-              <TabsTriggerPill value="typography">Typography</TabsTriggerPill>
-              <TabsTriggerPill value="other">Other</TabsTriggerPill>
-            </TabsList>
-          </HorizontalScrollArea>
+      <Tabs
+        value={tab}
+        onValueChange={(v) => handleSetTab(v as ControlTab)}
+        style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}
+      >
+        <TabsList style={{ padding: '0.5rem 1rem' }}>
+          <TabsTrigger value="colors">Colors</TabsTrigger>
+          <TabsTrigger value="typography">Typography</TabsTrigger>
+          <TabsTrigger value="other">Other</TabsTrigger>
+        </TabsList>
 
-          <TabsContent value="colors" className="mt-1 size-full overflow-hidden">
-            <ScrollArea className="h-full px-4">
+        <TabsContent value="colors" style={{ flex: 1, minHeight: 0 }}>
+          <ScrollArea style={{ height: '100%' }}>
+            <Stack gap="0.5rem" style={{ padding: '0 1rem 1rem' }}>
               <ControlSection title="Action — Primary" expanded>
                 <ColorPicker
                   color={styles['action-primary-default']}
-                  onChange={(c) => updateStyle('action-primary-default', c)}
+                  onChange={(c) => update('action-primary-default', c)}
                   label="Default"
                 />
                 <ColorPicker
                   color={styles['action-primary-hover']}
-                  onChange={(c) => updateStyle('action-primary-hover', c)}
+                  onChange={(c) => update('action-primary-hover', c)}
                   label="Hover"
                 />
                 <ColorPicker
                   color={styles['action-primary-active']}
-                  onChange={(c) => updateStyle('action-primary-active', c)}
+                  onChange={(c) => update('action-primary-active', c)}
                   label="Active"
                 />
                 <ColorPicker
                   color={styles['action-primary-disabled']}
-                  onChange={(c) => updateStyle('action-primary-disabled', c)}
+                  onChange={(c) => update('action-primary-disabled', c)}
                   label="Disabled"
                 />
               </ControlSection>
@@ -79,17 +71,17 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
               <ControlSection title="Action — Destructive">
                 <ColorPicker
                   color={styles['action-destructive-default']}
-                  onChange={(c) => updateStyle('action-destructive-default', c)}
+                  onChange={(c) => update('action-destructive-default', c)}
                   label="Default"
                 />
                 <ColorPicker
                   color={styles['action-destructive-hover']}
-                  onChange={(c) => updateStyle('action-destructive-hover', c)}
+                  onChange={(c) => update('action-destructive-hover', c)}
                   label="Hover"
                 />
                 <ColorPicker
                   color={styles['action-destructive-active']}
-                  onChange={(c) => updateStyle('action-destructive-active', c)}
+                  onChange={(c) => update('action-destructive-active', c)}
                   label="Active"
                 />
               </ControlSection>
@@ -97,32 +89,32 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
               <ControlSection title="Feedback">
                 <ColorPicker
                   color={styles['feedback-success-default']}
-                  onChange={(c) => updateStyle('feedback-success-default', c)}
+                  onChange={(c) => update('feedback-success-default', c)}
                   label="Success"
                 />
                 <ColorPicker
                   color={styles['feedback-success-subtle']}
-                  onChange={(c) => updateStyle('feedback-success-subtle', c)}
+                  onChange={(c) => update('feedback-success-subtle', c)}
                   label="Success Subtle"
                 />
                 <ColorPicker
                   color={styles['feedback-warning-default']}
-                  onChange={(c) => updateStyle('feedback-warning-default', c)}
+                  onChange={(c) => update('feedback-warning-default', c)}
                   label="Warning"
                 />
                 <ColorPicker
                   color={styles['feedback-warning-subtle']}
-                  onChange={(c) => updateStyle('feedback-warning-subtle', c)}
+                  onChange={(c) => update('feedback-warning-subtle', c)}
                   label="Warning Subtle"
                 />
                 <ColorPicker
                   color={styles['feedback-danger-default']}
-                  onChange={(c) => updateStyle('feedback-danger-default', c)}
+                  onChange={(c) => update('feedback-danger-default', c)}
                   label="Danger"
                 />
                 <ColorPicker
                   color={styles['feedback-danger-subtle']}
-                  onChange={(c) => updateStyle('feedback-danger-subtle', c)}
+                  onChange={(c) => update('feedback-danger-subtle', c)}
                   label="Danger Subtle"
                 />
               </ControlSection>
@@ -130,17 +122,17 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
               <ControlSection title="Surfaces">
                 <ColorPicker
                   color={styles['surface-default']}
-                  onChange={(c) => updateStyle('surface-default', c)}
+                  onChange={(c) => update('surface-default', c)}
                   label="Default"
                 />
                 <ColorPicker
                   color={styles['surface-secondary']}
-                  onChange={(c) => updateStyle('surface-secondary', c)}
+                  onChange={(c) => update('surface-secondary', c)}
                   label="Secondary"
                 />
                 <ColorPicker
                   color={styles['surface-inverse']}
-                  onChange={(c) => updateStyle('surface-inverse', c)}
+                  onChange={(c) => update('surface-inverse', c)}
                   label="Inverse"
                 />
               </ControlSection>
@@ -148,22 +140,22 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
               <ControlSection title="Text">
                 <ColorPicker
                   color={styles['text-primary']}
-                  onChange={(c) => updateStyle('text-primary', c)}
+                  onChange={(c) => update('text-primary', c)}
                   label="Primary"
                 />
                 <ColorPicker
                   color={styles['text-secondary']}
-                  onChange={(c) => updateStyle('text-secondary', c)}
+                  onChange={(c) => update('text-secondary', c)}
                   label="Secondary"
                 />
                 <ColorPicker
                   color={styles['text-inverse']}
-                  onChange={(c) => updateStyle('text-inverse', c)}
+                  onChange={(c) => update('text-inverse', c)}
                   label="Inverse"
                 />
                 <ColorPicker
                   color={styles['text-disabled']}
-                  onChange={(c) => updateStyle('text-disabled', c)}
+                  onChange={(c) => update('text-disabled', c)}
                   label="Disabled"
                 />
               </ControlSection>
@@ -171,131 +163,113 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
               <ControlSection title="Borders">
                 <ColorPicker
                   color={styles['border-default']}
-                  onChange={(c) => updateStyle('border-default', c)}
+                  onChange={(c) => update('border-default', c)}
                   label="Default"
                 />
                 <ColorPicker
                   color={styles['border-strong']}
-                  onChange={(c) => updateStyle('border-strong', c)}
+                  onChange={(c) => update('border-strong', c)}
                   label="Strong"
                 />
               </ControlSection>
-            </ScrollArea>
-          </TabsContent>
+            </Stack>
+          </ScrollArea>
+        </TabsContent>
 
-          <TabsContent value="typography" className="mt-1 size-full overflow-hidden">
-            <ScrollArea className="h-full px-4">
+        <TabsContent value="typography" style={{ flex: 1, minHeight: 0 }}>
+          <ScrollArea style={{ height: '100%' }}>
+            <Stack gap="0.5rem" style={{ padding: '0 1rem 1rem' }}>
               <ControlSection title="Font Family" expanded>
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2">
-                    <Label className="text-muted-foreground w-16 shrink-0 text-[11px] font-medium">
-                      Sans
-                    </Label>
-                    <div className="min-w-0 flex-1">
-                      <FontPicker
-                        value={styles['font-family-sans']
-                          ?.split(',')[0]
-                          ?.replace(/['"]/g, '')
-                          .trim()}
-                        category="sans-serif"
-                        placeholder="Sans-serif font..."
-                        onSelect={(font: FontInfo) => {
-                          const fontFamily = buildFontFamily(font.family, font.category);
-                          updateStyle('font-family-sans', fontFamily);
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Label className="text-muted-foreground w-16 shrink-0 text-[11px] font-medium">
-                      Mono
-                    </Label>
-                    <div className="min-w-0 flex-1">
-                      <FontPicker
-                        value={styles['font-family-mono']
-                          ?.split(',')[0]
-                          ?.replace(/['"]/g, '')
-                          .trim()}
-                        category="monospace"
-                        placeholder="Monospace font..."
-                        onSelect={(font: FontInfo) => {
-                          const fontFamily = buildFontFamily(font.family, font.category);
-                          updateStyle('font-family-mono', fontFamily);
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
+                <Stack gap="0.5rem">
+                  <label className="mizu-body--sm" style={{ display: 'block' }}>
+                    Sans
+                    <input
+                      type="text"
+                      className="mizu-input"
+                      value={styles['font-family-sans'] ?? ''}
+                      onChange={(e) => update('font-family-sans', e.target.value)}
+                      style={{ width: '100%', marginTop: '0.25rem' }}
+                    />
+                  </label>
+                  <label className="mizu-body--sm" style={{ display: 'block' }}>
+                    Mono
+                    <input
+                      type="text"
+                      className="mizu-input"
+                      value={styles['font-family-mono'] ?? ''}
+                      onChange={(e) => update('font-family-mono', e.target.value)}
+                      style={{ width: '100%', marginTop: '0.25rem' }}
+                    />
+                  </label>
+                </Stack>
               </ControlSection>
-            </ScrollArea>
-          </TabsContent>
+            </Stack>
+          </ScrollArea>
+        </TabsContent>
 
-          <TabsContent value="other" className="mt-1 size-full overflow-hidden">
-            <ScrollArea className="h-full px-4">
+        <TabsContent value="other" style={{ flex: 1, minHeight: 0 }}>
+          <ScrollArea style={{ height: '100%' }}>
+            <Stack gap="1rem" style={{ padding: '0 1rem 1rem' }}>
               <ControlSection title="Radius" expanded>
-                <SliderWithInput
-                  value={parseFloat(styles['radius-sm'].replace('rem', ''))}
-                  onChange={(v) => updateStyle('radius-sm', `${v}rem`)}
-                  min={0}
-                  max={2}
-                  step={0.025}
-                  unit="rem"
-                  label="SM"
-                />
-                <SliderWithInput
-                  value={parseFloat(styles['radius-md'].replace('rem', ''))}
-                  onChange={(v) => updateStyle('radius-md', `${v}rem`)}
-                  min={0}
-                  max={2}
-                  step={0.025}
-                  unit="rem"
-                  label="MD"
-                />
-                <SliderWithInput
-                  value={parseFloat(styles['radius-lg'].replace('rem', ''))}
-                  onChange={(v) => updateStyle('radius-lg', `${v}rem`)}
-                  min={0}
-                  max={2}
-                  step={0.025}
-                  unit="rem"
-                  label="LG"
-                />
-                <SliderWithInput
-                  value={parseFloat(styles['radius-xl'].replace('rem', ''))}
-                  onChange={(v) => updateStyle('radius-xl', `${v}rem`)}
-                  min={0}
-                  max={2}
-                  step={0.025}
-                  unit="rem"
-                  label="XL"
-                />
+                <Stack gap="0.75rem">
+                  {(['radius-sm', 'radius-md', 'radius-lg', 'radius-xl'] as const).map((key) => (
+                    <div key={key}>
+                      <div
+                        className="mizu-body--sm"
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          marginBottom: '0.25rem',
+                        }}
+                      >
+                        <span>{key.replace('radius-', '').toUpperCase()}</span>
+                        <span style={{ color: 'var(--mizu-text-secondary)' }}>{styles[key]}</span>
+                      </div>
+                      <Slider
+                        aria-label={key}
+                        value={[parseRem(styles[key])]}
+                        min={0}
+                        max={2}
+                        step={0.025}
+                        onValueChange={([v]) => update(key, `${v}rem`)}
+                      />
+                    </div>
+                  ))}
+                </Stack>
               </ControlSection>
 
               <ControlSection title="Motion">
-                <SliderWithInput
-                  value={parseInt(styles['duration-fast']?.replace('ms', '') ?? '150')}
-                  onChange={(v) => updateStyle('duration-fast', `${v}ms`)}
-                  min={0}
-                  max={500}
-                  step={10}
-                  unit="ms"
-                  label="Fast"
-                />
-                <SliderWithInput
-                  value={parseInt(styles['duration-normal']?.replace('ms', '') ?? '250')}
-                  onChange={(v) => updateStyle('duration-normal', `${v}ms`)}
-                  min={0}
-                  max={1000}
-                  step={10}
-                  unit="ms"
-                  label="Normal"
-                />
+                <Stack gap="0.75rem">
+                  {(['duration-fast', 'duration-normal'] as const).map((key) => (
+                    <div key={key}>
+                      <div
+                        className="mizu-body--sm"
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          marginBottom: '0.25rem',
+                        }}
+                      >
+                        <span>{key.replace('duration-', '')}</span>
+                        <span style={{ color: 'var(--mizu-text-secondary)' }}>{styles[key]}</span>
+                      </div>
+                      <Slider
+                        aria-label={key}
+                        value={[parseMs(styles[key])]}
+                        min={0}
+                        max={key === 'duration-fast' ? 500 : 1000}
+                        step={10}
+                        onValueChange={([v]) => update(key, `${v}ms`)}
+                      />
+                    </div>
+                  ))}
+                </Stack>
               </ControlSection>
-            </ScrollArea>
-          </TabsContent>
-        </Tabs>
-      </div>
-    </>
+            </Stack>
+          </ScrollArea>
+        </TabsContent>
+      </Tabs>
+    </Stack>
   );
 };
 

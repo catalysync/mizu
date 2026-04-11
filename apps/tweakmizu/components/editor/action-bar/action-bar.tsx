@@ -1,14 +1,23 @@
 'use client';
 
-import { HorizontalScrollArea } from '@/components/horizontal-scroll-area';
+import { Inline } from '@aspect/react';
 import { ActionBarButtons } from './components/action-bar-buttons';
 
 export function ActionBar() {
   return (
-    <div className="border-b">
-      <HorizontalScrollArea className="flex h-14 w-full items-center justify-end gap-4 px-4">
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        height: '3.5rem',
+        padding: '0 1rem',
+        borderBottom: '1px solid var(--mizu-border-default)',
+      }}
+    >
+      <Inline gap="0.25rem">
         <ActionBarButtons />
-      </HorizontalScrollArea>
+      </Inline>
     </div>
   );
 }
