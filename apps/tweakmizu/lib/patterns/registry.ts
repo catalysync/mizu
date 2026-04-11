@@ -7,9 +7,12 @@ import { cloudTemplates } from '@/catalog/cloud/templates';
 import { commerceCustomers } from '@/catalog/commerce/customers';
 import { commerceOrders } from '@/catalog/commerce/orders';
 import { conversationsContacts } from '@/catalog/conversations/contacts';
+import { conversationsSavedReplies } from '@/catalog/conversations/saved-replies';
+import { saasDashboard } from '@/catalog/saas/dashboard';
 import type { PatternModule, PatternTier } from './types';
 
 export const patternRegistry: PatternModule[] = [
+  saasDashboard,
   cloudApps,
   cloudActivity,
   cloudTemplates,
@@ -18,6 +21,7 @@ export const patternRegistry: PatternModule[] = [
   commerceCustomers,
   commerceOrders,
   conversationsContacts,
+  conversationsSavedReplies,
 ];
 
 export function getAllPatterns(): PatternModule[] {

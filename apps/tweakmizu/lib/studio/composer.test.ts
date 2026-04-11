@@ -47,10 +47,10 @@ describe('studio composer', () => {
 
   it('falls back to cloud patterns when the industry has none', () => {
     const intent = buildIntent({
-      industry: 'fintech',
+      industry: 'editorial',
       pages: [
-        { slug: '/', label: 'Dashboard' },
-        { slug: '/accounts', label: 'Accounts' },
+        { slug: '/', label: 'Home' },
+        { slug: '/articles', label: 'Articles' },
       ],
     });
     const { plan, fallback } = compose(intent);
