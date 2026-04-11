@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { cn } from '@/utils/cn';
 import { ThemeToggle } from './theme-toggle';
+import { UserMenu } from './user-menu';
 
 const nav = [
   { label: 'Features', href: '#features' },
@@ -82,9 +83,10 @@ export function SiteHeader() {
               <Github size={18} />
             </Button>
           </a>
-          <Link href="/editor" className="hidden md:block">
+          <UserMenu />
+          <Link href="/studio" className="hidden md:block">
             <Button variant="primary">
-              Open Editor <ChevronRight size={16} className="ml-1" />
+              Open Studio <ChevronRight size={16} className="ml-1" />
             </Button>
           </Link>
           <Button
