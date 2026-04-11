@@ -53,6 +53,7 @@
 @import url("./components/field.css");
 @import url("./components/number-input.css");
 @import url("./components/password-input.css");
+@import url("./components/form.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
