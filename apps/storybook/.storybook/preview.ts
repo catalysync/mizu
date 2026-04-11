@@ -33,11 +33,14 @@ import '@aspect/finance/css';
 import '@aspect/finance/themes/reports';
 import '@aspect/finance/themes/insights';
 import '@aspect/finance/themes/analytics';
-import React from 'react';
 import type { Preview } from '@storybook/react-vite';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { handlers } from '../mocks/handlers';
 import { mizuStorybookTheme } from './mizu-storybook-theme';
+import { withMizuTheme } from './decorators/withMizuTheme';
+import { withReducedMotion } from './decorators/withReducedMotion';
+import { withDensity } from './decorators/withDensity';
+import { withStrictMode } from './decorators/withStrictMode';
 
 initialize();
 
@@ -111,6 +114,33 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    reducedMotion: {
+      description: 'Reduced motion',
+      defaultValue: 'off',
+      toolbar: {
+        title: 'Motion',
+        icon: 'accessibility',
+        items: [
+          { value: 'off', title: 'Motion on' },
+          { value: 'on', title: 'Reduced' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+    density: {
+      description: 'Component density',
+      defaultValue: 'default',
+      toolbar: {
+        title: 'Density',
+        icon: 'grow',
+        items: [
+          { value: 'compact', title: 'Compact' },
+          { value: 'default', title: 'Default' },
+          { value: 'spacious', title: 'Spacious' },
+        ],
+        dynamicTitle: true,
+      },
+    },
     strictMode: {
       description: 'React StrictMode',
       defaultValue: 'off',
@@ -123,25 +153,7 @@ const preview: Preview = {
     },
   },
   loaders: [mswLoader],
-  decorators: [
-    (Story, context) => {
-      const theme = context.globals.theme ?? 'light';
-      const identity = context.globals.identity ?? 'none';
-      if (typeof document !== 'undefined') {
-        document.documentElement.dataset.theme = theme;
-        if (identity && identity !== 'none') {
-          document.documentElement.dataset.mizuIdentity = identity;
-        } else {
-          delete document.documentElement.dataset.mizuIdentity;
-        }
-        document.body.style.backgroundColor = theme === 'dark' ? 'var(--mizu-surface-default)' : '';
-        document.body.style.color = theme === 'dark' ? 'var(--mizu-text-primary)' : '';
-      }
-      const strict = context.globals.strictMode === 'on';
-      const story = Story();
-      return strict ? React.createElement(React.StrictMode, null, story) : story;
-    },
-  ],
+  decorators: [withStrictMode, withMizuTheme, withReducedMotion, withDensity],
 };
 
 export default preview;
