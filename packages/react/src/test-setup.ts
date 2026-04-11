@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom/vitest';
+import type { TestingLibraryMatchers } from '@testing-library/jest-dom/matchers';
 import { expect } from 'vitest';
 import * as matchers from 'vitest-axe/matchers';
 import type { AxeMatchers } from 'vitest-axe/matchers';
@@ -34,6 +35,7 @@ window.scrollTo ??= () => {};
 
 /* eslint-disable @typescript-eslint/no-empty-object-type, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 declare module 'vitest' {
-  interface Assertion<T = any> extends AxeMatchers {}
-  interface AsymmetricMatchersContaining extends AxeMatchers {}
+  interface Assertion<T = any> extends AxeMatchers, TestingLibraryMatchers<T, void> {}
+  interface AsymmetricMatchersContaining
+    extends AxeMatchers, TestingLibraryMatchers<unknown, void> {}
 }
