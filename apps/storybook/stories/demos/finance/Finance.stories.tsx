@@ -5,6 +5,9 @@ import { OverviewPage } from './OverviewPage';
 import { SettingsPage } from './SettingsPage';
 import { InvoicesPage } from './InvoicesPage';
 import { CustomersPage } from './CustomersPage';
+import { ChartOfAccountsPage } from './ChartOfAccountsPage';
+import { TransactionsPage } from './TransactionsPage';
+import { ReconciliationPage } from './ReconciliationPage';
 
 const meta = {
   title: 'Demos/Finance',
@@ -43,6 +46,43 @@ export const Customers: Story = {
       breadcrumbs={[{ label: 'Home', href: '#' }, { label: 'Customers' }]}
     >
       <CustomersPage />
+    </FinanceShell>
+  ),
+};
+
+export const Transactions: Story = {
+  render: () => (
+    <FinanceShell
+      active="transactions"
+      breadcrumbs={[{ label: 'Home', href: '#' }, { label: 'Transactions' }]}
+    >
+      <TransactionsPage />
+    </FinanceShell>
+  ),
+};
+
+export const Reconciliation: Story = {
+  render: () => (
+    <FinanceShell
+      active="reconciliation"
+      breadcrumbs={[{ label: 'Home', href: '#' }, { label: 'Reconciliation' }]}
+    >
+      <ReconciliationPage />
+    </FinanceShell>
+  ),
+};
+
+export const ChartOfAccounts: Story = {
+  render: () => (
+    <FinanceShell
+      active="accounts"
+      breadcrumbs={[
+        { label: 'Home', href: '#' },
+        { label: 'Setup', href: '#' },
+        { label: 'Chart of accounts' },
+      ]}
+    >
+      <ChartOfAccountsPage />
     </FinanceShell>
   ),
 };
