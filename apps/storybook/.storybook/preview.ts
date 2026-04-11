@@ -59,11 +59,26 @@ const preview: Preview = {
         { name: 'dark', value: '#020617' },
       ],
     },
+    // Tailwind v4 breakpoints — keep in sync with packages/tailwind-preset.
     viewport: {
       viewports: {
-        mobile: { name: 'Mobile', styles: { width: '375px', height: '667px' } },
-        tablet: { name: 'Tablet', styles: { width: '768px', height: '1024px' } },
-        desktop: { name: 'Desktop', styles: { width: '1280px', height: '800px' } },
+        xs: { name: 'xs (320)', styles: { width: '320px', height: '900px' } },
+        sm: { name: 'sm (640)', styles: { width: '640px', height: '900px' } },
+        md: { name: 'md (768)', styles: { width: '768px', height: '900px' } },
+        lg: { name: 'lg (1024)', styles: { width: '1024px', height: '900px' } },
+        xl: { name: 'xl (1280)', styles: { width: '1280px', height: '900px' } },
+        '2xl': { name: '2xl (1536)', styles: { width: '1536px', height: '900px' } },
+      },
+    },
+    // Run axe-core against the full WCAG 2.1 AA tag set plus best-practice
+    // rules. Matches sage-carbon's defaults and catches more than the stock
+    // storybook a11y config.
+    a11y: {
+      options: {
+        runOnly: {
+          type: 'tag',
+          values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
+        },
       },
     },
     msw: {
