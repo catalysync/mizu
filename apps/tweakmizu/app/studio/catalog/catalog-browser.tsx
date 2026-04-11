@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Badge } from '@aspect/react';
+import { Badge, Cluster, Inline, Split, Stack } from '@aspect/react';
 import { getAllPatterns } from '@/lib/patterns/registry';
 import type { PatternModule } from '@/lib/patterns/types';
 import type { Industry } from '@/types/studio';
@@ -36,8 +36,8 @@ export function CatalogBrowser() {
   const activeFilters: IndustryFilter[] = ['all', 'cloud', 'saas-admin', 'ecommerce'];
 
   return (
-    <div className="flex flex-col gap-6">
-      <div role="tablist" aria-label="Filter patterns by industry" className="flex flex-wrap gap-2">
+    <Stack gap="1.5rem">
+      <Cluster gap="0.5rem" role="tablist" aria-label="Filter patterns by industry">
         {activeFilters.map((id) => {
           const active = id === filter;
           return (
@@ -58,10 +58,10 @@ export function CatalogBrowser() {
             </button>
           );
         })}
-      </div>
+      </Cluster>
 
-      <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-        <nav aria-label="Pattern list" className="flex flex-col gap-1">
+      <Split fraction="280px" gap="1.5rem">
+        <Stack as="nav" gap="0.25rem" aria-label="Pattern list">
           {visible.length === 0 ? (
             <p className="text-sm text-muted-foreground">
               No patterns match the current filter yet.
@@ -75,11 +75,11 @@ export function CatalogBrowser() {
               onSelect={() => setSelectedId(pattern.meta.id)}
             />
           ))}
-        </nav>
+        </Stack>
 
         {selected ? <PatternDetail key={selected.meta.id} pattern={selected} /> : null}
-      </div>
-    </div>
+      </Split>
+    </Stack>
   );
 }
 
@@ -98,17 +98,25 @@ function PatternListItem({
       onClick={onSelect}
       aria-current={active ? 'true' : undefined}
       className={cn(
-        'flex flex-col gap-1 rounded-lg border px-3 py-2.5 text-left transition-colors',
+        'rounded-lg border px-3 py-2.5 text-left transition-colors',
         active
           ? 'border-primary bg-primary/5'
           : 'border-transparent hover:border-border hover:bg-muted/60',
       )}
     >
-      <div className="flex items-center justify-between gap-2">
-        <span className="text-sm font-semibold text-foreground">{pattern.meta.name}</span>
-        <Badge tone={pattern.meta.tier === 'free' ? 'neutral' : 'info'}>{pattern.meta.tier}</Badge>
-      </div>
-      <span className="text-xs text-muted-foreground">{pattern.meta.id}</span>
+      <Stack gap="0.25rem" align="start">
+        <Inline
+          gap="0.5rem"
+          align="center"
+          style={{ justifyContent: 'space-between', width: '100%' }}
+        >
+          <span className="text-sm font-semibold text-foreground">{pattern.meta.name}</span>
+          <Badge tone={pattern.meta.tier === 'free' ? 'neutral' : 'info'}>
+            {pattern.meta.tier}
+          </Badge>
+        </Inline>
+        <span className="text-xs text-muted-foreground">{pattern.meta.id}</span>
+      </Stack>
     </button>
   );
 }
@@ -116,9 +124,9 @@ function PatternListItem({
 function PatternDetail({ pattern }: { pattern: PatternModule }) {
   const { meta, Preview } = pattern;
   return (
-    <article className="flex flex-col gap-5">
-      <header className="flex flex-col gap-2">
-        <div className="flex flex-wrap items-center gap-2">
+    <Stack as="article" gap="1.25rem">
+      <Stack as="header" gap="0.5rem">
+        <Inline gap="0.5rem" align="center">
           <h2 className="text-xl font-semibold text-foreground">{meta.name}</h2>
           <Badge tone="neutral">{meta.kind}</Badge>
           {meta.industries.map((i) => (
@@ -126,9 +134,9 @@ function PatternDetail({ pattern }: { pattern: PatternModule }) {
               {i}
             </Badge>
           ))}
-        </div>
+        </Inline>
         <p className="text-sm text-muted-foreground">{meta.description}</p>
-      </header>
+      </Stack>
 
       <section
         aria-label={`Live preview of ${meta.name}`}
@@ -137,35 +145,37 @@ function PatternDetail({ pattern }: { pattern: PatternModule }) {
         <Preview />
       </section>
 
-      <section aria-label="Pattern sources" className="flex flex-col gap-2">
+      <Stack as="section" gap="0.5rem" aria-label="Pattern sources">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Sources
         </h3>
-        <ul className="flex flex-col gap-1 text-sm text-foreground">
+        <Stack as="ul" gap="0.25rem" className="text-sm text-foreground">
           {meta.sources.map((source, index) => (
-            <li key={`${source.system}-${index}`} className="flex flex-wrap gap-2">
-              <strong>{source.system}</strong>
-              <span className="text-muted-foreground">({source.relationship})</span>
-              {source.notes ? (
-                <span className="text-muted-foreground">— {source.notes}</span>
-              ) : null}
+            <li key={`${source.system}-${index}`}>
+              <Inline gap="0.5rem">
+                <strong>{source.system}</strong>
+                <span className="text-muted-foreground">({source.relationship})</span>
+                {source.notes ? (
+                  <span className="text-muted-foreground">— {source.notes}</span>
+                ) : null}
+              </Inline>
             </li>
           ))}
-        </ul>
-      </section>
+        </Stack>
+      </Stack>
 
-      <section aria-label="Component dependencies" className="flex flex-col gap-2">
+      <Stack as="section" gap="0.5rem" aria-label="Component dependencies">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Depends on
         </h3>
-        <div className="flex flex-wrap gap-1.5">
+        <Cluster gap="0.375rem">
           {meta.depends.map((dep) => (
             <code key={dep} className="rounded bg-muted px-2 py-0.5 text-xs text-foreground">
               {dep}
             </code>
           ))}
-        </div>
-      </section>
-    </article>
+        </Cluster>
+      </Stack>
+    </Stack>
   );
 }

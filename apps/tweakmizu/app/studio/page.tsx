@@ -1,4 +1,4 @@
-import { Button } from '@aspect/react';
+import { Button, Inline, Stack } from '@aspect/react';
 import { ArrowRight, LayoutGrid, Sliders, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { SiteFooter } from '@/components/site-footer';
@@ -10,8 +10,8 @@ export default function StudioHome() {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-5xl px-4 py-16 md:py-24">
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-4">
+          <Stack gap="2rem">
+            <Stack gap="1rem">
               <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
                 Studio
               </span>
@@ -26,9 +26,9 @@ export default function StudioHome() {
                 A running starter with layout primitives, design tokens, and real patterns. Free
                 forever for the first three industries.
               </p>
-            </div>
+            </Stack>
 
-            <div className="flex flex-wrap gap-3">
+            <Inline gap="0.75rem" align="center">
               <Button asChild variant="primary" size="lg">
                 <Link href="/studio/new">
                   <Sparkles className="mr-2 h-4 w-4" />
@@ -48,8 +48,8 @@ export default function StudioHome() {
                   Open the editor
                 </Link>
               </Button>
-            </div>
-          </div>
+            </Inline>
+          </Stack>
         </section>
       </main>
       <SiteFooter />

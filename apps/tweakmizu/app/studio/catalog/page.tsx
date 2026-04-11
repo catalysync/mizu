@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@aspect/react';
+import { Button, Stack } from '@aspect/react';
 import { ArrowLeft } from 'lucide-react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -17,7 +17,7 @@ export default function StudioCatalog() {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-6xl px-4 py-12">
-          <div className="flex flex-col gap-8">
+          <Stack gap="2rem">
             <Button asChild variant="ghost" size="sm" className="self-start">
               <Link href="/studio">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -25,7 +25,7 @@ export default function StudioCatalog() {
               </Link>
             </Button>
 
-            <div className="flex flex-col gap-3">
+            <Stack gap="0.75rem">
               <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
                 Catalog
               </span>
@@ -36,10 +36,10 @@ export default function StudioCatalog() {
                 Each pattern is a re-implementation on top of <code>@aspect/react</code>, grounded
                 in an attributed source. The free tier ships these; Pro unlocks the full catalog.
               </p>
-            </div>
+            </Stack>
 
             <CatalogBrowser />
-          </div>
+          </Stack>
         </section>
       </main>
       <SiteFooter />

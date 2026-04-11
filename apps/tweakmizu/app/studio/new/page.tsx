@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@aspect/react';
+import { Button, Stack } from '@aspect/react';
 import { ArrowLeft } from 'lucide-react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -11,7 +11,7 @@ export default function StudioNew() {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-3xl px-4 py-16">
-          <div className="flex flex-col gap-6">
+          <Stack gap="1.5rem">
             <Button asChild variant="ghost" size="sm" className="self-start">
               <Link href="/studio">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -19,7 +19,7 @@ export default function StudioNew() {
               </Link>
             </Button>
 
-            <div className="flex flex-col gap-2">
+            <Stack gap="0.5rem">
               <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
                 What are you building?
               </h1>
@@ -27,10 +27,10 @@ export default function StudioNew() {
                 Describe the product, pick an industry and tone, and we&apos;ll compose a starter
                 from the pattern catalog.
               </p>
-            </div>
+            </Stack>
 
             <StudioNewClient />
-          </div>
+          </Stack>
         </section>
       </main>
       <SiteFooter />

@@ -1,9 +1,10 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Badge, Button } from '@aspect/react';
+import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
 import { Code2, Download, Eye, Sliders } from 'lucide-react';
 import Link from 'next/link';
+import { buildProjectZip, downloadBlob } from '@/lib/studio/exporter';
 import { resolvePatternsForPlan } from '@/lib/studio/composer';
 import { usePlansStore } from '@/store/plans-store';
 import { cn } from '@/utils/cn';
@@ -32,47 +33,47 @@ export function ProjectView({ projectId }: { projectId: string }) {
   const pattern = patterns[activeEntry];
 
   return (
-    <div className="flex flex-col gap-6">
-      <header className="flex flex-col gap-3">
-        <div className="flex flex-wrap items-center gap-2">
+    <Stack gap="1.5rem">
+      <Stack as="header" gap="0.75rem">
+        <Inline gap="0.5rem" align="center">
           <h1 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
             {plan.intent.productName}
           </h1>
           <Badge tone="neutral">{plan.intent.industry}</Badge>
           <Badge tone="info">{plan.intent.stack}</Badge>
           <Badge tone="neutral">{plan.intent.tone}</Badge>
-        </div>
+        </Inline>
         <p className="text-sm text-muted-foreground">{plan.intent.description}</p>
         <p className="text-xs text-muted-foreground">{plan.rationale}</p>
-      </header>
+      </Stack>
 
-      <div
-        role="tablist"
-        aria-label="Project view tabs"
-        className="flex flex-wrap items-center gap-1 border-b border-border"
-      >
-        {TABS.map((tab) => {
-          const Icon = tab.icon;
-          const active = tab.id === activeTab;
-          return (
-            <button
-              key={tab.id}
-              type="button"
-              role="tab"
-              aria-selected={active}
-              onClick={() => setActiveTab(tab.id)}
-              className={cn(
-                '-mb-px flex items-center gap-1.5 border-b-2 px-3 py-2 text-sm font-medium transition-colors',
-                active
-                  ? 'border-primary text-foreground'
-                  : 'border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground',
-              )}
-            >
-              <Icon className="h-4 w-4" />
-              {tab.label}
-            </button>
-          );
-        })}
+      <div role="tablist" aria-label="Project view tabs" className="border-b border-border">
+        <Inline gap="0.25rem" align="center">
+          {TABS.map((tab) => {
+            const Icon = tab.icon;
+            const active = tab.id === activeTab;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => setActiveTab(tab.id)}
+                className={cn(
+                  '-mb-px border-b-2 px-3 py-2 text-sm font-medium transition-colors',
+                  active
+                    ? 'border-primary text-foreground'
+                    : 'border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground',
+                )}
+              >
+                <Inline gap="0.375rem" align="center">
+                  <Icon className="h-4 w-4" />
+                  {tab.label}
+                </Inline>
+              </button>
+            );
+          })}
+        </Inline>
       </div>
 
       {activeTab === 'preview' ? (
@@ -94,14 +95,14 @@ export function ProjectView({ projectId }: { projectId: string }) {
           patterns={patterns}
         />
       ) : null}
-      {activeTab === 'export' ? <ExportTab /> : null}
-    </div>
+      {activeTab === 'export' ? <ExportTab plan={plan} /> : null}
+    </Stack>
   );
 }
 
 function MissingPlan() {
   return (
-    <div className="flex flex-col gap-4 rounded-lg border border-border bg-muted/30 p-8">
+    <Stack gap="1rem" className="rounded-lg border border-border bg-muted/30 p-8">
       <h2 className="text-lg font-semibold text-foreground">Project not found</h2>
       <p className="text-sm text-muted-foreground">
         Plans are stored locally in your browser. This project may have been generated on a
@@ -112,7 +113,7 @@ function MissingPlan() {
           <Link href="/studio/new">Generate a new project</Link>
         </Button>
       </div>
-    </div>
+    </Stack>
   );
 }
 
@@ -137,8 +138,8 @@ function PreviewTab({
 }) {
   const Preview = pattern?.Preview;
   return (
-    <div className="grid gap-6 lg:grid-cols-[240px_1fr]">
-      <nav aria-label="Generated pages" className="flex flex-col gap-1">
+    <Split fraction="240px" gap="1.5rem">
+      <Stack as="nav" gap="0.25rem" aria-label="Generated pages">
         {plan.entries.map((item, index) => {
           const active = index === activeIndex;
           const p = patterns[index];
@@ -149,21 +150,23 @@ function PreviewTab({
               onClick={() => setActiveIndex(index)}
               aria-current={active ? 'true' : undefined}
               className={cn(
-                'flex flex-col gap-1 rounded-lg border px-3 py-2 text-left transition-colors',
+                'rounded-lg border px-3 py-2 text-left transition-colors',
                 active
                   ? 'border-primary bg-primary/5'
                   : 'border-transparent hover:border-border hover:bg-muted/60',
               )}
             >
-              <span className="text-sm font-semibold text-foreground">{item.title}</span>
-              <span className="text-xs text-muted-foreground">{item.route}</span>
-              <span className="text-[11px] text-muted-foreground">
-                {p?.meta.name ?? item.patternId}
-              </span>
+              <Stack gap="0.25rem" align="start">
+                <span className="text-sm font-semibold text-foreground">{item.title}</span>
+                <span className="text-xs text-muted-foreground">{item.route}</span>
+                <span className="text-[11px] text-muted-foreground">
+                  {p?.meta.name ?? item.patternId}
+                </span>
+              </Stack>
             </button>
           );
         })}
-      </nav>
+      </Stack>
       <section
         aria-label={`Preview of ${entry?.title ?? 'page'}`}
         className="rounded-lg border border-border bg-background p-6"
@@ -176,7 +179,7 @@ function PreviewTab({
           </div>
         )}
       </section>
-    </div>
+    </Split>
   );
 }
 
@@ -210,8 +213,8 @@ function CodeTab({
     }) ?? [];
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[240px_1fr]">
-      <nav aria-label="Generated files" className="flex flex-col gap-1">
+    <Split fraction="240px" gap="1.5rem">
+      <Stack as="nav" gap="0.25rem" aria-label="Generated files">
         {plan.entries.map((item, index) => {
           const active = index === activeIndex;
           return (
@@ -231,33 +234,68 @@ function CodeTab({
             </button>
           );
         })}
-      </nav>
-      <div className="flex flex-col gap-3">
+      </Stack>
+      <Stack gap="0.75rem">
         {files.map((file) => (
           <article key={file.path} className="overflow-hidden rounded-lg border border-border">
-            <header className="flex items-center justify-between border-b border-border bg-muted/40 px-3 py-2 text-xs">
-              <code className="text-foreground">{file.path}</code>
-              <span className="text-muted-foreground">
-                {file.contents.split('\n').length} lines
-              </span>
+            <header className="border-b border-border bg-muted/40 px-3 py-2 text-xs">
+              <Inline align="center" gap="0.5rem" style={{ justifyContent: 'space-between' }}>
+                <code className="text-foreground">{file.path}</code>
+                <span className="text-muted-foreground">
+                  {file.contents.split('\n').length} lines
+                </span>
+              </Inline>
             </header>
             <pre className="max-h-[480px] overflow-auto bg-background p-4 text-xs leading-relaxed text-foreground">
               {file.contents}
             </pre>
           </article>
         ))}
-      </div>
-    </div>
+      </Stack>
+    </Split>
   );
 }
 
-function ExportTab() {
+function ExportTab({ plan }: { plan: StoredPlan }) {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleDownload = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      const blob = await buildProjectZip(plan);
+      downloadBlob(blob, `${plan.intent.productName.replace(/\s+/g, '-').toLowerCase()}.zip`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to build zip');
+    } finally {
+      setBusy(false);
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-4 rounded-lg border border-dashed border-border p-8">
-      <p className="text-sm text-muted-foreground">
-        Zip download, GitHub push, and share link land in the next commit. The generated code is
-        already resolvable via the Code tab.
-      </p>
-    </div>
+    <Stack gap="1rem">
+      <Stack gap="0.75rem" className="rounded-lg border border-border bg-background p-6">
+        <h2 className="text-lg font-semibold text-foreground">Download as a zip</h2>
+        <p className="text-sm text-muted-foreground">
+          The generated project is a standalone Next.js app. Unzip, run <code>pnpm install</code>,
+          then <code>pnpm dev</code>.
+        </p>
+        <Inline gap="0.5rem" align="center">
+          <Button onClick={handleDownload} variant="primary" loading={busy}>
+            <Download className="mr-2 h-4 w-4" />
+            Download zip
+          </Button>
+          {error ? <span className="text-sm text-danger">{error}</span> : null}
+        </Inline>
+      </Stack>
+      <Stack gap="0.5rem" className="rounded-lg border border-dashed border-border p-6">
+        <h3 className="text-sm font-semibold text-foreground">Coming next</h3>
+        <p className="text-sm text-muted-foreground">
+          GitHub push and share link are queued up. Copy-to-Cursor-rules and Claude Code skill
+          generation are already baked into the substrate file inside the zip.
+        </p>
+      </Stack>
+    </Stack>
   );
 }

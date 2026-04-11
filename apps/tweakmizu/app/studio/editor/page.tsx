@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@aspect/react';
+import { Button, Stack } from '@aspect/react';
 import { ArrowLeft } from 'lucide-react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -10,7 +10,7 @@ export default function StudioEditor() {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-6xl px-4 py-16">
-          <div className="flex flex-col gap-6">
+          <Stack gap="1.5rem">
             <Button asChild variant="ghost" size="sm" className="self-start">
               <Link href="/studio">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -35,7 +35,7 @@ export default function StudioEditor() {
                 Tab rail + preview iframe + knob panel are scaffolded in follow-up commits.
               </p>
             </div>
-          </div>
+          </Stack>
         </section>
       </main>
       <SiteFooter />
