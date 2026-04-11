@@ -76,6 +76,7 @@
   --_bg: var(--mizu-action-primary-default);
   --_bg-hover: var(--mizu-action-primary-hover);
   --_bg-active: var(--mizu-action-primary-active);
+
   /* Primary always has a colored background, so text stays white in both
    * light and dark modes (unlike --mizu-text-inverse, which flips). */
   --_color: var(--mizu-color-white);

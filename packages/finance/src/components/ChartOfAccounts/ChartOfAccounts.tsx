@@ -56,7 +56,18 @@ export const ChartOfAccounts = React.forwardRef<HTMLDivElement, ChartOfAccountsP
             data-depth={depth}
             data-parent={hasChildren || undefined}
             role="row"
+            tabIndex={onAccountClick ? 0 : undefined}
             onClick={onAccountClick ? () => onAccountClick(node.id) : undefined}
+            onKeyDown={
+              onAccountClick
+                ? (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      onAccountClick(node.id);
+                    }
+                  }
+                : undefined
+            }
           >
             <span className="mizu-chart-of-accounts__code" role="cell">
               {node.code}

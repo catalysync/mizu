@@ -74,7 +74,7 @@ describe('Calendar', () => {
     const day1 = screen.getByRole('gridcell', { name: /April 1, 2026/ });
     expect(day1).toBeDisabled();
     const day15 = screen.getByRole('gridcell', { name: /April 15, 2026/ });
-    expect(day15).not.toBeDisabled();
+    expect(day15).toBeEnabled();
   });
 });
 
@@ -92,7 +92,7 @@ describe('DatePicker', () => {
     );
     const trigger = container.querySelector('.mizu-date-picker__trigger') as HTMLButtonElement;
     expect(trigger).toBeDisabled();
-    expect(trigger).toHaveAttribute('aria-required', 'true');
+    expect(trigger).toHaveAttribute('data-required', 'true');
   });
 
   it('has no axe violations on the closed trigger', async () => {

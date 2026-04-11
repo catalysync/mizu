@@ -61,7 +61,7 @@ describe('StepFlow', () => {
         panel
       </StepFlow>,
     );
-    expect(screen.getByRole('tab', { name: /Review/ })).not.toBeDisabled();
+    expect(screen.getByRole('tab', { name: /Review/ })).toBeEnabled();
   });
 
   it('renders the active panel content', () => {

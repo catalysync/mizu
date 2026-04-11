@@ -43,6 +43,6 @@ describe('InvoiceLineItem', () => {
 
   it('hides the remove button in read-only mode', () => {
     render(<InvoiceLineItem value={base} readOnly />);
-    expect(screen.queryByRole('button', { name: /Remove/ })).toBeNull();
+    expect(screen.queryByRole('button', { name: /Remove/ })).not.toBeInTheDocument();
   });
 });

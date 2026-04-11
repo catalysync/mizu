@@ -38,7 +38,7 @@ describe('Field', () => {
     );
     const input = screen.getByTestId('control');
     const description = screen.getByText('We never share your email');
-    expect(input.getAttribute('aria-describedby')).toContain(description.id);
+    expect(input).toHaveAttribute('aria-describedby', expect.stringContaining(description.id));
   });
 
   it('shows an error message with role="alert" and wires aria-invalid', () => {
@@ -51,7 +51,7 @@ describe('Field', () => {
     const error = screen.getByRole('alert');
     expect(error).toHaveTextContent('Required field');
     expect(input).toHaveAttribute('aria-invalid', 'true');
-    expect(input.getAttribute('aria-describedby')).toContain(error.id);
+    expect(input).toHaveAttribute('aria-describedby', expect.stringContaining(error.id));
   });
 
   it('renders a visible asterisk + sr-only text when required', () => {

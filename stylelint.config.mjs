@@ -1,7 +1,14 @@
 /** @type {import('stylelint').Config} */
 export default {
   extends: ['stylelint-config-standard'],
-  ignoreFiles: ['**/dist/**', '**/node_modules/**', '**/*.generated.*'],
+  ignoreFiles: [
+    '**/dist/**',
+    '**/node_modules/**',
+    '**/*.generated.*',
+    // Third-party library overrides (react-awesome-query-builder) — can't follow BEM
+    '**/components/query-builder.css',
+    '**/components/advanced-query-builder.css',
+  ],
   rules: {
     // allow BEM-style block__element--modifier on top of kebab-case
     'selector-class-pattern': [

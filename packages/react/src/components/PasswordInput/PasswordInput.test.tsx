@@ -23,7 +23,7 @@ describe('PasswordInput', () => {
 
   it('can hide the toggle', () => {
     render(<PasswordInput aria-label="Password" showToggle={false} />);
-    expect(screen.queryByRole('button', { name: /Show password/ })).toBeNull();
+    expect(screen.queryByRole('button', { name: /Show password/ })).not.toBeInTheDocument();
   });
 
   it('renders a strength meter when strength is provided', () => {

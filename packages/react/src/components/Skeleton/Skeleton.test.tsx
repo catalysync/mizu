@@ -20,8 +20,8 @@ describe('Skeleton', () => {
   it('applies custom width and height', () => {
     const { container } = render(<Skeleton width={200} height={20} />);
     const el = container.firstChild as HTMLElement;
-    expect(el.style.width).toBe('200px');
-    expect(el.style.height).toBe('20px');
+    expect(el).toHaveStyle({ width: '200px' });
+    expect(el).toHaveStyle({ height: '20px' });
   });
 
   it('has no a11y violations', async () => {

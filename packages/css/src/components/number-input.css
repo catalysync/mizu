@@ -10,13 +10,12 @@
   padding-inline-end: 2.5rem;
   text-align: start;
   font-variant-numeric: tabular-nums;
-  -moz-appearance: textfield;
   appearance: textfield;
 }
 
 .mizu-number-input__input::-webkit-outer-spin-button,
 .mizu-number-input__input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 

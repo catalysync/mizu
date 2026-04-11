@@ -125,8 +125,8 @@ export const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePick
               type="button"
               className="mizu-date-picker__trigger"
               disabled={resolvedDisabled}
-              aria-required={resolvedRequired || undefined}
-              aria-invalid={resolvedInvalid}
+              data-required={resolvedRequired || undefined}
+              data-invalid={resolvedInvalid || undefined}
               aria-describedby={resolvedDescribedBy}
             >
               <span className="mizu-date-picker__trigger-value" data-empty={!start || undefined}>

@@ -65,7 +65,7 @@
   background: var(--mizu-surface-default);
   border: 1px solid var(--mizu-border-subtle);
   border-radius: var(--mizu-radius-lg);
-  box-shadow: 0 10px 30px -12px rgb(0 0 0 / 0.18);
+  box-shadow: 0 10px 30px -12px rgb(0 0 0 / 18%);
   font-family: var(--mizu-font-family-sans);
   color: var(--mizu-text-primary);
   min-inline-size: 17rem;

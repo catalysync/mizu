@@ -135,7 +135,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                 aria-label={day.toLocaleDateString(locale, {
                   dateStyle: 'full',
                 })}
-                aria-pressed={selected || undefined}
+                aria-selected={selected || undefined}
                 disabled={disabled}
                 onClick={() => onChange?.(day)}
               >

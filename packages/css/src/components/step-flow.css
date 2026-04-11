@@ -38,11 +38,6 @@
     background-color var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
-.mizu-step-flow__step:hover:not(:disabled) {
-  border-color: var(--mizu-border-default);
-  color: var(--mizu-text-primary);
-}
-
 .mizu-step-flow__step:focus-visible {
   outline: 2px solid var(--mizu-action-primary-default);
   outline-offset: 2px;
@@ -51,6 +46,11 @@
 .mizu-step-flow__step:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.mizu-step-flow__step:hover:not(:disabled) {
+  border-color: var(--mizu-border-default);
+  color: var(--mizu-text-primary);
 }
 
 .mizu-step-flow__step[data-status="current"] {

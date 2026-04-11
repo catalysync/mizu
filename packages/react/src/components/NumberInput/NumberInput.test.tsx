@@ -58,7 +58,7 @@ describe('NumberInput', () => {
 
   it('hides steppers when hideSteppers is true', () => {
     render(<NumberInput aria-label="Qty" hideSteppers defaultValue={1} />);
-    expect(screen.queryByRole('button', { name: 'Increment' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Increment' })).not.toBeInTheDocument();
   });
 
   it('supports controlled mode', () => {

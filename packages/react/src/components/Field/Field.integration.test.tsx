@@ -40,7 +40,7 @@ describe('Field context integration — legacy controls', () => {
     );
     const cb = screen.getByRole('checkbox');
     expect(cb).toBeDisabled();
-    expect(cb).toHaveAttribute('aria-required', 'true');
+    expect(cb).toBeRequired();
   });
 
   it('Switch inherits from Field', () => {
@@ -51,6 +51,8 @@ describe('Field context integration — legacy controls', () => {
     );
     const sw = screen.getByRole('switch');
     expect(sw).toBeDisabled();
+    // Radix Switch is a button — jest-dom's toBeRequired can't see aria-required on it
+    // eslint-disable-next-line jest-dom/prefer-required
     expect(sw).toHaveAttribute('aria-required', 'true');
   });
 
@@ -64,7 +66,7 @@ describe('Field context integration — legacy controls', () => {
       </Field>,
     );
     const group = screen.getByRole('radiogroup');
-    expect(group).toHaveAttribute('aria-required', 'true');
+    expect(group).toBeRequired();
   });
 
   it('SelectTrigger inherits from Field', () => {

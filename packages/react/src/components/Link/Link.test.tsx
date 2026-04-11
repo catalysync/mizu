@@ -39,8 +39,8 @@ describe('Link', () => {
     );
     const link = screen.getByRole('link');
     expect(link).toHaveAttribute('target', '_blank');
-    expect(link.getAttribute('rel')).toContain('noopener');
-    expect(link.getAttribute('rel')).toContain('noreferrer');
+    expect(link).toHaveAttribute('rel', expect.stringContaining('noopener'));
+    expect(link).toHaveAttribute('rel', expect.stringContaining('noreferrer'));
     expect(link).toHaveAttribute('data-external', 'true');
   });
 

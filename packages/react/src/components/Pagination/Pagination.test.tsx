@@ -35,7 +35,7 @@ describe('Pagination', () => {
   it('auto-computes hasPrevious/hasNext from page state', () => {
     render(<Pagination page={1} totalPages={5} />);
     expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
-    expect(screen.getByRole('button', { name: 'Next page' })).not.toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Next page' })).toBeEnabled();
   });
 
   it('clicking next advances the page', () => {
