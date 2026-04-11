@@ -3,6 +3,7 @@ import { Button } from '@aspect/react';
 import { ArrowLeft } from 'lucide-react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { StudioNewClient } from './client';
 
 export default function StudioNew() {
   return (
@@ -18,19 +19,17 @@ export default function StudioNew() {
               </Link>
             </Button>
 
-            <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              What are you building?
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Intent form goes here. Industry picker, product name, description, pages, tone, stack,
-              density, optional refinement.
-            </p>
-
-            <div className="rounded-lg border border-dashed border-border p-8">
-              <p className="text-sm text-muted-foreground">
-                Form scaffold is wired up in a follow-up commit.
+            <div className="flex flex-col gap-2">
+              <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                What are you building?
+              </h1>
+              <p className="text-lg text-muted-foreground">
+                Describe the product, pick an industry and tone, and we'll compose a starter from
+                the pattern catalog.
               </p>
             </div>
+
+            <StudioNewClient />
           </div>
         </section>
       </main>
