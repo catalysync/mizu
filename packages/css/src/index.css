@@ -53,6 +53,7 @@
 @import url("./layouts/split.css");
 @import url("./layouts/center.css");
 @import url("./layouts/cluster.css");
+@import url("./layouts/resizable.css");
 
 /* Shell */
 @import url("./shell/app-layout.css");

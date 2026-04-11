@@ -1,0 +1,47 @@
+.mizu-resizable-group {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.mizu-resizable-group[data-panel-group-direction="vertical"] {
+  flex-direction: column;
+}
+
+.mizu-resizable-handle {
+  position: relative;
+  flex: 0 0 1px;
+  background: var(--mizu-border-default);
+  transition: background-color var(--mizu-duration-fast) var(--mizu-easing-out);
+  outline: none;
+}
+
+.mizu-resizable-handle[data-panel-group-direction="horizontal"] {
+  width: 1px;
+  cursor: col-resize;
+}
+
+.mizu-resizable-handle[data-panel-group-direction="vertical"] {
+  height: 1px;
+  cursor: row-resize;
+}
+
+.mizu-resizable-handle:hover,
+.mizu-resizable-handle[data-resize-handle-active] {
+  background: var(--mizu-action-primary-default);
+}
+
+.mizu-resizable-handle::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+}
+
+.mizu-resizable-handle:focus-visible {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: 2px;
+}
+
+.mizu-resizable-panel {
+  overflow: hidden;
+}

@@ -4,3 +4,9 @@ export { Grid, type GridProps } from './Grid';
 export { Split, type SplitProps } from './Split';
 export { Center, type CenterProps } from './Center';
 export { Cluster, type ClusterProps } from './Cluster';
+export {
+  ResizableGroup,
+  ResizablePanel,
+  ResizableHandle,
+  type ResizableGroupProps,
+} from './Resizable';

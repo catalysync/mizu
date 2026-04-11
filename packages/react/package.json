@@ -51,7 +51,8 @@
     "@radix-ui/react-tooltip": "^1.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "cmdk": "^1.1.1"
+    "cmdk": "^1.1.1",
+    "react-resizable-panels": "^3.0.0"
   },
   "devDependencies": {
     "@aspect/css": "workspace:^",
