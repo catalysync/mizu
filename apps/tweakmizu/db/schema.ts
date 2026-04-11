@@ -81,6 +81,7 @@ export const generatedProject = pgTable('generated_project', {
   userId: text('user_id')
     .notNull()
     .references(() => user.id, { onDelete: 'cascade' }),
+  teamId: text('team_id').references(() => team.id, { onDelete: 'cascade' }),
   name: text('name').notNull(),
   industry: text('industry').notNull(),
   stack: text('stack').notNull(),
@@ -88,4 +89,56 @@ export const generatedProject = pgTable('generated_project', {
   plan: json('plan').notNull(),
   createdAt: timestamp('created_at').notNull(),
   updatedAt: timestamp('updated_at').notNull(),
+});
+
+export const team = pgTable('team', {
+  id: text('id').primaryKey(),
+  name: text('name').notNull(),
+  slug: text('slug').notNull().unique(),
+  ownerId: text('owner_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  createdAt: timestamp('created_at').notNull(),
+  updatedAt: timestamp('updated_at').notNull(),
+});
+
+export const teamMember = pgTable('team_member', {
+  id: text('id').primaryKey(),
+  teamId: text('team_id')
+    .notNull()
+    .references(() => team.id, { onDelete: 'cascade' }),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  role: text('role').notNull().$type<'owner' | 'admin' | 'member'>(),
+  joinedAt: timestamp('joined_at').notNull(),
+});
+
+export const teamInvite = pgTable('team_invite', {
+  id: text('id').primaryKey(),
+  teamId: text('team_id')
+    .notNull()
+    .references(() => team.id, { onDelete: 'cascade' }),
+  email: text('email').notNull(),
+  role: text('role').notNull().$type<'admin' | 'member'>(),
+  invitedBy: text('invited_by')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  token: text('token').notNull().unique(),
+  expiresAt: timestamp('expires_at').notNull(),
+  acceptedAt: timestamp('accepted_at'),
+  createdAt: timestamp('created_at').notNull(),
+});
+
+export const share = pgTable('share', {
+  id: text('id').primaryKey(),
+  token: text('token').notNull().unique(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  projectId: text('project_id').notNull(),
+  planJson: json('plan_json').notNull(),
+  expiresAt: timestamp('expires_at'),
+  views: integer('views').notNull().default(0),
+  createdAt: timestamp('created_at').notNull(),
 });
