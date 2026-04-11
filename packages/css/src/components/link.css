@@ -1,0 +1,48 @@
+.mizu-link {
+  color: var(--mizu-action-primary-default);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  border-radius: var(--mizu-radius-sm);
+  cursor: pointer;
+  transition: color var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+.mizu-link:hover {
+  color: var(--mizu-action-primary-hover);
+}
+
+.mizu-link:active {
+  color: var(--mizu-action-primary-active);
+}
+
+.mizu-link:focus-visible {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: 2px;
+}
+
+.mizu-link[data-variant="subtle"] {
+  color: var(--mizu-text-primary);
+  text-decoration-color: var(--mizu-border-default);
+}
+
+.mizu-link[data-variant="subtle"]:hover {
+  color: var(--mizu-action-primary-default);
+  text-decoration-color: currentcolor;
+}
+
+.mizu-link[data-variant="standalone"] {
+  text-decoration: none;
+  font-weight: var(--mizu-font-weight-medium);
+}
+
+.mizu-link[data-variant="standalone"]:hover {
+  text-decoration: underline;
+}
+
+.mizu-link[data-external]::after {
+  content: "↗";
+  margin-inline-start: 0.25em;
+  font-size: 0.85em;
+  display: inline-block;
+}

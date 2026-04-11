@@ -48,6 +48,7 @@
 @import url("./components/heading.css");
 @import url("./components/label.css");
 @import url("./components/spinner.css");
+@import url("./components/link.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
