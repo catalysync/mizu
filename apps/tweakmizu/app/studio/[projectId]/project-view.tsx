@@ -8,6 +8,7 @@ import { buildProjectZip, downloadBlob } from '@/lib/studio/exporter';
 import { resolvePatternsForPlan } from '@/lib/studio/composer';
 import { usePlansStore } from '@/store/plans-store';
 import { cn } from '@/utils/cn';
+import { StudioEditorShell } from '@/components/studio/editor/editor-shell';
 
 type Tab = 'preview' | 'editor' | 'code' | 'export';
 
@@ -184,14 +185,7 @@ function PreviewTab({
 }
 
 function EditorTab() {
-  return (
-    <div className="rounded-lg border border-dashed border-border p-8">
-      <p className="text-sm text-muted-foreground">
-        Theme editor for the project lands in a follow-up commit. It will embed the mizu studio
-        editor and scope tokens to this project.
-      </p>
-    </div>
-  );
+  return <StudioEditorShell />;
 }
 
 function CodeTab({

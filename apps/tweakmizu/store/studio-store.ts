@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware';
 import { defaultThemeState } from '@/config/theme';
 import { defaultStudioExtensions } from '@/config/studio';
 import type { StudioThemeState, StudioThemeExtensions } from '@/types/studio';
+import type { ThemeStyleProps } from '@/types/theme';
 
 const MAX_HISTORY_COUNT = 30;
 const HISTORY_OVERRIDE_THRESHOLD_MS = 500;
@@ -23,6 +24,7 @@ interface StudioStore {
   history: StudioHistoryEntry[];
   future: StudioHistoryEntry[];
   setStudioState: (state: StudioThemeState) => void;
+  setStyles: (updates: Partial<ThemeStyleProps>) => void;
   setExtensions: (updater: (prev: StudioThemeExtensions) => StudioThemeExtensions) => void;
   saveCheckpoint: () => void;
   restoreCheckpoint: () => void;
@@ -56,6 +58,14 @@ export const useStudioStore = create<StudioStore>()(
         }
 
         set({ studioState: newState, history, future: [] });
+      },
+
+      setStyles: (updates) => {
+        const prev = get().studioState;
+        get().setStudioState({
+          ...prev,
+          styles: { ...prev.styles, ...updates },
+        });
       },
 
       setExtensions: (updater) => {
