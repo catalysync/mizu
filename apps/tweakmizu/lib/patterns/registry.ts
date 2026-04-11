@@ -2,6 +2,7 @@ import type { Industry } from '@/types/studio';
 import { cloudActivity } from '@/catalog/cloud/activity';
 import { cloudApps } from '@/catalog/cloud/apps';
 import { cloudBilling } from '@/catalog/cloud/billing';
+import { cloudSettings } from '@/catalog/cloud/settings';
 import { cloudTemplates } from '@/catalog/cloud/templates';
 import type { PatternModule, PatternTier } from './types';
 
@@ -10,6 +11,7 @@ export const patternRegistry: PatternModule[] = [
   cloudActivity,
   cloudTemplates,
   cloudBilling,
+  cloudSettings,
 ];
 
 export function getAllPatterns(): PatternModule[] {
