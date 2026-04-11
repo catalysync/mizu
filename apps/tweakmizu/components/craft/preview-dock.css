@@ -1,0 +1,110 @@
+.craft-dock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-lg);
+  overflow: hidden;
+  min-height: 28rem;
+}
+
+.craft-dock__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--mizu-surface-secondary);
+  border-bottom: 1px solid var(--mizu-border-subtle);
+  font-size: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.craft-dock__page-select {
+  padding: 0.25rem 0.5rem;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-sm);
+  font-family: var(--mizu-font-family-sans);
+  font-size: 0.75rem;
+  color: var(--mizu-text-primary);
+  min-width: 8rem;
+}
+
+.craft-dock__spacer {
+  flex: 1;
+}
+
+.craft-dock__devices {
+  display: inline-flex;
+  gap: 0.125rem;
+  padding: 2px;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-sm);
+}
+
+.craft-dock__devices button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.25rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  color: var(--mizu-text-secondary);
+  cursor: pointer;
+}
+
+.craft-dock__devices button:hover {
+  color: var(--mizu-text-primary);
+}
+
+.craft-dock__devices button[data-active] {
+  background: var(--mizu-surface-secondary);
+  color: var(--mizu-action-primary-default);
+}
+
+.craft-dock__open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--mizu-text-secondary);
+  text-decoration: none;
+  border-radius: var(--mizu-radius-sm);
+}
+
+.craft-dock__open:hover {
+  background: var(--mizu-surface-default);
+  color: var(--mizu-text-primary);
+}
+
+.craft-dock__viewport {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.75rem;
+  background: color-mix(in srgb, var(--mizu-text-primary) 2%, transparent);
+  overflow: auto;
+  min-height: 24rem;
+}
+
+.craft-dock__frame {
+  width: var(--craft-dock-width, 100%);
+  max-width: 100%;
+  height: 40rem;
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-md);
+  background: var(--mizu-surface-default);
+  box-shadow: 0 8px 20px -12px rgb(0 0 0 / 0.18);
+}
+
+.craft-dock__viewport[data-device="mobile"] .craft-dock__frame,
+.craft-dock__viewport[data-device="tablet"] .craft-dock__frame {
+  height: 36rem;
+}

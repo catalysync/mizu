@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, Undo2, Redo2, Download } from 'lucide-react';
 import { Button, cn } from '@aspect/react';
 import { useCraftStore } from '@/store/craft-store';
+import { installPreviewPublisher } from './preview/preview-bridge';
 
 interface CraftShellProps {
   user: { id: string; name: string; email: string };
@@ -56,6 +57,11 @@ export function CraftShell({ user, children }: CraftShellProps) {
   const canUndo = useCraftStore((s) => s.history.length > 0);
   const canRedo = useCraftStore((s) => s.future.length > 0);
   const profileName = useCraftStore((s) => s.profile.name);
+
+  // Broadcast profile changes to any iframe preview windows under the same origin
+  useEffect(() => {
+    return installPreviewPublisher();
+  }, []);
 
   // Close mobile drawer when route changes
   useEffect(() => {

@@ -1,13 +1,21 @@
 import { z } from 'zod';
+import { AppSchema, defaultAppSchema } from './app-schema';
 
 /**
  * DesignLanguageProfile — the serializable artifact that describes a user's
- * design language on top of mizu. Organized as 10 clusters matching
- * mizu-planning/11-design-language.md. Every field has a default drawn from
- * the "mizu sample language" archetype.
+ * design language on top of mizu, plus the application they want to build
+ * with it. Two halves:
  *
- * This is what gets exported as `mizu.language.json`, what the AI prompt
- * produces, and what the craft studio UI edits knob by knob.
+ * 1. Language clusters (A–J) matching mizu-planning/11-design-language.md:
+ *    Foundation, Shape, Density, Type, Motion, Depth, Focus, Iconography,
+ *    Voice, API-opinions.
+ * 2. App schema (identity + entities + pages + components + shell + custom
+ *    components) so the studio can render a multi-page preview and export a
+ *    full monorepo. See mizu-planning/13-studio-v2-vision.md for the "why".
+ *
+ * This is what gets exported as `mizu.language.json`, what the AI agent
+ * mutates via Claude tool calls, and what the craft studio UI edits knob by
+ * knob plus conversation.
  */
 
 // -- Cluster A: Foundation -------------------------------------------------
@@ -188,7 +196,7 @@ export type OpinionCluster = z.infer<typeof OpinionCluster>;
 
 export const DesignLanguageProfile = z.object({
   $schema: z.string().default('https://mizu.dev/language.schema.json'),
-  version: z.literal(1).default(1),
+  version: z.literal(2).default(2),
   name: z.string().default('Untitled language'),
   description: z.string().optional(),
   archetype: z.string().optional(),
@@ -202,6 +210,7 @@ export const DesignLanguageProfile = z.object({
   iconography: IconographyCluster,
   voice: VoiceCluster,
   opinions: OpinionCluster,
+  app: AppSchema,
 });
 export type DesignLanguageProfile = z.infer<typeof DesignLanguageProfile>;
 
@@ -211,7 +220,7 @@ export type DesignLanguageProfile = z.infer<typeof DesignLanguageProfile>;
  */
 export const mizuSampleProfile: DesignLanguageProfile = {
   $schema: 'https://mizu.dev/language.schema.json',
-  version: 1,
+  version: 2,
   name: 'mizu sample',
   description: 'The neutral default mizu ships with. One possible language, not the system’s.',
   archetype: 'mizu-default',
@@ -273,6 +282,7 @@ export const mizuSampleProfile: DesignLanguageProfile = {
     compositionStyle: 'compound',
     loadingOwnership: 'design-system',
   },
+  app: defaultAppSchema,
 };
 
 /**

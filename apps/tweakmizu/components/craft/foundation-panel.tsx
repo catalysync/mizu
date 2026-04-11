@@ -1,17 +1,15 @@
 'use client';
 
 import './foundation-panel.css';
-import { useMemo } from 'react';
 import { Badge } from '@aspect/react';
 import { useCraftStore } from '@/store/craft-store';
-import { profileToCss } from '@/lib/craft/profile-to-css';
 import type {
   ChromaIntensity,
   ContrastTier,
   DarkModePhilosophy,
   HuePersonality,
 } from '@/lib/craft/profile';
-import { LivePreview } from './live-preview';
+import { PreviewDock } from './preview-dock';
 
 const HUE_PERSONALITIES: Array<{
   id: HuePersonality;
@@ -44,11 +42,8 @@ const DARK_MODE_OPTIONS: Array<{ id: DarkModePhilosophy; label: string; hint: st
 ];
 
 export function FoundationPanel() {
-  const profile = useCraftStore((s) => s.profile);
-  const foundation = profile.foundation;
+  const foundation = useCraftStore((s) => s.profile.foundation);
   const updateCluster = useCraftStore((s) => s.updateCluster);
-
-  const vars = useMemo(() => profileToCss(profile), [profile]);
 
   return (
     <div className="craft-foundation">
@@ -133,7 +128,7 @@ export function FoundationPanel() {
         </div>
 
         <aside className="craft-foundation__preview" aria-label="Live preview">
-          <LivePreview vars={vars} />
+          <PreviewDock />
         </aside>
       </div>
     </div>

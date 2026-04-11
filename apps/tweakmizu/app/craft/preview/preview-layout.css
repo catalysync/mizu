@@ -1,0 +1,6 @@
+.craft-preview-root {
+  min-height: 100dvh;
+  background: var(--mizu-surface-secondary, #f8fafc);
+  color: var(--mizu-text-primary, #0f172a);
+  font-family: var(--mizu-font-family-sans, ui-sans-serif, system-ui, sans-serif);
+}
