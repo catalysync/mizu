@@ -112,3 +112,17 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+/* How it works */
+@media (max-width: 800px) {
+  .how-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* FAQ */
+@media (max-width: 900px) {
+  .faq__grid {
+    grid-template-columns: 1fr !important;
+  }
+}
