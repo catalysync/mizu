@@ -76,7 +76,9 @@
   --_bg: var(--mizu-action-primary-default);
   --_bg-hover: var(--mizu-action-primary-hover);
   --_bg-active: var(--mizu-action-primary-active);
-  --_color: var(--mizu-text-inverse);
+  /* Primary always has a colored background, so text stays white in both
+   * light and dark modes (unlike --mizu-text-inverse, which flips). */
+  --_color: var(--mizu-color-white);
 }
 
 .mizu-button--secondary {
@@ -91,7 +93,7 @@
   --_bg: var(--mizu-action-destructive-default, #dc2626);
   --_bg-hover: var(--mizu-action-destructive-hover, #b91c1c);
   --_bg-active: var(--mizu-action-destructive-active, #991b1b);
-  --_color: var(--mizu-text-inverse);
+  --_color: var(--mizu-color-white);
 }
 
 /* Sizes */
