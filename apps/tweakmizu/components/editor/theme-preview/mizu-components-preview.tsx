@@ -230,55 +230,53 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
         </Section>
 
         <Section title="Table">
-          <Card>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Role</TableHead>
-                  <TableHead>Status</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <Avatar size="sm">AB</Avatar>
-                      Alice Brown
-                    </div>
-                  </TableCell>
-                  <TableCell>Admin</TableCell>
-                  <TableCell>
-                    <Badge tone="success">Active</Badge>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <Avatar size="sm">CD</Avatar>
-                      Carla Diaz
-                    </div>
-                  </TableCell>
-                  <TableCell>Editor</TableCell>
-                  <TableCell>
-                    <Badge tone="warning">Invited</Badge>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <Avatar size="sm">EF</Avatar>
-                      Eric Foster
-                    </div>
-                  </TableCell>
-                  <TableCell>Viewer</TableCell>
-                  <TableCell>
-                    <Badge>Inactive</Badge>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Card>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableHeader>Name</TableHeader>
+                <TableHeader>Role</TableHeader>
+                <TableHeader>Status</TableHeader>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <Avatar size="sm">AB</Avatar>
+                    Alice Brown
+                  </div>
+                </TableCell>
+                <TableCell>Admin</TableCell>
+                <TableCell>
+                  <Badge tone="success">Active</Badge>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <Avatar size="sm">CD</Avatar>
+                    Carla Diaz
+                  </div>
+                </TableCell>
+                <TableCell>Editor</TableCell>
+                <TableCell>
+                  <Badge tone="warning">Invited</Badge>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <Avatar size="sm">EF</Avatar>
+                    Eric Foster
+                  </div>
+                </TableCell>
+                <TableCell>Viewer</TableCell>
+                <TableCell>
+                  <Badge>Inactive</Badge>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </Section>
 
         <Section title="Tooltip & Skeleton">

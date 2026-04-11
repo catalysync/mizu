@@ -100,18 +100,27 @@ export default function ThemePresetSelect() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.5rem 0.75rem',
+              gap: '0.625rem',
+              padding: '0.75rem 1rem',
               borderBottom: '1px solid var(--mizu-border-default)',
             }}
           >
-            <Search size={14} style={{ color: 'var(--mizu-text-secondary)' }} />
+            <Search size={14} style={{ color: 'var(--mizu-text-secondary)', flexShrink: 0 }} />
             <input
-              className="mizu-input"
               placeholder="Search themes..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              style={{ flex: 1, border: 'none', background: 'transparent', padding: 0 }}
+              style={{
+                flex: 1,
+                minWidth: 0,
+                border: 'none',
+                background: 'transparent',
+                padding: '0.125rem 0',
+                fontSize: '0.875rem',
+                fontFamily: 'var(--mizu-font-family-sans)',
+                color: 'var(--mizu-text-primary)',
+                outline: 'none',
+              }}
             />
           </div>
           <div
@@ -119,17 +128,17 @@ export default function ThemePresetSelect() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              padding: '0.375rem 0.75rem',
+              padding: '0.5rem 1rem',
               fontSize: 12,
               color: 'var(--mizu-text-secondary)',
             }}
           >
             <span>{filtered.length} themes</span>
-            <Button variant="ghost" size="sm" onClick={randomize}>
+            <Button variant="ghost" size="sm" onClick={randomize} aria-label="Random theme">
               <Shuffle size={14} />
             </Button>
           </div>
-          <ScrollArea style={{ maxHeight: 380 }}>
+          <ScrollArea style={{ height: 360 }}>
             <Stack gap="0" style={{ padding: '0.25rem' }}>
               {filtered.map((name) => {
                 const isActive = name === currentName;
