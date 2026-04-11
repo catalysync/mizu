@@ -1,0 +1,52 @@
+.mizu-heading {
+  font-family: var(--mizu-font-family-sans);
+  color: var(--mizu-text-primary);
+  font-weight: var(--mizu-font-weight-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.mizu-heading--size-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.mizu-heading--size-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.mizu-heading--size-md {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.mizu-heading--size-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.mizu-heading--size-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.mizu-heading--size-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  letter-spacing: -0.015em;
+}
+
+.mizu-heading--size-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  letter-spacing: -0.02em;
+}
+
+.mizu-heading--size-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  letter-spacing: -0.025em;
+  font-weight: var(--mizu-font-weight-bold);
+}
