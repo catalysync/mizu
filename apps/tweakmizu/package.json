@@ -16,6 +16,7 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.88.0",
     "@aspect/commerce": "workspace:^",
     "@aspect/css": "workspace:^",
     "@aspect/finance": "workspace:^",
