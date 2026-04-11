@@ -1,0 +1,52 @@
+.mizu-spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentcolor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: mizu-spinner-spin 600ms linear infinite;
+  vertical-align: text-bottom;
+  flex-shrink: 0;
+}
+
+.mizu-spinner--size-xs {
+  font-size: 0.75rem;
+  border-width: 1.5px;
+}
+
+.mizu-spinner--size-sm {
+  font-size: 1rem;
+}
+
+.mizu-spinner--size-md {
+  font-size: 1.5rem;
+}
+
+.mizu-spinner--size-lg {
+  font-size: 2rem;
+}
+
+.mizu-spinner__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes mizu-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mizu-spinner {
+    animation-duration: 2s;
+  }
+}
