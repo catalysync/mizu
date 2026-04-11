@@ -1,0 +1,32 @@
+.craft-landing {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  max-width: 88rem;
+  margin: 0 auto;
+}
+
+/* Desktop: presets on the left, chat on the right */
+@media (min-width: 1024px) {
+  .craft-landing {
+    grid-template-columns: minmax(0, 3fr) minmax(20rem, 1fr);
+    align-items: start;
+  }
+}
+
+.craft-landing__presets {
+  min-width: 0;
+}
+
+.craft-landing__chat {
+  position: sticky;
+  top: 4.5rem;
+  max-height: calc(100dvh - 6rem);
+}
+
+@media (max-width: 1023px) {
+  .craft-landing__chat {
+    position: static;
+    max-height: 32rem;
+  }
+}

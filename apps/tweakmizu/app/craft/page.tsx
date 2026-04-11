@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { ArchetypePicker } from '@/components/craft/archetype-picker';
+import { CraftLanding } from '@/components/craft/craft-landing';
 
 export const metadata: Metadata = {
   title: 'Start — craft',
 };
 
 export default function CraftHome() {
-  return <ArchetypePicker />;
+  return <CraftLanding />;
 }
