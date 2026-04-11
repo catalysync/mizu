@@ -1,7 +1,7 @@
 'use client';
 
 import { Stack } from '@aspect/react';
-import { Box, Eye, FileCode, Layers, Palette, Sparkles, Zap } from 'lucide-react';
+import { Box, Eye, FileCode, Layers, Palette, Zap } from 'lucide-react';
 
 const features = [
   {
