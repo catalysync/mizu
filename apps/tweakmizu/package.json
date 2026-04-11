@@ -9,7 +9,11 @@
     "lint": "next lint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@aspect/css": "workspace:^",
@@ -41,6 +45,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.0.0",
+    "drizzle-kit": "^0.31.10",
     "jsdom": "^25.0.0",
     "tailwindcss": "^4",
     "typescript": "^5",
