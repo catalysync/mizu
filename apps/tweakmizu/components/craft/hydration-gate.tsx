@@ -2,18 +2,19 @@
 
 import './hydration-gate.css';
 import { useEffect, useState } from 'react';
-import { useCraftStore } from '@/store/craft-store';
 
 export function HydrationGate({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Zustand persist rehydrates synchronously in useEffect.
-    // By the time this effect runs, the store is already hydrated.
+    // Zustand persist rehydrates from localStorage synchronously
+    // during the first client render. By the time useEffect runs,
+    // the store is already hydrated. This single tick delay
+    // prevents the flash of default values.
     setReady(true);
   }, []);
 
-  const hasHydrated = useCraftStore((s) => s.hasHydrated) || ready;
+  const hasHydrated = ready;
 
   if (!hasHydrated) {
     return (

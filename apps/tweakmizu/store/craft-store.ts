@@ -12,7 +12,6 @@ import { archetypeById } from '@/lib/craft/archetypes';
 interface CraftState {
   profile: Profile;
   hasOnboarded: boolean;
-  hasHydrated: boolean;
   history: Profile[];
   future: Profile[];
 
@@ -51,7 +50,6 @@ export const useCraftStore = create<CraftState>()(
     (set, get) => ({
       profile: mizuSampleProfile,
       hasOnboarded: false,
-      hasHydrated: false,
       history: [],
       future: [],
 
@@ -137,12 +135,6 @@ export const useCraftStore = create<CraftState>()(
         profile: state.profile,
         hasOnboarded: state.hasOnboarded,
       }),
-      onRehydrateStorage: () => {
-        return (_state: unknown, error?: unknown) => {
-          // Set hydrated regardless of success/failure
-          useCraftStore.setState({ hasHydrated: true });
-        };
-      },
       migrate: (persisted, version) => {
         const data = JSON.parse(JSON.stringify(persisted));
         if (version < 2) {

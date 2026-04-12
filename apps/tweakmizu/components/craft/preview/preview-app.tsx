@@ -21,15 +21,8 @@ export function PreviewApp({ paramsPromise }: PreviewAppProps) {
   // in the craft shell shows up in the iframe within a frame.
   usePreviewBridge();
 
-  const hasHydrated = useCraftStore((s) => s.hasHydrated);
   const profile = useCraftStore((s) => s.profile);
   const vars = useMemo(() => profileToCss(profile), [profile]);
-
-  if (!hasHydrated) {
-    return (
-      <div className="craft-preview-root" style={{ background: '#f8fafc', minHeight: '100dvh' }} />
-    );
-  }
 
   const pages = profile.app?.pages ?? [];
   const page =
