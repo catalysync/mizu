@@ -10,6 +10,7 @@ export const Split = React.forwardRef<HTMLDivElement, SplitProps>(
   ({ className, gap, fraction, style, ...props }, ref) => (
     <div
       ref={ref}
+      data-component="mizu-split"
       className={cn('mizu-split', className)}
       style={{
         ...(gap && { ['--mizu-split-gap' as never]: gap }),

@@ -10,6 +10,7 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
   ({ className, gap, min, style, ...props }, ref) => (
     <div
       ref={ref}
+      data-component="mizu-grid"
       className={cn('mizu-grid', className)}
       style={{
         ...(gap && { ['--mizu-grid-gap' as never]: gap }),

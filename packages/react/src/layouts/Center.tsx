@@ -11,6 +11,7 @@ export const Center = React.forwardRef<HTMLDivElement, CenterProps>(
   ({ className, max, padding, column, style, ...props }, ref) => (
     <div
       ref={ref}
+      data-component="mizu-center"
       className={cn('mizu-center', column && 'mizu-center--column', className)}
       style={{
         ...(max && { ['--mizu-center-max' as never]: max }),

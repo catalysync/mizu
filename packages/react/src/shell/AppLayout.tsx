@@ -33,6 +33,7 @@ export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
       <LayoutContext.Provider value={value}>
         <div
           ref={ref}
+          data-component="mizu-app-layout"
           className={cn('mizu-app-layout', className)}
           data-sidebar-collapsed={sidebarCollapsed || undefined}
           data-sidebar-hidden={sidebarHidden || undefined}

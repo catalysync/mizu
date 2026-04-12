@@ -11,6 +11,7 @@ export const AppContent = React.forwardRef<HTMLElement, AppContentProps>(
   ({ className, contentType = 'default', children, ...props }, ref) => (
     <main
       ref={ref}
+      data-component="mizu-app-content"
       className={cn('mizu-app-content', className)}
       data-content-type={contentType}
       {...props}

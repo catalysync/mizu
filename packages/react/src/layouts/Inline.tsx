@@ -11,6 +11,7 @@ export const Inline = React.forwardRef<HTMLDivElement, InlineProps>(
   ({ className, gap, align, wrap = true, style, ...props }, ref) => (
     <div
       ref={ref}
+      data-component="mizu-inline"
       className={cn(
         'mizu-inline',
         align && `mizu-inline--align-${align}`,

@@ -9,6 +9,7 @@ export const AppSidebar = React.forwardRef<HTMLElement, AppSidebarProps>(
   ({ className, ariaLabel = 'Primary', children, ...props }, ref) => (
     <aside
       ref={ref}
+      data-component="mizu-app-sidebar"
       className={cn('mizu-app-sidebar', className)}
       aria-label={ariaLabel}
       {...props}

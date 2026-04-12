@@ -13,7 +13,7 @@ export interface AppBreadcrumbsProps extends React.HTMLAttributes<HTMLElement> {
 export const AppBreadcrumbs = React.forwardRef<HTMLElement, AppBreadcrumbsProps>(
   ({ className, items, ...props }, ref) => (
     <nav ref={ref} aria-label="Breadcrumb" {...props}>
-      <ol className={cn('mizu-app-breadcrumbs', className)}>
+      <ol data-component="mizu-app-breadcrumbs" className={cn('mizu-app-breadcrumbs', className)}>
         {items.map((item, i) => {
           const isLast = i === items.length - 1;
           return (

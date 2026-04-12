@@ -9,7 +9,12 @@ export interface AppHeaderProps extends React.HTMLAttributes<HTMLElement> {
 
 export const AppHeader = React.forwardRef<HTMLElement, AppHeaderProps>(
   ({ className, brand, nav, actions, children, ...props }, ref) => (
-    <header ref={ref} className={cn('mizu-app-header', className)} {...props}>
+    <header
+      ref={ref}
+      data-component="mizu-app-header"
+      className={cn('mizu-app-header', className)}
+      {...props}
+    >
       {brand && <div className="mizu-app-header__brand">{brand}</div>}
       {nav && <nav className="mizu-app-header__nav">{nav}</nav>}
       <div className="mizu-app-header__spacer" />

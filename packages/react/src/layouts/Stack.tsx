@@ -13,6 +13,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
     return (
       <Comp
         ref={ref}
+        data-component="mizu-stack"
         className={cn('mizu-stack', align && `mizu-stack--align-${align}`, className)}
         style={{ ...(gap && { ['--mizu-stack-gap' as never]: gap }), ...style }}
         {...props}

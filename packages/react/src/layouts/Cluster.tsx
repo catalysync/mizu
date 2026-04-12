@@ -10,6 +10,7 @@ export const Cluster = React.forwardRef<HTMLDivElement, ClusterProps>(
   ({ className, gap, justify, style, ...props }, ref) => (
     <div
       ref={ref}
+      data-component="mizu-cluster"
       className={cn('mizu-cluster', className)}
       style={{
         ...(gap && { ['--mizu-cluster-gap' as never]: gap }),
