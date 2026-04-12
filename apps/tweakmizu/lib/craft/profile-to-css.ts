@@ -62,7 +62,7 @@ function foundationVars(f: DesignLanguageProfile['foundation'], dark = false): C
   // Contrast tier drives ALL lightness values — text, surface, borders, actions.
   // The three tiers produce visibly different results.
   const cl = contrastLevel ?? 0;
-  const contrastBoost = cl * 8;
+  const contrastBoost = cl * 14;
 
   const tier = contrast === 'editorial-high' ? 2 : contrast === 'aaa-conservative' ? 1 : 0;
 
