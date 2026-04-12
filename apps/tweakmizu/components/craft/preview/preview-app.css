@@ -119,8 +119,8 @@
   display: inline-block;
   width: var(--mizu-icon-size-sm, 16px);
   height: var(--mizu-icon-size-sm, 16px);
-  border-radius: 3px;
-  border: var(--mizu-icon-stroke, 2) solid currentColor;
+  border-radius: var(--mizu-radius-sm, 3px);
+  border: var(--mizu-icon-stroke, 2px) solid currentColor;
   opacity: 0.5;
   flex-shrink: 0;
 }

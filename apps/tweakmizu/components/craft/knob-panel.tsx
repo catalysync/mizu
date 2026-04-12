@@ -135,6 +135,7 @@ export function KnobPanel({
                   category={section.category}
                   value={section.value}
                   onChange={section.onChange}
+                  label={section.title}
                 />
               ) : section.type === 'chips' ? (
                 <div
@@ -191,10 +192,12 @@ function FontPicker({
   category,
   value,
   onChange,
+  label,
 }: {
   category: FontCategory;
   value: string;
   onChange: (family: string) => void;
+  label?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
@@ -288,6 +291,7 @@ function FontPicker({
         className="craft-font-picker__trigger"
         aria-expanded={open}
         aria-haspopup="listbox"
+        aria-label={label ? `${label}: ${value}` : value}
         onClick={() => setOpen(!open)}
         style={{ fontFamily: `"${value}", system-ui, sans-serif` }}
       >

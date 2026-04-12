@@ -16,6 +16,7 @@ interface PageRendererProps {
  * isolated, and styleable entirely through tokens.
  */
 export function PageRenderer({ page, profile }: PageRendererProps) {
+  const entities = profile.app?.entities ?? [];
   return (
     <div className="craft-preview-page">
       {page.composition.header ? (
@@ -44,7 +45,12 @@ export function PageRenderer({ page, profile }: PageRendererProps) {
       ) : null}
       <div className="craft-preview-page__sections">
         {page.composition.sections.map((section) => (
-          <SectionRenderer key={section.id} section={section} profile={profile} />
+          <SectionRenderer
+            key={section.id}
+            section={section}
+            profile={profile}
+            entities={entities}
+          />
         ))}
       </div>
     </div>
@@ -54,9 +60,11 @@ export function PageRenderer({ page, profile }: PageRendererProps) {
 function SectionRenderer({
   section,
   profile,
+  entities,
 }: {
   section: Section;
   profile: DesignLanguageProfile;
+  entities: Entity[];
 }) {
   switch (section.kind) {
     case 'kpi-row':
@@ -64,12 +72,13 @@ function SectionRenderer({
     case 'table':
       return <TableSection section={section} profile={profile} />;
     case 'activity-list':
-      return <ActivityList />;
+      return <ActivityList section={section} />;
     case 'form':
+      return <FormSection section={section} entities={entities} />;
     case 'settings-form':
-      return <FormSection />;
+      return <SettingsFormSection section={section} />;
     case 'detail-card':
-      return <DetailCard section={section} />;
+      return <DetailCard section={section} entities={entities} />;
     case 'empty-state':
       return <EmptyState section={section} />;
     case 'text':
@@ -80,19 +89,19 @@ function SectionRenderer({
         </section>
       );
     case 'wizard':
-      return <WizardSection />;
+      return <WizardSection section={section} />;
     case 'approval-flow':
       return <ApprovalFlow section={section} />;
     case 'aging-breakdown':
       return <AgingBreakdown section={section} />;
     case 'journal-lines':
-      return <JournalLines />;
+      return <JournalLines section={section} />;
     case 'reconciliation-split':
-      return <ReconciliationSplit />;
+      return <ReconciliationSplit section={section} />;
     case 'chart-tree':
-      return <ChartTree />;
+      return <ChartTree section={section} />;
     case 'period-bar':
-      return <PeriodBar />;
+      return <PeriodBar section={section} />;
     case 'stat-row':
       return <KpiRow section={section} />;
     default:
@@ -183,8 +192,9 @@ function toneForBadge(value: string): 'success' | 'warning' | 'danger' | 'neutra
   return 'neutral';
 }
 
-function ActivityList() {
-  const items = [
+function ActivityList({ section }: { section: Section }) {
+  const d = section.data ?? {};
+  const items = (d.items as Array<{ label: string; time: string; delta?: string }>) ?? [
     { label: 'Stripe payout received', time: '2h ago', delta: '+$6,200.00' },
     { label: 'New customer added', time: '4h ago', delta: '' },
     { label: 'Invoice INV-0412 sent', time: '5h ago', delta: '$9,600.00' },
@@ -192,7 +202,7 @@ function ActivityList() {
   ];
   return (
     <section className="craft-preview-section craft-preview-section--activity">
-      <h2 className="craft-preview-section__title">Recent activity</h2>
+      <h2 className="craft-preview-section__title">{section.title ?? 'Recent activity'}</h2>
       <div className="craft-preview-activity">
         {items.map((it, i) => (
           <div key={i} className="craft-preview-activity__item">
@@ -206,26 +216,75 @@ function ActivityList() {
   );
 }
 
-function FormSection() {
+function formInputType(fieldType: string): string {
+  switch (fieldType) {
+    case 'email':
+      return 'email';
+    case 'number':
+    case 'currency':
+    case 'percent':
+      return 'number';
+    case 'date':
+      return 'date';
+    default:
+      return 'text';
+  }
+}
+
+function formPlaceholder(fieldType: string, label: string): string {
+  switch (fieldType) {
+    case 'email':
+      return 'ada@example.com';
+    case 'currency':
+      return '$0.00';
+    case 'percent':
+      return '0%';
+    case 'date':
+      return '2026-04-12';
+    default:
+      return label;
+  }
+}
+
+function FormSection({ section, entities }: { section: Section; entities: Entity[] }) {
+  const entity = section.entityId ? entities.find((e) => e.id === section.entityId) : undefined;
+  const fields = entity
+    ? entity.fields.filter((f) => f.type !== 'badge')
+    : [
+        { id: 'name', label: 'Full name', type: 'string' as const },
+        { id: 'email', label: 'Email', type: 'email' as const },
+      ];
   return (
     <section className="craft-preview-section craft-preview-section--form">
+      {section.title ? <h2 className="craft-preview-section__title">{section.title}</h2> : null}
       <div className="craft-preview-form">
-        <label className="craft-preview-field">
-          <span className="craft-preview-field__label">Full name</span>
-          <input className="craft-preview-input" defaultValue="Ada Lovelace" />
-        </label>
-        <label className="craft-preview-field">
-          <span className="craft-preview-field__label">Email</span>
-          <input type="email" className="craft-preview-input" defaultValue="ada@example.com" />
-        </label>
-        <label className="craft-preview-field">
-          <span className="craft-preview-field__label">Role</span>
-          <select className="craft-preview-input" defaultValue="owner">
-            <option value="owner">Owner</option>
-            <option value="admin">Administrator</option>
-            <option value="member">Team member</option>
-          </select>
-        </label>
+        {fields.map((f) =>
+          f.type === 'boolean' ? (
+            <label key={f.id} className="craft-preview-field craft-preview-field--inline">
+              <input type="checkbox" className="craft-preview-checkbox" defaultChecked />
+              <span className="craft-preview-field__label">{f.label}</span>
+            </label>
+          ) : f.type === 'text' ? (
+            <label key={f.id} className="craft-preview-field">
+              <span className="craft-preview-field__label">{f.label}</span>
+              <textarea
+                className="craft-preview-input"
+                rows={3}
+                defaultValue=""
+                placeholder={f.label}
+              />
+            </label>
+          ) : (
+            <label key={f.id} className="craft-preview-field">
+              <span className="craft-preview-field__label">{f.label}</span>
+              <input
+                type={formInputType(f.type)}
+                className="craft-preview-input"
+                placeholder={formPlaceholder(f.type, f.label)}
+              />
+            </label>
+          ),
+        )}
         <div className="craft-preview-form__actions">
           <button type="button" className="craft-preview-btn" data-variant="ghost">
             Cancel
