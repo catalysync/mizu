@@ -136,9 +136,9 @@ export const useCraftStore = create<CraftState>()(
         hasOnboarded: state.hasOnboarded,
       }),
       migrate: (persisted, version) => {
+        const data = JSON.parse(JSON.stringify(persisted));
         if (version < 2) {
-          const state = persisted as Record<string, unknown>;
-          const profile = state.profile as Record<string, unknown> | undefined;
+          const profile = data.profile as Record<string, unknown> | undefined;
           if (profile) {
             if (!profile.app) profile.app = mizuSampleProfile.app;
             const app = profile.app as Record<string, unknown>;
@@ -151,7 +151,7 @@ export const useCraftStore = create<CraftState>()(
               app.customComponents = mizuSampleProfile.app.customComponents;
           }
         }
-        return persisted as CraftState;
+        return data as CraftState;
       },
     },
   ),

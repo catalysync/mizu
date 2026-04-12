@@ -68,9 +68,17 @@ function generateTailwindBridge(vars: CssVarMap, name: string): string {
   return lines.join('\n');
 }
 
+function esc(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function generateHtmlDemo(profile: DesignLanguageProfile, vars: CssVarMap): string {
   const cssBlock = cssVarsToString(vars, ':root');
-  const name = profile.app?.identity?.productName || profile.name;
+  const name = esc(profile.app?.identity?.productName || profile.name);
   const pages = profile.app?.pages ?? [];
   const firstPage = pages[0];
 
@@ -157,7 +165,7 @@ body {
 <body>
   <div class="shell">
     <nav class="sidebar">
-      <div class="brand"><span class="brand-mark">${profile.app?.identity?.logo ?? '✷'}</span> ${name}</div>
+      <div class="brand"><span class="brand-mark">${esc(profile.app?.identity?.logo ?? '✷')}</span> ${name}</div>
       ${navHtml}
     </nav>
     <main class="main">
@@ -386,7 +394,7 @@ export default function HomePage() {
       path: `${slug}/src/app/${routeDir}/page.tsx`,
       content: `import { AppShell } from '@/components/app-shell';
 
-export default function ${page.title.replace(/\s+/g, '')}Page() {
+export default function ${page.title.replace(/[^a-zA-Z0-9]/g, '').replace(/^[0-9]/, 'P') || 'Page'}Page() {
   return (
     <AppShell>
       <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }}>${page.title}</h1>

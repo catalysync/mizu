@@ -1,29 +1,33 @@
 'use server';
 
 import crypto from 'node:crypto';
-import { eq, desc, and } from 'drizzle-orm';
+import { eq, desc, and, sql } from 'drizzle-orm';
 import { db } from '@/db';
 import { craftProfile, craftProfileLike } from '@/db/schema';
 import { getCurrentUserId } from '@/lib/shared';
 import type { DesignLanguageProfile } from '@/lib/craft/profile';
 
 export async function saveProfile(profile: DesignLanguageProfile) {
-  const userId = await getCurrentUserId();
-  const id = crypto.randomUUID();
-  const now = new Date();
+  try {
+    const userId = await getCurrentUserId();
+    const id = crypto.randomUUID();
+    const now = new Date();
 
-  await db.insert(craftProfile).values({
-    id,
-    userId,
-    name: profile.name,
-    archetype: profile.archetype ?? null,
-    domain: profile.app?.identity?.domain ?? null,
-    profileJson: profile as unknown as Record<string, unknown>,
-    createdAt: now,
-    updatedAt: now,
-  });
+    await db.insert(craftProfile).values({
+      id,
+      userId,
+      name: profile.name,
+      archetype: profile.archetype ?? null,
+      domain: profile.app?.identity?.domain ?? null,
+      profileJson: profile as unknown as Record<string, unknown>,
+      createdAt: now,
+      updatedAt: now,
+    });
 
-  return { id };
+    return { id };
+  } catch {
+    return { id: null, error: 'Failed to save profile' };
+  }
 }
 
 export async function updateProfile(id: string, profile: DesignLanguageProfile) {
@@ -62,15 +66,19 @@ export async function getUserProfiles() {
 }
 
 export async function shareProfile(id: string) {
-  const userId = await getCurrentUserId();
-  const token = crypto.randomUUID().slice(0, 12);
+  try {
+    const userId = await getCurrentUserId();
+    const token = crypto.randomUUID().slice(0, 12);
 
-  await db
-    .update(craftProfile)
-    .set({ shareToken: token, isPublic: true, updatedAt: new Date() })
-    .where(and(eq(craftProfile.id, id), eq(craftProfile.userId, userId)));
+    await db
+      .update(craftProfile)
+      .set({ shareToken: token, isPublic: true, updatedAt: new Date() })
+      .where(and(eq(craftProfile.id, id), eq(craftProfile.userId, userId)));
 
-  return { token };
+    return { token };
+  } catch {
+    return { token: null, error: 'Failed to share' };
+  }
 }
 
 export async function publishProfile(id: string, tags: string[]) {
@@ -114,30 +122,34 @@ export async function getProfileByShareToken(token: string) {
 }
 
 export async function likeProfile(profileId: string) {
-  const userId = await getCurrentUserId();
-  const id = crypto.randomUUID();
+  try {
+    const userId = await getCurrentUserId();
+    const id = crypto.randomUUID();
 
-  const existing = await db
-    .select()
-    .from(craftProfileLike)
-    .where(and(eq(craftProfileLike.profileId, profileId), eq(craftProfileLike.userId, userId)))
-    .limit(1);
+    const existing = await db
+      .select()
+      .from(craftProfileLike)
+      .where(and(eq(craftProfileLike.profileId, profileId), eq(craftProfileLike.userId, userId)))
+      .limit(1);
 
-  if (existing.length > 0) return { ok: false, reason: 'already liked' };
+    if (existing.length > 0) return { ok: false, reason: 'already liked' };
 
-  await db.insert(craftProfileLike).values({
-    id,
-    profileId,
-    userId,
-    createdAt: new Date(),
-  });
+    await db.insert(craftProfileLike).values({
+      id,
+      profileId,
+      userId,
+      createdAt: new Date(),
+    });
 
-  await db
-    .update(craftProfile)
-    .set({ likes: craftProfile.likes })
-    .where(eq(craftProfile.id, profileId));
+    await db
+      .update(craftProfile)
+      .set({ likes: sql`${craftProfile.likes} + 1` })
+      .where(eq(craftProfile.id, profileId));
 
-  return { ok: true };
+    return { ok: true };
+  } catch {
+    return { ok: false, reason: 'Failed to like' };
+  }
 }
 
 export async function deleteProfile(id: string) {

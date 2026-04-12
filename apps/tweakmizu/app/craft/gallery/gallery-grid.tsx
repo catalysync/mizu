@@ -6,7 +6,7 @@ import { Heart } from 'lucide-react';
 import { Badge, Button } from '@aspect/react';
 import { useCraftStore } from '@/store/craft-store';
 import { profileToCss } from '@/lib/craft/profile-to-css';
-import type { DesignLanguageProfile } from '@/lib/craft/profile';
+import { safeParseProfile, type DesignLanguageProfile } from '@/lib/craft/profile';
 
 interface GalleryProfile {
   id: string;
@@ -39,7 +39,8 @@ export function GalleryGrid({ profiles }: { profiles: GalleryProfile[] }) {
   return (
     <div className="craft-gallery__grid">
       {profiles.map((p) => {
-        const profile = p.profileJson as DesignLanguageProfile;
+        const profile = safeParseProfile(p.profileJson);
+        if (!profile) return null;
         const vars = profileToCss(profile);
         return (
           <article key={p.id} className="craft-gallery__card">

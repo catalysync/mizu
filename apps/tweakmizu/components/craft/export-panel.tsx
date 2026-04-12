@@ -77,9 +77,11 @@ export function ExportPanel() {
     const result = await saveProfile(profile);
     if (result.id) {
       const shared = await shareProfile(result.id);
-      const url = `${window.location.origin}/craft/shared/${shared.token}`;
-      setShareUrl(url);
-      navigator.clipboard.writeText(url);
+      if (shared.token) {
+        const url = `${window.location.origin}/craft/shared/${shared.token}`;
+        setShareUrl(url);
+        navigator.clipboard.writeText(url);
+      }
     }
   };
 
