@@ -20,6 +20,7 @@ export const ModalContent = React.forwardRef<
     <Dialog.Overlay className="mizu-dialog__overlay" />
     <Dialog.Content
       ref={ref}
+      data-component="mizu-modal"
       className={cn('mizu-dialog__content', className)}
       data-size={size}
       {...props}

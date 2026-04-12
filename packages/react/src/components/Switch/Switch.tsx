@@ -31,6 +31,7 @@ export const Switch = React.forwardRef<
         disabled={disabled ?? ctx?.disabled}
         aria-invalid={ariaInvalidProp ?? (ctx?.invalid || undefined)}
         aria-describedby={resolvedDescribedBy}
+        data-component="mizu-switch"
         className={cn('mizu-switch', className)}
         {...props}
       >

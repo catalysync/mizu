@@ -13,6 +13,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
     <div className="mizu-table-wrapper">
       <table
         ref={ref}
+        data-component="mizu-table"
         className={cn('mizu-table', stickyHeader && 'mizu-table--sticky', className)}
         data-density={density === 'default' ? undefined : density}
         {...props}

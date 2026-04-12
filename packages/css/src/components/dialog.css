@@ -125,3 +125,12 @@
     transform: translate(-50%, -50%) scale(0.96);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .mizu-dialog__overlay,
+  .mizu-dialog__overlay * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

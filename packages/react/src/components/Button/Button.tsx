@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/cn';
+import { Logger } from '../../utils/logger';
 
 const buttonVariants = cva('mizu-button', {
   variants: {
@@ -50,6 +51,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
+    if (size === 'icon' && !props['aria-label'] && !props['aria-labelledby']) {
+      Logger.warn(
+        'Button with size="icon" has no aria-label or aria-labelledby. Icon-only buttons are inaccessible without a text alternative.',
+      );
+    }
+
     const Comp = asChild ? Slot : 'button';
     return (
       <Comp

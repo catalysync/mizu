@@ -9,6 +9,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, interactive, ...props }, ref) => (
     <div
       ref={ref}
+      data-component="mizu-card"
       className={cn('mizu-card', interactive && 'mizu-card--interactive', className)}
       {...props}
     />

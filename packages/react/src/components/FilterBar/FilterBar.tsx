@@ -32,7 +32,12 @@ export const FilterBar = React.forwardRef<HTMLDivElement, FilterBarProps>(
     },
     ref,
   ) => (
-    <div ref={ref} className={cn('mizu-filter-bar', className)} {...props}>
+    <div
+      ref={ref}
+      data-component="mizu-filter-bar"
+      className={cn('mizu-filter-bar', className)}
+      {...props}
+    >
       <div className="mizu-filter-bar__controls">
         <input
           type="text"

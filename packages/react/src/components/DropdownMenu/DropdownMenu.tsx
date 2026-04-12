@@ -16,6 +16,7 @@ export const DropdownMenuContent = React.forwardRef<
     <Menu.Content
       ref={ref}
       sideOffset={sideOffset}
+      data-component="mizu-dropdown-menu"
       className={cn('mizu-dropdown-menu', className)}
       {...props}
     />

@@ -10,7 +10,12 @@ export interface EmptyStateProps extends Omit<React.HTMLAttributes<HTMLDivElemen
 
 export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
   ({ className, icon, title, description, actions, ...props }, ref) => (
-    <div ref={ref} className={cn('mizu-empty-state', className)} {...props}>
+    <div
+      ref={ref}
+      data-component="mizu-empty-state"
+      className={cn('mizu-empty-state', className)}
+      {...props}
+    >
       {icon && (
         <div className="mizu-empty-state__icon" aria-hidden="true">
           {icon}

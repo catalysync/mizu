@@ -9,6 +9,7 @@ export const Separator = React.forwardRef<
   <RadixSeparator.Root
     ref={ref}
     orientation={orientation}
+    data-component="mizu-separator"
     className={cn('mizu-separator', className)}
     {...props}
   />

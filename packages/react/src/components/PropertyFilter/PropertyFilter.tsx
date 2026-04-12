@@ -92,7 +92,12 @@ export const PropertyFilter = React.forwardRef<HTMLDivElement, PropertyFilterPro
     };
 
     return (
-      <div ref={ref} className={cn('mizu-filter-bar', className)} {...props}>
+      <div
+        ref={ref}
+        data-component="mizu-property-filter"
+        className={cn('mizu-filter-bar', className)}
+        {...props}
+      >
         <div className="mizu-filter-bar__controls">
           <div style={{ position: 'relative', flex: 1 }}>
             <input

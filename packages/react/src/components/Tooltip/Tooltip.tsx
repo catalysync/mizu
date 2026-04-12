@@ -20,6 +20,7 @@ export const TooltipContent = React.forwardRef<
     <RadixTooltip.Content
       ref={ref}
       sideOffset={sideOffset}
+      data-component="mizu-tooltip"
       className={cn('mizu-tooltip', className)}
       {...props}
     >

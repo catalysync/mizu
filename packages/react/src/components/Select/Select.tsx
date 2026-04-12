@@ -39,6 +39,7 @@ export const SelectTrigger = React.forwardRef<
         aria-invalid={resolvedInvalid}
         aria-describedby={resolvedDescribedBy}
         aria-required={ctx?.required || undefined}
+        data-component="mizu-select"
         className={cn('mizu-select__trigger', className)}
         {...props}
       >

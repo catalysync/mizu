@@ -178,3 +178,12 @@
 .mizu-data-table tbody tr:last-child td {
   border-bottom: none;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .mizu-data-table,
+  .mizu-data-table * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

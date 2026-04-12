@@ -20,6 +20,7 @@ export const DrawerContent = React.forwardRef<
     <Dialog.Overlay className="mizu-drawer__overlay" />
     <Dialog.Content
       ref={ref}
+      data-component="mizu-drawer"
       className={cn('mizu-drawer__content', className)}
       data-side={side}
       {...props}

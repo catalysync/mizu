@@ -93,6 +93,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         type={type}
         required={resolvedRequired}
         disabled={resolvedDisabled}
+        data-component="mizu-input"
         className={cn(
           inputVariants({ size, appearance }),
           error && 'mizu-input--error',

@@ -43,6 +43,7 @@ export const Checkbox = React.forwardRef<
         disabled={resolvedDisabled}
         aria-invalid={resolvedInvalid}
         aria-describedby={resolvedDescribedBy}
+        data-component="mizu-checkbox"
         className={cn('mizu-checkbox', className)}
         {...props}
       >

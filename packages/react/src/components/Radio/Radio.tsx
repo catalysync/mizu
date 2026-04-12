@@ -31,6 +31,7 @@ export const RadioGroup = React.forwardRef<
         disabled={disabled ?? ctx?.disabled}
         aria-invalid={ariaInvalidProp ?? (ctx?.invalid || undefined)}
         aria-describedby={resolvedDescribedBy}
+        data-component="mizu-radio-group"
         className={cn('mizu-radio-group', className)}
         {...props}
       />

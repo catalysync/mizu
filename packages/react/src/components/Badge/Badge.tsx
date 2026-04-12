@@ -32,6 +32,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     return (
       <span
         ref={ref}
+        data-component="mizu-badge"
         className={cn(badgeVariants({ tone, className }))}
         data-size={size ?? undefined}
         data-count={displayCount != null ? 'true' : undefined}

@@ -6,7 +6,12 @@ export const Tabs = React.forwardRef<
   React.ElementRef<typeof RadixTabs.Root>,
   React.ComponentPropsWithoutRef<typeof RadixTabs.Root>
 >(({ className, ...props }, ref) => (
-  <RadixTabs.Root ref={ref} className={cn('mizu-tabs', className)} {...props} />
+  <RadixTabs.Root
+    ref={ref}
+    data-component="mizu-tabs"
+    className={cn('mizu-tabs', className)}
+    {...props}
+  />
 ));
 Tabs.displayName = 'Tabs';
 

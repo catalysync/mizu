@@ -15,6 +15,7 @@ export const PopoverContent = React.forwardRef<
     <RadixPopover.Content
       ref={ref}
       sideOffset={sideOffset}
+      data-component="mizu-popover"
       className={cn('mizu-popover', className)}
       {...props}
     >

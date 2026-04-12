@@ -90,6 +90,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
     return (
       <nav
         ref={ref}
+        data-component="mizu-pagination"
         className={cn('mizu-pagination', className)}
         aria-label="Pagination"
         {...props}

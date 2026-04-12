@@ -35,6 +35,7 @@ export const Textarea = React.forwardRef<
         disabled={resolvedDisabled}
         aria-invalid={resolvedInvalid}
         aria-describedby={resolvedDescribedBy}
+        data-component="mizu-textarea"
         className={cn('mizu-textarea', className)}
         {...props}
       />

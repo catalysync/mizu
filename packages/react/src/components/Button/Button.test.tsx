@@ -248,4 +248,32 @@ describe('Button', () => {
     const { container } = render(<Button disabled>Disabled</Button>);
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  // -- Inverse --
+  it('sets data-inverse when inverse is true', () => {
+    render(<Button inverse>Go</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('data-inverse', 'true');
+  });
+
+  it('does not set data-inverse by default', () => {
+    render(<Button>Go</Button>);
+    expect(screen.getByRole('button')).not.toHaveAttribute('data-inverse');
+  });
+
+  // -- fullWidth --
+  it('sets data-full-width when fullWidth is true', () => {
+    render(<Button fullWidth>Go</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('data-full-width', 'true');
+  });
+
+  // -- Gradient variant --
+  it('applies the gradient variant', () => {
+    render(<Button variant="gradient">AI magic</Button>);
+    expect(screen.getByRole('button')).toHaveClass('mizu-button--gradient');
+  });
+
+  it('has no axe violations with gradient variant', async () => {
+    const { container } = render(<Button variant="gradient">Generate</Button>);
+    expect(await axe(container)).toHaveNoViolations();
+  });
 });
