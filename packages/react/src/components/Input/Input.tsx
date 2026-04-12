@@ -2,6 +2,7 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../utils/cn';
 import { useFieldContext } from '../Field/field-context';
+import { Logger } from '../../utils/logger';
 
 const inputVariants = cva('mizu-input', {
   variants: {
@@ -24,7 +25,10 @@ export interface InputProps
     Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'>,
     VariantProps<typeof inputVariants> {
   error?: string | boolean;
+  warning?: string | boolean;
+  /** @deprecated Use `<Field>` wrapper instead of inline helpText. */
   helpText?: React.ReactNode;
+  /** @deprecated Use `<Field label="...">` wrapper instead of Input label prop. */
   label?: string;
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
@@ -39,6 +43,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       appearance,
       type = 'text',
       error,
+      warning,
       helpText,
       label,
       prefix,
@@ -54,7 +59,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
+    if (label) Logger.deprecate('Input label prop', '<Field label="..."><Input /></Field>');
+    if (helpText)
+      Logger.deprecate('Input helpText prop', '<Field description="..."><Input /></Field>');
+
     const [charCount, setCharCount] = React.useState(0);
+    const [charCountLive, setCharCountLive] = React.useState<'off' | 'polite'>('off');
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (maxCharacters != null) setCharCount(e.target.value.length);
       onChange?.(e);
@@ -86,6 +96,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         className={cn(
           inputVariants({ size, appearance }),
           error && 'mizu-input--error',
+          !error && warning && 'mizu-input--warning',
           hasAdornments && 'mizu-input--adorned',
           prefix && 'mizu-input--has-prefix',
           suffix && 'mizu-input--has-suffix',
@@ -95,6 +106,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         aria-describedby={resolvedDescribedBy}
         maxLength={maxCharacters}
         onChange={handleChange}
+        onFocus={(e) => {
+          if (maxCharacters != null) setCharCountLive('polite');
+          props.onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          if (maxCharacters != null) setCharCountLive('off');
+          props.onBlur?.(e);
+        }}
         {...props}
       />
     );
@@ -137,8 +156,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {helpText}
           </span>
         )}
+        {warning && typeof warning === 'string' && !error && (
+          <span className="mizu-form-group__warning">{warning}</span>
+        )}
         {maxCharacters != null ? (
-          <span className="mizu-form-group__char-count" aria-live="polite">
+          <span className="mizu-form-group__char-count" aria-live={charCountLive}>
             {charCount}/{maxCharacters}
           </span>
         ) : null}

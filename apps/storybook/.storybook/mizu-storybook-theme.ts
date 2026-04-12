@@ -12,7 +12,7 @@ export const mizuStorybookTheme = create({
   brandTarget: '_self',
 
   colorPrimary: '#3b82f6',
-  colorSecondary: '#22c55e',
+  colorSecondary: '#3b82f6',
 
   appBg: '#f8fafc',
   appContentBg: '#ffffff',

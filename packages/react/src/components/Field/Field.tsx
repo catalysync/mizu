@@ -72,7 +72,7 @@ export const Field = React.forwardRef<HTMLDivElement, FieldProps>(
                     <span className="mizu-field__required" aria-hidden="true">
                       *
                     </span>
-                    <span className="mizu-field__sr-only">({requiredLabel})</span>
+                    <span className="mizu-sr-only">({requiredLabel})</span>
                   </>
                 ) : showOptionalHint ? (
                   <span className="mizu-field__optional">({optionalLabel})</span>

@@ -1,4 +1,3 @@
-import { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';

@@ -17,7 +17,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
           <span className="mizu-label__required" aria-hidden="true">
             *
           </span>
-          <span className="mizu-label__sr-only">{requiredLabel}</span>
+          <span className="mizu-sr-only">{requiredLabel}</span>
         </>
       ) : null}
     </label>

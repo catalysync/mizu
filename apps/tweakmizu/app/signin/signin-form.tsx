@@ -42,7 +42,14 @@ export function SignInForm() {
       router.push('/dashboard');
       router.refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error');
+      const message = err instanceof Error ? err.message : String(err);
+      if (message.includes('origin') || message.includes('CORS') || message.includes('fetch')) {
+        setError(
+          'Unable to connect to the auth server. This is usually a configuration issue — check that BETTER_AUTH_URL matches your deployment domain.',
+        );
+      } else {
+        setError(message || 'Something went wrong. Please try again.');
+      }
     } finally {
       setBusy(false);
     }

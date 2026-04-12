@@ -45,6 +45,12 @@
   --_focus-color: var(--mizu-feedback-danger-default);
 }
 
+.mizu-input--warning {
+  --_border: var(--mizu-feedback-warning-default);
+  --_border-hover: var(--mizu-feedback-warning-default);
+  --_focus-color: var(--mizu-feedback-warning-default);
+}
+
 .mizu-input--sm {
   height: 2rem;
   font-size: var(--mizu-font-size-xs);

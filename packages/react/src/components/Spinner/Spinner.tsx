@@ -33,7 +33,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
       data-component="mizu-spinner"
       {...props}
     >
-      <span className="mizu-spinner__sr-only">{label}</span>
+      <span className="mizu-sr-only">{label}</span>
     </span>
   ),
 );

@@ -60,7 +60,10 @@ export { Logger } from './utils/logger';
 export { useMediaQuery } from './hooks/use-media-query';
 export { usePrevious } from './hooks/use-previous';
 export { useDebounce } from './hooks/use-debounce';
+export { useThrottle } from './hooks/use-throttle';
 export { useScrollLock } from './hooks/use-scroll-lock';
+export { useClickAway } from './hooks/use-click-away';
+export { ChevronDown, ChevronRight, X, Check, Search, ArrowRight } from './icons';
 export * from './i18n';
 export type {
   ControlledValueProps,

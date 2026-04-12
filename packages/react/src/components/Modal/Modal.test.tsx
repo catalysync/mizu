@@ -1,7 +1,6 @@
-import { createRef } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { axe } from 'vitest-axe';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
   Modal,
   ModalContent,
@@ -53,7 +52,7 @@ describe('Modal', () => {
   });
 
   it('renders the overlay', () => {
-    const { container } = render(<TestModal />);
+    render(<TestModal />);
     expect(document.querySelector('.mizu-dialog__overlay')).toBeInTheDocument();
   });
 
@@ -63,27 +62,27 @@ describe('Modal', () => {
   });
 
   it('applies the md size by default', () => {
-    const { container } = render(<TestModal />);
+    render(<TestModal />);
     expect(document.querySelector('.mizu-dialog__content')).toHaveAttribute('data-size', 'md');
   });
 
   it('applies the sm size', () => {
-    const { container } = render(<TestModal size="sm" />);
+    render(<TestModal size="sm" />);
     expect(document.querySelector('.mizu-dialog__content')).toHaveAttribute('data-size', 'sm');
   });
 
   it('applies the lg size', () => {
-    const { container } = render(<TestModal size="lg" />);
+    render(<TestModal size="lg" />);
     expect(document.querySelector('.mizu-dialog__content')).toHaveAttribute('data-size', 'lg');
   });
 
   it('applies the xl size', () => {
-    const { container } = render(<TestModal size="xl" />);
+    render(<TestModal size="xl" />);
     expect(document.querySelector('.mizu-dialog__content')).toHaveAttribute('data-size', 'xl');
   });
 
   it('applies the fullscreen size', () => {
-    const { container } = render(<TestModal size="fullscreen" />);
+    render(<TestModal size="fullscreen" />);
     expect(document.querySelector('.mizu-dialog__content')).toHaveAttribute(
       'data-size',
       'fullscreen',
@@ -108,32 +107,32 @@ describe('Modal', () => {
   });
 
   it('has header with mizu-dialog__header class', () => {
-    const { container } = render(<TestModal />);
+    render(<TestModal />);
     expect(document.querySelector('.mizu-dialog__header')).toBeInTheDocument();
   });
 
   it('has body with mizu-dialog__body class', () => {
-    const { container } = render(<TestModal />);
+    render(<TestModal />);
     expect(document.querySelector('.mizu-dialog__body')).toBeInTheDocument();
   });
 
   it('has footer with mizu-dialog__footer class', () => {
-    const { container } = render(<TestModal />);
+    render(<TestModal />);
     expect(document.querySelector('.mizu-dialog__footer')).toBeInTheDocument();
   });
 
   it('has no axe violations', async () => {
-    const { container } = render(<TestModal />);
-    expect(await axe(container)).toHaveNoViolations();
+    render(<TestModal />);
+    expect(await axe(document.body)).toHaveNoViolations();
   });
 
   it('has no axe violations in sm size', async () => {
-    const { container } = render(<TestModal size="sm" />);
-    expect(await axe(container)).toHaveNoViolations();
+    render(<TestModal size="sm" />);
+    expect(await axe(document.body)).toHaveNoViolations();
   });
 
   it('has no axe violations in fullscreen', async () => {
-    const { container } = render(<TestModal size="fullscreen" />);
-    expect(await axe(container)).toHaveNoViolations();
+    render(<TestModal size="fullscreen" />);
+    expect(await axe(document.body)).toHaveNoViolations();
   });
 });

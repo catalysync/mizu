@@ -10,6 +10,9 @@
  *   @import "@aspect/css/layouts/stack";
  */
 
+/* Shared utilities (sr-only, etc.) */
+@import url("./utilities.css");
+
 /* Components */
 @import url("./components/button.css");
 @import url("./components/input.css");
