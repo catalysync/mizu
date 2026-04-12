@@ -55,6 +55,12 @@ export { useValidateProps } from './utils/validate-props';
 export { removeNonHTMLProps } from './utils/remove-non-html-props';
 export { invariant } from './utils/invariant';
 export { tagComponent } from './utils/tag-component';
+export { createStrictContext } from './utils/create-strict-context';
+export { Logger } from './utils/logger';
+export { useMediaQuery } from './hooks/use-media-query';
+export { usePrevious } from './hooks/use-previous';
+export { useDebounce } from './hooks/use-debounce';
+export { useScrollLock } from './hooks/use-scroll-lock';
 export * from './i18n';
 export type {
   ControlledValueProps,
