@@ -139,7 +139,7 @@ export const useCraftStore = create<CraftState>()(
     }),
     {
       name: 'tweakmizu-craft-storage',
-      version: 2,
+      version: 3,
       partialize: (state) => ({
         profile: state.profile,
         hasOnboarded: state.hasOnboarded,
@@ -158,6 +158,22 @@ export const useCraftStore = create<CraftState>()(
             if (!app.components) app.components = mizuSampleProfile.app.components;
             if (!app.customComponents)
               app.customComponents = mizuSampleProfile.app.customComponents;
+          }
+        }
+        if (version < 3) {
+          const profile = data.profile as Record<string, unknown> | undefined;
+          if (profile) {
+            const foundation = profile.foundation as Record<string, unknown> | undefined;
+            if (foundation) {
+              if (foundation.seedColor == null)
+                foundation.seedColor = mizuSampleProfile.foundation.seedColor;
+              if (foundation.colorMood == null)
+                foundation.colorMood = mizuSampleProfile.foundation.colorMood;
+              if (foundation.contrastLevel == null)
+                foundation.contrastLevel = mizuSampleProfile.foundation.contrastLevel;
+              if (foundation.extendedColors == null)
+                foundation.extendedColors = mizuSampleProfile.foundation.extendedColors;
+            }
           }
         }
         return data as CraftState;
