@@ -59,6 +59,7 @@
 @import url("./components/date-picker.css");
 @import url("./components/step-flow.css");
 @import url("./components/pagination.css");
+@import url("./components/data-table.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");

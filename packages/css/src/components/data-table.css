@@ -1,0 +1,179 @@
+.mizu-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.mizu-data-table__wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-lg);
+}
+
+/* Header */
+.mizu-data-table thead {
+  background: var(--mizu-surface-secondary);
+}
+
+.mizu-data-table th {
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  text-align: start;
+  font-weight: var(--mizu-font-weight-medium);
+  font-size: var(--mizu-font-size-xs);
+  color: var(--mizu-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--mizu-border-default);
+  user-select: none;
+}
+
+.mizu-data-table th[data-sortable="true"] {
+  cursor: pointer;
+}
+
+.mizu-data-table th[data-sortable="true"]:hover {
+  color: var(--mizu-text-primary);
+}
+
+.mizu-data-table__sort-icon {
+  display: inline-flex;
+  margin-inline-start: 0.375rem;
+  opacity: 0.4;
+  font-size: 0.65rem;
+  vertical-align: middle;
+}
+
+.mizu-data-table th[data-sort-direction] .mizu-data-table__sort-icon {
+  opacity: 1;
+  color: var(--mizu-action-primary-default);
+}
+
+/* Body */
+.mizu-data-table td {
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  color: var(--mizu-text-primary);
+  border-bottom: 1px solid var(--mizu-border-subtle);
+  vertical-align: middle;
+}
+
+.mizu-data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.mizu-data-table tbody tr:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 3%, transparent);
+}
+
+/* Selection */
+.mizu-data-table__select-cell {
+  width: 2.5rem;
+  text-align: center;
+  padding-inline: var(--mizu-spacing-2);
+}
+
+.mizu-data-table tbody tr[data-selected="true"] {
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 8%, transparent);
+}
+
+/* Expandable */
+.mizu-data-table__expand-cell {
+  width: 2rem;
+  text-align: center;
+  padding-inline: var(--mizu-spacing-1);
+}
+
+.mizu-data-table__expand-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--mizu-radius-sm);
+  color: var(--mizu-text-secondary);
+  cursor: pointer;
+  transition: transform var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+.mizu-data-table__expand-btn:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
+}
+
+.mizu-data-table__expand-btn[data-expanded="true"] {
+  transform: rotate(90deg);
+}
+
+.mizu-data-table__expanded-row td {
+  padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
+  background: var(--mizu-surface-secondary);
+  border-bottom: 1px solid var(--mizu-border-default);
+}
+
+/* Zebra */
+.mizu-data-table[data-striped="true"] tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--mizu-text-primary) 2%, transparent);
+}
+
+/* Density */
+.mizu-data-table[data-density="compact"] th,
+.mizu-data-table[data-density="compact"] td {
+  padding: var(--mizu-spacing-1) var(--mizu-spacing-2);
+  font-size: var(--mizu-font-size-xs);
+}
+
+.mizu-data-table[data-density="comfortable"] th,
+.mizu-data-table[data-density="comfortable"] td {
+  padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
+}
+
+/* Sticky header */
+.mizu-data-table[data-sticky-header="true"] thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--mizu-surface-secondary);
+}
+
+/* Column alignment */
+.mizu-data-table th[data-align="end"],
+.mizu-data-table td[data-align="end"] {
+  text-align: end;
+}
+
+.mizu-data-table th[data-align="center"],
+.mizu-data-table td[data-align="center"] {
+  text-align: center;
+}
+
+/* Empty + loading */
+.mizu-data-table__empty {
+  padding: var(--mizu-spacing-6) var(--mizu-spacing-4);
+  text-align: center;
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-data-table__loading-row td {
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+}
+
+.mizu-data-table__loading-bar {
+  height: 0.75rem;
+  border-radius: var(--mizu-radius-sm);
+  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
+  animation: mizu-data-table-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes mizu-data-table-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

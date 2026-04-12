@@ -15,6 +15,7 @@ export * from './components/FileInput';
 export * from './components/DatePicker';
 export * from './components/StepFlow';
 export * from './components/Pagination';
+export * from './components/DataTable';
 export * from './components/Card';
 export * from './components/Input';
 export * from './components/EmptyState';
