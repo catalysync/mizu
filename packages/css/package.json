@@ -1,6 +1,6 @@
 {
   "name": "@aspect/css",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Framework-agnostic component CSS for the mizu design system",
   "type": "module",
   "style": "./dist/mizu.css",
@@ -18,7 +18,7 @@
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
-    "@aspect/tokens": ">=0.1.0"
+    "@aspect/tokens": ">=0.2.0"
   },
   "peerDependenciesMeta": {
     "@aspect/tokens": {

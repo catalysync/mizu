@@ -1,6 +1,6 @@
 {
   "name": "@aspect/finance",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Finance industry components for the mizu design system",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -15,7 +15,9 @@
     "./css": "./src/css/finance.css",
     "./themes/*": "./src/themes/*.css"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "build": "tsup && node scripts/prepend-use-client.mjs",
     "dev": "tsup --watch",
@@ -26,15 +28,12 @@
     "test:coverage": "vitest run --coverage"
   },
   "peerDependencies": {
-    "@aspect/css": ">=0.2.0",
-    "@aspect/react": ">=0.2.0",
+    "@aspect/css": ">=1.0.0",
+    "@aspect/react": ">=1.0.0",
     "@aspect/tokens": ">=0.2.0",
     "react": ">=18",
     "react-dom": ">=18"
   },
-  "sideEffects": [
-    "**/*.css"
-  ],
   "files": [
     "dist",
     "src/css",
