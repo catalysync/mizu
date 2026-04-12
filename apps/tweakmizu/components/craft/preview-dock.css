@@ -147,9 +147,17 @@
 }
 
 .craft-dock__viewport--fullscreen .craft-dock__frame {
-  width: 100%;
+  width: var(--craft-dock-width, 100%);
+  max-width: 100%;
   height: 100%;
   border: none;
   border-radius: 0;
   box-shadow: none;
+}
+
+.craft-dock__viewport--fullscreen[data-device="mobile"] .craft-dock__frame,
+.craft-dock__viewport--fullscreen[data-device="tablet"] .craft-dock__frame {
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-lg);
+  box-shadow: 0 8px 20px -12px rgb(0 0 0 / 0.18);
 }
