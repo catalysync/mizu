@@ -137,8 +137,11 @@ export const useCraftStore = create<CraftState>()(
         profile: state.profile,
         hasOnboarded: state.hasOnboarded,
       }),
-      onRehydrateStorage: () => () => {
-        useCraftStore.setState({ hasHydrated: true });
+      onRehydrateStorage: () => {
+        return (_state: unknown, error?: unknown) => {
+          // Set hydrated regardless of success/failure
+          useCraftStore.setState({ hasHydrated: true });
+        };
       },
       migrate: (persisted, version) => {
         const data = JSON.parse(JSON.stringify(persisted));

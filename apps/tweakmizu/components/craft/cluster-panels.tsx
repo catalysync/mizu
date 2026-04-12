@@ -70,8 +70,6 @@ export function ShapePanel() {
   ];
   return (
     <KnobPanel
-      cluster="shape"
-      clusterLabel="Cluster B"
       title="Shape"
       description="The silhouette — corner radius, border weight, and how the system expresses depth and layering."
       sections={sections}
@@ -121,8 +119,6 @@ export function DensityPanel() {
   ];
   return (
     <KnobPanel
-      cluster="density"
-      clusterLabel="Cluster C"
       title="Density"
       description="The breathing room — spacing scale, density mode, and how tight the rhythm feels."
       sections={sections}
@@ -218,8 +214,6 @@ export function TypePanel() {
   ];
   return (
     <KnobPanel
-      cluster="type"
-      clusterLabel="Cluster D"
       title="Type"
       description="The voice in text — family, scale ratio, weight vocabulary, and tracking."
       sections={sections}
@@ -274,8 +268,6 @@ export function MotionPanel() {
   ];
   return (
     <KnobPanel
-      cluster="motion"
-      clusterLabel="Cluster E"
       title="Motion"
       description="The temperament — easing curves, transition durations, and reduced-motion policy."
       sections={sections}
@@ -319,8 +311,6 @@ export function DepthPanel() {
   ];
   return (
     <KnobPanel
-      cluster="depth"
-      clusterLabel="Cluster F"
       title="Depth"
       description="Elevation and layering — shadows, borders, or surface shifts to separate foreground from background."
       sections={sections}
@@ -374,8 +364,6 @@ export function FocusPanel() {
   ];
   return (
     <KnobPanel
-      cluster="focus"
-      clusterLabel="Cluster G"
       title="Focus"
       description="Accessibility voice — how keyboard focus is shown across the system."
       sections={sections}
@@ -440,8 +428,6 @@ export function IconographyPanel() {
   ];
   return (
     <KnobPanel
-      cluster="iconography"
-      clusterLabel="Cluster H"
       title="Iconography"
       description="Icon style, stroke weight, and corner treatment."
       sections={sections}
@@ -512,8 +498,6 @@ export function VoicePanel() {
   ];
   return (
     <KnobPanel
-      cluster="voice"
-      clusterLabel="Cluster I"
       title="Voice"
       description="The tone of UI copy — register, error messaging style, and vocabulary choices."
       sections={sections}
@@ -578,8 +562,6 @@ export function OpinionsPanel() {
   ];
   return (
     <KnobPanel
-      cluster="opinions"
-      clusterLabel="Cluster J"
       title="API opinions"
       description="How the component API surface reflects beliefs — prop naming, composition patterns, and ownership boundaries."
       sections={sections}

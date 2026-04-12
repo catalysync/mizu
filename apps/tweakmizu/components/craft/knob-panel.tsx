@@ -1,7 +1,6 @@
 'use client';
 
 import './knob-panel.css';
-import { Badge } from '@aspect/react';
 import { PreviewDock } from './preview-dock';
 
 export interface KnobOption<T extends string = string> {
@@ -42,18 +41,15 @@ export interface KnobSectionText {
 export type KnobSection = KnobSectionChoice | KnobSectionToggle | KnobSectionText;
 
 interface KnobPanelProps {
-  cluster: string;
-  clusterLabel: string;
   title: string;
   description: string;
   sections: KnobSection[];
 }
 
-export function KnobPanel({ cluster, clusterLabel, title, description, sections }: KnobPanelProps) {
+export function KnobPanel({ title, description, sections }: KnobPanelProps) {
   return (
     <div className="craft-knob-panel">
       <header className="craft-knob-panel__header">
-        <Badge tone="neutral">{clusterLabel}</Badge>
         <h1 className="craft-knob-panel__title">{title}</h1>
         <p className="craft-knob-panel__lede">{description}</p>
       </header>

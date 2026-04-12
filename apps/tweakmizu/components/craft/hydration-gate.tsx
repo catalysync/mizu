@@ -1,10 +1,19 @@
 'use client';
 
 import './hydration-gate.css';
+import { useEffect, useState } from 'react';
 import { useCraftStore } from '@/store/craft-store';
 
 export function HydrationGate({ children }: { children: React.ReactNode }) {
-  const hasHydrated = useCraftStore((s) => s.hasHydrated);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    // Zustand persist rehydrates synchronously in useEffect.
+    // By the time this effect runs, the store is already hydrated.
+    setReady(true);
+  }, []);
+
+  const hasHydrated = useCraftStore((s) => s.hasHydrated) || ready;
 
   if (!hasHydrated) {
     return (
