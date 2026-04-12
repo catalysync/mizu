@@ -1,15 +1,16 @@
 'use client';
 
 import './foundation-panel.css';
-import { Badge } from '@aspect/react';
+import { useState } from 'react';
 import { useCraftStore } from '@/store/craft-store';
 import type {
   ChromaIntensity,
+  ColorMood,
   ContrastTier,
   DarkModePhilosophy,
+  ExtendedColor,
   HuePersonality,
 } from '@/lib/craft/profile';
-import { PreviewDock } from './preview-dock';
 
 const HUE_PERSONALITIES: Array<{
   id: HuePersonality;
@@ -28,10 +29,25 @@ const CHROMA_OPTIONS: Array<{ id: ChromaIntensity; label: string; hint: string }
   { id: 'vibrant', label: 'Vibrant', hint: 'Supabase, Vercel' },
 ];
 
+const COLOR_MOOD_OPTIONS: Array<{ id: ColorMood; label: string; hint: string }> = [
+  { id: 'tonal', label: 'Tonal', hint: 'subtle accent, professional' },
+  { id: 'vibrant', label: 'Vibrant', hint: 'high chroma, energetic' },
+  { id: 'muted', label: 'Muted', hint: 'low chroma, calm' },
+  { id: 'monochrome', label: 'Monochrome', hint: 'single hue, editorial' },
+  { id: 'expressive', label: 'Expressive', hint: 'high contrast, playful' },
+];
+
 const CONTRAST_OPTIONS: Array<{ id: ContrastTier; label: string; hint: string }> = [
   { id: 'aa-comfortable', label: 'AA comfortable', hint: 'WCAG AA + breathing room' },
   { id: 'aaa-conservative', label: 'AAA conservative', hint: 'gov / medical / finance' },
   { id: 'editorial-high', label: 'Editorial high', hint: 'maximum legibility' },
+];
+
+const CONTRAST_LEVEL_STOPS = [
+  { value: -0.5, label: 'Reduced' },
+  { value: 0, label: 'Default' },
+  { value: 0.5, label: 'High' },
+  { value: 1, label: 'Maximum' },
 ];
 
 const DARK_MODE_OPTIONS: Array<{ id: DarkModePhilosophy; label: string; hint: string }> = [
@@ -41,24 +57,138 @@ const DARK_MODE_OPTIONS: Array<{ id: DarkModePhilosophy; label: string; hint: st
   { id: 'none', label: 'Light only', hint: 'no dark mode shipped' },
 ];
 
+function hexToHue(hex: string): number {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const d = max - min;
+  if (d === 0) return 0;
+  let h = 0;
+  if (max === r) h = ((g - b) / d) % 6;
+  else if (max === g) h = (b - r) / d + 2;
+  else h = (r - g) / d + 4;
+  h = Math.round(h * 60);
+  return h < 0 ? h + 360 : h;
+}
+
+function hexToPersonality(hue: number): HuePersonality {
+  if ((hue >= 0 && hue <= 60) || hue >= 300) return 'warm';
+  if (hue >= 180 && hue <= 260) return 'cool';
+  return 'neutral';
+}
+
+function hexToChroma(hex: string): ChromaIntensity {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const sat = max === 0 ? 0 : (max - min) / max;
+  if (sat < 0.3) return 'muted';
+  if (sat < 0.65) return 'balanced';
+  return 'vibrant';
+}
+
 export function FoundationPanel() {
   const foundation = useCraftStore((s) => s.profile.foundation);
   const updateCluster = useCraftStore((s) => s.updateCluster);
+  const [seedInput, setSeedInput] = useState(foundation.seedColor ?? '#3b82f6');
+  const [newColorName, setNewColorName] = useState('');
+  const [newColorHex, setNewColorHex] = useState('#ef4444');
+
+  const applySeedColor = (hex: string) => {
+    if (!/^#[0-9a-fA-F]{6}$/.test(hex)) return;
+    const hue = hexToHue(hex);
+    updateCluster('foundation', {
+      seedColor: hex,
+      brandHue: hue,
+      huePersonality: hexToPersonality(hue),
+      chroma: hexToChroma(hex),
+    });
+  };
+
+  const addExtendedColor = () => {
+    if (!newColorName.trim() || !/^#[0-9a-fA-F]{6}$/.test(newColorHex)) return;
+    const existing = foundation.extendedColors ?? [];
+    if (existing.length >= 8) return;
+    updateCluster('foundation', {
+      extendedColors: [
+        ...existing,
+        { name: newColorName.trim(), hex: newColorHex, harmonize: true },
+      ],
+    });
+    setNewColorName('');
+  };
+
+  const removeExtendedColor = (index: number) => {
+    const existing = foundation.extendedColors ?? [];
+    updateCluster('foundation', {
+      extendedColors: existing.filter((_, i) => i !== index),
+    });
+  };
+
+  const toggleHarmonize = (index: number) => {
+    const existing = foundation.extendedColors ?? [];
+    updateCluster('foundation', {
+      extendedColors: existing.map((c, i) => (i === index ? { ...c, harmonize: !c.harmonize } : c)),
+    });
+  };
 
   return (
     <div className="craft-foundation">
       <header className="craft-foundation__header">
-        <Badge tone="neutral">Cluster A</Badge>
         <h1 className="craft-foundation__title">Foundation</h1>
         <p className="craft-foundation__lede">
-          The raw material — the hue personality, how saturated your palette feels, how much
-          contrast you push for, and how you handle dark mode. Everything else builds on what you
-          set here.
+          The raw material — paste a brand hex to auto-populate, or fine-tune each knob. The color
+          mood shapes how secondary and tertiary palettes derive from your primary. The contrast
+          slider controls accessibility strength. Everything else builds on what you set here.
         </p>
       </header>
 
       <div className="craft-foundation__grid">
         <div className="craft-foundation__controls">
+          {/* Seed color — paste your brand hex */}
+          <Section
+            title="Seed color"
+            hint="Paste your brand hex — auto-fills hue, personality, and chroma."
+          >
+            <div className="craft-foundation__seed-row">
+              <input
+                type="color"
+                value={seedInput}
+                onChange={(e) => {
+                  setSeedInput(e.target.value);
+                  applySeedColor(e.target.value);
+                }}
+                className="craft-foundation__color-picker"
+                aria-label="Seed color picker"
+              />
+              <input
+                type="text"
+                value={seedInput}
+                onChange={(e) => {
+                  setSeedInput(e.target.value);
+                  if (/^#[0-9a-fA-F]{6}$/.test(e.target.value)) {
+                    applySeedColor(e.target.value);
+                  }
+                }}
+                placeholder="#3b82f6"
+                className="craft-foundation__hex-input"
+                aria-label="Seed color hex"
+                spellCheck={false}
+              />
+              <div
+                className="craft-foundation__seed-preview"
+                style={{ background: seedInput }}
+                aria-hidden
+              >
+                <span className="craft-foundation__seed-hue">{foundation.brandHue}°</span>
+              </div>
+            </div>
+          </Section>
+
           <Section title="Hue personality" hint="The emotional temperature of your brand color.">
             <div className="craft-foundation__chip-row">
               {HUE_PERSONALITIES.map((p) => (
@@ -102,6 +232,18 @@ export function FoundationPanel() {
             />
           </Section>
 
+          {/* Color mood — Material-inspired scheme variants */}
+          <Section
+            title="Color mood"
+            hint="How secondary and tertiary palettes derive from your primary."
+          >
+            <OptionGroup
+              options={COLOR_MOOD_OPTIONS}
+              value={foundation.colorMood ?? 'tonal'}
+              onChange={(v) => updateCluster('foundation', { colorMood: v })}
+            />
+          </Section>
+
           <Section title="Chroma intensity" hint="How saturated the palette feels.">
             <OptionGroup
               options={CHROMA_OPTIONS}
@@ -118,6 +260,38 @@ export function FoundationPanel() {
             />
           </Section>
 
+          {/* Contrast level slider */}
+          <Section
+            title={`Contrast level · ${(foundation.contrastLevel ?? 0) > 0 ? '+' : ''}${foundation.contrastLevel ?? 0}`}
+            hint="Fine-tune contrast strength. Negative = reduced, positive = boosted."
+          >
+            <input
+              type="range"
+              min={-1}
+              max={1}
+              step={0.1}
+              value={foundation.contrastLevel ?? 0}
+              onChange={(e) =>
+                updateCluster('foundation', { contrastLevel: Number(e.target.value) })
+              }
+              className="craft-foundation__contrast-slider"
+              aria-label="Contrast level"
+            />
+            <div className="craft-foundation__slider-labels">
+              {CONTRAST_LEVEL_STOPS.map((stop) => (
+                <button
+                  key={stop.value}
+                  type="button"
+                  className="craft-foundation__slider-stop"
+                  data-active={(foundation.contrastLevel ?? 0) === stop.value || undefined}
+                  onClick={() => updateCluster('foundation', { contrastLevel: stop.value })}
+                >
+                  {stop.label}
+                </button>
+              ))}
+            </div>
+          </Section>
+
           <Section title="Dark mode philosophy" hint="How dark mode relates to light.">
             <OptionGroup
               options={DARK_MODE_OPTIONS}
@@ -125,11 +299,73 @@ export function FoundationPanel() {
               onChange={(v) => updateCluster('foundation', { darkMode: v })}
             />
           </Section>
+
+          {/* Extended colors — custom brand colors with harmonization */}
+          <Section
+            title="Extended colors"
+            hint="Custom brand colors (success, warning, VIP). Harmonize shifts hue toward your brand."
+          >
+            <div className="craft-foundation__extended-list">
+              {(foundation.extendedColors ?? []).map((color, i) => (
+                <div key={i} className="craft-foundation__extended-item">
+                  <span
+                    className="craft-foundation__extended-swatch"
+                    style={{ background: color.hex }}
+                  />
+                  <span className="craft-foundation__extended-name">{color.name}</span>
+                  <span className="craft-foundation__extended-hex">{color.hex}</span>
+                  <button
+                    type="button"
+                    className="craft-foundation__extended-toggle"
+                    data-active={color.harmonize || undefined}
+                    onClick={() => toggleHarmonize(i)}
+                    title={color.harmonize ? 'Harmonized with brand' : 'Using original color'}
+                  >
+                    {color.harmonize ? 'H' : '—'}
+                  </button>
+                  <button
+                    type="button"
+                    className="craft-foundation__extended-remove"
+                    onClick={() => removeExtendedColor(i)}
+                    aria-label={'Remove ' + color.name}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+            {(foundation.extendedColors ?? []).length < 8 && (
+              <div className="craft-foundation__extended-add">
+                <input
+                  type="color"
+                  value={newColorHex}
+                  onChange={(e) => setNewColorHex(e.target.value)}
+                  className="craft-foundation__color-picker craft-foundation__color-picker--sm"
+                  aria-label="New extended color"
+                />
+                <input
+                  type="text"
+                  value={newColorName}
+                  onChange={(e) => setNewColorName(e.target.value)}
+                  placeholder="Color name (e.g. success)"
+                  className="craft-foundation__hex-input"
+                  aria-label="Extended color name"
+                  onKeyDown={(e) => e.key === 'Enter' && addExtendedColor()}
+                />
+                <button
+                  type="button"
+                  className="craft-foundation__chip"
+                  onClick={addExtendedColor}
+                  disabled={!newColorName.trim()}
+                >
+                  + Add
+                </button>
+              </div>
+            )}
+          </Section>
         </div>
 
-        <aside className="craft-foundation__preview" aria-label="Live preview">
-          <PreviewDock />
-        </aside>
+        {/* Preview is in the persistent craft-shell layout */}
       </div>
     </div>
   );
