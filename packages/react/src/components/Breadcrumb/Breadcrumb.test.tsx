@@ -25,7 +25,7 @@ describe('Breadcrumb (AppBreadcrumbs)', () => {
 
   it('renders the last item as text (not a link)', () => {
     render(<AppBreadcrumbs items={items} />);
-    expect(screen.getByText('Widget').closest('a')).toBeNull();
+    expect(screen.queryByText('Widget').closest('a')).toBeNull();
   });
 
   it('marks the last item as current page', () => {

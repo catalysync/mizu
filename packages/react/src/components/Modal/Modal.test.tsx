@@ -16,7 +16,7 @@ import {
 function TestModal({ size, open = true }: { size?: string; open?: boolean }) {
   return (
     <Modal open={open}>
-      <ModalContent size={size as any}>
+      <ModalContent size={size as 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen'}>
         <ModalHeader>
           <ModalTitle>Test title</ModalTitle>
           <ModalDescription>Test description</ModalDescription>

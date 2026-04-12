@@ -97,7 +97,7 @@ describe('Checkbox', () => {
         <Checkbox />
       </Field>,
     );
-    expect(screen.getByRole('checkbox')).toHaveAttribute('aria-required', 'true');
+    expect(screen.getByRole('checkbox')).toBeRequired();
   });
 
   it('can be toggled via keyboard Space', async () => {

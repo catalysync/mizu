@@ -33,7 +33,7 @@ window.matchMedia ??= (query: string) =>
 // scrollTo is used by some overlay positioning logic
 window.scrollTo ??= () => {};
 
-/* eslint-disable @typescript-eslint/no-empty-object-type, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module 'vitest' {
   interface Assertion<T = any> extends AxeMatchers, TestingLibraryMatchers<T, void> {}
   interface AsymmetricMatchersContaining

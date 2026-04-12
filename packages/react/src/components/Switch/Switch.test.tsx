@@ -13,12 +13,12 @@ describe('Switch', () => {
 
   it('is off by default', () => {
     render(<Switch aria-label="Toggle" />);
-    expect(screen.getByRole('switch')).toHaveAttribute('aria-checked', 'false');
+    expect(screen.getByRole('switch')).not.toBeChecked();
   });
 
   it('can be defaultChecked', () => {
     render(<Switch aria-label="Toggle" defaultChecked />);
-    expect(screen.getByRole('switch')).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByRole('switch')).toBeChecked();
   });
 
   it('fires onCheckedChange when toggled', async () => {
@@ -77,6 +77,7 @@ describe('Switch', () => {
         <Switch />
       </Field>,
     );
+    // eslint-disable-next-line jest-dom/prefer-required
     expect(screen.getByRole('switch')).toHaveAttribute('aria-required', 'true');
   });
 

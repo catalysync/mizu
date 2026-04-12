@@ -15,7 +15,7 @@ import {
 function TestDrawer({ side = 'right', open = true }: { side?: string; open?: boolean }) {
   return (
     <Drawer open={open}>
-      <DrawerContent side={side as any}>
+      <DrawerContent side={side as 'left' | 'right' | 'top' | 'bottom'}>
         <DrawerHeader>
           <DrawerTitle>Drawer title</DrawerTitle>
           <DrawerDescription>Drawer desc</DrawerDescription>
