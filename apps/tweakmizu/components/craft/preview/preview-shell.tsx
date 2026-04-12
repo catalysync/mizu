@@ -26,6 +26,9 @@ export function PreviewShell({ profile, currentPath, children }: PreviewShellPro
 
   return (
     <div className="craft-preview-shell">
+      <div className="craft-preview-motion-bar" aria-hidden>
+        <div className="craft-preview-motion-bar__fill" />
+      </div>
       <header className="craft-preview-shell__header">
         <div className="craft-preview-shell__brand">
           <span className="craft-preview-shell__logo">{profile.app?.identity?.logo ?? '✷'}</span>
@@ -77,9 +80,6 @@ export function PreviewShell({ profile, currentPath, children }: PreviewShellPro
           ) : null}
         </nav>
         <main className="craft-preview-shell__main">{children}</main>
-      </div>
-      <div className="craft-preview-motion-bar" aria-hidden>
-        <div className="craft-preview-motion-bar__fill" />
       </div>
     </div>
   );

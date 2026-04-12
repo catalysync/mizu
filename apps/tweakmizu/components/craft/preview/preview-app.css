@@ -593,13 +593,10 @@
 
 /* Motion indicator — always-visible animated bar showing current easing + duration */
 .craft-preview-motion-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   height: 3px;
   background: var(--mizu-surface-tertiary);
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .craft-preview-motion-bar__fill {
@@ -609,6 +606,7 @@
   border-radius: 0 2px 2px 0;
   animation: craft-motion-slide var(--mizu-duration-slow, 320ms) var(--mizu-easing-out, ease-out)
     infinite alternate;
+  animation-play-state: var(--mizu-motion-play, running);
 }
 
 @keyframes craft-motion-slide {

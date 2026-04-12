@@ -311,15 +311,15 @@ function motionVars(m: DesignLanguageProfile['motion']): CssVarMap {
     relaxed: { fast: '160ms', normal: '280ms', slow: '440ms' },
   }[m.duration];
 
-  // reducedMotion: output a flag the preview CSS can use
-  const motionScale = m.reducedMotion === 'kill-all' ? '0' : '1';
+  const killAll = m.reducedMotion === 'kill-all';
 
   return {
     '--mizu-easing-out': easingCurve,
-    '--mizu-duration-fast': durations.fast,
-    '--mizu-duration-normal': durations.normal,
-    '--mizu-duration-slow': durations.slow,
-    '--mizu-motion-scale': motionScale,
+    '--mizu-duration-fast': killAll ? '0ms' : durations.fast,
+    '--mizu-duration-normal': killAll ? '0ms' : durations.normal,
+    '--mizu-duration-slow': killAll ? '0ms' : durations.slow,
+    '--mizu-motion-scale': killAll ? '0' : '1',
+    '--mizu-motion-play': killAll ? 'paused' : 'running',
   };
 }
 
