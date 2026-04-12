@@ -293,11 +293,19 @@ export function DepthPanel() {
         { id: 'flat', label: 'Flat', hint: 'No visual depth — Brutalist' },
       ],
       value: depth.recipe,
-      onChange: (v) => u('depth', { recipe: v as typeof depth.recipe }),
+      onChange: (v) => {
+        const recipe = v as typeof depth.recipe;
+        // Auto-set a visible shadow flavor when switching to shadows
+        if (recipe === 'shadows' && depth.shadowFlavor === 'none') {
+          u('depth', { recipe, shadowFlavor: 'soft-diffuse' });
+        } else {
+          u('depth', { recipe });
+        }
+      },
     },
     {
       title: 'Shadow flavor',
-      hint: 'The character of shadows when used.',
+      hint: 'The character of shadows. Selecting a flavor auto-switches recipe to Shadows.',
       demo: <ShadowDemo />,
       type: 'options',
       options: [
@@ -307,7 +315,15 @@ export function DepthPanel() {
         { id: 'none', label: 'None', hint: 'No shadows at all' },
       ],
       value: depth.shadowFlavor,
-      onChange: (v) => u('depth', { shadowFlavor: v as typeof depth.shadowFlavor }),
+      onChange: (v) => {
+        const flavor = v as typeof depth.shadowFlavor;
+        // Auto-switch to shadows recipe when picking a flavor
+        if (flavor !== 'none' && depth.recipe !== 'shadows') {
+          u('depth', { shadowFlavor: flavor, recipe: 'shadows' });
+        } else {
+          u('depth', { shadowFlavor: flavor });
+        }
+      },
     },
   ];
   return (
