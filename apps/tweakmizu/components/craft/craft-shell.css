@@ -260,6 +260,8 @@
   padding: 1rem;
   padding-bottom: 4rem;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 768px) {
