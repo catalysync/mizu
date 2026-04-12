@@ -89,6 +89,13 @@ export const SectionKind = z.enum([
   'activity-list',
   'settings-form',
   'wizard',
+  'approval-flow',
+  'aging-breakdown',
+  'journal-lines',
+  'reconciliation-split',
+  'chart-tree',
+  'period-bar',
+  'stat-row',
 ]);
 export type SectionKind = z.infer<typeof SectionKind>;
 
@@ -108,6 +115,12 @@ export const Section = z.object({
     )
     .optional(),
   body: z.string().optional(),
+  // Generic data bag for domain-specific section content. Each section kind
+  // reads what it needs: approval-flow reads `states[]` + `currentIndex`,
+  // aging reads `buckets[]`, journal reads `lines[]`, reconciliation reads
+  // `leftItems[]` + `rightItems[]`, chart-tree reads `rows[]`. The AI
+  // populates this per-domain so the renderer stays domain-agnostic.
+  data: z.record(z.string(), z.unknown()).optional(),
 });
 export type Section = z.infer<typeof Section>;
 
