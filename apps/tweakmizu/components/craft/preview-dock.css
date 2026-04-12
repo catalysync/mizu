@@ -1,12 +1,11 @@
 .craft-dock {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   background: var(--mizu-surface-default);
   border: 1px solid var(--mizu-border-subtle);
   border-radius: var(--mizu-radius-lg);
   overflow: hidden;
-  min-height: 28rem;
+  height: 100%;
 }
 
 .craft-dock__toolbar {
@@ -87,26 +86,18 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 0.75rem;
+  align-items: stretch;
   background: color-mix(in srgb, var(--mizu-text-primary) 2%, transparent);
-  overflow: auto;
-  min-height: 24rem;
+  overflow: hidden;
+  min-height: 0;
 }
 
 .craft-dock__frame {
   width: var(--craft-dock-width, 100%);
   max-width: 100%;
-  height: 40rem;
-  border: 1px solid var(--mizu-border-subtle);
-  border-radius: var(--mizu-radius-md);
+  height: 100%;
+  border: none;
   background: var(--mizu-surface-default);
-  box-shadow: 0 8px 20px -12px rgb(0 0 0 / 0.18);
-}
-
-.craft-dock__viewport[data-device="mobile"] .craft-dock__frame,
-.craft-dock__viewport[data-device="tablet"] .craft-dock__frame {
-  height: 36rem;
 }
 
 /* Fullscreen dialog — fills the viewport like the standalone /preview page */
