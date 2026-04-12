@@ -109,6 +109,7 @@
   display: flex;
   min-height: 0;
   position: relative;
+  overflow-y: auto;
 }
 
 .craft-shell__nav {
@@ -259,7 +260,6 @@
   min-width: 0;
   padding: 1rem;
   padding-bottom: 4rem;
-  overflow-y: auto;
 }
 
 @media (min-width: 768px) {
