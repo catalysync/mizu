@@ -28,9 +28,15 @@
 }
 
 .craft-export__formats {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .craft-export__formats {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .craft-export__format {
@@ -104,6 +110,7 @@
 
 .craft-export__actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 

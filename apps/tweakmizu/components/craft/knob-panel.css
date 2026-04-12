@@ -517,6 +517,10 @@
   font-weight: 500;
 }
 
+.craft-font-picker__item[data-highlighted] {
+  background: var(--mizu-surface-secondary);
+}
+
 .craft-font-picker__empty {
   padding: 1rem;
   text-align: center;

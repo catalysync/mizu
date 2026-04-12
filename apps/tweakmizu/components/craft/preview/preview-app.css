@@ -2,11 +2,19 @@
    Every spacing, font-size, radius, shadow, border, and color value MUST
    reference a --mizu-* variable so that knob changes are immediately visible. */
 
+/* Outer root wrapper — prevents white flash on dark toggle by covering
+   the full viewport with the themed surface color before the shell paints. */
+.craft-preview-root {
+  min-height: 100dvh;
+  background: var(--mizu-surface-secondary);
+  color: var(--mizu-text-primary);
+}
+
 .craft-preview-shell {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
-  background: var(--mizu-surface-secondary);
+  background: inherit;
   font-family: var(--mizu-font-family-sans, system-ui, sans-serif);
   font-size: var(--mizu-font-size-base, 1rem);
 }
@@ -91,7 +99,7 @@
 
 .craft-preview-shell__nav-section--secondary {
   padding-top: var(--mizu-spacing-3, 0.75rem);
-  border-top: 1px solid var(--mizu-border-subtle);
+  border-top: var(--mizu-border-width-default, 1px) solid var(--mizu-border-subtle);
 }
 
 .craft-preview-shell__nav-item {
@@ -260,7 +268,7 @@
   gap: var(--mizu-spacing-3, 0.75rem);
   padding: var(--mizu-spacing-2, 0.5rem) var(--mizu-spacing-3, 0.875rem);
   background: var(--mizu-surface-secondary);
-  border-bottom: 1px solid var(--mizu-border-subtle);
+  border-bottom: var(--mizu-border-width-default, 1px) solid var(--mizu-border-subtle);
   font-size: var(--mizu-font-size-xs, 0.6875rem);
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -276,7 +284,7 @@
   display: grid;
   gap: var(--mizu-spacing-3, 0.75rem);
   padding: var(--mizu-spacing-2, 0.5rem) var(--mizu-spacing-3, 0.875rem);
-  border-bottom: 1px solid var(--mizu-border-subtle);
+  border-bottom: var(--mizu-border-width-default, 1px) solid var(--mizu-border-subtle);
   font-size: var(--mizu-font-size-sm, 0.8125rem);
   transition: background calc(var(--mizu-duration-fast, 120ms) * var(--mizu-motion-scale, 1))
     var(--mizu-easing-out, ease-out);
@@ -403,7 +411,7 @@
   align-items: center;
   padding: var(--mizu-spacing-2, 0.5rem) 0;
   font-size: var(--mizu-font-size-sm, 0.8125rem);
-  border-bottom: 1px solid var(--mizu-border-subtle);
+  border-bottom: var(--mizu-border-width-default, 1px) solid var(--mizu-border-subtle);
 }
 
 .craft-preview-activity__item:last-child {

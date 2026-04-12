@@ -111,6 +111,7 @@ export function KnobPanel({
                   className="craft-knob-panel__toggle"
                   role="switch"
                   aria-checked={section.value}
+                  aria-label={section.title}
                   onClick={() => section.onToggle(!section.value)}
                 >
                   <span
@@ -197,8 +198,10 @@ function FontPicker({
 }) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const ref = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   const fonts = useMemo(() => fontOptionsByCategory(category), [category]);
   const filtered = useMemo(() => {
@@ -206,6 +209,11 @@ function FontPicker({
     const q = search.toLowerCase();
     return fonts.filter((f) => f.family.toLowerCase().includes(q));
   }, [fonts, search]);
+
+  // Reset highlight when filtered list changes
+  useEffect(() => {
+    setHighlightedIndex(-1);
+  }, [filtered]);
 
   // Close on outside click
   useEffect(() => {
@@ -222,19 +230,64 @@ function FontPicker({
     if (open) inputRef.current?.focus();
   }, [open]);
 
+  // Scroll highlighted item into view
+  useEffect(() => {
+    if (highlightedIndex < 0 || !listRef.current) return;
+    const item = listRef.current.querySelector(`[data-index="${highlightedIndex}"]`);
+    if (item) item.scrollIntoView({ block: 'nearest' });
+  }, [highlightedIndex]);
+
   const handleSelect = (family: string) => {
     const font = fonts.find((f) => f.family === family);
     if (font) loadGoogleFont(font);
     onChange(family);
     setOpen(false);
     setSearch('');
+    setHighlightedIndex(-1);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!open) return;
+
+    switch (e.key) {
+      case 'ArrowDown': {
+        e.preventDefault();
+        setHighlightedIndex((prev) => (prev < filtered.length - 1 ? prev + 1 : 0));
+        break;
+      }
+      case 'ArrowUp': {
+        e.preventDefault();
+        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : filtered.length - 1));
+        break;
+      }
+      case 'Enter': {
+        e.preventDefault();
+        if (highlightedIndex >= 0 && highlightedIndex < filtered.length) {
+          handleSelect(filtered[highlightedIndex].family);
+        }
+        break;
+      }
+      case 'Escape': {
+        e.preventDefault();
+        setOpen(false);
+        setSearch('');
+        setHighlightedIndex(-1);
+        break;
+      }
+    }
+  };
+
+  const listboxId = `font-picker-listbox-${category}`;
+  const activeDescendant =
+    highlightedIndex >= 0 ? `font-option-${category}-${highlightedIndex}` : undefined;
+
   return (
-    <div className="craft-font-picker" ref={ref}>
+    <div className="craft-font-picker" ref={ref} onKeyDown={handleKeyDown}>
       <button
         type="button"
         className="craft-font-picker__trigger"
+        aria-expanded={open}
+        aria-haspopup="listbox"
         onClick={() => setOpen(!open)}
         style={{ fontFamily: `"${value}", system-ui, sans-serif` }}
       >
@@ -252,16 +305,34 @@ function FontPicker({
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search fonts..."
             aria-label="Search fonts"
+            aria-activedescendant={activeDescendant}
+            aria-controls={listboxId}
+            role="combobox"
+            aria-expanded={true}
           />
-          <div className="craft-font-picker__list">
-            {filtered.map((font) => (
+          <div
+            ref={listRef}
+            id={listboxId}
+            className="craft-font-picker__list"
+            role="listbox"
+            aria-label="Font options"
+          >
+            {filtered.map((font, index) => (
               <button
                 key={font.family}
+                id={`font-option-${category}-${index}`}
                 type="button"
+                role="option"
+                aria-selected={font.family === value}
                 className="craft-font-picker__item"
                 data-active={font.family === value || undefined}
+                data-highlighted={index === highlightedIndex || undefined}
+                data-index={index}
                 onClick={() => handleSelect(font.family)}
-                onMouseEnter={() => loadGoogleFont(font)}
+                onMouseEnter={() => {
+                  loadGoogleFont(font);
+                  setHighlightedIndex(index);
+                }}
                 style={{ fontFamily: `"${font.family}", system-ui, sans-serif` }}
               >
                 {font.family}
