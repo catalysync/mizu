@@ -65,23 +65,40 @@ export function ExportPanel() {
   const [saved, setSaved] = useState(false);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
 
+  const [error, setError] = useState<string | null>(null);
+
   const handleSave = async () => {
-    const result = await saveProfile(profile);
-    if (result.id) {
-      setSaved(true);
-      setTimeout(() => setSaved(false), 3000);
+    setError(null);
+    try {
+      const result = await saveProfile(profile);
+      if (result.id) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+      } else {
+        setError('Failed to save. Are you signed in?');
+      }
+    } catch {
+      setError('Failed to save. Are you signed in?');
     }
   };
 
   const handleShare = async () => {
-    const result = await saveProfile(profile);
-    if (result.id) {
-      const shared = await shareProfile(result.id);
-      if (shared.token) {
-        const url = `${window.location.origin}/craft/shared/${shared.token}`;
-        setShareUrl(url);
-        navigator.clipboard.writeText(url);
+    setError(null);
+    try {
+      const result = await saveProfile(profile);
+      if (result.id) {
+        const shared = await shareProfile(result.id);
+        if (shared.token) {
+          const url = `${window.location.origin}/craft/shared/${shared.token}`;
+          setShareUrl(url);
+          await navigator.clipboard.writeText(url);
+          setTimeout(() => setShareUrl(null), 5000);
+        }
+      } else {
+        setError('Failed to save. Are you signed in?');
       }
+    } catch {
+      setError('Failed to share. Are you signed in?');
     }
   };
 
@@ -169,6 +186,7 @@ export function ExportPanel() {
           {shareUrl ? 'Link copied!' : 'Share link'}
         </button>
       </div>
+      {error ? <p className="craft-export__error">{error}</p> : null}
 
       <section className="craft-export__summary">
         <h2 className="craft-export__summary-title">Profile summary</h2>

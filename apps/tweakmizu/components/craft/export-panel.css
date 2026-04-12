@@ -132,6 +132,37 @@
   cursor: not-allowed;
 }
 
+.craft-export__save-btn,
+.craft-export__share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.625rem 1rem;
+  background: var(--mizu-surface-secondary);
+  color: var(--mizu-text-primary);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-md);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 120ms ease-out,
+    border-color 120ms ease-out;
+}
+
+.craft-export__save-btn:hover,
+.craft-export__share-btn:hover {
+  background: var(--mizu-surface-tertiary);
+  border-color: var(--mizu-border-strong);
+}
+
+.craft-export__error {
+  font-size: 0.8125rem;
+  color: var(--mizu-feedback-danger-default);
+  margin: 0;
+}
+
 .craft-export__summary {
   padding: 1.25rem;
   background: var(--mizu-surface-secondary);
