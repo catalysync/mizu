@@ -21,56 +21,146 @@ export function profileToCss(profile: DesignLanguageProfile): CssVarMap {
     ...motionVars(profile.motion),
     ...depthVars(profile.depth),
     ...focusVars(profile.focus),
+    ...iconVars(profile.iconography),
   };
 }
 
 // -- Foundation ------------------------------------------------------------
 
 function foundationVars(f: DesignLanguageProfile['foundation']): CssVarMap {
-  const { brandHue, chroma, contrast } = f;
+  const { brandHue, chroma, contrast, colorMood, contrastLevel, extendedColors } = f;
 
   // Saturation percentages per chroma tier.
-  const sat = chroma === 'muted' ? 24 : chroma === 'balanced' ? 60 : 84;
+  const baseSat = chroma === 'muted' ? 24 : chroma === 'balanced' ? 60 : 84;
+
+  // Color mood modifies saturation and secondary/tertiary hue offsets.
+  const mood = colorMood ?? 'tonal';
+  const moodSatMul =
+    mood === 'vibrant'
+      ? 1.3
+      : mood === 'muted'
+        ? 0.6
+        : mood === 'monochrome'
+          ? 0.3
+          : mood === 'expressive'
+            ? 1.15
+            : 1;
+  const sat = Math.min(Math.round(baseSat * moodSatMul), 100);
+
+  // Secondary hue: tonal stays close, expressive goes wide, monochrome is same.
+  const secondaryOffset =
+    mood === 'expressive' ? 30 : mood === 'monochrome' ? 0 : mood === 'vibrant' ? 20 : 15;
+  const tertiaryOffset =
+    mood === 'expressive' ? 60 : mood === 'monochrome' ? 0 : mood === 'vibrant' ? 45 : 30;
+  const secondaryHue = (brandHue + secondaryOffset) % 360;
+  const tertiaryHue = (brandHue + tertiaryOffset) % 360;
+
+  // Secondary/tertiary saturation is more muted than primary.
+  const secondarySat = Math.round(sat * 0.6);
+  const tertiarySat = Math.round(sat * 0.7);
 
   // Contrast tier drives the default text + surface lightness.
+  const cl = contrastLevel ?? 0;
+  const contrastBoost = cl * 6; // ±6 lightness points at extremes
   const surfaceL = contrast === 'editorial-high' ? 100 : 99;
-  const textL = contrast === 'editorial-high' ? 6 : contrast === 'aaa-conservative' ? 10 : 14;
-  const mutedL = contrast === 'editorial-high' ? 30 : contrast === 'aaa-conservative' ? 36 : 42;
+  const textL = Math.max(
+    2,
+    (contrast === 'editorial-high' ? 6 : contrast === 'aaa-conservative' ? 10 : 14) - contrastBoost,
+  );
+  const mutedL = Math.max(
+    14,
+    (contrast === 'editorial-high' ? 30 : contrast === 'aaa-conservative' ? 36 : 42) -
+      contrastBoost,
+  );
 
   // Action primary: brand hue + chroma saturation + mid lightness.
   const actionL = 48;
   const actionHoverL = 42;
   const actionActiveL = 36;
 
-  return {
+  const vars: CssVarMap = {
     '--mizu-brand-hue': `${brandHue}`,
     '--mizu-action-primary-default': `hsl(${brandHue} ${sat}% ${actionL}%)`,
     '--mizu-action-primary-hover': `hsl(${brandHue} ${sat}% ${actionHoverL}%)`,
     '--mizu-action-primary-active': `hsl(${brandHue} ${sat}% ${actionActiveL}%)`,
-    '--mizu-surface-default': `hsl(${brandHue} 12% ${surfaceL}%)`,
-    '--mizu-surface-secondary': `hsl(${brandHue} 12% 96%)`,
-    '--mizu-text-primary': `hsl(${brandHue} 18% ${textL}%)`,
-    '--mizu-text-secondary': `hsl(${brandHue} 12% ${mutedL}%)`,
-    '--mizu-text-tertiary': `hsl(${brandHue} 10% ${mutedL + 18}%)`,
-    '--mizu-text-disabled': `hsl(${brandHue} 8% ${mutedL + 30}%)`,
-    '--mizu-border-default': `hsl(${brandHue} 14% 90%)`,
-    '--mizu-border-strong': `hsl(${brandHue} 14% 78%)`,
-    '--mizu-border-subtle': `hsl(${brandHue} 14% 94%)`,
+    '--mizu-action-secondary-default': `hsl(${secondaryHue} ${secondarySat}% ${actionL + 4}%)`,
+    '--mizu-action-secondary-hover': `hsl(${secondaryHue} ${secondarySat}% ${actionHoverL + 2}%)`,
+    '--mizu-action-tertiary-default': `hsl(${tertiaryHue} ${tertiarySat}% ${actionL + 2}%)`,
+    '--mizu-surface-default': `hsl(${brandHue} ${Math.round(sat * 0.2)}% ${surfaceL}%)`,
+    '--mizu-surface-secondary': `hsl(${brandHue} ${Math.round(sat * 0.2)}% 96%)`,
+    '--mizu-surface-tertiary': `hsl(${brandHue} ${Math.round(sat * 0.15)}% 93%)`,
+    '--mizu-text-primary': `hsl(${brandHue} ${Math.round(sat * 0.3)}% ${textL}%)`,
+    '--mizu-text-secondary': `hsl(${brandHue} ${Math.round(sat * 0.2)}% ${mutedL}%)`,
+    '--mizu-text-tertiary': `hsl(${brandHue} ${Math.round(sat * 0.16)}% ${mutedL + 18}%)`,
+    '--mizu-text-disabled': `hsl(${brandHue} ${Math.round(sat * 0.12)}% ${mutedL + 30}%)`,
+    '--mizu-border-default': `hsl(${brandHue} ${Math.round(sat * 0.24)}% 90%)`,
+    '--mizu-border-strong': `hsl(${brandHue} ${Math.round(sat * 0.24)}% 78%)`,
+    '--mizu-border-subtle': `hsl(${brandHue} ${Math.round(sat * 0.24)}% 94%)`,
     '--mizu-feedback-success-default': `hsl(148 ${Math.min(sat + 10, 80)}% 38%)`,
     '--mizu-feedback-warning-default': `hsl(36 ${Math.min(sat + 20, 92)}% 48%)`,
     '--mizu-feedback-danger-default': `hsl(0 ${Math.min(sat + 14, 78)}% 48%)`,
   };
+
+  // Extended colors with optional harmonization.
+  if (extendedColors?.length) {
+    for (const ec of extendedColors) {
+      const r = parseInt(ec.hex.slice(1, 3), 16) / 255;
+      const g = parseInt(ec.hex.slice(3, 5), 16) / 255;
+      const b = parseInt(ec.hex.slice(5, 7), 16) / 255;
+      const max = Math.max(r, g, b);
+      const min = Math.min(r, g, b);
+      const d = max - min;
+      let h = 0;
+      if (d > 0) {
+        if (max === r) h = ((g - b) / d) % 6;
+        else if (max === g) h = (b - r) / d + 2;
+        else h = (r - g) / d + 4;
+        h = Math.round(h * 60);
+        if (h < 0) h += 360;
+      }
+      const ecSat = max === 0 ? 0 : Math.round(((max - min) / max) * 100);
+      const ecL = Math.round(((max + min) / 2) * 100);
+
+      // Harmonize: shift hue up to 15° toward brandHue.
+      let finalH = h;
+      if (ec.harmonize) {
+        const diff = ((brandHue - h + 540) % 360) - 180;
+        const rotation = Math.min(Math.abs(diff) * 0.5, 15) * Math.sign(diff);
+        finalH = (h + rotation + 360) % 360;
+      }
+
+      const slug = ec.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      vars[`--mizu-color-${slug}`] = `hsl(${finalH} ${ecSat}% ${ecL}%)`;
+      vars[`--mizu-color-${slug}-light`] = `hsl(${finalH} ${Math.round(ecSat * 0.4)}% 94%)`;
+      vars[`--mizu-color-${slug}-dark`] = `hsl(${finalH} ${ecSat}% ${Math.max(ecL - 20, 15)}%)`;
+    }
+  }
+
+  return vars;
 }
 
 // -- Shape -----------------------------------------------------------------
 
 function shapeVars(s: DesignLanguageProfile['shape']): CssVarMap {
-  const radiusScale = {
-    sharp: { sm: '0px', md: '2px', lg: '4px', xl: '6px' },
-    soft: { sm: '4px', md: '6px', lg: '8px', xl: '12px' },
-    pillowy: { sm: '8px', md: '12px', lg: '16px', xl: '24px' },
-    pill: { sm: '999px', md: '999px', lg: '999px', xl: '999px' },
+  const base = {
+    sharp: { sm: 0, md: 2, lg: 4, xl: 6 },
+    soft: { sm: 4, md: 6, lg: 8, xl: 12 },
+    pillowy: { sm: 8, md: 12, lg: 16, xl: 24 },
+    pill: { sm: 999, md: 999, lg: 999, xl: 999 },
   }[s.radius];
+
+  // radiusUniform=true: same radius everywhere
+  // radiusUniform=false: sm stays small, larger elements get progressively bigger radii
+  const scale = s.radiusUniform
+    ? base
+    : {
+        sm: base.sm,
+        md: Math.round(base.md * 1.2),
+        lg: Math.round(base.lg * 1.5),
+        xl: Math.round(base.xl * 1.8),
+      };
+
+  const px = (v: number) => (v >= 999 ? '999px' : `${v}px`);
 
   const borderWidth = {
     none: '0',
@@ -79,12 +169,40 @@ function shapeVars(s: DesignLanguageProfile['shape']): CssVarMap {
     thick: '2px',
   }[s.borderWeight];
 
+  // chrome: directly affects shadow and border appearance on cards/sections.
+  // Instead of abstract tokens, override the shadow/border vars the preview uses.
+  const chromeVars: CssVarMap =
+    s.chrome === 'flat'
+      ? {
+          '--mizu-shadow-sm': 'none',
+          '--mizu-shadow-md': 'none',
+          '--mizu-shadow-lg': 'none',
+          '--mizu-border-width-default': borderWidth === '0' ? '1px' : borderWidth,
+        }
+      : s.chrome === 'material'
+        ? {
+            '--mizu-shadow-sm': '0 1px 3px rgb(0 0 0 / 0.1), 0 1px 2px rgb(0 0 0 / 0.06)',
+            '--mizu-shadow-md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+            '--mizu-shadow-lg':
+              '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+          }
+        : s.chrome === 'paper'
+          ? {
+              '--mizu-shadow-sm': 'none',
+              '--mizu-shadow-md': 'none',
+              '--mizu-shadow-lg': 'none',
+              '--mizu-surface-secondary': 'hsl(var(--mizu-brand-hue, 220) 8% 94%)',
+              '--mizu-surface-tertiary': 'hsl(var(--mizu-brand-hue, 220) 6% 91%)',
+            }
+          : {}; // layered = default, don't override depth vars
+
   return {
-    '--mizu-radius-sm': radiusScale.sm,
-    '--mizu-radius-md': radiusScale.md,
-    '--mizu-radius-lg': radiusScale.lg,
-    '--mizu-radius-xl': radiusScale.xl,
+    '--mizu-radius-sm': px(scale.sm),
+    '--mizu-radius-md': px(scale.md),
+    '--mizu-radius-lg': px(scale.lg),
+    '--mizu-radius-xl': px(scale.xl),
     '--mizu-border-width-default': borderWidth,
+    ...chromeVars,
   };
 }
 
@@ -103,6 +221,10 @@ function densityVars(d: DesignLanguageProfile['density']): CssVarMap {
 
   const step = (n: number) => `${((base * n) / 16) * multiplier}rem`;
 
+  // airyType: adds extra vertical spacing around text blocks
+  const airyMul = d.airyType ? 1.35 : 1;
+  const textStep = (n: number) => `${(((base * n) / 16) * multiplier * airyMul).toFixed(4)}rem`;
+
   return {
     '--mizu-spacing-1': step(1),
     '--mizu-spacing-2': step(2),
@@ -112,6 +234,8 @@ function densityVars(d: DesignLanguageProfile['density']): CssVarMap {
     '--mizu-spacing-6': step(6),
     '--mizu-spacing-8': step(8),
     '--mizu-spacing-10': step(10),
+    '--mizu-text-spacing-block': textStep(4),
+    '--mizu-text-spacing-heading': textStep(6),
   };
 }
 
@@ -129,6 +253,17 @@ function typeVars(t: DesignLanguageProfile['type']): CssVarMap {
   const baseRem = 1;
   const step = (n: number) => `${(baseRem * ratio ** n).toFixed(3)}rem`;
 
+  // weights: generate weight token values
+  const weightMap = {
+    duo: { regular: '400', medium: '400', semibold: '700', bold: '700' },
+    trio: { regular: '400', medium: '500', semibold: '600', bold: '600' },
+    full: { regular: '300', medium: '400', semibold: '600', bold: '900' },
+  }[t.weights];
+
+  // trackingTight: tighten heading letter-spacing
+  const headingTracking = t.trackingTight ? '-0.025em' : '-0.01em';
+  const bodyTracking = t.trackingTight ? '-0.005em' : '0';
+
   return {
     '--mizu-font-family-sans': `'${t.sansFamily}', ui-sans-serif, system-ui, -apple-system, sans-serif`,
     '--mizu-font-family-mono': `'${t.monoFamily}', ui-monospace, SFMono-Regular, monospace`,
@@ -138,6 +273,12 @@ function typeVars(t: DesignLanguageProfile['type']): CssVarMap {
     '--mizu-font-size-md': step(1),
     '--mizu-font-size-lg': step(2),
     '--mizu-font-size-xl': step(3),
+    '--mizu-font-weight-regular': weightMap.regular,
+    '--mizu-font-weight-medium': weightMap.medium,
+    '--mizu-font-weight-semibold': weightMap.semibold,
+    '--mizu-font-weight-bold': weightMap.bold,
+    '--mizu-tracking-heading': headingTracking,
+    '--mizu-tracking-body': bodyTracking,
   };
 }
 
@@ -157,22 +298,48 @@ function motionVars(m: DesignLanguageProfile['motion']): CssVarMap {
     relaxed: { fast: '160ms', normal: '280ms', slow: '440ms' },
   }[m.duration];
 
+  // reducedMotion: output a flag the preview CSS can use
+  const motionScale = m.reducedMotion === 'kill-all' ? '0' : '1';
+
   return {
     '--mizu-easing-out': easingCurve,
     '--mizu-duration-fast': durations.fast,
     '--mizu-duration-normal': durations.normal,
     '--mizu-duration-slow': durations.slow,
+    '--mizu-motion-scale': motionScale,
   };
 }
 
 // -- Depth -----------------------------------------------------------------
 
 function depthVars(d: DesignLanguageProfile['depth']): CssVarMap {
+  // recipe=borders: use border-only separation, no shadows
+  if (d.recipe === 'borders') {
+    return {
+      '--mizu-shadow-sm': 'none',
+      '--mizu-shadow-md': 'none',
+      '--mizu-shadow-lg': 'none',
+      '--mizu-depth-border':
+        'var(--mizu-border-width-default, 1px) solid var(--mizu-border-default)',
+    };
+  }
+
+  // recipe=surfaces: use background shifts instead of shadows
+  if (d.recipe === 'surfaces') {
+    return {
+      '--mizu-shadow-sm': 'none',
+      '--mizu-shadow-md': 'none',
+      '--mizu-shadow-lg': 'none',
+      '--mizu-depth-border': 'none',
+    };
+  }
+
   if (d.recipe === 'flat' || d.shadowFlavor === 'none') {
     return {
       '--mizu-shadow-sm': 'none',
       '--mizu-shadow-md': 'none',
       '--mizu-shadow-lg': 'none',
+      '--mizu-depth-border': 'none',
     };
   }
   const flavor = {
@@ -197,16 +364,51 @@ function depthVars(d: DesignLanguageProfile['depth']): CssVarMap {
     '--mizu-shadow-sm': flavor.sm,
     '--mizu-shadow-md': flavor.md,
     '--mizu-shadow-lg': flavor.lg,
+    '--mizu-depth-border': 'none',
   };
 }
 
 // -- Focus -----------------------------------------------------------------
 
 function focusVars(f: DesignLanguageProfile['focus']): CssVarMap {
+  const color =
+    f.color === 'high-contrast'
+      ? '#facc15'
+      : f.color === 'dedicated'
+        ? '#6366f1'
+        : 'var(--mizu-action-primary-default)';
+
+  // style: how focus is rendered
+  const focusStyle =
+    f.style === 'outline'
+      ? `${f.width} solid ${color}`
+      : f.style === 'shadow'
+        ? `0 0 0 ${f.width} ${color}`
+        : 'none';
+
   return {
     '--mizu-focus-width': f.width,
-    '--mizu-focus-color':
-      f.color === 'high-contrast' ? '#facc15' : 'var(--mizu-action-primary-default)',
+    '--mizu-focus-color': color,
+    '--mizu-focus-outline': f.style === 'outline' ? focusStyle : 'none',
+    '--mizu-focus-shadow': f.style === 'shadow' ? focusStyle : 'none',
+    '--mizu-focus-bg':
+      f.style === 'bg-shift' ? `color-mix(in srgb, ${color} 12%, transparent)` : 'transparent',
+  };
+}
+
+// -- Iconography -----------------------------------------------------------
+
+function iconVars(i: DesignLanguageProfile['iconography']): CssVarMap {
+  const sizes = {
+    '16-20-24': { sm: '16px', md: '20px', lg: '24px' },
+    '14-18-22': { sm: '14px', md: '18px', lg: '22px' },
+  }[i.sizeScale];
+
+  return {
+    '--mizu-icon-size-sm': sizes.sm,
+    '--mizu-icon-size-md': sizes.md,
+    '--mizu-icon-size-lg': sizes.lg,
+    '--mizu-icon-stroke': i.strokeWeight,
   };
 }
 

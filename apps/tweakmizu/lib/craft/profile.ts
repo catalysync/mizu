@@ -29,15 +29,35 @@ export type ChromaIntensity = z.infer<typeof ChromaIntensity>;
 export const ContrastTier = z.enum(['aa-comfortable', 'aaa-conservative', 'editorial-high']);
 export type ContrastTier = z.infer<typeof ContrastTier>;
 
+export const ContrastLevel = z.number().min(-1).max(1);
+export type ContrastLevel = z.infer<typeof ContrastLevel>;
+
+export const ColorMood = z.enum(['tonal', 'vibrant', 'muted', 'monochrome', 'expressive']);
+export type ColorMood = z.infer<typeof ColorMood>;
+
 export const DarkModePhilosophy = z.enum(['parallel', 'inverted', 'dim', 'none']);
 export type DarkModePhilosophy = z.infer<typeof DarkModePhilosophy>;
 
+export const ExtendedColor = z.object({
+  name: z.string().min(1).max(32),
+  hex: z.string().regex(/^#[0-9a-fA-F]{6}$/),
+  harmonize: z.boolean(),
+});
+export type ExtendedColor = z.infer<typeof ExtendedColor>;
+
 export const FoundationCluster = z.object({
   brandHue: z.number().min(0).max(360),
+  seedColor: z
+    .string()
+    .regex(/^#[0-9a-fA-F]{6}$/)
+    .optional(),
   huePersonality: HuePersonality,
   chroma: ChromaIntensity,
+  colorMood: ColorMood.optional(),
   contrast: ContrastTier,
+  contrastLevel: ContrastLevel.optional(),
   darkMode: DarkModePhilosophy,
+  extendedColors: z.array(ExtendedColor).max(8).optional(),
 });
 export type FoundationCluster = z.infer<typeof FoundationCluster>;
 
@@ -226,10 +246,14 @@ export const mizuSampleProfile: DesignLanguageProfile = {
   archetype: 'mizu-default',
   foundation: {
     brandHue: 220,
+    seedColor: '#3b82f6',
     huePersonality: 'cool',
     chroma: 'balanced',
+    colorMood: 'tonal',
     contrast: 'aa-comfortable',
+    contrastLevel: 0,
     darkMode: 'parallel',
+    extendedColors: [],
   },
   shape: {
     radius: 'soft',
