@@ -12,9 +12,9 @@ import type { DesignLanguageProfile } from './profile';
 
 export type CssVarMap = Record<string, string>;
 
-export function profileToCss(profile: DesignLanguageProfile): CssVarMap {
+export function profileToCss(profile: DesignLanguageProfile, dark = false): CssVarMap {
   return {
-    ...foundationVars(profile.foundation),
+    ...foundationVars(profile.foundation, dark),
     ...shapeVars(profile.shape),
     ...densityVars(profile.density),
     ...typeVars(profile.type),
@@ -27,7 +27,7 @@ export function profileToCss(profile: DesignLanguageProfile): CssVarMap {
 
 // -- Foundation ------------------------------------------------------------
 
-function foundationVars(f: DesignLanguageProfile['foundation']): CssVarMap {
+function foundationVars(f: DesignLanguageProfile['foundation'], dark = false): CssVarMap {
   const { brandHue, chroma, contrast, colorMood, contrastLevel, extendedColors } = f;
 
   // Saturation percentages per chroma tier.
@@ -61,22 +61,48 @@ function foundationVars(f: DesignLanguageProfile['foundation']): CssVarMap {
 
   // Contrast tier drives the default text + surface lightness.
   const cl = contrastLevel ?? 0;
-  const contrastBoost = cl * 6; // ±6 lightness points at extremes
-  const surfaceL = contrast === 'editorial-high' ? 100 : 99;
-  const textL = Math.max(
-    2,
-    (contrast === 'editorial-high' ? 6 : contrast === 'aaa-conservative' ? 10 : 14) - contrastBoost,
-  );
-  const mutedL = Math.max(
-    14,
-    (contrast === 'editorial-high' ? 30 : contrast === 'aaa-conservative' ? 36 : 42) -
-      contrastBoost,
-  );
+  const contrastBoost = cl * 6;
 
-  // Action primary: brand hue + chroma saturation + mid lightness.
-  const actionL = 48;
-  const actionHoverL = 42;
-  const actionActiveL = 36;
+  // Dark mode: flip lightness — dark surfaces, light text.
+  const surfaceL = dark
+    ? contrast === 'editorial-high'
+      ? 6
+      : 10
+    : contrast === 'editorial-high'
+      ? 100
+      : 99;
+  const surfaceSecondaryL = dark ? 14 : 96;
+  const surfaceTertiaryL = dark ? 18 : 93;
+  const textL = dark
+    ? Math.min(
+        98,
+        (contrast === 'editorial-high' ? 98 : contrast === 'aaa-conservative' ? 94 : 90) +
+          contrastBoost,
+      )
+    : Math.max(
+        2,
+        (contrast === 'editorial-high' ? 6 : contrast === 'aaa-conservative' ? 10 : 14) -
+          contrastBoost,
+      );
+  const mutedL = dark
+    ? Math.min(
+        86,
+        (contrast === 'editorial-high' ? 76 : contrast === 'aaa-conservative' ? 70 : 64) +
+          contrastBoost,
+      )
+    : Math.max(
+        14,
+        (contrast === 'editorial-high' ? 30 : contrast === 'aaa-conservative' ? 36 : 42) -
+          contrastBoost,
+      );
+  const borderL = dark ? 24 : 90;
+  const borderStrongL = dark ? 34 : 78;
+  const borderSubtleL = dark ? 18 : 94;
+
+  // Action primary: lighter in dark mode for contrast against dark surfaces.
+  const actionL = dark ? 62 : 48;
+  const actionHoverL = dark ? 68 : 42;
+  const actionActiveL = dark ? 56 : 36;
 
   const vars: CssVarMap = {
     '--mizu-brand-hue': `${brandHue}`,
@@ -87,15 +113,15 @@ function foundationVars(f: DesignLanguageProfile['foundation']): CssVarMap {
     '--mizu-action-secondary-hover': `hsl(${secondaryHue} ${secondarySat}% ${actionHoverL + 2}%)`,
     '--mizu-action-tertiary-default': `hsl(${tertiaryHue} ${tertiarySat}% ${actionL + 2}%)`,
     '--mizu-surface-default': `hsl(${brandHue} ${Math.round(sat * 0.2)}% ${surfaceL}%)`,
-    '--mizu-surface-secondary': `hsl(${brandHue} ${Math.round(sat * 0.2)}% 96%)`,
-    '--mizu-surface-tertiary': `hsl(${brandHue} ${Math.round(sat * 0.15)}% 93%)`,
+    '--mizu-surface-secondary': `hsl(${brandHue} ${Math.round(sat * 0.2)}% ${surfaceSecondaryL}%)`,
+    '--mizu-surface-tertiary': `hsl(${brandHue} ${Math.round(sat * 0.15)}% ${surfaceTertiaryL}%)`,
     '--mizu-text-primary': `hsl(${brandHue} ${Math.round(sat * 0.3)}% ${textL}%)`,
     '--mizu-text-secondary': `hsl(${brandHue} ${Math.round(sat * 0.2)}% ${mutedL}%)`,
-    '--mizu-text-tertiary': `hsl(${brandHue} ${Math.round(sat * 0.16)}% ${mutedL + 18}%)`,
-    '--mizu-text-disabled': `hsl(${brandHue} ${Math.round(sat * 0.12)}% ${mutedL + 30}%)`,
-    '--mizu-border-default': `hsl(${brandHue} ${Math.round(sat * 0.24)}% 90%)`,
-    '--mizu-border-strong': `hsl(${brandHue} ${Math.round(sat * 0.24)}% 78%)`,
-    '--mizu-border-subtle': `hsl(${brandHue} ${Math.round(sat * 0.24)}% 94%)`,
+    '--mizu-text-tertiary': `hsl(${brandHue} ${Math.round(sat * 0.16)}% ${mutedL + (dark ? -12 : 18)}%)`,
+    '--mizu-text-disabled': `hsl(${brandHue} ${Math.round(sat * 0.12)}% ${mutedL + (dark ? -20 : 30)}%)`,
+    '--mizu-border-default': `hsl(${brandHue} ${Math.round(sat * 0.24)}% ${borderL}%)`,
+    '--mizu-border-strong': `hsl(${brandHue} ${Math.round(sat * 0.24)}% ${borderStrongL}%)`,
+    '--mizu-border-subtle': `hsl(${brandHue} ${Math.round(sat * 0.24)}% ${borderSubtleL}%)`,
     '--mizu-feedback-success-default': `hsl(148 ${Math.min(sat + 10, 80)}% 38%)`,
     '--mizu-feedback-warning-default': `hsl(36 ${Math.min(sat + 20, 92)}% 48%)`,
     '--mizu-feedback-danger-default': `hsl(0 ${Math.min(sat + 14, 78)}% 48%)`,

@@ -12,6 +12,7 @@ import { CraftProProvider } from './craft-pro-context';
 import { ProBanner, ProBadge } from './pro-upsell';
 import { HydrationGate } from './hydration-gate';
 import { PreviewDock } from './preview-dock';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { useIsPro } from './craft-pro-context';
 
 interface CraftShellProps {
@@ -106,6 +107,7 @@ export function CraftShell({ user, isPro = false, children }: CraftShellProps) {
             <span className="craft-shell__profile-name">{profileName}</span>
           </Link>
           <div className="craft-shell__header-actions">
+            <ThemeToggle size="sm" />
             <Button size="sm" variant="ghost" disabled={!canUndo} onClick={undo} aria-label="Undo">
               <Undo2 size={16} />
             </Button>

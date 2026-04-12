@@ -3,7 +3,7 @@
 import './preview-dock.css';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Monitor, Smartphone, Tablet, ExternalLink, Maximize2, X } from 'lucide-react';
+import { Monitor, Smartphone, Tablet, ExternalLink, Maximize2, X, Sun, Moon } from 'lucide-react';
 import { useCraftStore } from '@/store/craft-store';
 
 type DeviceSize = 'mobile' | 'tablet' | 'desktop';
@@ -22,6 +22,8 @@ export function PreviewDock() {
   const pages = useCraftStore((s) => s.profile.app?.pages ?? []);
   const previewPath = useCraftStore((s) => s.previewPath);
   const setPreviewPath = useCraftStore((s) => s.setPreviewPath);
+  const previewDark = useCraftStore((s) => s.previewDark);
+  const setPreviewDark = useCraftStore((s) => s.setPreviewDark);
   const [device, setDevice] = useState<DeviceSize>('desktop');
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -107,6 +109,15 @@ export function PreviewDock() {
           {pageSelect}
           <div className="craft-dock__spacer" />
           {deviceButtons}
+          <button
+            type="button"
+            className="craft-dock__open"
+            onClick={() => setPreviewDark(!previewDark)}
+            aria-label={previewDark ? 'Preview light mode' : 'Preview dark mode'}
+            title={previewDark ? 'Switch preview to light' : 'Switch preview to dark'}
+          >
+            {previewDark ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
           <button
             type="button"
             className="craft-dock__open"

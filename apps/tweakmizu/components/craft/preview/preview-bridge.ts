@@ -17,7 +17,7 @@ import { parseProfile, type DesignLanguageProfile } from '@/lib/craft/profile';
 const CHANNEL = 'craft-profile';
 
 type Message =
-  | { type: 'update'; profile: DesignLanguageProfile; previewPath?: string }
+  | { type: 'update'; profile: DesignLanguageProfile; previewPath?: string; previewDark?: boolean }
   | { type: 'request' };
 
 /** Parent-side: push profile updates whenever the store changes. */
@@ -31,15 +31,20 @@ export function installPreviewPublisher() {
   }
 
   const unsub = useCraftStore.subscribe((state, prev) => {
-    if (state.profile === prev.profile && state.previewPath === prev.previewPath) return;
+    if (
+      state.profile === prev.profile &&
+      state.previewPath === prev.previewPath &&
+      state.previewDark === prev.previewDark
+    )
+      return;
     channel?.postMessage({
       type: 'update',
       profile: state.profile,
       previewPath: state.previewPath,
+      previewDark: state.previewDark,
     } satisfies Message);
   });
 
-  // Respond to iframe startup requests with the current snapshot
   if (channel) {
     channel.onmessage = (ev: MessageEvent<Message>) => {
       if (ev.data?.type === 'request') {
@@ -48,6 +53,7 @@ export function installPreviewPublisher() {
           type: 'update',
           profile: s.profile,
           previewPath: s.previewPath,
+          previewDark: s.previewDark,
         } satisfies Message);
       }
     };
@@ -71,9 +77,14 @@ export function usePreviewBridge() {
     }
     if (!channel) return;
 
-    const apply = (raw: unknown, path?: string) => {
-      const patch: Partial<{ profile: DesignLanguageProfile; previewPath: string }> = {};
+    const apply = (raw: unknown, path?: string, dark?: boolean) => {
+      const patch: Partial<{
+        profile: DesignLanguageProfile;
+        previewPath: string;
+        previewDark: boolean;
+      }> = {};
       if (path) patch.previewPath = path;
+      if (dark !== undefined) patch.previewDark = dark;
       try {
         patch.profile = parseProfile(raw);
       } catch {
@@ -85,7 +96,8 @@ export function usePreviewBridge() {
     };
 
     channel.onmessage = (ev: MessageEvent<Message>) => {
-      if (ev.data?.type === 'update') apply(ev.data.profile, ev.data.previewPath);
+      if (ev.data?.type === 'update')
+        apply(ev.data.profile, ev.data.previewPath, ev.data.previewDark);
     };
 
     // Ask parent for the current snapshot on mount

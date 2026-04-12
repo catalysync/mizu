@@ -17,16 +17,18 @@ import { PreviewToolbar } from './preview-toolbar';
  */
 function useCssVars(ref: React.RefObject<HTMLDivElement | null>) {
   const profile = useCraftStore((s) => s.profile);
+  const previewDark = useCraftStore((s) => s.previewDark);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const vars = profileToCss(profile);
-    // Set each var on the element's style
+    const vars = profileToCss(profile, previewDark);
     for (const [key, value] of Object.entries(vars)) {
       el.style.setProperty(key, value);
     }
-  }, [profile, ref]);
+    // Also set color-scheme so scrollbars/form controls follow
+    el.style.setProperty('color-scheme', previewDark ? 'dark' : 'light');
+  }, [profile, previewDark, ref]);
 }
 
 interface PreviewAppProps {
