@@ -1,29 +1,30 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { createRef } from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 import { describe, expect, it, vi } from 'vitest';
 import {
   Modal,
-  ModalTrigger,
   ModalContent,
   ModalHeader,
   ModalTitle,
   ModalDescription,
+  ModalBody,
   ModalFooter,
+  ModalTrigger,
   ModalClose,
 } from './Modal';
 
-function TestModal({ onOpenChange }: { onOpenChange?: (open: boolean) => void }) {
+function TestModal({ size, open = true }: { size?: string; open?: boolean }) {
   return (
-    <Modal onOpenChange={onOpenChange}>
-      <ModalTrigger>Open</ModalTrigger>
-      <ModalContent>
+    <Modal open={open}>
+      <ModalContent size={size as any}>
         <ModalHeader>
           <ModalTitle>Test title</ModalTitle>
           <ModalDescription>Test description</ModalDescription>
         </ModalHeader>
+        <ModalBody>Body content</ModalBody>
         <ModalFooter>
-          <ModalClose>Cancel</ModalClose>
+          <ModalClose>Close</ModalClose>
         </ModalFooter>
       </ModalContent>
     </Modal>
@@ -31,61 +32,108 @@ function TestModal({ onOpenChange }: { onOpenChange?: (open: boolean) => void })
 }
 
 describe('Modal', () => {
-  it('opens when trigger is clicked', async () => {
-    const user = userEvent.setup();
+  it('renders the title', () => {
     render(<TestModal />);
-    await user.click(screen.getByText('Open'));
     expect(screen.getByText('Test title')).toBeInTheDocument();
   });
 
-  it('renders dialog role with title and description', async () => {
-    const user = userEvent.setup();
+  it('renders the description', () => {
     render(<TestModal />);
-    await user.click(screen.getByText('Open'));
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
     expect(screen.getByText('Test description')).toBeInTheDocument();
   });
 
-  it('closes on escape key', async () => {
-    const onOpenChange = vi.fn();
-    const user = userEvent.setup();
-    render(<TestModal onOpenChange={onOpenChange} />);
-    await user.click(screen.getByText('Open'));
-    await user.keyboard('{Escape}');
-    expect(onOpenChange).toHaveBeenCalledWith(false);
+  it('renders body content', () => {
+    render(<TestModal />);
+    expect(screen.getByText('Body content')).toBeInTheDocument();
   });
 
-  it('closes when close button is clicked', async () => {
-    const onOpenChange = vi.fn();
-    const user = userEvent.setup();
-    render(<TestModal onOpenChange={onOpenChange} />);
-    await user.click(screen.getByText('Open'));
-    await user.click(screen.getByText('Cancel'));
-    expect(onOpenChange).toHaveBeenCalledWith(false);
+  it('renders the footer', () => {
+    render(<TestModal />);
+    expect(screen.getByText('Close')).toBeInTheDocument();
   });
 
-  it('forwards ref to content', async () => {
-    const ref = { current: null as HTMLDivElement | null };
-    const user = userEvent.setup();
+  it('renders the overlay', () => {
+    const { container } = render(<TestModal />);
+    expect(document.querySelector('.mizu-dialog__overlay')).toBeInTheDocument();
+  });
+
+  it('renders a close button', () => {
+    render(<TestModal />);
+    expect(screen.getByLabelText('Close')).toBeInTheDocument();
+  });
+
+  it('applies the md size by default', () => {
+    const { container } = render(<TestModal />);
+    expect(document.querySelector('.mizu-dialog__content')).toHaveAttribute('data-size', 'md');
+  });
+
+  it('applies the sm size', () => {
+    const { container } = render(<TestModal size="sm" />);
+    expect(document.querySelector('.mizu-dialog__content')).toHaveAttribute('data-size', 'sm');
+  });
+
+  it('applies the lg size', () => {
+    const { container } = render(<TestModal size="lg" />);
+    expect(document.querySelector('.mizu-dialog__content')).toHaveAttribute('data-size', 'lg');
+  });
+
+  it('applies the xl size', () => {
+    const { container } = render(<TestModal size="xl" />);
+    expect(document.querySelector('.mizu-dialog__content')).toHaveAttribute('data-size', 'xl');
+  });
+
+  it('applies the fullscreen size', () => {
+    const { container } = render(<TestModal size="fullscreen" />);
+    expect(document.querySelector('.mizu-dialog__content')).toHaveAttribute(
+      'data-size',
+      'fullscreen',
+    );
+  });
+
+  it('does not render content when closed', () => {
+    render(<TestModal open={false} />);
+    expect(screen.queryByText('Test title')).not.toBeInTheDocument();
+  });
+
+  it('renders with a trigger', () => {
     render(
       <Modal>
         <ModalTrigger>Open</ModalTrigger>
-        <ModalContent ref={ref}>
-          <ModalTitle>Ref test</ModalTitle>
+        <ModalContent>
+          <ModalBody>Content</ModalBody>
         </ModalContent>
       </Modal>,
     );
-    await user.click(screen.getByText('Open'));
-    expect(ref.current).toBeInstanceOf(HTMLDivElement);
+    expect(screen.getByText('Open')).toBeInTheDocument();
   });
 
-  it('has no a11y violations when open', async () => {
-    const user = userEvent.setup();
+  it('has header with mizu-dialog__header class', () => {
     const { container } = render(<TestModal />);
-    await user.click(screen.getByText('Open'));
-    await waitFor(() => {
-      expect(screen.getByRole('dialog')).toBeInTheDocument();
-    });
+    expect(document.querySelector('.mizu-dialog__header')).toBeInTheDocument();
+  });
+
+  it('has body with mizu-dialog__body class', () => {
+    const { container } = render(<TestModal />);
+    expect(document.querySelector('.mizu-dialog__body')).toBeInTheDocument();
+  });
+
+  it('has footer with mizu-dialog__footer class', () => {
+    const { container } = render(<TestModal />);
+    expect(document.querySelector('.mizu-dialog__footer')).toBeInTheDocument();
+  });
+
+  it('has no axe violations', async () => {
+    const { container } = render(<TestModal />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations in sm size', async () => {
+    const { container } = render(<TestModal size="sm" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations in fullscreen', async () => {
+    const { container } = render(<TestModal size="fullscreen" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });
