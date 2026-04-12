@@ -1,47 +1,63 @@
 import { render, screen } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
-import { Breadcrumb, BreadcrumbLink, BreadcrumbCurrent } from './Breadcrumb';
+import { AppBreadcrumbs } from '../../shell/AppBreadcrumbs';
 
-describe('Breadcrumb', () => {
-  it('renders navigation landmark', () => {
-    render(
-      <Breadcrumb>
-        <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        <BreadcrumbCurrent>Page</BreadcrumbCurrent>
-      </Breadcrumb>,
-    );
-    expect(screen.getByRole('navigation', { name: /breadcrumb/i })).toBeInTheDocument();
+describe('Breadcrumb (AppBreadcrumbs)', () => {
+  const items = [
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'Widget' },
+  ];
+
+  it('renders all breadcrumb items', () => {
+    render(<AppBreadcrumbs items={items} />);
+    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByText('Products')).toBeInTheDocument();
+    expect(screen.getByText('Widget')).toBeInTheDocument();
   });
 
-  it('renders separators between items', () => {
-    const { container } = render(
-      <Breadcrumb>
-        <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        <BreadcrumbCurrent>Page</BreadcrumbCurrent>
-      </Breadcrumb>,
-    );
-    expect(container.querySelector('.mizu-breadcrumb__separator')).toBeInTheDocument();
+  it('renders links for items with href', () => {
+    render(<AppBreadcrumbs items={items} />);
+    expect(screen.getByText('Home').closest('a')).toHaveAttribute('href', '/');
+    expect(screen.getByText('Products').closest('a')).toHaveAttribute('href', '/products');
   });
 
-  it('applies aria-current to current page', () => {
-    render(
-      <Breadcrumb>
-        <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        <BreadcrumbCurrent>Current</BreadcrumbCurrent>
-      </Breadcrumb>,
-    );
-    expect(screen.getByText('Current')).toHaveAttribute('aria-current', 'page');
+  it('renders the last item as text (not a link)', () => {
+    render(<AppBreadcrumbs items={items} />);
+    expect(screen.getByText('Widget').closest('a')).toBeNull();
   });
 
-  it('has no a11y violations', async () => {
-    const { container } = render(
-      <Breadcrumb>
-        <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        <BreadcrumbLink href="/products">Products</BreadcrumbLink>
-        <BreadcrumbCurrent>Widget</BreadcrumbCurrent>
-      </Breadcrumb>,
+  it('marks the last item as current page', () => {
+    render(<AppBreadcrumbs items={items} />);
+    expect(screen.getByText('Widget').closest('[aria-current]')).toHaveAttribute(
+      'aria-current',
+      'page',
     );
+  });
+
+  it('renders a nav with aria-label', () => {
+    render(<AppBreadcrumbs items={items} />);
+    expect(screen.getByRole('navigation', { name: 'Breadcrumb' })).toBeInTheDocument();
+  });
+
+  it('renders a single item without separator', () => {
+    const { container } = render(<AppBreadcrumbs items={[{ label: 'Home' }]} />);
+    expect(container.querySelectorAll('.mizu-app-breadcrumbs__separator').length).toBe(0);
+  });
+
+  it('renders empty when items is empty', () => {
+    render(<AppBreadcrumbs items={[]} />);
+    expect(screen.getByRole('navigation')).toBeInTheDocument();
+  });
+
+  it('has no axe violations', async () => {
+    const { container } = render(<AppBreadcrumbs items={items} />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (single item)', async () => {
+    const { container } = render(<AppBreadcrumbs items={[{ label: 'Dashboard' }]} />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });

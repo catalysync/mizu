@@ -1,31 +1,69 @@
+import { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
 import { Avatar } from './Avatar';
 
 describe('Avatar', () => {
-  it('renders an image when src is provided', () => {
-    render(<Avatar src="/photo.jpg" alt="Jane Doe" />);
-    expect(screen.getByRole('img')).toHaveAttribute('alt', 'Jane Doe');
+  it('renders with an image src', () => {
+    render(<Avatar src="/photo.jpg" alt="Ada" />);
+    expect(screen.getByAltText('Ada')).toBeInTheDocument();
   });
 
-  it('renders initials when provided', () => {
-    render(<Avatar initials="JD" alt="Jane Doe" />);
+  it('renders initials when no src', () => {
+    render(<Avatar initials="AL" />);
+    expect(screen.getByText('AL')).toBeInTheDocument();
+  });
+
+  it('renders children as fallback', () => {
+    render(<Avatar>JD</Avatar>);
     expect(screen.getByText('JD')).toBeInTheDocument();
   });
 
-  it.each(['sm', 'md', 'lg', 'xl'] as const)('applies the %s size class', (size) => {
-    const { container } = render(<Avatar size={size} initials="A" />);
-    expect(container.firstChild).toHaveClass(`mizu-avatar--${size}`);
+  it('applies the sm size', () => {
+    const { container } = render(<Avatar initials="A" size="sm" />);
+    expect(container.firstChild).toHaveClass('mizu-avatar--sm');
   });
 
-  it('forwards className', () => {
-    const { container } = render(<Avatar className="custom" initials="X" />);
+  it('applies the md size', () => {
+    const { container } = render(<Avatar initials="A" size="md" />);
+    expect(container.firstChild).toHaveClass('mizu-avatar--md');
+  });
+
+  it('applies the lg size', () => {
+    const { container } = render(<Avatar initials="A" size="lg" />);
+    expect(container.firstChild).toHaveClass('mizu-avatar--lg');
+  });
+
+  it('applies the xl size', () => {
+    const { container } = render(<Avatar initials="A" size="xl" />);
+    expect(container.firstChild).toHaveClass('mizu-avatar--xl');
+  });
+
+  it('merges custom className', () => {
+    const { container } = render(<Avatar initials="A" className="custom" />);
+    expect(container.firstChild).toHaveClass('mizu-avatar');
     expect(container.firstChild).toHaveClass('custom');
   });
 
-  it('has no a11y violations', async () => {
-    const { container } = render(<Avatar src="/photo.jpg" alt="User avatar" />);
+  it('forwards ref', () => {
+    const ref = createRef<HTMLSpanElement>();
+    render(<Avatar ref={ref} initials="A" />);
+    expect(ref.current).toBeInstanceOf(HTMLSpanElement);
+  });
+
+  it('has the mizu-avatar base class', () => {
+    const { container } = render(<Avatar initials="X" />);
+    expect(container.firstChild).toHaveClass('mizu-avatar');
+  });
+
+  it('has no axe violations (initials)', async () => {
+    const { container } = render(<Avatar initials="AL" aria-label="Ada Lovelace" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (image)', async () => {
+    const { container } = render(<Avatar src="/photo.jpg" alt="Ada Lovelace" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });

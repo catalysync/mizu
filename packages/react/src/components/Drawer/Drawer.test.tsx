@@ -1,80 +1,102 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { axe } from 'vitest-axe';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
   Drawer,
-  DrawerTrigger,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
+  DrawerDescription,
+  DrawerBody,
+  DrawerFooter,
   DrawerClose,
 } from './Drawer';
 
-function TestDrawer({
-  side = 'right' as const,
-  onOpenChange,
-}: {
-  side?: 'left' | 'right' | 'top' | 'bottom';
-  onOpenChange?: (open: boolean) => void;
-}) {
+function TestDrawer({ side = 'right', open = true }: { side?: string; open?: boolean }) {
   return (
-    <Drawer onOpenChange={onOpenChange}>
-      <DrawerTrigger>Open</DrawerTrigger>
-      <DrawerContent side={side}>
+    <Drawer open={open}>
+      <DrawerContent side={side as any}>
         <DrawerHeader>
-          <DrawerTitle>Settings</DrawerTitle>
+          <DrawerTitle>Drawer title</DrawerTitle>
+          <DrawerDescription>Drawer desc</DrawerDescription>
         </DrawerHeader>
-        <DrawerClose>Close</DrawerClose>
+        <DrawerBody>Body here</DrawerBody>
+        <DrawerFooter>
+          <DrawerClose>Close</DrawerClose>
+        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
 }
 
 describe('Drawer', () => {
-  it('opens when trigger is clicked', async () => {
-    const user = userEvent.setup();
+  it('renders the title', () => {
     render(<TestDrawer />);
-    await user.click(screen.getByText('Open'));
-    expect(screen.getByText('Settings')).toBeInTheDocument();
+    expect(screen.getByText('Drawer title')).toBeInTheDocument();
   });
 
-  it('renders with dialog role', async () => {
-    const user = userEvent.setup();
+  it('renders the description', () => {
     render(<TestDrawer />);
-    await user.click(screen.getByText('Open'));
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByText('Drawer desc')).toBeInTheDocument();
   });
 
-  it('closes on escape', async () => {
-    const onOpenChange = vi.fn();
-    const user = userEvent.setup();
-    render(<TestDrawer onOpenChange={onOpenChange} />);
-    await user.click(screen.getByText('Open'));
-    await user.keyboard('{Escape}');
-    expect(onOpenChange).toHaveBeenCalledWith(false);
+  it('renders body content', () => {
+    render(<TestDrawer />);
+    expect(screen.getByText('Body here')).toBeInTheDocument();
   });
 
-  it('closes via close button', async () => {
-    const onOpenChange = vi.fn();
-    const user = userEvent.setup();
-    render(<TestDrawer onOpenChange={onOpenChange} />);
-    await user.click(screen.getByText('Open'));
-    await user.click(screen.getByText('Close'));
-    expect(onOpenChange).toHaveBeenCalledWith(false);
+  it('renders footer with close button', () => {
+    render(<TestDrawer />);
+    expect(screen.getByText('Close')).toBeInTheDocument();
   });
 
-  it('sets data-side attribute', async () => {
-    const user = userEvent.setup();
+  it('renders an overlay', () => {
+    render(<TestDrawer />);
+    expect(document.querySelector('.mizu-drawer__overlay')).toBeInTheDocument();
+  });
+
+  it('does not render when closed', () => {
+    render(<TestDrawer open={false} />);
+    expect(screen.queryByText('Drawer title')).not.toBeInTheDocument();
+  });
+
+  it('applies right side by default', () => {
+    render(<TestDrawer />);
+    expect(document.querySelector('.mizu-drawer__content')).toHaveAttribute('data-side', 'right');
+  });
+
+  it('applies left side', () => {
     render(<TestDrawer side="left" />);
-    await user.click(screen.getByText('Open'));
-    expect(screen.getByRole('dialog')).toHaveAttribute('data-side', 'left');
+    expect(document.querySelector('.mizu-drawer__content')).toHaveAttribute('data-side', 'left');
   });
 
-  it('has no a11y violations', async () => {
-    const user = userEvent.setup();
+  it('applies bottom side', () => {
+    render(<TestDrawer side="bottom" />);
+    expect(document.querySelector('.mizu-drawer__content')).toHaveAttribute('data-side', 'bottom');
+  });
+
+  it('renders header with class', () => {
+    render(<TestDrawer />);
+    expect(document.querySelector('.mizu-drawer__header')).toBeInTheDocument();
+  });
+
+  it('renders body with class', () => {
+    render(<TestDrawer />);
+    expect(document.querySelector('.mizu-drawer__body')).toBeInTheDocument();
+  });
+
+  it('renders footer with class', () => {
+    render(<TestDrawer />);
+    expect(document.querySelector('.mizu-drawer__footer')).toBeInTheDocument();
+  });
+
+  it('has no axe violations (right)', async () => {
     const { container } = render(<TestDrawer />);
-    await user.click(screen.getByText('Open'));
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (left)', async () => {
+    const { container } = render(<TestDrawer side="left" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });

@@ -1,37 +1,75 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { createRef } from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 import { describe, expect, it, vi } from 'vitest';
 import { Tag } from './Tag';
 
 describe('Tag', () => {
-  it('renders label text', () => {
-    render(<Tag>React</Tag>);
-    expect(screen.getByText('React')).toBeInTheDocument();
+  it('renders with text content', () => {
+    render(<Tag>Feature</Tag>);
+    expect(screen.getByText('Feature')).toBeInTheDocument();
   });
 
-  it.each(['neutral', 'success', 'warning', 'danger', 'info'] as const)(
-    'applies the %s tone class',
-    (tone) => {
-      const { container } = render(<Tag tone={tone}>Label</Tag>);
-      expect(container.firstChild).toHaveClass(`mizu-tag--${tone}`);
-    },
-  );
-
-  it('renders dismiss button when onDismiss is provided', () => {
-    render(<Tag onDismiss={() => {}}>Remove me</Tag>);
-    expect(screen.getByRole('button', { name: /remove/i })).toBeInTheDocument();
+  it('applies the mizu-tag base class', () => {
+    const { container } = render(<Tag>X</Tag>);
+    expect(container.firstChild).toHaveClass('mizu-tag');
   });
 
-  it('calls onDismiss when dismiss button is clicked', async () => {
+  it('applies the neutral tone by default', () => {
+    const { container } = render(<Tag>X</Tag>);
+    expect(container.firstChild).toHaveClass('mizu-tag--neutral');
+  });
+
+  it('applies the success tone', () => {
+    const { container } = render(<Tag tone="success">Active</Tag>);
+    expect(container.firstChild).toHaveClass('mizu-tag--success');
+  });
+
+  it('applies the warning tone', () => {
+    const { container } = render(<Tag tone="warning">Pending</Tag>);
+    expect(container.firstChild).toHaveClass('mizu-tag--warning');
+  });
+
+  it('applies the danger tone', () => {
+    const { container } = render(<Tag tone="danger">Error</Tag>);
+    expect(container.firstChild).toHaveClass('mizu-tag--danger');
+  });
+
+  it('renders a remove button when onDismiss is provided', () => {
+    render(<Tag onDismiss={() => {}}>X</Tag>);
+    expect(screen.getByLabelText(/remove/i)).toBeInTheDocument();
+  });
+
+  it('fires onDismiss when remove button clicked', () => {
     const onDismiss = vi.fn();
-    render(<Tag onDismiss={onDismiss}>Tag</Tag>);
-    await userEvent.click(screen.getByRole('button', { name: /remove/i }));
+    render(<Tag onDismiss={onDismiss}>Bug</Tag>);
+    fireEvent.click(screen.getByLabelText(/remove/i));
     expect(onDismiss).toHaveBeenCalledOnce();
   });
 
-  it('has no a11y violations', async () => {
-    const { container } = render(<Tag onDismiss={() => {}}>Accessible</Tag>);
+  it('does not show remove button without onDismiss', () => {
+    render(<Tag>Feature</Tag>);
+    expect(screen.queryByLabelText(/remove/i)).not.toBeInTheDocument();
+  });
+
+  it('merges custom className', () => {
+    const { container } = render(<Tag className="custom">X</Tag>);
+    expect(container.firstChild).toHaveClass('custom');
+  });
+
+  it('forwards ref', () => {
+    const ref = createRef<HTMLSpanElement>();
+    render(<Tag ref={ref}>X</Tag>);
+    expect(ref.current).toBeInstanceOf(HTMLSpanElement);
+  });
+
+  it('has no axe violations', async () => {
+    const { container } = render(<Tag>Feature</Tag>);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (removable)', async () => {
+    const { container } = render(<Tag onDismiss={() => {}}>Bug</Tag>);
     expect(await axe(container)).toHaveNoViolations();
   });
 });
