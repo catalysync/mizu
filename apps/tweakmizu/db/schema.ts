@@ -76,6 +76,34 @@ export const subscription = pgTable('subscription', {
   userId: text('userId').references(() => user.id),
 });
 
+export const craftProfile = pgTable('craft_profile', {
+  id: text('id').primaryKey(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  name: text('name').notNull(),
+  archetype: text('archetype'),
+  domain: text('domain'),
+  profileJson: json('profile_json').notNull(),
+  isPublic: boolean('is_public').notNull().default(false),
+  likes: integer('likes').notNull().default(0),
+  tags: text('tags').array(),
+  shareToken: text('share_token').unique(),
+  createdAt: timestamp('created_at').notNull(),
+  updatedAt: timestamp('updated_at').notNull(),
+});
+
+export const craftProfileLike = pgTable('craft_profile_like', {
+  id: text('id').primaryKey(),
+  profileId: text('profile_id')
+    .notNull()
+    .references(() => craftProfile.id, { onDelete: 'cascade' }),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  createdAt: timestamp('created_at').notNull(),
+});
+
 export const generatedProject = pgTable('generated_project', {
   id: text('id').primaryKey(),
   userId: text('user_id')

@@ -7,6 +7,7 @@ import { Badge } from '@aspect/react';
 import { useCraftStore } from '@/store/craft-store';
 import { exportProfile, type ExportFormat } from '@/lib/craft/exporter';
 import { useIsPro } from './craft-pro-context';
+import { saveProfile, shareProfile } from '@/actions/craft-profiles';
 
 interface FormatOption {
   id: ExportFormat;
@@ -61,6 +62,26 @@ export function ExportPanel() {
   const profile = useCraftStore((s) => s.profile);
   const [selected, setSelected] = useState<Set<ExportFormat>>(new Set(['json', 'css']));
   const [downloaded, setDownloaded] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
+
+  const handleSave = async () => {
+    const result = await saveProfile(profile);
+    if (result.id) {
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    }
+  };
+
+  const handleShare = async () => {
+    const result = await saveProfile(profile);
+    if (result.id) {
+      const shared = await shareProfile(result.id);
+      const url = `${window.location.origin}/craft/shared/${shared.token}`;
+      setShareUrl(url);
+      navigator.clipboard.writeText(url);
+    }
+  };
 
   const toggle = (id: ExportFormat) => {
     setSelected((prev) => {
@@ -138,6 +159,12 @@ export function ExportPanel() {
           {downloaded
             ? 'Downloaded!'
             : `Export ${selected.size} file${selected.size !== 1 ? 's' : ''}`}
+        </button>
+        <button type="button" className="craft-export__save-btn" onClick={handleSave}>
+          {saved ? 'Saved!' : 'Save to account'}
+        </button>
+        <button type="button" className="craft-export__share-btn" onClick={handleShare}>
+          {shareUrl ? 'Link copied!' : 'Share link'}
         </button>
       </div>
 

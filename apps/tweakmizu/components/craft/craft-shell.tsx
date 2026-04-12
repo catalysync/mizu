@@ -47,6 +47,7 @@ const NAV_SECTIONS: Array<{
     items: [
       { href: '/preview', label: 'Preview', hint: 'see it assembled' },
       { href: '/craft/export', label: 'Export', hint: 'CSS, JSON, starter' },
+      { href: '/craft/gallery', label: 'Gallery', hint: 'community profiles' },
     ],
   },
 ];
