@@ -6,7 +6,7 @@
   border-radius: var(--mizu-radius-lg);
   padding: var(--mizu-spacing-4);
   box-shadow: var(--mizu-shadow-lg);
-  z-index: 50;
+  z-index: var(--mizu-z-popover);
   outline: none;
   animation: mizu-popover-in 120ms ease;
 }

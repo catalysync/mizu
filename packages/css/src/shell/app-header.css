@@ -9,7 +9,7 @@
   border-bottom: 1px solid var(--mizu-border-default);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: var(--mizu-z-header);
 }
 
 .mizu-app-header__brand {

@@ -1,9 +1,65 @@
+/* Button component tokens (tier 3) — bridge between semantic tokens and component usage.
+ * Override these to change button appearance without affecting other action surfaces. */
+:root {
+  /* Primary */
+  --mizu-button-primary-bg: var(--mizu-action-primary-default);
+  --mizu-button-primary-bg-hover: var(--mizu-action-primary-hover);
+  --mizu-button-primary-bg-active: var(--mizu-action-primary-active);
+  --mizu-button-primary-bg-disabled: var(--mizu-action-primary-default);
+  --mizu-button-primary-color: var(--mizu-color-white);
+  --mizu-button-primary-color-disabled: var(--mizu-color-white);
+  --mizu-button-primary-border: transparent;
+
+  /* Secondary */
+  --mizu-button-secondary-bg: transparent;
+  --mizu-button-secondary-bg-hover: var(--mizu-surface-secondary);
+  --mizu-button-secondary-bg-active: var(--mizu-surface-secondary);
+  --mizu-button-secondary-bg-disabled: transparent;
+  --mizu-button-secondary-color: var(--mizu-text-primary);
+  --mizu-button-secondary-color-disabled: var(--mizu-text-disabled);
+  --mizu-button-secondary-border: var(--mizu-border-default);
+  --mizu-button-secondary-border-disabled: var(--mizu-border-default);
+
+  /* Ghost */
+  --mizu-button-ghost-bg: transparent;
+  --mizu-button-ghost-bg-hover: var(--mizu-surface-secondary);
+  --mizu-button-ghost-bg-active: var(--mizu-surface-secondary);
+  --mizu-button-ghost-color: var(--mizu-text-primary);
+  --mizu-button-ghost-color-disabled: var(--mizu-text-disabled);
+
+  /* Destructive */
+  --mizu-button-destructive-bg: var(--mizu-action-destructive-default, #dc2626);
+  --mizu-button-destructive-bg-hover: var(--mizu-action-destructive-hover, #b91c1c);
+  --mizu-button-destructive-bg-active: var(--mizu-action-destructive-active, #991b1b);
+  --mizu-button-destructive-bg-disabled: var(--mizu-action-destructive-default, #dc2626);
+  --mizu-button-destructive-color: var(--mizu-color-white);
+  --mizu-button-destructive-color-disabled: var(--mizu-color-white);
+
+  /* Gradient (AI) */
+  --mizu-button-gradient-bg: linear-gradient(
+    135deg,
+    var(--mizu-action-primary-default) 0%,
+    #8b5cf6 50%,
+    #ec4899 100%
+  );
+  --mizu-button-gradient-bg-hover: linear-gradient(
+    135deg,
+    var(--mizu-action-primary-hover) 0%,
+    #7c3aed 50%,
+    #db2777 100%
+  );
+  --mizu-button-gradient-color: var(--mizu-color-white);
+}
+
 .mizu-button {
   --_bg: transparent;
   --_bg-hover: var(--mizu-surface-secondary);
   --_bg-active: var(--mizu-surface-secondary);
+  --_bg-disabled: transparent;
   --_color: var(--mizu-text-primary);
+  --_color-disabled: var(--mizu-text-disabled);
   --_border: transparent;
+  --_border-disabled: transparent;
   --_radius: var(--mizu-radius-lg);
 
   position: relative;
@@ -16,24 +72,16 @@
   font-weight: var(--mizu-font-weight-medium);
   font-size: var(--mizu-font-size-sm);
   line-height: var(--mizu-font-line-height-tight);
-  background-color: var(--_bg);
+  background: var(--_bg);
   color: var(--_color);
   border: 1px solid var(--_border);
   border-radius: var(--_radius);
   cursor: pointer;
   outline: none;
   transition:
-    background-color var(--mizu-duration-fast) var(--mizu-easing-out),
+    background var(--mizu-duration-fast) var(--mizu-easing-out),
     border-color var(--mizu-duration-fast) var(--mizu-easing-out),
     color var(--mizu-duration-fast) var(--mizu-easing-out);
-}
-
-.mizu-button:hover {
-  background-color: var(--_bg-hover);
-}
-
-.mizu-button:active {
-  background-color: var(--_bg-active);
 }
 
 .mizu-button:focus-visible {
@@ -42,8 +90,20 @@
 }
 
 .mizu-button:disabled {
-  opacity: 0.5;
+  background: var(--_bg-disabled);
+  color: var(--_color-disabled);
+  border-color: var(--_border-disabled);
+  cursor: not-allowed;
   pointer-events: none;
+  opacity: 0.55;
+}
+
+.mizu-button:hover:not(:disabled) {
+  background: var(--_bg-hover);
+}
+
+.mizu-button:active:not(:disabled) {
+  background: var(--_bg-active);
 }
 
 .mizu-button[data-loading="true"] {
@@ -71,30 +131,85 @@
   }
 }
 
-/* Variants — only override custom properties */
+/* Variants — reference component tokens, not semantic tokens directly */
 .mizu-button--primary {
-  --_bg: var(--mizu-action-primary-default);
-  --_bg-hover: var(--mizu-action-primary-hover);
-  --_bg-active: var(--mizu-action-primary-active);
-
-  /* Primary always has a colored background, so text stays white in both
-   * light and dark modes (unlike --mizu-text-inverse, which flips). */
-  --_color: var(--mizu-color-white);
+  --_bg: var(--mizu-button-primary-bg);
+  --_bg-hover: var(--mizu-button-primary-bg-hover);
+  --_bg-active: var(--mizu-button-primary-bg-active);
+  --_bg-disabled: var(--mizu-button-primary-bg-disabled);
+  --_color: var(--mizu-button-primary-color);
+  --_color-disabled: var(--mizu-button-primary-color-disabled);
+  --_border: var(--mizu-button-primary-border);
 }
 
 .mizu-button--secondary {
-  --_border: var(--mizu-border-default);
+  --_bg: var(--mizu-button-secondary-bg);
+  --_bg-hover: var(--mizu-button-secondary-bg-hover);
+  --_bg-active: var(--mizu-button-secondary-bg-active);
+  --_bg-disabled: var(--mizu-button-secondary-bg-disabled);
+  --_color: var(--mizu-button-secondary-color);
+  --_color-disabled: var(--mizu-button-secondary-color-disabled);
+  --_border: var(--mizu-button-secondary-border);
+  --_border-disabled: var(--mizu-button-secondary-border-disabled);
 }
 
 .mizu-button--ghost {
-  --_bg-hover: var(--mizu-surface-secondary);
+  --_bg: var(--mizu-button-ghost-bg);
+  --_bg-hover: var(--mizu-button-ghost-bg-hover);
+  --_bg-active: var(--mizu-button-ghost-bg-active);
+  --_color: var(--mizu-button-ghost-color);
+  --_color-disabled: var(--mizu-button-ghost-color-disabled);
 }
 
 .mizu-button--destructive {
-  --_bg: var(--mizu-action-destructive-default, #dc2626);
-  --_bg-hover: var(--mizu-action-destructive-hover, #b91c1c);
-  --_bg-active: var(--mizu-action-destructive-active, #991b1b);
+  --_bg: var(--mizu-button-destructive-bg);
+  --_bg-hover: var(--mizu-button-destructive-bg-hover);
+  --_bg-active: var(--mizu-button-destructive-bg-active);
+  --_bg-disabled: var(--mizu-button-destructive-bg-disabled);
+  --_color: var(--mizu-button-destructive-color);
+  --_color-disabled: var(--mizu-button-destructive-color-disabled);
+}
+
+.mizu-button--gradient {
+  --_bg: var(--mizu-button-gradient-bg);
+  --_bg-hover: var(--mizu-button-gradient-bg-hover);
+  --_color: var(--mizu-button-gradient-color);
+
+  background-size: 200% 200%;
+}
+
+.mizu-button--gradient:not(:disabled) {
+  animation: mizu-button-gradient-loop 4s ease infinite;
+}
+
+@keyframes mizu-button-gradient-loop {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Inverse — for use on dark backgrounds */
+.mizu-button[data-inverse="true"] {
   --_color: var(--mizu-color-white);
+  --_border: color-mix(in srgb, white 30%, transparent);
+}
+
+.mizu-button[data-inverse="true"]:hover:not(:disabled) {
+  --_bg-hover: color-mix(in srgb, white 12%, transparent);
+}
+
+.mizu-button[data-inverse="true"].mizu-button--primary {
+  --_bg: var(--mizu-color-white);
+  --_color: var(--mizu-text-primary);
+  --_bg-hover: color-mix(in srgb, white 90%, transparent);
 }
 
 /* Sizes */
@@ -120,4 +235,9 @@
   height: 2.5rem;
   width: 2.5rem;
   padding: 0;
+}
+
+/* Full width */
+.mizu-button[data-full-width="true"] {
+  width: 100%;
 }

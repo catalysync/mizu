@@ -1,0 +1,18 @@
+/* mizu z-index scale — named tiers prevent collision as overlays stack.
+ * Every component MUST use these tokens instead of hardcoded numbers.
+ * Modeled after sage-carbon's z-index scale, adapted for mizu's shell. */
+
+:root {
+  --mizu-z-base: 0;
+  --mizu-z-sticky: 10;
+  --mizu-z-header: 20;
+  --mizu-z-sidebar: 25;
+  --mizu-z-dropdown: 100;
+  --mizu-z-overlay: 1000;
+  --mizu-z-drawer: 1100;
+  --mizu-z-modal: 1200;
+  --mizu-z-popover: 1300;
+  --mizu-z-tooltip: 1400;
+  --mizu-z-toast: 1500;
+  --mizu-z-above-all: 9999;
+}

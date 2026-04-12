@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   background: color-mix(in srgb, var(--mizu-color-slate-950) 50%, transparent);
-  z-index: 50;
+  z-index: var(--mizu-z-overlay);
   animation: mizu-drawer-fade-in var(--mizu-duration-normal) var(--mizu-easing-out);
 }
 
@@ -10,7 +10,7 @@
   position: fixed;
   background: var(--mizu-surface-default);
   box-shadow: var(--mizu-shadow-xl);
-  z-index: 51;
+  z-index: var(--mizu-z-drawer);
   display: flex;
   flex-direction: column;
 }

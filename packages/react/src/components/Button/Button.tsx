@@ -10,6 +10,7 @@ const buttonVariants = cva('mizu-button', {
       secondary: 'mizu-button--secondary',
       ghost: 'mizu-button--ghost',
       destructive: 'mizu-button--destructive',
+      gradient: 'mizu-button--gradient',
     },
     size: {
       sm: 'mizu-button--sm',
@@ -28,6 +29,8 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   loading?: boolean;
+  inverse?: boolean;
+  fullWidth?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -38,6 +41,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       asChild = false,
       loading = false,
+      inverse = false,
+      fullWidth = false,
       disabled,
       type = 'button',
       children,
@@ -52,6 +57,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         data-component="mizu-button"
         className={cn(buttonVariants({ variant, size, className }))}
         data-loading={loading || undefined}
+        data-inverse={inverse || undefined}
+        data-full-width={fullWidth || undefined}
         aria-busy={loading || undefined}
         type={asChild ? undefined : type}
         disabled={disabled ?? loading}

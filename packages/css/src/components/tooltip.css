@@ -6,7 +6,7 @@
   padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
   border-radius: var(--mizu-radius-md);
   max-width: 16rem;
-  z-index: 60;
+  z-index: var(--mizu-z-tooltip);
   user-select: none;
   animation: mizu-tooltip-in 120ms ease;
   box-shadow: var(--mizu-shadow-md);

@@ -8,7 +8,7 @@
   padding: var(--mizu-spacing-4);
   width: 24rem;
   max-width: 100vw;
-  z-index: 9999;
+  z-index: var(--mizu-z-toast);
   list-style: none;
   outline: none;
 }

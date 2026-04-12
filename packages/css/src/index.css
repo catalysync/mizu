@@ -10,8 +10,9 @@
  *   @import "@aspect/css/layouts/stack";
  */
 
-/* Shared utilities (sr-only, etc.) */
+/* Shared utilities + scales */
 @import url("./utilities.css");
+@import url("./z-index.css");
 
 /* Components */
 @import url("./components/button.css");

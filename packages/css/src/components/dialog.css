@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   background: color-mix(in srgb, var(--mizu-color-slate-950) 60%, transparent);
-  z-index: 50;
+  z-index: var(--mizu-z-overlay);
   animation: mizu-dialog-fade-in var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
@@ -19,7 +19,7 @@
   background: var(--mizu-surface-default);
   border-radius: var(--mizu-radius-lg);
   box-shadow: var(--mizu-shadow-xl);
-  z-index: 51;
+  z-index: var(--mizu-z-modal);
   animation: mizu-dialog-scale-in var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
