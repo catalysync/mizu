@@ -130,6 +130,14 @@
   padding-inline-end: 2rem;
 }
 
+/* Warning message */
+.mizu-form-group__warning {
+  display: block;
+  font-size: var(--mizu-font-size-xs);
+  color: var(--mizu-feedback-warning-default);
+  margin-top: var(--mizu-spacing-1);
+}
+
 /* Character count */
 .mizu-form-group__char-count {
   display: block;
