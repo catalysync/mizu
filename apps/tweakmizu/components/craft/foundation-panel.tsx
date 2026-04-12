@@ -94,6 +94,7 @@ function hexToChroma(hex: string): ChromaIntensity {
 export function FoundationPanel() {
   const foundation = useCraftStore((s) => s.profile.foundation);
   const updateCluster = useCraftStore((s) => s.updateCluster);
+  const setPreviewDark = useCraftStore((s) => s.setPreviewDark);
   const [seedInput, setSeedInput] = useState(foundation.seedColor ?? '#3b82f6');
   const [newColorName, setNewColorName] = useState('');
   const [newColorHex, setNewColorHex] = useState('#ef4444');
@@ -294,12 +295,15 @@ export function FoundationPanel() {
 
           <Section
             title="Dark mode philosophy"
-            hint="How dark mode relates to light. This configures the exported code strategy — use the moon icon in the preview toolbar to toggle the live preview."
+            hint="How dark mode relates to light. Selecting a dark strategy switches the preview to dark."
           >
             <OptionGroup
               options={DARK_MODE_OPTIONS}
               value={foundation.darkMode}
-              onChange={(v) => updateCluster('foundation', { darkMode: v })}
+              onChange={(v) => {
+                updateCluster('foundation', { darkMode: v });
+                setPreviewDark(v !== 'none');
+              }}
             />
           </Section>
 

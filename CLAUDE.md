@@ -1,6 +1,5 @@
 # mizu
 
-claude --resume 04a280b7-a4ee-4b6b-98a1-c4184cc40ed6 --dangerously-skip-permissions
 A code-first, framework-agnostic design system. Tokens → CSS → React bindings → Tailwind v4 bridge → Storybook + docs site, all in one pnpm monorepo.
 
 ## Stack
