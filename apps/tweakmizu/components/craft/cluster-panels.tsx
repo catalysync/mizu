@@ -270,6 +270,7 @@ export function MotionPanel() {
     <KnobPanel
       title="Motion"
       description="The temperament — easing curves, transition durations, and reduced-motion policy."
+      note="Hover over buttons, nav items, and table rows in the preview to see transitions. Switch between Tight and Relaxed durations for the clearest difference."
       sections={sections}
     />
   );
