@@ -1,0 +1,47 @@
+.hydration-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem;
+  max-width: 48rem;
+  animation: hydration-pulse 1.5s ease-in-out infinite;
+}
+
+.hydration-skeleton__bar {
+  background: var(--mizu-surface-secondary);
+  border-radius: var(--mizu-radius-md);
+}
+
+.hydration-skeleton__bar--title {
+  width: 40%;
+  height: 2rem;
+}
+
+.hydration-skeleton__bar--subtitle {
+  width: 60%;
+  height: 1rem;
+}
+
+.hydration-skeleton__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.hydration-skeleton__card {
+  height: 6rem;
+  background: var(--mizu-surface-secondary);
+  border-radius: var(--mizu-radius-lg);
+  border: 1px solid var(--mizu-border-subtle);
+}
+
+@keyframes hydration-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

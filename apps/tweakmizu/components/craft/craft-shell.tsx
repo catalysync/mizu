@@ -10,6 +10,7 @@ import { useCraftStore } from '@/store/craft-store';
 import { installPreviewPublisher } from './preview/preview-bridge';
 import { CraftProProvider } from './craft-pro-context';
 import { ProBanner } from './pro-upsell';
+import { HydrationGate } from './hydration-gate';
 
 interface CraftShellProps {
   user: { id: string; name: string; email: string };
@@ -168,7 +169,7 @@ export function CraftShell({ user, isPro = false, children }: CraftShellProps) {
           ) : null}
 
           <main className="craft-shell__main" id="craft-main">
-            {children}
+            <HydrationGate>{children}</HydrationGate>
           </main>
         </div>
       </div>
