@@ -28,7 +28,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--mizu-spacing-2, 0.5rem);
-  font-weight: 600;
+  font-weight: var(--mizu-font-weight-semibold, 600);
   color: var(--mizu-text-primary);
 }
 
@@ -56,7 +56,7 @@
   color: #fff;
   border-radius: 999px;
   font-size: var(--mizu-font-size-xs, 0.6875rem);
-  font-weight: 600;
+  font-weight: var(--mizu-font-weight-semibold, 600);
   text-transform: uppercase;
 }
 
@@ -111,7 +111,7 @@
 .craft-preview-shell__nav-item[data-active] {
   background: color-mix(in srgb, var(--mizu-action-primary-default) 12%, transparent);
   color: var(--mizu-action-primary-default);
-  font-weight: 500;
+  font-weight: var(--mizu-font-weight-medium, 500);
 }
 
 .craft-preview-shell__main {
@@ -212,7 +212,7 @@
 
 .craft-preview-kpi__value {
   font-size: var(--mizu-font-size-xl, 1.375rem);
-  font-weight: 700;
+  font-weight: var(--mizu-font-weight-bold, 700);
   color: var(--mizu-text-primary);
   font-variant-numeric: tabular-nums;
 }
@@ -275,7 +275,7 @@
   align-items: center;
   padding: var(--mizu-spacing-1, 0.125rem) var(--mizu-spacing-2, 0.5rem);
   font-size: var(--mizu-font-size-xs, 0.6875rem);
-  font-weight: 500;
+  font-weight: var(--mizu-font-weight-medium, 500);
   border-radius: var(--mizu-radius-sm);
   color: #fff;
   text-transform: capitalize;
@@ -305,7 +305,7 @@
   justify-content: center;
   padding: var(--mizu-spacing-2, 0.4375rem) var(--mizu-spacing-3, 0.875rem);
   font-size: var(--mizu-font-size-sm, 0.8125rem);
-  font-weight: 500;
+  font-weight: var(--mizu-font-weight-medium, 500);
   font-family: inherit;
   border-radius: var(--mizu-radius-md);
   border: var(--mizu-border-width-default, 1px) solid transparent;
@@ -397,7 +397,7 @@
 
 .craft-preview-field__label {
   font-size: var(--mizu-font-size-sm, 0.8125rem);
-  font-weight: 500;
+  font-weight: var(--mizu-font-weight-medium, 500);
   color: var(--mizu-text-primary);
 }
 
@@ -470,7 +470,7 @@
   margin: 0;
   color: var(--mizu-text-primary);
   font-size: var(--mizu-font-size-base, 1rem);
-  font-weight: 600;
+  font-weight: var(--mizu-font-weight-semibold, 600);
 }
 
 .craft-preview-empty-state__body {
@@ -538,5 +538,5 @@
   color: var(--mizu-text-secondary);
   border-radius: 999px;
   font-size: var(--mizu-font-size-xs, 0.6875rem);
-  font-weight: 600;
+  font-weight: var(--mizu-font-weight-semibold, 600);
 }

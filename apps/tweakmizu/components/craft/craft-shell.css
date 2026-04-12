@@ -259,6 +259,7 @@
   min-width: 0;
   padding: 1rem;
   padding-bottom: 4rem;
+  overflow-y: auto;
 }
 
 @media (min-width: 768px) {
@@ -278,7 +279,7 @@
     position: sticky;
     top: 3.5rem;
     height: calc(100dvh - 3.5rem);
-    overflow: hidden;
+    overflow-y: auto;
     border-left: 1px solid var(--mizu-border-subtle);
     padding: 0.5rem;
   }
