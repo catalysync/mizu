@@ -28,7 +28,7 @@ export function profileToCss(profile: DesignLanguageProfile, dark = false): CssV
 // -- Foundation ------------------------------------------------------------
 
 function foundationVars(f: DesignLanguageProfile['foundation'], dark = false): CssVarMap {
-  const { brandHue, chroma, contrast, colorMood, contrastLevel, extendedColors } = f;
+  const { brandHue, chroma, contrast, colorMood, contrastLevel, darkMode, extendedColors } = f;
 
   // Saturation percentages per chroma tier.
   const baseSat = chroma === 'muted' ? 24 : chroma === 'balanced' ? 60 : 84;
@@ -59,50 +59,37 @@ function foundationVars(f: DesignLanguageProfile['foundation'], dark = false): C
   const secondarySat = Math.round(sat * 0.6);
   const tertiarySat = Math.round(sat * 0.7);
 
-  // Contrast tier drives the default text + surface lightness.
+  // Contrast tier drives ALL lightness values — text, surface, borders, actions.
+  // The three tiers produce visibly different results.
   const cl = contrastLevel ?? 0;
-  const contrastBoost = cl * 6;
+  const contrastBoost = cl * 8;
 
-  // Dark mode: flip lightness — dark surfaces, light text.
-  const surfaceL = dark
-    ? contrast === 'editorial-high'
-      ? 6
-      : 10
-    : contrast === 'editorial-high'
-      ? 100
-      : 99;
-  const surfaceSecondaryL = dark ? 14 : 96;
-  const surfaceTertiaryL = dark ? 18 : 93;
+  const tier = contrast === 'editorial-high' ? 2 : contrast === 'aaa-conservative' ? 1 : 0;
+
+  // Dark mode philosophy shifts base darkness:
+  // dim = lighter dark (GitHub dim), parallel = standard, inverted = deeper
+  const dimShift = dark ? (darkMode === 'dim' ? 8 : darkMode === 'inverted' ? -4 : 0) : 0;
+
+  // Dark mode: flip lightness.
+  const surfaceL = dark ? [12, 8, 4][tier] + dimShift : [99, 100, 100][tier];
+  const surfaceSecondaryL = dark ? [16, 12, 8][tier] + dimShift : [96, 97, 98][tier];
+  const surfaceTertiaryL = dark ? [20, 16, 12][tier] + dimShift : [93, 95, 96][tier];
+
   const textL = dark
-    ? Math.min(
-        98,
-        (contrast === 'editorial-high' ? 98 : contrast === 'aaa-conservative' ? 94 : 90) +
-          contrastBoost,
-      )
-    : Math.max(
-        2,
-        (contrast === 'editorial-high' ? 6 : contrast === 'aaa-conservative' ? 10 : 14) -
-          contrastBoost,
-      );
+    ? Math.min(98, [88, 94, 98][tier] + contrastBoost)
+    : Math.max(2, [18, 10, 4][tier] - contrastBoost);
   const mutedL = dark
-    ? Math.min(
-        86,
-        (contrast === 'editorial-high' ? 76 : contrast === 'aaa-conservative' ? 70 : 64) +
-          contrastBoost,
-      )
-    : Math.max(
-        14,
-        (contrast === 'editorial-high' ? 30 : contrast === 'aaa-conservative' ? 36 : 42) -
-          contrastBoost,
-      );
-  const borderL = dark ? 24 : 90;
-  const borderStrongL = dark ? 34 : 78;
-  const borderSubtleL = dark ? 18 : 94;
+    ? Math.min(86, [60, 70, 78][tier] + contrastBoost)
+    : Math.max(14, [46, 36, 26][tier] - contrastBoost);
 
-  // Action primary: lighter in dark mode for contrast against dark surfaces.
-  const actionL = dark ? 62 : 48;
-  const actionHoverL = dark ? 68 : 42;
-  const actionActiveL = dark ? 56 : 36;
+  const borderL = dark ? [26, 22, 18][tier] + dimShift : [88, 84, 78][tier];
+  const borderStrongL = dark ? [36, 32, 28][tier] + dimShift : [76, 70, 62][tier];
+  const borderSubtleL = dark ? [20, 16, 12][tier] + dimShift : [92, 90, 86][tier];
+
+  // Action primary: adjusted per tier for proper contrast against surfaces.
+  const actionL = dark ? [60, 64, 70][tier] : [50, 44, 38][tier];
+  const actionHoverL = dark ? [66, 70, 76][tier] : [44, 38, 32][tier];
+  const actionActiveL = dark ? [54, 58, 64][tier] : [38, 32, 26][tier];
 
   const vars: CssVarMap = {
     '--mizu-brand-hue': `${brandHue}`,
