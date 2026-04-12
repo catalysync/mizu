@@ -1,0 +1,161 @@
+.craft-export {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.craft-export__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.craft-export__title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.craft-export__lede {
+  color: var(--mizu-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.craft-export__formats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.craft-export__format {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1rem;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-lg);
+  color: var(--mizu-text-primary);
+  font-family: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition: border-color 120ms ease-out;
+}
+
+.craft-export__format:hover:not(:disabled) {
+  border-color: var(--mizu-border-default);
+}
+
+.craft-export__format[data-active] {
+  border-color: var(--mizu-action-primary-default);
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 6%, transparent);
+}
+
+.craft-export__format[data-pro] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.craft-export__format-icon {
+  color: var(--mizu-text-secondary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.craft-export__format-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.craft-export__format-label {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.craft-export__format-desc {
+  color: var(--mizu-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.craft-export__format-check {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--mizu-action-primary-default);
+}
+
+.craft-export__actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.craft-export__download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: var(--mizu-action-primary-default);
+  color: #fff;
+  border: 0;
+  border-radius: var(--mizu-radius-md);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms ease-out;
+}
+
+.craft-export__download-btn:hover:not(:disabled) {
+  background: var(--mizu-action-primary-hover);
+}
+
+.craft-export__download-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.craft-export__summary {
+  padding: 1.25rem;
+  background: var(--mizu-surface-secondary);
+  border-radius: var(--mizu-radius-lg);
+}
+
+.craft-export__summary-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.craft-export__summary-dl {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 0.375rem 1rem;
+  font-size: 0.8125rem;
+}
+
+.craft-export__summary-dl dt {
+  color: var(--mizu-text-secondary);
+}
+
+.craft-export__summary-dl dd {
+  margin: 0;
+  font-weight: 500;
+}

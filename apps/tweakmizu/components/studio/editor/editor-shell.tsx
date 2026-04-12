@@ -75,7 +75,8 @@ export function StudioEditorShell() {
         </Inline>
       </Inline>
 
-      <Split fraction="260px 1fr" gap="1.5rem">
+      {/* Mobile: stacked layout. Desktop: side-by-side via Split. */}
+      <div className="flex flex-col gap-6 md:hidden">
         <Stack gap="0.75rem">
           <Stack as="nav" gap="0.25rem" aria-label="Editor tabs">
             {TABS.map((tab) => {
@@ -112,10 +113,55 @@ export function StudioEditorShell() {
             ) : null}
           </div>
         </Stack>
-        <div className="sticky top-4">
+        <div>
           <EditorPreviewPanel styles={styles} />
         </div>
-      </Split>
+      </div>
+
+      {/* Desktop: original Split layout */}
+      <div className="hidden md:block">
+        <Split fraction="260px 1fr" gap="1.5rem">
+          <Stack gap="0.75rem">
+            <Stack as="nav" gap="0.25rem" aria-label="Editor tabs">
+              {TABS.map((tab) => {
+                const Icon = tab.icon;
+                const active = tab.id === activeTab;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setActiveTab(tab.id)}
+                    aria-current={active ? 'true' : undefined}
+                    className={cn(
+                      'flex items-center gap-2 rounded-md border px-3 py-2 text-left text-sm transition-colors',
+                      active
+                        ? 'border-primary bg-primary/5 text-foreground'
+                        : 'border-transparent text-muted-foreground hover:border-border hover:bg-muted/60',
+                    )}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </Stack>
+            <div className="rounded-md border border-border bg-background p-4">
+              {activeTab === 'colors' ? (
+                <ColorsTab styles={styles} onChange={handleStylesChange} />
+              ) : null}
+              {activeTab === 'typography' ? (
+                <TypographyTab styles={styles} onChange={handleStylesChange} />
+              ) : null}
+              {activeTab === 'radius' ? (
+                <RadiusTab styles={styles} onChange={handleStylesChange} />
+              ) : null}
+            </div>
+          </Stack>
+          <div className="sticky top-4">
+            <EditorPreviewPanel styles={styles} />
+          </div>
+        </Split>
+      </div>
     </Stack>
   );
 }
