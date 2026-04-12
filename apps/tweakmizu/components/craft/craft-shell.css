@@ -110,7 +110,7 @@
   display: flex;
   min-height: 0;
   position: relative;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .craft-shell__nav {
@@ -131,11 +131,9 @@
 
 @media (min-width: 768px) {
   .craft-shell__nav {
-    position: sticky;
-    top: 3.25rem;
-    align-self: flex-start;
-    width: 15rem;
-    height: calc(100dvh - 3.25rem);
+    position: static;
+    flex: 0 0 15rem;
+    height: 100%;
     transform: none;
     inset: auto;
   }
@@ -261,6 +259,7 @@
   min-width: 0;
   padding: 1rem;
   padding-bottom: 4rem;
+  overflow-y: auto;
 }
 
 @media (min-width: 768px) {
@@ -277,11 +276,8 @@
   .craft-shell__preview {
     display: block;
     flex: 0 0 min(26rem, 35vw);
-    position: sticky;
-    top: 3.5rem;
-    align-self: flex-start;
-    height: calc(100dvh - 3.5rem);
-    overflow-y: auto;
+    height: 100%;
+    overflow: hidden;
     border-left: 1px solid var(--mizu-border-subtle);
     padding: 0.5rem;
   }
