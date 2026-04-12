@@ -133,11 +133,11 @@ export function TypePanel() {
   const u = useCraftStore((s) => s.updateCluster);
   const sections: KnobSection[] = [
     {
-      title: 'Sans family name',
-      hint: 'The exact font-family name (loaded from Google Fonts or local).',
-      type: 'text',
+      title: 'Sans family',
+      hint: 'Primary typeface — loaded from Google Fonts.',
+      type: 'font-picker',
+      category: 'sans',
       value: type.sansFamily,
-      placeholder: 'Inter',
       onChange: (v) => u('type', { sansFamily: v }),
     },
     {
@@ -170,11 +170,11 @@ export function TypePanel() {
       onChange: (v) => u('type', { sansKind: v as typeof type.sansKind }),
     },
     {
-      title: 'Mono family name',
-      hint: 'Monospace font used for code and tabular data.',
-      type: 'text',
+      title: 'Mono family',
+      hint: 'Monospace font for code and tabular data.',
+      type: 'font-picker',
+      category: 'mono',
       value: type.monoFamily,
-      placeholder: 'JetBrains Mono',
       onChange: (v) => u('type', { monoFamily: v }),
     },
     {
