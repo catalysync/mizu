@@ -25,6 +25,7 @@ export function PreviewDock() {
   const previewDark = useCraftStore((s) => s.previewDark);
   const setPreviewDark = useCraftStore((s) => s.setPreviewDark);
   const [device, setDevice] = useState<DeviceSize>('desktop');
+  const [fullscreenOpen, setFullscreenOpen] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   // Default to first page if current previewPath doesn't match any page
@@ -40,11 +41,13 @@ export function PreviewDock() {
   );
 
   const openFullscreen = useCallback(() => {
+    setFullscreenOpen(true);
     dialogRef.current?.showModal();
   }, []);
 
   const closeFullscreen = useCallback(() => {
     dialogRef.current?.close();
+    setFullscreenOpen(false);
   }, []);
 
   // Close on backdrop click
@@ -52,11 +55,11 @@ export function PreviewDock() {
     const dialog = dialogRef.current;
     if (!dialog) return;
     const handleClick = (e: MouseEvent) => {
-      if (e.target === dialog) dialog.close();
+      if (e.target === dialog) closeFullscreen();
     };
     dialog.addEventListener('click', handleClick);
     return () => dialog.removeEventListener('click', handleClick);
-  }, []);
+  }, [closeFullscreen]);
 
   const deviceButtons = (
     <div className="craft-dock__devices" role="group" aria-label="Preview device size">
@@ -165,11 +168,13 @@ export function PreviewDock() {
             data-device={device}
             style={{ '--craft-dock-width': DEVICE_WIDTHS[device] } as React.CSSProperties}
           >
-            <iframe
-              title="Live preview (fullscreen)"
-              src={IFRAME_SRC}
-              className="craft-dock__frame"
-            />
+            {fullscreenOpen && (
+              <iframe
+                title="Live preview (fullscreen)"
+                src={IFRAME_SRC}
+                className="craft-dock__frame"
+              />
+            )}
           </div>
         </div>
       </dialog>
