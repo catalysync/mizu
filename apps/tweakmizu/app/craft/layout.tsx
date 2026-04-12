@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
 import { auth } from '@/lib/auth';
 import { CraftShell } from '@/components/craft/craft-shell';
+import { getCraftProStatus } from '@/lib/craft/pro-gate';
 
 export const metadata: Metadata = {
   title: 'craft — tweakmizu',
@@ -16,6 +17,8 @@ export default async function CraftLayout({ children }: { children: React.ReactN
     redirect('/signin?callbackUrl=/craft');
   }
 
+  const { isPro } = await getCraftProStatus();
+
   return (
     <CraftShell
       user={{
@@ -23,6 +26,7 @@ export default async function CraftLayout({ children }: { children: React.ReactN
         name: session.user.name ?? session.user.email ?? 'You',
         email: session.user.email ?? '',
       }}
+      isPro={isPro}
     >
       {children}
     </CraftShell>

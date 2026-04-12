@@ -14,6 +14,7 @@ export interface WorkflowDef {
 export interface DomainPack {
   id: string;
   name: string;
+  pro?: boolean;
   entities: Entity[];
   workflows: WorkflowDef[];
   promptContext: string;

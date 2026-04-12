@@ -2,10 +2,11 @@
 
 import './export-panel.css';
 import { useState } from 'react';
-import { Download, FileJson, FileCode, Globe, Package } from 'lucide-react';
+import { Download, FileJson, FileCode, Globe, Package, Lock } from 'lucide-react';
 import { Badge } from '@aspect/react';
 import { useCraftStore } from '@/store/craft-store';
 import { exportProfile, type ExportFormat } from '@/lib/craft/exporter';
+import { useIsPro } from './craft-pro-context';
 
 interface FormatOption {
   id: ExportFormat;
@@ -45,9 +46,18 @@ const FORMATS: FormatOption[] = [
     icon: <Globe size={20} />,
     pro: false,
   },
+  {
+    id: 'nextjs-starter',
+    label: 'Next.js App Router starter',
+    description:
+      'A complete Next.js project with your tokens, theme, pages, and navigation pre-wired. npm install and go.',
+    icon: <Package size={20} />,
+    pro: true,
+  },
 ];
 
 export function ExportPanel() {
+  const isPro = useIsPro();
   const profile = useCraftStore((s) => s.profile);
   const [selected, setSelected] = useState<Set<ExportFormat>>(new Set(['json', 'css']));
   const [downloaded, setDownloaded] = useState(false);
@@ -98,9 +108,9 @@ export function ExportPanel() {
             type="button"
             className="craft-export__format"
             data-active={selected.has(fmt.id) || undefined}
-            data-pro={fmt.pro || undefined}
-            onClick={() => toggle(fmt.id)}
-            disabled={fmt.pro}
+            data-pro={(fmt.pro && !isPro) || undefined}
+            onClick={() => (fmt.pro && !isPro ? window.open('/pricing', '_blank') : toggle(fmt.id))}
+            disabled={false}
           >
             <span className="craft-export__format-icon">{fmt.icon}</span>
             <span className="craft-export__format-body">
@@ -110,24 +120,11 @@ export function ExportPanel() {
               </span>
               <span className="craft-export__format-desc">{fmt.description}</span>
             </span>
-            <span className="craft-export__format-check">{selected.has(fmt.id) ? '✓' : ''}</span>
+            <span className="craft-export__format-check">
+              {fmt.pro && !isPro ? <Lock size={14} /> : selected.has(fmt.id) ? '✓' : ''}
+            </span>
           </button>
         ))}
-
-        <button type="button" className="craft-export__format" data-pro disabled>
-          <span className="craft-export__format-icon">
-            <Package size={20} />
-          </span>
-          <span className="craft-export__format-body">
-            <span className="craft-export__format-label">
-              Full Next.js monorepo <Badge tone="warning">Pro</Badge>
-            </span>
-            <span className="craft-export__format-desc">
-              Complete monorepo with packages/tokens, packages/css, packages/react, apps/docs,
-              apps/storybook — all pre-configured with your design language.
-            </span>
-          </span>
-        </button>
       </div>
 
       <div className="craft-export__actions">

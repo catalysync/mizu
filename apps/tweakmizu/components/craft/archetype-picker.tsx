@@ -3,17 +3,26 @@
 import './archetype-picker.css';
 import { useRouter } from 'next/navigation';
 import { Button } from '@aspect/react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Lock, Sparkles } from 'lucide-react';
+import { Badge } from '@aspect/react';
 import { archetypes } from '@/lib/craft/archetypes';
 import { useCraftStore } from '@/store/craft-store';
 import { profileToCss } from '@/lib/craft/profile-to-css';
+import { useIsPro } from './craft-pro-context';
 
 export function ArchetypePicker() {
   const router = useRouter();
   const pickArchetype = useCraftStore((s) => s.pickArchetype);
   const currentArchetype = useCraftStore((s) => s.profile.archetype);
 
+  const isPro = useIsPro();
+
   const handlePick = (id: string) => {
+    const arch = archetypes.find((a) => a.id === id);
+    if (arch?.pro && !isPro) {
+      router.push('/pricing');
+      return;
+    }
     pickArchetype(id);
     router.push('/craft/foundation');
   };
@@ -39,18 +48,39 @@ export function ArchetypePicker() {
             <ArchetypeSwatch archetype={arch} />
             <div className="craft-archetypes__card-body">
               <div className="craft-archetypes__card-head">
-                <h2 className="craft-archetypes__card-title">{arch.name}</h2>
+                <h2 className="craft-archetypes__card-title">
+                  {arch.name}
+                  {arch.pro ? <Badge tone="warning">Pro</Badge> : null}
+                </h2>
                 <span className="craft-archetypes__card-tagline">{arch.tagline}</span>
               </div>
               <p className="craft-archetypes__card-desc">{arch.description}</p>
               <p className="craft-archetypes__card-inspired">Inspired by {arch.inspiredBy}</p>
               <Button
                 size="sm"
-                variant={currentArchetype === arch.id ? 'ghost' : 'primary'}
+                variant={
+                  arch.pro && !isPro
+                    ? 'secondary'
+                    : currentArchetype === arch.id
+                      ? 'ghost'
+                      : 'primary'
+                }
                 onClick={() => handlePick(arch.id)}
               >
-                {currentArchetype === arch.id ? 'Current · continue' : 'Start here'}
-                <ArrowRight size={14} />
+                {arch.pro && !isPro ? (
+                  <>
+                    <Lock size={14} />
+                    Unlock with Pro
+                  </>
+                ) : currentArchetype === arch.id ? (
+                  <>
+                    Current · continue <ArrowRight size={14} />
+                  </>
+                ) : (
+                  <>
+                    Start here <ArrowRight size={14} />
+                  </>
+                )}
               </Button>
             </div>
           </article>
