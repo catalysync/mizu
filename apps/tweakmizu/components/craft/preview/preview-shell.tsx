@@ -96,6 +96,7 @@ function PreviewNavLink({
 }) {
   return (
     <Link href={href} className="craft-preview-shell__nav-item" data-active={active || undefined}>
+      <span className="craft-preview-shell__nav-icon" aria-hidden />
       {children}
     </Link>
   );

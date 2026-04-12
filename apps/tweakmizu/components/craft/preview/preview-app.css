@@ -95,7 +95,9 @@
 }
 
 .craft-preview-shell__nav-item {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-2, 0.375rem);
   padding: var(--mizu-spacing-2, 0.4375rem) var(--mizu-spacing-3, 0.625rem);
   border-radius: var(--mizu-radius-md);
   color: var(--mizu-text-secondary);
@@ -103,6 +105,16 @@
   font-size: var(--mizu-font-size-sm, 0.8125rem);
   transition: all calc(var(--mizu-duration-fast, 120ms) * var(--mizu-motion-scale, 1))
     var(--mizu-easing-out, ease-out);
+}
+
+.craft-preview-shell__nav-icon {
+  display: inline-block;
+  width: var(--mizu-icon-size-sm, 16px);
+  height: var(--mizu-icon-size-sm, 16px);
+  border-radius: 3px;
+  border: var(--mizu-icon-stroke, 2) solid currentColor;
+  opacity: 0.5;
+  flex-shrink: 0;
 }
 
 .craft-preview-shell__nav-item:hover {
