@@ -1,10 +1,11 @@
 .craft-shell {
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
+  height: 100dvh;
   background: var(--mizu-surface-default);
   color: var(--mizu-text-primary);
   font-family: var(--mizu-font-family-sans);
+  overflow: hidden;
 }
 
 .craft-shell__header {
