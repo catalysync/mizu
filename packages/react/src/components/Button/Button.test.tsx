@@ -1,3 +1,4 @@
+import { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe } from 'vitest-axe';
@@ -5,60 +6,125 @@ import { describe, expect, it, vi } from 'vitest';
 import { Button } from './Button';
 
 describe('Button', () => {
+  // -- Rendering --
   it('renders with the given children', () => {
     render(<Button>Click me</Button>);
     expect(screen.getByRole('button', { name: 'Click me' })).toBeInTheDocument();
   });
 
-  it('fires onClick when activated', async () => {
-    const onClick = vi.fn();
-    const user = userEvent.setup();
-    render(<Button onClick={onClick}>Submit</Button>);
-    await user.click(screen.getByRole('button'));
-    expect(onClick).toHaveBeenCalledOnce();
+  it('renders as a native button element', () => {
+    render(<Button>Go</Button>);
+    expect(screen.getByRole('button').tagName).toBe('BUTTON');
   });
 
-  it('respects the disabled attribute', () => {
-    render(<Button disabled>Disabled</Button>);
-    expect(screen.getByRole('button')).toBeDisabled();
+  it('defaults to type="button"', () => {
+    render(<Button>Go</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('type', 'button');
   });
 
-  it('renders the destructive variant class', () => {
+  it('allows type="submit"', () => {
+    render(<Button type="submit">Save</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('type', 'submit');
+  });
+
+  it('sets data-component="mizu-button"', () => {
+    render(<Button>Go</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('data-component', 'mizu-button');
+  });
+
+  // -- Variants --
+  it('applies primary variant by default', () => {
+    render(<Button>Primary</Button>);
+    expect(screen.getByRole('button')).toHaveClass('mizu-button--primary');
+  });
+
+  it('applies secondary variant', () => {
+    render(<Button variant="secondary">Sec</Button>);
+    expect(screen.getByRole('button')).toHaveClass('mizu-button--secondary');
+  });
+
+  it('applies ghost variant', () => {
+    render(<Button variant="ghost">Ghost</Button>);
+    expect(screen.getByRole('button')).toHaveClass('mizu-button--ghost');
+  });
+
+  it('applies destructive variant', () => {
     render(<Button variant="destructive">Delete</Button>);
     expect(screen.getByRole('button')).toHaveClass('mizu-button--destructive');
   });
 
-  it('has no a11y violations with a label', async () => {
-    const { container } = render(<Button>Accessible</Button>);
-    expect(await axe(container)).toHaveNoViolations();
+  // -- Sizes --
+  it('applies sm size', () => {
+    render(<Button size="sm">Sm</Button>);
+    expect(screen.getByRole('button')).toHaveClass('mizu-button--sm');
   });
 
-  it('shows a spinner and sets aria-busy when loading', () => {
-    render(<Button loading>Save</Button>);
-    const button = screen.getByRole('button');
-    expect(button).toHaveAttribute('aria-busy', 'true');
-    expect(button).toBeDisabled();
+  it('applies md size by default', () => {
+    render(<Button>Md</Button>);
+    expect(screen.getByRole('button')).toHaveClass('mizu-button--md');
   });
 
-  it('fires onClick on enter key', async () => {
+  it('applies lg size', () => {
+    render(<Button size="lg">Lg</Button>);
+    expect(screen.getByRole('button')).toHaveClass('mizu-button--lg');
+  });
+
+  it('applies icon size', () => {
+    render(
+      <Button size="icon" aria-label="Close">
+        ×
+      </Button>,
+    );
+    expect(screen.getByRole('button')).toHaveClass('mizu-button--icon');
+  });
+
+  // -- className merging --
+  it('merges custom className', () => {
+    render(<Button className="extra">Go</Button>);
+    const btn = screen.getByRole('button');
+    expect(btn).toHaveClass('mizu-button');
+    expect(btn).toHaveClass('extra');
+  });
+
+  // -- Click --
+  it('fires onClick when clicked', async () => {
+    const onClick = vi.fn();
+    render(<Button onClick={onClick}>Submit</Button>);
+    await userEvent.setup().click(screen.getByRole('button'));
+    expect(onClick).toHaveBeenCalledOnce();
+  });
+
+  it('does not fire onClick when disabled', async () => {
+    const onClick = vi.fn();
+    render(
+      <Button onClick={onClick} disabled>
+        No
+      </Button>,
+    );
+    await userEvent.setup().click(screen.getByRole('button'));
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  // -- Keyboard --
+  it('fires onClick on Enter', async () => {
     const onClick = vi.fn();
     const user = userEvent.setup();
-    render(<Button onClick={onClick}>Submit</Button>);
+    render(<Button onClick={onClick}>Go</Button>);
     screen.getByRole('button').focus();
     await user.keyboard('{Enter}');
     expect(onClick).toHaveBeenCalledOnce();
   });
 
-  it('fires onClick on space key', async () => {
+  it('fires onClick on Space', async () => {
     const onClick = vi.fn();
     const user = userEvent.setup();
-    render(<Button onClick={onClick}>Submit</Button>);
+    render(<Button onClick={onClick}>Go</Button>);
     screen.getByRole('button').focus();
     await user.keyboard(' ');
     expect(onClick).toHaveBeenCalledOnce();
   });
 
-  it('does not fire onClick when disabled and key pressed', async () => {
+  it('does not fire onClick on Enter when disabled', async () => {
     const onClick = vi.fn();
     const user = userEvent.setup();
     render(
@@ -69,5 +135,117 @@ describe('Button', () => {
     screen.getByRole('button').focus();
     await user.keyboard('{Enter}');
     expect(onClick).not.toHaveBeenCalled();
+  });
+
+  // -- Disabled --
+  it('sets the disabled attribute', () => {
+    render(<Button disabled>Dis</Button>);
+    expect(screen.getByRole('button')).toBeDisabled();
+  });
+
+  // -- Loading --
+  it('sets aria-busy when loading', () => {
+    render(<Button loading>Save</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('aria-busy', 'true');
+  });
+
+  it('sets data-loading when loading', () => {
+    render(<Button loading>Save</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('data-loading', 'true');
+  });
+
+  it('disables the button when loading', () => {
+    render(<Button loading>Save</Button>);
+    expect(screen.getByRole('button')).toBeDisabled();
+  });
+
+  it('renders a spinner when loading', () => {
+    const { container } = render(<Button loading>Save</Button>);
+    expect(container.querySelector('.mizu-button__spinner')).toBeInTheDocument();
+  });
+
+  it('wraps children in label span when loading', () => {
+    const { container } = render(<Button loading>Save</Button>);
+    expect(container.querySelector('.mizu-button__label')).toHaveTextContent('Save');
+  });
+
+  it('does not fire onClick when loading', async () => {
+    const onClick = vi.fn();
+    render(
+      <Button onClick={onClick} loading>
+        Save
+      </Button>,
+    );
+    await userEvent.setup().click(screen.getByRole('button'));
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('does not show spinner when not loading', () => {
+    const { container } = render(<Button>Go</Button>);
+    expect(container.querySelector('.mizu-button__spinner')).toBeNull();
+  });
+
+  // -- Ref --
+  it('forwards ref to the button element', () => {
+    const ref = createRef<HTMLButtonElement>();
+    render(<Button ref={ref}>Go</Button>);
+    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+  });
+
+  // -- asChild --
+  it('renders as child element when asChild', () => {
+    render(
+      <Button asChild>
+        <a href="/home">Home</a>
+      </Button>,
+    );
+    const link = screen.getByRole('link', { name: 'Home' });
+    expect(link).toHaveClass('mizu-button');
+    expect(link).not.toHaveAttribute('type');
+  });
+
+  // -- Spread props --
+  it('passes id', () => {
+    render(<Button id="x">Go</Button>);
+    expect(screen.getByRole('button')).toHaveAttribute('id', 'x');
+  });
+
+  it('passes aria-label', () => {
+    render(
+      <Button size="icon" aria-label="Close">
+        ×
+      </Button>,
+    );
+    expect(screen.getByRole('button', { name: 'Close' })).toBeInTheDocument();
+  });
+
+  it('passes data-testid', () => {
+    render(<Button data-testid="cta">Go</Button>);
+    expect(screen.getByTestId('cta')).toBeInTheDocument();
+  });
+
+  // -- a11y --
+  it('has no axe violations', async () => {
+    const { container } = render(<Button>Accessible</Button>);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations with aria-label', async () => {
+    const { container } = render(
+      <Button size="icon" aria-label="Close">
+        ×
+      </Button>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations when loading', async () => {
+    const { container } = render(<Button loading>Saving</Button>);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations when disabled', async () => {
+    const { container } = render(<Button disabled>Disabled</Button>);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
