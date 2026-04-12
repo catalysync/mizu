@@ -211,10 +211,20 @@ export function useCraftChat() {
         let currentToolName = '';
         let currentToolInput = '';
         let streamDone = false;
+        let lastActivity = Date.now();
+
+        // Timeout: if no data for 30s, bail out
+        const timeoutId = setInterval(() => {
+          if (Date.now() - lastActivity > 30_000) {
+            streamDone = true;
+            reader.cancel().catch(() => {});
+          }
+        }, 5_000);
 
         while (!streamDone) {
           const { done, value } = await reader.read();
           if (done) break;
+          lastActivity = Date.now();
           const chunk = decoder.decode(value, { stream: true });
           const lines = chunk.split('\n');
 
@@ -251,6 +261,7 @@ export function useCraftChat() {
               }
 
               if (event.type === 'content_block_stop' && currentToolName) {
+                let applied = false;
                 try {
                   const args = JSON.parse(currentToolInput || '{}');
                   const state = useCraftStore.getState();
@@ -261,59 +272,63 @@ export function useCraftChat() {
                       history: [...state.history, state.profile],
                       future: [],
                     });
+                    applied = true;
                   }
-                  toolCalls.push({
-                    name: currentToolName,
-                    rationale: `Applied ${currentToolName}`,
-                  });
                 } catch {
-                  toolCalls.push({
-                    name: currentToolName,
-                    rationale: 'Failed to parse tool input',
-                  });
+                  // parse or apply failed
                 }
+                toolCalls.push({
+                  name: currentToolName,
+                  rationale: applied
+                    ? `Applied ${currentToolName.replace(/_/g, ' ')}`
+                    : `Failed: ${currentToolName.replace(/_/g, ' ')}`,
+                });
                 currentToolName = '';
                 currentToolInput = '';
 
-                setMessages((prev) =>
-                  prev.map((m) => (m.id === aiMsg.id ? { ...m, toolCalls: [...toolCalls] } : m)),
-                );
-              }
-
-              if (event.type === 'message_stop') {
-                const summary =
-                  textBuffer ||
-                  (toolCalls.length > 0
-                    ? toolCalls.map((t) => `Applied ${t.name.replace(/_/g, ' ')}`).join('. ') + '.'
-                    : 'Done.');
+                // Update message with progress after each tool call
                 setMessages((prev) =>
                   prev.map((m) =>
                     m.id === aiMsg.id
                       ? {
                           ...m,
-                          content: summary,
+                          content: textBuffer || toolCalls.map((t) => t.rationale).join('\n'),
                           toolCalls: [...toolCalls],
-                          pending: false,
                         }
                       : m,
                   ),
                 );
+              }
+
+              if (event.type === 'message_stop') {
+                streamDone = true;
+              }
+
+              if (event.type === 'error') {
+                textBuffer += '\n\nAPI error: ' + (event.error?.message ?? 'unknown');
+                streamDone = true;
               }
             } catch {
               // skip unparseable lines
             }
           }
         }
-        // Ensure message is marked non-pending even if message_stop never arrived
+
+        clearInterval(timeoutId);
+
+        // Finalize: mark message non-pending with summary
         setMessages((prev) =>
           prev.map((m) => {
-            if (m.id !== aiMsg.id || !m.pending) return m;
+            if (m.id !== aiMsg.id) return m;
             const summary =
               textBuffer ||
-              (toolCalls.length > 0
-                ? toolCalls.map((t) => `Applied ${t.name.replace(/_/g, ' ')}`).join('. ') + '.'
-                : m.content || 'Done.');
-            return { ...m, content: summary, pending: false };
+              (toolCalls.length > 0 ? toolCalls.map((t) => t.rationale).join('. ') + '.' : 'Done.');
+            return {
+              ...m,
+              content: summary,
+              toolCalls: [...toolCalls],
+              pending: false,
+            };
           }),
         );
       } catch (err) {
