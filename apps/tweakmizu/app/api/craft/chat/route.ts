@@ -125,9 +125,12 @@ export async function POST(request: Request) {
         controller.enqueue(encoder.encode('data: [DONE]\n\n'));
         controller.close();
       } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        // Surface Anthropic API errors (billing, rate limits) clearly
         controller.enqueue(
-          encoder.encode(`data: ${JSON.stringify({ type: 'error', error: String(err) })}\n\n`),
+          encoder.encode(`data: ${JSON.stringify({ type: 'error', error: { message } })}\n\n`),
         );
+        controller.enqueue(encoder.encode('data: [DONE]\n\n'));
         controller.close();
       }
     },
