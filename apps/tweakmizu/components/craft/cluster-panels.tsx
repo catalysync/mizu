@@ -2,6 +2,16 @@
 
 import { KnobPanel, type KnobSection } from './knob-panel';
 import { useCraftStore } from '@/store/craft-store';
+import {
+  RadiusDemo,
+  BorderWeightDemo,
+  EasingDemo,
+  DurationDemo,
+  ShadowDemo,
+  FocusStyleDemo,
+  ScaleRatioDemo,
+  DensityDemo,
+} from './knob-demos';
 
 // -- Shape -----------------------------------------------------------------
 
@@ -12,6 +22,7 @@ export function ShapePanel() {
     {
       title: 'Corner radius',
       hint: 'How rounded elements feel.',
+      demo: <RadiusDemo />,
       type: 'chips',
       options: [
         { id: 'sharp', label: 'Sharp (0–2px)', hint: 'IBM Carbon, Braun' },
@@ -32,6 +43,7 @@ export function ShapePanel() {
     {
       title: 'Border weight',
       hint: 'How thick borders appear.',
+      demo: <BorderWeightDemo />,
       type: 'chips',
       options: [
         { id: 'none', label: 'None', hint: 'Shadow-only' },
@@ -88,6 +100,7 @@ export function DensityPanel() {
     {
       title: 'Density mode',
       hint: 'How much breathing room between elements.',
+      demo: <DensityDemo />,
       type: 'options',
       options: [
         { id: 'comfortable', label: 'Comfortable', hint: 'Airy, editorial — reading-heavy' },
@@ -171,6 +184,7 @@ export function TypePanel() {
     {
       title: 'Scale ratio',
       hint: 'How quickly sizes grow between heading levels.',
+      demo: <ScaleRatioDemo />,
       type: 'chips',
       options: [
         { id: 'minor-second', label: '1.067', hint: 'Tight' },
@@ -222,6 +236,7 @@ export function MotionPanel() {
     {
       title: 'Easing family',
       hint: 'The feel of transitions — how elements accelerate and decelerate.',
+      demo: <EasingDemo />,
       type: 'options',
       options: [
         { id: 'calm', label: 'Calm', hint: 'ease-out dominant — mizu, Stripe' },
@@ -235,6 +250,7 @@ export function MotionPanel() {
     {
       title: 'Duration scale',
       hint: 'How fast transitions are.',
+      demo: <DurationDemo />,
       type: 'chips',
       options: [
         { id: 'tight', label: 'Tight (80–220ms)', hint: 'Keyboard-speed tools' },
@@ -289,6 +305,7 @@ export function DepthPanel() {
     {
       title: 'Shadow flavor',
       hint: 'The character of shadows when used.',
+      demo: <ShadowDemo />,
       type: 'options',
       options: [
         { id: 'sharp-near', label: 'Sharp near', hint: 'Tight, close — Apple HIG' },
@@ -320,6 +337,7 @@ export function FocusPanel() {
     {
       title: 'Focus style',
       hint: 'How focused elements are visually marked.',
+      demo: <FocusStyleDemo />,
       type: 'chips',
       options: [
         { id: 'outline', label: 'Outline', hint: 'Classic — most DSes' },

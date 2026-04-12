@@ -108,3 +108,22 @@
 .craft-dock__viewport[data-device="tablet"] .craft-dock__frame {
   height: 36rem;
 }
+
+.craft-dock--fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  border-radius: 0;
+  border: none;
+  min-height: 100dvh;
+  background: var(--mizu-surface-default);
+}
+
+.craft-dock--fullscreen .craft-dock__viewport {
+  flex: 1;
+  min-height: 0;
+}
+
+.craft-dock--fullscreen .craft-dock__frame {
+  height: 100%;
+}

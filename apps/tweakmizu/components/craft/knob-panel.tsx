@@ -13,6 +13,7 @@ export interface KnobOption<T extends string = string> {
 export interface KnobSectionChoice {
   title: string;
   hint?: string;
+  demo?: React.ReactNode;
   type: 'options' | 'chips';
   options: KnobOption[];
   value: string;
@@ -22,6 +23,7 @@ export interface KnobSectionChoice {
 export interface KnobSectionToggle {
   title: string;
   hint?: string;
+  demo?: React.ReactNode;
   type: 'toggle';
   value: boolean;
   onToggle: (value: boolean) => void;
@@ -30,6 +32,7 @@ export interface KnobSectionToggle {
 export interface KnobSectionText {
   title: string;
   hint?: string;
+  demo?: React.ReactNode;
   type: 'text';
   value: string;
   placeholder?: string;
@@ -59,6 +62,7 @@ export function KnobPanel({ cluster, clusterLabel, title, description, sections 
         <div className="craft-knob-panel__controls">
           {sections.map((section) => (
             <section key={section.title} className="craft-knob-panel__section">
+              {section.demo ? <div className="craft-knob-panel__demo">{section.demo}</div> : null}
               <div className="craft-knob-panel__section-head">
                 <h2 className="craft-knob-panel__section-title">{section.title}</h2>
                 {section.hint ? (

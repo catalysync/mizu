@@ -101,7 +101,7 @@ export async function POST(request: Request) {
     : SYSTEM_PROMPT;
 
   const stream = client.messages.stream({
-    model: 'claude-sonnet-4-5-20250514',
+    model: 'claude-sonnet-4-6',
     max_tokens: 4096,
     system: systemPrompt,
     tools: CRAFT_TOOLS,

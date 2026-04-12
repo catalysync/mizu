@@ -281,12 +281,17 @@ export function useCraftChat() {
               }
 
               if (event.type === 'message_stop') {
+                const summary =
+                  textBuffer ||
+                  (toolCalls.length > 0
+                    ? toolCalls.map((t) => `Applied ${t.name.replace(/_/g, ' ')}`).join('. ') + '.'
+                    : 'Done.');
                 setMessages((prev) =>
                   prev.map((m) =>
                     m.id === aiMsg.id
                       ? {
                           ...m,
-                          content: textBuffer || 'Done.',
+                          content: summary,
                           toolCalls: [...toolCalls],
                           pending: false,
                         }
@@ -301,11 +306,15 @@ export function useCraftChat() {
         }
         // Ensure message is marked non-pending even if message_stop never arrived
         setMessages((prev) =>
-          prev.map((m) =>
-            m.id === aiMsg.id && m.pending
-              ? { ...m, content: textBuffer || m.content || 'Done.', pending: false }
-              : m,
-          ),
+          prev.map((m) => {
+            if (m.id !== aiMsg.id || !m.pending) return m;
+            const summary =
+              textBuffer ||
+              (toolCalls.length > 0
+                ? toolCalls.map((t) => `Applied ${t.name.replace(/_/g, ' ')}`).join('. ') + '.'
+                : m.content || 'Done.');
+            return { ...m, content: summary, pending: false };
+          }),
         );
       } catch (err) {
         if ((err as Error).name !== 'AbortError') {

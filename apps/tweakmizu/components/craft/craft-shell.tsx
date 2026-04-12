@@ -4,11 +4,12 @@ import './craft-shell.css';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Undo2, Redo2, Download } from 'lucide-react';
+import { Menu, X, Undo2, Redo2, Download, Settings } from 'lucide-react';
 import { Button, cn } from '@aspect/react';
 import { useCraftStore } from '@/store/craft-store';
 import { installPreviewPublisher } from './preview/preview-bridge';
 import { CraftProProvider } from './craft-pro-context';
+import { ProBanner } from './pro-upsell';
 
 interface CraftShellProps {
   user: { id: string; name: string; email: string };
@@ -144,9 +145,15 @@ export function CraftShell({ user, isPro = false, children }: CraftShellProps) {
                   ))}
                 </div>
               ))}
+              <ProBanner />
               <div className="craft-shell__nav-footer">
-                <div className="craft-shell__user-name">{user.name}</div>
-                <div className="craft-shell__user-email">{user.email}</div>
+                <div className="craft-shell__user-info">
+                  <div className="craft-shell__user-name">{user.name}</div>
+                  <div className="craft-shell__user-email">{user.email}</div>
+                </div>
+                <Link href="/settings" className="craft-shell__settings-link" aria-label="Settings">
+                  <Settings size={14} />
+                </Link>
               </div>
             </div>
           </nav>

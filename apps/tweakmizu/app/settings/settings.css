@@ -1,0 +1,344 @@
+.settings-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--mizu-surface-default);
+  color: var(--mizu-text-primary);
+  font-family: var(--mizu-font-family-sans);
+}
+
+.settings-layout__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 3.25rem;
+  padding: 0 1rem;
+  background: var(--mizu-surface-default);
+  border-bottom: 1px solid var(--mizu-border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.settings-layout__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  color: var(--mizu-text-secondary);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--mizu-radius-md);
+  transition:
+    color 150ms ease,
+    background 150ms ease;
+}
+
+.settings-layout__back:hover {
+  color: var(--mizu-text-primary);
+  background: var(--mizu-surface-secondary);
+}
+
+.settings-layout__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.settings-layout__main {
+  flex: 1;
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+@media (min-width: 768px) {
+  .settings-layout__main {
+    padding: 2rem 2rem 4rem;
+  }
+}
+
+/* Page-level */
+
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.settings-page__heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--mizu-text-primary);
+  margin: 0;
+}
+
+.settings-page__subheading {
+  font-size: 0.875rem;
+  color: var(--mizu-text-secondary);
+  margin: 0.25rem 0 0;
+}
+
+/* Section */
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.settings-section__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--mizu-text-primary);
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--mizu-border-subtle);
+}
+
+.settings-section__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Field row */
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+@media (min-width: 480px) {
+  .settings-field {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 1rem;
+  }
+}
+
+.settings-field__label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--mizu-text-secondary);
+  min-width: 7rem;
+  flex-shrink: 0;
+}
+
+.settings-field__value {
+  font-size: 0.875rem;
+  color: var(--mizu-text-primary);
+  word-break: break-all;
+}
+
+/* Plan card */
+
+.settings-plan {
+  padding: 1.25rem;
+  border-radius: var(--mizu-radius-lg);
+  border: 1px solid var(--mizu-border-subtle);
+  background: var(--mizu-surface-default);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.settings-plan__header {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+}
+
+.settings-plan__name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--mizu-text-primary);
+}
+
+.settings-plan__desc {
+  font-size: 0.8125rem;
+  color: var(--mizu-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.settings-plan__limits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 0.75rem;
+  background: var(--mizu-surface-secondary);
+  border-radius: var(--mizu-radius-md);
+}
+
+.settings-plan__limit-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--mizu-text-secondary);
+}
+
+.settings-plan__limit-icon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+.settings-plan__limit-icon--included {
+  color: var(--mizu-feedback-success-default);
+}
+
+.settings-plan__limit-icon--excluded {
+  color: var(--mizu-text-disabled);
+}
+
+.settings-plan__renewal {
+  font-size: 0.8125rem;
+  color: var(--mizu-text-secondary);
+}
+
+.settings-plan__actions {
+  display: flex;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+}
+
+/* Usage meter */
+
+.settings-usage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.settings-usage__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.settings-usage__label {
+  font-size: 0.8125rem;
+  color: var(--mizu-text-secondary);
+}
+
+.settings-usage__value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mizu-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.settings-usage__bar-track {
+  height: 0.375rem;
+  width: 100%;
+  background: var(--mizu-surface-secondary);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.settings-usage__bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: var(--mizu-action-primary-default);
+  transition: width 300ms ease;
+}
+
+.settings-usage__bar-fill--warning {
+  background: var(--mizu-feedback-warning-default);
+}
+
+.settings-usage__bar-fill--danger {
+  background: var(--mizu-feedback-danger-default);
+}
+
+/* Profiles list */
+
+.settings-profiles__empty {
+  font-size: 0.8125rem;
+  color: var(--mizu-text-tertiary);
+  padding: 1rem 0;
+}
+
+.settings-profiles__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.settings-profiles__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-md);
+  background: var(--mizu-surface-default);
+  transition: border-color 150ms ease;
+}
+
+.settings-profiles__item:hover {
+  border-color: var(--mizu-border-default);
+}
+
+.settings-profiles__item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.settings-profiles__item-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mizu-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.settings-profiles__item-meta {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.6875rem;
+  color: var(--mizu-text-tertiary);
+}
+
+.settings-profiles__item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+/* Danger zone */
+
+.settings-danger {
+  padding: 1rem;
+  border: 1px solid var(--mizu-action-destructive-default, #dc2626);
+  border-radius: var(--mizu-radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.settings-danger__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--mizu-action-destructive-default, #dc2626);
+  margin: 0;
+}
+
+.settings-danger__desc {
+  font-size: 0.8125rem;
+  color: var(--mizu-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}

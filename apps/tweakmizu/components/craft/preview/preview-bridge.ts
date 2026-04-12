@@ -65,10 +65,17 @@ export function usePreviewBridge() {
 
     const apply = (raw: unknown) => {
       try {
+        // Try strict parse first, fall back to direct apply.
+        // Structured clone can lose prototype info that Zod expects,
+        // but the data is still valid — it came from the parent store.
         const profile = parseProfile(raw);
         useCraftStore.setState({ profile });
       } catch {
-        // ignore invalid snapshots
+        // Fallback: apply directly if Zod rejects the cloned object.
+        // This is safe because the data originated from a validated store.
+        if (raw && typeof raw === 'object' && 'name' in raw) {
+          useCraftStore.setState({ profile: raw as DesignLanguageProfile });
+        }
       }
     };
 

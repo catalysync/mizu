@@ -7,6 +7,7 @@ import { profileToCss } from '@/lib/craft/profile-to-css';
 import { PreviewShell } from './preview-shell';
 import { PageRenderer } from './page-renderer';
 import { usePreviewBridge } from './preview-bridge';
+import { PreviewToolbar } from './preview-toolbar';
 
 interface PreviewAppProps {
   paramsPromise: Promise<{ path?: string[] }>;
@@ -35,12 +36,17 @@ export function PreviewApp({ paramsPromise }: PreviewAppProps) {
     );
   }
 
+  const isStandalone = typeof window !== 'undefined' && window.self === window.top;
+
   return (
-    <div className="craft-preview-root" style={vars as React.CSSProperties}>
-      <PreviewShell profile={profile} currentPath={page?.path ?? '/'}>
-        {page ? <PageRenderer page={page} profile={profile} /> : <EmptyPreview />}
-      </PreviewShell>
-    </div>
+    <>
+      {isStandalone ? <PreviewToolbar /> : null}
+      <div className="craft-preview-root" style={vars as React.CSSProperties}>
+        <PreviewShell profile={profile} currentPath={page?.path ?? '/'}>
+          {page ? <PageRenderer page={page} profile={profile} /> : <EmptyPreview />}
+        </PreviewShell>
+      </div>
+    </>
   );
 }
 
