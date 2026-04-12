@@ -100,6 +100,81 @@ export const CRAFT_TOOLS: Anthropic.Messages.Tool[] = [
     },
   },
   {
+    name: 'set_depth',
+    description:
+      'Update the Depth cluster (depth recipe, shadow flavor). Call for elevation, shadow, layering discussions.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        recipe: { type: 'string', enum: ['shadows', 'borders', 'surfaces', 'flat'] },
+        shadowFlavor: { type: 'string', enum: ['sharp-near', 'soft-diffuse', 'tinted', 'none'] },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
+    name: 'set_focus',
+    description:
+      'Update the Focus cluster (focus ring style, color, width). Call for accessibility or keyboard navigation discussions.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        style: { type: 'string', enum: ['outline', 'shadow', 'bg-shift'] },
+        color: { type: 'string', enum: ['accent', 'dedicated', 'high-contrast'] },
+        width: { type: 'string', enum: ['1px', '2px', '3px'] },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
+    name: 'set_iconography',
+    description:
+      'Update the Iconography cluster (icon style, stroke weight, corner style, size scale).',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        style: { type: 'string', enum: ['line', 'filled', 'duotone'] },
+        strokeWeight: { type: 'string', enum: ['1', '1.5', '2', '2.5'] },
+        cornerStyle: { type: 'string', enum: ['sharp', 'rounded', 'organic'] },
+        sizeScale: { type: 'string', enum: ['16-20-24', '14-18-22'] },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
+    name: 'set_voice',
+    description:
+      'Update the Voice cluster (register, error tone, empty state style, destructive verb).',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        register: { type: 'string', enum: ['formal', 'neutral', 'friendly', 'playful'] },
+        errorTone: { type: 'string', enum: ['blame-user', 'blame-nothing', 'apologetic-system'] },
+        emptyState: {
+          type: 'string',
+          enum: ['celebratory', 'factual', 'illustrated', 'minimal'],
+        },
+        destructiveVerb: { type: 'string', enum: ['delete', 'remove', 'archive'] },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
+    name: 'set_opinions',
+    description:
+      'Update the API opinions cluster (alert naming, button hierarchy, composition style, loading ownership).',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        alertNamingProp: { type: 'string', enum: ['type', 'variant', 'tone', 'status'] },
+        buttonHierarchyProp: { type: 'string', enum: ['variant', 'emphasis', 'priority'] },
+        compositionStyle: { type: 'string', enum: ['compound', 'slot'] },
+        loadingOwnership: { type: 'string', enum: ['design-system', 'consumer'] },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
     name: 'update_identity',
     description:
       'Update the product identity (name, tagline, domain, audience, logo). Call when the user describes their product or picks a domain.',

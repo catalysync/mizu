@@ -23,6 +23,13 @@ export function ShapePanel() {
       onChange: (v) => u('shape', { radius: v as typeof shape.radius }),
     },
     {
+      title: 'Uniform radius',
+      hint: 'Apply the same radius to all elements (vs. scaled per size).',
+      type: 'toggle',
+      value: shape.radiusUniform,
+      onToggle: (v) => u('shape', { radiusUniform: v }),
+    },
+    {
       title: 'Border weight',
       hint: 'How thick borders appear.',
       type: 'chips',
@@ -91,6 +98,13 @@ export function DensityPanel() {
       value: density.density,
       onChange: (v) => u('density', { density: v as typeof density.density }),
     },
+    {
+      title: 'Airy type',
+      hint: 'Extra breathing room around text blocks and headings.',
+      type: 'toggle',
+      value: density.airyType,
+      onToggle: (v) => u('density', { airyType: v }),
+    },
   ];
   return (
     <KnobPanel
@@ -109,6 +123,14 @@ export function TypePanel() {
   const type = useCraftStore((s) => s.profile.type);
   const u = useCraftStore((s) => s.updateCluster);
   const sections: KnobSection[] = [
+    {
+      title: 'Sans family name',
+      hint: 'The exact font-family name (loaded from Google Fonts or local).',
+      type: 'text',
+      value: type.sansFamily,
+      placeholder: 'Inter',
+      onChange: (v) => u('type', { sansFamily: v }),
+    },
     {
       title: 'Type family kind',
       hint: 'The personality of your primary typeface.',
@@ -139,6 +161,14 @@ export function TypePanel() {
       onChange: (v) => u('type', { sansKind: v as typeof type.sansKind }),
     },
     {
+      title: 'Mono family name',
+      hint: 'Monospace font used for code and tabular data.',
+      type: 'text',
+      value: type.monoFamily,
+      placeholder: 'JetBrains Mono',
+      onChange: (v) => u('type', { monoFamily: v }),
+    },
+    {
       title: 'Scale ratio',
       hint: 'How quickly sizes grow between heading levels.',
       type: 'chips',
@@ -163,6 +193,13 @@ export function TypePanel() {
       ],
       value: type.weights,
       onChange: (v) => u('type', { weights: v as typeof type.weights }),
+    },
+    {
+      title: 'Tight tracking',
+      hint: 'Reduce letter-spacing on headings for a tighter, editorial feel.',
+      type: 'toggle',
+      value: type.trackingTight,
+      onToggle: (v) => u('type', { trackingTight: v }),
     },
   ];
   return (
@@ -359,6 +396,29 @@ export function IconographyPanel() {
       value: icon.strokeWeight,
       onChange: (v) => u('iconography', { strokeWeight: v as typeof icon.strokeWeight }),
     },
+    {
+      title: 'Corner style',
+      hint: 'How icon corners are treated.',
+      type: 'chips',
+      options: [
+        { id: 'sharp', label: 'Sharp', hint: 'Geometric, precise' },
+        { id: 'rounded', label: 'Rounded', hint: 'Lucide default' },
+        { id: 'organic', label: 'Organic', hint: 'Hand-drawn feel' },
+      ],
+      value: icon.cornerStyle,
+      onChange: (v) => u('iconography', { cornerStyle: v as typeof icon.cornerStyle }),
+    },
+    {
+      title: 'Size scale',
+      hint: 'The default icon size trio (sm / md / lg).',
+      type: 'chips',
+      options: [
+        { id: '16-20-24', label: '16 / 20 / 24', hint: 'Standard' },
+        { id: '14-18-22', label: '14 / 18 / 22', hint: 'Compact' },
+      ],
+      value: icon.sizeScale,
+      onChange: (v) => u('iconography', { sizeScale: v as typeof icon.sizeScale }),
+    },
   ];
   return (
     <KnobPanel
@@ -413,6 +473,23 @@ export function VoicePanel() {
       ],
       value: voice.destructiveVerb,
       onChange: (v) => u('voice', { destructiveVerb: v as typeof voice.destructiveVerb }),
+    },
+    {
+      title: 'Empty state style',
+      hint: 'The personality of empty/zero-data states.',
+      type: 'options',
+      options: [
+        {
+          id: 'celebratory',
+          label: 'Celebratory',
+          hint: 'Confetti, success vibes — consumer apps',
+        },
+        { id: 'factual', label: 'Factual', hint: 'Plain description — mizu default' },
+        { id: 'illustrated', label: 'Illustrated', hint: 'Custom illustrations — Notion, Stripe' },
+        { id: 'minimal', label: 'Minimal', hint: 'Just text — data tools' },
+      ],
+      value: voice.emptyState,
+      onChange: (v) => u('voice', { emptyState: v as typeof voice.emptyState }),
     },
   ];
   return (

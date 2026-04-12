@@ -10,7 +10,7 @@ export interface KnobOption<T extends string = string> {
   hint: string;
 }
 
-export interface KnobSection {
+export interface KnobSectionChoice {
   title: string;
   hint?: string;
   type: 'options' | 'chips';
@@ -18,6 +18,25 @@ export interface KnobSection {
   value: string;
   onChange: (value: string) => void;
 }
+
+export interface KnobSectionToggle {
+  title: string;
+  hint?: string;
+  type: 'toggle';
+  value: boolean;
+  onToggle: (value: boolean) => void;
+}
+
+export interface KnobSectionText {
+  title: string;
+  hint?: string;
+  type: 'text';
+  value: string;
+  placeholder?: string;
+  onChange: (value: string) => void;
+}
+
+export type KnobSection = KnobSectionChoice | KnobSectionToggle | KnobSectionText;
 
 interface KnobPanelProps {
   cluster: string;
@@ -46,13 +65,43 @@ export function KnobPanel({ cluster, clusterLabel, title, description, sections 
                   <p className="craft-knob-panel__section-hint">{section.hint}</p>
                 ) : null}
               </div>
-              {section.type === 'chips' ? (
-                <div className="craft-knob-panel__chip-row">
+              {section.type === 'toggle' ? (
+                <button
+                  type="button"
+                  className="craft-knob-panel__toggle"
+                  role="switch"
+                  aria-checked={section.value}
+                  onClick={() => section.onToggle(!section.value)}
+                >
+                  <span
+                    className="craft-knob-panel__toggle-track"
+                    data-on={section.value || undefined}
+                  >
+                    <span className="craft-knob-panel__toggle-thumb" />
+                  </span>
+                  <span>{section.value ? 'On' : 'Off'}</span>
+                </button>
+              ) : section.type === 'text' ? (
+                <input
+                  type="text"
+                  className="craft-knob-panel__text-input"
+                  value={section.value}
+                  placeholder={section.placeholder}
+                  onChange={(e) => section.onChange(e.target.value)}
+                />
+              ) : section.type === 'chips' ? (
+                <div
+                  className="craft-knob-panel__chip-row"
+                  role="radiogroup"
+                  aria-label={section.title}
+                >
                   {section.options.map((opt) => (
                     <button
                       key={opt.id}
                       type="button"
+                      role="radio"
                       className="craft-knob-panel__chip"
+                      aria-checked={section.value === opt.id}
                       data-active={section.value === opt.id || undefined}
                       onClick={() => section.onChange(opt.id)}
                     >
@@ -61,12 +110,18 @@ export function KnobPanel({ cluster, clusterLabel, title, description, sections 
                   ))}
                 </div>
               ) : (
-                <div className="craft-knob-panel__options">
+                <div
+                  className="craft-knob-panel__options"
+                  role="radiogroup"
+                  aria-label={section.title}
+                >
                   {section.options.map((opt) => (
                     <button
                       key={opt.id}
                       type="button"
+                      role="radio"
                       className="craft-knob-panel__option"
+                      aria-checked={section.value === opt.id}
                       data-active={section.value === opt.id || undefined}
                       onClick={() => section.onChange(opt.id)}
                     >

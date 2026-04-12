@@ -66,11 +66,11 @@ function generateTailwindBridge(vars: CssVarMap, name: string): string {
 
 function generateHtmlDemo(profile: DesignLanguageProfile, vars: CssVarMap): string {
   const cssBlock = cssVarsToString(vars, ':root');
-  const name = profile.app.identity.productName || profile.name;
-  const pages = profile.app.pages;
+  const name = profile.app?.identity?.productName || profile.name;
+  const pages = profile.app?.pages ?? [];
   const firstPage = pages[0];
 
-  const navHtml = profile.app.shell.nav
+  const navHtml = (profile.app?.shell?.nav ?? [])
     .map((n) => {
       const p = pages.find((pg) => pg.id === n.pageId);
       return p ? `<a href="#" class="nav-item">${p.title}</a>` : '';
@@ -153,7 +153,7 @@ body {
 <body>
   <div class="shell">
     <nav class="sidebar">
-      <div class="brand"><span class="brand-mark">${profile.app.identity.logo}</span> ${name}</div>
+      <div class="brand"><span class="brand-mark">${profile.app?.identity?.logo ?? '✷'}</span> ${name}</div>
       ${navHtml}
     </nav>
     <main class="main">

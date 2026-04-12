@@ -139,8 +139,16 @@ export const useCraftStore = create<CraftState>()(
         if (version < 2) {
           const state = persisted as Record<string, unknown>;
           const profile = state.profile as Record<string, unknown> | undefined;
-          if (profile && !profile.app) {
-            profile.app = mizuSampleProfile.app;
+          if (profile) {
+            if (!profile.app) profile.app = mizuSampleProfile.app;
+            const app = profile.app as Record<string, unknown>;
+            if (!app.identity) app.identity = mizuSampleProfile.app.identity;
+            if (!app.pages) app.pages = mizuSampleProfile.app.pages;
+            if (!app.entities) app.entities = mizuSampleProfile.app.entities;
+            if (!app.shell) app.shell = mizuSampleProfile.app.shell;
+            if (!app.components) app.components = mizuSampleProfile.app.components;
+            if (!app.customComponents)
+              app.customComponents = mizuSampleProfile.app.customComponents;
           }
         }
         return persisted as CraftState;

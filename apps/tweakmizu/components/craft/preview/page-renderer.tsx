@@ -116,7 +116,8 @@ function KpiRow({ section }: { section: Section }) {
 }
 
 function TableSection({ section, profile }: { section: Section; profile: DesignLanguageProfile }) {
-  const entity: Entity | undefined = profile.app.entities.find((e) => e.id === section.entityId);
+  const entities = profile.app?.entities ?? [];
+  const entity: Entity | undefined = entities.find((e) => e.id === section.entityId);
   if (!entity) {
     return (
       <section className="craft-preview-section craft-preview-section--empty">

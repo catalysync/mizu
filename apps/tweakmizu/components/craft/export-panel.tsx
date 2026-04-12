@@ -152,13 +152,13 @@ export function ExportPanel() {
           <dt>Archetype</dt>
           <dd>{profile.archetype ?? 'custom'}</dd>
           <dt>Domain</dt>
-          <dd>{profile.app.identity.domain}</dd>
+          <dd>{profile.app?.identity?.domain ?? 'N/A'}</dd>
           <dt>Pages</dt>
-          <dd>{profile.app.pages.length}</dd>
+          <dd>{profile.app?.pages?.length ?? 0}</dd>
           <dt>Entities</dt>
-          <dd>{profile.app.entities.length}</dd>
+          <dd>{profile.app?.entities?.length ?? 0}</dd>
           <dt>Components</dt>
-          <dd>{profile.app.components.length}</dd>
+          <dd>{profile.app?.components?.length ?? 0}</dd>
         </dl>
       </section>
     </div>

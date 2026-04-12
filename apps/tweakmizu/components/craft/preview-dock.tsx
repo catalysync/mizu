@@ -14,11 +14,6 @@ const DEVICE_WIDTHS: Record<DeviceSize, string> = {
   desktop: '100%',
 };
 
-/**
- * Embedded iframe preview that renders any page from the profile via the
- * `/craft/preview/*` route. BroadcastChannel keeps the iframe in sync with
- * every mutation in the parent studio, so changes show up within a frame.
- */
 export function PreviewDock() {
   const pages = useCraftStore((s) => s.profile.app?.pages ?? []);
   const [currentPage, setCurrentPage] = useState(pages[0]?.path ?? '/');
@@ -88,12 +83,7 @@ export function PreviewDock() {
         data-device={device}
         style={{ '--craft-dock-width': DEVICE_WIDTHS[device] } as React.CSSProperties}
       >
-        <iframe
-          title="Live preview"
-          src={src}
-          className="craft-dock__frame"
-          sandbox="allow-same-origin allow-scripts allow-forms"
-        />
+        <iframe title="Live preview" src={src} className="craft-dock__frame" />
       </div>
     </div>
   );

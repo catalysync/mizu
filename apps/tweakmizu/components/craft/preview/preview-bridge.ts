@@ -10,11 +10,8 @@ import { parseProfile, type DesignLanguageProfile } from '@/lib/craft/profile';
  * the iframe picks it up and replaces its local store state.
  *
  * BroadcastChannel works same-origin, which is what we have (both windows
- * are under tweakmizu). If BroadcastChannel is missing (old browser, test
- * env), we also listen to `storage` events as a fallback.
- *
- * Uses the same channel name in both directions so the parent can also
- * request the current profile on startup via a {type:'request'} message.
+ * are under tweakmizu). Uses the same channel name in both directions so
+ * the parent can also respond to startup requests from the iframe.
  */
 
 const CHANNEL = 'craft-profile';

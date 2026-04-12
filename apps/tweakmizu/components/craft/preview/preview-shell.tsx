@@ -28,9 +28,9 @@ export function PreviewShell({ profile, currentPath, children }: PreviewShellPro
     <div className="craft-preview-shell">
       <header className="craft-preview-shell__header">
         <div className="craft-preview-shell__brand">
-          <span className="craft-preview-shell__logo">{profile.app.identity.logo}</span>
+          <span className="craft-preview-shell__logo">{profile.app?.identity?.logo ?? '✷'}</span>
           <span className="craft-preview-shell__brand-name">
-            {profile.app.identity.productName}
+            {profile.app?.identity?.productName ?? profile.name}
           </span>
         </div>
         <div className="craft-preview-shell__user">

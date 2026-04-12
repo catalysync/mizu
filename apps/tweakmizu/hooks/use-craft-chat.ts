@@ -253,16 +253,12 @@ export function useCraftChat() {
               if (event.type === 'content_block_stop' && currentToolName) {
                 try {
                   const args = JSON.parse(currentToolInput || '{}');
-                  const patch = applyToolCall(
-                    currentToolName,
-                    args,
-                    useCraftStore.getState().profile,
-                  );
+                  const state = useCraftStore.getState();
+                  const patch = applyToolCall(currentToolName, args, state.profile);
                   if (patch) {
-                    const prev = useCraftStore.getState().profile;
                     useCraftStore.setState({
-                      profile: { ...prev, ...patch } as DesignLanguageProfile,
-                      history: [...useCraftStore.getState().history, prev],
+                      profile: { ...state.profile, ...patch } as DesignLanguageProfile,
+                      history: [...state.history, state.profile],
                       future: [],
                     });
                   }
@@ -303,6 +299,14 @@ export function useCraftChat() {
             }
           }
         }
+        // Ensure message is marked non-pending even if message_stop never arrived
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === aiMsg.id && m.pending
+              ? { ...m, content: textBuffer || m.content || 'Done.', pending: false }
+              : m,
+          ),
+        );
       } catch (err) {
         if ((err as Error).name !== 'AbortError') {
           setMessages((prev) =>
