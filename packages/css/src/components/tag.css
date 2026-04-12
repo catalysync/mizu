@@ -6,7 +6,7 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-xs);
   font-weight: var(--mizu-font-weight-medium);
-  line-height: var(--mizu-line-height-normal);
+  line-height: var(--mizu-font-line-height-normal);
   color: var(--mizu-text-primary);
   background: var(--mizu-surface-secondary);
   border: 1px solid var(--mizu-border-default);
