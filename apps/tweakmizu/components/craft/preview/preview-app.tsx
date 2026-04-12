@@ -1,7 +1,7 @@
 'use client';
 
 import './preview-app.css';
-import { use, useEffect, useRef } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 import { useCraftStore } from '@/store/craft-store';
 import { profileToCss } from '@/lib/craft/profile-to-css';
 import { PreviewShell } from './preview-shell';
@@ -11,13 +11,15 @@ import { PreviewToolbar } from './preview-toolbar';
 
 /**
  * Apply CSS vars imperatively so knob changes never trigger a React
- * re-render of the preview tree. The vars are set directly on the DOM
- * element — React doesn't know about them, so children stay mounted
- * and only the browser's CSS cascade updates. Zero flash.
+ * re-render of the preview tree. Returns whether the first real profile
+ * has been applied (so the UI can hide until ready).
  */
 function useCssVars(ref: React.RefObject<HTMLDivElement | null>) {
   const profile = useCraftStore((s) => s.profile);
   const previewDark = useCraftStore((s) => s.previewDark);
+  const [ready, setReady] = useState(false);
+  const isInIframe = typeof window !== 'undefined' && window.self !== window.top;
+  const appliedOnce = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -26,9 +28,26 @@ function useCssVars(ref: React.RefObject<HTMLDivElement | null>) {
     for (const [key, value] of Object.entries(vars)) {
       el.style.setProperty(key, value);
     }
-    // Also set color-scheme so scrollbars/form controls follow
     el.style.setProperty('color-scheme', previewDark ? 'dark' : 'light');
-  }, [profile, previewDark, ref]);
+
+    // In iframe: wait for BroadcastChannel to send real profile before showing.
+    // The first store state is the default; the second is from the parent.
+    if (!appliedOnce.current) {
+      appliedOnce.current = true;
+      if (!isInIframe) setReady(true); // standalone: show immediately
+    } else {
+      setReady(true);
+    }
+  }, [profile, previewDark, ref, isInIframe]);
+
+  // Fallback: if BroadcastChannel never fires (no parent), show after 500ms
+  useEffect(() => {
+    if (ready) return;
+    const timer = setTimeout(() => setReady(true), 500);
+    return () => clearTimeout(timer);
+  }, [ready]);
+
+  return ready;
 }
 
 interface PreviewAppProps {
@@ -42,8 +61,9 @@ export function PreviewApp({ paramsPromise }: PreviewAppProps) {
 
   usePreviewBridge();
 
-  // Apply CSS vars imperatively — no React re-render on knob changes
-  useCssVars(rootRef);
+  // Apply CSS vars imperatively — no React re-render on knob changes.
+  // Returns false until the first real profile arrives via BroadcastChannel.
+  const ready = useCssVars(rootRef);
 
   // Subscribe to structural data only (pages, entities, shell, identity).
   // Knob-only changes (foundation, shape, density, etc.) are handled by
@@ -58,9 +78,11 @@ export function PreviewApp({ paramsPromise }: PreviewAppProps) {
   const page =
     pages.find((p) => p.path === pathname) ?? pages.find((p) => p.path === '/') ?? pages[0];
 
+  const rootStyle = ready ? undefined : { opacity: 0 };
+
   if (!profile.app) {
     return (
-      <div className="craft-preview-root" ref={rootRef}>
+      <div className="craft-preview-root" ref={rootRef} style={rootStyle}>
         <EmptyPreview />
       </div>
     );
@@ -71,7 +93,7 @@ export function PreviewApp({ paramsPromise }: PreviewAppProps) {
   return (
     <>
       {isStandalone ? <PreviewToolbar /> : null}
-      <div className="craft-preview-root" ref={rootRef}>
+      <div className="craft-preview-root" ref={rootRef} style={rootStyle}>
         <PreviewShell profile={profile} currentPath={page?.path ?? '/'}>
           {page ? <PageRenderer page={page} profile={profile} /> : <EmptyPreview />}
         </PreviewShell>

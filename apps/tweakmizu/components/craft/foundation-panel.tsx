@@ -292,7 +292,10 @@ export function FoundationPanel() {
             </div>
           </Section>
 
-          <Section title="Dark mode philosophy" hint="How dark mode relates to light.">
+          <Section
+            title="Dark mode philosophy"
+            hint="How dark mode relates to light. This configures the exported code strategy — use the moon icon in the preview toolbar to toggle the live preview."
+          >
             <OptionGroup
               options={DARK_MODE_OPTIONS}
               value={foundation.darkMode}
