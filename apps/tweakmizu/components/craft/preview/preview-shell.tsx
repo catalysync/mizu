@@ -78,6 +78,9 @@ export function PreviewShell({ profile, currentPath, children }: PreviewShellPro
         </nav>
         <main className="craft-preview-shell__main">{children}</main>
       </div>
+      <div className="craft-preview-motion-bar" aria-hidden>
+        <div className="craft-preview-motion-bar__fill" />
+      </div>
     </div>
   );
 }

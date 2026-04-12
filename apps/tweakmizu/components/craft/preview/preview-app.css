@@ -578,3 +578,32 @@
   font-size: var(--mizu-font-size-xs, 0.6875rem);
   font-weight: var(--mizu-font-weight-semibold, 600);
 }
+
+/* Motion indicator — always-visible animated bar showing current easing + duration */
+.craft-preview-motion-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--mizu-surface-tertiary);
+  overflow: hidden;
+}
+
+.craft-preview-motion-bar__fill {
+  height: 100%;
+  width: 30%;
+  background: var(--mizu-action-primary-default);
+  border-radius: 0 2px 2px 0;
+  animation: craft-motion-slide var(--mizu-duration-slow, 320ms) var(--mizu-easing-out, ease-out)
+    infinite alternate;
+}
+
+@keyframes craft-motion-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(233%);
+  }
+}
