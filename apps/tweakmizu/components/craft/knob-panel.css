@@ -34,12 +34,7 @@
   grid-template-columns: 1fr;
 }
 
-@media (min-width: 1024px) {
-  .craft-knob-panel__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(20rem, 26rem);
-    align-items: start;
-  }
-}
+/* Preview is now in the shell — grid is single-column */
 
 .craft-knob-panel__controls {
   display: flex;

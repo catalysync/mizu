@@ -58,12 +58,7 @@
   grid-template-columns: 1fr;
 }
 
-@media (min-width: 1024px) {
-  .craft-prompt__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(20rem, 1fr);
-    align-items: start;
-  }
-}
+/* Preview is now in the shell — grid is single-column */
 
 .craft-prompt__chat {
   min-height: 32rem;
