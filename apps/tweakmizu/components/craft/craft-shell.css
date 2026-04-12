@@ -278,6 +278,7 @@
     flex: 0 0 min(26rem, 35vw);
     position: sticky;
     top: 3.5rem;
+    align-self: flex-start;
     height: calc(100dvh - 3.5rem);
     overflow-y: auto;
     border-left: 1px solid var(--mizu-border-subtle);
