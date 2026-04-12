@@ -45,6 +45,10 @@
   letter-spacing: -0.01em;
 }
 
+.settings-layout__spacer {
+  flex: 1;
+}
+
 .settings-layout__main {
   flex: 1;
   width: 100%;
@@ -144,6 +148,17 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.settings-plan--pro {
+  border-color: var(--mizu-action-primary-default);
+  border-width: 1.5px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--mizu-action-primary-default) 4%, var(--mizu-surface-default)),
+    var(--mizu-surface-default) 60%
+  );
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--mizu-action-primary-default) 12%, transparent);
 }
 
 .settings-plan__header {
@@ -320,13 +335,48 @@
 
 /* Danger zone */
 
+.settings-section--danger {
+  margin-top: 1rem;
+}
+
+.settings-section__title--danger {
+  color: var(--mizu-action-destructive-default, #dc2626);
+  border-bottom-color: color-mix(
+    in srgb,
+    var(--mizu-action-destructive-default, #dc2626) 30%,
+    transparent
+  );
+}
+
 .settings-danger {
-  padding: 1rem;
-  border: 1px solid var(--mizu-action-destructive-default, #dc2626);
+  padding: 1.25rem;
+  border: 1.5px solid var(--mizu-action-destructive-default, #dc2626);
   border-radius: var(--mizu-radius-lg);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  background: linear-gradient(
+    135deg,
+    color-mix(
+      in srgb,
+      var(--mizu-action-destructive-default, #dc2626) 4%,
+      var(--mizu-surface-default)
+    ),
+    var(--mizu-surface-default) 60%
+  );
+  box-shadow: 0 0 0 1px
+    color-mix(in srgb, var(--mizu-action-destructive-default, #dc2626) 8%, transparent);
+}
+
+.settings-danger__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.settings-danger__icon {
+  color: var(--mizu-action-destructive-default, #dc2626);
+  flex-shrink: 0;
 }
 
 .settings-danger__title {
