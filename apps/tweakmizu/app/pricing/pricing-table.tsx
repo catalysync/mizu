@@ -25,20 +25,18 @@ interface Feature {
 }
 
 const FEATURES: Feature[] = [
-  { label: 'Theme editor with 3+ tabs', free: true, pro: true },
-  { label: '3 industries (Cloud, SaaS, E-commerce)', free: true, pro: true },
-  { label: '7 free-tier patterns', free: true, pro: true },
-  { label: 'React + HTML/CSS export', free: true, pro: true },
-  { label: 'Zip download', free: true, pro: true },
-  { label: 'Save up to 3 projects', free: true, pro: false },
-  { label: 'Unlimited projects', free: false, pro: true },
-  { label: 'Full pattern catalog (60+ patterns)', free: false, pro: true },
-  { label: 'AI edit-by-prompt (Cmd+K)', free: false, pro: true },
-  { label: 'Svelte, Vue, Alpine export', free: false, pro: true },
-  { label: 'Layout primitives editor', free: false, pro: true },
-  { label: 'Density modes', free: false, pro: true },
-  { label: 'Push to GitHub', free: false, pro: true },
-  { label: '100 generations / hour', free: false, pro: true },
+  { label: '10 design language knobs (hue → API opinions)', free: true, pro: true },
+  { label: '6 archetype presets (mizu, Ledger, Parchment…)', free: true, pro: true },
+  { label: 'Finance domain pack', free: true, pro: true },
+  { label: 'JSON, CSS, Tailwind v4, HTML demo export', free: true, pro: true },
+  { label: 'Live multi-page preview', free: true, pro: true },
+  { label: 'AI prompt (5 messages / hour)', free: true, pro: true },
+  { label: '8 Pro archetypes (Mercury, Vapor, Neon…)', free: false, pro: true },
+  { label: '4 Pro domain packs (healthcare, dev-tools, commerce, HR)', free: false, pro: true },
+  { label: 'Next.js App Router starter export', free: false, pro: true },
+  { label: 'Unlimited AI prompt messages', free: false, pro: true },
+  { label: 'Push to GitHub (coming soon)', free: false, pro: true },
+  { label: 'Shareable live preview links (coming soon)', free: false, pro: true },
 ];
 
 export function PricingTable() {

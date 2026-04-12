@@ -2,8 +2,22 @@ import Anthropic from '@anthropic-ai/sdk';
 import { CRAFT_TOOLS } from '@/lib/craft/agent-tools';
 import { getPackForDomain } from '@/lib/craft/packs';
 import { getCurrentUserId } from '@/lib/shared';
+import { getSubscriptionStatus } from '@/lib/subscription';
+import { STUDIO_FREE_GENERATIONS_PER_HOUR } from '@/lib/constants';
 
 const client = new Anthropic();
+
+const rateLimitMap = new Map<string, number[]>();
+
+function checkRateLimit(userId: string, limit: number): boolean {
+  const now = Date.now();
+  const hourAgo = now - 3600_000;
+  const timestamps = (rateLimitMap.get(userId) ?? []).filter((t) => t > hourAgo);
+  if (timestamps.length >= limit) return false;
+  timestamps.push(now);
+  rateLimitMap.set(userId, timestamps);
+  return true;
+}
 
 const SYSTEM_PROMPT = `You are a design system architect. Users describe the product they want to build, and you generate a complete design system for it by calling tools.
 
@@ -33,7 +47,17 @@ export async function POST(request: Request) {
     return new Response('AI features are not configured.', { status: 503 });
   }
 
-  await getCurrentUserId();
+  const userId = await getCurrentUserId();
+  const sub = await getSubscriptionStatus(userId);
+
+  if (!sub.isSubscribed) {
+    if (!checkRateLimit(userId, STUDIO_FREE_GENERATIONS_PER_HOUR)) {
+      return new Response(
+        `Free tier: ${STUDIO_FREE_GENERATIONS_PER_HOUR} AI messages per hour. Upgrade to Pro for unlimited.`,
+        { status: 429 },
+      );
+    }
+  }
 
   const { messages, profile } = await request.json();
 
