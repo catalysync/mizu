@@ -5,7 +5,6 @@ import { Badge } from '@aspect/react';
 import { Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { ChatDock } from './chat-dock';
-import { PreviewDock } from './preview-dock';
 import { useCraftChat } from '@/hooks/use-craft-chat';
 import { useIsPro } from './craft-pro-context';
 
@@ -47,9 +46,7 @@ export function PromptPanel() {
             placeholder="Build an accounting product for UK SMBs with invoicing, VAT, and bank reconciliation..."
           />
         </div>
-        <div className="craft-prompt__preview">
-          <PreviewDock />
-        </div>
+        {/* Preview is in the persistent craft-shell layout */}
       </div>
     </div>
   );

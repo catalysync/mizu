@@ -11,6 +11,7 @@ import { installPreviewPublisher } from './preview/preview-bridge';
 import { CraftProProvider } from './craft-pro-context';
 import { ProBanner, ProBadge } from './pro-upsell';
 import { HydrationGate } from './hydration-gate';
+import { PreviewDock } from './preview-dock';
 import { useIsPro } from './craft-pro-context';
 
 interface CraftShellProps {
@@ -173,6 +174,9 @@ export function CraftShell({ user, isPro = false, children }: CraftShellProps) {
           <main className="craft-shell__main" id="craft-main">
             <HydrationGate>{children}</HydrationGate>
           </main>
+          <aside className="craft-shell__preview" aria-label="Live preview">
+            <PreviewDock />
+          </aside>
         </div>
       </div>
     </CraftProProvider>

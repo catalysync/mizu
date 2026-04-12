@@ -1,7 +1,8 @@
 'use client';
 
 import './knob-panel.css';
-import { PreviewDock } from './preview-dock';
+import { useState, useMemo, useRef, useEffect } from 'react';
+import { fontOptionsByCategory, loadGoogleFont, type FontCategory } from '@/utils/fonts';
 
 export interface KnobOption<T extends string = string> {
   id: T;
@@ -38,7 +39,21 @@ export interface KnobSectionText {
   onChange: (value: string) => void;
 }
 
-export type KnobSection = KnobSectionChoice | KnobSectionToggle | KnobSectionText;
+export interface KnobSectionFontPicker {
+  title: string;
+  hint?: string;
+  demo?: React.ReactNode;
+  type: 'font-picker';
+  category: 'sans' | 'serif' | 'mono';
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export type KnobSection =
+  | KnobSectionChoice
+  | KnobSectionToggle
+  | KnobSectionText
+  | KnobSectionFontPicker;
 
 interface KnobPanelProps {
   title: string;
@@ -89,6 +104,12 @@ export function KnobPanel({ title, description, sections }: KnobPanelProps) {
                   placeholder={section.placeholder}
                   onChange={(e) => section.onChange(e.target.value)}
                 />
+              ) : section.type === 'font-picker' ? (
+                <FontPicker
+                  category={section.category}
+                  value={section.value}
+                  onChange={section.onChange}
+                />
               ) : section.type === 'chips' ? (
                 <div
                   className="craft-knob-panel__chip-row"
@@ -134,10 +155,99 @@ export function KnobPanel({ title, description, sections }: KnobPanelProps) {
             </section>
           ))}
         </div>
-        <aside className="craft-knob-panel__preview">
-          <PreviewDock />
-        </aside>
+        {/* Preview is in the persistent craft-shell layout */}
       </div>
+    </div>
+  );
+}
+
+function FontPicker({
+  category,
+  value,
+  onChange,
+}: {
+  category: FontCategory;
+  value: string;
+  onChange: (family: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const ref = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const fonts = useMemo(() => fontOptionsByCategory(category), [category]);
+  const filtered = useMemo(() => {
+    if (!search) return fonts;
+    const q = search.toLowerCase();
+    return fonts.filter((f) => f.family.toLowerCase().includes(q));
+  }, [fonts, search]);
+
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return;
+    const handleClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [open]);
+
+  // Focus search input when opened
+  useEffect(() => {
+    if (open) inputRef.current?.focus();
+  }, [open]);
+
+  const handleSelect = (family: string) => {
+    const font = fonts.find((f) => f.family === family);
+    if (font) loadGoogleFont(font);
+    onChange(family);
+    setOpen(false);
+    setSearch('');
+  };
+
+  return (
+    <div className="craft-font-picker" ref={ref}>
+      <button
+        type="button"
+        className="craft-font-picker__trigger"
+        onClick={() => setOpen(!open)}
+        style={{ fontFamily: `"${value}", system-ui, sans-serif` }}
+      >
+        <span className="craft-font-picker__value">{value}</span>
+        <span className="craft-font-picker__arrow">{open ? '▲' : '▼'}</span>
+      </button>
+
+      {open && (
+        <div className="craft-font-picker__dropdown">
+          <input
+            ref={inputRef}
+            type="text"
+            className="craft-font-picker__search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search fonts..."
+            aria-label="Search fonts"
+          />
+          <div className="craft-font-picker__list">
+            {filtered.map((font) => (
+              <button
+                key={font.family}
+                type="button"
+                className="craft-font-picker__item"
+                data-active={font.family === value || undefined}
+                onClick={() => handleSelect(font.family)}
+                onMouseEnter={() => loadGoogleFont(font)}
+                style={{ fontFamily: `"${font.family}", system-ui, sans-serif` }}
+              >
+                {font.family}
+              </button>
+            ))}
+            {filtered.length === 0 && (
+              <div className="craft-font-picker__empty">No fonts found</div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
