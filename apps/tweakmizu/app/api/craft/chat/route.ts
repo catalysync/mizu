@@ -1,5 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { CRAFT_TOOLS } from '@/lib/craft/agent-tools';
+import { getPackForDomain } from '@/lib/craft/packs';
 import { getCurrentUserId } from '@/lib/shared';
 
 const client = new Anthropic();
@@ -63,10 +64,18 @@ export async function POST(request: Request) {
     }
   }
 
+  // Inject domain pack context if available — this is what makes the AI
+  // generate Sage-level products instead of generic dashboards.
+  const domain = profile.app?.identity?.domain;
+  const pack = domain ? getPackForDomain(domain) : undefined;
+  const systemPrompt = pack
+    ? `${SYSTEM_PROMPT}\n\n--- DOMAIN PACK: ${pack.name} ---\n\n${pack.promptContext}`
+    : SYSTEM_PROMPT;
+
   const stream = client.messages.stream({
     model: 'claude-sonnet-4-5-20250514',
     max_tokens: 4096,
-    system: SYSTEM_PROMPT,
+    system: systemPrompt,
     tools: CRAFT_TOOLS,
     messages: anthropicMessages,
   });

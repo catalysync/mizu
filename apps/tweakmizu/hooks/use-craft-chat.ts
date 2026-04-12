@@ -5,6 +5,7 @@ import type { ChatMessage } from '@/components/craft/chat-dock';
 import { useCraftStore } from '@/store/craft-store';
 import type { DesignLanguageProfile } from '@/lib/craft/profile';
 import type { Entity, Page, NavItem, EntityField } from '@/lib/craft/app-schema';
+import { getPackForDomain } from '@/lib/craft/packs';
 
 type ClusterKey =
   | 'foundation'
@@ -42,10 +43,21 @@ function applyToolCall(
   }
 
   if (name === 'update_identity') {
+    const newIdentity = { ...profile.app.identity, ...args };
+    const domainChanged = args.domain && args.domain !== profile.app.identity.domain;
+    const pack = domainChanged ? getPackForDomain(args.domain as string) : undefined;
+
     return {
       app: {
         ...profile.app,
-        identity: { ...profile.app.identity, ...args },
+        identity: newIdentity,
+        ...(pack
+          ? {
+              entities: pack.entities,
+              pages: pack.defaultPages,
+              shell: { ...profile.app.shell, nav: pack.defaultNav },
+            }
+          : {}),
       },
     };
   }
