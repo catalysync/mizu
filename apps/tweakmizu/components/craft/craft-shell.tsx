@@ -9,8 +9,9 @@ import { Button, cn } from '@aspect/react';
 import { useCraftStore } from '@/store/craft-store';
 import { installPreviewPublisher } from './preview/preview-bridge';
 import { CraftProProvider } from './craft-pro-context';
-import { ProBanner } from './pro-upsell';
+import { ProBanner, ProBadge } from './pro-upsell';
 import { HydrationGate } from './hydration-gate';
+import { useIsPro } from './craft-pro-context';
 
 interface CraftShellProps {
   user: { id: string; name: string; email: string };
@@ -100,6 +101,7 @@ export function CraftShell({ user, isPro = false, children }: CraftShellProps) {
           <Link href="/craft" className="craft-shell__brand">
             <span className="craft-shell__brand-mark">✷</span>
             <span className="craft-shell__brand-text">craft</span>
+            {isPro ? <ProBadge /> : null}
             <span className="craft-shell__profile-name">{profileName}</span>
           </Link>
           <div className="craft-shell__header-actions">
