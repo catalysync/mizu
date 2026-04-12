@@ -42,7 +42,7 @@ export default function HomePage() {
         <p className="docs-subtitle">
           A base layer on top of Radix — tokens, CSS, React bindings, layout primitives, and shell
           composition for building web applications. mizu does not have a design language of its
-          own; it's the canvas, and tweakmizu is where the painting happens.
+          own; it&apos;s the canvas, and tweakmizu is where the painting happens.
         </p>
         <div className="docs-home__ctas">
           <Link

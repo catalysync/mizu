@@ -1,0 +1,158 @@
+.craft-knob-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.craft-knob-panel__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 44rem;
+}
+
+.craft-knob-panel__title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.craft-knob-panel__lede {
+  color: var(--mizu-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.craft-knob-panel__grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .craft-knob-panel__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 26rem);
+    align-items: start;
+  }
+}
+
+.craft-knob-panel__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.craft-knob-panel__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.craft-knob-panel__section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.craft-knob-panel__section-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.craft-knob-panel__section-hint {
+  color: var(--mizu-text-tertiary);
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.craft-knob-panel__chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.craft-knob-panel__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-md);
+  color: var(--mizu-text-primary);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.craft-knob-panel__chip:hover {
+  background: var(--mizu-surface-secondary);
+}
+
+.craft-knob-panel__chip[data-active] {
+  border-color: var(--mizu-action-primary-default);
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 10%, transparent);
+  color: var(--mizu-action-primary-default);
+}
+
+.craft-knob-panel__options {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 560px) {
+  .craft-knob-panel__options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.craft-knob-panel__option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-md);
+  color: var(--mizu-text-primary);
+  font-family: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.craft-knob-panel__option:hover {
+  border-color: var(--mizu-border-default);
+}
+
+.craft-knob-panel__option[data-active] {
+  border-color: var(--mizu-action-primary-default);
+  background: color-mix(in srgb, var(--mizu-action-primary-default) 8%, transparent);
+}
+
+.craft-knob-panel__option-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.craft-knob-panel__option-hint {
+  color: var(--mizu-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+.craft-knob-panel__preview {
+  position: sticky;
+  top: 4.5rem;
+}
+
+@media (max-width: 1023px) {
+  .craft-knob-panel__preview {
+    position: static;
+  }
+}
