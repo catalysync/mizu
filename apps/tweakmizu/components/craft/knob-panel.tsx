@@ -3,6 +3,7 @@
 import './knob-panel.css';
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { fontOptionsByCategory, loadGoogleFont, type FontCategory } from '@/utils/fonts';
+import { useCraftStore } from '@/store/craft-store';
 
 export interface KnobOption<T extends string = string> {
   id: T;
@@ -59,14 +60,38 @@ interface KnobPanelProps {
   title: string;
   description: string;
   sections: KnobSection[];
+  /** Optional note shown below description (e.g. "switch to a form page to see changes") */
+  note?: string;
+  /** Auto-switch preview to a page matching this path pattern on mount */
+  preferPreviewPage?: string;
 }
 
-export function KnobPanel({ title, description, sections }: KnobPanelProps) {
+export function KnobPanel({
+  title,
+  description,
+  sections,
+  note,
+  preferPreviewPage,
+}: KnobPanelProps) {
+  const pages = useCraftStore((s) => s.profile.app?.pages ?? []);
+  const setPreviewPath = useCraftStore((s) => s.setPreviewPath);
+
+  // Auto-switch preview to a relevant page on mount
+  useEffect(() => {
+    if (!preferPreviewPage) return;
+    const match = pages.find(
+      (p) =>
+        p.path.includes(preferPreviewPage) || p.title.toLowerCase().includes(preferPreviewPage),
+    );
+    if (match) setPreviewPath(match.path);
+  }, [preferPreviewPage, pages, setPreviewPath]);
+
   return (
     <div className="craft-knob-panel">
       <header className="craft-knob-panel__header">
         <h1 className="craft-knob-panel__title">{title}</h1>
         <p className="craft-knob-panel__lede">{description}</p>
+        {note ? <p className="craft-knob-panel__note">{note}</p> : null}
       </header>
 
       <div className="craft-knob-panel__grid">

@@ -366,6 +366,8 @@ export function FocusPanel() {
     <KnobPanel
       title="Focus"
       description="Accessibility voice — how keyboard focus is shown across the system."
+      note="Focus rings appear on input fields and buttons when focused. Switch the preview to a page with forms (e.g. Settings) to see changes, or tab into an input."
+      preferPreviewPage="settings"
       sections={sections}
     />
   );
@@ -430,6 +432,7 @@ export function IconographyPanel() {
     <KnobPanel
       title="Iconography"
       description="Icon style, stroke weight, and corner treatment."
+      note="These settings define the icon language in the exported design system. The preview uses text labels — icons render in the generated monorepo with the chosen Lucide/Phosphor style."
       sections={sections}
     />
   );
@@ -500,6 +503,7 @@ export function VoicePanel() {
     <KnobPanel
       title="Voice"
       description="The tone of UI copy — register, error messaging style, and vocabulary choices."
+      note="Voice settings shape the copy in the exported design system (error messages, empty states, button labels). The preview uses placeholder text."
       sections={sections}
     />
   );
@@ -564,6 +568,7 @@ export function OpinionsPanel() {
     <KnobPanel
       title="API opinions"
       description="How the component API surface reflects beliefs — prop naming, composition patterns, and ownership boundaries."
+      note="These choices affect the generated component code (prop names, composition patterns). They don't change the visual preview."
       sections={sections}
     />
   );
