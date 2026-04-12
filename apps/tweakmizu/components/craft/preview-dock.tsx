@@ -1,7 +1,7 @@
 'use client';
 
 import './preview-dock.css';
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { Monitor, Smartphone, Tablet, ExternalLink, Maximize2, X } from 'lucide-react';
 import { useCraftStore } from '@/store/craft-store';
@@ -14,104 +14,154 @@ const DEVICE_WIDTHS: Record<DeviceSize, string> = {
   desktop: '100%',
 };
 
+// The iframe always loads /preview once. Page switching happens via the store
+// + BroadcastChannel — no iframe navigation, no flash.
+const IFRAME_SRC = '/preview';
+
 export function PreviewDock() {
   const pages = useCraftStore((s) => s.profile.app?.pages ?? []);
-  const [currentPage, setCurrentPage] = useState(pages[0]?.path ?? '/');
+  const previewPath = useCraftStore((s) => s.previewPath);
+  const setPreviewPath = useCraftStore((s) => s.setPreviewPath);
   const [device, setDevice] = useState<DeviceSize>('desktop');
-  const [fullscreen, setFullscreen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
-  const activePath = useMemo(() => {
-    if (pages.some((p) => p.path === currentPage)) return currentPage;
-    return pages[0]?.path ?? '/';
-  }, [pages, currentPage]);
+  // Default to first page if current previewPath doesn't match any page
+  const activePath = pages.some((p) => p.path === previewPath)
+    ? previewPath
+    : (pages[0]?.path ?? '/');
 
-  const src = '/preview' + (activePath === '/' ? '' : activePath);
+  const handlePageChange = useCallback(
+    (path: string) => {
+      setPreviewPath(path);
+    },
+    [setPreviewPath],
+  );
 
-  const toolbar = (
-    <div className="craft-dock__toolbar">
-      <select
-        className="craft-dock__page-select"
-        value={activePath}
-        onChange={(e) => setCurrentPage(e.target.value)}
-        aria-label="Select preview page"
-      >
-        {pages.map((p) => (
-          <option key={p.id} value={p.path}>
-            {p.title}
-          </option>
-        ))}
-      </select>
-      <div className="craft-dock__spacer" />
-      <div className="craft-dock__devices" role="group" aria-label="Preview device size">
-        <button
-          type="button"
-          data-active={device === 'mobile' || undefined}
-          onClick={() => setDevice('mobile')}
-          aria-label="Mobile preview"
-        >
-          <Smartphone size={14} />
-        </button>
-        <button
-          type="button"
-          data-active={device === 'tablet' || undefined}
-          onClick={() => setDevice('tablet')}
-          aria-label="Tablet preview"
-        >
-          <Tablet size={14} />
-        </button>
-        <button
-          type="button"
-          data-active={device === 'desktop' || undefined}
-          onClick={() => setDevice('desktop')}
-          aria-label="Desktop preview"
-        >
-          <Monitor size={14} />
-        </button>
-      </div>
+  const openFullscreen = useCallback(() => {
+    dialogRef.current?.showModal();
+  }, []);
+
+  const closeFullscreen = useCallback(() => {
+    dialogRef.current?.close();
+  }, []);
+
+  // Close on backdrop click
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const handleClick = (e: MouseEvent) => {
+      if (e.target === dialog) dialog.close();
+    };
+    dialog.addEventListener('click', handleClick);
+    return () => dialog.removeEventListener('click', handleClick);
+  }, []);
+
+  const deviceButtons = (
+    <div className="craft-dock__devices" role="group" aria-label="Preview device size">
       <button
         type="button"
-        className="craft-dock__open"
-        onClick={() => setFullscreen((v) => !v)}
-        aria-label={fullscreen ? 'Exit fullscreen' : 'Fullscreen preview'}
+        data-active={device === 'mobile' || undefined}
+        onClick={() => setDevice('mobile')}
+        aria-label="Mobile preview"
       >
-        {fullscreen ? <X size={14} /> : <Maximize2 size={14} />}
+        <Smartphone size={14} />
       </button>
-      <Link
-        href={`/preview${activePath === '/' ? '' : activePath}`}
-        target="_blank"
-        className="craft-dock__open"
-        aria-label="Open preview in new tab"
+      <button
+        type="button"
+        data-active={device === 'tablet' || undefined}
+        onClick={() => setDevice('tablet')}
+        aria-label="Tablet preview"
       >
-        <ExternalLink size={14} />
-      </Link>
+        <Tablet size={14} />
+      </button>
+      <button
+        type="button"
+        data-active={device === 'desktop' || undefined}
+        onClick={() => setDevice('desktop')}
+        aria-label="Desktop preview"
+      >
+        <Monitor size={14} />
+      </button>
     </div>
   );
 
-  if (fullscreen) {
-    return (
-      <div className="craft-dock craft-dock--fullscreen">
-        {toolbar}
+  const pageSelect = (
+    <select
+      className="craft-dock__page-select"
+      value={activePath}
+      onChange={(e) => handlePageChange(e.target.value)}
+      aria-label="Select preview page"
+    >
+      {pages.map((p) => (
+        <option key={p.id} value={p.path}>
+          {p.title}
+        </option>
+      ))}
+    </select>
+  );
+
+  return (
+    <>
+      <div className="craft-dock">
+        <div className="craft-dock__toolbar">
+          {pageSelect}
+          <div className="craft-dock__spacer" />
+          {deviceButtons}
+          <button
+            type="button"
+            className="craft-dock__open"
+            onClick={openFullscreen}
+            aria-label="Fullscreen preview"
+          >
+            <Maximize2 size={14} />
+          </button>
+          <Link
+            href={`/preview${activePath === '/' ? '' : activePath}`}
+            target="_blank"
+            className="craft-dock__open"
+            aria-label="Open preview in new tab"
+          >
+            <ExternalLink size={14} />
+          </Link>
+        </div>
         <div
           className="craft-dock__viewport"
           data-device={device}
           style={{ '--craft-dock-width': DEVICE_WIDTHS[device] } as React.CSSProperties}
         >
-          <iframe title="Live preview" src={src} className="craft-dock__frame" />
+          <iframe title="Live preview" src={IFRAME_SRC} className="craft-dock__frame" />
         </div>
       </div>
-    );
-  }
 
-  return (
-    <div className="craft-dock">
-      {toolbar}
-      <div
-        className="craft-dock__viewport"
-        data-device={device}
-        style={{ '--craft-dock-width': DEVICE_WIDTHS[device] } as React.CSSProperties}
-      >
-        <iframe title="Live preview" src={src} className="craft-dock__frame" />
-      </div>
-    </div>
+      {/* Fullscreen dialog — native <dialog> so it doesn't break page layout */}
+      <dialog ref={dialogRef} className="craft-dock__dialog">
+        <div className="craft-dock__dialog-inner">
+          <div className="craft-dock__toolbar">
+            {pageSelect}
+            <div className="craft-dock__spacer" />
+            {deviceButtons}
+            <button
+              type="button"
+              className="craft-dock__open"
+              onClick={closeFullscreen}
+              aria-label="Close fullscreen preview"
+            >
+              <X size={14} />
+            </button>
+          </div>
+          <div
+            className="craft-dock__viewport craft-dock__viewport--fullscreen"
+            data-device={device}
+            style={{ '--craft-dock-width': DEVICE_WIDTHS[device] } as React.CSSProperties}
+          >
+            <iframe
+              title="Live preview (fullscreen)"
+              src={IFRAME_SRC}
+              className="craft-dock__frame"
+            />
+          </div>
+        </div>
+      </dialog>
+    </>
   );
 }

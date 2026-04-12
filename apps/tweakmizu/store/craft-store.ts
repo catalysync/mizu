@@ -14,9 +14,11 @@ interface CraftState {
   hasOnboarded: boolean;
   history: Profile[];
   future: Profile[];
+  previewPath: string;
 
   pickArchetype: (id: string) => void;
   updateCluster: <K extends ClusterKey>(cluster: K, patch: Partial<Profile[K]>) => void;
+  setPreviewPath: (path: string) => void;
   resetToDefault: () => void;
   undo: () => void;
   redo: () => void;
@@ -52,6 +54,9 @@ export const useCraftStore = create<CraftState>()(
       hasOnboarded: false,
       history: [],
       future: [],
+      previewPath: '/',
+
+      setPreviewPath: (path) => set({ previewPath: path }),
 
       pickArchetype: (id) => {
         const arch = archetypeById(id);

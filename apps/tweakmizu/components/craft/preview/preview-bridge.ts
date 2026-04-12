@@ -16,7 +16,9 @@ import { parseProfile, type DesignLanguageProfile } from '@/lib/craft/profile';
 
 const CHANNEL = 'craft-profile';
 
-type Message = { type: 'update'; profile: DesignLanguageProfile } | { type: 'request' };
+type Message =
+  | { type: 'update'; profile: DesignLanguageProfile; previewPath?: string }
+  | { type: 'request' };
 
 /** Parent-side: push profile updates whenever the store changes. */
 export function installPreviewPublisher() {
@@ -29,17 +31,23 @@ export function installPreviewPublisher() {
   }
 
   const unsub = useCraftStore.subscribe((state, prev) => {
-    if (state.profile === prev.profile) return;
-    channel?.postMessage({ type: 'update', profile: state.profile } satisfies Message);
+    if (state.profile === prev.profile && state.previewPath === prev.previewPath) return;
+    channel?.postMessage({
+      type: 'update',
+      profile: state.profile,
+      previewPath: state.previewPath,
+    } satisfies Message);
   });
 
   // Respond to iframe startup requests with the current snapshot
   if (channel) {
     channel.onmessage = (ev: MessageEvent<Message>) => {
       if (ev.data?.type === 'request') {
+        const s = useCraftStore.getState();
         channel?.postMessage({
           type: 'update',
-          profile: useCraftStore.getState().profile,
+          profile: s.profile,
+          previewPath: s.previewPath,
         } satisfies Message);
       }
     };
@@ -63,24 +71,21 @@ export function usePreviewBridge() {
     }
     if (!channel) return;
 
-    const apply = (raw: unknown) => {
+    const apply = (raw: unknown, path?: string) => {
+      const patch: Partial<{ profile: DesignLanguageProfile; previewPath: string }> = {};
+      if (path) patch.previewPath = path;
       try {
-        // Try strict parse first, fall back to direct apply.
-        // Structured clone can lose prototype info that Zod expects,
-        // but the data is still valid — it came from the parent store.
-        const profile = parseProfile(raw);
-        useCraftStore.setState({ profile });
+        patch.profile = parseProfile(raw);
       } catch {
-        // Fallback: apply directly if Zod rejects the cloned object.
-        // This is safe because the data originated from a validated store.
         if (raw && typeof raw === 'object' && 'name' in raw) {
-          useCraftStore.setState({ profile: raw as DesignLanguageProfile });
+          patch.profile = raw as DesignLanguageProfile;
         }
       }
+      if (Object.keys(patch).length > 0) useCraftStore.setState(patch);
     };
 
     channel.onmessage = (ev: MessageEvent<Message>) => {
-      if (ev.data?.type === 'update') apply(ev.data.profile);
+      if (ev.data?.type === 'update') apply(ev.data.profile, ev.data.previewPath);
     };
 
     // Ask parent for the current snapshot on mount
