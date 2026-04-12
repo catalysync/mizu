@@ -17,10 +17,12 @@ interface PreviewShellProps {
  * the --mizu-* variables already scoped to the preview root.
  */
 export function PreviewShell({ profile, currentPath, children }: PreviewShellProps) {
-  const primaryNav = profile.app.shell.nav.filter((n) => n.section === 'primary');
-  const secondaryNav = profile.app.shell.nav.filter((n) => n.section !== 'primary');
+  const nav = profile.app?.shell?.nav ?? [];
+  const pages = profile.app?.pages ?? [];
+  const primaryNav = nav.filter((n) => n.section === 'primary');
+  const secondaryNav = nav.filter((n) => n.section !== 'primary');
 
-  const findPage = (pageId: string) => profile.app.pages.find((p) => p.id === pageId);
+  const findPage = (pageId: string) => pages.find((p) => p.id === pageId);
 
   return (
     <div className="craft-preview-shell">
@@ -46,7 +48,7 @@ export function PreviewShell({ profile, currentPath, children }: PreviewShellPro
                 return (
                   <PreviewNavLink
                     key={item.pageId}
-                    href={`/craft/preview${page.path === '/' ? '' : page.path}`}
+                    href={`/preview${page.path === '/' ? '' : page.path}`}
                     active={active}
                   >
                     {page.title}
@@ -64,7 +66,7 @@ export function PreviewShell({ profile, currentPath, children }: PreviewShellPro
                 return (
                   <PreviewNavLink
                     key={item.pageId}
-                    href={`/craft/preview${page.path === '/' ? '' : page.path}`}
+                    href={`/preview${page.path === '/' ? '' : page.path}`}
                     active={active}
                   >
                     {page.title}

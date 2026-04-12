@@ -43,7 +43,7 @@ const NAV_SECTIONS: Array<{
   {
     heading: 'Ship',
     items: [
-      { href: '/craft/preview', label: 'Preview', hint: 'see it assembled' },
+      { href: '/preview', label: 'Preview', hint: 'see it assembled' },
       { href: '/craft/export', label: 'Export', hint: 'CSS, JSON, starter' },
     ],
   },

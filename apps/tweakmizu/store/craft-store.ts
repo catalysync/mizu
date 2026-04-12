@@ -130,11 +130,21 @@ export const useCraftStore = create<CraftState>()(
     }),
     {
       name: 'tweakmizu-craft-storage',
-      version: 1,
+      version: 2,
       partialize: (state) => ({
         profile: state.profile,
         hasOnboarded: state.hasOnboarded,
       }),
+      migrate: (persisted, version) => {
+        if (version < 2) {
+          const state = persisted as Record<string, unknown>;
+          const profile = state.profile as Record<string, unknown> | undefined;
+          if (profile && !profile.app) {
+            profile.app = mizuSampleProfile.app;
+          }
+        }
+        return persisted as CraftState;
+      },
     },
   ),
 );

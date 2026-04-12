@@ -20,7 +20,7 @@ const DEVICE_WIDTHS: Record<DeviceSize, string> = {
  * every mutation in the parent studio, so changes show up within a frame.
  */
 export function PreviewDock() {
-  const pages = useCraftStore((s) => s.profile.app.pages);
+  const pages = useCraftStore((s) => s.profile.app?.pages ?? []);
   const [currentPage, setCurrentPage] = useState(pages[0]?.path ?? '/');
   const [device, setDevice] = useState<DeviceSize>('desktop');
 
@@ -30,7 +30,7 @@ export function PreviewDock() {
     return pages[0]?.path ?? '/';
   }, [pages, currentPage]);
 
-  const src = '/craft/preview' + (activePath === '/' ? '' : activePath);
+  const src = '/preview' + (activePath === '/' ? '' : activePath);
 
   return (
     <div className="craft-dock">
@@ -75,7 +75,7 @@ export function PreviewDock() {
           </button>
         </div>
         <Link
-          href={`/craft/preview${activePath === '/' ? '' : activePath}`}
+          href={`/preview${activePath === '/' ? '' : activePath}`}
           target="_blank"
           className="craft-dock__open"
           aria-label="Open preview in new tab"

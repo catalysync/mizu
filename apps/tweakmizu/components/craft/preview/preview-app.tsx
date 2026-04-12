@@ -23,10 +23,17 @@ export function PreviewApp({ paramsPromise }: PreviewAppProps) {
   const profile = useCraftStore((s) => s.profile);
   const vars = useMemo(() => profileToCss(profile), [profile]);
 
+  const pages = profile.app?.pages ?? [];
   const page =
-    profile.app.pages.find((p) => p.path === pathname) ??
-    profile.app.pages.find((p) => p.path === '/') ??
-    profile.app.pages[0];
+    pages.find((p) => p.path === pathname) ?? pages.find((p) => p.path === '/') ?? pages[0];
+
+  if (!profile.app) {
+    return (
+      <div className="craft-preview-root" style={vars as React.CSSProperties}>
+        <EmptyPreview />
+      </div>
+    );
+  }
 
   return (
     <div className="craft-preview-root" style={vars as React.CSSProperties}>

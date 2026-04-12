@@ -210,8 +210,9 @@ export function useCraftChat() {
         const toolCalls: ChatMessage['toolCalls'] = [];
         let currentToolName = '';
         let currentToolInput = '';
+        let streamDone = false;
 
-        while (true) {
+        while (!streamDone) {
           const { done, value } = await reader.read();
           if (done) break;
           const chunk = decoder.decode(value, { stream: true });
@@ -220,7 +221,10 @@ export function useCraftChat() {
           for (const line of lines) {
             if (!line.startsWith('data: ')) continue;
             const data = line.slice(6);
-            if (data === '[DONE]') break;
+            if (data === '[DONE]') {
+              streamDone = true;
+              break;
+            }
 
             try {
               const event = JSON.parse(data);

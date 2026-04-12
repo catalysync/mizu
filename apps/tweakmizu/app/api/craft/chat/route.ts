@@ -29,6 +29,10 @@ Button, Input, Select, Textarea, Checkbox, Radio, Switch, Table, Card, Badge, He
 Finance components: CurrencyInput, TaxRateInput, InvoiceLineItem, LedgerRow, ChartOfAccounts, ReconciliationRow, KpiCard, MetricTile, DeltaIndicator, TransactionRow, AccountSummary`;
 
 export async function POST(request: Request) {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return new Response('AI features are not configured.', { status: 503 });
+  }
+
   await getCurrentUserId();
 
   const { messages, profile } = await request.json();
