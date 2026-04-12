@@ -6,13 +6,24 @@ export const Modal = Dialog.Root;
 export const ModalTrigger = Dialog.Trigger;
 export const ModalClose = Dialog.Close;
 
+export type ModalSize = 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen';
+
+export interface ModalContentProps extends React.ComponentPropsWithoutRef<typeof Dialog.Content> {
+  size?: ModalSize;
+}
+
 export const ModalContent = React.forwardRef<
   React.ElementRef<typeof Dialog.Content>,
-  React.ComponentPropsWithoutRef<typeof Dialog.Content>
->(({ className, children, ...props }, ref) => (
+  ModalContentProps
+>(({ className, children, size = 'md', ...props }, ref) => (
   <Dialog.Portal>
     <Dialog.Overlay className="mizu-dialog__overlay" />
-    <Dialog.Content ref={ref} className={cn('mizu-dialog__content', className)} {...props}>
+    <Dialog.Content
+      ref={ref}
+      className={cn('mizu-dialog__content', className)}
+      data-size={size}
+      {...props}
+    >
       {children}
       <Dialog.Close className="mizu-dialog__close" aria-label="Close">
         <svg

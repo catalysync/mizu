@@ -87,3 +87,49 @@
   border-bottom-width: 2px;
   box-shadow: none;
 }
+
+/* Input group — prefix/suffix adornments */
+.mizu-input-group {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+}
+
+.mizu-input-group__prefix,
+.mizu-input-group__suffix {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--mizu-text-secondary);
+  font-size: var(--mizu-font-size-sm);
+  font-family: var(--mizu-font-family-sans);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.mizu-input-group__prefix {
+  inset-inline-start: var(--mizu-spacing-3);
+}
+
+.mizu-input-group__suffix {
+  inset-inline-end: var(--mizu-spacing-3);
+}
+
+.mizu-input--has-prefix {
+  padding-inline-start: 2rem;
+}
+
+.mizu-input--has-suffix {
+  padding-inline-end: 2rem;
+}
+
+/* Character count */
+.mizu-form-group__char-count {
+  display: block;
+  text-align: end;
+  font-size: var(--mizu-font-size-xs);
+  color: var(--mizu-text-tertiary);
+  font-variant-numeric: tabular-nums;
+  margin-top: var(--mizu-spacing-1);
+}

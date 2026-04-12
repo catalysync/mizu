@@ -60,6 +60,7 @@
 @import url("./components/step-flow.css");
 @import url("./components/pagination.css");
 @import url("./components/data-table.css");
+@import url("./components/combobox.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");

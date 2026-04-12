@@ -21,11 +21,14 @@ const inputVariants = cva('mizu-input', {
 
 export interface InputProps
   extends
-    Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
+    Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'>,
     VariantProps<typeof inputVariants> {
   error?: string | boolean;
   helpText?: React.ReactNode;
   label?: string;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+  maxCharacters?: number;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -38,15 +41,24 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       error,
       helpText,
       label,
+      prefix,
+      suffix,
+      maxCharacters,
       id,
       required,
       disabled,
       'aria-invalid': ariaInvalidProp,
       'aria-describedby': ariaDescribedByProp,
+      onChange,
       ...props
     },
     ref,
   ) => {
+    const [charCount, setCharCount] = React.useState(0);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (maxCharacters != null) setCharCount(e.target.value.length);
+      onChange?.(e);
+    };
     const ctx = useFieldContext();
 
     const localInputId =
@@ -63,21 +75,49 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         .filter(Boolean)
         .join(' ') || undefined;
 
-    const input = (
+    const hasAdornments = prefix != null || suffix != null;
+    const inputEl = (
       <input
         ref={ref}
         id={inputId}
         type={type}
         required={resolvedRequired}
         disabled={resolvedDisabled}
-        className={cn(inputVariants({ size, appearance, className }), error && 'mizu-input--error')}
+        className={cn(
+          inputVariants({ size, appearance }),
+          error && 'mizu-input--error',
+          hasAdornments && 'mizu-input--adorned',
+          prefix && 'mizu-input--has-prefix',
+          suffix && 'mizu-input--has-suffix',
+          className,
+        )}
         aria-invalid={resolvedInvalid}
         aria-describedby={resolvedDescribedBy}
+        maxLength={maxCharacters}
+        onChange={handleChange}
         {...props}
       />
     );
 
-    if (!label && !error && !helpText) return input;
+    const input = hasAdornments ? (
+      <div className="mizu-input-group">
+        {prefix ? (
+          <span className="mizu-input-group__prefix" aria-hidden="true">
+            {prefix}
+          </span>
+        ) : null}
+        {inputEl}
+        {suffix ? (
+          <span className="mizu-input-group__suffix" aria-hidden="true">
+            {suffix}
+          </span>
+        ) : null}
+      </div>
+    ) : (
+      inputEl
+    );
+
+    if (!label && !error && !helpText && maxCharacters == null) return input;
 
     return (
       <div className="mizu-form-group">
@@ -97,6 +137,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {helpText}
           </span>
         )}
+        {maxCharacters != null ? (
+          <span className="mizu-form-group__char-count" aria-live="polite">
+            {charCount}/{maxCharacters}
+          </span>
+        ) : null}
       </div>
     );
   },

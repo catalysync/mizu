@@ -15,17 +15,32 @@ const badgeVariants = cva('mizu-badge', {
   defaultVariants: { tone: 'neutral' },
 });
 
+export type BadgeSize = 'sm' | 'md' | 'lg';
+
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {
   dot?: boolean;
+  count?: number;
+  maxCount?: number;
+  size?: BadgeSize;
 }
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
-  ({ className, tone, dot, children, ...props }, ref) => (
-    <span ref={ref} className={cn(badgeVariants({ tone, className }))} {...props}>
-      {dot && <span className="mizu-badge__dot" aria-hidden="true" />}
-      {children}
-    </span>
-  ),
+  ({ className, tone, dot, count, maxCount = 99, size, children, ...props }, ref) => {
+    const displayCount = count != null ? (count > maxCount ? `${maxCount}+` : String(count)) : null;
+
+    return (
+      <span
+        ref={ref}
+        className={cn(badgeVariants({ tone, className }))}
+        data-size={size ?? undefined}
+        data-count={displayCount != null ? 'true' : undefined}
+        {...props}
+      >
+        {dot ? <span className="mizu-badge__dot" aria-hidden="true" /> : null}
+        {displayCount ?? children}
+      </span>
+    );
+  },
 );
 Badge.displayName = 'Badge';
