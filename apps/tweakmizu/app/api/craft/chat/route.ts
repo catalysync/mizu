@@ -47,7 +47,13 @@ export async function POST(request: Request) {
     return new Response('AI features are not configured.', { status: 503 });
   }
 
-  const userId = await getCurrentUserId();
+  let userId: string;
+  try {
+    userId = await getCurrentUserId();
+  } catch {
+    return new Response('Sign in to use AI features.', { status: 401 });
+  }
+
   const sub = await getSubscriptionStatus(userId);
 
   if (!sub.isSubscribed) {
