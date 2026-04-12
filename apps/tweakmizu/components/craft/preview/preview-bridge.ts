@@ -30,6 +30,20 @@ export function installPreviewPublisher() {
     channel = null;
   }
 
+  if (channel) {
+    channel.onmessage = (ev: MessageEvent<Message>) => {
+      if (ev.data?.type === 'request') {
+        const s = useCraftStore.getState();
+        channel?.postMessage({
+          type: 'update',
+          profile: s.profile,
+          previewPath: s.previewPath,
+          previewDark: s.previewDark,
+        } satisfies Message);
+      }
+    };
+  }
+
   const unsub = useCraftStore.subscribe((state, prev) => {
     if (
       state.profile === prev.profile &&
@@ -45,19 +59,13 @@ export function installPreviewPublisher() {
     } satisfies Message);
   });
 
-  if (channel) {
-    channel.onmessage = (ev: MessageEvent<Message>) => {
-      if (ev.data?.type === 'request') {
-        const s = useCraftStore.getState();
-        channel?.postMessage({
-          type: 'update',
-          profile: s.profile,
-          previewPath: s.previewPath,
-          previewDark: s.previewDark,
-        } satisfies Message);
-      }
-    };
-  }
+  const initial = useCraftStore.getState();
+  channel?.postMessage({
+    type: 'update',
+    profile: initial.profile,
+    previewPath: initial.previewPath,
+    previewDark: initial.previewDark,
+  } satisfies Message);
 
   return () => {
     unsub();
@@ -83,7 +91,7 @@ export function usePreviewBridge() {
         previewPath: string;
         previewDark: boolean;
       }> = {};
-      if (path) patch.previewPath = path;
+      if (path !== undefined) patch.previewPath = path;
       if (dark !== undefined) patch.previewDark = dark;
       try {
         patch.profile = parseProfile(raw);
@@ -103,6 +111,14 @@ export function usePreviewBridge() {
     // Ask parent for the current snapshot on mount
     channel.postMessage({ type: 'request' } satisfies Message);
 
-    return () => channel?.close();
+    // Retry in case the parent wasn't ready yet
+    const retryTimer = setTimeout(() => {
+      channel?.postMessage({ type: 'request' } satisfies Message);
+    }, 100);
+
+    return () => {
+      clearTimeout(retryTimer);
+      channel?.close();
+    };
   }, []);
 }
