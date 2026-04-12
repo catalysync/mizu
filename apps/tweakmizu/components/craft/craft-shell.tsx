@@ -176,9 +176,11 @@ export function CraftShell({ user, isPro = false, children }: CraftShellProps) {
           <main className="craft-shell__main" id="craft-main">
             <HydrationGate>{children}</HydrationGate>
           </main>
-          <aside className="craft-shell__preview" aria-label="Live preview">
-            <PreviewDock />
-          </aside>
+          {pathname !== '/craft' && pathname !== '/craft/export' && (
+            <aside className="craft-shell__preview" aria-label="Live preview">
+              <PreviewDock />
+            </aside>
+          )}
         </div>
       </div>
     </CraftProProvider>
