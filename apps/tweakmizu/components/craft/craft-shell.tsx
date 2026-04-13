@@ -1,10 +1,10 @@
 'use client';
 
 import './craft-shell.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Undo2, Redo2, Download, Settings } from 'lucide-react';
+import { Menu, X, Undo2, Redo2, Download, Settings, ChevronLeft, Eye } from 'lucide-react';
 import { Button, cn } from '@aspect/react';
 import { useCraftStore } from '@/store/craft-store';
 import { installPreviewPublisher } from './preview/preview-bridge';
@@ -59,11 +59,27 @@ const NAV_SECTIONS: Array<{
 export function CraftShell({ user, isPro = false, children }: CraftShellProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobilePreview, setMobilePreview] = useState(false);
+  const [previewGlow, setPreviewGlow] = useState(false);
   const undo = useCraftStore((s) => s.undo);
   const redo = useCraftStore((s) => s.redo);
   const canUndo = useCraftStore((s) => s.history.length > 0);
   const canRedo = useCraftStore((s) => s.future.length > 0);
   const profileName = useCraftStore((s) => s.profile.name);
+
+  // Glow the preview button when profile changes (mobile only)
+  const profileRef = useRef(useCraftStore.getState().profile);
+  useEffect(() => {
+    const unsub = useCraftStore.subscribe((state) => {
+      if (state.profile !== profileRef.current) {
+        profileRef.current = state.profile;
+        setPreviewGlow(true);
+        const timer = setTimeout(() => setPreviewGlow(false), 1500);
+        return () => clearTimeout(timer);
+      }
+    });
+    return unsub;
+  }, []);
 
   // Broadcast profile changes to any iframe preview windows under the same origin
   useEffect(() => {
@@ -176,9 +192,51 @@ export function CraftShell({ user, isPro = false, children }: CraftShellProps) {
             <HydrationGate>{children}</HydrationGate>
           </main>
           {pathname !== '/craft' && pathname !== '/craft/export' && (
-            <aside className="craft-shell__preview" aria-label="Live preview">
-              <PreviewDock />
-            </aside>
+            <>
+              {/* Desktop preview (hidden on mobile) */}
+              <aside className="craft-shell__preview" aria-label="Live preview">
+                <PreviewDock />
+              </aside>
+
+              {/* Mobile preview toggle + slide-in panel */}
+              <button
+                type="button"
+                className="craft-shell__preview-fab"
+                data-glow={previewGlow || undefined}
+                onClick={() => setMobilePreview(true)}
+                aria-label="Open preview"
+              >
+                <Eye size={18} />
+              </button>
+
+              {mobilePreview && (
+                <>
+                  <button
+                    type="button"
+                    className="craft-shell__preview-backdrop"
+                    aria-hidden
+                    tabIndex={-1}
+                    onClick={() => setMobilePreview(false)}
+                  />
+                  <div className="craft-shell__preview-mobile" data-open>
+                    <div className="craft-shell__preview-mobile-header">
+                      <button
+                        type="button"
+                        className="craft-shell__preview-mobile-close"
+                        onClick={() => setMobilePreview(false)}
+                        aria-label="Close preview"
+                      >
+                        <ChevronLeft size={18} />
+                      </button>
+                      <span className="craft-shell__preview-mobile-title">Preview</span>
+                    </div>
+                    <div className="craft-shell__preview-mobile-body">
+                      <PreviewDock />
+                    </div>
+                  </div>
+                </>
+              )}
+            </>
           )}
         </div>
       </div>
