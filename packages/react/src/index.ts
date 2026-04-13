@@ -49,6 +49,7 @@ export * from './components/ScrollArea';
 export * from './components/AlertDialog';
 export * from './components/Sheet';
 export * from './components/Collapsible';
+export * from './components/ContextMenu';
 export * from './motion';
 export * from './layouts';
 export * from './shell';
