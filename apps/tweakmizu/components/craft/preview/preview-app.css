@@ -236,7 +236,12 @@
 }
 
 .craft-preview-section {
-  background: var(--mizu-surface-default);
+  background: color-mix(
+    in srgb,
+    var(--mizu-surface-default) calc(var(--mizu-surface-opacity, 1) * 100%),
+    transparent
+  );
+  backdrop-filter: blur(var(--mizu-surface-blur, 0));
   border: var(--mizu-border-width-default, 1px) solid var(--mizu-border-subtle);
   border-left: var(
     --mizu-accent-border,

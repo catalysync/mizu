@@ -187,6 +187,20 @@ function foundationVars(f: DesignLanguageProfile['foundation'], dark = false): C
     vars[`--mizu-color-${name}-900`] = `hsl(${hue} ${Math.min(sat + 10, 80)}% 20%)`;
   }
 
+  // Chart palette: use custom palette if provided, else auto-generate from
+  // triadic/complementary harmony at 72-degree intervals.
+  const { chartPalette } = f;
+  if (chartPalette?.length) {
+    for (let i = 0; i < chartPalette.length; i++) {
+      vars[`--mizu-chart-${i + 1}`] = chartPalette[i];
+    }
+  } else {
+    for (let i = 0; i < 5; i++) {
+      const h = (brandHue + i * 72) % 360;
+      vars[`--mizu-chart-${i + 1}`] = `hsl(${h} ${sat}% 48%)`;
+    }
+  }
+
   return vars;
 }
 
@@ -283,6 +297,13 @@ function shapeVars(s: DesignLanguageProfile['shape']): CssVarMap {
           }
         : { '--mizu-accent-border': 'none', '--mizu-accent-border-side': 'none' };
 
+  // surfaceStyle: glass = frosted blur effect, solid = opaque (default)
+  const surface = s.surfaceStyle ?? 'solid';
+  const surfaceVars: CssVarMap =
+    surface === 'glass'
+      ? { '--mizu-surface-blur': '20px', '--mizu-surface-opacity': '0.8' }
+      : { '--mizu-surface-blur': '0', '--mizu-surface-opacity': '1' };
+
   return {
     '--mizu-radius-sm': px(scale.sm),
     '--mizu-radius-md': px(scale.md),
@@ -292,6 +313,7 @@ function shapeVars(s: DesignLanguageProfile['shape']): CssVarMap {
     ...chromeVars,
     ...buttonChromeVars,
     ...accentVars,
+    ...surfaceVars,
   };
 }
 

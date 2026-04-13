@@ -63,6 +63,7 @@ export const FoundationCluster = z.object({
   defaultScheme: DefaultScheme.optional(),
   neutralHue: z.number().min(0).max(360).optional(),
   extendedColors: z.array(ExtendedColor).max(8).optional(),
+  chartPalette: z.array(z.string()).min(5).max(10).optional(),
 });
 export type FoundationCluster = z.infer<typeof FoundationCluster>;
 
@@ -83,6 +84,9 @@ export type ButtonChrome = z.infer<typeof ButtonChrome>;
 export const AccentBorder = z.enum(['none', 'left', 'top']);
 export type AccentBorder = z.infer<typeof AccentBorder>;
 
+export const SurfaceStyle = z.enum(['solid', 'glass']);
+export type SurfaceStyle = z.infer<typeof SurfaceStyle>;
+
 export const ShapeCluster = z.object({
   radius: RadiusScale,
   radiusUniform: z.boolean(),
@@ -90,6 +94,7 @@ export const ShapeCluster = z.object({
   chrome: ChromeStyle,
   buttonChrome: ButtonChrome.optional(),
   accentBorder: AccentBorder.optional(),
+  surfaceStyle: SurfaceStyle.optional(),
 });
 export type ShapeCluster = z.infer<typeof ShapeCluster>;
 
@@ -274,6 +279,7 @@ export const mizuSampleProfile: DesignLanguageProfile = {
     defaultScheme: 'light',
     neutralHue: undefined,
     extendedColors: [],
+    chartPalette: undefined,
   },
   shape: {
     radius: 'soft',
@@ -282,6 +288,7 @@ export const mizuSampleProfile: DesignLanguageProfile = {
     chrome: 'layered',
     buttonChrome: 'flat',
     accentBorder: 'none',
+    surfaceStyle: 'solid',
   },
   density: {
     spacingBase: '4',
