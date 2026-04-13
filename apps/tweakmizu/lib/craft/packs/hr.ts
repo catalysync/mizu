@@ -327,6 +327,77 @@ const defaultPages: Page[] = [
     },
   },
   {
+    id: 'departments',
+    path: '/departments',
+    title: 'Departments',
+    icon: 'building-2',
+    composition: {
+      header: {
+        title: 'Departments',
+        description: '8 departments · 186 total headcount · 12 open roles',
+        actions: [{ label: 'Add department', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'departments-table',
+          kind: 'table',
+          entityId: 'department',
+          columnIds: ['name', 'head', 'headcount', 'budget', 'openRoles', 'location'],
+        },
+      ],
+    },
+  },
+  {
+    id: 'performance',
+    path: '/performance',
+    title: 'Performance',
+    icon: 'target',
+    composition: {
+      header: {
+        title: 'Performance reviews',
+        description: 'Q1 2026 cycle · 142 in progress · 44 complete',
+        actions: [{ label: 'Start review cycle', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'performance-table',
+          kind: 'table',
+          entityId: 'performance',
+          columnIds: ['employee', 'reviewer', 'period', 'rating', 'goals', 'dueDate', 'status'],
+        },
+      ],
+    },
+  },
+  {
+    id: 'recruiting',
+    path: '/recruiting',
+    title: 'Recruiting',
+    icon: 'megaphone',
+    composition: {
+      header: {
+        title: 'Vacancies',
+        description: '12 open · 4 interviewing · 2 offers pending',
+        actions: [{ label: 'Post vacancy', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'vacancies-table',
+          kind: 'table',
+          entityId: 'vacancy',
+          columnIds: [
+            'title',
+            'department',
+            'hiringManager',
+            'location',
+            'type',
+            'applicants',
+            'status',
+          ],
+        },
+      ],
+    },
+  },
+  {
     id: 'settings',
     path: '/settings',
     title: 'Settings',
@@ -347,6 +418,9 @@ const defaultNav: NavItem[] = [
   { pageId: 'people', section: 'primary' },
   { pageId: 'leave', section: 'primary' },
   { pageId: 'payroll', section: 'primary' },
+  { pageId: 'departments', section: 'primary' },
+  { pageId: 'performance', section: 'primary' },
+  { pageId: 'recruiting', section: 'primary' },
   { pageId: 'settings', section: 'secondary' },
 ];
 

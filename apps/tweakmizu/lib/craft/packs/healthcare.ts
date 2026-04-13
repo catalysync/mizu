@@ -311,6 +311,86 @@ const defaultPages: Page[] = [
     },
   },
   {
+    id: 'practitioners',
+    path: '/practitioners',
+    title: 'Practitioners',
+    icon: 'stethoscope',
+    composition: {
+      header: {
+        title: 'Practitioners',
+        description: '18 total · 16 active · 2 on leave',
+        actions: [{ label: 'Add practitioner', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'practitioners-table',
+          kind: 'table',
+          entityId: 'practitioner',
+          columnIds: ['name', 'specialty', 'email', 'npi', 'patientsAssigned', 'status'],
+        },
+      ],
+    },
+  },
+  {
+    id: 'lab-results',
+    path: '/lab-results',
+    title: 'Lab results',
+    icon: 'flask-conical',
+    composition: {
+      header: {
+        title: 'Lab results',
+        description: '18 pending · 6 critical flags this week',
+        actions: [{ label: 'Order lab', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'lab-results-table',
+          kind: 'table',
+          entityId: 'lab-result',
+          columnIds: [
+            'testName',
+            'patient',
+            'orderedBy',
+            'collectedDate',
+            'value',
+            'referenceRange',
+            'flag',
+            'status',
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: 'insurance',
+    path: '/insurance',
+    title: 'Insurance',
+    icon: 'shield-check',
+    composition: {
+      header: {
+        title: 'Insurance plans',
+        description: '1,102 active · 34 pending verification · 112 expired',
+        actions: [{ label: 'Verify plan', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'insurance-table',
+          kind: 'table',
+          entityId: 'insurance',
+          columnIds: [
+            'planName',
+            'provider',
+            'memberId',
+            'groupNumber',
+            'effectiveDate',
+            'copay',
+            'status',
+          ],
+        },
+      ],
+    },
+  },
+  {
     id: 'settings',
     path: '/settings',
     title: 'Settings',
@@ -331,6 +411,9 @@ const defaultNav: NavItem[] = [
   { pageId: 'patients', section: 'primary' },
   { pageId: 'appointments', section: 'primary' },
   { pageId: 'prescriptions', section: 'primary' },
+  { pageId: 'practitioners', section: 'primary' },
+  { pageId: 'lab-results', section: 'primary' },
+  { pageId: 'insurance', section: 'secondary' },
   { pageId: 'settings', section: 'secondary' },
 ];
 

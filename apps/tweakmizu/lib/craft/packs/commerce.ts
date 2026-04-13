@@ -306,6 +306,72 @@ const defaultPages: Page[] = [
     },
   },
   {
+    id: 'inventory',
+    path: '/inventory',
+    title: 'Inventory',
+    icon: 'warehouse',
+    composition: {
+      header: {
+        title: 'Inventory',
+        description: '2,180 SKUs · 94 low-stock · 12 out-of-stock',
+        actions: [
+          { label: 'Transfer stock', variant: 'ghost' },
+          { label: 'Receive shipment', variant: 'primary' },
+        ],
+      },
+      sections: [
+        {
+          id: 'inventory-table',
+          kind: 'table',
+          entityId: 'inventory',
+          columnIds: ['sku', 'product', 'warehouse', 'onHand', 'committed', 'available', 'status'],
+        },
+      ],
+    },
+  },
+  {
+    id: 'reviews',
+    path: '/reviews',
+    title: 'Reviews',
+    icon: 'star',
+    composition: {
+      header: {
+        title: 'Reviews',
+        description: '3,420 total · 4.6 avg rating · 28 pending moderation',
+        actions: [{ label: 'Moderate', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'reviews-table',
+          kind: 'table',
+          entityId: 'review',
+          columnIds: ['product', 'customer', 'rating', 'title', 'date', 'status', 'verified'],
+        },
+      ],
+    },
+  },
+  {
+    id: 'discounts',
+    path: '/discounts',
+    title: 'Discounts',
+    icon: 'percent',
+    composition: {
+      header: {
+        title: 'Discounts',
+        description: '18 active · 6 scheduled · 24 expired',
+        actions: [{ label: 'Create discount', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'discounts-table',
+          kind: 'table',
+          entityId: 'discount',
+          columnIds: ['code', 'type', 'value', 'usageCount', 'usageLimit', 'endsAt', 'status'],
+        },
+      ],
+    },
+  },
+  {
     id: 'settings',
     path: '/settings',
     title: 'Settings',
@@ -326,6 +392,9 @@ const defaultNav: NavItem[] = [
   { pageId: 'products', section: 'primary' },
   { pageId: 'orders', section: 'primary' },
   { pageId: 'customers', section: 'primary' },
+  { pageId: 'inventory', section: 'primary' },
+  { pageId: 'reviews', section: 'primary' },
+  { pageId: 'discounts', section: 'primary' },
   { pageId: 'settings', section: 'secondary' },
 ];
 

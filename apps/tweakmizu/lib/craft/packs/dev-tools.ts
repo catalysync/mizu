@@ -300,6 +300,79 @@ const defaultPages: Page[] = [
     },
   },
   {
+    id: 'team',
+    path: '/team',
+    title: 'Team',
+    icon: 'users',
+    composition: {
+      header: {
+        title: 'Team',
+        description: '24 members · 3 admins · 1 pending invite',
+        actions: [{ label: 'Invite member', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'team-table',
+          kind: 'table',
+          entityId: 'team-member',
+          columnIds: ['name', 'email', 'role', 'lastActive', 'openIssues'],
+        },
+      ],
+    },
+  },
+  {
+    id: 'metrics',
+    path: '/metrics',
+    title: 'Metrics',
+    icon: 'activity',
+    composition: {
+      header: {
+        title: 'Metrics',
+        description: 'Observability · Last 24 hours',
+        actions: [{ label: 'Add metric', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'metrics-kpis',
+          kind: 'kpi-row',
+          kpis: [
+            { label: 'Uptime', value: '99.97%', delta: '+0.02%' },
+            { label: 'P95 latency', value: '210ms', delta: '-18ms' },
+            { label: 'Error rate', value: '0.12%', delta: '-0.03%' },
+            { label: 'Throughput', value: '4.2K req/s', delta: '+8%' },
+          ],
+        },
+        {
+          id: 'metrics-table',
+          kind: 'table',
+          entityId: 'metric',
+          columnIds: ['name', 'project', 'value', 'unit', 'trend', 'updatedAt'],
+        },
+      ],
+    },
+  },
+  {
+    id: 'webhooks',
+    path: '/webhooks',
+    title: 'Webhooks',
+    icon: 'webhook',
+    composition: {
+      header: {
+        title: 'Webhooks',
+        description: '8 active · 1 failing · 12,400 deliveries this week',
+        actions: [{ label: 'Add endpoint', variant: 'primary' }],
+      },
+      sections: [
+        {
+          id: 'webhooks-table',
+          kind: 'table',
+          entityId: 'webhook',
+          columnIds: ['name', 'url', 'events', 'lastTriggered', 'successRate', 'status'],
+        },
+      ],
+    },
+  },
+  {
     id: 'settings',
     path: '/settings',
     title: 'Settings',
@@ -320,6 +393,9 @@ const defaultNav: NavItem[] = [
   { pageId: 'projects', section: 'primary' },
   { pageId: 'issues', section: 'primary' },
   { pageId: 'deployments', section: 'primary' },
+  { pageId: 'metrics', section: 'primary' },
+  { pageId: 'team', section: 'secondary' },
+  { pageId: 'webhooks', section: 'secondary' },
   { pageId: 'settings', section: 'secondary' },
 ];
 
