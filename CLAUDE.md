@@ -159,4 +159,3 @@ CI runs the same command on every push and PR. Release flow uses `changesets/act
 - Braid: https://seek-oss.github.io/braid-design-system (layout primitives reference)
 - Geist: https://vercel.com/geist (10-step neutral scale reference)
 - Linear: https://linear.app (LCH-based theming reference)
-- Newline course repo: https://github.com/konsalex/design-system-newline-course (background reading; the user is going through this course in parallel)
