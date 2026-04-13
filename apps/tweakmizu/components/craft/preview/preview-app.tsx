@@ -90,6 +90,33 @@ export function PreviewApp({ paramsPromise }: PreviewAppProps) {
 
   const isStandalone = typeof window !== 'undefined' && window.self === window.top;
 
+  // Auth pages (login, signup) render as standalone centered layouts, not in the shell
+  const nav = profile.app?.shell?.nav ?? [];
+  const isAuthPage = nav.some((n) => n.pageId === page?.id && n.section === 'auth');
+
+  if (isAuthPage && page) {
+    return (
+      <>
+        {isStandalone ? <PreviewToolbar /> : null}
+        <div className="craft-preview-root" ref={rootRef} style={rootStyle}>
+          <div className="craft-preview-auth">
+            <div className="craft-preview-auth__card">
+              <div className="craft-preview-auth__logo">
+                <span className="craft-preview-auth__logo-icon">
+                  {profile.app?.identity?.logo ?? '✷'}
+                </span>
+                <span className="craft-preview-auth__logo-name">
+                  {profile.app?.identity?.productName ?? profile.name}
+                </span>
+              </div>
+              <PageRenderer page={page} profile={profile} />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       {isStandalone ? <PreviewToolbar /> : null}

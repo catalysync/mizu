@@ -248,6 +248,47 @@ export const defaultAppSchema: AppSchema = {
   ],
   pages: [
     {
+      id: 'login',
+      path: '/login',
+      title: 'Log in',
+      icon: 'log-in',
+      composition: {
+        sections: [
+          {
+            id: 'login-form',
+            kind: 'form',
+            title: 'Log in to your account',
+            fields: [
+              { fieldId: 'email', label: 'Email', type: 'email' },
+              { fieldId: 'password', label: 'Password', type: 'password' },
+            ],
+            submitLabel: 'Log in',
+          },
+        ],
+      },
+    },
+    {
+      id: 'signup',
+      path: '/signup',
+      title: 'Sign up',
+      icon: 'user-plus',
+      composition: {
+        sections: [
+          {
+            id: 'signup-form',
+            kind: 'form',
+            title: 'Create your account',
+            fields: [
+              { fieldId: 'name', label: 'Full name', type: 'string' },
+              { fieldId: 'email', label: 'Email', type: 'email' },
+              { fieldId: 'password', label: 'Password', type: 'password' },
+            ],
+            submitLabel: 'Create account',
+          },
+        ],
+      },
+    },
+    {
       id: 'overview',
       path: '/',
       title: 'Overview',
@@ -331,6 +372,8 @@ export const defaultAppSchema: AppSchema = {
       { pageId: 'overview', section: 'primary' },
       { pageId: 'customers', section: 'primary' },
       { pageId: 'settings', section: 'secondary' },
+      { pageId: 'login', section: 'auth' },
+      { pageId: 'signup', section: 'auth' },
     ],
   },
 };

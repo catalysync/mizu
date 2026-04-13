@@ -10,6 +10,49 @@
   color: var(--mizu-text-primary);
 }
 
+/* Auth pages — centered card layout without sidebar */
+.craft-preview-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: var(--mizu-spacing-6, 1.5rem);
+  font-family: var(--mizu-font-family-sans, system-ui, sans-serif);
+  font-size: var(--mizu-base-font-size, 16px);
+}
+
+.craft-preview-auth__card {
+  width: 100%;
+  max-width: 24rem;
+  background: var(--mizu-surface-default);
+  border: var(--mizu-border-width-default, 1px) solid var(--mizu-border-subtle);
+  border-radius: var(--mizu-radius-lg);
+  padding: var(--mizu-spacing-8, 2rem) var(--mizu-spacing-6, 1.5rem);
+  box-shadow: var(--mizu-shadow-md, none);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-6, 1.5rem);
+}
+
+.craft-preview-auth__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mizu-spacing-2, 0.5rem);
+}
+
+.craft-preview-auth__logo-icon {
+  font-size: var(--mizu-font-size-lg, 1.25rem);
+  color: var(--mizu-action-primary-default);
+}
+
+.craft-preview-auth__logo-name {
+  font-family: var(--mizu-font-family-display, var(--mizu-font-family-sans, system-ui));
+  font-size: var(--mizu-font-size-md, 1.125rem);
+  font-weight: var(--mizu-font-weight-bold, 700);
+  color: var(--mizu-text-primary);
+}
+
 .craft-preview-shell {
   display: flex;
   flex-direction: column;
