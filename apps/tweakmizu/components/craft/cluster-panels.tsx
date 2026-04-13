@@ -96,6 +96,7 @@ export function ShapePanel() {
     <KnobPanel
       title="Shape"
       description="The silhouette — corner radius, border weight, and how the system expresses depth and layering."
+      preferPreviewPage="customers"
       sections={sections}
     />
   );
@@ -157,6 +158,7 @@ export function DensityPanel() {
     <KnobPanel
       title="Density"
       description="The breathing room — spacing scale, density mode, and how tight the rhythm feels."
+      preferPreviewPage="customers"
       sections={sections}
     />
   );
@@ -260,6 +262,7 @@ export function TypePanel() {
     <KnobPanel
       title="Type"
       description="The voice in text — family, scale ratio, weight vocabulary, and tracking."
+      preferPreviewPage="overview"
       sections={sections}
     />
   );
@@ -374,6 +377,7 @@ export function DepthPanel() {
     <KnobPanel
       title="Depth"
       description="Elevation and layering — shadows, borders, or surface shifts to separate foreground from background."
+      preferPreviewPage="overview"
       sections={sections}
     />
   );

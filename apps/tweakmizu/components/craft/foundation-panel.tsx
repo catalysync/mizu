@@ -1,7 +1,7 @@
 'use client';
 
 import './foundation-panel.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCraftStore } from '@/store/craft-store';
 import type {
   ChromaIntensity,
@@ -95,9 +95,15 @@ export function FoundationPanel() {
   const foundation = useCraftStore((s) => s.profile.foundation);
   const updateCluster = useCraftStore((s) => s.updateCluster);
   const setPreviewDark = useCraftStore((s) => s.setPreviewDark);
+  const setPreviewPath = useCraftStore((s) => s.setPreviewPath);
   const [seedInput, setSeedInput] = useState(foundation.seedColor ?? '#3b82f6');
   const [newColorName, setNewColorName] = useState('');
   const [newColorHex, setNewColorHex] = useState('#ef4444');
+
+  // Foundation colors affect everything — default to overview on mount
+  useEffect(() => {
+    setPreviewPath('/');
+  }, [setPreviewPath]);
 
   const applySeedColor = (hex: string) => {
     if (!/^#[0-9a-fA-F]{6}$/.test(hex)) return;
