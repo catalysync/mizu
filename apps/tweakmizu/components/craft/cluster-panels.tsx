@@ -235,6 +235,14 @@ export function TypePanel() {
       onChange: (v) => u('type', { displayFamily: v === type.sansFamily ? undefined : v }),
     },
     {
+      title: 'Label font (optional)',
+      hint: 'Font for form labels, badges, table heads, and small UI text. Defaults to sans.',
+      type: 'font-picker',
+      category: 'sans',
+      value: type.labelFamily ?? type.sansFamily,
+      onChange: (v) => u('type', { labelFamily: v === type.sansFamily ? undefined : v }),
+    },
+    {
       title: 'Scale ratio',
       hint: 'How quickly sizes grow between heading levels.',
       demo: <ScaleRatioDemo />,

@@ -139,7 +139,7 @@ export const useCraftStore = create<CraftState>()(
     }),
     {
       name: 'tweakmizu-craft-storage',
-      version: 5,
+      version: 6,
       partialize: (state) => ({
         profile: state.profile,
         hasOnboarded: state.hasOnboarded,
@@ -207,6 +207,12 @@ export const useCraftStore = create<CraftState>()(
             if (f) {
               // chartPalette intentionally left undefined = auto-generated
             }
+          }
+        }
+        if (version < 6) {
+          const profile = data.profile as Record<string, unknown> | undefined;
+          if (profile) {
+            // labelFamily intentionally left undefined = same as sansFamily
           }
         }
         return data as CraftState;

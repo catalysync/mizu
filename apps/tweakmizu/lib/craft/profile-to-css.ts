@@ -383,6 +383,9 @@ function typeVars(t: DesignLanguageProfile['type']): CssVarMap {
       ? `'${t.displayFamily}', '${t.sansFamily}', ui-sans-serif, system-ui, sans-serif`
       : `'${t.sansFamily}', ui-sans-serif, system-ui, -apple-system, sans-serif`,
     '--mizu-font-family-mono': `'${t.monoFamily}', ui-monospace, SFMono-Regular, monospace`,
+    '--mizu-font-family-label': t.labelFamily
+      ? `'${t.labelFamily}', '${t.sansFamily}', ui-sans-serif, system-ui, sans-serif`
+      : `'${t.sansFamily}', ui-sans-serif, system-ui, -apple-system, sans-serif`,
     '--mizu-font-size-xs': step(-2),
     '--mizu-font-size-sm': step(-1),
     '--mizu-font-size-base': step(0),
