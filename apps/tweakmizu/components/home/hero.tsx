@@ -8,7 +8,7 @@ import { useThemePresetStore } from '@/store/preset-store';
 import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
 import { cn } from '@/utils/cn';
 
-const perks = ['Live preview', 'Export plain CSS', '26 built-in themes'];
+const perks = ['Live preview', 'Export plain CSS', '26 built-in themes', 'Try the demo'];
 
 export function Hero() {
   const themeState = useEditorStore((s) => s.themeState);
@@ -53,6 +53,12 @@ export function Hero() {
               <ArrowRight size={16} className="ml-2" />
             </Button>
           </Link>
+          <Link href="/demo">
+            <Button size="lg" variant="secondary">
+              Try craft demo
+              <ArrowRight size={16} className="ml-2" />
+            </Button>
+          </Link>
           <a
             href="#how-it-works"
             onClick={(e) => {
@@ -64,7 +70,7 @@ export function Hero() {
             }}
             className="no-underline"
           >
-            <Button size="lg" variant="secondary">
+            <Button size="lg" variant="ghost">
               How it works
             </Button>
           </a>
