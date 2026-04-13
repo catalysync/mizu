@@ -191,11 +191,17 @@ export function FoundationPanel() {
           </Section>
 
           <Section title="Hue personality" hint="The emotional temperature of your brand color.">
-            <div className="craft-foundation__chip-row">
+            <div
+              className="craft-foundation__chip-row"
+              role="radiogroup"
+              aria-label="Hue personality"
+            >
               {HUE_PERSONALITIES.map((p) => (
                 <button
                   key={p.id}
                   type="button"
+                  role="radio"
+                  aria-checked={foundation.huePersonality === p.id}
                   className="craft-foundation__chip"
                   data-active={foundation.huePersonality === p.id || undefined}
                   onClick={() =>
@@ -210,6 +216,7 @@ export function FoundationPanel() {
                     style={{
                       background: `hsl(${p.hueHint} 60% 48%)`,
                     }}
+                    aria-hidden="true"
                   />
                   {p.label}
                 </button>
@@ -239,6 +246,7 @@ export function FoundationPanel() {
             hint="How secondary and tertiary palettes derive from your primary."
           >
             <OptionGroup
+              label="Color mood"
               options={COLOR_MOOD_OPTIONS}
               value={foundation.colorMood ?? 'tonal'}
               onChange={(v) => updateCluster('foundation', { colorMood: v })}
@@ -247,6 +255,7 @@ export function FoundationPanel() {
 
           <Section title="Chroma intensity" hint="How saturated the palette feels.">
             <OptionGroup
+              label="Chroma intensity"
               options={CHROMA_OPTIONS}
               value={foundation.chroma}
               onChange={(v) => updateCluster('foundation', { chroma: v })}
@@ -255,6 +264,7 @@ export function FoundationPanel() {
 
           <Section title="Contrast tier" hint="How far apart text sits from surface.">
             <OptionGroup
+              label="Contrast tier"
               options={CONTRAST_OPTIONS}
               value={foundation.contrast}
               onChange={(v) => updateCluster('foundation', { contrast: v })}
@@ -298,6 +308,7 @@ export function FoundationPanel() {
             hint="How dark mode relates to light. Selecting a dark strategy switches the preview to dark."
           >
             <OptionGroup
+              label="Dark mode philosophy"
               options={DARK_MODE_OPTIONS}
               value={foundation.darkMode}
               onChange={(v) => {
@@ -323,10 +334,12 @@ export function FoundationPanel() {
                   <span className="craft-foundation__extended-hex">{color.hex}</span>
                   <button
                     type="button"
+                    role="switch"
+                    aria-checked={color.harmonize}
                     className="craft-foundation__extended-toggle"
                     data-active={color.harmonize || undefined}
                     onClick={() => toggleHarmonize(i)}
-                    title={color.harmonize ? 'Harmonized with brand' : 'Using original color'}
+                    aria-label={`Harmonize ${color.name} with brand`}
                   >
                     {color.harmonize ? 'H' : '—'}
                   </button>
@@ -402,17 +415,21 @@ function OptionGroup<T extends string>({
   options,
   value,
   onChange,
+  label,
 }: {
   options: Array<{ id: T; label: string; hint: string }>;
   value: T;
   onChange: (v: T) => void;
+  label?: string;
 }) {
   return (
-    <div className="craft-foundation__options">
+    <div className="craft-foundation__options" role="radiogroup" aria-label={label}>
       {options.map((opt) => (
         <button
           key={opt.id}
           type="button"
+          role="radio"
+          aria-checked={value === opt.id}
           className="craft-foundation__option"
           data-active={value === opt.id || undefined}
           onClick={() => onChange(opt.id)}

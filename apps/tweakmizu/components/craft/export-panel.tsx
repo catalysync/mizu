@@ -141,16 +141,18 @@ export function ExportPanel() {
         </p>
       </header>
 
-      <div className="craft-export__formats">
+      <div className="craft-export__formats" role="group" aria-label="Export formats">
         {FORMATS.map((fmt) => (
           <button
             key={fmt.id}
             type="button"
+            role="checkbox"
+            aria-checked={!fmt.pro || isPro ? selected.has(fmt.id) : false}
             className="craft-export__format"
             data-active={selected.has(fmt.id) || undefined}
             data-pro={(fmt.pro && !isPro) || undefined}
             onClick={() => (fmt.pro && !isPro ? window.open('/pricing', '_blank') : toggle(fmt.id))}
-            disabled={false}
+            aria-disabled={fmt.pro && !isPro}
           >
             <span className="craft-export__format-icon">{fmt.icon}</span>
             <span className="craft-export__format-body">
@@ -160,7 +162,7 @@ export function ExportPanel() {
               </span>
               <span className="craft-export__format-desc">{fmt.description}</span>
             </span>
-            <span className="craft-export__format-check">
+            <span className="craft-export__format-check" aria-hidden="true">
               {fmt.pro && !isPro ? <Lock size={14} /> : selected.has(fmt.id) ? '✓' : ''}
             </span>
           </button>
@@ -186,7 +188,11 @@ export function ExportPanel() {
           {shareUrl ? 'Link copied!' : 'Share link'}
         </button>
       </div>
-      {error ? <p className="craft-export__error">{error}</p> : null}
+      {error ? (
+        <p className="craft-export__error" role="alert">
+          {error}
+        </p>
+      ) : null}
 
       <section className="craft-export__summary">
         <h2 className="craft-export__summary-title">Profile summary</h2>

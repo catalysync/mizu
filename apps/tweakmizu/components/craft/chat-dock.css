@@ -24,6 +24,11 @@
   color: var(--mizu-action-primary-default);
 }
 
+.craft-chat__header-title {
+  flex: 1;
+  min-width: 0;
+}
+
 .craft-chat__messages {
   flex: 1;
   overflow-y: auto;

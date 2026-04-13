@@ -151,16 +151,7 @@
   font-size: 0.6875rem;
 }
 
-.craft-knob-panel__preview {
-  position: sticky;
-  top: 4.5rem;
-}
-
-@media (max-width: 1023px) {
-  .craft-knob-panel__preview {
-    position: static;
-  }
-}
+/* .craft-knob-panel__preview removed — preview is now in craft-shell */
 
 .craft-knob-panel__toggle {
   display: inline-flex;
