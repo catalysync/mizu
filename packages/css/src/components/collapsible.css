@@ -1,0 +1,43 @@
+.mizu-collapsible__content {
+  overflow: hidden;
+}
+
+.mizu-collapsible__content[data-state="open"] {
+  animation: mizu-collapsible-expand var(--mizu-duration-normal) var(--mizu-easing-out);
+}
+
+.mizu-collapsible__content[data-state="closed"] {
+  animation: mizu-collapsible-collapse var(--mizu-duration-normal) var(--mizu-easing-out);
+}
+
+@keyframes mizu-collapsible-expand {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+
+  to {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes mizu-collapsible-collapse {
+  from {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mizu-collapsible__content {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

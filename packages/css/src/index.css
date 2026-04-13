@@ -67,6 +67,7 @@
 @import url("./components/combobox.css");
 @import url("./components/alert-dialog.css");
 @import url("./components/sheet.css");
+@import url("./components/collapsible.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
