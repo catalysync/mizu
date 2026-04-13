@@ -10,72 +10,29 @@ export const ColorPicker = ({ color, onChange, label }: ColorPickerProps) => {
   );
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.625rem',
-        padding: '0.25rem 0.5rem',
-        margin: '0 -0.25rem',
-        borderRadius: 'var(--mizu-radius-md)',
-        transition: 'background-color var(--mizu-duration-fast) var(--mizu-easing-out)',
-      }}
-    >
+    <div className="-mx-1 flex items-center gap-2.5 rounded-md px-2 py-1 transition-colors">
       <label
-        style={{
-          position: 'relative',
-          width: '1.75rem',
-          height: '1.75rem',
-          flexShrink: 0,
-          borderRadius: 'var(--mizu-radius-sm)',
-          border: '1px solid var(--mizu-border-default)',
-          background: color,
-          cursor: 'pointer',
-          boxShadow: 'var(--mizu-shadow-sm)',
-        }}
+        className="relative block size-7 shrink-0 cursor-pointer rounded-sm border border-border shadow-sm"
+        style={{ backgroundColor: color }}
       >
         <input
           type="color"
           value={color}
           onChange={handleChange}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            opacity: 0,
-            cursor: 'pointer',
-          }}
           aria-label={`${label} color picker`}
+          className="absolute inset-0 size-full cursor-pointer opacity-0"
         />
       </label>
 
-      <span
-        style={{
-          flexShrink: 0,
-          fontSize: '13px',
-          fontWeight: 500,
-          color: 'var(--mizu-text-primary)',
-        }}
-      >
-        {label}
-      </span>
+      <span className="shrink-0 text-[13px] font-medium text-foreground">{label}</span>
 
       <input
         type="text"
         value={color}
         onChange={handleChange}
-        className="mizu-input"
         aria-label={`${label} hex value`}
-        style={{
-          flex: 1,
-          minWidth: 0,
-          height: '1.75rem',
-          padding: '0 0.5rem',
-          fontSize: '12px',
-          fontFamily: 'var(--mizu-font-family-mono)',
-          textAlign: 'right',
-        }}
+        className="mizu-input min-w-0 flex-1 text-right font-mono text-xs"
+        style={{ height: '1.75rem' }}
       />
     </div>
   );

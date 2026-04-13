@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ScrollArea, Slider, Stack, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
+import { ScrollArea, Slider, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
 import ControlSection from '@/components/editor/control-section';
 import ThemePresetSelect from '@/components/editor/theme-preset-select';
 import type { ThemeStyleProps } from '@/types/theme';
@@ -32,24 +32,24 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
   );
 
   return (
-    <Stack gap="0" style={{ height: '100%' }}>
-      <div style={{ borderBottom: '1px solid var(--mizu-border-default)' }}>
+    <div className="flex h-full flex-col">
+      <div className="border-b border-border">
         <ThemePresetSelect />
       </div>
       <Tabs
         value={tab}
         onValueChange={(v) => setTab(v as ControlTab)}
-        style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}
+        className="flex min-h-0 flex-1 flex-col"
       >
-        <TabsList style={{ padding: '0.5rem 1rem' }}>
+        <TabsList className="px-4 py-2">
           <TabsTrigger value="colors">Colors</TabsTrigger>
           <TabsTrigger value="typography">Typography</TabsTrigger>
           <TabsTrigger value="other">Other</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="colors" style={{ flex: 1, minHeight: 0 }}>
-          <ScrollArea style={{ height: '100%' }}>
-            <Stack gap="0.5rem" style={{ padding: '0 1rem 1rem' }}>
+        <TabsContent value="colors" className="min-h-0 flex-1">
+          <ScrollArea className="h-full">
+            <div className="flex flex-col gap-2 px-4 pb-4">
               <ControlSection title="Action — Primary" expanded>
                 <ColorPicker
                   color={styles['action-primary-default']}
@@ -177,58 +177,51 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
                   label="Strong"
                 />
               </ControlSection>
-            </Stack>
+            </div>
           </ScrollArea>
         </TabsContent>
 
-        <TabsContent value="typography" style={{ flex: 1, minHeight: 0 }}>
-          <ScrollArea style={{ height: '100%' }}>
-            <Stack gap="0.5rem" style={{ padding: '0 1rem 1rem' }}>
+        <TabsContent value="typography" className="min-h-0 flex-1">
+          <ScrollArea className="h-full">
+            <div className="flex flex-col gap-2 px-4 pb-4">
               <ControlSection title="Font Family" expanded>
-                <Stack gap="0.5rem">
-                  <label className="mizu-body--sm" style={{ display: 'block' }}>
+                <div className="flex flex-col gap-2">
+                  <label className="block text-sm text-muted-foreground">
                     Sans
                     <input
                       type="text"
-                      className="mizu-input"
+                      className="mizu-input mt-1 w-full"
                       value={styles['font-family-sans'] ?? ''}
                       onChange={(e) => update('font-family-sans', e.target.value)}
-                      style={{ width: '100%', marginTop: '0.25rem' }}
                     />
                   </label>
-                  <label className="mizu-body--sm" style={{ display: 'block' }}>
+                  <label className="block text-sm text-muted-foreground">
                     Mono
                     <input
                       type="text"
-                      className="mizu-input"
+                      className="mizu-input mt-1 w-full"
                       value={styles['font-family-mono'] ?? ''}
                       onChange={(e) => update('font-family-mono', e.target.value)}
-                      style={{ width: '100%', marginTop: '0.25rem' }}
                     />
                   </label>
-                </Stack>
+                </div>
               </ControlSection>
-            </Stack>
+            </div>
           </ScrollArea>
         </TabsContent>
 
-        <TabsContent value="other" style={{ flex: 1, minHeight: 0 }}>
-          <ScrollArea style={{ height: '100%' }}>
-            <Stack gap="1rem" style={{ padding: '0 1rem 1rem' }}>
+        <TabsContent value="other" className="min-h-0 flex-1">
+          <ScrollArea className="h-full">
+            <div className="flex flex-col gap-4 px-4 pb-4">
               <ControlSection title="Radius" expanded>
-                <Stack gap="0.75rem">
+                <div className="flex flex-col gap-3">
                   {(['radius-sm', 'radius-md', 'radius-lg', 'radius-xl'] as const).map((key) => (
                     <div key={key}>
-                      <div
-                        className="mizu-body--sm"
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          marginBottom: '0.25rem',
-                        }}
-                      >
-                        <span>{key.replace('radius-', '').toUpperCase()}</span>
-                        <span style={{ color: 'var(--mizu-text-secondary)' }}>{styles[key]}</span>
+                      <div className="mb-1 flex justify-between text-sm">
+                        <span className="text-foreground">
+                          {key.replace('radius-', '').toUpperCase()}
+                        </span>
+                        <span className="text-muted-foreground">{styles[key]}</span>
                       </div>
                       <Slider
                         aria-label={key}
@@ -240,23 +233,16 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
                       />
                     </div>
                   ))}
-                </Stack>
+                </div>
               </ControlSection>
 
               <ControlSection title="Motion">
-                <Stack gap="0.75rem">
+                <div className="flex flex-col gap-3">
                   {(['duration-fast', 'duration-normal'] as const).map((key) => (
                     <div key={key}>
-                      <div
-                        className="mizu-body--sm"
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          marginBottom: '0.25rem',
-                        }}
-                      >
-                        <span>{key.replace('duration-', '')}</span>
-                        <span style={{ color: 'var(--mizu-text-secondary)' }}>{styles[key]}</span>
+                      <div className="mb-1 flex justify-between text-sm">
+                        <span className="text-foreground">{key.replace('duration-', '')}</span>
+                        <span className="text-muted-foreground">{styles[key]}</span>
                       </div>
                       <Slider
                         aria-label={key}
@@ -268,13 +254,13 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
                       />
                     </div>
                   ))}
-                </Stack>
+                </div>
               </ControlSection>
-            </Stack>
+            </div>
           </ScrollArea>
         </TabsContent>
       </Tabs>
-    </Stack>
+    </div>
   );
 };
 

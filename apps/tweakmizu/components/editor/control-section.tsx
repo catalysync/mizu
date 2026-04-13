@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
+import { cn } from '@/utils/cn';
 import type { ControlSectionProps } from '@/types';
 
 const ControlSection = ({
@@ -14,50 +15,22 @@ const ControlSection = ({
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', padding: '0.25rem 0' }}>
+      <div className="flex items-center gap-1 py-1">
         <button
           type="button"
           onClick={() => setIsExpanded((v) => !v)}
           aria-expanded={isExpanded}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.25rem',
-            padding: '0.125rem 0.5rem',
-            borderRadius: 'var(--mizu-radius-sm)',
-            background: 'var(--mizu-surface-secondary)',
-            color: 'var(--mizu-text-secondary)',
-            border: '1px solid transparent',
-            fontSize: '11px',
-            fontWeight: 600,
-            letterSpacing: '0.05em',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-          }}
+          className="inline-flex cursor-pointer items-center gap-1 rounded-sm border border-transparent bg-muted px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground"
         >
           <ChevronRight
             size={12}
-            style={{
-              transform: isExpanded ? 'rotate(90deg)' : undefined,
-              transition: 'transform var(--mizu-duration-fast) var(--mizu-easing-out)',
-            }}
+            className={cn('transition-transform', isExpanded && 'rotate-90')}
           />
           {title}
         </button>
         {headerAction}
       </div>
-      {isExpanded && (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.5rem',
-            padding: '0.25rem 0 0.5rem',
-          }}
-        >
-          {children}
-        </div>
-      )}
+      {isExpanded && <div className="flex flex-col gap-2 pb-2 pt-1">{children}</div>}
     </div>
   );
 };
