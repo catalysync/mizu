@@ -13,18 +13,50 @@ export const CRAFT_TOOLS: Anthropic.Messages.Tool[] = [
   {
     name: 'set_foundation',
     description:
-      'Update the Foundation cluster (brand hue, hue personality, chroma, contrast, dark mode). Call when the user describes color mood, saturation, or contrast preferences.',
+      'Update the Foundation cluster (seed color, brand hue, color mood, chroma, contrast, dark mode, extended palette). Call when the user describes brand colors, color mood, saturation, contrast preferences, or wants to add custom palette colors. seedColor is a hex like "#3b82f6" — when provided, brandHue is derived from it. colorMood controls the overall palette generation strategy. contrastLevel is a fine-grained slider from -1 (lower) to 1 (higher) within the chosen contrast tier. extendedColors are extra named colors beyond the primary seed (e.g. success green, warning amber).',
     input_schema: {
       type: 'object' as const,
       properties: {
         brandHue: { type: 'number', minimum: 0, maximum: 360 },
+        seedColor: {
+          type: 'string',
+          pattern: '^#[0-9a-fA-F]{6}$',
+          description: 'Hex color for the brand seed, e.g. "#3b82f6". Overrides brandHue.',
+        },
         huePersonality: { type: 'string', enum: ['warm', 'cool', 'neutral', 'chromatic'] },
         chroma: { type: 'string', enum: ['muted', 'balanced', 'vibrant'] },
+        colorMood: {
+          type: 'string',
+          enum: ['tonal', 'vibrant', 'muted', 'monochrome', 'expressive'],
+          description:
+            'Palette generation strategy. tonal = harmonious single-hue, vibrant = saturated multi-hue, muted = desaturated, monochrome = grays only, expressive = high-contrast complementary.',
+        },
         contrast: {
           type: 'string',
           enum: ['aa-comfortable', 'aaa-conservative', 'editorial-high'],
         },
+        contrastLevel: {
+          type: 'number',
+          minimum: -1,
+          maximum: 1,
+          description: 'Fine-grained contrast adjustment within the chosen tier. 0 = tier default.',
+        },
         darkMode: { type: 'string', enum: ['parallel', 'inverted', 'dim', 'none'] },
+        extendedColors: {
+          type: 'array',
+          maxItems: 8,
+          description:
+            'Extra named palette colors beyond the seed (e.g. success, warning). Each entry has a name, hex value, and whether to harmonize it with the seed.',
+          items: {
+            type: 'object',
+            properties: {
+              name: { type: 'string', minLength: 1, maxLength: 32 },
+              hex: { type: 'string', pattern: '^#[0-9a-fA-F]{6}$' },
+              harmonize: { type: 'boolean' },
+            },
+            required: ['name', 'hex', 'harmonize'],
+          },
+        },
       },
       additionalProperties: false,
     },
