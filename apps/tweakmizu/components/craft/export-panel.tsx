@@ -48,6 +48,14 @@ const FORMATS: FormatOption[] = [
     pro: false,
   },
   {
+    id: 'figma-tokens',
+    label: 'Figma Tokens (DTCG)',
+    description:
+      'W3C Design Tokens JSON for Tokens Studio plugin. Import directly into Figma as variables.',
+    icon: <FileJson size={20} />,
+    pro: false,
+  },
+  {
     id: 'nextjs-starter',
     label: 'Next.js App Router starter',
     description:
