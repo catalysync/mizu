@@ -152,15 +152,15 @@ export function CraftShell({ user, isPro = false, children }: CraftShellProps) {
                 </div>
               ))}
               <ProBanner />
-              <div className="craft-shell__nav-footer">
-                <div className="craft-shell__user-info">
-                  <div className="craft-shell__user-name">{user.name}</div>
-                  <div className="craft-shell__user-email">{user.email}</div>
-                </div>
-                <Link href="/settings" className="craft-shell__settings-link" aria-label="Settings">
-                  <Settings size={14} />
-                </Link>
+            </div>
+            <div className="craft-shell__nav-footer">
+              <div className="craft-shell__user-info">
+                <div className="craft-shell__user-name">{user.name}</div>
+                <div className="craft-shell__user-email">{user.email}</div>
               </div>
+              <Link href="/settings" className="craft-shell__settings-link" aria-label="Settings">
+                <Settings size={14} />
+              </Link>
             </div>
           </nav>
           {mobileOpen ? (

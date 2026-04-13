@@ -125,8 +125,9 @@
   z-index: 20;
   background: var(--mizu-surface-default);
   border-right: 1px solid var(--mizu-border-subtle);
-  overflow-y: auto;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .craft-shell__nav[data-mobile-open] {
@@ -140,6 +141,7 @@
     height: 100%;
     transform: none;
     inset: auto;
+    overflow: hidden;
   }
 }
 
@@ -160,6 +162,10 @@
 }
 
 .craft-shell__nav-inner {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -216,11 +222,13 @@
 }
 
 .craft-shell__nav-footer {
-  padding: 0.75rem 0.625rem 0;
+  flex-shrink: 0;
+  padding: 0.75rem 1rem;
   border-top: 1px solid var(--mizu-border-subtle);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  background: var(--mizu-surface-default);
 }
 
 .craft-shell__user-info {
