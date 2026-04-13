@@ -53,6 +53,30 @@
   color: var(--mizu-text-primary);
 }
 
+.craft-preview-auth__heading {
+  font-family: var(--mizu-font-family-display, var(--mizu-font-family-sans, system-ui));
+  font-size: var(--mizu-font-size-lg, 1.25rem);
+  font-weight: var(--mizu-font-weight-bold, 700);
+  color: var(--mizu-text-primary);
+  margin: 0;
+  text-align: center;
+  letter-spacing: var(--mizu-tracking-heading, -0.015em);
+}
+
+.craft-preview-auth__sub {
+  color: var(--mizu-text-secondary);
+  font-size: var(--mizu-font-size-sm, 0.875rem);
+  text-align: center;
+  margin: 0;
+}
+
+.craft-preview-auth__footer {
+  color: var(--mizu-text-tertiary);
+  font-size: var(--mizu-font-size-xs, 0.75rem);
+  text-align: center;
+  margin: 0;
+}
+
 .craft-preview-shell {
   display: flex;
   flex-direction: column;

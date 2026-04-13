@@ -537,51 +537,101 @@ function ChartTree() {
 }
 
 function SettingsFormSection({ section }: { section: Section }) {
+  const isLogin = section.title?.toLowerCase().includes('log in');
+  const isSignup =
+    section.title?.toLowerCase().includes('create') ||
+    section.title?.toLowerCase().includes('sign up');
+  const isAuth = isLogin || isSignup;
+
   return (
-    <section className="craft-preview-section">
-      {section.title ? <h2 className="craft-preview-section__title">{section.title}</h2> : null}
+    <section className={isAuth ? undefined : 'craft-preview-section'}>
+      {section.title ? (
+        <h2 className={isAuth ? 'craft-preview-auth__heading' : 'craft-preview-section__title'}>
+          {section.title}
+        </h2>
+      ) : null}
+      {isAuth && (
+        <p className="craft-preview-auth__sub">
+          {isLogin
+            ? 'Welcome back. Enter your credentials to continue.'
+            : 'Get started for free. No credit card required.'}
+        </p>
+      )}
       <div className="craft-preview-form">
+        {isSignup && (
+          <div className="craft-preview-field">
+            <label className="craft-preview-field__label" htmlFor="auth-name">
+              Full name
+            </label>
+            <input id="auth-name" className="craft-preview-input" placeholder="Jane Doe" readOnly />
+          </div>
+        )}
         <div className="craft-preview-field">
-          <label className="craft-preview-field__label" htmlFor="settings-name">
-            Display name
-          </label>
-          <input
-            id="settings-name"
-            className="craft-preview-input"
-            defaultValue="Jane Doe"
-            readOnly
-          />
-        </div>
-        <div className="craft-preview-field">
-          <label className="craft-preview-field__label" htmlFor="settings-email">
+          <label className="craft-preview-field__label" htmlFor="auth-email">
             Email
           </label>
           <input
-            id="settings-email"
+            id="auth-email"
             className="craft-preview-input"
-            defaultValue="jane@example.com"
+            placeholder="jane@example.com"
+            type="email"
             readOnly
           />
         </div>
         <div className="craft-preview-field">
-          <label className="craft-preview-field__label" htmlFor="settings-tz">
-            Timezone
+          <label className="craft-preview-field__label" htmlFor="auth-pw">
+            Password
           </label>
           <input
-            id="settings-tz"
+            id="auth-pw"
             className="craft-preview-input"
-            defaultValue="UTC+0 (London)"
+            placeholder="••••••••"
+            type="password"
             readOnly
           />
         </div>
-        <div className="craft-preview-form__actions">
-          <button type="button" className="craft-preview-btn" data-variant="ghost">
-            Cancel
-          </button>
-          <button type="button" className="craft-preview-btn" data-variant="primary">
-            Save changes
-          </button>
+        {!isAuth && (
+          <div className="craft-preview-field">
+            <label className="craft-preview-field__label" htmlFor="settings-tz">
+              Timezone
+            </label>
+            <input
+              id="settings-tz"
+              className="craft-preview-input"
+              defaultValue="UTC+0 (London)"
+              readOnly
+            />
+          </div>
+        )}
+        <div
+          className="craft-preview-form__actions"
+          style={isAuth ? { justifyContent: 'stretch' } : undefined}
+        >
+          {isAuth ? (
+            <button
+              type="button"
+              className="craft-preview-btn"
+              data-variant="primary"
+              style={{ flex: 1 }}
+            >
+              {isLogin ? 'Log in' : 'Create account'}
+            </button>
+          ) : (
+            <>
+              <button type="button" className="craft-preview-btn" data-variant="ghost">
+                Cancel
+              </button>
+              <button type="button" className="craft-preview-btn" data-variant="primary">
+                Save changes
+              </button>
+            </>
+          )}
         </div>
+        {isAuth && (
+          <p className="craft-preview-auth__footer">
+            {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Log in'}
+          </p>
+        )}
       </div>
     </section>
   );
