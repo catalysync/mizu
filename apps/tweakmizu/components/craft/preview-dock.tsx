@@ -62,9 +62,11 @@ export function PreviewDock() {
   }, [closeFullscreen]);
 
   const deviceButtons = (
-    <div className="craft-dock__devices" role="group" aria-label="Preview device size">
+    <div className="craft-dock__devices" role="radiogroup" aria-label="Preview device size">
       <button
         type="button"
+        role="radio"
+        aria-checked={device === 'mobile'}
         data-active={device === 'mobile' || undefined}
         onClick={() => setDevice('mobile')}
         aria-label="Mobile preview"
@@ -73,6 +75,8 @@ export function PreviewDock() {
       </button>
       <button
         type="button"
+        role="radio"
+        aria-checked={device === 'tablet'}
         data-active={device === 'tablet' || undefined}
         onClick={() => setDevice('tablet')}
         aria-label="Tablet preview"
@@ -81,6 +85,8 @@ export function PreviewDock() {
       </button>
       <button
         type="button"
+        role="radio"
+        aria-checked={device === 'desktop'}
         data-active={device === 'desktop' || undefined}
         onClick={() => setDevice('desktop')}
         aria-label="Desktop preview"
