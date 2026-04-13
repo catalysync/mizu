@@ -139,7 +139,7 @@ export const useCraftStore = create<CraftState>()(
     }),
     {
       name: 'tweakmizu-craft-storage',
-      version: 4,
+      version: 5,
       partialize: (state) => ({
         profile: state.profile,
         hasOnboarded: state.hasOnboarded,
@@ -194,6 +194,19 @@ export const useCraftStore = create<CraftState>()(
               if (d.baseFontSize == null) d.baseFontSize = '16';
             }
             // displayFamily intentionally left undefined = same as sansFamily
+          }
+        }
+        if (version < 5) {
+          const profile = data.profile as Record<string, unknown> | undefined;
+          if (profile) {
+            const s = profile.shape as Record<string, unknown> | undefined;
+            if (s) {
+              if (s.surfaceStyle == null) s.surfaceStyle = 'solid';
+            }
+            const f = profile.foundation as Record<string, unknown> | undefined;
+            if (f) {
+              // chartPalette intentionally left undefined = auto-generated
+            }
           }
         }
         return data as CraftState;
