@@ -256,13 +256,8 @@ export const defaultAppSchema: AppSchema = {
         sections: [
           {
             id: 'login-form',
-            kind: 'form',
+            kind: 'settings-form',
             title: 'Log in to your account',
-            fields: [
-              { fieldId: 'email', label: 'Email', type: 'email' },
-              { fieldId: 'password', label: 'Password', type: 'password' },
-            ],
-            submitLabel: 'Log in',
           },
         ],
       },
@@ -276,14 +271,8 @@ export const defaultAppSchema: AppSchema = {
         sections: [
           {
             id: 'signup-form',
-            kind: 'form',
+            kind: 'settings-form',
             title: 'Create your account',
-            fields: [
-              { fieldId: 'name', label: 'Full name', type: 'string' },
-              { fieldId: 'email', label: 'Email', type: 'email' },
-              { fieldId: 'password', label: 'Password', type: 'password' },
-            ],
-            submitLabel: 'Create account',
           },
         ],
       },

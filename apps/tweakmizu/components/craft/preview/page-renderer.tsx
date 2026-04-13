@@ -78,7 +78,7 @@ function SectionRenderer({
     case 'settings-form':
       return <SettingsFormSection section={section} />;
     case 'detail-card':
-      return <DetailCard section={section} entities={entities} />;
+      return <DetailCard section={section} />;
     case 'empty-state':
       return <EmptyState section={section} />;
     case 'text':
@@ -89,19 +89,19 @@ function SectionRenderer({
         </section>
       );
     case 'wizard':
-      return <WizardSection section={section} />;
+      return <WizardSection />;
     case 'approval-flow':
       return <ApprovalFlow section={section} />;
     case 'aging-breakdown':
       return <AgingBreakdown section={section} />;
     case 'journal-lines':
-      return <JournalLines section={section} />;
+      return <JournalLines />;
     case 'reconciliation-split':
-      return <ReconciliationSplit section={section} />;
+      return <ReconciliationSplit />;
     case 'chart-tree':
-      return <ChartTree section={section} />;
+      return <ChartTree />;
     case 'period-bar':
-      return <PeriodBar section={section} />;
+      return <PeriodBar />;
     case 'stat-row':
       return <KpiRow section={section} />;
     default:
@@ -531,6 +531,57 @@ function ChartTree() {
             <span className="craft-preview-chart-tree__balance">{row.balance}</span>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function SettingsFormSection({ section }: { section: Section }) {
+  return (
+    <section className="craft-preview-section">
+      {section.title ? <h2 className="craft-preview-section__title">{section.title}</h2> : null}
+      <div className="craft-preview-form">
+        <div className="craft-preview-field">
+          <label className="craft-preview-field__label" htmlFor="settings-name">
+            Display name
+          </label>
+          <input
+            id="settings-name"
+            className="craft-preview-input"
+            defaultValue="Jane Doe"
+            readOnly
+          />
+        </div>
+        <div className="craft-preview-field">
+          <label className="craft-preview-field__label" htmlFor="settings-email">
+            Email
+          </label>
+          <input
+            id="settings-email"
+            className="craft-preview-input"
+            defaultValue="jane@example.com"
+            readOnly
+          />
+        </div>
+        <div className="craft-preview-field">
+          <label className="craft-preview-field__label" htmlFor="settings-tz">
+            Timezone
+          </label>
+          <input
+            id="settings-tz"
+            className="craft-preview-input"
+            defaultValue="UTC+0 (London)"
+            readOnly
+          />
+        </div>
+        <div className="craft-preview-form__actions">
+          <button type="button" className="craft-preview-btn" data-variant="ghost">
+            Cancel
+          </button>
+          <button type="button" className="craft-preview-btn" data-variant="primary">
+            Save changes
+          </button>
+        </div>
       </div>
     </section>
   );

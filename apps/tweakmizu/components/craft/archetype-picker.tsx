@@ -144,7 +144,7 @@ function ArchetypeSwatch({ archetype }: { archetype: (typeof archetypes)[number]
       <div className="craft-archetypes__swatch-meta">
         <span
           style={{
-            fontFamily: styleObj['--mizu-font-family-sans'] as string,
+            fontFamily: `"${t.sansFamily}", system-ui, sans-serif`,
             fontSize: '0.625rem',
           }}
         >

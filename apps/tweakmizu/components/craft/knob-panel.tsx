@@ -285,7 +285,7 @@ function FontPicker({
     highlightedIndex >= 0 ? `font-option-${category}-${highlightedIndex}` : undefined;
 
   return (
-    <div className="craft-font-picker" ref={ref} onKeyDown={handleKeyDown}>
+    <div className="craft-font-picker" ref={ref}>
       <button
         type="button"
         className="craft-font-picker__trigger"
@@ -293,6 +293,7 @@ function FontPicker({
         aria-haspopup="listbox"
         aria-label={label ? `${label}: ${value}` : value}
         onClick={() => setOpen(!open)}
+        onKeyDown={handleKeyDown}
         style={{ fontFamily: `"${value}", system-ui, sans-serif` }}
       >
         <span className="craft-font-picker__value">{value}</span>
@@ -300,7 +301,7 @@ function FontPicker({
       </button>
 
       {open && (
-        <div className="craft-font-picker__dropdown">
+        <div className="craft-font-picker__dropdown" role="dialog" aria-label="Font picker">
           <input
             ref={inputRef}
             type="text"

@@ -8,7 +8,6 @@ import type {
   ColorMood,
   ContrastTier,
   DarkModePhilosophy,
-  ExtendedColor,
   HuePersonality,
 } from '@/lib/craft/profile';
 

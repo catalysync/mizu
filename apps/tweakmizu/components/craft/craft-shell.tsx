@@ -13,7 +13,6 @@ import { ProBanner, ProBadge } from './pro-upsell';
 import { HydrationGate } from './hydration-gate';
 import { PreviewDock } from './preview-dock';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { useIsPro } from './craft-pro-context';
 
 interface CraftShellProps {
   user: { id: string; name: string; email: string };
