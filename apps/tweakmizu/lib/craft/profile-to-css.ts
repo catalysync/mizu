@@ -28,7 +28,19 @@ export function profileToCss(profile: DesignLanguageProfile, dark = false): CssV
 // -- Foundation ------------------------------------------------------------
 
 function foundationVars(f: DesignLanguageProfile['foundation'], dark = false): CssVarMap {
-  const { brandHue, chroma, contrast, colorMood, contrastLevel, darkMode, extendedColors } = f;
+  const {
+    brandHue,
+    chroma,
+    contrast,
+    colorMood,
+    contrastLevel,
+    darkMode,
+    neutralHue,
+    extendedColors,
+  } = f;
+
+  // Neutral hue: independent from brand hue if set, otherwise derived
+  const nHue = neutralHue ?? brandHue;
 
   // Saturation percentages per chroma tier.
   const baseSat = chroma === 'muted' ? 24 : chroma === 'balanced' ? 60 : 84;
@@ -99,16 +111,17 @@ function foundationVars(f: DesignLanguageProfile['foundation'], dark = false): C
     '--mizu-action-secondary-default': `hsl(${secondaryHue} ${secondarySat}% ${actionL + 4}%)`,
     '--mizu-action-secondary-hover': `hsl(${secondaryHue} ${secondarySat}% ${actionHoverL + 2}%)`,
     '--mizu-action-tertiary-default': `hsl(${tertiaryHue} ${tertiarySat}% ${actionL + 2}%)`,
-    '--mizu-surface-default': `hsl(${brandHue} ${Math.round(sat * 0.2)}% ${surfaceL}%)`,
-    '--mizu-surface-secondary': `hsl(${brandHue} ${Math.round(sat * 0.2)}% ${surfaceSecondaryL}%)`,
-    '--mizu-surface-tertiary': `hsl(${brandHue} ${Math.round(sat * 0.15)}% ${surfaceTertiaryL}%)`,
-    '--mizu-text-primary': `hsl(${brandHue} ${Math.round(sat * 0.3)}% ${textL}%)`,
-    '--mizu-text-secondary': `hsl(${brandHue} ${Math.round(sat * 0.2)}% ${mutedL}%)`,
-    '--mizu-text-tertiary': `hsl(${brandHue} ${Math.round(sat * 0.16)}% ${mutedL + (dark ? -12 : 18)}%)`,
-    '--mizu-text-disabled': `hsl(${brandHue} ${Math.round(sat * 0.12)}% ${mutedL + (dark ? -20 : 30)}%)`,
-    '--mizu-border-default': `hsl(${brandHue} ${Math.round(sat * 0.24)}% ${borderL}%)`,
-    '--mizu-border-strong': `hsl(${brandHue} ${Math.round(sat * 0.24)}% ${borderStrongL}%)`,
-    '--mizu-border-subtle': `hsl(${brandHue} ${Math.round(sat * 0.24)}% ${borderSubtleL}%)`,
+    // Neutrals use nHue (independent neutral tint) not brandHue
+    '--mizu-surface-default': `hsl(${nHue} ${Math.round(sat * 0.2)}% ${surfaceL}%)`,
+    '--mizu-surface-secondary': `hsl(${nHue} ${Math.round(sat * 0.2)}% ${surfaceSecondaryL}%)`,
+    '--mizu-surface-tertiary': `hsl(${nHue} ${Math.round(sat * 0.15)}% ${surfaceTertiaryL}%)`,
+    '--mizu-text-primary': `hsl(${nHue} ${Math.round(sat * 0.3)}% ${textL}%)`,
+    '--mizu-text-secondary': `hsl(${nHue} ${Math.round(sat * 0.2)}% ${mutedL}%)`,
+    '--mizu-text-tertiary': `hsl(${nHue} ${Math.round(sat * 0.16)}% ${mutedL + (dark ? -12 : 18)}%)`,
+    '--mizu-text-disabled': `hsl(${nHue} ${Math.round(sat * 0.12)}% ${mutedL + (dark ? -20 : 30)}%)`,
+    '--mizu-border-default': `hsl(${nHue} ${Math.round(sat * 0.24)}% ${borderL}%)`,
+    '--mizu-border-strong': `hsl(${nHue} ${Math.round(sat * 0.24)}% ${borderStrongL}%)`,
+    '--mizu-border-subtle': `hsl(${nHue} ${Math.round(sat * 0.24)}% ${borderSubtleL}%)`,
     '--mizu-feedback-success-default': `hsl(148 ${Math.min(sat + 10, 80)}% 38%)`,
     '--mizu-feedback-warning-default': `hsl(36 ${Math.min(sat + 20, 92)}% 48%)`,
     '--mizu-feedback-danger-default': `hsl(0 ${Math.min(sat + 14, 78)}% 48%)`,
@@ -147,6 +160,31 @@ function foundationVars(f: DesignLanguageProfile['foundation'], dark = false): C
       vars[`--mizu-color-${slug}-light`] = `hsl(${finalH} ${Math.round(ecSat * 0.4)}% 94%)`;
       vars[`--mizu-color-${slug}-dark`] = `hsl(${finalH} ${ecSat}% ${Math.max(ecL - 20, 15)}%)`;
     }
+  }
+
+  // Shade scale generation: 9 steps (50-900) for primary + feedback colors.
+  // Uses HSL lightness interpolation from light (95%) to dark (15%).
+  const shadeSteps = [
+    { step: 50, l: 96 },
+    { step: 100, l: 92 },
+    { step: 200, l: 84 },
+    { step: 300, l: 72 },
+    { step: 400, l: 60 },
+    { step: 500, l: 48 },
+    { step: 600, l: 38 },
+    { step: 700, l: 28 },
+    { step: 800, l: 20 },
+    { step: 900, l: 12 },
+  ];
+  for (const { step, l } of shadeSteps) {
+    vars[`--mizu-color-primary-${step}`] = `hsl(${brandHue} ${sat}% ${l}%)`;
+  }
+  // Feedback shade scales (3 steps each: light/default/dark)
+  const feedbackHues = { success: 148, warning: 36, danger: 0 };
+  for (const [name, hue] of Object.entries(feedbackHues)) {
+    vars[`--mizu-color-${name}-100`] = `hsl(${hue} ${Math.min(sat + 10, 80)}% 92%)`;
+    vars[`--mizu-color-${name}-500`] = `hsl(${hue} ${Math.min(sat + 10, 80)}% 48%)`;
+    vars[`--mizu-color-${name}-900`] = `hsl(${hue} ${Math.min(sat + 10, 80)}% 20%)`;
   }
 
   return vars;
@@ -209,6 +247,42 @@ function shapeVars(s: DesignLanguageProfile['shape']): CssVarMap {
             }
           : {}; // layered = default, don't override depth vars
 
+  // buttonChrome: CSS pattern for button interaction
+  const chrome = s.buttonChrome ?? 'flat';
+  const buttonChromeVars: CssVarMap =
+    chrome === 'hard-offset'
+      ? {
+          '--mizu-btn-shadow': '0 3px 0 0 var(--mizu-action-primary-active)',
+          '--mizu-btn-hover-transform': 'translateY(-0.5px)',
+          '--mizu-btn-active-transform': 'translateY(1px)',
+        }
+      : chrome === 'soft-shadow'
+        ? {
+            '--mizu-btn-shadow': '0 1px 3px rgb(0 0 0 / 0.12)',
+            '--mizu-btn-hover-transform': 'translateY(-0.5px)',
+            '--mizu-btn-active-transform': 'translateY(0)',
+          }
+        : {
+            '--mizu-btn-shadow': 'none',
+            '--mizu-btn-hover-transform': 'none',
+            '--mizu-btn-active-transform': 'none',
+          };
+
+  // accentBorder: thick colored border on panels/cards
+  const accent = s.accentBorder ?? 'none';
+  const accentVars: CssVarMap =
+    accent === 'left'
+      ? {
+          '--mizu-accent-border': '4px solid var(--mizu-action-primary-default)',
+          '--mizu-accent-border-side': 'border-left',
+        }
+      : accent === 'top'
+        ? {
+            '--mizu-accent-border': '4px solid var(--mizu-action-primary-default)',
+            '--mizu-accent-border-side': 'border-top',
+          }
+        : { '--mizu-accent-border': 'none', '--mizu-accent-border-side': 'none' };
+
   return {
     '--mizu-radius-sm': px(scale.sm),
     '--mizu-radius-md': px(scale.md),
@@ -216,6 +290,8 @@ function shapeVars(s: DesignLanguageProfile['shape']): CssVarMap {
     '--mizu-radius-xl': px(scale.xl),
     '--mizu-border-width-default': borderWidth,
     ...chromeVars,
+    ...buttonChromeVars,
+    ...accentVars,
   };
 }
 
@@ -249,6 +325,8 @@ function densityVars(d: DesignLanguageProfile['density']): CssVarMap {
     '--mizu-spacing-10': step(10),
     '--mizu-text-spacing-block': textStep(4),
     '--mizu-text-spacing-heading': textStep(6),
+    // baseFontSize: shifts entire type scale
+    '--mizu-base-font-size': `${d.baseFontSize ?? '16'}px`,
   };
 }
 
@@ -279,6 +357,9 @@ function typeVars(t: DesignLanguageProfile['type']): CssVarMap {
 
   return {
     '--mizu-font-family-sans': `'${t.sansFamily}', ui-sans-serif, system-ui, -apple-system, sans-serif`,
+    '--mizu-font-family-display': t.displayFamily
+      ? `'${t.displayFamily}', '${t.sansFamily}', ui-sans-serif, system-ui, sans-serif`
+      : `'${t.sansFamily}', ui-sans-serif, system-ui, -apple-system, sans-serif`,
     '--mizu-font-family-mono': `'${t.monoFamily}', ui-monospace, SFMono-Regular, monospace`,
     '--mizu-font-size-xs': step(-2),
     '--mizu-font-size-sm': step(-1),
