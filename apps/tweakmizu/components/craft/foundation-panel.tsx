@@ -1,7 +1,7 @@
 'use client';
 
 import './foundation-panel.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useCraftStore } from '@/store/craft-store';
 import type {
   ChromaIntensity,
@@ -99,6 +99,17 @@ export function FoundationPanel() {
   const [seedInput, setSeedInput] = useState(foundation.seedColor ?? '#3b82f6');
   const [newColorName, setNewColorName] = useState('');
   const [newColorHex, setNewColorHex] = useState('#ef4444');
+
+  // Compute chart palette (custom or auto-generated from brand hue)
+  const chartColors = useMemo(() => {
+    if (foundation.chartPalette?.length) return foundation.chartPalette;
+    const hue = foundation.brandHue;
+    const baseSat = foundation.chroma === 'muted' ? 24 : foundation.chroma === 'balanced' ? 60 : 84;
+    return Array.from({ length: 5 }, (_, i) => {
+      const h = (hue + i * 72) % 360;
+      return `hsl(${h} ${baseSat}% 48%)`;
+    });
+  }, [foundation.brandHue, foundation.chroma, foundation.chartPalette]);
 
   // Foundation colors affect everything — default to overview on mount
   useEffect(() => {
@@ -487,6 +498,25 @@ export function FoundationPanel() {
                 </button>
               </div>
             )}
+          </Section>
+
+          {/* Chart palette — auto-generated from brand hue, read-only */}
+          <Section
+            title="Chart palette"
+            hint="Auto-generated from brand hue using 72-degree harmony. Supply a custom palette in JSON to override."
+          >
+            <div className="craft-foundation__chart-row" aria-label="Chart palette colors">
+              {chartColors.map((color, i) => (
+                <div key={i} className="craft-foundation__chart-swatch-wrap">
+                  <span
+                    className="craft-foundation__chart-swatch"
+                    style={{ background: color }}
+                    aria-label={`Chart color ${i + 1}`}
+                  />
+                  <span className="craft-foundation__chart-label">{i + 1}</span>
+                </div>
+              ))}
+            </div>
           </Section>
         </div>
 

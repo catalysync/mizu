@@ -91,6 +91,17 @@ export function ShapePanel() {
       value: shape.accentBorder ?? 'none',
       onChange: (v) => u('shape', { accentBorder: v as 'none' | 'left' | 'top' }),
     },
+    {
+      title: 'Surface style',
+      hint: 'Solid surfaces are opaque. Glass adds a frosted backdrop-blur effect.',
+      type: 'chips',
+      options: [
+        { id: 'solid', label: 'Solid', hint: 'Opaque — default' },
+        { id: 'glass', label: 'Glass', hint: 'Frosted blur — iOS, macOS' },
+      ],
+      value: shape.surfaceStyle ?? 'solid',
+      onChange: (v) => u('shape', { surfaceStyle: v as 'solid' | 'glass' }),
+    },
   ];
   return (
     <KnobPanel
