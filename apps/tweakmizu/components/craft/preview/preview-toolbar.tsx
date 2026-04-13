@@ -21,9 +21,11 @@ export function PreviewToolbar() {
         </Link>
         <span className="preview-toolbar__name">{profileName}</span>
         <div className="preview-toolbar__spacer" />
-        <div className="preview-toolbar__devices" role="group" aria-label="Preview viewport">
+        <div className="preview-toolbar__devices" role="radiogroup" aria-label="Preview viewport">
           <button
             type="button"
+            role="radio"
+            aria-checked={device === 'mobile'}
             data-active={device === 'mobile' || undefined}
             onClick={() => setDevice('mobile')}
             aria-label="Mobile"
@@ -32,6 +34,8 @@ export function PreviewToolbar() {
           </button>
           <button
             type="button"
+            role="radio"
+            aria-checked={device === 'tablet'}
             data-active={device === 'tablet' || undefined}
             onClick={() => setDevice('tablet')}
             aria-label="Tablet"
@@ -40,6 +44,8 @@ export function PreviewToolbar() {
           </button>
           <button
             type="button"
+            role="radio"
+            aria-checked={device === 'desktop'}
             data-active={device === 'desktop' || undefined}
             onClick={() => setDevice('desktop')}
             aria-label="Desktop"
