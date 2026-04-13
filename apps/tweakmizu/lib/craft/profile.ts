@@ -38,6 +38,9 @@ export type ColorMood = z.infer<typeof ColorMood>;
 export const DarkModePhilosophy = z.enum(['parallel', 'inverted', 'dim', 'none']);
 export type DarkModePhilosophy = z.infer<typeof DarkModePhilosophy>;
 
+export const DefaultScheme = z.enum(['light', 'dark', 'light-only', 'dark-only']);
+export type DefaultScheme = z.infer<typeof DefaultScheme>;
+
 export const ExtendedColor = z.object({
   name: z.string().min(1).max(32),
   hex: z.string().regex(/^#[0-9a-fA-F]{6}$/),
@@ -57,6 +60,8 @@ export const FoundationCluster = z.object({
   contrast: ContrastTier,
   contrastLevel: ContrastLevel.optional(),
   darkMode: DarkModePhilosophy,
+  defaultScheme: DefaultScheme.optional(),
+  neutralHue: z.number().min(0).max(360).optional(),
   extendedColors: z.array(ExtendedColor).max(8).optional(),
 });
 export type FoundationCluster = z.infer<typeof FoundationCluster>;
@@ -72,11 +77,19 @@ export type BorderWeight = z.infer<typeof BorderWeight>;
 export const ChromeStyle = z.enum(['flat', 'layered', 'material', 'paper']);
 export type ChromeStyle = z.infer<typeof ChromeStyle>;
 
+export const ButtonChrome = z.enum(['flat', 'soft-shadow', 'hard-offset']);
+export type ButtonChrome = z.infer<typeof ButtonChrome>;
+
+export const AccentBorder = z.enum(['none', 'left', 'top']);
+export type AccentBorder = z.infer<typeof AccentBorder>;
+
 export const ShapeCluster = z.object({
   radius: RadiusScale,
   radiusUniform: z.boolean(),
   borderWeight: BorderWeight,
   chrome: ChromeStyle,
+  buttonChrome: ButtonChrome.optional(),
+  accentBorder: AccentBorder.optional(),
 });
 export type ShapeCluster = z.infer<typeof ShapeCluster>;
 
@@ -88,10 +101,14 @@ export type SpacingBase = z.infer<typeof SpacingBase>;
 export const DensityMode = z.enum(['comfortable', 'default', 'compact', 'data-dense']);
 export type DensityMode = z.infer<typeof DensityMode>;
 
+export const BaseFontSize = z.enum(['14', '16', '18']);
+export type BaseFontSize = z.infer<typeof BaseFontSize>;
+
 export const DensityCluster = z.object({
   spacingBase: SpacingBase,
   density: DensityMode,
   airyType: z.boolean(),
+  baseFontSize: BaseFontSize.optional(),
 });
 export type DensityCluster = z.infer<typeof DensityCluster>;
 
@@ -123,6 +140,7 @@ export const TypeCluster = z.object({
   sansFamily: z.string(),
   sansKind: TypeFamilyKind,
   monoFamily: z.string(),
+  displayFamily: z.string().optional(),
   scaleRatio: ScaleRatio,
   weights: WeightVocabulary,
   trackingTight: z.boolean(),
@@ -253,6 +271,8 @@ export const mizuSampleProfile: DesignLanguageProfile = {
     contrast: 'aa-comfortable',
     contrastLevel: 0,
     darkMode: 'parallel',
+    defaultScheme: 'light',
+    neutralHue: undefined,
     extendedColors: [],
   },
   shape: {
@@ -260,11 +280,14 @@ export const mizuSampleProfile: DesignLanguageProfile = {
     radiusUniform: true,
     borderWeight: 'thin',
     chrome: 'layered',
+    buttonChrome: 'flat',
+    accentBorder: 'none',
   },
   density: {
     spacingBase: '4',
     density: 'default',
     airyType: false,
+    baseFontSize: '16',
   },
   type: {
     sansFamily: 'Inter',
