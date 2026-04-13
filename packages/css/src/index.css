@@ -65,6 +65,7 @@
 @import url("./components/pagination.css");
 @import url("./components/data-table.css");
 @import url("./components/combobox.css");
+@import url("./components/alert-dialog.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");

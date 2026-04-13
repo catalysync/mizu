@@ -46,6 +46,7 @@ export * from './components/Toast';
 export * from './components/CommandMenu';
 export * from './components/Slider';
 export * from './components/ScrollArea';
+export * from './components/AlertDialog';
 export * from './motion';
 export * from './layouts';
 export * from './shell';
