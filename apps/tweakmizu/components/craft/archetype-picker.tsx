@@ -55,7 +55,6 @@ export function ArchetypePicker() {
                 <span className="craft-archetypes__card-tagline">{arch.tagline}</span>
               </div>
               <p className="craft-archetypes__card-desc">{arch.description}</p>
-              <p className="craft-archetypes__card-inspired">Inspired by {arch.inspiredBy}</p>
               <Button
                 size="sm"
                 variant={
@@ -108,21 +107,53 @@ export function ArchetypePicker() {
 function ArchetypeSwatch({ archetype }: { archetype: (typeof archetypes)[number] }) {
   const vars = profileToCss(archetype.profile);
   const styleObj = vars as unknown as React.CSSProperties;
+  const f = archetype.profile.foundation;
+  const t = archetype.profile.type;
   return (
     <div className="craft-archetypes__swatch" style={styleObj}>
-      <div className="craft-archetypes__swatch-row">
-        <span className="craft-archetypes__swatch-chip craft-archetypes__swatch-chip--primary" />
-        <span className="craft-archetypes__swatch-chip craft-archetypes__swatch-chip--success" />
-        <span className="craft-archetypes__swatch-chip craft-archetypes__swatch-chip--warning" />
-        <span className="craft-archetypes__swatch-chip craft-archetypes__swatch-chip--danger" />
+      {/* Mini app shell */}
+      <div className="craft-archetypes__mini-shell">
+        {/* Mini sidebar */}
+        <div className="craft-archetypes__mini-sidebar">
+          <div className="craft-archetypes__mini-logo" />
+          <div className="craft-archetypes__mini-nav-item" data-active />
+          <div className="craft-archetypes__mini-nav-item" />
+          <div className="craft-archetypes__mini-nav-item" />
+        </div>
+        {/* Mini content */}
+        <div className="craft-archetypes__mini-content">
+          <div className="craft-archetypes__mini-header">
+            <div className="craft-archetypes__mini-heading" />
+            <div className="craft-archetypes__mini-btn" />
+          </div>
+          {/* Mini KPI row */}
+          <div className="craft-archetypes__mini-kpis">
+            <div className="craft-archetypes__mini-kpi" />
+            <div className="craft-archetypes__mini-kpi" />
+            <div className="craft-archetypes__mini-kpi" />
+          </div>
+          {/* Mini table */}
+          <div className="craft-archetypes__mini-table">
+            <div className="craft-archetypes__mini-row" />
+            <div className="craft-archetypes__mini-row" />
+            <div className="craft-archetypes__mini-row" />
+          </div>
+        </div>
       </div>
-      <div className="craft-archetypes__swatch-mock">
-        <div className="craft-archetypes__swatch-btn craft-archetypes__swatch-btn--primary">
-          Save
-        </div>
-        <div className="craft-archetypes__swatch-btn craft-archetypes__swatch-btn--ghost">
-          Cancel
-        </div>
+      {/* Token hints */}
+      <div className="craft-archetypes__swatch-meta">
+        <span
+          style={{
+            fontFamily: styleObj['--mizu-font-family-sans'] as string,
+            fontSize: '0.625rem',
+          }}
+        >
+          {t.sansFamily}
+        </span>
+        <span
+          className="craft-archetypes__swatch-hue"
+          style={{ background: `hsl(${f.brandHue} 60% 48%)` }}
+        />
       </div>
     </div>
   );
