@@ -1,9 +1,10 @@
 'use client';
 
 import './archetype-picker.css';
+import { useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@aspect/react';
-import { ArrowRight, Lock, Sparkles } from 'lucide-react';
+import { ArrowRight, Lock, Sparkles, Shuffle } from 'lucide-react';
 import { Badge } from '@aspect/react';
 import { archetypes } from '@/lib/craft/archetypes';
 import { useCraftStore } from '@/store/craft-store';
@@ -27,14 +28,53 @@ export function ArchetypePicker() {
     router.push('/craft/foundation');
   };
 
+  // Shuffle: pick a random archetype (respecting Pro gate)
+  const handleShuffle = useCallback(() => {
+    const available = archetypes.filter((a) => !a.pro || isPro);
+    const current = available.findIndex((a) => a.id === currentArchetype);
+    let next = Math.floor(Math.random() * available.length);
+    if (next === current && available.length > 1) next = (next + 1) % available.length;
+    pickArchetype(available[next].id);
+  }, [isPro, currentArchetype, pickArchetype]);
+
+  // Keyboard shortcut: R to shuffle
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (
+        e.key === 'r' &&
+        !e.metaKey &&
+        !e.ctrlKey &&
+        !e.altKey &&
+        !(e.target instanceof HTMLInputElement) &&
+        !(e.target instanceof HTMLTextAreaElement)
+      ) {
+        handleShuffle();
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [handleShuffle]);
+
   return (
     <div className="craft-archetypes">
       <header className="craft-archetypes__header">
-        <h1 className="craft-archetypes__title">Start from an archetype</h1>
+        <div className="craft-archetypes__header-row">
+          <h1 className="craft-archetypes__title">Start from an archetype</h1>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={handleShuffle}
+            aria-label="Shuffle archetype (R)"
+          >
+            <Shuffle size={14} />
+            Shuffle
+            <kbd className="craft-archetypes__kbd">R</kbd>
+          </Button>
+        </div>
         <p className="craft-archetypes__lede">
           Each archetype is a starting <strong>design language</strong> — a complete set of choices
           for hue, shape, density, type, motion, voice, and more. Pick the closest one, then tweak
-          every knob. Or start from the mizu sample and build yours from scratch.
+          every knob. Or press <kbd>R</kbd> to shuffle randomly.
         </p>
       </header>
 
