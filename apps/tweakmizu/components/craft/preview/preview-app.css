@@ -16,7 +16,7 @@
   min-height: 100dvh;
   background: inherit;
   font-family: var(--mizu-font-family-sans, system-ui, sans-serif);
-  font-size: var(--mizu-font-size-base, 1rem);
+  font-size: var(--mizu-base-font-size, 16px);
 }
 
 .craft-preview-shell__header {
@@ -166,6 +166,7 @@
 }
 
 .craft-preview-page__title {
+  font-family: var(--mizu-font-family-display, var(--mizu-font-family-sans, system-ui));
   font-size: var(--mizu-font-size-xl, 1.5rem);
   font-weight: var(--mizu-font-weight-bold, 700);
   margin: 0 0 var(--mizu-spacing-1, 0.25rem);
@@ -194,6 +195,10 @@
 .craft-preview-section {
   background: var(--mizu-surface-default);
   border: var(--mizu-border-width-default, 1px) solid var(--mizu-border-subtle);
+  border-left: var(
+    --mizu-accent-border,
+    var(--mizu-border-width-default, 1px) solid var(--mizu-border-subtle)
+  );
   border-radius: var(--mizu-radius-lg);
   padding: var(--mizu-spacing-4, 1.125rem) var(--mizu-spacing-5, 1.25rem);
   box-shadow: var(--mizu-shadow-sm, none);
@@ -347,8 +352,17 @@
   border-radius: var(--mizu-radius-md);
   border: var(--mizu-border-width-default, 1px) solid transparent;
   cursor: pointer;
+  box-shadow: var(--mizu-btn-shadow, none);
   transition: all calc(var(--mizu-duration-fast, 120ms) * var(--mizu-motion-scale, 1))
     var(--mizu-easing-out, ease-out);
+}
+
+.craft-preview-btn:hover {
+  transform: var(--mizu-btn-hover-transform, none);
+}
+
+.craft-preview-btn:active {
+  transform: var(--mizu-btn-active-transform, none);
 }
 
 .craft-preview-btn[data-variant="primary"] {
