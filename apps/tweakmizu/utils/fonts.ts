@@ -29,6 +29,8 @@ const SANS: FontOption[] = [
   { family: 'Figtree', category: 'sans', weights: '400;500;600;700' },
   { family: 'Source Sans 3', category: 'sans', weights: '400;500;600;700' },
   { family: 'Nunito', category: 'sans', weights: '400;500;600;700' },
+  { family: 'Poppins', category: 'sans', weights: '400;500;600;700' },
+  { family: 'Oxanium', category: 'sans', weights: '400;500;600;700' },
 ];
 
 const SERIF: FontOption[] = [
