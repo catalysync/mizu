@@ -318,6 +318,105 @@ export function FoundationPanel() {
             />
           </Section>
 
+          <Section
+            title="Default scheme"
+            hint="Whether the product ships as light-first, dark-first, or single-mode only."
+          >
+            <div
+              className="craft-foundation__chip-row"
+              role="radiogroup"
+              aria-label="Default scheme"
+            >
+              {(
+                [
+                  { id: 'light', label: 'Light' },
+                  { id: 'dark', label: 'Dark' },
+                  { id: 'light-only', label: 'Light only' },
+                  { id: 'dark-only', label: 'Dark only' },
+                ] as const
+              ).map((opt) => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={foundation.defaultScheme === opt.id}
+                  className="craft-foundation__chip"
+                  data-active={(foundation.defaultScheme ?? 'light') === opt.id || undefined}
+                  onClick={() => {
+                    updateCluster('foundation', { defaultScheme: opt.id });
+                    if (opt.id === 'dark' || opt.id === 'dark-only') setPreviewDark(true);
+                    else setPreviewDark(false);
+                  }}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </Section>
+
+          <Section
+            title={`Neutral tint · ${foundation.neutralHue ?? 'auto (brand hue)'}`}
+            hint="Independent hue for surfaces, text, and borders. Set to decouple from brand color."
+          >
+            <div className="craft-foundation__chip-row">
+              <button
+                type="button"
+                className="craft-foundation__chip"
+                data-active={foundation.neutralHue === undefined || undefined}
+                onClick={() => updateCluster('foundation', { neutralHue: undefined })}
+              >
+                Auto
+              </button>
+              <button
+                type="button"
+                className="craft-foundation__chip"
+                data-active={foundation.neutralHue === 0 || undefined}
+                onClick={() => updateCluster('foundation', { neutralHue: 0 })}
+              >
+                <span className="craft-foundation__chip-swatch" style={{ background: '#888' }} />
+                Pure grey
+              </button>
+              <button
+                type="button"
+                className="craft-foundation__chip"
+                data-active={foundation.neutralHue === 75 || undefined}
+                onClick={() => updateCluster('foundation', { neutralHue: 75 })}
+              >
+                <span
+                  className="craft-foundation__chip-swatch"
+                  style={{ background: 'hsl(75 14% 80%)' }}
+                />
+                Warm cream
+              </button>
+              <button
+                type="button"
+                className="craft-foundation__chip"
+                data-active={foundation.neutralHue === 240 || undefined}
+                onClick={() => updateCluster('foundation', { neutralHue: 240 })}
+              >
+                <span
+                  className="craft-foundation__chip-swatch"
+                  style={{ background: 'hsl(240 10% 80%)' }}
+                />
+                Cool blue-grey
+              </button>
+            </div>
+            {foundation.neutralHue !== undefined && (
+              <input
+                type="range"
+                min={0}
+                max={360}
+                step={1}
+                value={foundation.neutralHue}
+                onChange={(e) =>
+                  updateCluster('foundation', { neutralHue: Number(e.target.value) })
+                }
+                className="craft-foundation__hue-slider"
+                aria-label="Neutral hue"
+              />
+            )}
+          </Section>
+
           {/* Extended colors — custom brand colors with harmonization */}
           <Section
             title="Extended colors"

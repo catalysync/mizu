@@ -67,6 +67,30 @@ export function ShapePanel() {
       value: shape.chrome,
       onChange: (v) => u('shape', { chrome: v as typeof shape.chrome }),
     },
+    {
+      title: 'Button chrome',
+      hint: 'How buttons feel on hover and press.',
+      type: 'chips',
+      options: [
+        { id: 'flat', label: 'Flat', hint: 'Color only — Stripe, Novu' },
+        { id: 'soft-shadow', label: 'Soft shadow', hint: 'Subtle lift — mizu default' },
+        { id: 'hard-offset', label: 'Hard offset', hint: 'Physical press — PostHog, GOV.UK' },
+      ],
+      value: shape.buttonChrome ?? 'flat',
+      onChange: (v) => u('shape', { buttonChrome: v as 'flat' | 'soft-shadow' | 'hard-offset' }),
+    },
+    {
+      title: 'Accent border',
+      hint: 'Thick colored border on panels for emphasis.',
+      type: 'chips',
+      options: [
+        { id: 'none', label: 'None', hint: 'No accent' },
+        { id: 'left', label: 'Left', hint: 'GOV.UK, Notion callouts' },
+        { id: 'top', label: 'Top', hint: 'Card header accent' },
+      ],
+      value: shape.accentBorder ?? 'none',
+      onChange: (v) => u('shape', { accentBorder: v as 'none' | 'left' | 'top' }),
+    },
   ];
   return (
     <KnobPanel
@@ -115,6 +139,18 @@ export function DensityPanel() {
       type: 'toggle',
       value: density.airyType,
       onToggle: (v) => u('density', { airyType: v }),
+    },
+    {
+      title: 'Base font size',
+      hint: 'Shifts the entire type scale. 14px for data-dense, 18px for readability.',
+      type: 'chips',
+      options: [
+        { id: '14', label: '14px', hint: 'Dense — Infisical, Linear' },
+        { id: '16', label: '16px', hint: 'Standard — most apps' },
+        { id: '18', label: '18px', hint: 'Readable — GOV.UK, editorial' },
+      ],
+      value: density.baseFontSize ?? '16',
+      onChange: (v) => u('density', { baseFontSize: v as '14' | '16' | '18' }),
     },
   ];
   return (
@@ -176,6 +212,14 @@ export function TypePanel() {
       category: 'mono',
       value: type.monoFamily,
       onChange: (v) => u('type', { monoFamily: v }),
+    },
+    {
+      title: 'Display font (optional)',
+      hint: 'Separate heading font. Leave empty to use the sans family.',
+      type: 'font-picker',
+      category: 'sans',
+      value: type.displayFamily ?? type.sansFamily,
+      onChange: (v) => u('type', { displayFamily: v === type.sansFamily ? undefined : v }),
     },
     {
       title: 'Scale ratio',
