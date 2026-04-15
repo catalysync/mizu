@@ -73,12 +73,10 @@ Four layers, each the right shape for the decisions it holds:
 If you're evaluating mizu and running into "but what about _X_?", check which layer X lives in:
 
 - **X is a token or stylistic value** (color, radius, font, motion duration) → author it in craft's knob panels, export, ship.
-- **X is a structural fork** (shell shape, interaction style, domain shape) → pick a pack in craft (or wait for the one you need — see [mizu-planning/20](https://github.com/catalysync/mizu-planning/blob/main/20-knobs-limits-pack-layer.md) for the roadmap). Packs layer over your knob profile; they don't replace it.
+- **X is a structural fork** (shell shape, interaction style, domain shape) → pick a pack in craft (or wait for the one you need on the roadmap). Packs layer over your knob profile; they don't replace it.
 - **X is a composition recipe** (how to build a specific pattern) → use mizu's Storybook Patterns tier as the reference, compose the primitives yourself. Patterns are docs, not config.
 
 If X doesn't fit any of the four, that's a real gap — open an issue, because either the knob set is missing a cluster, a pack needs to exist, or the pattern library needs that recipe written down.
-
-> Longer treatment of where knobs stop and why packs exist: [`mizu-planning/20-knobs-limits-pack-layer.md`](https://github.com/catalysync/mizu-planning/blob/main/20-knobs-limits-pack-layer.md).
 
 ## Quick start
 
