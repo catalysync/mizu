@@ -40,6 +40,46 @@ But here's the gap they don't fill, especially for SaaS:
 
 So the positioning isn't "mizu is better." It's: **mizu is for teams who want a design language, not a rebranded vendor house style.** If your product lives inside someone else's platform, use their system. If you're building something that has to look like _you_, start language-absent and author up.
 
+## Where mizu + craft stop (and what to do about it)
+
+The craft knob model covers roughly **60–70% of what makes a design system feel like itself** — the substrate. Tokens, voice, API opinions, stylistic cluster choices, accessibility floors. Anything global, continuous-ish, and orthogonal fits cleanly.
+
+The other 30–40% does not fit a knob shape, and pretending otherwise just breaks the abstraction. Be aware of these limits up front:
+
+| Limitation                     | Why a knob can't express it                                                                                                                  | Where it's handled instead                          |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| **Structural component forks** | "Is Select a dropdown, a command palette, or a bottom sheet?" is a fork, not a dial.                                                         | Packs (component set choice) + patterns (recipes)   |
+| **Interaction orchestration**  | Optimistic vs pessimistic saves, save feedback flavor, wizard shape (step-at-a-time vs long-form), error recovery strategy.                  | Interaction packs                                   |
+| **Shell architecture**         | Sidebar-first vs command-first vs workspace-tabs vs header-nav vs canvas — each implies different primitives and information architecture.   | Shell packs                                         |
+| **Context-varying values**     | Compact tables + comfortable forms in the same app, or calm admin + playful marketing. One global knob forces a compromise.                  | Surface-context overrides (second axis, not a knob) |
+| **Motion choreography**        | "Drawer slides from right" vs "fades in" vs "scales from trigger" is a recipe, not a duration.                                               | Motion packs                                        |
+| **Empty / loading philosophy** | Platform-wide defaults — illustration slots? retry buttons on errors? skeletons vs spinners? — are recipes the system either has or doesn't. | Patterns + pack defaults                            |
+| **Domain components**          | Debit/credit ledger rows, shipment timelines, redline diffs. Not universal — pack-level.                                                     | Domain packs (see `@aspect/finance`)                |
+| **Composition boundaries**     | "Many small primitives" vs "few slot-rich components" is a library-wide philosophy, not a per-component dial.                                | Core decision, documented in architecture           |
+
+### The stack that resolves it
+
+Four layers, each the right shape for the decisions it holds:
+
+1. **Tokens** — raw values (`--mizu-*`). Numbers, enums, color refs.
+2. **Knobs** — language decisions authored in [craft](https://github.com/catalysync/tweakmizu). Profile clusters: Foundation, Shape, Density, Type, Motion, Depth, Focus, Iconography, Voice, API-opinions.
+3. **Packs** — discrete architectural bundles. You _pick_ one; you don't tune a slider. Shell packs, interaction packs, domain packs, motion choreography packs.
+4. **Patterns** — composed recipes in Storybook and docs. How to build bulk-edit, long-form wizards, command-driven workflows.
+
+**Knobs are continuous-ish. Packs are forks. Patterns are recipes.** When you hit a decision that doesn't feel like it fits a knob, it probably belongs one layer up.
+
+### How to use craft for this
+
+If you're evaluating mizu and running into "but what about _X_?", check which layer X lives in:
+
+- **X is a token or stylistic value** (color, radius, font, motion duration) → author it in craft's knob panels, export, ship.
+- **X is a structural fork** (shell shape, interaction style, domain shape) → pick a pack in craft (or wait for the one you need — see [mizu-planning/20](https://github.com/catalysync/mizu-planning/blob/main/20-knobs-limits-pack-layer.md) for the roadmap). Packs layer over your knob profile; they don't replace it.
+- **X is a composition recipe** (how to build a specific pattern) → use mizu's Storybook Patterns tier as the reference, compose the primitives yourself. Patterns are docs, not config.
+
+If X doesn't fit any of the four, that's a real gap — open an issue, because either the knob set is missing a cluster, a pack needs to exist, or the pattern library needs that recipe written down.
+
+> Longer treatment of where knobs stop and why packs exist: [`mizu-planning/20-knobs-limits-pack-layer.md`](https://github.com/catalysync/mizu-planning/blob/main/20-knobs-limits-pack-layer.md).
+
 ## Quick start
 
 ```bash
