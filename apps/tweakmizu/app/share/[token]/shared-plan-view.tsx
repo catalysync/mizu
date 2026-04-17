@@ -14,7 +14,7 @@ export function SharedPlanView({ plan }: { plan: Plan }) {
 
   return (
     <Stack gap="1.25rem">
-      <Stack as="p" gap="0.25rem" className="text-sm text-muted-foreground">
+      <Stack gap="0.25rem" className="text-sm text-muted-foreground">
         <span>{plan.rationale}</span>
       </Stack>
 

@@ -40,6 +40,11 @@ describe('Cluster', () => {
     expect(container.firstChild).toBeTruthy();
   });
 
+  it('renders as specified element when as prop is set', () => {
+    const { container } = render(<Cluster as="nav">X</Cluster>);
+    expect(container.firstChild?.nodeName).toBe('NAV');
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(
       <Cluster>

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { cn } from '../utils/cn';
+import type { LayoutAs } from './as';
 
 export interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
   gap?: string;
   align?: 'start' | 'center' | 'end' | 'stretch';
-  as?: keyof React.JSX.IntrinsicElements;
+  as?: LayoutAs;
 }
 
 export const Stack = React.forwardRef<HTMLDivElement, StackProps>(

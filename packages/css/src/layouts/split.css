@@ -1,10 +1,11 @@
 .mizu-split {
+  container-type: inline-size;
   display: grid;
   gap: var(--mizu-split-gap, var(--mizu-spacing-6));
   grid-template-columns: var(--mizu-split-fraction, 1fr 2fr);
 }
 
-@media (width <= 40rem) {
+@container (width <= 40rem) {
   .mizu-split {
     grid-template-columns: 1fr;
   }

@@ -40,6 +40,11 @@ describe('Inline', () => {
     expect(container.firstChild).toBeTruthy();
   });
 
+  it('renders as specified element when as prop is set', () => {
+    const { container } = render(<Inline as="nav">X</Inline>);
+    expect(container.firstChild?.nodeName).toBe('NAV');
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(
       <Inline>

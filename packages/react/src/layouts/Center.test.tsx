@@ -40,6 +40,11 @@ describe('Center', () => {
     expect(container.firstChild).toBeTruthy();
   });
 
+  it('renders as specified element when as prop is set', () => {
+    const { container } = render(<Center as="main">X</Center>);
+    expect(container.firstChild?.nodeName).toBe('MAIN');
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(
       <Center>

@@ -40,6 +40,11 @@ describe('Grid', () => {
     expect(container.firstChild).toBeTruthy();
   });
 
+  it('renders as specified element when as prop is set', () => {
+    const { container } = render(<Grid as="section">X</Grid>);
+    expect(container.firstChild?.nodeName).toBe('SECTION');
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(
       <Grid>

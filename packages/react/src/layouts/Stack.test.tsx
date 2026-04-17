@@ -40,6 +40,11 @@ describe('Stack', () => {
     expect(container.firstChild).toBeTruthy();
   });
 
+  it('renders as specified element when as prop is set', () => {
+    const { container } = render(<Stack as="section">X</Stack>);
+    expect(container.firstChild?.nodeName).toBe('SECTION');
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(
       <Stack>

@@ -40,6 +40,11 @@ describe('Split', () => {
     expect(container.firstChild).toBeTruthy();
   });
 
+  it('renders as specified element when as prop is set', () => {
+    const { container } = render(<Split as="section">X</Split>);
+    expect(container.firstChild?.nodeName).toBe('SECTION');
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(
       <Split>
