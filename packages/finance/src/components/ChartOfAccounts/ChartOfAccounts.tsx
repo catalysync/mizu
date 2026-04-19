@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cn } from '@aspect/react';
+import { cn, Skeleton } from '@aspect/react';
 import { formatAccounting } from '../../utils/currency';
 
 export type AccountType = 'asset' | 'liability' | 'equity' | 'revenue' | 'expense';
@@ -18,6 +18,9 @@ export interface ChartOfAccountsProps extends React.HTMLAttributes<HTMLDivElemen
   currency?: string;
   locale?: string;
   onAccountClick?: (id: string) => void;
+  loading?: boolean;
+  loadingRows?: number;
+  loadingLabel?: string;
 }
 
 function flatten(
@@ -38,8 +41,53 @@ function flatten(
 }
 
 export const ChartOfAccounts = React.forwardRef<HTMLDivElement, ChartOfAccountsProps>(
-  ({ className, accounts, currency = 'USD', locale = 'en-US', onAccountClick, ...props }, ref) => {
+  (
+    {
+      className,
+      accounts,
+      currency = 'USD',
+      locale = 'en-US',
+      onAccountClick,
+      loading,
+      loadingRows = 6,
+      loadingLabel,
+      ...props
+    },
+    ref,
+  ) => {
     const rows = React.useMemo(() => flatten(accounts), [accounts]);
+
+    if (loading) {
+      return (
+        <div
+          ref={ref}
+          className={cn('mizu-chart-of-accounts', className)}
+          data-component="mizu-chart-of-accounts"
+          role="table"
+          aria-busy="true"
+          aria-label={loadingLabel ?? 'Loading chart of accounts'}
+          {...props}
+        >
+          {Array.from({ length: loadingRows }).map((_, i) => (
+            <div key={i} className="mizu-chart-of-accounts__row" data-depth={0} role="row">
+              <span className="mizu-chart-of-accounts__code" role="cell">
+                <Skeleton variant="text" width="3rem" />
+              </span>
+              <span className="mizu-chart-of-accounts__name" role="cell">
+                <Skeleton variant="text" width="70%" />
+              </span>
+              <span className="mizu-chart-of-accounts__type" role="cell">
+                <Skeleton variant="text" width="4rem" />
+              </span>
+              <span className="mizu-chart-of-accounts__balance" role="cell">
+                <Skeleton variant="text" width="5rem" />
+              </span>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
     return (
       <div
         ref={ref}

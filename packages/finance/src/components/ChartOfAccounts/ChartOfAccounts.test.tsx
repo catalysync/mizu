@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'vitest-axe';
 import { describe, expect, it, vi } from 'vitest';
 import { ChartOfAccounts, type ChartOfAccountsNode } from './ChartOfAccounts';
 
@@ -58,5 +59,23 @@ describe('ChartOfAccounts', () => {
     const firstRow = container.querySelector('.mizu-chart-of-accounts__row')!;
     fireEvent.click(firstRow);
     expect(onAccountClick).toHaveBeenCalledWith('assets');
+  });
+
+  it('renders skeleton rows when loading', () => {
+    const { container } = render(<ChartOfAccounts accounts={ACCOUNTS} loading loadingRows={3} />);
+    expect(screen.queryByText('Assets')).not.toBeInTheDocument();
+    expect(container.querySelectorAll('.mizu-chart-of-accounts__row').length).toBe(3);
+  });
+
+  it('sets aria-busy and default loading label', () => {
+    const { container } = render(<ChartOfAccounts accounts={ACCOUNTS} loading />);
+    const root = container.firstChild as HTMLElement;
+    expect(root).toHaveAttribute('aria-busy', 'true');
+    expect(root).toHaveAttribute('aria-label', 'Loading chart of accounts');
+  });
+
+  it('has no axe violations in loading state', async () => {
+    const { container } = render(<ChartOfAccounts accounts={ACCOUNTS} loading loadingRows={2} />);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
