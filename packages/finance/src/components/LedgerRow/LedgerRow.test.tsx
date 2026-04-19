@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
 import { LedgerRow } from './LedgerRow';
 
@@ -36,5 +37,27 @@ describe('LedgerRow', () => {
   it('applies the subtotal kind', () => {
     const { container } = render(<LedgerRow description="Total" kind="subtotal" balance={1000} />);
     expect(container.firstChild).toHaveAttribute('data-kind', 'subtotal');
+  });
+
+  it('renders skeleton cells when loading', () => {
+    render(<LedgerRow description="Office supplies" loading />);
+    expect(screen.queryByText('Office supplies')).not.toBeInTheDocument();
+  });
+
+  it('keeps role=row and sets aria-busy when loading', () => {
+    const { container } = render(<LedgerRow description="ignored" loading />);
+    const root = container.firstChild as HTMLElement;
+    expect(root).toHaveAttribute('role', 'row');
+    expect(root).toHaveAttribute('aria-busy', 'true');
+    expect(root).toHaveAttribute('aria-label', 'Loading ledger row');
+  });
+
+  it('has no axe violations in loading state', async () => {
+    const { container } = render(
+      <div role="table">
+        <LedgerRow description="ignored" loading />
+      </div>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
