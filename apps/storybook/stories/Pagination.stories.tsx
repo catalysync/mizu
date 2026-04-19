@@ -6,6 +6,12 @@ const meta = {
   title: 'Components/Atoms/Pagination',
   component: Pagination,
   parameters: { layout: 'padded' },
+  argTypes: {
+    page: { control: { type: 'number', min: 1, step: 1 } },
+    totalPages: { control: { type: 'number', min: 1, step: 1 } },
+    hasPrevious: { control: 'boolean' },
+    hasNext: { control: 'boolean' },
+  },
 } satisfies Meta<typeof Pagination>;
 
 export default meta;

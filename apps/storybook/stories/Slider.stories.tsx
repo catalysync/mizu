@@ -14,6 +14,12 @@ const meta = {
     step: 1,
     className: 'story-md',
   },
+  argTypes: {
+    min: { control: { type: 'number' } },
+    max: { control: { type: 'number' } },
+    step: { control: { type: 'number', min: 0.1, step: 0.1 } },
+    disabled: { control: 'boolean' },
+  },
 } satisfies Meta<typeof Slider>;
 
 export default meta;

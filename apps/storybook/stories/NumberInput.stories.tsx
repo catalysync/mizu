@@ -7,6 +7,14 @@ const meta = {
   component: NumberInput,
   parameters: { layout: 'padded' },
   args: { defaultValue: 1, 'aria-label': 'Quantity' },
+  argTypes: {
+    min: { control: { type: 'number' } },
+    max: { control: { type: 'number' } },
+    step: { control: { type: 'number', min: 0.01, step: 0.01 } },
+    precision: { control: { type: 'number', min: 0, max: 6, step: 1 } },
+    align: { control: 'inline-radio', options: ['start', 'end'] },
+    disabled: { control: 'boolean' },
+  },
 } satisfies Meta<typeof NumberInput>;
 
 export default meta;
