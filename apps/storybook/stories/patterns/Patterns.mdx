@@ -1,0 +1,42 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Patterns/Introduction" />
+
+# Patterns
+
+Patterns are **composition recipes** — worked examples showing how mizu's primitives compose into common shapes.
+
+They teach composition. They are **not** product templates.
+
+## What belongs here
+
+Cross-cutting shapes only. If the shape appears in finance apps, commerce apps, ops tools, and marketing sites alike — it's a candidate. Examples:
+
+- Settings with tabs
+- Split list / detail
+- Bulk edit on a table
+- Destructive action confirmation
+- Empty / loading / error recipes
+- Table with inline edit
+
+Pedagogical, not exhaustive. not to be grown into a block registry.
+
+## What does NOT belong here
+
+Product-specific shapes. IDE shells, log viewers, AI chat sidebars, catalog browsers, lineage graphs, gem cards, monitoring dashboards, deploy flows. These have enough domain context to be real exported components — they ship in a pack (`@aspect/finance`, `@aspect/commerce`, `@aspect/data`, etc.) as code, not as stories.
+
+A "finance dashboard" and a "commerce dashboard" are not two patterns. They are pack-specific products.
+
+## How to use the patterns here
+
+Each pattern story composes primitives from `@aspect/react`. Copy the story, adapt the fields and data to your product, keep the structure. Patterns consume the live knob profile (colors, radius, motion) — they don't prescribe a visual style, so the same pattern renders differently under every design language.
+
+## Adding a new pattern
+
+Before writing a new story, ask:
+
+1. **Cross-domain**: does this shape appear in at least three unrelated products, across different domains? If not → it's a pack component, not a pattern.
+2. **Non-redundant**: does it teach a composition principle another pattern doesn't already cover? If not → don't add redundancy.
+3. **Readable cold**: can a developer understand it on first reading? If not → refactor until they can.
+
+If all three are yes, write it. If you're at the ~12 cap, decide what gets retired — don't just add.

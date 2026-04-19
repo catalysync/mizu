@@ -64,7 +64,7 @@ Four layers, each the right shape for the decisions it holds:
 1. **Tokens** — raw values (`--mizu-*`). Numbers, enums, color refs.
 2. **Knobs** — language decisions authored in [craft](https://github.com/catalysync/tweakmizu). Profile clusters: Foundation, Shape, Density, Type, Motion, Depth, Focus, Iconography, Voice, API-opinions.
 3. **Packs** — discrete architectural bundles. You _pick_ one; you don't tune a slider. Shell packs, interaction packs, domain packs, motion choreography packs.
-4. **Patterns** — composed recipes in Storybook and docs. How to build bulk-edit, long-form wizards, command-driven workflows.
+4. **Patterns** — cross-cutting composition recipes in Storybook. Pedagogy for shapes that appear in any product regardless of domain (settings-with-tabs, split list/detail, bulk edit, destructive confirm, empty/loading/error recipes). Product-specific shapes (IDE shells, log viewers, chat sidebars, domain dashboards, lineage graphs) are **not** patterns — they ship as exported code inside the relevant pack.
 
 **Knobs are continuous-ish. Packs are forks. Patterns are recipes.** When you hit a decision that doesn't feel like it fits a knob, it probably belongs one layer up.
 
@@ -74,7 +74,7 @@ If you're evaluating mizu and running into "but what about _X_?", check which la
 
 - **X is a token or stylistic value** (color, radius, font, motion duration) → author it in craft's knob panels, export, ship.
 - **X is a structural fork** (shell shape, interaction style, domain shape) → pick a pack in craft (or wait for the one you need on the roadmap). Packs layer over your knob profile; they don't replace it.
-- **X is a composition recipe** (how to build a specific pattern) → use mizu's Storybook Patterns tier as the reference, compose the primitives yourself. Patterns are docs, not config.
+- **X is a cross-cutting composition recipe** (settings, empty states, bulk edit — shapes that appear across every product) → use mizu's Storybook Patterns tier as the reference, compose the primitives yourself. Patterns are pedagogy, not product templates.
 
 If X doesn't fit any of the four, that's a real gap — open an issue, because either the knob set is missing a cluster, a pack needs to exist, or the pattern library needs that recipe written down.
 
