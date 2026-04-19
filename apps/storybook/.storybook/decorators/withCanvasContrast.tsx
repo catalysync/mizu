@@ -8,7 +8,10 @@ import type { Decorator } from '@storybook/react-vite';
  * `default` is chosen (clears the inline style).
  */
 export const withCanvasContrast: Decorator = (Story, context) => {
-  const contrast = (context.globals.canvasContrast as string) ?? 'default';
+  const contrast =
+    (context.parameters.canvasContrast as string | undefined) ??
+    (context.globals.canvasContrast as string) ??
+    'default';
   if (typeof document !== 'undefined') {
     const values: Record<string, string | null> = {
       default: null,

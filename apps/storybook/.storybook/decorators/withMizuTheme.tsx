@@ -6,10 +6,19 @@ import type { Decorator } from '@storybook/react-vite';
  * - `data-theme` = light | dark
  * - `data-mizu-identity` = one of the identity presets (or omitted for default)
  * Also swaps document body bg/fg when dark so the canvas itself matches.
+ *
+ * Per-story parameters win over the toolbar global so a story can pin itself
+ * to a specific theme (`parameters: { theme: 'dark', identity: 'neon' }`).
  */
 export const withMizuTheme: Decorator = (Story, context) => {
-  const theme = (context.globals.theme as string) ?? 'light';
-  const identity = (context.globals.identity as string) ?? 'none';
+  const theme =
+    (context.parameters.theme as string | undefined) ??
+    (context.globals.theme as string) ??
+    'light';
+  const identity =
+    (context.parameters.identity as string | undefined) ??
+    (context.globals.identity as string) ??
+    'none';
 
   if (typeof document !== 'undefined') {
     document.documentElement.dataset.theme = theme;

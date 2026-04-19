@@ -7,7 +7,10 @@ import type { Decorator } from '@storybook/react-vite';
  * this attribute and disable or tone down animations when it's "on".
  */
 export const withReducedMotion: Decorator = (Story, context) => {
-  const reducedMotion = (context.globals.reducedMotion as string) ?? 'off';
+  const reducedMotion =
+    (context.parameters.reducedMotion as string | undefined) ??
+    (context.globals.reducedMotion as string) ??
+    'off';
   if (typeof document !== 'undefined') {
     if (reducedMotion === 'on') {
       document.documentElement.dataset.reducedMotion = 'true';

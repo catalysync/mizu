@@ -7,7 +7,10 @@ import type { Decorator } from '@storybook/react-vite';
  * swaps spacing scales based on this attribute.
  */
 export const withDensity: Decorator = (Story, context) => {
-  const density = (context.globals.density as string) ?? 'default';
+  const density =
+    (context.parameters.density as string | undefined) ??
+    (context.globals.density as string) ??
+    'default';
   if (typeof document !== 'undefined') {
     if (density && density !== 'default') {
       document.documentElement.dataset.mizuDensity = density;
