@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input, cn } from '@aspect/react';
+import { Input, Skeleton, cn } from '@aspect/react';
 import { CurrencyInput } from '../CurrencyInput/CurrencyInput';
 import { TaxRateInput } from '../TaxRateInput/TaxRateInput';
 import { formatCurrency } from '../../utils/currency';
@@ -23,6 +23,8 @@ export interface InvoiceLineItemProps extends Omit<
   onRemove?: (id: string) => void;
   removable?: boolean;
   readOnly?: boolean;
+  loading?: boolean;
+  loadingLabel?: string;
 }
 
 export function computeLineTotal(item: InvoiceLineItemValue): number {
@@ -41,10 +43,43 @@ export const InvoiceLineItem = React.forwardRef<HTMLDivElement, InvoiceLineItemP
       onRemove,
       removable = true,
       readOnly = false,
+      loading,
+      loadingLabel,
       ...props
     },
     ref,
   ) => {
+    if (loading) {
+      return (
+        <div
+          ref={ref}
+          role="status"
+          className={cn('mizu-invoice-line-item', className)}
+          data-component="mizu-invoice-line-item"
+          aria-busy="true"
+          aria-label={loadingLabel ?? 'Loading invoice line item'}
+          {...props}
+        >
+          <div className="mizu-invoice-line-item__cell">
+            <Skeleton height="2.25rem" />
+          </div>
+          <div className="mizu-invoice-line-item__cell" data-align="end">
+            <Skeleton height="2.25rem" />
+          </div>
+          <div className="mizu-invoice-line-item__cell">
+            <Skeleton height="2.25rem" />
+          </div>
+          <div className="mizu-invoice-line-item__cell">
+            <Skeleton height="2.25rem" />
+          </div>
+          <div className="mizu-invoice-line-item__cell" data-align="end">
+            <Skeleton variant="text" width="5rem" />
+          </div>
+          <div className="mizu-invoice-line-item__cell" />
+        </div>
+      );
+    }
+
     const total = computeLineTotal(value);
     const update = (patch: Partial<InvoiceLineItemValue>) => {
       onChange?.({ ...value, ...patch });

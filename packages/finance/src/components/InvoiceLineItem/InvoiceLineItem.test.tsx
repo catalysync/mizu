@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'vitest-axe';
 import { describe, expect, it, vi } from 'vitest';
 import { InvoiceLineItem, computeLineTotal } from './InvoiceLineItem';
 
@@ -44,5 +45,23 @@ describe('InvoiceLineItem', () => {
   it('hides the remove button in read-only mode', () => {
     render(<InvoiceLineItem value={base} readOnly />);
     expect(screen.queryByRole('button', { name: /Remove/ })).not.toBeInTheDocument();
+  });
+
+  it('renders a skeleton when loading', () => {
+    render(<InvoiceLineItem value={base} loading />);
+    expect(screen.queryByText('$240.00')).not.toBeInTheDocument();
+    expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
+  });
+
+  it('sets aria-busy and default loading label', () => {
+    const { container } = render(<InvoiceLineItem value={base} loading />);
+    const root = container.firstChild as HTMLElement;
+    expect(root).toHaveAttribute('aria-busy', 'true');
+    expect(root).toHaveAttribute('aria-label', 'Loading invoice line item');
+  });
+
+  it('has no axe violations in loading state', async () => {
+    const { container } = render(<InvoiceLineItem value={base} loading />);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
