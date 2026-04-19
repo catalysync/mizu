@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { cn } from '@aspect/react';
+import { cn, Skeleton } from '@aspect/react';
 import { formatDelta, deltaIntent, type DeltaIntent } from '../../utils/delta';
 
 export interface DeltaIndicatorProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
   showArrow?: boolean;
+  loading?: boolean;
+  loadingLabel?: string;
 }
 
 const intentClass: Record<DeltaIntent, string> = {
@@ -14,7 +16,23 @@ const intentClass: Record<DeltaIntent, string> = {
 };
 
 export const DeltaIndicator = React.forwardRef<HTMLSpanElement, DeltaIndicatorProps>(
-  ({ value, showArrow = true, className, ...props }, ref) => {
+  ({ value, showArrow = true, loading, loadingLabel, className, ...props }, ref) => {
+    if (loading) {
+      return (
+        <span
+          ref={ref}
+          role="status"
+          className={cn('mizu-delta', className)}
+          aria-busy="true"
+          aria-label={loadingLabel ?? 'Loading delta'}
+          style={{ display: 'inline-block' }}
+          {...props}
+        >
+          <Skeleton variant="text" width="3rem" />
+        </span>
+      );
+    }
+
     const intent = deltaIntent(value);
     return (
       <span ref={ref} className={cn('mizu-delta', intentClass[intent], className)} {...props}>
