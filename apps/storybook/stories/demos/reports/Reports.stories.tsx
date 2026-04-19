@@ -68,7 +68,6 @@ const meta = {
   title: 'Demos/Reports',
   parameters: {
     layout: 'padded',
-    backgrounds: { default: 'light', values: [{ name: 'light', value: '#f3f4f6' }] },
   },
 } satisfies Meta;
 
