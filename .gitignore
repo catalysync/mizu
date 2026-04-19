@@ -28,6 +28,7 @@ build
 !packages/*/build
 dist
 storybook-static
+*.tsbuildinfo
 
 
 # Debug
