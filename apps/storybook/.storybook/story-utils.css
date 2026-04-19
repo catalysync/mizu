@@ -5,9 +5,12 @@
  * story inventing its own inline styles.
  *
  * Usage:
+ *   <Component className="story-xs">   // 12rem (~192px)
  *   <Component className="story-sm">   // 14rem (~224px)
  *   <Component className="story-md">   // 20rem (~320px)
  *   <Component className="story-lg">   // 32rem (~512px)
+ *   <Component className="story-xl">   // 48rem (~768px)
+ *   <Component className="story-wide"> // 72rem (~1152px)
  *   <Component className="story-full"> // 100%
  *
  *   <h2 className="story-section-title">...</h2>  // resets vertical margin
@@ -17,6 +20,10 @@
  * wrappers. If none fits, add a new class here first, then use it — don't
  * sprawl magic numbers across the stories folder.
  */
+
+.story-xs {
+  width: 12rem;
+}
 
 .story-sm {
   width: 14rem;
@@ -28,6 +35,14 @@
 
 .story-lg {
   width: 32rem;
+}
+
+.story-xl {
+  width: 48rem;
+}
+
+.story-wide {
+  width: 72rem;
 }
 
 .story-full {
