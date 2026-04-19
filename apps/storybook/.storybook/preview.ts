@@ -71,8 +71,8 @@ const preview: Preview = {
       },
     },
     // Run axe-core against the full WCAG 2.1 AA tag set plus best-practice
-    // rules. Matches sage-carbon's defaults and catches more than the stock
-    // storybook a11y config.
+    // rules — stricter than the default storybook a11y config so we catch
+    // more violations.
     a11y: {
       options: {
         runOnly: {
