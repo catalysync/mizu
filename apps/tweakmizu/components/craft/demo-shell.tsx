@@ -82,7 +82,7 @@ export function DemoShell() {
                   </button>
                 </div>
 
-                {tab === 'archetypes' && <ArchetypePicker />}
+                {tab === 'archetypes' && <ArchetypePicker onAfterPick={() => setTab('knobs')} />}
                 {tab === 'knobs' && <DemoKnobs />}
 
                 <div className="demo-shell__banner">

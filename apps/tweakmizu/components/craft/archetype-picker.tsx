@@ -11,7 +11,12 @@ import { useCraftStore } from '@/store/craft-store';
 import { profileToCss } from '@/lib/craft/profile-to-css';
 import { useIsPro } from './craft-pro-context';
 
-export function ArchetypePicker() {
+interface ArchetypePickerProps {
+  /** Override navigation after picking an archetype. If omitted, routes to /craft/foundation. */
+  onAfterPick?: () => void;
+}
+
+export function ArchetypePicker({ onAfterPick }: ArchetypePickerProps = {}) {
   const router = useRouter();
   const pickArchetype = useCraftStore((s) => s.pickArchetype);
   const currentArchetype = useCraftStore((s) => s.profile.archetype);
@@ -25,7 +30,11 @@ export function ArchetypePicker() {
       return;
     }
     pickArchetype(id);
-    router.push('/craft/foundation');
+    if (onAfterPick) {
+      onAfterPick();
+    } else {
+      router.push('/craft/foundation');
+    }
   };
 
   // Shuffle: pick a random archetype (respecting Pro gate)
