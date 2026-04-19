@@ -12,14 +12,8 @@ const meta = {
     min: 0,
     max: 100,
     step: 1,
+    className: 'story-md',
   },
-  decorators: [
-    (Story) => (
-      <div style={{ width: 320 }}>
-        <Story />
-      </div>
-    ),
-  ],
 } satisfies Meta<typeof Slider>;
 
 export default meta;

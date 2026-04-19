@@ -4,14 +4,7 @@ import { Grid, Card, CardBody } from '@aspect/react';
 const meta = {
   title: 'Layouts/Grid',
   component: Grid,
-  parameters: { layout: 'fullscreen' },
-  decorators: [
-    (Story) => (
-      <div style={{ padding: '1.5rem', maxWidth: 1100 }}>
-        <Story />
-      </div>
-    ),
-  ],
+  parameters: { layout: 'padded' },
 } satisfies Meta<typeof Grid>;
 
 export default meta;
