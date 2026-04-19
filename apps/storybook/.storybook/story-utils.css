@@ -60,3 +60,11 @@
 .story-section-title {
   margin-bottom: 0.75rem;
 }
+
+.story-color-swatch {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--mizu-radius-md, 0.375rem);
+  border: 1px solid var(--mizu-border-default);
+  flex-shrink: 0;
+}
