@@ -1,15 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetBody,
-  SheetClose,
-} from './Sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetBody } from './Sheet';
 
 function TestSheet({ side = 'right', open = true }: { side?: string; open?: boolean }) {
   return (

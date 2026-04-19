@@ -35,8 +35,8 @@ describe('Center', () => {
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 
-  it('accepts gap prop', () => {
-    const { container } = render(<Center gap="1rem">X</Center>);
+  it('accepts padding prop', () => {
+    const { container } = render(<Center padding="1rem">X</Center>);
     expect(container.firstChild).toBeTruthy();
   });
 
