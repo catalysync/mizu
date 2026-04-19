@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Separator, Stack } from '@aspect/react';
+import { Separator, Stack, Inline } from '@aspect/react';
 
 const meta = {
   title: 'Components/Atoms/Separator',
@@ -17,5 +17,17 @@ export const Horizontal: Story = {
       <Separator />
       <p className="mizu-body">Below the separator</p>
     </Stack>
+  ),
+};
+
+export const Vertical: Story = {
+  render: () => (
+    <Inline gap="1rem" align="center" style={{ height: '2rem' }}>
+      <span className="mizu-body">Left</span>
+      <Separator orientation="vertical" />
+      <span className="mizu-body">Middle</span>
+      <Separator orientation="vertical" />
+      <span className="mizu-body">Right</span>
+    </Inline>
   ),
 };

@@ -34,3 +34,18 @@ export const Default: Story = {
     </DropdownMenu>
   ),
 };
+
+export const Simple: Story = {
+  render: () => (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="secondary">Sort by</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>Newest first</DropdownMenuItem>
+        <DropdownMenuItem>Oldest first</DropdownMenuItem>
+        <DropdownMenuItem>Alphabetical</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ),
+};

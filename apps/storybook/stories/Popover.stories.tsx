@@ -27,3 +27,34 @@ export const Default: Story = {
     </Popover>
   ),
 };
+
+export const NoArrow: Story = {
+  render: () => (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="secondary">Details</Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <Stack gap="0.5rem">
+          <span className="mizu-body--sm">
+            A minimal popover without the pointer arrow — useful when the trigger context makes the
+            relationship obvious.
+          </span>
+        </Stack>
+      </PopoverContent>
+    </Popover>
+  ),
+};
+
+export const SideTop: Story = {
+  render: () => (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="secondary">Opens above</Button>
+      </PopoverTrigger>
+      <PopoverContent side="top" showArrow>
+        <span className="mizu-body--sm">I open above the trigger.</span>
+      </PopoverContent>
+    </Popover>
+  ),
+};

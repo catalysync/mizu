@@ -46,3 +46,23 @@ export const Default: Story = {
     );
   },
 };
+
+export const Simple: Story = {
+  render: () => {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Quick picker</Button>
+        <CommandMenu open={open} onOpenChange={setOpen}>
+          <CommandMenuInput placeholder="Search" />
+          <CommandMenuList>
+            <CommandMenuEmpty>No results found.</CommandMenuEmpty>
+            <CommandMenuItem onSelect={() => setOpen(false)}>Open recent</CommandMenuItem>
+            <CommandMenuItem onSelect={() => setOpen(false)}>Toggle theme</CommandMenuItem>
+            <CommandMenuItem onSelect={() => setOpen(false)}>Sign out</CommandMenuItem>
+          </CommandMenuList>
+        </CommandMenu>
+      </>
+    );
+  },
+};

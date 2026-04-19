@@ -45,3 +45,30 @@ export const Default: Story = {
     </ContextMenu>
   ),
 };
+
+export const Simple: Story = {
+  render: () => (
+    <ContextMenu>
+      <ContextMenuTrigger>
+        <div
+          style={{
+            padding: '3rem 4rem',
+            border: '2px dashed var(--mizu-border-default)',
+            borderRadius: 'var(--mizu-radius-lg)',
+            textAlign: 'center',
+            color: 'var(--mizu-text-secondary)',
+            fontFamily: 'var(--mizu-font-family-sans)',
+            fontSize: 'var(--mizu-font-size-sm)',
+          }}
+        >
+          Right-click this area
+        </div>
+      </ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuItem>Cut</ContextMenuItem>
+        <ContextMenuItem>Copy</ContextMenuItem>
+        <ContextMenuItem>Paste</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  ),
+};
