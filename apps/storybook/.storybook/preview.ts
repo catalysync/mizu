@@ -41,6 +41,7 @@ import { withMizuTheme } from './decorators/withMizuTheme';
 import { withReducedMotion } from './decorators/withReducedMotion';
 import { withDensity } from './decorators/withDensity';
 import { withStrictMode } from './decorators/withStrictMode';
+import { withCanvasContrast } from './decorators/withCanvasContrast';
 
 initialize();
 
@@ -52,13 +53,7 @@ const preview: Preview = {
     controls: {
       matchers: { color: /(background|color)$/i, date: /Date$/i },
     },
-    backgrounds: {
-      default: 'light',
-      values: [
-        { name: 'light', value: '#ffffff' },
-        { name: 'dark', value: '#020617' },
-      ],
-    },
+    backgrounds: { disable: true },
     // Tailwind v4 breakpoints — keep in sync with packages/tailwind-preset.
     viewport: {
       viewports: {
@@ -166,9 +161,24 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    canvasContrast: {
+      description: 'Canvas contrast — override the body background for contrast testing',
+      defaultValue: 'default',
+      toolbar: {
+        title: 'Canvas',
+        icon: 'contrast',
+        items: [
+          { value: 'default', title: 'Default canvas' },
+          { value: 'subtle', title: 'Subtle gray' },
+          { value: 'painted', title: 'Brand tint' },
+          { value: 'hard', title: 'High contrast' },
+        ],
+        dynamicTitle: true,
+      },
+    },
   },
   loaders: [mswLoader],
-  decorators: [withStrictMode, withMizuTheme, withReducedMotion, withDensity],
+  decorators: [withStrictMode, withCanvasContrast, withMizuTheme, withReducedMotion, withDensity],
 };
 
 export default preview;
