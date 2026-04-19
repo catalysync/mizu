@@ -1,0 +1,20 @@
+/*
+ * Reduced-motion override.
+ *
+ * Component CSS uses `@media (prefers-reduced-motion: reduce)` to respect
+ * the user's OS preference. This file adds a second, manual toggle keyed on
+ * `[data-reduced-motion="true"]` so consumers (and the Storybook toolbar)
+ * can force motion off for testing without changing system preferences.
+ *
+ * Applied as a global reset — disables animations, transitions, and
+ * smooth scrolling across every element when the attribute is set.
+ */
+
+[data-reduced-motion="true"] *,
+[data-reduced-motion="true"] *::before,
+[data-reduced-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

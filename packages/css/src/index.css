@@ -93,3 +93,6 @@
 
 /* Density */
 @import url("./density.css");
+
+/* Reduced motion (manual toggle — complements prefers-reduced-motion) */
+@import url("./reduced-motion.css");
