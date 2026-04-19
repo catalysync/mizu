@@ -10,9 +10,18 @@
  * smooth scrolling across every element when the attribute is set.
  */
 
-[data-reduced-motion="true"] *,
-[data-reduced-motion="true"] *::before,
-[data-reduced-motion="true"] *::after {
+/*
+ * `:not(#_)` boosts the selector to ID-level specificity (0,1,0,0) without
+ * matching anything new. Without it, the rule loses a specificity contest
+ * against component-level selectors like `.foo .bar` (0,0,2,0) even when
+ * both sides use `!important` — so components with infinite/looping
+ * animations (Progress indeterminate, Spinner, skeleton shimmer) keep
+ * animating under the toggle.
+ */
+
+html[data-reduced-motion="true"] *:not(#_),
+html[data-reduced-motion="true"] *:not(#_)::before,
+html[data-reduced-motion="true"] *:not(#_)::after {
   animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
