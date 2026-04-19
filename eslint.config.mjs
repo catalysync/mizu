@@ -7,6 +7,7 @@ import ssrFriendly from 'eslint-plugin-ssr-friendly';
 import noUnsanitized from 'eslint-plugin-no-unsanitized';
 import testingLibrary from 'eslint-plugin-testing-library';
 import jestDom from 'eslint-plugin-jest-dom';
+import storybook from 'eslint-plugin-storybook';
 import prettier from 'eslint-config-prettier';
 import globals from 'globals';
 
@@ -77,5 +78,6 @@ export default tseslint.config(
       'react-hooks/rules-of-hooks': 'off',
     },
   },
+  ...storybook.configs['flat/recommended'],
   prettier,
 );
