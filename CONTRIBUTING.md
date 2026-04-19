@@ -88,6 +88,13 @@ When adding or modifying a React component under `packages/react/src/`:
 - Narrative docs (usage, variants, accessibility guidance, props table) go in `Component.mdx` next to the stories file.
 - The **Patterns** folder in Storybook is reserved for cross-cutting composition recipes. Product-specific shapes belong in a pack, not in Patterns.
 
+### Story styling
+
+- Use the utility classes in `apps/storybook/.storybook/story-utils.css` (`.story-sm`, `.story-md`, `.story-lg`, `.story-full`, `.story-dark-wrapper`, `.story-section-title`) to constrain story width, pad dark-canvas demos, and reset heading margins.
+- Avoid ad-hoc inline wrappers like `style={{ width: N }}`, `style={{ maxWidth: N }}`, or `style={{ margin: 0 }}` inside stories — they sprawl quickly and bypass the shared convention.
+- If none of the existing classes fits, add a new one to `story-utils.css` first, then use it.
+- Provider wrappers (e.g. `TooltipProvider` for Tooltip stories) are legitimate uses of the per-story `decorators:` property. Layout / sizing concerns are not.
+
 ## Public API
 
 - Every package exports through its `src/index.ts` barrel.

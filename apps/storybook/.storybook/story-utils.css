@@ -1,4 +1,22 @@
-/* Story-level utility classes for layout constraints. NOT part of the design system. */
+/*
+ * Story-level utility classes for sizing and layout constraints.
+ * NOT part of the design system — these exist only so Storybook stories
+ * can constrain component width or reset heading margins without every
+ * story inventing its own inline styles.
+ *
+ * Usage:
+ *   <Component className="story-sm">   // 14rem (~224px)
+ *   <Component className="story-md">   // 20rem (~320px)
+ *   <Component className="story-lg">   // 32rem (~512px)
+ *   <Component className="story-full"> // 100%
+ *
+ *   <h2 className="story-section-title">...</h2>  // resets vertical margin
+ *   <div className="story-dark-wrapper">...</div> // painted dark surface demo
+ *
+ * Prefer these over inline style={{ width: N, maxWidth: N, margin: 0 }}
+ * wrappers. If none fits, add a new class here first, then use it — don't
+ * sprawl magic numbers across the stories folder.
+ */
 
 .story-sm {
   width: 14rem;
