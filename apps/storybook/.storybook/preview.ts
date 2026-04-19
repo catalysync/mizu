@@ -179,6 +179,9 @@ const preview: Preview = {
   },
   loaders: [mswLoader],
   decorators: [withStrictMode, withCanvasContrast, withMizuTheme, withReducedMotion, withDensity],
+  // Opt every story into auto-generated Docs tabs. MDX files (Button.mdx,
+  // Patterns.mdx, …) still override per-component when present.
+  tags: ['autodocs'],
 };
 
 export default preview;
