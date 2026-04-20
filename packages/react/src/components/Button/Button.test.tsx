@@ -266,6 +266,58 @@ describe('Button', () => {
     expect(screen.getByRole('button')).toHaveAttribute('data-full-width', 'true');
   });
 
+  // -- Async onClick auto-loading --
+  it('auto-enters loading state when onClick returns a Promise', async () => {
+    let resolve: () => void = () => {};
+    const onClick = vi.fn(
+      () =>
+        new Promise<void>((r) => {
+          resolve = r;
+        }),
+    );
+    render(<Button onClick={onClick}>Save</Button>);
+    const btn = screen.getByRole('button');
+    await userEvent.setup().click(btn);
+    expect(btn).toHaveAttribute('aria-busy', 'true');
+    expect(btn).toHaveAttribute('data-loading', 'true');
+    expect(btn).toBeDisabled();
+    resolve();
+    await vi.waitFor(() => {
+      expect(btn).not.toHaveAttribute('aria-busy');
+    });
+    expect(btn).not.toHaveAttribute('data-loading');
+    expect(btn).not.toBeDisabled();
+  });
+
+  it('clears auto-loading when onClick rejects', async () => {
+    let reject: (err: Error) => void = () => {};
+    const pending = new Promise<void>((_res, r) => {
+      reject = r;
+    });
+    // Swallow the rejection at the test boundary so the consumer-side promise
+    // (which is what Button listens to) doesn't trigger an unhandled-rejection
+    // warning. Production callers own their own error handling.
+    pending.catch(() => {});
+    const onClick = vi.fn(() => pending);
+    render(<Button onClick={onClick}>Save</Button>);
+    const btn = screen.getByRole('button');
+    await userEvent.setup().click(btn);
+    expect(btn).toHaveAttribute('aria-busy', 'true');
+    reject(new Error('oops'));
+    await vi.waitFor(() => {
+      expect(btn).not.toHaveAttribute('aria-busy');
+    });
+  });
+
+  it('does not auto-load when onClick returns undefined', async () => {
+    const onClick = vi.fn();
+    render(<Button onClick={onClick}>Save</Button>);
+    const btn = screen.getByRole('button');
+    await userEvent.setup().click(btn);
+    expect(btn).not.toHaveAttribute('aria-busy');
+    expect(btn).not.toBeDisabled();
+  });
+
   // -- Gradient variant --
   it('applies the gradient variant', () => {
     render(<Button variant="gradient">AI magic</Button>);

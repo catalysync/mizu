@@ -47,6 +47,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       type = 'button',
       children,
+      onClick,
       ...props
     },
     ref,
@@ -57,21 +58,44 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       );
     }
 
+    // Auto-surface loading state when the consumer's onClick returns a Promise.
+    // Merges with the controlled `loading` prop so callers can still opt in
+    // manually; the button is busy if either source says so.
+    const [autoLoading, setAutoLoading] = React.useState(false);
+    const isLoading = loading || autoLoading;
+
+    const handleClick = React.useCallback(
+      (e: React.MouseEvent<HTMLButtonElement>) => {
+        const result = onClick?.(e);
+        if (result && typeof (result as { then?: unknown }).then === 'function') {
+          setAutoLoading(true);
+          // `allSettled` waits for resolution without forking the caller's
+          // promise chain — their own error handling (or lack of it) is
+          // preserved. We just use completion as the signal to clear loading.
+          Promise.allSettled([result as Promise<unknown>]).then(() => {
+            setAutoLoading(false);
+          });
+        }
+      },
+      [onClick],
+    );
+
     const Comp = asChild ? Slot : 'button';
     return (
       <Comp
         ref={ref}
         data-component="mizu-button"
         className={cn(buttonVariants({ variant, size, className }))}
-        data-loading={loading || undefined}
+        data-loading={isLoading || undefined}
         data-inverse={inverse || undefined}
         data-full-width={fullWidth || undefined}
-        aria-busy={loading || undefined}
+        aria-busy={isLoading || undefined}
         type={asChild ? undefined : type}
-        disabled={disabled ?? loading}
+        disabled={disabled ?? isLoading}
+        onClick={handleClick}
         {...props}
       >
-        {loading ? (
+        {isLoading ? (
           <>
             <span className="mizu-button__label">{children}</span>
             <span className="mizu-button__spinner" aria-hidden="true" />
