@@ -85,9 +85,11 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
     }, [value, format]);
 
     const [text, setText] = React.useState(display);
-    React.useEffect(() => {
+    const [lastDisplay, setLastDisplay] = React.useState(display);
+    if (display !== lastDisplay) {
+      setLastDisplay(display);
       setText(display);
-    }, [display]);
+    }
 
     const commit = (raw: string) => {
       const normalized = normalize(raw);

@@ -53,10 +53,6 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     );
     const month = monthProp ? startOfMonth(monthProp) : internalMonth;
 
-    React.useEffect(() => {
-      if (monthProp) setInternalMonth(startOfMonth(monthProp));
-    }, [monthProp]);
-
     const setMonth = (next: Date) => {
       const normalized = startOfMonth(next);
       if (!monthProp) setInternalMonth(normalized);

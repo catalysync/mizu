@@ -8,6 +8,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "turbo run typecheck",
+    "doctor": "npx -y react-doctor@latest . -y",
+    "doctor:diff": "npx -y react-doctor@latest . -y --diff main",
+    "doctor:score": "npx -y react-doctor@latest . -y --score",
+    "doctor:gate": "node scripts/doctor-gate.mjs",
     "prepare": "husky"
   },
   "devDependencies": {

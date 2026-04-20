@@ -1,0 +1,39 @@
+{
+  "$rationale": "See docs/react-doctor.md for full reasoning. Every ignore entry below is justified — either the rule is philosophically wrong for our architecture, or the files legitimately don't follow it (static fixtures, skeletons).",
+  "ignore": {
+    "rules": [
+      "react-doctor/no-barrel-import",
+      "react-doctor/prefer-useReducer",
+      "react-doctor/prefer-dynamic-import",
+      "react-doctor/no-array-index-as-key",
+      "react-doctor/no-render-in-render",
+      "react-doctor/nextjs-no-img-element",
+      "react-doctor/nextjs-no-a-element",
+      "react-doctor/nextjs-no-font-link",
+      "react-doctor/nextjs-no-native-script",
+      "react-doctor/nextjs-missing-metadata"
+    ],
+    "files": [
+      "**/dist/**",
+      "**/storybook-static/**",
+      "**/.next/**",
+      "**/coverage/**",
+      "**/node_modules/**",
+      "**/*.test.ts",
+      "**/*.test.tsx",
+      "**/*.stories.ts",
+      "**/*.stories.tsx",
+      "**/*.interaction.stories.tsx",
+      "**/*.test.stories.tsx",
+      "apps/tweakmizu/**",
+      "components/craft/**",
+      "components/studio/**",
+      "components/home/**",
+      "components/editor/**",
+      "components/landing/**",
+      "components/theme-script.tsx",
+      "catalog/ai/**",
+      "hooks/use-mounted.tsx"
+    ]
+  }
+}

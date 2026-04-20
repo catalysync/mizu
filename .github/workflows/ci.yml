@@ -19,6 +19,21 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check && pnpm turbo typecheck lint test build
 
+  doctor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: React Doctor gate (score must be 100)
+        run: pnpm doctor:gate
+
   release:
     needs: quality
     if: github.ref == 'refs/heads/main'

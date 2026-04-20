@@ -118,7 +118,11 @@ These are conventions established in earlier sessions. Apply automatically; do n
 - `@aspect/css`: stylelint with BEM-friendly `selector-class-pattern`
 - `@aspect/storybook` and `@aspect/docs`: build to `storybook-static/` and `.next/` respectively
 
-CI runs the same command on every push and PR. Release flow uses `changesets/action@v1`: dev creates a changeset (`pnpm changeset`), CI auto-opens a "Version Packages" PR, merging it triggers npm publish.
+**React Doctor gate** — `pnpm doctor:gate` runs on every commit (husky pre-commit) and in a dedicated `doctor` CI job. Every workspace must score 100/100. Config: `react-doctor.config.json`, docs: `docs/react-doctor.md`, known debt: `mizu-planning/27-react-doctor-debt.md`.
+
+**Review loop** for every implementation — plan → implement → **run `pnpm doctor:diff` against changed files** → self-review → commit. Never skip the doctor step; it catches derived-state-in-effect, cascading setState, hydration flashes, and other React anti-patterns that lint + typecheck don't.
+
+CI runs the same commands on every push and PR. Release flow uses `changesets/action@v1`: dev creates a changeset (`pnpm changeset`), CI auto-opens a "Version Packages" PR, merging it triggers npm publish.
 
 ## Conventions
 
