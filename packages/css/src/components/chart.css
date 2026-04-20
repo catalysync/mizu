@@ -1,0 +1,223 @@
+/* Chart wrapper + recharts overrides.
+ * Paired with @aspect/charts. Tokens drive axis, grid, and series colors.
+ */
+
+.mizu-chart {
+  position: relative;
+  width: 100%;
+  font-family: var(--mizu-font-family-sans);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-chart--empty,
+.mizu-chart--loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--mizu-spacing-4);
+  border-radius: var(--mizu-radius-md);
+  background: var(--mizu-surface-secondary);
+}
+
+.mizu-chart__empty-message {
+  font-size: var(--mizu-text-sm-size);
+  line-height: var(--mizu-text-sm-line-height);
+  color: var(--mizu-text-secondary);
+}
+
+/* Recharts overrides — axis + grid + cursor colors */
+.mizu-chart .recharts-cartesian-axis-tick text {
+  fill: var(--mizu-text-secondary);
+  font-size: var(--mizu-text-xs-size);
+}
+
+.mizu-chart .recharts-cartesian-grid line {
+  stroke: var(--mizu-chart-grid);
+}
+
+.mizu-chart .recharts-tooltip-cursor {
+  stroke: var(--mizu-border-default);
+  fill: color-mix(in srgb, var(--mizu-text-primary) 4%, transparent);
+}
+
+.mizu-chart .recharts-active-dot circle {
+  stroke: var(--mizu-surface-default);
+  stroke-width: 2;
+}
+
+/* Tooltip */
+.mizu-chart__tooltip {
+  display: grid;
+  gap: var(--mizu-spacing-2);
+  min-width: 10rem;
+  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-md);
+  box-shadow: var(--mizu-shadow-md);
+  font-size: var(--mizu-text-sm-size);
+  line-height: var(--mizu-text-sm-line-height);
+}
+
+.mizu-chart__tooltip-label {
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-chart__tooltip-items {
+  display: grid;
+  gap: var(--mizu-spacing-1);
+}
+
+.mizu-chart__tooltip-item {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-2);
+}
+
+.mizu-chart__tooltip-swatch {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: var(--mizu-radius-sm);
+  flex-shrink: 0;
+}
+
+.mizu-chart__tooltip-name {
+  color: var(--mizu-text-secondary);
+  flex: 1;
+}
+
+.mizu-chart__tooltip-value {
+  color: var(--mizu-text-primary);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--mizu-font-weight-medium);
+}
+
+/* Legend */
+.mizu-chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mizu-spacing-4);
+  padding: var(--mizu-spacing-2) 0 0;
+  margin: 0;
+  list-style: none;
+  justify-content: center;
+  font-size: var(--mizu-text-sm-size);
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-chart__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mizu-spacing-2);
+}
+
+.mizu-chart__legend-swatch {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: var(--mizu-radius-full);
+  flex-shrink: 0;
+}
+
+/* Skeletons */
+.mizu-chart__skeleton-line,
+.mizu-chart__skeleton-pie,
+.mizu-chart__skeleton-bars,
+.mizu-chart__skeleton-vbars {
+  width: 100%;
+  height: 100%;
+}
+
+.mizu-chart__skeleton-line {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0,
+      color-mix(in srgb, var(--mizu-text-primary) 8%, transparent) 40%,
+      color-mix(in srgb, var(--mizu-text-primary) 8%, transparent) 60%,
+      transparent 100%
+    ),
+    linear-gradient(var(--mizu-border-default), var(--mizu-border-default)) 0 80% / 100% 1px
+      no-repeat;
+  background-size:
+    200% 2px,
+    100% 1px;
+  background-repeat: no-repeat;
+  background-position:
+    0 50%,
+    0 80%;
+  animation: mizu-chart-skeleton-shimmer 1.6s linear infinite;
+}
+
+.mizu-chart__skeleton-bars,
+.mizu-chart__skeleton-vbars {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--mizu-spacing-2);
+}
+
+.mizu-chart__skeleton-bars > span,
+.mizu-chart__skeleton-vbars > span {
+  flex: 1;
+  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
+  border-radius: var(--mizu-radius-sm);
+  animation: mizu-chart-skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+.mizu-chart__skeleton-vbars {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.mizu-chart__skeleton-vbars > span {
+  height: 0.75rem;
+}
+
+.mizu-chart__skeleton-pie {
+  border-radius: 50%;
+  background: conic-gradient(
+    color-mix(in srgb, var(--mizu-text-primary) 8%, transparent) 0 35%,
+    color-mix(in srgb, var(--mizu-text-primary) 12%, transparent) 35% 65%,
+    color-mix(in srgb, var(--mizu-text-primary) 6%, transparent) 65% 100%
+  );
+  aspect-ratio: 1 / 1;
+  max-height: 100%;
+  max-width: 100%;
+  justify-self: center;
+  margin: 0 auto;
+  animation: mizu-chart-skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes mizu-chart-skeleton-shimmer {
+  0% {
+    background-position:
+      -200% 50%,
+      0 80%;
+  }
+  100% {
+    background-position:
+      200% 50%,
+      0 80%;
+  }
+}
+
+@keyframes mizu-chart-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mizu-chart__skeleton-line,
+  .mizu-chart__skeleton-bars > span,
+  .mizu-chart__skeleton-vbars > span,
+  .mizu-chart__skeleton-pie {
+    animation: none;
+  }
+}

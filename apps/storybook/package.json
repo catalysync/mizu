@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@aspect/advanced-query-builder": "workspace:^",
+    "@aspect/charts": "workspace:^",
     "@aspect/commerce": "workspace:^",
     "@aspect/css": "workspace:^",
     "@aspect/finance": "workspace:^",
@@ -36,6 +37,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-querybuilder": "^8.0.0",
+    "recharts": "^2.12.7",
     "storybook": "^10.3.0",
     "vite": "^7.0.0"
   },

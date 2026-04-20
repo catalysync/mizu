@@ -71,6 +71,7 @@
 @import url("./components/context-menu.css");
 @import url("./components/toggle-group.css");
 @import url("./components/hover-card.css");
+@import url("./components/chart.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");

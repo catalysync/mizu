@@ -41,5 +41,19 @@
   "border": {
     "default": { "$value": "{color.slate.200}", "$type": "color" },
     "strong": { "$value": "{color.slate.400}", "$type": "color" }
+  },
+  "chart": {
+    "grid": { "$value": "{color.slate.200}", "$type": "color" },
+    "axis": { "$value": "{color.slate.400}", "$type": "color" },
+    "categorical": {
+      "1": { "$value": "{color.blue.500}", "$type": "color" },
+      "2": { "$value": "{color.emerald.500}", "$type": "color" },
+      "3": { "$value": "{color.amber.500}", "$type": "color" },
+      "4": { "$value": "{color.red.500}", "$type": "color" },
+      "5": { "$value": "{color.slate.500}", "$type": "color" },
+      "6": { "$value": "{color.blue.700}", "$type": "color" },
+      "7": { "$value": "{color.emerald.700}", "$type": "color" },
+      "8": { "$value": "{color.amber.700}", "$type": "color" }
+    }
   }
 }
