@@ -1,18 +1,18 @@
-import { useMemo, useState } from 'react';
+import { formatCurrency } from '@aspect/finance';
 import {
   AppContentHeader,
   Badge,
   Button,
-  cn,
   Card,
   CardBody,
+  cn,
   Drawer,
+  DrawerBody,
+  DrawerClose,
   DrawerContent,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerBody,
-  DrawerFooter,
-  DrawerClose,
   Inline,
   Input,
   Stack,
@@ -23,7 +23,7 @@ import {
   TableHeader,
   TableRow,
 } from '@aspect/react';
-import { formatCurrency } from '@aspect/finance';
+import { useMemo, useState } from 'react';
 import { customers, invoices, type Customer, type CustomerStatus } from './data';
 
 function toneFor(s: CustomerStatus): 'success' | 'warning' | 'neutral' {

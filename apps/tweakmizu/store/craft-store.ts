@@ -1,13 +1,13 @@
 'use client';
 
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { archetypeById } from '@/lib/craft/archetypes';
 import {
   DesignLanguageProfile,
   mizuSampleProfile,
   type DesignLanguageProfile as Profile,
 } from '@/lib/craft/profile';
-import { archetypeById } from '@/lib/craft/archetypes';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface CraftState {
   profile: Profile;

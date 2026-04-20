@@ -1,5 +1,5 @@
-import Anthropic from '@anthropic-ai/sdk';
 import { filterPatterns } from '@/lib/patterns/registry';
+import Anthropic from '@anthropic-ai/sdk';
 import type { Plan } from './composer';
 
 const MODEL = 'claude-sonnet-4-5';

@@ -1,19 +1,19 @@
+import {
+  Badge,
+  Card,
+  PropertyFilter,
+  type PropertyFilterProperty,
+  type PropertyFilterQuery,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
-import {
-  PropertyFilter,
-  type PropertyFilterQuery,
-  type PropertyFilterProperty,
-  Stack,
-  Card,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableHeader,
-  TableCell,
-  Badge,
-} from '@aspect/react';
 
 const properties: PropertyFilterProperty[] = [
   {

@@ -1,5 +1,5 @@
 import type { DesignLanguageProfile } from './profile';
-import { profileToCss, cssVarsToString, type CssVarMap } from './profile-to-css';
+import { cssVarsToString, profileToCss, type CssVarMap } from './profile-to-css';
 
 export type ExportFormat =
   | 'json'

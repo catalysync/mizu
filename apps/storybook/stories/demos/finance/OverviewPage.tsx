@@ -1,22 +1,22 @@
+import { DeltaIndicator, KpiCard, MetricTile, formatCurrency } from '@aspect/finance';
 import {
   AppContentHeader,
-  Button,
   Badge,
+  Button,
   Card,
-  CardHeader,
   CardBody,
+  CardHeader,
   Grid,
-  Stack,
   Inline,
+  Stack,
   Table,
-  TableHead,
   TableBody,
-  TableRow,
-  TableHeader,
   TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from '@aspect/react';
-import { KpiCard, DeltaIndicator, MetricTile, formatCurrency } from '@aspect/finance';
-import { overviewKpis, invoices, transactions } from './data';
+import { invoices, overviewKpis, transactions } from './data';
 
 export function OverviewPage() {
   const openInvoices = invoices.filter((i) => i.status !== 'paid');

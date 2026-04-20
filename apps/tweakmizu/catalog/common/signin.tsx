@@ -1,6 +1,6 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, Input, Stack } from '@aspect/react';
-import { definePattern } from '@/lib/patterns/types';
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
+import { definePattern } from '@/lib/patterns/types';
+import { Button, Card, CardBody, CardFooter, CardHeader, Input, Stack } from '@aspect/react';
 
 function Preview() {
   return (

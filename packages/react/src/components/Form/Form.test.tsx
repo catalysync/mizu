@@ -1,9 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { Form } from './Form';
-import { Field, useFieldControlProps } from '../Field';
+import { axe } from 'vitest-axe';
 import { Button } from '../Button';
+import { Field, useFieldControlProps } from '../Field';
+import { Form } from './Form';
 
 function FieldInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
   const resolved = useFieldControlProps<HTMLInputElement>(props);

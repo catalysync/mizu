@@ -1,5 +1,5 @@
+import { Input, Label, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Label, Input, Stack } from '@aspect/react';
 
 const meta = {
   title: 'Components/Atoms/Label',

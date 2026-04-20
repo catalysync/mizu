@@ -1,7 +1,7 @@
 'use client';
 
-import './live-preview.css';
 import type { CssVarMap } from '@/lib/craft/profile-to-css';
+import './live-preview.css';
 
 interface LivePreviewProps {
   vars: CssVarMap;

@@ -1,11 +1,11 @@
-import type { ReactNode } from 'react';
-import Link from 'next/link';
-import '@aspect/tokens/css';
 import '@aspect/css';
 import '@aspect/css/themes/dark';
-import './globals.css';
-import './docs.css';
+import '@aspect/tokens/css';
+import Link from 'next/link';
+import type { ReactNode } from 'react';
 import { DocsNav } from './docs-nav';
+import './docs.css';
+import './globals.css';
 
 export const metadata = {
   title: 'mizu — design system',

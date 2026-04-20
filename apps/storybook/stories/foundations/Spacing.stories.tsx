@@ -1,6 +1,6 @@
+import { Heading, Inline, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack, Inline, Heading } from '@aspect/react';
-import { tokensByPrefix, labelFromPrefix } from './tokens-helper';
+import { labelFromPrefix, tokensByPrefix } from './tokens-helper';
 
 const spacings = tokensByPrefix(/^Spacing\d+$/);
 const radii = tokensByPrefix(/^Radius/);

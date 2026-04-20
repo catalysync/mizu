@@ -1,7 +1,7 @@
 export {
-  TooltipProvider,
   Tooltip,
-  TooltipTrigger,
   TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
   type TooltipContentProps,
 } from './Tooltip';

@@ -1,6 +1,6 @@
+import { cn } from '@aspect/react';
 import * as React from 'react';
 import { ResponsiveContainer } from 'recharts';
-import { cn } from '@aspect/react';
 
 import type { ChartConfig } from './utils/types';
 

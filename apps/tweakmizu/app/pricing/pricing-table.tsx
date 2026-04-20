@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { openCheckout } from '@/lib/checkout';
 import {
   Badge,
   Button,
@@ -14,7 +14,7 @@ import {
 } from '@aspect/react';
 import { Check, Sparkles, X } from 'lucide-react';
 import Link from 'next/link';
-import { openCheckout } from '@/lib/checkout';
+import { useState } from 'react';
 
 type Cadence = 'monthly' | 'annual';
 
@@ -99,7 +99,7 @@ export function PricingTable() {
           <CardBody>
             <Stack gap="1rem">
               <div>
-                <span className="text-4xl font-bold text-foreground">$0</span>
+                <span className="text-foreground text-4xl font-bold">$0</span>
                 <span className="text-muted-foreground"> / forever</span>
               </div>
               <FeatureList features={FEATURES} pick="free" />
@@ -125,7 +125,7 @@ export function PricingTable() {
           <CardBody>
             <Stack gap="1rem">
               <div>
-                <span className="text-4xl font-bold text-foreground">
+                <span className="text-foreground text-4xl font-bold">
                   ${cadence === 'monthly' ? '15' : '12'}
                 </span>
                 <span className="text-muted-foreground">
@@ -157,10 +157,10 @@ export function PricingTable() {
           <CardBody>
             <Stack gap="1rem">
               <div>
-                <span className="text-4xl font-bold text-foreground">$149</span>
+                <span className="text-foreground text-4xl font-bold">$149</span>
                 <span className="text-muted-foreground"> one-time</span>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Limited to 500 licenses at launch. Every Pro feature, every future Pro feature,
                 never billed again.
               </p>
@@ -176,7 +176,7 @@ export function PricingTable() {
       </Grid>
 
       <Stack gap="0.5rem" className="text-center">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Need enterprise pricing? Email{' '}
           <a href="mailto:sureife@gmail.com" className="underline">
             sureife@gmail.com
@@ -196,9 +196,9 @@ function FeatureList({ features, pick }: { features: Feature[]; pick: 'free' | '
         return (
           <li key={feature.label} className="flex items-center gap-2 text-sm">
             {included ? (
-              <Check className="h-4 w-4 text-success" aria-label="Included" />
+              <Check className="text-success h-4 w-4" aria-label="Included" />
             ) : (
-              <X className="h-4 w-4 text-muted-foreground/60" aria-label="Not included" />
+              <X className="text-muted-foreground/60 h-4 w-4" aria-label="Not included" />
             )}
             <span className={included ? 'text-foreground' : 'text-muted-foreground line-through'}>
               {feature.label}

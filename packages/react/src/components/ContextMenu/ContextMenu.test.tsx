@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
+import { axe } from 'vitest-axe';
 import {
   ContextMenu,
-  ContextMenuTrigger,
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuLabel,
   ContextMenuSeparator,
+  ContextMenuTrigger,
 } from './ContextMenu';
 
 function TestContextMenu() {

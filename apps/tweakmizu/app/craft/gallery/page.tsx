@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import { getPublicProfiles } from '@/actions/craft-profiles';
+import type { Metadata } from 'next';
 import { GalleryGrid } from './gallery-grid';
 
 export const metadata: Metadata = {

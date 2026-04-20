@@ -1,5 +1,5 @@
-import React from 'react';
 import type { Decorator } from '@storybook/react-vite';
+import React from 'react';
 
 /**
  * Paints document.body with a distinct canvas color for contrast testing.

@@ -1,9 +1,9 @@
 'use client';
 
-import './pro-upsell.css';
+import { Lock, Sparkles } from 'lucide-react';
 import Link from 'next/link';
-import { Sparkles, Lock } from 'lucide-react';
 import { useIsPro } from './craft-pro-context';
+import './pro-upsell.css';
 
 export function ProBanner() {
   const isPro = useIsPro();

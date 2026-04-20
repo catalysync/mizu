@@ -1,13 +1,7 @@
+import { AnnotationCard, DeltaIndicator, MetricTile, TransactionRow } from '@aspect/finance';
+import { Badge, Card, CardBody, CardHeader, Grid, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  DeltaIndicator,
-  MetricTile,
-  AnnotationCard,
-  TransactionRow,
-  formatCurrency,
-} from '@aspect/finance';
-import { Card, CardHeader, CardBody, Grid, Stack, Badge, Inline } from '@aspect/react';
-import { metrics, insights, recentTransactions, type Insight } from './data';
+import { insights, metrics, recentTransactions, type Insight } from './data';
 
 const SEVERITY_ICON: Record<Insight['severity'], React.ReactNode> = {
   positive: (

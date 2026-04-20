@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { cn } from '@aspect/react';
+import * as React from 'react';
 
 export type ChartSkeletonShape = 'line' | 'bar' | 'vertical-bar' | 'area' | 'pie';
 

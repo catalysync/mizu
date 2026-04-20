@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { formatAccounting } from '@aspect/finance';
-import { profitAndLoss, balanceSheet, type ReportRow } from './data';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { balanceSheet, profitAndLoss, type ReportRow } from './data';
 
 function ReportDocument() {
   const renderRow = (row: ReportRow, i: number) => {

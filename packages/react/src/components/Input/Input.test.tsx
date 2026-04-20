@@ -1,10 +1,10 @@
-import { createRef } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'vitest-axe';
+import { createRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { Input } from './Input';
+import { axe } from 'vitest-axe';
 import { Field } from '../Field';
+import { Input } from './Input';
 
 describe('Input', () => {
   // -- Rendering --

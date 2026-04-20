@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { TaxRateInput } from '@aspect/finance';
 import {
   Button,
   Card,
@@ -19,7 +19,7 @@ import {
   Switch,
   type StepFlowStep,
 } from '@aspect/react';
-import { TaxRateInput } from '@aspect/finance';
+import { useState } from 'react';
 
 const STEPS: StepFlowStep[] = [
   {

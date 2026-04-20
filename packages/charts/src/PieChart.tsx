@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Cell, Pie, PieChart as RPieChart } from 'recharts';
 
 import { ChartContainer } from './ChartContainer';
-import { ChartTooltip, ChartTooltipContent } from './ChartTooltip';
+import { ChartEmpty } from './ChartEmpty';
 import { ChartLegend, ChartLegendContent } from './ChartLegend';
 import { ChartSkeleton } from './ChartSkeleton';
-import { ChartEmpty } from './ChartEmpty';
+import { ChartTooltip, ChartTooltipContent } from './ChartTooltip';
 import { resolveColor } from './utils/colors';
 import type { ChartConfig } from './utils/types';
 

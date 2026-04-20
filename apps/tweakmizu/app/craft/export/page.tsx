@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import { ExportPanel } from '@/components/craft/export-panel';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Export — craft',

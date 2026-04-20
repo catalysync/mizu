@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { cn } from '@aspect/react';
+import * as React from 'react';
 
 export interface ChartEmptyProps extends React.HTMLAttributes<HTMLDivElement> {
   height?: number | string;

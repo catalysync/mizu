@@ -1,9 +1,9 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useState, type FormEvent } from 'react';
 import { Button, Card, CardBody, CardHeader, Inline, Input, Stack } from '@aspect/react';
 import { Plus, UserPlus } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState, type FormEvent } from 'react';
 
 interface Team {
   id: string;
@@ -83,7 +83,7 @@ export function TeamClient({ existingTeams }: { existingTeams: Team[] }) {
   if (!creating && existingTeams.length === 0) {
     return (
       <Stack gap="0.75rem">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Team tier: $39/mo for 3 seats + $12/mo per additional seat.
         </p>
         <Inline gap="0.5rem" align="center">
@@ -122,7 +122,7 @@ export function TeamClient({ existingTeams }: { existingTeams: Team[] }) {
                   maxLength={60}
                 />
                 {error ? (
-                  <span className="text-sm text-danger" role="alert">
+                  <span className="text-danger text-sm" role="alert">
                     {error}
                   </span>
                 ) : null}
@@ -154,7 +154,7 @@ export function TeamClient({ existingTeams }: { existingTeams: Team[] }) {
                   required
                 />
                 {inviteError ? (
-                  <span className="text-sm text-danger" role="alert">
+                  <span className="text-danger text-sm" role="alert">
                     {inviteError}
                   </span>
                 ) : null}
@@ -164,11 +164,11 @@ export function TeamClient({ existingTeams }: { existingTeams: Team[] }) {
                     Create invite link
                   </Button>
                   {inviteUrl ? (
-                    <span className="text-xs text-muted-foreground">Copied to clipboard</span>
+                    <span className="text-muted-foreground text-xs">Copied to clipboard</span>
                   ) : null}
                 </Inline>
                 {inviteUrl ? (
-                  <code className="block rounded bg-muted px-2 py-1 text-xs text-foreground">
+                  <code className="bg-muted text-foreground block rounded px-2 py-1 text-xs">
                     {inviteUrl}
                   </code>
                 ) : null}

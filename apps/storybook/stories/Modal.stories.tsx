@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  Modal,
-  ModalTrigger,
-  ModalContent,
-  ModalHeader,
-  ModalTitle,
-  ModalDescription,
-  ModalBody,
-  ModalFooter,
-  ModalClose,
   Button,
   Input,
+  Modal,
+  ModalBody,
+  ModalClose,
+  ModalContent,
+  ModalDescription,
+  ModalFooter,
+  ModalHeader,
+  ModalTitle,
+  ModalTrigger,
   Stack,
 } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Overlays/Modal',

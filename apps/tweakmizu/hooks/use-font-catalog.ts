@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import type { CatalogResponse, CatalogEntry } from '@/app/api/fonts/route';
+import type { CatalogEntry, CatalogResponse } from '@/app/api/fonts/route';
 import { FONT_OPTIONS, type FontCategory } from '@/utils/fonts';
+import { useEffect, useState } from 'react';
 
 interface CatalogState {
   fonts: CatalogEntry[];

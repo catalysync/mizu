@@ -1,5 +1,5 @@
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@aspect/react';
 
 const meta = {
   title: 'Components/Disclosure/Accordion',

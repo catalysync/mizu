@@ -1,5 +1,5 @@
+import { Button, Input, Popover, PopoverContent, PopoverTrigger, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Popover, PopoverTrigger, PopoverContent, Button, Stack, Input } from '@aspect/react';
 
 const meta = {
   title: 'Components/Overlays/Popover',

@@ -1,20 +1,20 @@
+import { formatCurrency } from '@aspect/finance';
 import {
   AppContentHeader,
-  Card,
   Badge,
   Button,
-  Stack,
+  Card,
   Inline,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableHeader,
-  TableCell,
   Input,
   Pagination,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from '@aspect/react';
-import { formatCurrency } from '@aspect/finance';
 import { customers } from './data';
 
 export function CustomersPage() {

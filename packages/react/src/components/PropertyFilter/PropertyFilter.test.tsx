@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'vitest-axe';
 import { describe, expect, it, vi } from 'vitest';
+import { axe } from 'vitest-axe';
+import type { PropertyFilterProperty, PropertyFilterQuery } from './PropertyFilter';
 import { PropertyFilter } from './PropertyFilter';
-import type { PropertyFilterQuery, PropertyFilterProperty } from './PropertyFilter';
 
 const properties: PropertyFilterProperty[] = [
   { key: 'status', label: 'Status', operators: ['=', '!='], options: ['running', 'idle'] },

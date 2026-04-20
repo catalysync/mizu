@@ -1,10 +1,10 @@
 export {
   CommandMenu,
-  CommandMenuInput,
-  CommandMenuList,
   CommandMenuEmpty,
   CommandMenuGroup,
+  CommandMenuInput,
   CommandMenuItem,
+  CommandMenuList,
   CommandMenuSeparator,
   type CommandMenuProps,
 } from './CommandMenu';

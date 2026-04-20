@@ -1,5 +1,5 @@
+import { Badge, Button, Card, EmptyState, Stack } from '@aspect/react';
 import * as React from 'react';
-import { Card, Badge, Stack, EmptyState, Button } from '@aspect/react';
 import { mockActivity, type ActivityEntry } from './data';
 import { IconActivity } from './icons';
 

@@ -1,7 +1,7 @@
+import type { OutputFile, RenderContext } from '@/lib/patterns/types';
+import { definePattern } from '@/lib/patterns/types';
 import { Button, Card, CardBody, EmptyState, Stack } from '@aspect/react';
 import { FileStack } from 'lucide-react';
-import { definePattern } from '@/lib/patterns/types';
-import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 
 function Preview() {
   return (

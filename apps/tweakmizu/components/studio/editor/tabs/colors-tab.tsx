@@ -1,7 +1,7 @@
 'use client';
 
-import { Stack } from '@aspect/react';
 import type { ThemeStyleProps } from '@/types/theme';
+import { Stack } from '@aspect/react';
 
 interface Props {
   styles: ThemeStyleProps;
@@ -58,7 +58,7 @@ export function ColorsTab({ styles, onChange }: Props) {
     <Stack gap="1.25rem">
       {GROUPS.map((group) => (
         <Stack key={group.label} gap="0.5rem">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
             {group.label}
           </h3>
           <Stack gap="0.5rem">
@@ -92,14 +92,14 @@ function ColorRow({
         type="color"
         value={normalizeHex(value)}
         onChange={(event) => onChange(event.target.value)}
-        className="h-8 w-10 cursor-pointer rounded border border-border bg-transparent"
+        className="border-border h-8 w-10 cursor-pointer rounded border bg-transparent"
       />
-      <span className="min-w-[7rem] text-sm text-foreground">{label}</span>
+      <span className="text-foreground min-w-[7rem] text-sm">{label}</span>
       <input
         type="text"
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="flex-1 rounded-md border border-border bg-background px-2 py-1 font-mono text-xs text-foreground focus:border-primary focus:outline-none"
+        className="border-border bg-background text-foreground focus:border-primary flex-1 rounded-md border px-2 py-1 font-mono text-xs focus:outline-none"
         spellCheck={false}
       />
     </label>

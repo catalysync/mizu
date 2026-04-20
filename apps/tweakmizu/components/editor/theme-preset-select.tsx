@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useCallback, useMemo, useState } from 'react';
-import { Button, Popover, PopoverContent, PopoverTrigger, ScrollArea } from '@aspect/react';
-import { ArrowLeft, ArrowRight, Check, ChevronDown, Search, Shuffle } from 'lucide-react';
 import { useEditorStore } from '@/store/editor-store';
 import { useThemePresetStore } from '@/store/preset-store';
-import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
 import { cn } from '@/utils/cn';
+import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
+import { Button, Popover, PopoverContent, PopoverTrigger, ScrollArea } from '@aspect/react';
+import { ArrowLeft, ArrowRight, Check, ChevronDown, Search, Shuffle } from 'lucide-react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 const ColorBox: React.FC<{ color: string }> = ({ color }) => (
-  <div className="size-3 rounded-sm border border-border" style={{ backgroundColor: color }} />
+  <div className="border-border size-3 rounded-sm border" style={{ backgroundColor: color }} />
 );
 
 const PresetSwatch: React.FC<{ name: string }> = ({ name }) => {
@@ -86,16 +86,16 @@ export default function ThemePresetSelect() {
           </Button>
         </PopoverTrigger>
         <PopoverContent align="start" className="w-[360px] p-0">
-          <div className="flex items-center gap-2.5 border-b border-border px-4 py-3">
-            <Search size={14} className="shrink-0 text-muted-foreground" />
+          <div className="border-border flex items-center gap-2.5 border-b px-4 py-3">
+            <Search size={14} className="text-muted-foreground shrink-0" />
             <input
               placeholder="Search themes..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="min-w-0 flex-1 border-none bg-transparent py-0.5 font-sans text-sm text-foreground outline-none"
+              className="text-foreground min-w-0 flex-1 border-none bg-transparent py-0.5 font-sans text-sm outline-none"
             />
           </div>
-          <div className="flex items-center justify-between px-4 py-2 text-xs text-muted-foreground">
+          <div className="text-muted-foreground flex items-center justify-between px-4 py-2 text-xs">
             <span>{filtered.length} themes</span>
             <Button variant="ghost" size="sm" onClick={randomize} aria-label="Random theme">
               <Shuffle size={14} />

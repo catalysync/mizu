@@ -1,10 +1,10 @@
 'use client';
 
-import './preview-dock.css';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import { Monitor, Smartphone, Tablet, ExternalLink, Maximize2, X, Sun, Moon } from 'lucide-react';
 import { useCraftStore } from '@/store/craft-store';
+import { ExternalLink, Maximize2, Monitor, Moon, Smartphone, Sun, Tablet, X } from 'lucide-react';
+import Link from 'next/link';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import './preview-dock.css';
 
 type DeviceSize = 'mobile' | 'tablet' | 'desktop';
 

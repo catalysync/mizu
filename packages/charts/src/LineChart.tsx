@@ -2,9 +2,9 @@ import * as React from 'react';
 import { CartesianGrid, Line, LineChart as RLineChart, XAxis, YAxis } from 'recharts';
 
 import { ChartContainer } from './ChartContainer';
-import { ChartTooltip, ChartTooltipContent } from './ChartTooltip';
-import { ChartSkeleton } from './ChartSkeleton';
 import { ChartEmpty } from './ChartEmpty';
+import { ChartSkeleton } from './ChartSkeleton';
+import { ChartTooltip, ChartTooltipContent } from './ChartTooltip';
 import { resolveColor } from './utils/colors';
 import { cartesianGridProps, chartTooltipProps, xAxisProps, yAxisProps } from './utils/elements';
 import { prepareData } from './utils/muncher';

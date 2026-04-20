@@ -1,8 +1,8 @@
+import { defaultStyles } from '@/config/theme';
 import { ThemeEditorState } from '@/types/editor';
 import { ThemeStyleProps } from '@/types/theme';
-import { defaultStyles } from '@/config/theme';
-import { colorFormatter } from './color-converter';
 import { ColorFormat } from '../types';
+import { colorFormatter } from './color-converter';
 
 /** Token keys that are colors (should be formatted) vs raw values (pass through) */
 const COLOR_KEYS: (keyof ThemeStyleProps)[] = [

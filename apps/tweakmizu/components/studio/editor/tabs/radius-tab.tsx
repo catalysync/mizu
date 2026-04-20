@@ -1,7 +1,7 @@
 'use client';
 
-import { Stack } from '@aspect/react';
 import type { ThemeStyleProps } from '@/types/theme';
+import { Stack } from '@aspect/react';
 
 interface Props {
   styles: ThemeStyleProps;
@@ -33,7 +33,7 @@ function pxToRem(px: number): string {
 export function RadiusTab({ styles, onChange }: Props) {
   return (
     <Stack gap="1rem">
-      <p className="text-xs text-muted-foreground">
+      <p className="text-muted-foreground text-xs">
         Radius tokens applied to cards, buttons, inputs, and dialogs.
       </p>
       {STEPS.map((step) => {
@@ -42,8 +42,8 @@ export function RadiusTab({ styles, onChange }: Props) {
         return (
           <Stack key={step.key} gap="0.375rem">
             <div className="flex items-center justify-between text-sm">
-              <span className="font-medium text-foreground">{step.label}</span>
-              <span className="font-mono text-xs text-muted-foreground">{value}</span>
+              <span className="text-foreground font-medium">{step.label}</span>
+              <span className="text-muted-foreground font-mono text-xs">{value}</span>
             </div>
             <input
               type="range"
@@ -56,7 +56,7 @@ export function RadiusTab({ styles, onChange }: Props) {
                   [step.key]: pxToRem(parseInt(event.target.value, 10)),
                 } as Partial<ThemeStyleProps>)
               }
-              className="w-full accent-primary"
+              className="accent-primary w-full"
               aria-label={`radius ${step.label}`}
             />
             <div

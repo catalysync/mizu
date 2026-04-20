@@ -1,5 +1,5 @@
+import { Inline, Separator, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Separator, Stack, Inline } from '@aspect/react';
 
 const meta = {
   title: 'Components/Atoms/Separator',

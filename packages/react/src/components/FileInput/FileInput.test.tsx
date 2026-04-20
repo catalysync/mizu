@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { FileInput } from './FileInput';
+import { axe } from 'vitest-axe';
 import { Field } from '../Field';
+import { FileInput } from './FileInput';
 
 function makeFile(name: string, size = 1024, type = 'text/plain') {
   const file = new File(['x'.repeat(size)], name, { type });

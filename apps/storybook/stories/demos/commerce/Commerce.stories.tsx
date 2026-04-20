@@ -1,24 +1,24 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Banner, ResourceItem, Thumbnail } from '@aspect/commerce';
 import '@aspect/commerce/css';
+import { DeltaIndicator, formatCurrency, KpiCard } from '@aspect/finance';
 import {
   AppContentHeader,
-  Card,
   Badge,
   Button,
+  Card,
+  Grid,
+  Pagination,
+  Stack,
   Tabs,
+  TabsContent,
   TabsList,
   TabsTrigger,
-  TabsContent,
-  Grid,
-  Stack,
-  Pagination,
 } from '@aspect/react';
-import { KpiCard, DeltaIndicator, formatCurrency } from '@aspect/finance';
-import { ResourceItem, Thumbnail, Banner } from '@aspect/commerce';
-import { products, orders } from './data';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CommerceShell } from './CommerceShell';
-import { OrdersPage } from './OrdersPage';
 import { CustomersPage } from './CustomersPage';
+import { orders, products } from './data';
+import { OrdersPage } from './OrdersPage';
 
 const statusTone = {
   fulfilled: 'success' as const,

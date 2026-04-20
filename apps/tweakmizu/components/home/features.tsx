@@ -41,21 +41,21 @@ export function Features() {
       <div className="mx-auto max-w-7xl">
         <div className="features__grid grid items-start gap-12 lg:grid-cols-[1fr_2fr]">
           <div className="flex flex-col gap-4">
-            <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+            <span className="text-primary text-xs font-semibold tracking-widest uppercase">
               Features
             </span>
-            <h2 className="m-0 text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl">
+            <h2 className="text-foreground m-0 text-4xl leading-[1.1] font-bold tracking-tight md:text-5xl">
               Everything the design system exposes —
               <br />
               <span className="text-muted-foreground">now tweakable.</span>
             </h2>
-            <p className="m-0 max-w-sm text-base leading-relaxed text-muted-foreground">
+            <p className="text-muted-foreground m-0 max-w-sm text-base leading-relaxed">
               tweakmizu gives you direct control of the same{' '}
-              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">
+              <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">
                 --mizu-*
               </code>{' '}
               tokens that{' '}
-              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em]">
+              <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">
                 @aspect/tokens
               </code>{' '}
               ships to every app in the monorepo.
@@ -66,13 +66,13 @@ export function Features() {
             {features.map(({ icon: Icon, title, body }) => (
               <div
                 key={title}
-                className="feature-card rounded-lg border border-border bg-background p-6 transition-all"
+                className="feature-card border-border bg-background rounded-lg border p-6 transition-all"
               >
-                <div className="mb-3.5 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary">
+                <div className="bg-primary/10 text-primary mb-3.5 inline-flex size-10 items-center justify-center rounded-md">
                   <Icon size={20} />
                 </div>
-                <h3 className="mb-1.5 text-base font-semibold text-foreground">{title}</h3>
-                <p className="m-0 text-sm leading-[1.55] text-muted-foreground">{body}</p>
+                <h3 className="text-foreground mb-1.5 text-base font-semibold">{title}</h3>
+                <p className="text-muted-foreground m-0 text-sm leading-[1.55]">{body}</p>
               </div>
             ))}
           </div>

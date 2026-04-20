@@ -1,10 +1,10 @@
 'use client';
 
-import './settings.css';
-import Link from 'next/link';
-import { ArrowLeft, Check, X, Sparkles, Trash2, AlertTriangle } from 'lucide-react';
-import { Badge, Button } from '@aspect/react';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { Badge, Button } from '@aspect/react';
+import { AlertTriangle, ArrowLeft, Check, Sparkles, Trash2, X } from 'lucide-react';
+import Link from 'next/link';
+import './settings.css';
 
 interface Profile {
   id: string;
@@ -103,7 +103,7 @@ export function SettingsPage({ user, plan, aiLimit, profiles }: SettingsPageProp
           {/* Plan section */}
           <section className="settings-section">
             <h2 className="settings-section__title">Plan</h2>
-            <div className={`settings-plan${plan.isPro ? ' settings-plan--pro' : ''}`}>
+            <div className={`settings-plan${plan.isPro ? 'settings-plan--pro' : ''}`}>
               <div className="settings-plan__header">
                 <span className="settings-plan__name">{plan.isPro ? 'Pro' : 'Free'}</span>
                 <Badge tone={plan.isPro ? 'success' : 'neutral'}>

@@ -1,5 +1,5 @@
-import * as React from 'react';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
+import * as React from 'react';
 import { cn } from '../../utils/cn';
 import { useFieldContext } from '../Field/field-context';
 

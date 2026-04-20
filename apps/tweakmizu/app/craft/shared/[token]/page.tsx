@@ -1,5 +1,5 @@
-import { notFound } from 'next/navigation';
 import { getProfileByShareToken } from '@/actions/craft-profiles';
+import { notFound } from 'next/navigation';
 import { SharedProfileView } from './shared-view';
 
 export default async function SharedProfilePage({

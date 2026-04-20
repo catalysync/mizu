@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useCallback } from 'react';
 import type { ColorPickerProps } from '@/types';
+import React, { useCallback } from 'react';
 
 export const ColorPicker = ({ color, onChange, label }: ColorPickerProps) => {
   const handleChange = useCallback(
@@ -12,7 +12,7 @@ export const ColorPicker = ({ color, onChange, label }: ColorPickerProps) => {
   return (
     <div className="-mx-1 flex items-center gap-2.5 rounded-md px-2 py-1 transition-colors">
       <label
-        className="relative block size-7 shrink-0 cursor-pointer rounded-sm border border-border shadow-sm"
+        className="border-border relative block size-7 shrink-0 cursor-pointer rounded-sm border shadow-sm"
         style={{ backgroundColor: color }}
       >
         <input
@@ -24,7 +24,7 @@ export const ColorPicker = ({ color, onChange, label }: ColorPickerProps) => {
         />
       </label>
 
-      <span className="shrink-0 text-[13px] font-medium text-foreground">{label}</span>
+      <span className="text-foreground shrink-0 text-[13px] font-medium">{label}</span>
 
       <input
         type="text"

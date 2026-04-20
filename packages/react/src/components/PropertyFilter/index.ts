@@ -1,8 +1,8 @@
 export {
   PropertyFilter,
-  type PropertyFilterProps,
-  type PropertyFilterProperty,
-  type PropertyFilterToken,
-  type PropertyFilterQuery,
   type PropertyFilterOperator,
+  type PropertyFilterProperty,
+  type PropertyFilterProps,
+  type PropertyFilterQuery,
+  type PropertyFilterToken,
 } from './PropertyFilter';

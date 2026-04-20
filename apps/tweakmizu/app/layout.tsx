@@ -1,6 +1,6 @@
+import { ThemeScript } from '@/components/theme-script';
 import { TooltipProvider } from '@aspect/react';
 import type { Metadata, Viewport } from 'next';
-import { ThemeScript } from '@/components/theme-script';
 import './globals.css';
 
 export const metadata: Metadata = {

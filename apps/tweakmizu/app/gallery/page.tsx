@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Grid, Stack } from '@aspect/react';
-import { ArrowRight, Sparkles } from 'lucide-react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { getAllPatterns } from '@/lib/patterns/registry';
+import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Grid, Stack } from '@aspect/react';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Gallery — tweakmizu',
@@ -43,13 +43,13 @@ export default function GalleryPage() {
         <section className="mx-auto w-full max-w-6xl px-4 py-12">
           <Stack gap="2.5rem">
             <Stack gap="0.75rem" align="start">
-              <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+              <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
                 Gallery
               </span>
-              <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h1 className="text-foreground text-3xl font-bold tracking-tight md:text-5xl">
                 Explore the catalog by industry
               </h1>
-              <p className="max-w-2xl text-lg text-muted-foreground">
+              <p className="text-muted-foreground max-w-2xl text-lg">
                 Every pattern below is a re-implementation of a real design system page or section
                 on top of mizu primitives. Jump into the studio to remix, tweak, or export any of
                 them.
@@ -66,10 +66,10 @@ export default function GalleryPage() {
             {industries.map(([industry, group]) => (
               <Stack key={industry} gap="1rem">
                 <Stack gap="0.25rem">
-                  <h2 className="text-xl font-semibold text-foreground">
+                  <h2 className="text-foreground text-xl font-semibold">
                     {INDUSTRY_LABEL[industry] ?? industry}
                   </h2>
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-muted-foreground text-sm">
                     {group.length} pattern{group.length === 1 ? '' : 's'}
                   </span>
                 </Stack>
@@ -82,14 +82,14 @@ export default function GalleryPage() {
                       />
                       <CardBody>
                         <Stack gap="0.5rem">
-                          <span className="text-xs uppercase tracking-wider text-muted-foreground">
+                          <span className="text-muted-foreground text-xs tracking-wider uppercase">
                             Sources
                           </span>
                           <Stack gap="0.25rem">
                             {pattern.meta.sources.slice(0, 3).map((src, i) => (
                               <span
                                 key={`${src.system}-${i}`}
-                                className="text-xs text-muted-foreground"
+                                className="text-muted-foreground text-xs"
                               >
                                 <strong className="text-foreground">{src.system}</strong> (
                                 {src.relationship})

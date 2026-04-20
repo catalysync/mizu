@@ -1,5 +1,5 @@
+import { Field, FileInput, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FileInput, Field, Stack } from '@aspect/react';
 
 const meta = {
   title: 'Components/Atoms/FileInput',

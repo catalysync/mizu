@@ -1,11 +1,11 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { Badge, Cluster, Inline, Split, Stack } from '@aspect/react';
 import { getAllPatterns } from '@/lib/patterns/registry';
 import type { PatternModule } from '@/lib/patterns/types';
 import type { Industry } from '@/types/studio';
 import { cn } from '@/utils/cn';
+import { Badge, Cluster, Inline, Split, Stack } from '@aspect/react';
+import { useMemo, useState } from 'react';
 
 type IndustryFilter = Industry | 'all';
 
@@ -63,7 +63,7 @@ export function CatalogBrowser() {
       <Split fraction="280px 1fr" gap="1.5rem">
         <Stack as="nav" gap="0.25rem" aria-label="Pattern list">
           {visible.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               No patterns match the current filter yet.
             </p>
           ) : null}
@@ -101,7 +101,7 @@ function PatternListItem({
         'rounded-lg border px-3 py-2.5 text-left transition-colors',
         active
           ? 'border-primary bg-primary/5'
-          : 'border-transparent hover:border-border hover:bg-muted/60',
+          : 'hover:border-border hover:bg-muted/60 border-transparent',
       )}
     >
       <Stack gap="0.25rem" align="start">
@@ -110,12 +110,12 @@ function PatternListItem({
           align="center"
           style={{ justifyContent: 'space-between', width: '100%' }}
         >
-          <span className="text-sm font-semibold text-foreground">{pattern.meta.name}</span>
+          <span className="text-foreground text-sm font-semibold">{pattern.meta.name}</span>
           <Badge tone={pattern.meta.tier === 'free' ? 'neutral' : 'info'}>
             {pattern.meta.tier}
           </Badge>
         </Inline>
-        <span className="text-xs text-muted-foreground">{pattern.meta.id}</span>
+        <span className="text-muted-foreground text-xs">{pattern.meta.id}</span>
       </Stack>
     </button>
   );
@@ -127,7 +127,7 @@ function PatternDetail({ pattern }: { pattern: PatternModule }) {
     <Stack as="article" gap="1.25rem">
       <Stack as="header" gap="0.5rem">
         <Inline gap="0.5rem" align="center">
-          <h2 className="text-xl font-semibold text-foreground">{meta.name}</h2>
+          <h2 className="text-foreground text-xl font-semibold">{meta.name}</h2>
           <Badge tone="neutral">{meta.kind}</Badge>
           {meta.industries.map((i) => (
             <Badge key={i} tone="info">
@@ -135,21 +135,21 @@ function PatternDetail({ pattern }: { pattern: PatternModule }) {
             </Badge>
           ))}
         </Inline>
-        <p className="text-sm text-muted-foreground">{meta.description}</p>
+        <p className="text-muted-foreground text-sm">{meta.description}</p>
       </Stack>
 
       <section
         aria-label={`Live preview of ${meta.name}`}
-        className="rounded-lg border border-border bg-background p-6"
+        className="border-border bg-background rounded-lg border p-6"
       >
         <Preview />
       </section>
 
       <Stack as="section" gap="0.5rem" aria-label="Pattern sources">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
           Sources
         </h3>
-        <Stack as="ul" gap="0.25rem" className="text-sm text-foreground">
+        <Stack as="ul" gap="0.25rem" className="text-foreground text-sm">
           {meta.sources.map((source, index) => (
             <li key={`${source.system}-${index}`}>
               <Inline gap="0.5rem">
@@ -165,12 +165,12 @@ function PatternDetail({ pattern }: { pattern: PatternModule }) {
       </Stack>
 
       <Stack as="section" gap="0.5rem" aria-label="Component dependencies">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
           Depends on
         </h3>
         <Cluster gap="0.375rem">
           {meta.depends.map((dep) => (
-            <code key={dep} className="rounded bg-muted px-2 py-0.5 text-xs text-foreground">
+            <code key={dep} className="bg-muted text-foreground rounded px-2 py-0.5 text-xs">
               {dep}
             </code>
           ))}

@@ -1,9 +1,9 @@
 'use client';
 
-import './craft-landing.css';
+import { useCraftChat } from '@/hooks/use-craft-chat';
 import { ArchetypePicker } from './archetype-picker';
 import { ChatDock } from './chat-dock';
-import { useCraftChat } from '@/hooks/use-craft-chat';
+import './craft-landing.css';
 
 export function CraftLanding() {
   const { messages, streaming, send } = useCraftChat();

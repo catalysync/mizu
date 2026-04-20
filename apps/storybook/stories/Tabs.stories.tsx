@@ -1,5 +1,5 @@
+import { Badge, Inline, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tabs, TabsList, TabsTrigger, TabsContent, Badge, Stack, Inline } from '@aspect/react';
 
 const meta = {
   title: 'Components/Navigation/Tabs',

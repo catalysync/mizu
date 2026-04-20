@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PieChart } from '@aspect/charts';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { productShare } from './_fixtures';
 
 const meta = {

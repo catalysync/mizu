@@ -1,6 +1,6 @@
+import type { IntentSpec } from '@/types/studio';
 import { describe, expect, it } from 'vitest';
 import { compose, resolvePatternsForPlan } from './composer';
-import type { IntentSpec } from '@/types/studio';
 
 function buildIntent(overrides: Partial<IntentSpec> = {}): IntentSpec {
   return {

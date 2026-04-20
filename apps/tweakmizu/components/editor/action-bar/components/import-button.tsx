@@ -1,5 +1,7 @@
 'use client';
 
+import { useEditorStore } from '@/store/editor-store';
+import { parseMizuCss } from '@/utils/parse-mizu-css';
 import {
   Button,
   Modal,
@@ -13,8 +15,6 @@ import {
   Stack,
   Textarea,
 } from '@aspect/react';
-import { useEditorStore } from '@/store/editor-store';
-import { parseMizuCss } from '@/utils/parse-mizu-css';
 import { ClipboardPaste } from 'lucide-react';
 import { useState } from 'react';
 

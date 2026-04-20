@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
+  Badge,
+  Button,
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
-  Button,
-  Badge,
+  CardHeader,
   Inline,
   Stack,
 } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Card',

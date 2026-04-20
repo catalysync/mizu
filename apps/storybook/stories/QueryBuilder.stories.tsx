@@ -1,8 +1,8 @@
+import type { RuleGroupType } from '@aspect/query-builder';
+import { MizuQueryBuilder, formatQuery } from '@aspect/query-builder';
+import { Card, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
-import { MizuQueryBuilder, formatQuery } from '@aspect/query-builder';
-import type { RuleGroupType } from '@aspect/query-builder';
-import { Stack, Card } from '@aspect/react';
 
 const fields = [
   { name: 'status', label: 'Status' },

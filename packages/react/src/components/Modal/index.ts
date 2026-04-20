@@ -1,11 +1,11 @@
 export {
   Modal,
-  ModalTrigger,
+  ModalBody,
   ModalClose,
   ModalContent,
+  ModalDescription,
+  ModalFooter,
   ModalHeader,
   ModalTitle,
-  ModalDescription,
-  ModalBody,
-  ModalFooter,
+  ModalTrigger,
 } from './Modal';

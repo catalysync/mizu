@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { PasswordInput, estimatePasswordStrength } from './PasswordInput';
+import { axe } from 'vitest-axe';
 import { Field } from '../Field';
+import { PasswordInput, estimatePasswordStrength } from './PasswordInput';
 
 describe('PasswordInput', () => {
   it('renders a password input by default', () => {

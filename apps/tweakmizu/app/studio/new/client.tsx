@@ -1,11 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { IntentForm } from '@/components/studio/intent-form';
 import { compose, type Plan } from '@/lib/studio/composer';
 import { usePlansStore } from '@/store/plans-store';
 import type { IntentSpec } from '@/types/studio';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 interface GenerateResponse {
   plan: Plan;
@@ -50,7 +50,7 @@ export function StudioNewClient() {
     <div>
       <IntentForm onSubmit={handleSubmit} />
       {busy && statusMessage ? (
-        <p className="mt-3 text-sm text-muted-foreground" role="status">
+        <p className="text-muted-foreground mt-3 text-sm" role="status">
           {statusMessage}
         </p>
       ) : null}

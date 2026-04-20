@@ -1,7 +1,7 @@
+import type { Plan } from '@/lib/studio/composer';
+import { refinePlan } from '@/lib/studio/refine';
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
-import { refinePlan } from '@/lib/studio/refine';
-import type { Plan } from '@/lib/studio/composer';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';

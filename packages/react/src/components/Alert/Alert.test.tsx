@@ -1,7 +1,7 @@
+import { fireEvent, render, screen } from '@testing-library/react';
 import { createRef } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'vitest-axe';
 import { describe, expect, it, vi } from 'vitest';
+import { axe } from 'vitest-axe';
 import { Alert, AlertTitle } from './Alert';
 
 describe('Alert', () => {

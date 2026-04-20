@@ -1,5 +1,7 @@
 'use client';
 
+import type { ThemeStyleProps } from '@/types/theme';
+import { applyThemeToElement } from '@/utils/apply-theme';
 import {
   Alert,
   AlertTitle,
@@ -33,8 +35,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@aspect/react';
-import type { ThemeStyleProps } from '@/types/theme';
-import { applyThemeToElement } from '@/utils/apply-theme';
 import { useEffect, useRef } from 'react';
 
 interface MizuComponentsPreviewProps {

@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { cn, Skeleton } from '@aspect/react';
-import { formatDelta, deltaIntent, type DeltaIntent } from '../../utils/delta';
+import * as React from 'react';
+import { deltaIntent, formatDelta, type DeltaIntent } from '../../utils/delta';
 
 export interface DeltaIndicatorProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;

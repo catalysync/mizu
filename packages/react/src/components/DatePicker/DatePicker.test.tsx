@@ -1,11 +1,11 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { DatePicker } from './DatePicker';
-import { DateRangePicker } from './DateRangePicker';
+import { axe } from 'vitest-axe';
+import { Field } from '../Field';
 import { Calendar } from './Calendar';
 import { addMonths, buildMonthGrid, formatISO, parseISO, startOfMonth } from './calendar-utils';
-import { Field } from '../Field';
+import { DatePicker } from './DatePicker';
+import { DateRangePicker } from './DateRangePicker';
 
 describe('calendar utils', () => {
   it('parses and formats ISO dates', () => {

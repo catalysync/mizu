@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import type { DesignLanguageProfile } from '@/lib/craft/profile';
+import Link from 'next/link';
 
 interface PreviewShellProps {
   profile: DesignLanguageProfile;

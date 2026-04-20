@@ -1,18 +1,18 @@
 'use client';
 
-import './craft-shell.css';
-import { useEffect, useRef, useState } from 'react';
+import { ThemeToggle } from '@/components/theme-toggle';
+import { useCraftStore } from '@/store/craft-store';
+import { Button, cn } from '@aspect/react';
+import { ChevronLeft, Download, Eye, Menu, Redo2, Settings, Undo2, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Undo2, Redo2, Download, Settings, ChevronLeft, Eye } from 'lucide-react';
-import { Button, cn } from '@aspect/react';
-import { useCraftStore } from '@/store/craft-store';
-import { installPreviewPublisher } from './preview/preview-bridge';
+import { useEffect, useRef, useState } from 'react';
 import { CraftProProvider } from './craft-pro-context';
-import { ProBanner, ProBadge } from './pro-upsell';
+import './craft-shell.css';
 import { HydrationGate } from './hydration-gate';
 import { PreviewDock } from './preview-dock';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { installPreviewPublisher } from './preview/preview-bridge';
+import { ProBadge, ProBanner } from './pro-upsell';
 
 interface CraftShellProps {
   user: { id: string; name: string; email: string };

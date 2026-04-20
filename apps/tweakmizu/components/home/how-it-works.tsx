@@ -21,13 +21,13 @@ export function HowItWorks() {
     <section id="how-it-works" className="bg-muted px-6 py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 max-w-2xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+          <span className="text-primary text-xs font-semibold tracking-widest uppercase">
             Workflow
           </span>
-          <h2 className="mt-3 mb-3 text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl">
+          <h2 className="text-foreground mt-3 mb-3 text-4xl leading-[1.1] font-bold tracking-tight md:text-5xl">
             Three steps from preset to CSS.
           </h2>
-          <p className="m-0 text-base leading-relaxed text-muted-foreground">
+          <p className="text-muted-foreground m-0 text-base leading-relaxed">
             No account, no build step, no lock-in. The whole flow lives in your browser.
           </p>
         </div>
@@ -36,13 +36,13 @@ export function HowItWorks() {
           {steps.map((s) => (
             <div key={s.n}>
               <div className="relative mb-4">
-                <span className="block text-[5rem] font-extrabold leading-none tracking-tighter text-muted-foreground/20">
+                <span className="text-muted-foreground/20 block text-[5rem] leading-none font-extrabold tracking-tighter">
                   {s.n}
                 </span>
-                <span className="absolute bottom-1 left-1 h-[3px] w-10 rounded-full bg-primary" />
+                <span className="bg-primary absolute bottom-1 left-1 h-[3px] w-10 rounded-full" />
               </div>
-              <h3 className="mb-2 text-xl font-bold text-foreground">{s.title}</h3>
-              <p className="m-0 text-[0.9375rem] leading-relaxed text-muted-foreground">{s.body}</p>
+              <h3 className="text-foreground mb-2 text-xl font-bold">{s.title}</h3>
+              <p className="text-muted-foreground m-0 text-[0.9375rem] leading-relaxed">{s.body}</p>
             </div>
           ))}
         </div>

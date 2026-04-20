@@ -1,5 +1,5 @@
+import { ResizableGroup, ResizableHandle, ResizablePanel } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ResizableGroup, ResizablePanel, ResizableHandle } from '@aspect/react';
 
 const meta = {
   title: 'Layouts/Resizable',

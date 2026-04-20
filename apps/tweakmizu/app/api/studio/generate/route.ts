@@ -1,6 +1,6 @@
-import { NextResponse, type NextRequest } from 'next/server';
 import { composeWithClaude } from '@/lib/studio/claude-composer';
 import { intentSpecSchema } from '@/types/studio';
+import { NextResponse, type NextRequest } from 'next/server';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';

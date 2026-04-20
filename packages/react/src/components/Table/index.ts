@@ -1,12 +1,12 @@
 export {
   Table,
-  TableHead,
   TableBody,
-  TableRow,
-  TableHeader,
-  TableCell,
   TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  type TableDensity,
   type TableProps,
   type TableRowProps,
-  type TableDensity,
 } from './Table';

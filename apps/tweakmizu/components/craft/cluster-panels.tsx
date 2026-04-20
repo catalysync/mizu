@@ -1,17 +1,17 @@
 'use client';
 
-import { KnobPanel, type KnobSection } from './knob-panel';
 import { useCraftStore } from '@/store/craft-store';
 import {
-  RadiusDemo,
   BorderWeightDemo,
-  EasingDemo,
-  DurationDemo,
-  ShadowDemo,
-  FocusStyleDemo,
-  ScaleRatioDemo,
   DensityDemo,
+  DurationDemo,
+  EasingDemo,
+  FocusStyleDemo,
+  RadiusDemo,
+  ScaleRatioDemo,
+  ShadowDemo,
 } from './knob-demos';
+import { KnobPanel, type KnobSection } from './knob-panel';
 
 // -- Shape -----------------------------------------------------------------
 

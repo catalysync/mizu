@@ -1,5 +1,5 @@
-import React from 'react';
 import type { Decorator } from '@storybook/react-vite';
+import React from 'react';
 
 /**
  * Wraps the story in React.StrictMode when the `strictMode` toolbar global

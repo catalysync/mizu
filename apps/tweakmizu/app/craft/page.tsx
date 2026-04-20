@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import { CraftLanding } from '@/components/craft/craft-landing';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Start — craft',

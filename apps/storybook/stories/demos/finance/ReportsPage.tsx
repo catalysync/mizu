@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { formatCurrency } from '@aspect/finance';
 import {
   AppContentHeader,
   Button,
@@ -10,7 +10,7 @@ import {
   Stack,
   cn,
 } from '@aspect/react';
-import { formatCurrency } from '@aspect/finance';
+import { useState } from 'react';
 import { reports, type ReportTile } from './data';
 
 export function ReportsPage() {

@@ -1,12 +1,12 @@
 export {
   ContextMenu,
-  ContextMenuTrigger,
   ContextMenuContent,
+  ContextMenuGroup,
   ContextMenuItem,
   ContextMenuLabel,
-  ContextMenuSeparator,
-  ContextMenuGroup,
-  ContextMenuSub,
   ContextMenuRadioGroup,
+  ContextMenuSeparator,
+  ContextMenuSub,
+  ContextMenuTrigger,
   type ContextMenuItemProps,
 } from './ContextMenu';

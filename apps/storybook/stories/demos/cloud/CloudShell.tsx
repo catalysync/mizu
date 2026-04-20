@@ -1,26 +1,26 @@
-import * as React from 'react';
 import {
-  AppLayout,
-  AppHeader,
-  AppSidebar,
-  AppSidebarSection,
-  AppSidebarItem,
+  AppBreadcrumbs,
   AppContent,
   AppContentHeader,
-  AppBreadcrumbs,
+  AppHeader,
+  AppLayout,
+  AppSidebar,
+  AppSidebarItem,
+  AppSidebarSection,
   Button,
   Input,
   type BreadcrumbItem,
 } from '@aspect/react';
+import * as React from 'react';
 import {
-  IconApps,
-  IconTemplates,
-  IconAddons,
   IconActivity,
+  IconAddons,
+  IconApps,
   IconBilling,
-  IconSettings,
   IconCloud,
   IconPlus,
+  IconSettings,
+  IconTemplates,
 } from './icons';
 
 export type CloudPage = 'apps' | 'templates' | 'addons' | 'activity' | 'billing' | 'settings';

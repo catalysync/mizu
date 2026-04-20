@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'vitest';
-import { buildProjectFiles } from './exporter';
-import { compose } from './composer';
 import type { IntentSpec } from '@/types/studio';
+import { describe, expect, it } from 'vitest';
+import { compose } from './composer';
+import { buildProjectFiles } from './exporter';
 
 function buildIntent(overrides: Partial<IntentSpec> = {}): IntentSpec {
   return {

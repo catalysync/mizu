@@ -1,5 +1,5 @@
-import Anthropic from '@anthropic-ai/sdk';
 import type { ThemeStyleProps } from '@/types/theme';
+import Anthropic from '@anthropic-ai/sdk';
 
 const MODEL = 'claude-sonnet-4-5';
 const MAX_TOKENS = 2048;

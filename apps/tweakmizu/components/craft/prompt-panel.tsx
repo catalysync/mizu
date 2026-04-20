@@ -1,12 +1,12 @@
 'use client';
 
-import './prompt-panel.css';
+import { useCraftChat } from '@/hooks/use-craft-chat';
 import { Badge } from '@aspect/react';
 import { Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { ChatDock } from './chat-dock';
-import { useCraftChat } from '@/hooks/use-craft-chat';
 import { useIsPro } from './craft-pro-context';
+import './prompt-panel.css';
 
 export function PromptPanel() {
   const { messages, streaming, send } = useCraftChat();

@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { cn } from '@aspect/react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import * as React from 'react';
 
 const thumbnailVariants = cva('mizu-thumbnail', {
   variants: {

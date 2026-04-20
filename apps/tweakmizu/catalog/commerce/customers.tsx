@@ -1,3 +1,6 @@
+import type { OutputFile, RenderContext } from '@/lib/patterns/types';
+import { definePattern } from '@/lib/patterns/types';
+import { formatCurrency } from '@aspect/finance';
 import {
   Badge,
   Button,
@@ -13,9 +16,6 @@ import {
   TableHeader,
   TableRow,
 } from '@aspect/react';
-import { formatCurrency } from '@aspect/finance';
-import { definePattern } from '@/lib/patterns/types';
-import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 
 interface CustomerRow {
   id: string;

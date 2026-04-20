@@ -1,11 +1,11 @@
 'use client';
 
-import { useCallback, useRef, useState } from 'react';
 import type { ChatMessage } from '@/components/craft/chat-dock';
-import { useCraftStore } from '@/store/craft-store';
-import type { DesignLanguageProfile } from '@/lib/craft/profile';
-import type { Entity, Page, NavItem, EntityField } from '@/lib/craft/app-schema';
+import type { Entity, EntityField, NavItem, Page } from '@/lib/craft/app-schema';
 import { getPackForDomain } from '@/lib/craft/packs';
+import type { DesignLanguageProfile } from '@/lib/craft/profile';
+import { useCraftStore } from '@/store/craft-store';
+import { useCallback, useRef, useState } from 'react';
 
 type ClusterKey =
   | 'foundation'

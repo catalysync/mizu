@@ -1,9 +1,9 @@
 'use client';
 
-import './chat-dock.css';
-import { useRef, useState, type FormEvent } from 'react';
-import { Send, Sparkles, Loader2 } from 'lucide-react';
 import { cn } from '@aspect/react';
+import { Loader2, Send, Sparkles } from 'lucide-react';
+import { useRef, useState, type FormEvent } from 'react';
+import './chat-dock.css';
 
 export interface ChatMessage {
   id: string;

@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
-import { AppLayout } from './AppLayout';
-import { AppHeader } from './AppHeader';
-import { AppSidebar } from './AppSidebar';
+import { axe } from 'vitest-axe';
 import { AppContent } from './AppContent';
+import { AppHeader } from './AppHeader';
+import { AppLayout } from './AppLayout';
+import { AppSidebar } from './AppSidebar';
 
 describe('AppLayout', () => {
   it('renders header + sidebar + content', () => {

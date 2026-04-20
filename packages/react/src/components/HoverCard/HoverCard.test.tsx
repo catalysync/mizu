@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
-import { HoverCard, HoverCardTrigger, HoverCardContent } from './HoverCard';
+import { axe } from 'vitest-axe';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from './HoverCard';
 
 function TestHoverCard({ open = false }: { open?: boolean }) {
   return (

@@ -1,5 +1,5 @@
+import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Grid, Inline } from '@aspect/react';
 import * as React from 'react';
-import { Card, CardHeader, CardBody, CardFooter, Badge, Grid, Inline, Button } from '@aspect/react';
 import { mockApps, type AppRecord, type AppStatus } from './data';
 
 const STATUS_TONE: Record<AppStatus, React.ComponentProps<typeof Badge>['tone']> = {

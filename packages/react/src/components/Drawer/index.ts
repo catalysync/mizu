@@ -1,13 +1,13 @@
 export {
   Drawer,
-  DrawerTrigger,
+  DrawerBody,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerDescription,
-  DrawerBody,
-  DrawerFooter,
+  DrawerTrigger,
   type DrawerContentProps,
   type DrawerSide,
 } from './Drawer';

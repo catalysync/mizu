@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import '@aspect/finance/css';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ChartOfAccountsPage } from './ChartOfAccountsPage';
+import { CustomersPage } from './CustomersPage';
 import './finance-demo.css';
 import { FinanceShell } from './FinanceShell';
-import { OverviewPage } from './OverviewPage';
-import { SettingsPage } from './SettingsPage';
 import { InvoicesPage } from './InvoicesPage';
-import { CustomersPage } from './CustomersPage';
-import { ChartOfAccountsPage } from './ChartOfAccountsPage';
-import { TransactionsPage } from './TransactionsPage';
+import { OnboardingFlow } from './OnboardingFlow';
+import { OverviewPage } from './OverviewPage';
 import { ReconciliationPage } from './ReconciliationPage';
 import { ReportsPage } from './ReportsPage';
-import { OnboardingFlow } from './OnboardingFlow';
+import { SettingsPage } from './SettingsPage';
+import { TransactionsPage } from './TransactionsPage';
 
 const meta = {
   title: 'Demos/Finance',

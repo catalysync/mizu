@@ -1,6 +1,6 @@
 import {
-  PanelGroup,
   Panel,
+  PanelGroup,
   PanelResizeHandle,
   type PanelGroupProps,
   type PanelProps,

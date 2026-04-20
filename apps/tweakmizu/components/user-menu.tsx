@@ -1,10 +1,10 @@
 'use client';
 
+import { authClient } from '@/lib/auth-client';
 import { Button, Inline } from '@aspect/react';
 import { LogOut, User as UserIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { authClient } from '@/lib/auth-client';
 
 export function UserMenu() {
   const { data: session, isPending } = authClient.useSession();

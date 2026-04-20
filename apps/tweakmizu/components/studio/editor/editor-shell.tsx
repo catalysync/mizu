@@ -1,16 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
-import { Palette, Ruler, RotateCcw, Sparkles, Type, Undo2, Redo2 } from 'lucide-react';
 import { useStudioStore } from '@/store/studio-store';
 import type { ThemeStyleProps } from '@/types/theme';
 import { cn } from '@/utils/cn';
+import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
+import { Palette, Redo2, RotateCcw, Ruler, Sparkles, Type, Undo2 } from 'lucide-react';
+import { useState } from 'react';
 import { CommandPalette } from './command-palette';
 import { EditorPreviewPanel } from './preview-panel';
 import { ColorsTab } from './tabs/colors-tab';
-import { TypographyTab } from './tabs/typography-tab';
 import { RadiusTab } from './tabs/radius-tab';
+import { TypographyTab } from './tabs/typography-tab';
 
 type TabId = 'colors' | 'typography' | 'radius';
 
@@ -41,8 +41,8 @@ export function StudioEditorShell() {
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <Inline gap="0.5rem" align="center">
           <Badge tone="info">Editor</Badge>
-          <span className="text-sm text-muted-foreground">
-            Press <kbd className="rounded border border-border px-1 py-0.5 text-xs">⌘K</kbd> to edit
+          <span className="text-muted-foreground text-sm">
+            Press <kbd className="border-border rounded border px-1 py-0.5 text-xs">⌘K</kbd> to edit
             with AI.
           </span>
         </Inline>
@@ -92,7 +92,7 @@ export function StudioEditorShell() {
                     'flex items-center gap-2 rounded-md border px-3 py-2 text-left text-sm transition-colors',
                     active
                       ? 'border-primary bg-primary/5 text-foreground'
-                      : 'border-transparent text-muted-foreground hover:border-border hover:bg-muted/60',
+                      : 'text-muted-foreground hover:border-border hover:bg-muted/60 border-transparent',
                   )}
                 >
                   <Icon className="h-4 w-4" />
@@ -101,7 +101,7 @@ export function StudioEditorShell() {
               );
             })}
           </Stack>
-          <div className="rounded-md border border-border bg-background p-4">
+          <div className="border-border bg-background rounded-md border p-4">
             {activeTab === 'colors' ? (
               <ColorsTab styles={styles} onChange={handleStylesChange} />
             ) : null}
@@ -136,7 +136,7 @@ export function StudioEditorShell() {
                       'flex items-center gap-2 rounded-md border px-3 py-2 text-left text-sm transition-colors',
                       active
                         ? 'border-primary bg-primary/5 text-foreground'
-                        : 'border-transparent text-muted-foreground hover:border-border hover:bg-muted/60',
+                        : 'text-muted-foreground hover:border-border hover:bg-muted/60 border-transparent',
                     )}
                   >
                     <Icon className="h-4 w-4" />
@@ -145,7 +145,7 @@ export function StudioEditorShell() {
                 );
               })}
             </Stack>
-            <div className="rounded-md border border-border bg-background p-4">
+            <div className="border-border bg-background rounded-md border p-4">
               {activeTab === 'colors' ? (
                 <ColorsTab styles={styles} onChange={handleStylesChange} />
               ) : null}

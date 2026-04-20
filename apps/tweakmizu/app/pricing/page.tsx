@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { Button, Stack } from '@aspect/react';
-import { ArrowLeft } from 'lucide-react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { Button, Stack } from '@aspect/react';
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 import { PricingTable } from './pricing-table';
 
 export const metadata = {
@@ -26,13 +26,13 @@ export default function PricingPage() {
             </Button>
 
             <Stack gap="0.75rem" align="start">
-              <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+              <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
                 Pricing
               </span>
-              <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h1 className="text-foreground text-3xl font-bold tracking-tight md:text-5xl">
                 Free to start. Pro when you need more.
               </h1>
-              <p className="max-w-2xl text-lg text-muted-foreground">
+              <p className="text-muted-foreground max-w-2xl text-lg">
                 Free forever: editor, 3 industries, React + HTML export, 5 generations per hour. Pro
                 unlocks the full pattern catalog, multi-framework export, AI edit-by-prompt, and
                 unlimited projects.

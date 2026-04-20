@@ -1,8 +1,8 @@
+import { defaultThemeState } from '@/config/theme';
+import { ThemeEditorState } from '@/types/editor';
+import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ThemeEditorState } from '@/types/editor';
-import { defaultThemeState } from '@/config/theme';
-import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
 
 const MAX_HISTORY_COUNT = 30;
 const HISTORY_OVERRIDE_THRESHOLD_MS = 500;

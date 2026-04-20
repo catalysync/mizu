@@ -1,21 +1,21 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  Button,
   Badge,
+  Button,
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
+  CardHeader,
+  Inline,
   Input,
   Stack,
-  Inline,
   Table,
-  TableHead,
   TableBody,
-  TableRow,
-  TableHeader,
   TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 function DensitySample() {
   return (

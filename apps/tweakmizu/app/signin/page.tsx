@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { Button, Stack } from '@aspect/react';
-import { ArrowLeft } from 'lucide-react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { Button, Stack } from '@aspect/react';
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 import { SignInForm } from './signin-form';
 
 export const metadata = {
@@ -24,8 +24,8 @@ export default function SignInPage() {
             </Button>
 
             <Stack gap="0.5rem">
-              <h1 className="text-3xl font-bold tracking-tight text-foreground">Sign in</h1>
-              <p className="text-sm text-muted-foreground">
+              <h1 className="text-foreground text-3xl font-bold tracking-tight">Sign in</h1>
+              <p className="text-muted-foreground text-sm">
                 Sign in to save themes, projects, and subscribe to Pro.
               </p>
             </Stack>

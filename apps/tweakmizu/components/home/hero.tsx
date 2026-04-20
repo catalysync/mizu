@@ -1,12 +1,12 @@
 'use client';
 
+import { useEditorStore } from '@/store/editor-store';
+import { useThemePresetStore } from '@/store/preset-store';
+import { cn } from '@/utils/cn';
+import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
 import { Button } from '@aspect/react';
 import { ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
-import { useEditorStore } from '@/store/editor-store';
-import { useThemePresetStore } from '@/store/preset-store';
-import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
-import { cn } from '@/utils/cn';
 
 const perks = ['Live preview', 'Export plain CSS', '26 built-in themes', 'Try the demo'];
 
@@ -19,21 +19,21 @@ export function Hero() {
   const names = Object.keys(presets).slice(0, 18);
 
   return (
-    <section className="relative isolate w-full overflow-hidden px-6 pb-32 pt-24 md:pb-40 md:pt-32">
+    <section className="relative isolate w-full overflow-hidden px-6 pt-24 pb-32 md:pt-32 md:pb-40">
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,color-mix(in_srgb,var(--mizu-text-secondary)_20%,transparent)_1px,transparent_0)] bg-[size:24px_24px] [-webkit-mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_60%,transparent_100%)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_60%,transparent_100%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_1px_1px,color-mix(in_srgb,var(--mizu-text-secondary)_20%,transparent)_1px,transparent_0)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_60%,transparent_100%)] bg-[size:24px_24px] [-webkit-mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_60%,transparent_100%)]"
       />
 
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-6">
-        <span className="fade-up inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3.5 py-1.5 text-xs font-medium tracking-wide text-muted-foreground">
-          <span className="inline-block size-1.5 rounded-full bg-success" />
+        <span className="fade-up border-border bg-muted text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium tracking-wide">
+          <span className="bg-success inline-block size-1.5 rounded-full" />
           Built on the mizu design system
         </span>
 
-        <h1 className="fade-up fade-up-delay-1 m-0 max-w-4xl text-center text-5xl font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl">
+        <h1 className="fade-up fade-up-delay-1 text-foreground m-0 max-w-4xl text-center text-5xl leading-[1.05] font-extrabold tracking-tight sm:text-6xl md:text-7xl">
           Tweak your{' '}
-          <span className="bg-gradient-to-br from-primary to-success bg-clip-text text-transparent">
+          <span className="from-primary to-success bg-gradient-to-br bg-clip-text text-transparent">
             mizu
           </span>{' '}
           theme,
@@ -41,7 +41,7 @@ export function Hero() {
           right in the browser.
         </h1>
 
-        <p className="fade-up fade-up-delay-2 m-0 max-w-2xl text-center text-lg leading-relaxed text-muted-foreground">
+        <p className="fade-up fade-up-delay-2 text-muted-foreground m-0 max-w-2xl text-center text-lg leading-relaxed">
           Pick a preset, push colors, radius, shadows, and typography around until it looks right.
           Copy the generated CSS back into your project. No accounts, no build step.
         </p>
@@ -80,9 +80,9 @@ export function Hero() {
           {perks.map((perk) => (
             <span
               key={perk}
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground"
+              className="text-muted-foreground inline-flex items-center gap-1.5 text-sm"
             >
-              <span className="inline-flex size-4 items-center justify-center rounded-full bg-primary/15 text-primary">
+              <span className="bg-primary/15 text-primary inline-flex size-4 items-center justify-center rounded-full">
                 <Check size={10} />
               </span>
               {perk}
@@ -91,7 +91,7 @@ export function Hero() {
         </div>
 
         <div className="fade-up fade-up-delay-4 mt-10 w-full max-w-3xl">
-          <p className="m-0 mb-3 text-center text-xs uppercase tracking-widest text-muted-foreground">
+          <p className="text-muted-foreground m-0 mb-3 text-center text-xs tracking-widest uppercase">
             Start from a built-in theme
           </p>
           <div className="flex flex-wrap justify-center gap-2">
@@ -105,7 +105,7 @@ export function Hero() {
                   onClick={() => apply(name)}
                   aria-pressed={active}
                   className={cn(
-                    'inline-flex cursor-pointer items-center gap-2 rounded-full border bg-background px-3 py-2 text-sm font-medium capitalize text-foreground transition-colors',
+                    'bg-background text-foreground inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-2 text-sm font-medium capitalize transition-colors',
                     active
                       ? 'border-primary bg-primary/10'
                       : 'border-border hover:border-primary/40',
@@ -122,7 +122,7 @@ export function Hero() {
                     ).map((k) => (
                       <span
                         key={k}
-                        className="size-2.5 rounded-sm border border-border"
+                        className="border-border size-2.5 rounded-sm border"
                         style={{ backgroundColor: s[k] }}
                       />
                     ))}

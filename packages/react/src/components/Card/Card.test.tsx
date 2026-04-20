@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
-import { Card, CardHeader, CardBody, CardFooter } from './Card';
+import { axe } from 'vitest-axe';
+import { Card, CardBody, CardFooter, CardHeader } from './Card';
 
 describe('Card', () => {
   it('renders children', () => {

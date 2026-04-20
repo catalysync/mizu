@@ -1,6 +1,6 @@
 export {
   ChartOfAccounts,
-  type ChartOfAccountsProps,
-  type ChartOfAccountsNode,
   type AccountType,
+  type ChartOfAccountsNode,
+  type ChartOfAccountsProps,
 } from './ChartOfAccounts';

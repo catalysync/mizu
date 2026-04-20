@@ -2,11 +2,11 @@ export { MizuAdvancedQueryBuilder } from './MizuAdvancedQueryBuilder';
 export type { MizuAdvancedQueryBuilderProps } from './MizuAdvancedQueryBuilder';
 
 // Re-export commonly used items from react-awesome-query-builder
-export { Utils, BasicConfig } from '@react-awesome-query-builder/ui';
+export { BasicConfig, Utils } from '@react-awesome-query-builder/ui';
 export type {
+  BuilderProps,
   Config,
+  Fields,
   ImmutableTree,
   JsonGroup,
-  Fields,
-  BuilderProps,
 } from '@react-awesome-query-builder/ui';

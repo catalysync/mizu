@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Field, Stack, useFieldContext } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 // A thin wrapper that reads Field context and passes it to a raw input.
 // Real usage will be `<Field><Input /></Field>` once Input is wired — this

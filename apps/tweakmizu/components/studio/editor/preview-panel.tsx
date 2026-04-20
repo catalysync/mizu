@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import type { ThemeStyleProps } from '@/types/theme';
+import { applyThemeToElement } from '@/utils/apply-theme';
 import {
   Badge,
   Button,
@@ -12,8 +13,7 @@ import {
   Input,
   Stack,
 } from '@aspect/react';
-import { applyThemeToElement } from '@/utils/apply-theme';
-import type { ThemeStyleProps } from '@/types/theme';
+import { useEffect, useRef } from 'react';
 
 interface Props {
   styles: ThemeStyleProps;

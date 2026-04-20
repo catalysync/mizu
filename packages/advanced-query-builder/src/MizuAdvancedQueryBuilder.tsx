@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { Query, Builder, Utils } from '@react-awesome-query-builder/ui';
 import type {
+  BuilderProps,
   Config,
   ImmutableTree,
-  BuilderProps,
   JsonGroup,
 } from '@react-awesome-query-builder/ui';
+import { Builder, Query, Utils } from '@react-awesome-query-builder/ui';
+import * as React from 'react';
 
 const { checkTree, loadTree } = Utils;
 

@@ -1,21 +1,21 @@
+import { formatCurrency } from '@aspect/finance';
 import {
   AppContentHeader,
-  Card,
-  CardBody,
   Badge,
   Button,
-  Stack,
+  Card,
+  CardBody,
   Inline,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableHeader,
-  TableCell,
-  Separator,
   Pagination,
+  Separator,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from '@aspect/react';
-import { formatCurrency } from '@aspect/finance';
 import { orders } from './data';
 
 const statusTone = {

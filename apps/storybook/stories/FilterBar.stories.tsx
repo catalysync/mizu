@@ -1,5 +1,5 @@
+import { Button, FilterBar } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FilterBar, Button } from '@aspect/react';
 
 const meta = {
   title: 'Components/Data Display/FilterBar',

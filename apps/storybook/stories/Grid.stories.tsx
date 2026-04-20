@@ -1,5 +1,5 @@
+import { Card, CardBody, Grid } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Grid, Card, CardBody } from '@aspect/react';
 
 const meta = {
   title: 'Layouts/Grid',

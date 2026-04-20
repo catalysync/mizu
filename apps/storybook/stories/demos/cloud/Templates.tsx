@@ -1,5 +1,5 @@
+import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Grid, Inline } from '@aspect/react';
 import * as React from 'react';
-import { Card, CardHeader, CardBody, CardFooter, Badge, Button, Grid, Inline } from '@aspect/react';
 import { mockTemplates, type Template } from './data';
 
 const CATEGORY_LABEL: Record<Template['category'], string> = {

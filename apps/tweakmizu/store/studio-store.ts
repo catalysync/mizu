@@ -1,9 +1,9 @@
+import { defaultStudioExtensions } from '@/config/studio';
+import { defaultThemeState } from '@/config/theme';
+import type { StudioThemeExtensions, StudioThemeState } from '@/types/studio';
+import type { ThemeStyleProps } from '@/types/theme';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { defaultThemeState } from '@/config/theme';
-import { defaultStudioExtensions } from '@/config/studio';
-import type { StudioThemeState, StudioThemeExtensions } from '@/types/studio';
-import type { ThemeStyleProps } from '@/types/theme';
 
 const MAX_HISTORY_COUNT = 30;
 const HISTORY_OVERRIDE_THRESHOLD_MS = 500;

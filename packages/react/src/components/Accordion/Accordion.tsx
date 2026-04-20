@@ -1,5 +1,5 @@
-import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import * as React from 'react';
 import { cn } from '../../utils/cn';
 
 export const Accordion = React.forwardRef<

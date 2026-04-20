@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from './Select';
+import { axe } from 'vitest-axe';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './Select';
 
 function TestSelect() {
   return (

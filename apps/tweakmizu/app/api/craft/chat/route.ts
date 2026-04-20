@@ -1,9 +1,9 @@
-import Anthropic from '@anthropic-ai/sdk';
+import { STUDIO_FREE_GENERATIONS_PER_HOUR } from '@/lib/constants';
 import { CRAFT_TOOLS } from '@/lib/craft/agent-tools';
 import { getPackForDomain } from '@/lib/craft/packs';
 import { getCurrentUserId } from '@/lib/shared';
 import { getSubscriptionStatus } from '@/lib/subscription';
-import { STUDIO_FREE_GENERATIONS_PER_HOUR } from '@/lib/constants';
+import Anthropic from '@anthropic-ai/sdk';
 
 const client = new Anthropic();
 

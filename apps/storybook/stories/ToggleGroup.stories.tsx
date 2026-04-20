@@ -1,6 +1,6 @@
+import { ToggleGroup, ToggleGroupItem } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
-import { ToggleGroup, ToggleGroupItem } from '@aspect/react';
 
 const meta = {
   title: 'Components/Inputs/ToggleGroup',

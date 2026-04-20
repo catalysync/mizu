@@ -1,13 +1,4 @@
-import {
-  AppContentHeader,
-  Card,
-  CardBody,
-  Badge,
-  Button,
-  Stack,
-  Inline,
-  Separator,
-} from '@aspect/react';
+import { AppContentHeader, Badge, Button, Card, CardBody, Inline, Stack } from '@aspect/react';
 
 const replies = [
   {

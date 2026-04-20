@@ -1,5 +1,5 @@
+import { Checkbox, Fieldset, Input, Label, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Fieldset, Label, Input, Stack, Checkbox } from '@aspect/react';
 
 const meta = {
   title: 'Components/Atoms/Fieldset',

@@ -1,3 +1,5 @@
+import type { OutputFile, RenderContext } from '@/lib/patterns/types';
+import { definePattern } from '@/lib/patterns/types';
 import {
   Badge,
   Button,
@@ -14,8 +16,6 @@ import {
   TableHeader,
   TableRow,
 } from '@aspect/react';
-import { definePattern } from '@/lib/patterns/types';
-import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 
 const invoices = [
   { id: 'INV-2026-03', date: 'Mar 1, 2026', amount: '$49.00', status: 'paid' as const },

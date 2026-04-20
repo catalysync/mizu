@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { Field } from './Field';
-import { Input } from '../Input';
-import { Textarea } from '../Textarea';
 import { Checkbox } from '../Checkbox';
-import { Switch } from '../Switch';
+import { Input } from '../Input';
 import { RadioGroup, RadioItem } from '../Radio';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '../Select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../Select';
+import { Switch } from '../Switch';
+import { Textarea } from '../Textarea';
+import { Field } from './Field';
 
 describe('Field context integration — legacy controls', () => {
   it('Input inherits id/required/disabled/aria-invalid from Field', () => {

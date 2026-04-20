@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { QueryBuilder } from 'react-querybuilder';
 import type {
-  QueryBuilderProps,
-  RuleGroupType,
+  FullCombinator,
   FullField,
   FullOperator,
-  FullCombinator,
+  QueryBuilderProps,
+  RuleGroupType,
 } from 'react-querybuilder';
+import { QueryBuilder } from 'react-querybuilder';
 
 type BaseQBProps = QueryBuilderProps<RuleGroupType, FullField, FullOperator, FullCombinator>;
 

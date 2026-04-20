@@ -1,24 +1,24 @@
-import { useState } from 'react';
+import { TaxRateInput } from '@aspect/finance';
 import {
   AppContentHeader,
   Button,
   Card,
   CardBody,
-  Fieldset,
   Field,
+  Fieldset,
   Form,
-  Input,
   Inline,
+  Input,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
   Stack,
   Switch,
   Textarea,
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
 } from '@aspect/react';
-import { TaxRateInput } from '@aspect/finance';
+import { useState } from 'react';
 
 type Section = 'general' | 'tax' | 'integrations' | 'users' | 'billing' | 'data';
 

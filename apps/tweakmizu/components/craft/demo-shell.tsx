@@ -1,18 +1,18 @@
 'use client';
 
-import './demo-shell.css';
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Eye, ChevronLeft, Sparkles } from 'lucide-react';
-import { Button } from '@aspect/react';
-import { useCraftStore } from '@/store/craft-store';
-import { installPreviewPublisher } from './preview/preview-bridge';
-import { CraftProProvider } from './craft-pro-context';
-import { HydrationGate } from './hydration-gate';
-import { PreviewDock } from './preview-dock';
-import { ArchetypePicker } from './archetype-picker';
 import { ThemeToggle } from '@/components/theme-toggle';
 import type { ChromaIntensity } from '@/lib/craft/profile';
+import { useCraftStore } from '@/store/craft-store';
+import { Button } from '@aspect/react';
+import { ChevronLeft, Eye, Sparkles } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { ArchetypePicker } from './archetype-picker';
+import { CraftProProvider } from './craft-pro-context';
+import './demo-shell.css';
+import { HydrationGate } from './hydration-gate';
+import { PreviewDock } from './preview-dock';
+import { installPreviewPublisher } from './preview/preview-bridge';
 
 type Tab = 'archetypes' | 'knobs';
 

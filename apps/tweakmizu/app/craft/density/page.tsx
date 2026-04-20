@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import { DensityPanel } from '@/components/craft/cluster-panels';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Density — craft',

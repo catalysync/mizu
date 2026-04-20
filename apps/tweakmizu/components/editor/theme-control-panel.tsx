@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
-import { ScrollArea, Slider, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
 import ControlSection from '@/components/editor/control-section';
 import ThemePresetSelect from '@/components/editor/theme-preset-select';
 import type { ThemeStyleProps } from '@/types/theme';
+import { ScrollArea, Slider, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
 import { useQueryState } from 'nuqs';
+import React from 'react';
 import { ColorPicker } from './color-picker';
 
 type ControlTab = 'colors' | 'typography' | 'other';
@@ -33,7 +33,7 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="border-b border-border">
+      <div className="border-border border-b">
         <ThemePresetSelect />
       </div>
       <Tabs
@@ -186,7 +186,7 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
             <div className="flex flex-col gap-2 px-4 pb-4">
               <ControlSection title="Font Family" expanded>
                 <div className="flex flex-col gap-2">
-                  <label className="block text-sm text-muted-foreground">
+                  <label className="text-muted-foreground block text-sm">
                     Sans
                     <input
                       type="text"
@@ -195,7 +195,7 @@ const ThemeControlPanel = ({ styles, onChange }: ThemeControlPanelProps) => {
                       onChange={(e) => update('font-family-sans', e.target.value)}
                     />
                   </label>
-                  <label className="block text-sm text-muted-foreground">
+                  <label className="text-muted-foreground block text-sm">
                     Mono
                     <input
                       type="text"

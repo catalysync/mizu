@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { cn, Skeleton } from '@aspect/react';
+import * as React from 'react';
 
 export interface KpiCardProps extends React.HTMLAttributes<HTMLDivElement> {
   label: string;

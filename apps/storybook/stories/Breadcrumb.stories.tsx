@@ -1,5 +1,5 @@
+import { Breadcrumb, BreadcrumbCurrent, BreadcrumbLink } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Breadcrumb, BreadcrumbLink, BreadcrumbCurrent } from '@aspect/react';
 
 const meta = {
   title: 'Components/Navigation/Breadcrumb',

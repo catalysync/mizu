@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
 import { FONT_OPTIONS, type FontCategory } from '@/utils/fonts';
+import { NextResponse } from 'next/server';
 
 /**
  * Proxies the Google Fonts Developer API and caches the response for 24h.

@@ -1,6 +1,6 @@
+import type { Plan } from '@/lib/studio/composer';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Plan } from '@/lib/studio/composer';
 
 interface PlansStore {
   plans: Record<string, Plan>;

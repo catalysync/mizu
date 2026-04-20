@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@aspect/react';
 import { useDarkMode } from '@/hooks/use-dark-mode';
+import { Button } from '@aspect/react';
 import { Moon, Sun } from 'lucide-react';
 
 interface ThemeToggleProps {

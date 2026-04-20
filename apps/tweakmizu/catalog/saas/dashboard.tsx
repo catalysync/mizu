@@ -1,7 +1,7 @@
-import { Card, Grid, Inline, Stack } from '@aspect/react';
-import { DeltaIndicator, MetricTile, formatCurrency } from '@aspect/finance';
-import { definePattern } from '@/lib/patterns/types';
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
+import { definePattern } from '@/lib/patterns/types';
+import { DeltaIndicator, MetricTile, formatCurrency } from '@aspect/finance';
+import { Card, Grid, Inline, Stack } from '@aspect/react';
 
 interface Kpi {
   label: string;
@@ -27,7 +27,7 @@ function Preview() {
   return (
     <Stack gap="1rem">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
-        <span className="text-sm text-muted-foreground">Last 30 days · vs previous period</span>
+        <span className="text-muted-foreground text-sm">Last 30 days · vs previous period</span>
       </Inline>
       <Grid gap="1rem" min="14rem">
         {kpis.map((kpi) => (

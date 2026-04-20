@@ -1,11 +1,11 @@
-import { eq } from 'drizzle-orm';
-import { notFound } from 'next/navigation';
-import { Badge, Stack } from '@aspect/react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { db } from '@/db';
 import { share } from '@/db/schema';
 import type { Plan } from '@/lib/studio/composer';
+import { Badge, Stack } from '@aspect/react';
+import { eq } from 'drizzle-orm';
+import { notFound } from 'next/navigation';
 import { SharedPlanView } from './shared-plan-view';
 
 export const dynamic = 'force-dynamic';
@@ -41,10 +41,10 @@ export default async function SharePage({ params }: Props) {
           <Stack gap="1.5rem">
             <Stack gap="0.5rem">
               <Badge tone="info">Shared project</Badge>
-              <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              <h1 className="text-foreground text-3xl font-bold tracking-tight md:text-4xl">
                 {plan.intent.productName}
               </h1>
-              <p className="text-lg text-muted-foreground">{plan.intent.description}</p>
+              <p className="text-muted-foreground text-lg">{plan.intent.description}</p>
             </Stack>
             <SharedPlanView plan={plan} />
           </Stack>

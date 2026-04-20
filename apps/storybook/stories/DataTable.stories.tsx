@@ -1,5 +1,5 @@
+import { Badge, DataTable, Stack, type DataTableColumn } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DataTable, Badge, Stack, type DataTableColumn } from '@aspect/react';
 import { useState } from 'react';
 
 interface Customer {

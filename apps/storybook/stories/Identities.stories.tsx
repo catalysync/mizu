@@ -1,17 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  Button,
   Badge,
+  Button,
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
-  Input,
-  Switch,
-  Stack,
+  CardHeader,
   Inline,
-  Separator,
+  Input,
+  Stack,
+  Switch,
 } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 function SampleUI() {
   return (

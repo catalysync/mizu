@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
-import { MizuQueryBuilder, formatQuery } from '@aspect/query-builder';
 import type { RuleGroupType } from '@aspect/query-builder';
+import { MizuQueryBuilder, formatQuery } from '@aspect/query-builder';
 import {
-  Stack,
-  Card,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableHeader,
-  TableCell,
   Badge,
   Button,
+  Card,
   EmptyState,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import React from 'react';
 
 interface AppRecord {
   id: string;

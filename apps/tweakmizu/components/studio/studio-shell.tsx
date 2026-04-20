@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { cn } from '@/utils/cn';
+import { Stack } from '@aspect/react';
+import { FileStack, Home, LayoutGrid, Menu, Sliders, Sparkles, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Stack } from '@aspect/react';
-import { FileStack, LayoutGrid, Menu, Sliders, Sparkles, Home, X } from 'lucide-react';
-import { cn } from '@/utils/cn';
+import { useEffect, useState } from 'react';
 
 interface NavItem {
   href: string;
@@ -68,7 +68,7 @@ export function StudioShell({ children }: { children: React.ReactNode }) {
 
   const navContent = (
     <Stack gap="0.25rem">
-      <span className="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+      <span className="text-muted-foreground px-3 py-1 text-xs font-semibold tracking-wider uppercase">
         Studio
       </span>
       {NAV.map((item) => {
@@ -103,7 +103,7 @@ export function StudioShell({ children }: { children: React.ReactNode }) {
           aria-label={sidebarOpen ? 'Close studio menu' : 'Open studio menu'}
           aria-expanded={sidebarOpen}
           onClick={() => setSidebarOpen((v) => !v)}
-          className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted/70 hover:text-foreground"
+          className="text-muted-foreground hover:bg-muted/70 hover:text-foreground inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors"
         >
           {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           Studio menu
@@ -121,15 +121,15 @@ export function StudioShell({ children }: { children: React.ReactNode }) {
           />
           <nav
             aria-label="Studio navigation"
-            className="fixed inset-y-0 left-0 z-50 w-64 overflow-y-auto border-r border-border bg-background px-4 py-8 md:hidden"
+            className="border-border bg-background fixed inset-y-0 left-0 z-50 w-64 overflow-y-auto border-r px-4 py-8 md:hidden"
           >
             <div className="mb-4 flex items-center justify-between">
-              <span className="text-sm font-semibold text-foreground">Studio</span>
+              <span className="text-foreground text-sm font-semibold">Studio</span>
               <button
                 type="button"
                 aria-label="Close studio menu"
                 onClick={() => setSidebarOpen(false)}
-                className="rounded-md p-1 text-muted-foreground hover:text-foreground"
+                className="text-muted-foreground hover:text-foreground rounded-md p-1"
               >
                 <X className="h-5 w-5" />
               </button>

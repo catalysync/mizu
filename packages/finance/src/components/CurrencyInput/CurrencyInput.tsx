@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { NumberInput, type NumberInputProps } from '@aspect/react';
+import * as React from 'react';
 
 export interface CurrencyInputProps extends Omit<
   NumberInputProps,

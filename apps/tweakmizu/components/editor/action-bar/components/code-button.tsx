@@ -1,7 +1,10 @@
 'use client';
 
+import { useEditorStore } from '@/store/editor-store';
+import { generateThemeCode } from '@/utils/theme-style-generator';
 import {
   Button,
+  Inline,
   Modal,
   ModalBody,
   ModalContent,
@@ -11,10 +14,7 @@ import {
   ModalTrigger,
   ScrollArea,
   Stack,
-  Inline,
 } from '@aspect/react';
-import { useEditorStore } from '@/store/editor-store';
-import { generateThemeCode } from '@/utils/theme-style-generator';
 import { Braces, Check, Copy } from 'lucide-react';
 import { useMemo, useState } from 'react';
 

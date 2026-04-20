@@ -1,5 +1,5 @@
+import { Inline, Switch } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Switch, Inline } from '@aspect/react';
 
 const meta = {
   title: 'Components/Atoms/Switch',

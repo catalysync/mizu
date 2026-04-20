@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { Command as CommandPrimitive } from 'cmdk';
 import * as Dialog from '@radix-ui/react-dialog';
+import { Command as CommandPrimitive } from 'cmdk';
+import * as React from 'react';
 import { cn } from '../../utils/cn';
 
 export type CommandMenuProps = React.ComponentPropsWithoutRef<typeof Dialog.Root>;

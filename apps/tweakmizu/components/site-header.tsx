@@ -1,10 +1,10 @@
 'use client';
 
+import { cn } from '@/utils/cn';
 import { Button } from '@aspect/react';
 import { ChevronRight, Github, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { cn } from '@/utils/cn';
 import { ThemeToggle } from './theme-toggle';
 import { UserMenu } from './user-menu';
 
@@ -41,18 +41,18 @@ export function SiteHeader() {
       className={cn(
         'sticky top-0 z-50 w-full backdrop-blur-lg transition-colors',
         scrolled
-          ? 'border-b border-border bg-background/90'
+          ? 'border-border bg-background/90 border-b'
           : 'border-b border-transparent bg-transparent',
       )}
     >
       <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link
           href="/"
-          className="flex items-center gap-2 text-lg font-bold text-foreground no-underline"
+          className="text-foreground flex items-center gap-2 text-lg font-bold no-underline"
         >
           <span
             aria-hidden="true"
-            className="inline-block size-6 rounded-md bg-gradient-to-br from-primary to-success"
+            className="from-primary to-success inline-block size-6 rounded-md bg-gradient-to-br"
           />
           tweakmizu
         </Link>
@@ -63,7 +63,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               onClick={handleAnchor}
-              className="text-sm font-medium text-muted-foreground no-underline transition-colors hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground text-sm font-medium no-underline transition-colors"
             >
               {item.label}
             </a>
@@ -102,13 +102,13 @@ export function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div className="flex flex-col gap-3 border-t border-border bg-background px-6 py-4 md:hidden">
+        <div className="border-border bg-background flex flex-col gap-3 border-t px-6 py-4 md:hidden">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={handleAnchor}
-              className="text-sm text-foreground no-underline"
+              className="text-foreground text-sm no-underline"
             >
               {item.label}
             </a>

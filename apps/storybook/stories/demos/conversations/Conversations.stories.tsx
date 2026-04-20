@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import '@aspect/css/themes/customer-engagement';
-import { Badge, Button, Textarea, Stack, Inline, Separator } from '@aspect/react';
-import { conversations, activeThread, type Conversation, type Message } from './data';
-import { ConversationsShell } from './ConversationsShell';
+import { Badge, Button, Inline, Separator, Textarea } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ContactsPage } from './ContactsPage';
+import { ConversationsShell } from './ConversationsShell';
+import { activeThread, type Conversation, type Message } from './data';
 import { SavedRepliesPage } from './SavedRepliesPage';
 
 function ConversationItem({ conv, active }: { conv: Conversation; active?: boolean }) {

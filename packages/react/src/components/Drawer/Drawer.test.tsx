@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react';
-import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
+import { axe } from 'vitest-axe';
 import {
   Drawer,
+  DrawerBody,
+  DrawerClose,
   DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerDescription,
-  DrawerBody,
-  DrawerFooter,
-  DrawerClose,
 } from './Drawer';
 
 function TestDrawer({ side = 'right', open = true }: { side?: string; open?: boolean }) {

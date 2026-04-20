@@ -1,3 +1,5 @@
+import type { OutputFile, RenderContext } from '@/lib/patterns/types';
+import { definePattern } from '@/lib/patterns/types';
 import {
   Badge,
   Button,
@@ -11,8 +13,6 @@ import {
   TableHeader,
   TableRow,
 } from '@aspect/react';
-import { definePattern } from '@/lib/patterns/types';
-import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 
 interface Member {
   id: string;
@@ -68,7 +68,7 @@ function Preview() {
   return (
     <Stack gap="1rem">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
-        <span className="text-sm text-muted-foreground">
+        <span className="text-muted-foreground text-sm">
           {members.length} members · {members.filter((m) => m.status === 'invited').length} pending
         </span>
         <Button variant="primary" size="sm">

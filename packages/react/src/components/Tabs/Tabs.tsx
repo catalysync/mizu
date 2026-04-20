@@ -1,5 +1,5 @@
-import * as React from 'react';
 import * as RadixTabs from '@radix-ui/react-tabs';
+import * as React from 'react';
 import { cn } from '../../utils/cn';
 
 export const Tabs = React.forwardRef<

@@ -1,8 +1,5 @@
 'use client';
 
-import './foundation-panel.css';
-import { useState, useEffect, useMemo } from 'react';
-import { useCraftStore } from '@/store/craft-store';
 import type {
   ChromaIntensity,
   ColorMood,
@@ -10,6 +7,9 @@ import type {
   DarkModePhilosophy,
   HuePersonality,
 } from '@/lib/craft/profile';
+import { useCraftStore } from '@/store/craft-store';
+import { useEffect, useMemo, useState } from 'react';
+import './foundation-panel.css';
 
 const HUE_PERSONALITIES: Array<{
   id: HuePersonality;

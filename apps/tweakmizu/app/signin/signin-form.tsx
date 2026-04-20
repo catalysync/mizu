@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { authClient } from '@/lib/auth-client';
 import { Button, Inline, Input, Stack } from '@aspect/react';
 import { useRouter } from 'next/navigation';
-import { authClient } from '@/lib/auth-client';
+import { useState, type FormEvent } from 'react';
 
 type Mode = 'sign-in' | 'sign-up';
 
@@ -99,7 +99,7 @@ export function SignInForm() {
         />
 
         {error ? (
-          <p className="text-sm text-danger" role="alert">
+          <p className="text-danger text-sm" role="alert">
             {error}
           </p>
         ) : null}

@@ -1,12 +1,12 @@
 'use client';
 
-import { Button, ScrollArea, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
 import { useFullscreen } from '@/hooks/use-fullscreen';
 import type { ThemeStyleProps } from '@/types/theme';
+import { Button, ScrollArea, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
 import { Maximize, Minimize } from 'lucide-react';
 import { useQueryState } from 'nuqs';
-import MizuComponentsPreview from './theme-preview/mizu-components-preview';
 import MizuColorPreview from './theme-preview/mizu-color-preview';
+import MizuComponentsPreview from './theme-preview/mizu-components-preview';
 
 interface ThemePreviewPanelProps {
   styles: ThemeStyleProps;

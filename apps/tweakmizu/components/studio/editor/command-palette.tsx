@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState, type FormEvent } from 'react';
-import { Button, Inline, Stack, Textarea } from '@aspect/react';
-import { Sparkles, X } from 'lucide-react';
 import { useStudioStore } from '@/store/studio-store';
 import type { ThemeStyleProps } from '@/types/theme';
+import { Button, Inline, Stack, Textarea } from '@aspect/react';
+import { Sparkles, X } from 'lucide-react';
+import { useEffect, useState, type FormEvent } from 'react';
 
 interface ProposedEdits {
   edits: Partial<ThemeStyleProps>;
@@ -116,8 +116,8 @@ export function CommandPalette() {
         <Stack gap="0.75rem">
           <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
             <Inline gap="0.375rem" align="center">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <span className="text-sm font-semibold text-foreground">Edit theme with AI</span>
+              <Sparkles className="text-primary h-4 w-4" />
+              <span className="text-foreground text-sm font-semibold">Edit theme with AI</span>
             </Inline>
             <Button
               type="button"
@@ -144,7 +144,7 @@ export function CommandPalette() {
                 <Button type="submit" variant="primary" size="sm" loading={busy}>
                   Propose edits
                 </Button>
-                <span className="text-xs text-muted-foreground">
+                <span className="text-muted-foreground text-xs">
                   Cmd+K to toggle · Esc to close
                 </span>
               </Inline>
@@ -152,19 +152,19 @@ export function CommandPalette() {
           </form>
 
           {error ? (
-            <p className="text-sm text-danger" role="alert">
+            <p className="text-danger text-sm" role="alert">
               {error}
             </p>
           ) : null}
 
           {proposed ? (
-            <Stack gap="0.5rem" className="rounded-md border border-border bg-muted/40 p-3">
+            <Stack gap="0.5rem" className="border-border bg-muted/40 rounded-md border p-3">
               {proposed.rationale ? (
-                <p className="text-xs text-muted-foreground">{proposed.rationale}</p>
+                <p className="text-muted-foreground text-xs">{proposed.rationale}</p>
               ) : null}
               <Stack as="ul" gap="0.25rem" className="list-none p-0 text-xs">
                 {Object.entries(proposed.edits).map(([key, value]) => (
-                  <li key={key} className="font-mono text-foreground">
+                  <li key={key} className="text-foreground font-mono">
                     <strong>{key}</strong>: <span className="text-muted-foreground">{value}</span>
                   </li>
                 ))}

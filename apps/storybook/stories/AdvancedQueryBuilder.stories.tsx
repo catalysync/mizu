@@ -1,8 +1,8 @@
+import type { Config, ImmutableTree, JsonGroup } from '@aspect/advanced-query-builder';
+import { BasicConfig, MizuAdvancedQueryBuilder, Utils } from '@aspect/advanced-query-builder';
+import { Card, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
-import { MizuAdvancedQueryBuilder, BasicConfig, Utils } from '@aspect/advanced-query-builder';
-import type { Config, ImmutableTree, JsonGroup } from '@aspect/advanced-query-builder';
-import { Stack, Card } from '@aspect/react';
 
 const config: Config = {
   ...BasicConfig,

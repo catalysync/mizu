@@ -1,18 +1,18 @@
 'use client';
 
+import { useIsMobile } from '@/hooks/use-mobile';
+import { useThemeFromUrl } from '@/hooks/use-theme-from-url';
+import { useEditorStore } from '@/store/editor-store';
+import type { ThemeStyleProps } from '@/types/theme';
 import {
   ResizableGroup,
-  ResizablePanel,
   ResizableHandle,
+  ResizablePanel,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from '@aspect/react';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { useThemeFromUrl } from '@/hooks/use-theme-from-url';
-import { useEditorStore } from '@/store/editor-store';
-import type { ThemeStyleProps } from '@/types/theme';
 import { Sliders } from 'lucide-react';
 import React from 'react';
 import { ActionBar } from './action-bar/action-bar';

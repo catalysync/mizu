@@ -1,20 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  Stack,
-  Inline,
-  Badge,
-  Button,
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-  Separator,
   AppBreadcrumbs,
   AppContentHeader,
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Inline,
+  Stack,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
 } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Patterns/Detail Page',

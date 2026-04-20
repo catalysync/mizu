@@ -1,15 +1,15 @@
-import { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { createRef } from 'react';
 import { describe, expect, it } from 'vitest';
+import { axe } from 'vitest-axe';
 import {
   Table,
-  TableHead,
   TableBody,
-  TableRow,
-  TableCell,
-  TableHeader,
   TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from './Table';
 
 function BasicTable() {

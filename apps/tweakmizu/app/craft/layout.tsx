@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
-import { redirect } from 'next/navigation';
-import { headers } from 'next/headers';
-import { auth } from '@/lib/auth';
 import { CraftShell } from '@/components/craft/craft-shell';
+import { auth } from '@/lib/auth';
 import { getCraftProStatus } from '@/lib/craft/pro-gate';
+import type { Metadata } from 'next';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'craft — tweakmizu',

@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
-import { redirect } from 'next/navigation';
-import { headers } from 'next/headers';
-import { auth } from '@/lib/auth';
-import { getSubscriptionStatus } from '@/lib/subscription';
 import { getUserProfiles } from '@/actions/craft-profiles';
+import { auth } from '@/lib/auth';
 import { STUDIO_FREE_GENERATIONS_PER_HOUR } from '@/lib/constants';
+import { getSubscriptionStatus } from '@/lib/subscription';
+import type { Metadata } from 'next';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { SettingsPage } from './settings-page';
 
 export const metadata: Metadata = {

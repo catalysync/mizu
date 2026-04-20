@@ -1,6 +1,6 @@
-import { Badge, Button, Card, CardBody, Inline, Stack } from '@aspect/react';
-import { definePattern } from '@/lib/patterns/types';
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
+import { definePattern } from '@/lib/patterns/types';
+import { Badge, Button, Card, CardBody, Inline, Stack } from '@aspect/react';
 
 interface SavedReply {
   id: string;
@@ -45,7 +45,7 @@ function Preview() {
   return (
     <Stack gap="1rem">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
-        <span className="text-sm text-muted-foreground">
+        <span className="text-muted-foreground text-sm">
           {replies.length} templates · Type the shortcut in any reply to insert
         </span>
         <Button size="sm" variant="primary">

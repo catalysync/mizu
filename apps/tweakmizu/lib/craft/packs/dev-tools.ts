@@ -1,4 +1,4 @@
-import type { Entity, Page, NavItem } from '../app-schema';
+import type { Entity, NavItem, Page } from '../app-schema';
 import type { DomainPack, WorkflowDef } from './types';
 
 const entities: Entity[] = [

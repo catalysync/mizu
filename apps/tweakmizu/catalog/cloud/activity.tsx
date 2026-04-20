@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Badge, Button, Card, EmptyState, Stack } from '@aspect/react';
-import { definePattern } from '@/lib/patterns/types';
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
+import { definePattern } from '@/lib/patterns/types';
+import { Badge, Button, Card, EmptyState, Stack } from '@aspect/react';
+import * as React from 'react';
 
 type ActivityType = 'deploy' | 'config' | 'addon' | 'env';
 

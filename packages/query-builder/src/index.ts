@@ -3,17 +3,17 @@ export type { MizuQueryBuilderProps } from './MizuQueryBuilder';
 
 // Re-export commonly used types from react-querybuilder
 export type {
+  FullCombinator,
+  FullField,
+  FullOperator,
   RuleGroupType,
   RuleGroupTypeIC,
   RuleType,
-  FullField,
-  FullOperator,
-  FullCombinator,
 } from 'react-querybuilder';
 
 export {
   QueryBuilder,
-  formatQuery,
-  defaultOperators,
   defaultCombinators,
+  defaultOperators,
+  formatQuery,
 } from 'react-querybuilder';

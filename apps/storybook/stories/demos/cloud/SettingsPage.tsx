@@ -1,15 +1,15 @@
 import {
+  Button,
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
-  Input,
-  Switch,
-  Button,
-  Stack,
+  CardHeader,
   Inline,
-  Separator,
+  Input,
   Select,
+  Separator,
+  Stack,
+  Switch,
 } from '@aspect/react';
 
 export function SettingsPage() {

@@ -1,12 +1,12 @@
 'use client';
 
-import './preview-app.css';
-import { use, useEffect, useRef, useState } from 'react';
-import { useCraftStore } from '@/store/craft-store';
 import { profileToCss } from '@/lib/craft/profile-to-css';
-import { PreviewShell } from './preview-shell';
+import { useCraftStore } from '@/store/craft-store';
+import { use, useEffect, useRef, useState } from 'react';
 import { PageRenderer } from './page-renderer';
+import './preview-app.css';
 import { usePreviewBridge } from './preview-bridge';
+import { PreviewShell } from './preview-shell';
 import { PreviewToolbar } from './preview-toolbar';
 
 /**

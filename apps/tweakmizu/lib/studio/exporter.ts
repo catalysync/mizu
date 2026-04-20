@@ -1,5 +1,5 @@
-import { resolvePatternsForPlan, type Plan } from './composer';
 import type { OutputFile } from '@/lib/patterns/types';
+import { resolvePatternsForPlan, type Plan } from './composer';
 
 function slugifyName(input: string): string {
   return (

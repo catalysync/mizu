@@ -1,7 +1,7 @@
-import Anthropic from '@anthropic-ai/sdk';
 import { filterPatterns } from '@/lib/patterns/registry';
 import type { PatternModule } from '@/lib/patterns/types';
 import type { IntentSpec } from '@/types/studio';
+import Anthropic from '@anthropic-ai/sdk';
 import type { Plan, PlanEntry } from './composer';
 import { compose as deterministicCompose } from './composer';
 

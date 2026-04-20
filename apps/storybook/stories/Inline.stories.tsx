@@ -1,5 +1,5 @@
+import { Badge, Button, Inline } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Inline, Button, Badge } from '@aspect/react';
 
 const meta = {
   title: 'Layouts/Inline',

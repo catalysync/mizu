@@ -1,25 +1,24 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { FormGroup } from '@aspect/commerce';
 import {
+  AppBreadcrumbs,
+  AppContentHeader,
+  Button,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
-  Stack,
+  CardHeader,
   Inline,
   Input,
-  Textarea,
   Select,
-  SelectTrigger,
   SelectContent,
   SelectItem,
+  SelectTrigger,
   SelectValue,
-  Switch,
-  Button,
   Separator,
-  AppContentHeader,
-  AppBreadcrumbs,
+  Stack,
+  Switch,
+  Textarea,
 } from '@aspect/react';
-import { FormGroup } from '@aspect/commerce';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Patterns/Form Page',

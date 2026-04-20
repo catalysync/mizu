@@ -1,9 +1,9 @@
 'use client';
 
-import './knob-panel.css';
-import { useState, useMemo, useRef, useEffect } from 'react';
-import { fontOptionsByCategory, loadGoogleFont, type FontCategory } from '@/utils/fonts';
 import { useCraftStore } from '@/store/craft-store';
+import { fontOptionsByCategory, loadGoogleFont, type FontCategory } from '@/utils/fonts';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import './knob-panel.css';
 
 export interface KnobOption<T extends string = string> {
   id: T;

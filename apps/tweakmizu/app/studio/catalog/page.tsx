@@ -11,13 +11,13 @@ export default function StudioCatalog() {
   return (
     <Stack gap="2rem">
       <Stack gap="0.5rem">
-        <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+        <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
           Catalog
         </span>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+        <h1 className="text-foreground text-3xl font-bold tracking-tight">
           Patterns available in the studio
         </h1>
-        <p className="max-w-2xl text-lg text-muted-foreground">
+        <p className="text-muted-foreground max-w-2xl text-lg">
           Each pattern is a re-implementation on top of <code>@aspect/react</code>, grounded in an
           attributed source. The free tier ships these; Pro unlocks the full catalog.
         </p>

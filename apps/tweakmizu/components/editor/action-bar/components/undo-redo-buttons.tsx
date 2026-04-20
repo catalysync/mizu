@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@aspect/react';
 import { useEditorStore } from '@/store/editor-store';
+import { Button } from '@aspect/react';
 import { Redo, Undo } from 'lucide-react';
 
 export function UndoRedoButtons() {

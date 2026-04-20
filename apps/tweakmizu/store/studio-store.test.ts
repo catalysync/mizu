@@ -1,7 +1,7 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import { useStudioStore } from './studio-store';
 import { defaultStudioExtensions } from '@/config/studio';
 import { defaultThemeState } from '@/config/theme';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { useStudioStore } from './studio-store';
 
 describe('useStudioStore', () => {
   beforeEach(() => {

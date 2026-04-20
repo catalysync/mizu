@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'vitest-axe';
 import { describe, expect, it, vi } from 'vitest';
-import { Checkbox } from './Checkbox';
+import { axe } from 'vitest-axe';
 import { Field } from '../Field';
+import { Checkbox } from './Checkbox';
 
 describe('Checkbox', () => {
   it('renders a checkbox', () => {

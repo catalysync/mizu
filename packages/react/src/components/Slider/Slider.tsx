@@ -1,5 +1,5 @@
-import * as React from 'react';
 import * as RadixSlider from '@radix-ui/react-slider';
+import * as React from 'react';
 import { cn } from '../../utils/cn';
 
 export interface SliderProps extends React.ComponentPropsWithoutRef<typeof RadixSlider.Root> {

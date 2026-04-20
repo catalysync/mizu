@@ -1,5 +1,5 @@
-import type { ComponentType } from 'react';
 import type { Industry } from '@/types/studio';
+import type { ComponentType } from 'react';
 
 export type PatternKind = 'page' | 'section' | 'layout' | 'component' | 'interaction';
 

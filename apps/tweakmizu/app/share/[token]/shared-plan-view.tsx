@@ -1,9 +1,9 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { Badge, Split, Stack } from '@aspect/react';
 import { resolvePatternsForPlan, type Plan } from '@/lib/studio/composer';
 import { cn } from '@/utils/cn';
+import { Badge, Split, Stack } from '@aspect/react';
+import { useMemo, useState } from 'react';
 
 export function SharedPlanView({ plan }: { plan: Plan }) {
   const patterns = useMemo(() => resolvePatternsForPlan(plan), [plan]);
@@ -14,7 +14,7 @@ export function SharedPlanView({ plan }: { plan: Plan }) {
 
   return (
     <Stack gap="1.25rem">
-      <Stack gap="0.25rem" className="text-sm text-muted-foreground">
+      <Stack gap="0.25rem" className="text-muted-foreground text-sm">
         <span>{plan.rationale}</span>
       </Stack>
 
@@ -33,13 +33,13 @@ export function SharedPlanView({ plan }: { plan: Plan }) {
                   'rounded-lg border px-3 py-2 text-left transition-colors',
                   activePage
                     ? 'border-primary bg-primary/5'
-                    : 'border-transparent hover:border-border hover:bg-muted/60',
+                    : 'hover:border-border hover:bg-muted/60 border-transparent',
                 )}
               >
                 <Stack gap="0.125rem" align="start">
-                  <span className="text-sm font-semibold text-foreground">{item.title}</span>
-                  <span className="text-xs text-muted-foreground">{item.route}</span>
-                  <span className="text-[11px] text-muted-foreground">
+                  <span className="text-foreground text-sm font-semibold">{item.title}</span>
+                  <span className="text-muted-foreground text-xs">{item.route}</span>
+                  <span className="text-muted-foreground text-[11px]">
                     {p?.meta.name ?? item.patternId}
                   </span>
                 </Stack>
@@ -49,7 +49,7 @@ export function SharedPlanView({ plan }: { plan: Plan }) {
         </Stack>
         <section
           aria-label={`Preview of ${entry?.title ?? 'page'}`}
-          className="rounded-lg border border-border bg-background p-6"
+          className="border-border bg-background rounded-lg border p-6"
         >
           {Preview ? <Preview /> : null}
         </section>

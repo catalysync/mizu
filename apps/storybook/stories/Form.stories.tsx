@@ -1,5 +1,5 @@
+import { Button, Field, Form, Inline, Input, NumberInput, PasswordInput } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Form, Field, Input, NumberInput, PasswordInput, Button, Inline } from '@aspect/react';
 
 const meta = {
   title: 'Components/Atoms/Form',

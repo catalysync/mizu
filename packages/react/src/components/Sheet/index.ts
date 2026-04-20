@@ -1,12 +1,12 @@
 export {
   Sheet,
-  SheetTrigger,
+  SheetBody,
   SheetClose,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetDescription,
-  SheetBody,
+  SheetTrigger,
   type SheetContentProps,
   type SheetSide,
 } from './Sheet';

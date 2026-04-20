@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import { eq } from 'drizzle-orm';
-import { Badge, Button, Card, CardBody, CardHeader, Inline, Stack } from '@aspect/react';
-import { ArrowLeft } from 'lucide-react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { db } from '@/db';
 import { team, teamMember } from '@/db/schema';
 import { tryGetCurrentUserId } from '@/lib/shared';
+import { Badge, Button, Card, CardBody, CardHeader, Inline, Stack } from '@aspect/react';
+import { eq } from 'drizzle-orm';
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 import { TeamClient } from './team-client';
 
 export const metadata = {
@@ -64,11 +64,11 @@ export default async function TeamPage() {
             </Button>
 
             <Stack gap="0.5rem">
-              <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+              <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
                 Team
               </span>
-              <h1 className="text-3xl font-bold tracking-tight text-foreground">Team workspace</h1>
-              <p className="text-lg text-muted-foreground">
+              <h1 className="text-foreground text-3xl font-bold tracking-tight">Team workspace</h1>
+              <p className="text-muted-foreground text-lg">
                 Share themes, projects, and pattern presets across your team.
               </p>
             </Stack>

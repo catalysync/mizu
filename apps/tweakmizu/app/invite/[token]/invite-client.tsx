@@ -1,9 +1,9 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { Button, Inline, Stack } from '@aspect/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 interface Props {
   token: string;
@@ -20,7 +20,7 @@ export function InviteClient({ token, expired, accepted, teamName }: Props) {
   if (accepted) {
     return (
       <Stack gap="0.75rem">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           This invite has already been accepted. You should already be a member of {teamName}.
         </p>
         <Inline gap="0.5rem" align="center">
@@ -35,7 +35,7 @@ export function InviteClient({ token, expired, accepted, teamName }: Props) {
   if (expired) {
     return (
       <Stack gap="0.75rem">
-        <p className="text-sm text-danger">
+        <p className="text-danger text-sm">
           This invite has expired. Ask the team owner to send a new one.
         </p>
       </Stack>
@@ -80,7 +80,7 @@ export function InviteClient({ token, expired, accepted, teamName }: Props) {
         </Button>
       </Inline>
       {error ? (
-        <p className="text-sm text-danger" role="alert">
+        <p className="text-danger text-sm" role="alert">
           {error}
         </p>
       ) : null}

@@ -1,5 +1,5 @@
+import { Field, NumberInput, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { NumberInput, Field, Stack } from '@aspect/react';
 import { useState } from 'react';
 
 const meta = {

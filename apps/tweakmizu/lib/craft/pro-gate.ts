@@ -1,7 +1,7 @@
-import 'server-only';
-import { headers } from 'next/headers';
 import { auth } from '@/lib/auth';
 import { getSubscriptionStatus } from '@/lib/subscription';
+import { headers } from 'next/headers';
+import 'server-only';
 
 export interface CraftProStatus {
   isPro: boolean;

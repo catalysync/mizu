@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useCraftStore } from '@/store/craft-store';
 import { parseProfile, type DesignLanguageProfile } from '@/lib/craft/profile';
+import { useCraftStore } from '@/store/craft-store';
+import { useEffect } from 'react';
 
 /**
  * preview-bridge — keeps the iframe preview in sync with the parent craft

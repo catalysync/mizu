@@ -1,6 +1,6 @@
 import { defaultStyles } from '@/config/theme';
-import { ThemeStyleProps } from '@/types/theme';
 import { useThemePresetStore } from '@/store/preset-store';
+import { ThemeStyleProps } from '@/types/theme';
 
 /**
  * Merge a preset's partial overrides with the default mizu tokens,

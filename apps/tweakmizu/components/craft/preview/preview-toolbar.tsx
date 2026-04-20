@@ -1,10 +1,10 @@
 'use client';
 
-import './preview-toolbar.css';
-import { useState } from 'react';
-import Link from 'next/link';
-import { ArrowLeft, Monitor, Smartphone, Tablet, Sparkles } from 'lucide-react';
 import { useCraftStore } from '@/store/craft-store';
+import { ArrowLeft, Monitor, Smartphone, Sparkles, Tablet } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import './preview-toolbar.css';
 
 type DeviceSize = 'mobile' | 'tablet' | 'desktop';
 

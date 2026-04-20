@@ -1,7 +1,7 @@
 export {
   DataTable,
-  type DataTableProps,
   type DataTableColumn,
   type DataTableDensity,
+  type DataTableProps,
   type SortDirection,
 } from './DataTable';

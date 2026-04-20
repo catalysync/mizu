@@ -1,6 +1,6 @@
 export {
   HoverCard,
-  HoverCardTrigger,
   HoverCardContent,
+  HoverCardTrigger,
   type HoverCardContentProps,
 } from './HoverCard';

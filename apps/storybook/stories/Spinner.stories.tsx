@@ -1,5 +1,5 @@
+import { Inline, Spinner } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Spinner, Inline } from '@aspect/react';
 
 const meta = {
   title: 'Components/Atoms/Spinner',

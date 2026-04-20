@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import '@aspect/commerce/css';
 import { Thumbnail } from '@aspect/commerce';
+import '@aspect/commerce/css';
 import { Inline } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const IMG = 'https://picsum.photos/seed/mizu/200';
 

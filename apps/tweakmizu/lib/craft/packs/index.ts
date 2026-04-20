@@ -1,9 +1,9 @@
-import type { DomainPack } from './types';
+import { commercePack } from './commerce';
+import { devToolsPack } from './dev-tools';
 import { financePack } from './finance';
 import { healthcarePack } from './healthcare';
-import { devToolsPack } from './dev-tools';
-import { commercePack } from './commerce';
 import { hrPack } from './hr';
+import type { DomainPack } from './types';
 
 const packs: DomainPack[] = [financePack, healthcarePack, devToolsPack, commercePack, hrPack];
 

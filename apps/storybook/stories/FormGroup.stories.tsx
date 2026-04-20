@@ -1,16 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import '@aspect/commerce/css';
 import { FormGroup } from '@aspect/commerce';
-import {
-  Input,
-  Textarea,
-  Select,
-  SelectTrigger,
-  SelectContent,
-  SelectItem,
-  SelectValue,
-  Stack,
-} from '@aspect/react';
+import '@aspect/commerce/css';
+import { Input, Stack, Textarea } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Commerce/FormGroup',

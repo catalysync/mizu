@@ -1,13 +1,13 @@
 import { render } from '@testing-library/react';
-import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
+import { axe } from 'vitest-axe';
 import {
   CommandMenu,
-  CommandMenuInput,
-  CommandMenuList,
-  CommandMenuGroup,
-  CommandMenuItem,
   CommandMenuEmpty,
+  CommandMenuGroup,
+  CommandMenuInput,
+  CommandMenuItem,
+  CommandMenuList,
 } from './CommandMenu';
 
 describe('CommandMenu', () => {

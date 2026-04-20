@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatDelta, deltaIntent } from './delta';
+import { deltaIntent, formatDelta } from './delta';
 
 describe('formatDelta', () => {
   it('formats positive delta with plus sign', () => {

@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { NumberInput } from './NumberInput';
+import { axe } from 'vitest-axe';
 import { Field } from '../Field';
+import { NumberInput } from './NumberInput';
 
 describe('NumberInput', () => {
   it('renders a spinbutton', () => {

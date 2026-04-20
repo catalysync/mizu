@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { Input, Skeleton, cn } from '@aspect/react';
+import * as React from 'react';
+import { formatCurrency } from '../../utils/currency';
 import { CurrencyInput } from '../CurrencyInput/CurrencyInput';
 import { TaxRateInput } from '../TaxRateInput/TaxRateInput';
-import { formatCurrency } from '../../utils/currency';
 
 export interface InvoiceLineItemValue {
   id: string;

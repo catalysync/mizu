@@ -1,12 +1,12 @@
-import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
-import { LineChart } from './LineChart';
-import { BarChart } from './BarChart';
-import { VerticalBarChart } from './VerticalBarChart';
 import { AreaChart } from './AreaChart';
-import { PieChart } from './PieChart';
+import { BarChart } from './BarChart';
 import { ComboChart } from './ComboChart';
+import { LineChart } from './LineChart';
+import { PieChart } from './PieChart';
+import { VerticalBarChart } from './VerticalBarChart';
 
 const data = [
   { label: 'Jan', values: { rev: 10, cost: 4 } },

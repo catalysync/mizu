@@ -1,14 +1,14 @@
 import {
-  AppLayout,
-  AppHeader,
-  AppSidebar,
-  AppSidebarSection,
-  AppSidebarItem,
   AppContent,
+  AppHeader,
+  AppLayout,
+  AppSidebar,
+  AppSidebarItem,
+  AppSidebarSection,
   Badge,
   Button,
-  Input,
   Inline,
+  Input,
 } from '@aspect/react';
 
 interface ConversationsShellProps {

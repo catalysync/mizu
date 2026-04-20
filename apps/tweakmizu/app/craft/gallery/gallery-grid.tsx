@@ -1,12 +1,12 @@
 'use client';
 
-import './gallery.css';
-import { useRouter } from 'next/navigation';
-import { Heart } from 'lucide-react';
-import { Badge, Button } from '@aspect/react';
-import { useCraftStore } from '@/store/craft-store';
-import { profileToCss } from '@/lib/craft/profile-to-css';
 import { safeParseProfile } from '@/lib/craft/profile';
+import { profileToCss } from '@/lib/craft/profile-to-css';
+import { useCraftStore } from '@/store/craft-store';
+import { Badge, Button } from '@aspect/react';
+import { Heart } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import './gallery.css';
 
 interface GalleryProfile {
   id: string;

@@ -1,7 +1,7 @@
 'use client';
 
-import './hydration-gate.css';
 import { useEffect, useState } from 'react';
+import './hydration-gate.css';
 
 export function HydrationGate({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);

@@ -1,14 +1,13 @@
 'use client';
 
-import './archetype-picker.css';
-import { useCallback, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button } from '@aspect/react';
-import { ArrowRight, Lock, Sparkles, Shuffle } from 'lucide-react';
-import { Badge } from '@aspect/react';
 import { archetypes } from '@/lib/craft/archetypes';
-import { useCraftStore } from '@/store/craft-store';
 import { profileToCss } from '@/lib/craft/profile-to-css';
+import { useCraftStore } from '@/store/craft-store';
+import { Badge, Button } from '@aspect/react';
+import { ArrowRight, Lock, Shuffle, Sparkles } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
+import './archetype-picker.css';
 import { useIsPro } from './craft-pro-context';
 
 interface ArchetypePickerProps {

@@ -1,5 +1,5 @@
-import { ThemeStyleProps } from '@/types/theme';
 import { ThemeEditorState } from '@/types/editor';
+import { ThemeStyleProps } from '@/types/theme';
 
 /**
  * Default mizu token values — these match the :root declarations

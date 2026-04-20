@@ -1,12 +1,12 @@
 'use client';
 
-import { Button, Grid, Inline, Input, Stack, Textarea } from '@aspect/react';
-import { Sparkles } from 'lucide-react';
-import { useState, type FormEvent } from 'react';
-import { industries, getIndustry } from '@/lib/studio/industries';
+import { getIndustry, industries } from '@/lib/studio/industries';
 import { tones } from '@/lib/studio/tones';
 import { intentSpecSchema, type Industry, type IntentSpec, type Tone } from '@/types/studio';
 import { cn } from '@/utils/cn';
+import { Button, Grid, Inline, Input, Stack, Textarea } from '@aspect/react';
+import { Sparkles } from 'lucide-react';
+import { useState, type FormEvent } from 'react';
 
 interface Props {
   onSubmit?: (spec: IntentSpec) => void;
@@ -56,7 +56,7 @@ export function IntentForm({ onSubmit }: Props) {
     <form onSubmit={handleSubmit} aria-label="Studio intent form">
       <Stack gap="2rem">
         <Stack as="fieldset" gap="0.75rem">
-          <legend className="text-sm font-semibold text-foreground">Industry</legend>
+          <legend className="text-foreground text-sm font-semibold">Industry</legend>
           <Grid gap="0.75rem" min="16rem">
             {industries.map((item) => {
               const active = item.id === industry;
@@ -89,21 +89,21 @@ export function IntentForm({ onSubmit }: Props) {
                       align="center"
                       style={{ justifyContent: 'space-between', width: '100%' }}
                     >
-                      <span className="text-sm font-semibold text-foreground">{item.label}</span>
+                      <span className="text-foreground text-sm font-semibold">{item.label}</span>
                       {isPro ? (
-                        <span className="rounded-sm bg-muted px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                        <span className="bg-muted text-muted-foreground rounded-sm px-1.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase">
                           Pro
                         </span>
                       ) : null}
                     </Inline>
-                    <span className="text-xs text-muted-foreground">{item.description}</span>
+                    <span className="text-muted-foreground text-xs">{item.description}</span>
                   </Stack>
                 </label>
               );
             })}
           </Grid>
           {locked ? (
-            <p className="text-xs text-muted-foreground" role="status">
+            <p className="text-muted-foreground text-xs" role="status">
               {selectedIndustry?.label} is a Pro industry. You can still submit, but generation will
               fall back to a free industry until Pro is wired up.
             </p>
@@ -132,7 +132,7 @@ export function IntentForm({ onSubmit }: Props) {
         </Grid>
 
         <Stack as="fieldset" gap="0.75rem">
-          <legend className="text-sm font-semibold text-foreground">Tone</legend>
+          <legend className="text-foreground text-sm font-semibold">Tone</legend>
           <Grid gap="0.5rem" min="14rem">
             {tones.map((item) => {
               const active = item.id === tone;
@@ -159,8 +159,8 @@ export function IntentForm({ onSubmit }: Props) {
                       onChange={() => setTone(item.id)}
                       className="sr-only"
                     />
-                    <span className="text-sm font-semibold text-foreground">{item.label}</span>
-                    <span className="text-xs text-muted-foreground">{item.description}</span>
+                    <span className="text-foreground text-sm font-semibold">{item.label}</span>
+                    <span className="text-muted-foreground text-xs">{item.description}</span>
                   </Stack>
                 </label>
               );
@@ -169,7 +169,7 @@ export function IntentForm({ onSubmit }: Props) {
         </Stack>
 
         <Stack gap="0.5rem">
-          <label htmlFor="refinement" className="text-sm font-semibold text-foreground">
+          <label htmlFor="refinement" className="text-foreground text-sm font-semibold">
             Extra constraints <span className="text-muted-foreground">(optional)</span>
           </label>
           <Textarea
@@ -187,7 +187,7 @@ export function IntentForm({ onSubmit }: Props) {
             <Sparkles className="mr-2 h-4 w-4" />
             Generate project
           </Button>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-muted-foreground text-xs">
             Composer wiring is live — the form creates a plan and navigates to the project view.
           </span>
         </Inline>

@@ -1,1 +1,1 @@
-export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor, PopoverClose } from './Popover';
+export { Popover, PopoverAnchor, PopoverClose, PopoverContent, PopoverTrigger } from './Popover';

@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react';
-import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
+import { axe } from 'vitest-axe';
 import {
   Modal,
+  ModalBody,
+  ModalClose,
   ModalContent,
+  ModalDescription,
+  ModalFooter,
   ModalHeader,
   ModalTitle,
-  ModalDescription,
-  ModalBody,
-  ModalFooter,
   ModalTrigger,
-  ModalClose,
 } from './Modal';
 
 function TestModal({ size, open = true }: { size?: string; open?: boolean }) {

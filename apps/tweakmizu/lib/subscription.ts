@@ -1,7 +1,7 @@
-import 'server-only';
-import { and, eq } from 'drizzle-orm';
 import { db } from '@/db';
 import { subscription } from '@/db/schema';
+import { and, eq } from 'drizzle-orm';
+import 'server-only';
 import { PRO_PRODUCT_ID } from './constants';
 
 export type SubscriptionStatus = {

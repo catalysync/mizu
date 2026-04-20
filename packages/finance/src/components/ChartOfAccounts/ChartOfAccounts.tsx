@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { cn, Skeleton } from '@aspect/react';
+import * as React from 'react';
 import { formatAccounting } from '../../utils/currency';
 
 export type AccountType = 'asset' | 'liability' | 'equity' | 'revenue' | 'expense';

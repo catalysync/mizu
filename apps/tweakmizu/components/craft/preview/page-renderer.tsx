@@ -1,8 +1,8 @@
 'use client';
 
-import type { Page, Section, Entity } from '@/lib/craft/app-schema';
-import type { DesignLanguageProfile } from '@/lib/craft/profile';
+import type { Entity, Page, Section } from '@/lib/craft/app-schema';
 import { generateRows, type MockRow } from '@/lib/craft/mock-data';
+import type { DesignLanguageProfile } from '@/lib/craft/profile';
 
 interface PageRendererProps {
   page: Page;

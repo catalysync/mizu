@@ -6,17 +6,17 @@ export default function StudioHome() {
   return (
     <Stack gap="2rem">
       <Stack gap="1rem">
-        <span className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+        <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
           Studio
         </span>
-        <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+        <h1 className="text-foreground text-4xl font-bold tracking-tight md:text-5xl">
           Describe the product.
           <br />
           Pick the industry.
           <br />
           Get the design system.
         </h1>
-        <p className="max-w-2xl text-lg text-muted-foreground">
+        <p className="text-muted-foreground max-w-2xl text-lg">
           A running starter with layout primitives, design tokens, and real patterns mined from mizu
           storybook demos and attributed design systems.
         </p>
@@ -82,11 +82,11 @@ function QuickCard({
   return (
     <Link
       href={href}
-      className="rounded-lg border border-border bg-background p-5 transition-colors hover:border-border-strong hover:bg-muted/40"
+      className="border-border bg-background hover:border-border-strong hover:bg-muted/40 rounded-lg border p-5 transition-colors"
     >
       <Stack gap="0.375rem" align="start">
-        <span className="text-base font-semibold text-foreground">{title}</span>
-        <span className="text-sm text-muted-foreground">{description}</span>
+        <span className="text-foreground text-base font-semibold">{title}</span>
+        <span className="text-muted-foreground text-sm">{description}</span>
       </Stack>
     </Link>
   );

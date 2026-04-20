@@ -1,5 +1,5 @@
+import { Badge, Card, CardBody, Heading, Inline, Link, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack, Inline, Card, CardBody, Heading, Link, Badge } from '@aspect/react';
 import './welcome.css';
 
 function Welcome() {

@@ -1,10 +1,10 @@
-import { eq } from 'drizzle-orm';
-import { notFound } from 'next/navigation';
-import { Badge, Stack } from '@aspect/react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { db } from '@/db';
 import { team, teamInvite } from '@/db/schema';
+import { Badge, Stack } from '@aspect/react';
+import { eq } from 'drizzle-orm';
+import { notFound } from 'next/navigation';
 import { InviteClient } from './invite-client';
 
 export const dynamic = 'force-dynamic';
@@ -45,10 +45,10 @@ export default async function InviteAcceptPage({ params }: Props) {
           <Stack gap="1.5rem">
             <Stack gap="0.5rem">
               <Badge tone="info">Invitation</Badge>
-              <h1 className="text-3xl font-bold tracking-tight text-foreground">
+              <h1 className="text-foreground text-3xl font-bold tracking-tight">
                 Join {row.team.name}
               </h1>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 You&apos;ve been invited as <strong>{row.invite.role}</strong> to the{' '}
                 <strong>{row.team.name}</strong> workspace on tweakmizu.
               </p>

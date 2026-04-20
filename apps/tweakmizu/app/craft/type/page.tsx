@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import { TypePanel } from '@/components/craft/cluster-panels';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Type — craft',

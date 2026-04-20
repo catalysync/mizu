@@ -1,5 +1,5 @@
+import { estimatePasswordStrength, Field, PasswordInput, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PasswordInput, estimatePasswordStrength, Field, Stack } from '@aspect/react';
 import { useState } from 'react';
 
 const meta = {

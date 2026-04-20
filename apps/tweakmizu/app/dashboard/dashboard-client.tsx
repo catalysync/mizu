@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { usePlansStore } from '@/store/plans-store';
 import {
   Badge,
   Button,
@@ -15,7 +15,7 @@ import {
 } from '@aspect/react';
 import { FileStack, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
-import { usePlansStore } from '@/store/plans-store';
+import { useMemo } from 'react';
 
 function formatDate(iso: string): string {
   const date = new Date(iso);
@@ -62,7 +62,7 @@ export function DashboardClient() {
   return (
     <Stack gap="1rem">
       <Inline gap="0.75rem" align="center" style={{ justifyContent: 'space-between' }}>
-        <span className="text-sm text-muted-foreground">
+        <span className="text-muted-foreground text-sm">
           {sorted.length} project{sorted.length === 1 ? '' : 's'}
         </span>
         <Link href="/studio/new">
@@ -84,7 +84,7 @@ export function DashboardClient() {
                   <Badge tone="info">{plan.intent.stack}</Badge>
                   <Badge tone="neutral">{plan.intent.tone}</Badge>
                 </Inline>
-                <span className="text-xs text-muted-foreground">
+                <span className="text-muted-foreground text-xs">
                   {plan.entries.length} pages · created {formatDate(plan.createdAt)}
                 </span>
               </Stack>

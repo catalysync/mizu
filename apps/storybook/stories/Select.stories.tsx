@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Select,
-  SelectTrigger,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectLabel,
   SelectSeparator,
-  SelectGroup,
+  SelectTrigger,
   SelectValue,
 } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Select',

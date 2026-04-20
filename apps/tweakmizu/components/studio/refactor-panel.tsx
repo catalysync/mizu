@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
 import { Button, Inline, Stack, Textarea } from '@aspect/react';
 import { Check, Sparkles, X } from 'lucide-react';
+import { useState, type FormEvent } from 'react';
 
 interface Props {
   path: string;
@@ -57,12 +57,12 @@ export function RefactorPanel({ path, contents, substrate, onClose }: Props) {
   };
 
   return (
-    <Stack gap="0.75rem" className="rounded-lg border border-border bg-muted/30 p-4">
+    <Stack gap="0.75rem" className="border-border bg-muted/30 rounded-lg border p-4">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <Inline gap="0.5rem" align="center">
-          <Sparkles className="h-4 w-4 text-primary" />
-          <span className="text-sm font-semibold text-foreground">Refactor with AI</span>
-          <code className="text-xs text-muted-foreground">{path}</code>
+          <Sparkles className="text-primary h-4 w-4" />
+          <span className="text-foreground text-sm font-semibold">Refactor with AI</span>
+          <code className="text-muted-foreground text-xs">{path}</code>
         </Inline>
         <Button type="button" variant="ghost" size="icon" onClick={onClose} aria-label="Close">
           <X className="h-4 w-4" />
@@ -89,7 +89,7 @@ export function RefactorPanel({ path, contents, substrate, onClose }: Props) {
             >
               Rewrite file
             </Button>
-            {error ? <span className="text-sm text-danger">{error}</span> : null}
+            {error ? <span className="text-danger text-sm">{error}</span> : null}
           </Inline>
         </Stack>
       </form>
@@ -97,7 +97,7 @@ export function RefactorPanel({ path, contents, substrate, onClose }: Props) {
       {result ? (
         <Stack gap="0.5rem">
           <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
-            <span className="text-xs uppercase tracking-wider text-muted-foreground">
+            <span className="text-muted-foreground text-xs tracking-wider uppercase">
               Proposed rewrite
             </span>
             <Button type="button" variant="ghost" size="sm" onClick={handleCopy}>
@@ -105,7 +105,7 @@ export function RefactorPanel({ path, contents, substrate, onClose }: Props) {
               Copy
             </Button>
           </Inline>
-          <pre className="max-h-[360px] overflow-auto rounded-md bg-background p-3 text-xs leading-relaxed text-foreground">
+          <pre className="bg-background text-foreground max-h-[360px] overflow-auto rounded-md p-3 text-xs leading-relaxed">
             {result}
           </pre>
         </Stack>

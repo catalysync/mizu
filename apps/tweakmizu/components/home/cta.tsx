@@ -6,13 +6,13 @@ import Link from 'next/link';
 
 export function CTA() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary to-success px-6 py-24 text-primary-foreground">
+    <section className="from-primary to-success text-primary-foreground relative overflow-hidden bg-gradient-to-br px-6 py-24">
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:4rem_4rem] [-webkit-mask-image:radial-gradient(ellipse_at_center,#000_40%,transparent_80%)] [mask-image:radial-gradient(ellipse_at_center,#000_40%,transparent_80%)]"
+        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_at_center,#000_40%,transparent_80%)] bg-[size:4rem_4rem] [-webkit-mask-image:radial-gradient(ellipse_at_center,#000_40%,transparent_80%)]"
       />
       <div className="relative mx-auto max-w-3xl text-center">
-        <h2 className="m-0 text-5xl font-extrabold leading-[1.1] tracking-tight md:text-6xl">
+        <h2 className="m-0 text-5xl leading-[1.1] font-extrabold tracking-tight md:text-6xl">
           Your theme, one tab away.
         </h2>
         <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed opacity-90">

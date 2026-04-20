@@ -1,16 +1,16 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
-import { Code2, Download, Eye, Sliders, Sparkles } from 'lucide-react';
-import Link from 'next/link';
-import { buildProjectZip, downloadBlob } from '@/lib/studio/exporter';
-import { resolvePatternsForPlan } from '@/lib/studio/composer';
-import { usePlansStore } from '@/store/plans-store';
-import { cn } from '@/utils/cn';
 import { StudioEditorShell } from '@/components/studio/editor/editor-shell';
 import { RefactorPanel } from '@/components/studio/refactor-panel';
 import { RefineModal } from '@/components/studio/refine-modal';
+import { resolvePatternsForPlan } from '@/lib/studio/composer';
+import { buildProjectZip, downloadBlob } from '@/lib/studio/exporter';
+import { usePlansStore } from '@/store/plans-store';
+import { cn } from '@/utils/cn';
+import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
+import { Code2, Download, Eye, Sliders, Sparkles } from 'lucide-react';
+import Link from 'next/link';
+import { useMemo, useState } from 'react';
 
 type Tab = 'preview' | 'editor' | 'code' | 'export';
 
@@ -51,7 +51,7 @@ export function ProjectView({ projectId }: { projectId: string }) {
       <Stack as="header" gap="0.75rem">
         <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
           <Inline gap="0.5rem" align="center">
-            <h1 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            <h1 className="text-foreground text-2xl font-bold tracking-tight md:text-3xl">
               {plan.intent.productName}
             </h1>
             <Badge tone="neutral">{plan.intent.industry}</Badge>
@@ -63,15 +63,15 @@ export function ProjectView({ projectId }: { projectId: string }) {
             Refine with AI
           </Button>
         </Inline>
-        <p className="text-sm text-muted-foreground">{plan.intent.description}</p>
-        <p className="text-xs text-muted-foreground">{plan.rationale}</p>
+        <p className="text-muted-foreground text-sm">{plan.intent.description}</p>
+        <p className="text-muted-foreground text-xs">{plan.rationale}</p>
       </Stack>
 
       {refineOpen ? (
         <RefineModal plan={plan} onRefined={handleRefined} onClose={() => setRefineOpen(false)} />
       ) : null}
 
-      <div role="tablist" aria-label="Project view tabs" className="border-b border-border">
+      <div role="tablist" aria-label="Project view tabs" className="border-border border-b">
         <Inline gap="0.25rem" align="center">
           {TABS.map((tab) => {
             const Icon = tab.icon;
@@ -87,7 +87,7 @@ export function ProjectView({ projectId }: { projectId: string }) {
                   '-mb-px border-b-2 px-3 py-2 text-sm font-medium transition-colors',
                   active
                     ? 'border-primary text-foreground'
-                    : 'border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground',
+                    : 'text-muted-foreground hover:border-border-strong hover:text-foreground border-transparent',
                 )}
               >
                 <Inline gap="0.375rem" align="center">
@@ -126,9 +126,9 @@ export function ProjectView({ projectId }: { projectId: string }) {
 
 function MissingPlan() {
   return (
-    <Stack gap="1rem" className="rounded-lg border border-border bg-muted/30 p-8">
-      <h2 className="text-lg font-semibold text-foreground">Project not found</h2>
-      <p className="text-sm text-muted-foreground">
+    <Stack gap="1rem" className="border-border bg-muted/30 rounded-lg border p-8">
+      <h2 className="text-foreground text-lg font-semibold">Project not found</h2>
+      <p className="text-muted-foreground text-sm">
         Plans are stored locally in your browser. This project may have been generated on a
         different device, or cleared from storage.
       </p>
@@ -177,13 +177,13 @@ function PreviewTab({
                 'rounded-lg border px-3 py-2 text-left transition-colors',
                 active
                   ? 'border-primary bg-primary/5'
-                  : 'border-transparent hover:border-border hover:bg-muted/60',
+                  : 'hover:border-border hover:bg-muted/60 border-transparent',
               )}
             >
               <Stack gap="0.25rem" align="start">
-                <span className="text-sm font-semibold text-foreground">{item.title}</span>
-                <span className="text-xs text-muted-foreground">{item.route}</span>
-                <span className="text-[11px] text-muted-foreground">
+                <span className="text-foreground text-sm font-semibold">{item.title}</span>
+                <span className="text-muted-foreground text-xs">{item.route}</span>
+                <span className="text-muted-foreground text-[11px]">
                   {p?.meta.name ?? item.patternId}
                 </span>
               </Stack>
@@ -193,12 +193,12 @@ function PreviewTab({
       </Stack>
       <section
         aria-label={`Preview of ${entry?.title ?? 'page'}`}
-        className="rounded-lg border border-border bg-background p-6"
+        className="border-border bg-background rounded-lg border p-6"
       >
         {Preview ? (
           <Preview />
         ) : (
-          <div className="text-sm text-muted-foreground">
+          <div className="text-muted-foreground text-sm">
             Pattern {entry?.patternId} could not be resolved from the registry.
           </div>
         )}
@@ -253,7 +253,7 @@ function CodeTab({
                 'rounded-lg border px-3 py-2 text-left text-sm transition-colors',
                 active
                   ? 'border-primary bg-primary/5 text-foreground'
-                  : 'border-transparent text-muted-foreground hover:border-border hover:bg-muted/60',
+                  : 'text-muted-foreground hover:border-border hover:bg-muted/60 border-transparent',
               )}
             >
               {item.route}
@@ -263,8 +263,8 @@ function CodeTab({
       </Stack>
       <Stack gap="0.75rem">
         {files.map((file) => (
-          <article key={file.path} className="overflow-hidden rounded-lg border border-border">
-            <header className="border-b border-border bg-muted/40 px-3 py-2 text-xs">
+          <article key={file.path} className="border-border overflow-hidden rounded-lg border">
+            <header className="border-border bg-muted/40 border-b px-3 py-2 text-xs">
               <Inline align="center" gap="0.5rem" style={{ justifyContent: 'space-between' }}>
                 <code className="text-foreground">{file.path}</code>
                 <Inline gap="0.5rem" align="center">
@@ -290,7 +290,7 @@ function CodeTab({
                 onClose={() => setRefactorPath(null)}
               />
             ) : null}
-            <pre className="max-h-[480px] overflow-auto bg-background p-4 text-xs leading-relaxed text-foreground">
+            <pre className="bg-background text-foreground max-h-[480px] overflow-auto p-4 text-xs leading-relaxed">
               {file.contents}
             </pre>
           </article>
@@ -347,9 +347,9 @@ function ExportTab({ plan }: { plan: StoredPlan }) {
 
   return (
     <Stack gap="1rem">
-      <Stack gap="0.75rem" className="rounded-lg border border-border bg-background p-6">
-        <h2 className="text-lg font-semibold text-foreground">Download as a zip</h2>
-        <p className="text-sm text-muted-foreground">
+      <Stack gap="0.75rem" className="border-border bg-background rounded-lg border p-6">
+        <h2 className="text-foreground text-lg font-semibold">Download as a zip</h2>
+        <p className="text-muted-foreground text-sm">
           The generated project is a standalone Next.js app. Unzip, run <code>pnpm install</code>,
           then <code>pnpm dev</code>. Includes <code>.cursor/rules</code> and{' '}
           <code>.claude/skills</code> so subsequent AI edits inherit the grammar.
@@ -359,13 +359,13 @@ function ExportTab({ plan }: { plan: StoredPlan }) {
             <Download className="mr-2 h-4 w-4" />
             Download zip
           </Button>
-          {error ? <span className="text-sm text-danger">{error}</span> : null}
+          {error ? <span className="text-danger text-sm">{error}</span> : null}
         </Inline>
       </Stack>
 
-      <Stack gap="0.75rem" className="rounded-lg border border-border bg-background p-6">
-        <h2 className="text-lg font-semibold text-foreground">Share link</h2>
-        <p className="text-sm text-muted-foreground">
+      <Stack gap="0.75rem" className="border-border bg-background rounded-lg border p-6">
+        <h2 className="text-foreground text-lg font-semibold">Share link</h2>
+        <p className="text-muted-foreground text-sm">
           Create a read-only preview URL for this project. Sign-in required — the share is tied to
           your account.
         </p>
@@ -373,12 +373,12 @@ function ExportTab({ plan }: { plan: StoredPlan }) {
           <Button onClick={handleShare} variant="secondary" loading={shareBusy}>
             Create share link
           </Button>
-          {shareError ? <span className="text-sm text-danger">{shareError}</span> : null}
+          {shareError ? <span className="text-danger text-sm">{shareError}</span> : null}
         </Inline>
         {shareUrl ? (
           <Inline gap="0.5rem" align="center">
-            <code className="rounded bg-muted px-2 py-1 text-xs text-foreground">{shareUrl}</code>
-            <span className="text-xs text-muted-foreground">(copied to clipboard)</span>
+            <code className="bg-muted text-foreground rounded px-2 py-1 text-xs">{shareUrl}</code>
+            <span className="text-muted-foreground text-xs">(copied to clipboard)</span>
           </Inline>
         ) : null}
       </Stack>

@@ -1,26 +1,24 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { formatCompact } from '@aspect/finance';
 import {
-  AppLayout,
-  AppHeader,
-  AppSidebar,
-  AppSidebarSection,
-  AppSidebarItem,
+  AppBreadcrumbs,
   AppContent,
   AppContentHeader,
-  AppBreadcrumbs,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableHeader,
-  TableCell,
+  AppHeader,
+  AppLayout,
+  AppSidebar,
+  AppSidebarItem,
+  AppSidebarSection,
   Badge,
   Button,
   Input,
-  Stack,
-  Inline,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { datasets, pipelines, workspace, type WorkspaceItem } from './data';
 
 const STATUS_TONE = {

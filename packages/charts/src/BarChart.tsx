@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Bar, BarChart as RBarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { Bar, CartesianGrid, BarChart as RBarChart, XAxis, YAxis } from 'recharts';
 
 import { ChartContainer } from './ChartContainer';
-import { ChartTooltip, ChartTooltipContent } from './ChartTooltip';
+import { ChartEmpty } from './ChartEmpty';
 import { ChartLegend, ChartLegendContent } from './ChartLegend';
 import { ChartSkeleton } from './ChartSkeleton';
-import { ChartEmpty } from './ChartEmpty';
+import { ChartTooltip, ChartTooltipContent } from './ChartTooltip';
 import { resolveColor } from './utils/colors';
 import { cartesianGridProps, chartTooltipProps, xAxisProps, yAxisProps } from './utils/elements';
 import { prepareData } from './utils/muncher';

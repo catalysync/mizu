@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
-import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
-import { ToastProvider, Toast, ToastTitle, ToastDescription, ToastViewport } from './Toast';
+import { axe } from 'vitest-axe';
+import { Toast, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from './Toast';
 
 describe('Toast', () => {
   it('renders without crashing', () => {

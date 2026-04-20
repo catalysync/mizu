@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { AreaChart } from '@aspect/charts';
-import { monthlyRevenue, formatUsd } from './_fixtures';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { formatUsd, monthlyRevenue } from './_fixtures';
 
 const meta = {
   title: 'Charts/AreaChart',

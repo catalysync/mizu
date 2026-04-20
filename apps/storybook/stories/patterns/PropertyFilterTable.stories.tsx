@@ -1,19 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
+import type { PropertyFilterProperty, PropertyFilterQuery } from '@aspect/react';
 import {
+  Badge,
+  Card,
+  EmptyState,
   PropertyFilter,
   Stack,
-  Card,
   Table,
-  TableHead,
   TableBody,
-  TableRow,
-  TableHeader,
   TableCell,
-  Badge,
-  EmptyState,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from '@aspect/react';
-import type { PropertyFilterQuery, PropertyFilterProperty } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import React from 'react';
 
 interface AppRecord {
   id: string;

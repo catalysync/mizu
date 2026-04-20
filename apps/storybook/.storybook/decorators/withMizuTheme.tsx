@@ -1,5 +1,5 @@
-import React from 'react';
 import type { Decorator } from '@storybook/react-vite';
+import React from 'react';
 
 /**
  * Applies the `theme` + `identity` toolbar globals to the story root.

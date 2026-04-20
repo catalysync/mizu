@@ -1,5 +1,5 @@
+import { Badge, Button, Cluster } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Cluster, Badge, Button } from '@aspect/react';
 
 const meta = {
   title: 'Layouts/Cluster',

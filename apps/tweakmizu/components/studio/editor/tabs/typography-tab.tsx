@@ -1,7 +1,7 @@
 'use client';
 
-import { Stack } from '@aspect/react';
 import type { ThemeStyleProps } from '@/types/theme';
+import { Stack } from '@aspect/react';
 
 interface Props {
   styles: ThemeStyleProps;
@@ -29,7 +29,7 @@ export function TypographyTab({ styles, onChange }: Props) {
   return (
     <Stack gap="1.25rem">
       <Stack gap="0.5rem">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
           Sans family
         </h3>
         <FamilyPicker
@@ -39,7 +39,7 @@ export function TypographyTab({ styles, onChange }: Props) {
         />
       </Stack>
       <Stack gap="0.5rem">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
           Mono family
         </h3>
         <FamilyPicker

@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import { axe } from 'vitest-axe';
 import { DataTable, type DataTableColumn } from './DataTable';
 
 interface Row {

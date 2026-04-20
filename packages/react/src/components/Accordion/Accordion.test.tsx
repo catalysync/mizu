@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'vitest-axe';
 import { describe, expect, it } from 'vitest';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './Accordion';
+import { axe } from 'vitest-axe';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './Accordion';
 
 function TestAccordion({ type = 'single' }: { type?: 'single' | 'multiple' }) {
   return (

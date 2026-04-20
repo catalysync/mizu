@@ -1,5 +1,5 @@
+import { Heading, Inline, Stack } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack, Inline, Heading } from '@aspect/react';
 import { tokensByPrefix, type TokenEntry } from './tokens-helper';
 
 const groups: { title: string; filter: RegExp }[] = [

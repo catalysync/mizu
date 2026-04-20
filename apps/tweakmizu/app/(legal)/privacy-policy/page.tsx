@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <article className="mx-auto max-w-2xl px-6 py-16 font-sans leading-relaxed text-foreground">
+    <article className="text-foreground mx-auto max-w-2xl px-6 py-16 font-sans leading-relaxed">
       <h1 className="m-0 text-4xl font-extrabold tracking-tight">Privacy Policy</h1>
-      <p className="mt-2 mb-8 text-sm text-muted-foreground">Last updated: April 11, 2026</p>
+      <p className="text-muted-foreground mt-2 mb-8 text-sm">Last updated: April 11, 2026</p>
 
       <Section title="1. Overview">
         tweakmizu is a static, client-side tool for editing themes in the mizu design system. It
@@ -67,7 +67,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   return (
     <section className="mb-7">
       <h2 className="mb-2 text-lg font-bold">{title}</h2>
-      <p className="m-0 text-muted-foreground">{children}</p>
+      <p className="text-muted-foreground m-0">{children}</p>
     </section>
   );
 }

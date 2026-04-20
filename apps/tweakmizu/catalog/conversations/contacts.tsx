@@ -1,3 +1,5 @@
+import type { OutputFile, RenderContext } from '@/lib/patterns/types';
+import { definePattern } from '@/lib/patterns/types';
 import {
   Badge,
   Button,
@@ -12,8 +14,6 @@ import {
   TableHeader,
   TableRow,
 } from '@aspect/react';
-import { definePattern } from '@/lib/patterns/types';
-import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 
 interface Contact {
   id: string;

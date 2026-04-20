@@ -1,6 +1,6 @@
+import { Button, Collapsible, CollapsibleContent, CollapsibleTrigger } from '@aspect/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent, Button } from '@aspect/react';
 
 const meta = {
   title: 'Components/Data Display/Collapsible',

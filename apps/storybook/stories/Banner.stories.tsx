@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import '@aspect/commerce/css';
 import { Banner } from '@aspect/commerce';
+import '@aspect/commerce/css';
 import { Stack } from '@aspect/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Commerce/Banner',

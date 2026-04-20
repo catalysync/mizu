@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from '@aspect/react';
-import { CloudShell } from './CloudShell';
-import { AppsPage } from './Apps';
-import { TemplatesPage } from './Templates';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ActivityPage } from './Activity';
-import { SettingsPage } from './SettingsPage';
+import { AppsPage } from './Apps';
 import { BillingPage } from './BillingPage';
+import { CloudShell } from './CloudShell';
 import { IconPlus } from './icons';
+import { SettingsPage } from './SettingsPage';
+import { TemplatesPage } from './Templates';
 
 const meta = {
   title: 'Demos/Cloud',

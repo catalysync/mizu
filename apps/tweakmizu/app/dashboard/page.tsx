@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { Button, Stack } from '@aspect/react';
-import { ArrowLeft } from 'lucide-react';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { Button, Stack } from '@aspect/react';
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 import { DashboardClient } from './dashboard-client';
 
 export const metadata = {
@@ -24,10 +24,10 @@ export default function DashboardPage() {
             </Button>
 
             <Stack gap="0.5rem">
-              <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              <h1 className="text-foreground text-3xl font-bold tracking-tight md:text-4xl">
                 Dashboard
               </h1>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-muted-foreground text-lg">
                 Your generated projects and saved themes live here.
               </p>
             </Stack>

@@ -1,8 +1,8 @@
 'use client';
 
-import { useMemo } from 'react';
-import { useCraftStore } from '@/store/craft-store';
 import { profileToCss } from '@/lib/craft/profile-to-css';
+import { useCraftStore } from '@/store/craft-store';
+import { useMemo } from 'react';
 
 /**
  * Inline visual demos for knob panel sections. Each demo reads from the

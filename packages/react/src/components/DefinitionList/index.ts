@@ -1,6 +1,6 @@
 export {
   DefinitionList,
-  type DefinitionListProps,
   type DefinitionListItem,
   type DefinitionListOrientation,
+  type DefinitionListProps,
 } from './DefinitionList';
