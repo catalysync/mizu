@@ -31,5 +31,47 @@
       "normal": { "$value": "1.5", "$type": "number" },
       "loose": { "$value": "1.75", "$type": "number" }
     }
+  },
+  "text": {
+    "xs": {
+      "size": { "$value": "{font.size.xs}", "$type": "dimension" },
+      "line-height": { "$value": "1rem", "$type": "dimension" },
+      "tracking": { "$value": "0", "$type": "dimension" }
+    },
+    "sm": {
+      "size": { "$value": "{font.size.sm}", "$type": "dimension" },
+      "line-height": { "$value": "1.25rem", "$type": "dimension" },
+      "tracking": { "$value": "0", "$type": "dimension" }
+    },
+    "base": {
+      "size": { "$value": "{font.size.base}", "$type": "dimension" },
+      "line-height": { "$value": "1.5rem", "$type": "dimension" },
+      "tracking": { "$value": "0", "$type": "dimension" }
+    },
+    "lg": {
+      "size": { "$value": "{font.size.lg}", "$type": "dimension" },
+      "line-height": { "$value": "1.625rem", "$type": "dimension" },
+      "tracking": { "$value": "-0.005em", "$type": "dimension" }
+    },
+    "xl": {
+      "size": { "$value": "{font.size.xl}", "$type": "dimension" },
+      "line-height": { "$value": "1.75rem", "$type": "dimension" },
+      "tracking": { "$value": "-0.01em", "$type": "dimension" }
+    },
+    "2xl": {
+      "size": { "$value": "{font.size.2xl}", "$type": "dimension" },
+      "line-height": { "$value": "2rem", "$type": "dimension" },
+      "tracking": { "$value": "-0.01em", "$type": "dimension" }
+    },
+    "3xl": {
+      "size": { "$value": "{font.size.3xl}", "$type": "dimension" },
+      "line-height": { "$value": "2.25rem", "$type": "dimension" },
+      "tracking": { "$value": "-0.015em", "$type": "dimension" }
+    },
+    "4xl": {
+      "size": { "$value": "{font.size.4xl}", "$type": "dimension" },
+      "line-height": { "$value": "2.625rem", "$type": "dimension" },
+      "tracking": { "$value": "-0.02em", "$type": "dimension" }
+    }
   }
 }

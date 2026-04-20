@@ -9,6 +9,10 @@ const weights = tokensByPrefix(/^FontWeight/);
 const lineHeights = tokensByPrefix(/^FontLineHeight/);
 const families = tokensByPrefix(/^FontFamily/);
 
+// Composite per-size tokens: size + line-height + tracking bundled per scale step.
+// Exclude semantic Text* color tokens (TextPrimary, TextSecondary, TextDisabled, TextInverse).
+const textScale = ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl'] as const;
+
 const utilities: string[] = [
   'mizu-body',
   'mizu-body--sm',
@@ -25,12 +29,95 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Scale: Story = {
+export const Composite: Story = {
+  name: 'Composite per-size (recommended)',
   render: () => (
     <Stack gap="2rem">
       <Stack gap="0.75rem">
         <Heading level={2} size="md" className="story-section-title">
-          Type scale
+          Composite per-size tokens
+        </Heading>
+        <p
+          className="mizu-body--sm"
+          style={{ maxWidth: '48rem', color: 'var(--mizu-text-secondary)' }}
+        >
+          Each scale step bundles a font-size, a line-height, and a letter-spacing that were tuned
+          together. Use these for body copy, headings, and any text that should look right with zero
+          decisions. CSS variables are{' '}
+          <code className="mizu-mono">
+            --mizu-text-&#123;step&#125;-&#123;size|line-height|tracking&#125;
+          </code>
+          .
+        </p>
+        <Stack gap="0.5rem">
+          {textScale.map((step) => (
+            <Inline key={step} gap="1rem" align="start">
+              <code className="mizu-body--sm" style={{ width: '4rem', paddingTop: '0.25rem' }}>
+                {step}
+              </code>
+              <span
+                style={{
+                  fontSize: `var(--mizu-text-${step}-size)`,
+                  lineHeight: `var(--mizu-text-${step}-line-height)`,
+                  letterSpacing: `var(--mizu-text-${step}-tracking)`,
+                  maxWidth: '32rem',
+                }}
+              >
+                {SAMPLE}
+              </span>
+            </Inline>
+          ))}
+        </Stack>
+      </Stack>
+
+      <Stack gap="0.75rem">
+        <Heading level={2} size="md" className="story-section-title">
+          Utility classes
+        </Heading>
+        <p
+          className="mizu-body--sm"
+          style={{ maxWidth: '48rem', color: 'var(--mizu-text-secondary)' }}
+        >
+          Utility classes consume composite tokens, so size + line-height + tracking always pair
+          correctly.
+        </p>
+        <Stack gap="0.5rem">
+          {utilities.map((cls) => (
+            <Inline key={cls} gap="1rem" align="baseline">
+              <code className="mizu-body--sm" style={{ width: '10rem' }}>
+                .{cls}
+              </code>
+              <span className={cls}>{SAMPLE}</span>
+            </Inline>
+          ))}
+        </Stack>
+      </Stack>
+    </Stack>
+  ),
+};
+
+export const GenericScales: Story = {
+  name: 'Generic scales (custom ramps)',
+  render: () => (
+    <Stack gap="2rem">
+      <Stack gap="0.75rem">
+        <Heading level={2} size="md" className="story-section-title">
+          Generic scales
+        </Heading>
+        <p
+          className="mizu-body--sm"
+          style={{ maxWidth: '48rem', color: 'var(--mizu-text-secondary)' }}
+        >
+          Individual axes: size, weight, line-height, family. Reach for these when you need a custom
+          ramp the composites don&apos;t cover (e.g. a data-dense table row that wants a tighter
+          line-height than the composite default). You own the pairing — pick a size and a
+          line-height that make sense together.
+        </p>
+      </Stack>
+
+      <Stack gap="0.75rem">
+        <Heading level={3} size="sm" className="story-section-title">
+          Font sizes
         </Heading>
         <Stack gap="0.5rem">
           {sizes.map((s) => (
@@ -48,7 +135,7 @@ export const Scale: Story = {
       </Stack>
 
       <Stack gap="0.75rem">
-        <Heading level={2} size="md" className="story-section-title">
+        <Heading level={3} size="sm" className="story-section-title">
           Weights
         </Heading>
         <Stack gap="0.5rem">
@@ -67,7 +154,7 @@ export const Scale: Story = {
       </Stack>
 
       <Stack gap="0.75rem">
-        <Heading level={2} size="md" className="story-section-title">
+        <Heading level={3} size="sm" className="story-section-title">
           Line heights
         </Heading>
         <Stack gap="0.5rem">
@@ -95,7 +182,7 @@ export const Scale: Story = {
       </Stack>
 
       <Stack gap="0.75rem">
-        <Heading level={2} size="md" className="story-section-title">
+        <Heading level={3} size="sm" className="story-section-title">
           Families
         </Heading>
         <Stack gap="0.5rem">
@@ -109,22 +196,6 @@ export const Scale: Story = {
               >
                 {SAMPLE}
               </span>
-            </Inline>
-          ))}
-        </Stack>
-      </Stack>
-
-      <Stack gap="0.75rem">
-        <Heading level={2} size="md" className="story-section-title">
-          Utility classes
-        </Heading>
-        <Stack gap="0.5rem">
-          {utilities.map((cls) => (
-            <Inline key={cls} gap="1rem" align="baseline">
-              <code className="mizu-body--sm" style={{ width: '10rem' }}>
-                .{cls}
-              </code>
-              <span className={cls}>{SAMPLE}</span>
             </Inline>
           ))}
         </Stack>

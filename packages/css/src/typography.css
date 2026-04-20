@@ -1,6 +1,18 @@
 /*
  * Standalone typography sheet. Import only when you want type utility classes.
  *   @import "@aspect/css/typography";
+ *
+ * Two token APIs live side-by-side. Pick based on intent:
+ *
+ * 1. Composite per-size tokens — `--mizu-text-{xs|sm|base|lg|xl|2xl|3xl|4xl}-{size|line-height|tracking}`
+ *    Pre-tuned size + line-height + tracking triples. Use these for body copy and
+ *    any text that should look right with zero decisions. Utility classes below
+ *    consume composite tokens so `.mizu-body`, `.mizu-body--sm`, etc. always
+ *    pair a font-size with a line-height and tracking that were designed together.
+ *
+ * 2. Generic scales — `--mizu-font-size-*`, `--mizu-font-line-height-*`, `--mizu-font-weight-*`
+ *    Individual axes. Use when you need a custom ramp (e.g. a data-dense table that
+ *    wants a tighter line-height than the composite default). You own the pairing.
  */
 
 .mizu-h1,
@@ -9,58 +21,75 @@
 .mizu-h4 {
   font-family: var(--mizu-font-family-sans);
   font-weight: var(--mizu-font-weight-semibold);
-  line-height: var(--mizu-font-line-height-tight);
   color: var(--mizu-text-primary);
   margin: 0;
 }
 
 .mizu-h1 {
-  font-size: var(--mizu-font-size-4xl);
+  font-size: var(--mizu-text-4xl-size);
+  line-height: var(--mizu-text-4xl-line-height);
+  letter-spacing: var(--mizu-text-4xl-tracking);
 }
 
 .mizu-h2 {
-  font-size: var(--mizu-font-size-3xl);
+  font-size: var(--mizu-text-3xl-size);
+  line-height: var(--mizu-text-3xl-line-height);
+  letter-spacing: var(--mizu-text-3xl-tracking);
 }
 
 .mizu-h3 {
-  font-size: var(--mizu-font-size-2xl);
+  font-size: var(--mizu-text-2xl-size);
+  line-height: var(--mizu-text-2xl-line-height);
+  letter-spacing: var(--mizu-text-2xl-tracking);
 }
 
 .mizu-h4 {
-  font-size: var(--mizu-font-size-xl);
+  font-size: var(--mizu-text-xl-size);
+  line-height: var(--mizu-text-xl-line-height);
+  letter-spacing: var(--mizu-text-xl-tracking);
 }
 
 .mizu-body {
   font-family: var(--mizu-font-family-sans);
-  font-size: var(--mizu-font-size-base);
+  font-size: var(--mizu-text-base-size);
+  line-height: var(--mizu-text-base-line-height);
+  letter-spacing: var(--mizu-text-base-tracking);
   font-weight: var(--mizu-font-weight-regular);
-  line-height: var(--mizu-font-line-height-normal);
   color: var(--mizu-text-primary);
 }
 
 .mizu-body--sm {
-  font-size: var(--mizu-font-size-sm);
+  font-size: var(--mizu-text-sm-size);
+  line-height: var(--mizu-text-sm-line-height);
+  letter-spacing: var(--mizu-text-sm-tracking);
 }
 
 .mizu-body--lg {
-  font-size: var(--mizu-font-size-lg);
+  font-size: var(--mizu-text-lg-size);
+  line-height: var(--mizu-text-lg-line-height);
+  letter-spacing: var(--mizu-text-lg-tracking);
 }
 
 .mizu-caption {
   font-family: var(--mizu-font-family-sans);
-  font-size: var(--mizu-font-size-xs);
+  font-size: var(--mizu-text-xs-size);
+  line-height: var(--mizu-text-xs-line-height);
+  letter-spacing: var(--mizu-text-xs-tracking);
   color: var(--mizu-text-secondary);
 }
 
 .mizu-mono {
   font-family: var(--mizu-font-family-mono);
-  font-size: var(--mizu-font-size-sm);
+  font-size: var(--mizu-text-sm-size);
+  line-height: var(--mizu-text-sm-line-height);
 }
 
 .mizu-label {
   display: block;
   font-family: var(--mizu-font-family-sans);
-  font-size: var(--mizu-font-size-sm);
+  font-size: var(--mizu-text-sm-size);
+  line-height: var(--mizu-text-sm-line-height);
+  letter-spacing: var(--mizu-text-sm-tracking);
   font-weight: var(--mizu-font-weight-medium);
   color: var(--mizu-text-primary);
   margin-bottom: var(--mizu-spacing-1);
