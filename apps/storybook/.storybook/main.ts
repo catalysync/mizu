@@ -16,7 +16,19 @@ const config: StorybookConfig = {
     // MDX docs live alongside the stories they reference.
     '../stories/**/*.mdx',
   ],
-  addons: ['@storybook/addon-a11y', '@storybook/addon-docs'],
+  addons: [
+    '@storybook/addon-a11y',
+    '@storybook/addon-docs',
+    // MCP server: exposes component docs + stories to AI agents via the
+    // Model Context Protocol. Live only while `pnpm dev` is running at
+    // http://localhost:6006/mcp. Static builds get docs-only access.
+    {
+      name: '@storybook/addon-mcp',
+      options: process.env.STORYBOOK_PUBLIC_BUILD
+        ? { toolsets: { dev: false, test: false, docs: true } }
+        : {},
+    },
+  ],
   staticDirs: ['../public'],
   framework: {
     name: '@storybook/react-vite',

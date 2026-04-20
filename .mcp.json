@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "mizu-storybook": {
+      "type": "http",
+      "url": "http://localhost:6006/mcp",
+      "description": "mizu design system Storybook MCP — component docs, story preview, and test tools. Requires `pnpm --filter @aspect/storybook dev` running."
+    }
+  }
+}
