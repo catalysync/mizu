@@ -58,6 +58,7 @@ const COLUMNS: DataTableColumn<Customer>[] = [
 
 const meta = {
   title: 'Components/Atoms/DataTable',
+  tags: ['autodocs', 'stable'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

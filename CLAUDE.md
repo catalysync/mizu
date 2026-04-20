@@ -93,6 +93,7 @@ These are conventions established in earlier sessions. Apply automatically; do n
 - Every interactive component with potential a11y pitfalls (icon buttons, dialogs, etc.) MUST ship a paired **`Inaccessible` / `Accessible`** story so the a11y addon can visibly flag the bad version
 - Demo stories use `parameters.layout: 'fullscreen'`
 - Stories are exported by name; the meta `title` controls the sidebar tree (`'Components/Atoms/Button'`, `'Demos/Cloud'`)
+- **Status tags** — every component meta must include exactly one of `'stable' | 'experimental' | 'deprecated'` in `tags`. Renders as a badge in the sidebar (see `.storybook/manager.ts`). New components default to `experimental` until they have: (1) paired a11y stories, (2) vitest-axe coverage, (3) passing `pnpm doctor:gate`. Promote to `stable` after those three. `deprecated` triggers the red badge + points consumers to a migration path.
 
 ### Public API
 

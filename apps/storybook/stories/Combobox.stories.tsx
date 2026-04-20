@@ -16,6 +16,7 @@ const COUNTRIES = [
 const meta = {
   title: 'Components/Atoms/Combobox',
   component: Combobox,
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof Combobox>;
 
