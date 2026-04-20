@@ -40,7 +40,7 @@
   text-decoration: underline;
 }
 
-.mizu-link[data-external]::after {
+.mizu-link[data-external]:not([data-hide-external-icon])::after {
   content: "↗";
   margin-inline-start: 0.25em;
   font-size: 0.85em;
