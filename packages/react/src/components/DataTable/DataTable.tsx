@@ -115,6 +115,7 @@ function DataTableInner<T>(
       ref={ref}
       className={cn('mizu-data-table__wrapper', className)}
       data-component="mizu-data-table"
+      aria-busy={loading || undefined}
       {...props}
     >
       <table
