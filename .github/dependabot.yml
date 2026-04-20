@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Auto-update npm deps across the workspace daily.
+  # Solo-dev scale: no grouping, no reviewers, PRs opened against main.
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps"
+
+  # GitHub Actions kept fresh weekly — lower churn than npm.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "ci"

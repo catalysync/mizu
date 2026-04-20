@@ -42,7 +42,7 @@
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,css,json,md,mdx}": "prettier --write"
