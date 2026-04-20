@@ -12,7 +12,7 @@ describe('AppLayout', () => {
       <AppLayout>
         <AppHeader brand="Test" />
         <AppSidebar ariaLabel="Nav">
-          <a href="#">Link</a>
+          <a href="/">Link</a>
         </AppSidebar>
         <AppContent>
           <p>Main content</p>
@@ -47,7 +47,7 @@ describe('AppLayout', () => {
       <AppLayout>
         <AppHeader brand="App" />
         <AppSidebar ariaLabel="Navigation">
-          <a href="#">Home</a>
+          <a href="/">Home</a>
         </AppSidebar>
         <AppContent>
           <div>

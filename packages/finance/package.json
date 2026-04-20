@@ -15,7 +15,6 @@
     "./css": "./src/css/finance.css",
     "./themes/*": "./src/themes/*.css"
   },
-  "sideEffects": false,
   "scripts": {
     "build": "tsup && node scripts/prepend-use-client.mjs",
     "dev": "tsup --watch",
