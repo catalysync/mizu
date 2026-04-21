@@ -12,6 +12,7 @@ export * from './components/Collapsible';
 export * from './components/Combobox';
 export * from './components/CommandMenu';
 export * from './components/ContextMenu';
+export * from './components/DataCollection';
 export * from './components/DataTable';
 export * from './components/DateNavigator';
 export * from './components/DatePicker';

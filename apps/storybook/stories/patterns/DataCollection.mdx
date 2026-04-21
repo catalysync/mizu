@@ -1,0 +1,59 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { DataCollection } from '@aspect/react';
+import * as Stories from './DataCollection.stories';
+
+<Meta of={Stories} />
+
+# DataCollection
+
+A coordinator for multi-view resource lists — **table / grid / list** toggle + search slot + toolbar slot + pagination slot + loading + empty states.
+
+## Design stance
+
+DataCollection does **not** fetch, filter, sort, or paginate. Consumers own all of that and hand DataCollection the pre-processed slice. We do NOT ship an observable-based datasource abstraction — a deliberate call (see mizu-planning/28 §hooks).
+
+What DataCollection owns:
+
+- View switching (which renderer runs)
+- Layout of the header (toolbar / search / actions / view-switch)
+- Wrapping the body in empty / loading / populated states
+- Footer slot for pagination
+
+## Three-view example
+
+<Canvas of={Stories.ThreeViews} />
+
+## Loading
+
+<Canvas of={Stories.Loading} />
+
+## Empty
+
+<Canvas of={Stories.Empty} />
+
+## Minimal controlled pattern
+
+```tsx
+const [view, setView] = useState<DataCollectionView>('table');
+const [query, setQuery] = useState('');
+const [page, setPage] = useState(1);
+const filtered = customers.filter(...);
+const paged = filtered.slice((page-1)*pageSize, page*pageSize);
+
+<DataCollection
+  data={paged}
+  view={view}
+  onViewChange={setView}
+  toolbar={<FilterBar>…</FilterBar>}
+  search={<Input value={query} onChange={...} />}
+  pagination={<Pagination page={page} totalPages={...} onPageChange={setPage} />}
+  renderTable={(d) => <DataTable data={d} columns={COLS} />}
+  renderGrid={(d) => d.map(item => <Card>...</Card>)}
+  renderList={(d) => d.map(item => <ListRow>...</ListRow>)}
+  emptyState={<EmptyState title="No customers" />}
+/>
+```
+
+## Props
+
+<ArgTypes />

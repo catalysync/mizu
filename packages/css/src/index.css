@@ -77,6 +77,7 @@
 @import url("./components/date-navigator.css");
 @import url("./components/page-header.css");
 @import url("./components/analytics-dashboard.css");
+@import url("./components/data-collection.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
