@@ -211,8 +211,8 @@ importers:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
       react-querybuilder:
-        specifier: ^8.0.0
-        version: 8.14.4(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.28.16))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9)
+        specifier: ^8.15.0
+        version: 8.15.0(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.28.16))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9)
       recharts:
         specifier: ^2.12.7
         version: 2.15.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -570,8 +570,8 @@ importers:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
       react-querybuilder:
-        specifier: ^8.0.0
-        version: 8.14.4(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.28.16))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9)
+        specifier: ^8.15.0
+        version: 8.15.0(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.28.16))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9)
       tsup:
         specifier: ^8.5.0
         version: 8.5.1(@swc/core@1.15.30(@swc/helpers@0.5.15))(jiti@2.6.1)(postcss@8.5.9)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.8.3)
@@ -3024,8 +3024,8 @@ packages:
       react: ^16.8.4 || ^17.0.1 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.4 || ^17.0.1 || ^18.0.0 || ^19.0.0
 
-  '@react-querybuilder/core@8.14.4':
-    resolution: {integrity: sha512-mcR955G5/8lW/yU1DdYNx+wenrDKq/bMwLGMpr8ChBpJhKECz4O4F7+r2CrEo411vXGeIjs1CvdVfxCE38Qixg==}
+  '@react-querybuilder/core@8.15.0':
+    resolution: {integrity: sha512-dM8615RrUqVk0muYXqHTBfOgylzE36Z+5IvvsraaFP63Jf16brTegNHNtEklzskFIL4/R6BtpgLObYQBXNgHjA==}
     peerDependencies:
       drizzle-orm: '>=0.38.0'
       json-logic-js: '>=2'
@@ -7411,8 +7411,8 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
-  react-querybuilder@8.14.4:
-    resolution: {integrity: sha512-w2bxX8ZMttRCT8kXVb5lXit2SgGfiEFaecuaBpkgsBpLRdjLNyOTPnhox+NL3PbIfssKksqQtNpc0k0lpEemSg==}
+  react-querybuilder@8.15.0:
+    resolution: {integrity: sha512-GybFvwygHDdKj/gOp1EtVSRdgk5haO7DxuYtdQc6/cHyO0S0RcTxRxtAQI0lKevCzxoR2116vXxJIuiHGk6HOg==}
     peerDependencies:
       react: '>=18'
 
@@ -11194,7 +11194,7 @@ snapshots:
       - '@types/react-dom'
       - react-native
 
-  '@react-querybuilder/core@8.14.4(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.28.16))(json-logic-js@2.0.5)(spel2js@0.2.9)':
+  '@react-querybuilder/core@8.15.0(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.28.16))(json-logic-js@2.0.5)(spel2js@0.2.9)':
     dependencies:
       '@ts-jison/lexer': 0.4.1-alpha.1
       '@ts-jison/parser': 0.4.1-alpha.1
@@ -16091,9 +16091,9 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-querybuilder@8.14.4(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.28.16))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9):
+  react-querybuilder@8.15.0(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.28.16))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9):
     dependencies:
-      '@react-querybuilder/core': 8.14.4(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.28.16))(json-logic-js@2.0.5)(spel2js@0.2.9)
+      '@react-querybuilder/core': 8.15.0(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.28.16))(json-logic-js@2.0.5)(spel2js@0.2.9)
       '@reduxjs/toolkit': 2.11.2(react-redux@9.2.0(@types/react@19.2.14)(react@19.2.4)(redux@5.0.1))(react@19.2.4)
       react: 19.2.4
       react-redux: 9.2.0(@types/react@19.2.14)(react@19.2.4)(redux@5.0.1)
