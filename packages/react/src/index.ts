@@ -30,6 +30,7 @@ export * from './components/Label';
 export * from './components/Link';
 export * from './components/Modal';
 export * from './components/NumberInput';
+export * from './components/PageHeader';
 export * from './components/Pagination';
 export * from './components/PasswordInput';
 export * from './components/Popover';

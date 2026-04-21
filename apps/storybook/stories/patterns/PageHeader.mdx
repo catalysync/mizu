@@ -1,0 +1,42 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { PageHeader } from '@aspect/react';
+import * as Stories from './PageHeader.stories';
+
+<Meta of={Stories} />
+
+# PageHeader
+
+Top-of-page preamble. Composes breadcrumbs + title + description + actions + an optional toolbar row for filters/search.
+
+## When to use
+
+- Standalone pages that aren't a resource-detail page: "All customers", "Reports", "Settings", "Search"
+- The one-per-page header every feature lives under
+
+## When NOT to use
+
+- Resource-detail pages — use `ResourceHeader` (it adds a status pill + meta row)
+- Section titles inside a page — use `SectionHeader`
+- App-level global navigation — use `AppHeader`
+
+## Basic
+
+<Canvas of={Stories.Basic} />
+
+## With description
+
+<Canvas of={Stories.WithDescription} />
+
+## With breadcrumbs + action group
+
+<Canvas of={Stories.WithBreadcrumbsAndActions} />
+
+## Full example — breadcrumbs + actions + toolbar
+
+The toolbar row is where filters, search inputs, and `DateNavigator` typically live.
+
+<Canvas of={Stories.WithToolbar} />
+
+## Props
+
+<ArgTypes />
