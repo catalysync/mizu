@@ -37,6 +37,7 @@ export * from './components/PropertyFilter';
 export * from './components/Radio';
 export * from './components/ResourceHeader';
 export * from './components/ScrollArea';
+export * from './components/SectionHeader';
 export * from './components/Select';
 export * from './components/Separator';
 export * from './components/Sheet';

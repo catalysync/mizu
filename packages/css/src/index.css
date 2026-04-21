@@ -73,6 +73,7 @@
 @import url("./components/hover-card.css");
 @import url("./components/chart.css");
 @import url("./components/resource-header.css");
+@import url("./components/section-header.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
