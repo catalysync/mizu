@@ -39,6 +39,7 @@ import { withDensity } from './decorators/withDensity';
 import { withMizuTheme } from './decorators/withMizuTheme';
 import { withReducedMotion } from './decorators/withReducedMotion';
 import { withStrictMode } from './decorators/withStrictMode';
+import { DocsContainer } from './DocsContainer';
 import './global.css';
 import { mizuStorybookTheme } from './mizu-storybook-theme';
 import './story-utils.css';
@@ -55,6 +56,7 @@ const preview: Preview = {
     chromatic: { diffThreshold: 0.2 },
     docs: {
       theme: mizuStorybookTheme,
+      container: DocsContainer,
     },
     controls: {
       matchers: { color: /(background|color)$/i, date: /Date$/i },
