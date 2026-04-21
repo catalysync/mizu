@@ -1,0 +1,48 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { AnalyticsDashboard } from '@aspect/react';
+import * as Stories from './AnalyticsDashboard.stories';
+
+<Meta of={Stories} />
+
+# AnalyticsDashboard
+
+A responsive grid of titled tiles for KPIs, charts, or any measurable. Pairs with `@aspect/charts` for the body, but accepts any React content — tables, big numbers, custom viz.
+
+## Anatomy
+
+- **Header:** title + description + optional filters + optional actions
+- **Grid:** 2 / 3 / 4 / 6 columns with per-tile `colSpan` + `rowSpan` override
+- **Tiles:** titled card with an actions slot and a body slot
+
+Below `768px`, tiles stack one per row regardless of `colSpan`.
+
+## Four-column dashboard
+
+<Canvas of={Stories.FourColumnDashboard} />
+
+## Loading state
+
+Each `AnalyticsDashboardTile` accepts `loading` — typically forwarded to whatever chart is rendered inside.
+
+<Canvas of={Stories.WithLoadingTiles} />
+
+## Typical composition
+
+```tsx
+<AnalyticsDashboard
+  title="Sales overview"
+  filters={<DateNavigator value={range} onChange={setRange} />}
+  actions={<Button variant="ghost">Export</Button>}
+>
+  <AnalyticsDashboardTile title="MRR">
+    <BigNumber value={mrr} />
+  </AnalyticsDashboardTile>
+  <AnalyticsDashboardTile title="Revenue trend" colSpan={2}>
+    <LineChart aria-label="…" data={…} />
+  </AnalyticsDashboardTile>
+</AnalyticsDashboard>
+```
+
+## Props
+
+<ArgTypes />
