@@ -1,0 +1,91 @@
+.mizu-date-navigator {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mizu-spacing-3);
+  font-family: var(--mizu-font-family-sans);
+}
+
+.mizu-date-navigator__presets {
+  display: inline-flex;
+  padding: var(--mizu-spacing-1);
+  gap: 2px;
+  background: var(--mizu-surface-secondary);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-md);
+}
+
+.mizu-date-navigator__preset {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--mizu-text-secondary);
+  padding: var(--mizu-spacing-1) var(--mizu-spacing-3);
+  font-size: var(--mizu-text-sm-size);
+  line-height: var(--mizu-text-sm-line-height);
+  font-weight: var(--mizu-font-weight-medium);
+  border-radius: var(--mizu-radius-sm);
+  cursor: pointer;
+  transition:
+    background var(--mizu-duration-fast) var(--mizu-easing-out),
+    color var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+.mizu-date-navigator__preset:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 6%, transparent);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-date-navigator__preset[data-selected] {
+  background: var(--mizu-surface-default);
+  color: var(--mizu-text-primary);
+  box-shadow: var(--mizu-shadow-sm);
+}
+
+.mizu-date-navigator__preset:focus-visible {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: 2px;
+}
+
+.mizu-date-navigator__stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mizu-spacing-1);
+  padding: var(--mizu-spacing-1);
+  border: 1px solid var(--mizu-border-default);
+  border-radius: var(--mizu-radius-md);
+  background: var(--mizu-surface-default);
+}
+
+.mizu-date-navigator__arrow {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--mizu-text-secondary);
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--mizu-radius-sm);
+  cursor: pointer;
+}
+
+.mizu-date-navigator__arrow:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary) 6%, transparent);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-date-navigator__arrow:focus-visible {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: 2px;
+}
+
+.mizu-date-navigator__label {
+  min-width: 12rem;
+  text-align: center;
+  font-size: var(--mizu-text-sm-size);
+  line-height: var(--mizu-text-sm-line-height);
+  color: var(--mizu-text-primary);
+  font-variant-numeric: tabular-nums;
+}

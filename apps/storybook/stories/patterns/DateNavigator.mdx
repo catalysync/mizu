@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { DateNavigator } from '@aspect/react';
+import * as Stories from './DateNavigator.stories';
+
+<Meta of={Stories} />
+
+# DateNavigator
+
+Preset chips + prev/next arrows + current-range label. The canonical "what time window am I looking at?" control for dashboards and reports.
+
+## When to use
+
+- Dashboard filter bar (charts, KPIs, tables scoped to a time range)
+- Any feed / list / report where the user picks a time window
+
+## Built-in presets
+
+`today`, `yesterday`, `last-7`, `last-30`, `this-week`, `this-month`, `this-quarter`, `year-to-date`. Override via the `presets` prop to customize labels or add domain-specific ranges ("Fiscal Q1", "Since last sync").
+
+## Default
+
+<Canvas of={Stories.Default} />
+
+## Custom range (no preset matched)
+
+When start/end don't match any preset, none is highlighted — the label shows the raw range.
+
+<Canvas of={Stories.CustomRange} />
+
+## Preset-only (no arrows)
+
+For simple filters where prev/next stepping doesn't make sense.
+
+<Canvas of={Stories.HiddenArrows} />
+
+## Accessibility
+
+- Outer wrapper has `role="group"` with `aria-label="Date range"`
+- Preset chips render as a `radiogroup` — keyboard-nav by tab + Space/Enter; `aria-checked` reflects the active preset
+- Prev/Next arrows are labelled buttons (`aria-label="Previous range"` / `"Next range"`)
+- The current-range label is `aria-live="polite"` so screen readers announce when the range shifts
+
+## Props
+
+<ArgTypes />

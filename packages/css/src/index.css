@@ -74,6 +74,7 @@
 @import url("./components/chart.css");
 @import url("./components/resource-header.css");
 @import url("./components/section-header.css");
+@import url("./components/date-navigator.css");
 
 /* Layouts */
 @import url("./layouts/stack.css");
