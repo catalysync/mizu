@@ -47,6 +47,12 @@ initialize();
 
 const preview: Preview = {
   parameters: {
+    // Surface play() function errors as real test failures instead of console warnings.
+    // Makes flaky interaction stories visible in CI.
+    throwPlayFunctionExceptions: true,
+    // Chromatic diff tolerance — 0.2 (20%) absorbs font-rendering variance + sub-pixel drift
+    // without hiding real visual regressions. Applied when a Chromatic run reads this param.
+    chromatic: { diffThreshold: 0.2 },
     docs: {
       theme: mizuStorybookTheme,
     },
