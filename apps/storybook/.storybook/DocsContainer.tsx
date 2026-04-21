@@ -1,11 +1,12 @@
 import type { DocsContainerProps } from '@storybook/addon-docs/blocks';
 import { DocsContainer as BaseContainer } from '@storybook/addon-docs/blocks';
+import { ImportBanner } from './ImportBanner';
 
 /**
- * Wraps Storybook's docs container to surface a banner on docs pages whose
- * primary story is tagged `experimental` or `deprecated`. Pairs with the
- * `tagBadges` config in manager.ts — badges show in the sidebar, this shows
- * a full banner on the docs page itself. Banner styles live in story-utils.css.
+ * Wraps Storybook's docs container to surface: (1) an auto-generated import
+ * snippet for every component page, (2) a banner on docs pages whose primary
+ * story is tagged `experimental` or `deprecated`. Pairs with the `tagBadges`
+ * config in manager.ts. Styles live in story-utils.css.
  */
 export const DocsContainer = ({ children, context, ...props }: DocsContainerProps) => {
   const tags = readPrimaryTags(context);
@@ -17,6 +18,7 @@ export const DocsContainer = ({ children, context, ...props }: DocsContainerProp
 
   return (
     <BaseContainer context={context} {...props}>
+      <ImportBanner />
       {kind ? <Banner kind={kind} /> : null}
       {children}
     </BaseContainer>

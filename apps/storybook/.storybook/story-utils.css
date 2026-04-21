@@ -97,3 +97,19 @@
 .story-docs-banner__title {
   font-weight: 600;
 }
+
+/* Auto-injected "Import from @aspect/..." block at top of each Docs page */
+.story-import-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 24px 0;
+}
+
+.story-import-banner__label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--mizu-text-secondary);
+}
