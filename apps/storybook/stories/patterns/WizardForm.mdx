@@ -1,0 +1,38 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as Stories from './WizardForm.stories';
+
+<Meta of={Stories} />
+
+# WizardForm
+
+Multi-step form composed from `StepFlow` (progress indicator) + `Form` (field groups + footer) + per-step `Field` controls.
+
+## Why no `WizardForm` component?
+
+Wizards are wildly different per product — step count, step gating logic, skip rules, data-sharing between steps, validation strategy, submit semantics. Shipping a single `WizardForm` would either be useless (too generic) or locked-in (too opinionated). Use `StepFlow` + `Form` together and own the state.
+
+## When to reach for a wizard
+
+- Multi-step onboarding that can't be a single long form
+- Checkout / payment flows where step completion unlocks the next
+- Anything where confirmation-before-submit matters (the final step acts as review)
+
+## Three-step example
+
+<Canvas of={Stories.ThreeStep} />
+
+## State ownership
+
+The wizard owns:
+
+- `activeStep` — which step is current
+- per-step form state — typically lifted to the wizard component so fields persist when users click Back
+- a submit handler that reads all step state at once
+
+`StepFlow.allowSkip={false}` prevents users from jumping ahead over incomplete steps — enforce validation per-step before calling `setActive(nextStep)`.
+
+## Accessibility
+
+- `StepFlow` announces progress via `aria-current="step"` on the active chip
+- Each step's `<Form>` owns the heading + description (`h2` by default)
+- The Back button should be `disabled` on step 1; Continue becomes Submit on the last step (not hidden — maintains layout stability)

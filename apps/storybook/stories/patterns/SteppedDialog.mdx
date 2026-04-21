@@ -1,0 +1,28 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as Stories from './SteppedDialog.stories';
+
+<Meta of={Stories} />
+
+# SteppedDialog
+
+A focused flow inside a modal — `Modal` + `StepFlow` + per-step body + per-step footer buttons.
+
+Use when the flow has a clear start + end and shouldn't commandeer a full page. 2–3 steps is the sweet spot. More than that, reach for a full-page `WizardForm` instead.
+
+## Example
+
+<Canvas of={Stories.CreateReportFlow} />
+
+## Footer button pattern
+
+- **Cancel** — always present; closes the modal without saving (uses `<ModalClose>`)
+- **Back** — appears from step 2 onward; sets the active step to the previous one
+- **Continue → Submit** — the same button swaps label + handler on the last step; keeps the click target stable
+
+## When to use a stepped dialog vs a full-page wizard
+
+| Use stepped dialog when                                | Use full-page wizard when                |
+| ------------------------------------------------------ | ---------------------------------------- |
+| 2–3 short steps                                        | 4+ steps                                 |
+| Flow is "in context" (user is on a list, wants to add) | Flow is the focus (onboarding, checkout) |
+| Fields fit on the screen at once                       | Long fields, file uploads, previews      |

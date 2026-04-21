@@ -1,0 +1,26 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as Stories from './ApplicationFrame.stories';
+
+<Meta of={Stories} />
+
+# ApplicationFrame
+
+The canonical app-shell composition — `AppLayout` + `AppHeader` + `AppSidebar` + `AppContent` + `AppBreadcrumbs`.
+
+This is a **pattern, not a component** — mizu doesn't export an `ApplicationFrame`. Consumers own the composition so the host app can plug its own header contents, sidebar tree, breadcrumb router, and avatar/menu.
+
+## Why not a single monolithic `AppLayout` component?
+
+Cloudscape tried that — the `AppLayout` takes 15+ slot props and consumers fight the opinions on every knob. Carbon-style compositional shells (`AppLayout` + standalone parts) give callers control while mizu gets to test each part in isolation. See `mizu-planning/02-sage-carbon-study.md` for the full decision.
+
+## Basic composition
+
+<Canvas of={Stories.Basic} />
+
+## Where to go from here
+
+- **Header bar:** see `Components/Shell/AppHeader` for variants and slot contracts
+- **Sidebar tree:** roll your own `<nav>` or use a library (cmdk for command palettes, react-router for active-state tracking). We don't ship a sidebar-tree component — that's the host's job
+- **Breadcrumbs:** `AppBreadcrumbs` accepts an `items` array; wire it to your router
+- **Resource pages:** pair with `ResourceHeader` inside `AppContent`
+- **Standalone pages:** pair with `PageHeader` inside `AppContent`

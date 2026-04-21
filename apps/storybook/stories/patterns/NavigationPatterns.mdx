@@ -1,0 +1,32 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as Stories from './NavigationPatterns.stories';
+
+<Meta of={Stories} />
+
+# NavigationPatterns
+
+Three orthogonal navigation primitives combined — **sidebar** (global / per-area), **breadcrumbs** (location in the hierarchy), **tabs** (peer sections inside a page).
+
+## Sidebar + breadcrumbs + tabs
+
+<Canvas of={Stories.SidebarWithTabsAndBreadcrumbs} />
+
+## Which to use
+
+| Need                                                | Primitive                          |
+| --------------------------------------------------- | ---------------------------------- |
+| Move between top-level features                     | `AppSidebar`                       |
+| Show "you are here" in a hierarchy                  | `AppBreadcrumbs`                   |
+| Switch between peer sections of the same page       | `Tabs`                             |
+| Switch between related subsections of the same page | `Tabs` with fewer/smaller triggers |
+| Global wayfinding across the whole app              | `AppHeader`                        |
+
+## Anti-patterns
+
+- **Sidebar + tabs of the same thing.** Pick one; don't duplicate.
+- **More than 7 top-level tabs.** If you have that many, you need subsections — use secondary navigation (another row of tabs, or a sub-sidebar).
+- **Breadcrumbs on pages with no hierarchy.** If every page is top-level, breadcrumbs are noise.
+
+## mizu doesn't ship a sidebar-tree component
+
+Sidebars are product-specific: the tree shape, the active-state tracking, the icons, the user-menu slot — all differ wildly per app. `AppSidebar` is the visual container; the `<nav>` inside is yours. Wire it to your router (`next/link`, `react-router`, etc).
