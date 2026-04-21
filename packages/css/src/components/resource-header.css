@@ -1,0 +1,101 @@
+.mizu-resource-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-3);
+  padding-bottom: var(--mizu-spacing-4);
+  border-bottom: 1px solid var(--mizu-border-default);
+}
+
+.mizu-resource-header__eyebrow {
+  font-size: var(--mizu-text-xs-size);
+  line-height: var(--mizu-text-xs-line-height);
+  font-weight: var(--mizu-font-weight-medium);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-resource-header__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--mizu-spacing-4);
+}
+
+.mizu-resource-header__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-1);
+  min-width: 0;
+}
+
+.mizu-resource-header__title-line {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-3);
+  flex-wrap: wrap;
+}
+
+.mizu-resource-header__title {
+  margin: 0;
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-text-3xl-size);
+  line-height: var(--mizu-text-3xl-line-height);
+  letter-spacing: var(--mizu-text-3xl-tracking);
+  font-weight: var(--mizu-font-weight-semibold);
+  color: var(--mizu-text-primary);
+}
+
+.mizu-resource-header__status {
+  display: inline-flex;
+  align-items: center;
+}
+
+.mizu-resource-header__subtitle {
+  margin: 0;
+  font-size: var(--mizu-text-base-size);
+  line-height: var(--mizu-text-base-line-height);
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-resource-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--mizu-spacing-2);
+  flex-shrink: 0;
+}
+
+.mizu-resource-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mizu-spacing-6);
+  margin: 0;
+  padding: 0;
+}
+
+.mizu-resource-header__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mizu-spacing-1);
+}
+
+.mizu-resource-header__meta-label {
+  margin: 0;
+  font-size: var(--mizu-text-xs-size);
+  line-height: var(--mizu-text-xs-line-height);
+  font-weight: var(--mizu-font-weight-medium);
+  color: var(--mizu-text-secondary);
+}
+
+.mizu-resource-header__meta-value {
+  margin: 0;
+  font-size: var(--mizu-text-sm-size);
+  line-height: var(--mizu-text-sm-line-height);
+  color: var(--mizu-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.mizu-resource-header__footer {
+  padding-top: var(--mizu-spacing-2);
+}

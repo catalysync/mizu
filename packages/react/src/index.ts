@@ -35,6 +35,7 @@ export * from './components/Popover';
 export * from './components/Progress';
 export * from './components/PropertyFilter';
 export * from './components/Radio';
+export * from './components/ResourceHeader';
 export * from './components/ScrollArea';
 export * from './components/Select';
 export * from './components/Separator';

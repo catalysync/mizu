@@ -1,0 +1,62 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { ResourceHeader } from '@aspect/react';
+import * as Stories from './ResourceHeader.stories';
+
+<Meta of={Stories} />
+
+# ResourceHeader
+
+A detail-page header that pairs a title/subtitle/status cluster with an actions group and an optional key–value metadata row.
+
+Use on resource detail pages (a customer, an invoice, a product, an order) where you need breadcrumbs + title + actions + metadata without gluing a handful of primitives each time.
+
+## When to use
+
+- Detail pages for a single record (customer, invoice, project, product, …)
+- Any page where the title needs to coexist with a primary status and 1–3 actions
+- Dashboards whose root has a "this is the thing you're looking at" summary
+
+## When NOT to use
+
+- Section headings inside a page — use `SectionHeader` instead
+- Page-level headers that are not tied to a specific resource — use `PageHeader`
+- App-shell level headers (global navigation) — use `AppHeader` from `@aspect/react`
+
+## Anatomy
+
+```
+┌─────────────────────────────────────────────────────────┐
+│ eyebrow (breadcrumbs, resource type label, …)          │
+│ Title             status pill         [actions group]   │
+│ subtitle                                                │
+├─────────────────────────────────────────────────────────┤
+│ Meta label 1    Meta label 2    Meta label 3           │
+│ Meta value 1    Meta value 2    Meta value 3           │
+├─────────────────────────────────────────────────────────┤
+│ optional footer (tabs, filters, …)                      │
+└─────────────────────────────────────────────────────────┘
+```
+
+## Basic
+
+<Canvas of={Stories.Basic} />
+
+## With subtitle
+
+<Canvas of={Stories.WithSubtitle} />
+
+## With status pill + action group
+
+<Canvas of={Stories.WithStatusAndActions} />
+
+## Full example — eyebrow breadcrumbs + meta row
+
+<Canvas of={Stories.FullExample} />
+
+## Accessibility
+
+`title` renders as an `<h1>` by default. Set `level` to `2` or `3` if the header is nested inside another page that already owns the `h1`. Icon-only action buttons must carry `aria-label`; the `status` prop typically wraps a `<Badge>` which should include a descriptive label for screen readers.
+
+## Props
+
+<ArgTypes />
