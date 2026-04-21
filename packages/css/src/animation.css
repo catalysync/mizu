@@ -1,3 +1,18 @@
+/* Register animatable gradient rotation so transitions interpolate smoothly. */
+@property --mizu-gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Let height/width animate between auto and fixed — impossible before interpolate-size.
+ * Gated on no-preference so reduced-motion users don't get surprise animations. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
 /* Enter animations */
 @keyframes mizu-fade-in {
   from {

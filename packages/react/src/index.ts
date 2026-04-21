@@ -79,4 +79,5 @@ export { Logger } from './utils/logger';
 export { mergeRefs } from './utils/merge-refs';
 export { removeNonHTMLProps } from './utils/remove-non-html-props';
 export { tagComponent } from './utils/tag-component';
+export type { DataAttributes, UrlString } from './utils/types';
 export { useValidateProps } from './utils/validate-props';
