@@ -68,7 +68,10 @@ export const AnalyticsDashboardTile = React.forwardRef<HTMLElement, AnalyticsDas
 );
 AnalyticsDashboardTile.displayName = 'AnalyticsDashboardTile';
 
-export interface AnalyticsDashboardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AnalyticsDashboardProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'title'
+> {
   /** Base number of columns at desktop widths. Defaults to 4. */
   columns?: 2 | 3 | 4 | 6;
   /** Optional filter bar rendered above the grid — typically a `DateNavigator` + search. */

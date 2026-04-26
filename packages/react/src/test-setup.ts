@@ -1,17 +1,13 @@
 import type { TestingLibraryMatchers } from '@testing-library/jest-dom/matchers';
 import '@testing-library/jest-dom/vitest';
-import { cleanup } from '@testing-library/react';
-import { afterEach, expect, vi } from 'vitest';
+import { expect, vi } from 'vitest';
 import type { AxeMatchers } from 'vitest-axe/matchers';
 import * as matchers from 'vitest-axe/matchers';
 
 expect.extend(matchers);
 
-// Reset the DOM between tests. vitest does NOT auto-cleanup; without this,
-// mounted components leak into the next test (stale refs, duplicate ids).
-afterEach(() => {
-  cleanup();
-});
+// vitest 3 + @testing-library/react auto-cleanup between tests.
+// Manual afterEach(cleanup) is flagged by testing-library/no-manual-cleanup.
 
 // --- Centralized jsdom mocks ---
 // Radix primitives use ResizeObserver which jsdom lacks

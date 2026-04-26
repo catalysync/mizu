@@ -29,10 +29,7 @@ describe('DateNavigator', () => {
 
   it('marks the selected preset with aria-checked', () => {
     render(<DateNavigator value={{ ...baseValue, preset: 'last-7' }} onChange={() => {}} />);
-    expect(screen.getByRole('radio', { name: 'Last 7 days' })).toHaveAttribute(
-      'aria-checked',
-      'true',
-    );
+    expect(screen.getByRole('radio', { name: 'Last 7 days' })).toBeChecked();
   });
 
   it('steps the range forward and backward by its own width', async () => {

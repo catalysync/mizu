@@ -27,7 +27,7 @@ describe('AnalyticsDashboard', () => {
       </AnalyticsDashboard>,
     );
     const tile = container.querySelector('.mizu-analytics-dashboard__tile') as HTMLElement;
-    expect(tile.style.gridColumn).toBe('span 2');
+    expect(tile).toHaveStyle({ gridColumn: 'span 2' });
   });
 
   it('reflects loading state with aria-busy + data-loading', () => {
@@ -39,8 +39,8 @@ describe('AnalyticsDashboard', () => {
       </AnalyticsDashboard>,
     );
     const tile = container.querySelector('.mizu-analytics-dashboard__tile') as HTMLElement;
-    expect(tile.getAttribute('aria-busy')).toBe('true');
-    expect(tile.getAttribute('data-loading')).toBe('true');
+    expect(tile).toHaveAttribute('aria-busy', 'true');
+    expect(tile).toHaveAttribute('data-loading', 'true');
   });
 
   it('has no axe violations in a multi-tile configuration', async () => {

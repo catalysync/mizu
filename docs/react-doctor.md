@@ -24,6 +24,7 @@ The underlying CLI is `npx react-doctor@latest .`.
 - **`react-doctor/no-render-in-render`** — flags inline function calls in JSX, which catches legitimate render props (`renderExpanded={(row) => …}` on `DataTable`, `emptyState={() => …}` on `ResourceList`). Render props are a valid React pattern when the shape of the rendered output depends on data; not every inline call is a perf trap.
 - **`react-doctor/prefer-dynamic-import`** — flags large libraries (recharts, etc.). For `@aspect/charts`, recharts IS the point — consumers import a `LineChart` and expect it to render on first paint, not after a chunk loads. Dynamic import is a consumer decision, not a library one.
 - **`react-doctor/no-array-index-as-key`** — valid rule, but overreaches on static fixed-size lists (skeleton bars, demo fixtures) where the order never changes. We use index keys intentionally in those cases. Ignored globally; we still audit real lists during review.
+- **`knip/files`, `knip/exports`, `knip/types`** — knip's dead-code detector can't see indirect references (vitest config-loaded `test-setup.ts`, CSS imported from app entry, public-API exports a consumer might use). It produces false positives on a library codebase by definition (we ship more than we consume internally). Ignored as a category; we audit unused exports manually before each npm publish.
 
 ### Ignored paths
 

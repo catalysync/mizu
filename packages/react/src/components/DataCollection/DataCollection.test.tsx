@@ -3,16 +3,23 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 
-import { DataCollection } from './DataCollection';
+import { DataCollection, type DataCollectionProps } from './DataCollection';
 
-const rows = [
+interface Row {
+  id: string;
+  name: string;
+}
+const rows: Row[] = [
   { id: '1', name: 'Acme' },
   { id: '2', name: 'Globex' },
 ];
 
-function Harness(extra?: Parameters<typeof DataCollection>[0]) {
+// Harness is typed against the concrete `Row` shape so generic inference doesn't
+// degrade to `unknown` through `Parameters<typeof DataCollection>` (the
+// generic isn't instantiated when you read its parameters that way).
+function Harness(extra?: Partial<DataCollectionProps<Row>>) {
   return (
-    <DataCollection
+    <DataCollection<Row>
       data={rows}
       renderTable={(data) => (
         <ul data-testid="table-view">

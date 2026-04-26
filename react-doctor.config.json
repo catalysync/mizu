@@ -11,7 +11,10 @@
       "react-doctor/nextjs-no-a-element",
       "react-doctor/nextjs-no-font-link",
       "react-doctor/nextjs-no-native-script",
-      "react-doctor/nextjs-missing-metadata"
+      "react-doctor/nextjs-missing-metadata",
+      "knip/files",
+      "knip/exports",
+      "knip/types"
     ],
     "files": [
       "**/dist/**",

@@ -63,7 +63,7 @@
   --mizu-analytics-dashboard-columns: 6;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .mizu-analytics-dashboard__grid {
     grid-template-columns: 1fr;
   }

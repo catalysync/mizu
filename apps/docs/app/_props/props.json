@@ -11,6 +11,63 @@
       "interface": "AlertProps"
     }
   ],
+  "analyticsdashboard": [
+    {
+      "name": "title",
+      "type": "React.ReactNode",
+      "interface": "AnalyticsDashboardTileProps"
+    },
+    {
+      "name": "description",
+      "type": "React.ReactNode",
+      "interface": "AnalyticsDashboardTileProps"
+    },
+    {
+      "name": "actions",
+      "type": "React.ReactNode",
+      "interface": "AnalyticsDashboardTileProps"
+    },
+    {
+      "name": "colSpan",
+      "type": "1 | 2 | 3 | 4",
+      "interface": "AnalyticsDashboardTileProps"
+    },
+    {
+      "name": "rowSpan",
+      "type": "1 | 2 | 3",
+      "interface": "AnalyticsDashboardTileProps"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "interface": "AnalyticsDashboardTileProps"
+    },
+    {
+      "name": "columns",
+      "type": "2 | 3 | 4 | 6",
+      "interface": "AnalyticsDashboardProps"
+    },
+    {
+      "name": "filters",
+      "type": "React.ReactNode",
+      "interface": "AnalyticsDashboardProps"
+    },
+    {
+      "name": "actions",
+      "type": "React.ReactNode",
+      "interface": "AnalyticsDashboardProps"
+    },
+    {
+      "name": "title",
+      "type": "React.ReactNode",
+      "interface": "AnalyticsDashboardProps"
+    },
+    {
+      "name": "description",
+      "type": "React.ReactNode",
+      "interface": "AnalyticsDashboardProps"
+    }
+  ],
   "avatar": [
     {
       "name": "src",
@@ -33,6 +90,21 @@
       "name": "dot",
       "type": "boolean",
       "interface": "BadgeProps"
+    },
+    {
+      "name": "count",
+      "type": "number",
+      "interface": "BadgeProps"
+    },
+    {
+      "name": "maxCount",
+      "type": "number",
+      "interface": "BadgeProps"
+    },
+    {
+      "name": "size",
+      "type": "BadgeSize",
+      "interface": "BadgeProps"
     }
   ],
   "breadcrumb": [
@@ -50,6 +122,16 @@
     },
     {
       "name": "loading",
+      "type": "boolean",
+      "interface": "ButtonProps"
+    },
+    {
+      "name": "inverse",
+      "type": "boolean",
+      "interface": "ButtonProps"
+    },
+    {
+      "name": "fullWidth",
       "type": "boolean",
       "interface": "ButtonProps"
     }
@@ -76,6 +158,291 @@
       "name": "label",
       "type": "string",
       "interface": "CheckboxProps"
+    }
+  ],
+  "combobox": [
+    {
+      "name": "options",
+      "type": "ComboboxOption[]",
+      "interface": "ComboboxProps"
+    },
+    {
+      "name": "value",
+      "type": "string | string[]",
+      "interface": "ComboboxProps"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string | string[]) => void",
+      "interface": "ComboboxProps"
+    },
+    {
+      "name": "multiple",
+      "type": "boolean",
+      "interface": "ComboboxProps"
+    },
+    {
+      "name": "searchable",
+      "type": "boolean",
+      "interface": "ComboboxProps"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "interface": "ComboboxProps"
+    },
+    {
+      "name": "emptyMessage",
+      "type": "string",
+      "interface": "ComboboxProps"
+    },
+    {
+      "name": "searchPlaceholder",
+      "type": "string",
+      "interface": "ComboboxProps"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "interface": "ComboboxProps"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "interface": "ComboboxProps"
+    }
+  ],
+  "contextmenu": [
+    {
+      "name": "danger",
+      "type": "boolean",
+      "interface": "ContextMenuItemProps"
+    }
+  ],
+  "datacollection": [
+    {
+      "name": "data",
+      "type": "T[]",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "getRowId",
+      "type": "(item: T) => string",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "views",
+      "type": "DataCollectionView[]",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "view",
+      "type": "DataCollectionView",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "defaultView",
+      "type": "DataCollectionView",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "onViewChange",
+      "type": "(view: DataCollectionView) => void",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "renderTable",
+      "type": "(data: T[]) => React.ReactNode",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "renderGrid",
+      "type": "(data: T[]) => React.ReactNode",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "renderList",
+      "type": "(data: T[]) => React.ReactNode",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "toolbar",
+      "type": "React.ReactNode",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "search",
+      "type": "React.ReactNode",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "actions",
+      "type": "React.ReactNode",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "pagination",
+      "type": "React.ReactNode",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "loadingFallback",
+      "type": "React.ReactNode",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "emptyState",
+      "type": "React.ReactNode",
+      "interface": "DataCollectionProps"
+    },
+    {
+      "name": "viewSwitchLabel",
+      "type": "string",
+      "interface": "DataCollectionProps"
+    }
+  ],
+  "datatable": [
+    {
+      "name": "columns",
+      "type": "DataTableColumn<T>[]",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "data",
+      "type": "T[]",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "getRowId",
+      "type": "(row: T) => string",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "sortColumn",
+      "type": "string | null",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "sortDirection",
+      "type": "SortDirection",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "onSort",
+      "type": "(column: string, direction: SortDirection) => void",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "selectable",
+      "type": "boolean",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "selectedIds",
+      "type": "Set<string>",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "onSelectionChange",
+      "type": "(ids: Set<string>) => void",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "expandable",
+      "type": "boolean",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "expandedIds",
+      "type": "Set<string>",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "onExpandChange",
+      "type": "(ids: Set<string>) => void",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "renderExpanded",
+      "type": "(row: T) => React.ReactNode",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "striped",
+      "type": "boolean",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "stickyHeader",
+      "type": "boolean",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "density",
+      "type": "DataTableDensity",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "loadingRows",
+      "type": "number",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "emptyMessage",
+      "type": "React.ReactNode",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "caption",
+      "type": "string",
+      "interface": "DataTableProps"
+    },
+    {
+      "name": "tableClassName",
+      "type": "string",
+      "interface": "DataTableProps"
+    }
+  ],
+  "datenavigator": [
+    {
+      "name": "value",
+      "type": "DateNavigatorValue",
+      "interface": "DateNavigatorProps"
+    },
+    {
+      "name": "onChange",
+      "type": "(next: DateNavigatorValue) => void",
+      "interface": "DateNavigatorProps"
+    },
+    {
+      "name": "presets",
+      "type": "DateNavigatorPreset[]",
+      "interface": "DateNavigatorProps"
+    },
+    {
+      "name": "hideArrows",
+      "type": "boolean",
+      "interface": "DateNavigatorProps"
+    },
+    {
+      "name": "renderLabel",
+      "type": "(value: DateNavigatorValue) => React.ReactNode",
+      "interface": "DateNavigatorProps"
+    },
+    {
+      "name": "locale",
+      "type": "string",
+      "interface": "DateNavigatorProps"
     }
   ],
   "calendar": [
@@ -281,6 +648,11 @@
   "dropdownmenu": [
     {
       "name": "danger",
+      "type": "boolean",
+      "interface": "DropdownMenuItemProps"
+    },
+    {
+      "name": "inset",
       "type": "boolean",
       "interface": "DropdownMenuItemProps"
     }
@@ -499,9 +871,21 @@
       "interface": "HeadingProps"
     }
   ],
+  "hovercard": [
+    {
+      "name": "showArrow",
+      "type": "boolean",
+      "interface": "HoverCardContentProps"
+    }
+  ],
   "input": [
     {
       "name": "error",
+      "type": "string | boolean",
+      "interface": "InputProps"
+    },
+    {
+      "name": "warning",
       "type": "string | boolean",
       "interface": "InputProps"
     },
@@ -513,6 +897,21 @@
     {
       "name": "label",
       "type": "string",
+      "interface": "InputProps"
+    },
+    {
+      "name": "prefix",
+      "type": "React.ReactNode",
+      "interface": "InputProps"
+    },
+    {
+      "name": "suffix",
+      "type": "React.ReactNode",
+      "interface": "InputProps"
+    },
+    {
+      "name": "maxCharacters",
+      "type": "number",
       "interface": "InputProps"
     }
   ],
@@ -538,6 +937,23 @@
       "name": "external",
       "type": "boolean",
       "interface": "LinkProps"
+    },
+    {
+      "name": "externalLabel",
+      "type": "string",
+      "interface": "LinkProps"
+    },
+    {
+      "name": "hideExternalIcon",
+      "type": "boolean",
+      "interface": "LinkProps"
+    }
+  ],
+  "modal": [
+    {
+      "name": "size",
+      "type": "ModalSize",
+      "interface": "ModalContentProps"
     }
   ],
   "numberinput": [
@@ -615,6 +1031,38 @@
       "name": "decrementLabel",
       "type": "string",
       "interface": "NumberInputProps"
+    }
+  ],
+  "pageheader": [
+    {
+      "name": "title",
+      "type": "React.ReactNode",
+      "interface": "PageHeaderProps"
+    },
+    {
+      "name": "description",
+      "type": "React.ReactNode",
+      "interface": "PageHeaderProps"
+    },
+    {
+      "name": "breadcrumbs",
+      "type": "React.ReactNode",
+      "interface": "PageHeaderProps"
+    },
+    {
+      "name": "actions",
+      "type": "React.ReactNode",
+      "interface": "PageHeaderProps"
+    },
+    {
+      "name": "toolbar",
+      "type": "React.ReactNode",
+      "interface": "PageHeaderProps"
+    },
+    {
+      "name": "level",
+      "type": "1 | 2",
+      "interface": "PageHeaderProps"
     }
   ],
   "pagination": [
@@ -757,11 +1205,82 @@
       "interface": "RadioItemProps"
     }
   ],
+  "resourceheader": [
+    {
+      "name": "title",
+      "type": "React.ReactNode",
+      "interface": "ResourceHeaderProps"
+    },
+    {
+      "name": "subtitle",
+      "type": "React.ReactNode",
+      "interface": "ResourceHeaderProps"
+    },
+    {
+      "name": "eyebrow",
+      "type": "React.ReactNode",
+      "interface": "ResourceHeaderProps"
+    },
+    {
+      "name": "status",
+      "type": "React.ReactNode",
+      "interface": "ResourceHeaderProps"
+    },
+    {
+      "name": "actions",
+      "type": "React.ReactNode",
+      "interface": "ResourceHeaderProps"
+    },
+    {
+      "name": "meta",
+      "type": "ResourceHeaderMetaEntry[]",
+      "interface": "ResourceHeaderProps"
+    },
+    {
+      "name": "footer",
+      "type": "React.ReactNode",
+      "interface": "ResourceHeaderProps"
+    },
+    {
+      "name": "level",
+      "type": "1 | 2 | 3",
+      "interface": "ResourceHeaderProps"
+    }
+  ],
   "scrollarea": [
     {
       "name": "Default",
       "type": "\"vertical\" */\n  orientation?: 'vertical' | 'horizontal' | 'both'",
       "interface": "ScrollAreaProps"
+    }
+  ],
+  "sectionheader": [
+    {
+      "name": "title",
+      "type": "React.ReactNode",
+      "interface": "SectionHeaderProps"
+    },
+    {
+      "name": "description",
+      "type": "React.ReactNode",
+      "interface": "SectionHeaderProps"
+    },
+    {
+      "name": "actions",
+      "type": "React.ReactNode",
+      "interface": "SectionHeaderProps"
+    },
+    {
+      "name": "level",
+      "type": "2 | 3 | 4",
+      "interface": "SectionHeaderProps"
+    }
+  ],
+  "sheet": [
+    {
+      "name": "side",
+      "type": "SheetSide",
+      "interface": "SheetContentProps"
     }
   ],
   "skeleton": [

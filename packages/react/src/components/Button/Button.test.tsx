@@ -286,7 +286,7 @@ describe('Button', () => {
       expect(btn).not.toHaveAttribute('aria-busy');
     });
     expect(btn).not.toHaveAttribute('data-loading');
-    expect(btn).not.toBeDisabled();
+    expect(btn).toBeEnabled();
   });
 
   it('clears auto-loading when onClick rejects', async () => {
@@ -315,7 +315,7 @@ describe('Button', () => {
     const btn = screen.getByRole('button');
     await userEvent.setup().click(btn);
     expect(btn).not.toHaveAttribute('aria-busy');
-    expect(btn).not.toBeDisabled();
+    expect(btn).toBeEnabled();
   });
 
   // -- Gradient variant --
