@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const meta = {
   title: 'Components/Atoms/DatePicker',
+  tags: ['autodocs', 'experimental'],
   component: DatePicker,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof DatePicker>;

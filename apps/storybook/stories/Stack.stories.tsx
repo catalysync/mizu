@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Layouts/Stack',
+  tags: ['autodocs', 'experimental'],
   component: Stack,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof Stack>;

@@ -228,6 +228,7 @@ function AllComponents() {
 
 const meta = {
   title: 'Foundations/Kitchen Sink',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

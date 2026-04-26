@@ -13,6 +13,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Foundations/Motion',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

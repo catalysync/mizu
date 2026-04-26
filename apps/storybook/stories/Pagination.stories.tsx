@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const meta = {
   title: 'Components/Atoms/Pagination',
+  tags: ['autodocs', 'experimental'],
   component: Pagination,
   parameters: { layout: 'padded' },
   argTypes: {

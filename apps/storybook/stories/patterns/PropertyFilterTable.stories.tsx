@@ -147,6 +147,7 @@ function PropertyFilterTableDemo() {
 
 const meta = {
   title: 'Patterns/Property Filter Table',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

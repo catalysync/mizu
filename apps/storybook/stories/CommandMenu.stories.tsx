@@ -13,6 +13,7 @@ import { useState } from 'react';
 
 const meta = {
   title: 'Components/Overlays/CommandMenu',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'centered' },
 } satisfies Meta;
 

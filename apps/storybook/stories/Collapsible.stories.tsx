@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const meta = {
   title: 'Components/Data Display/Collapsible',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'centered' },
 } satisfies Meta;
 

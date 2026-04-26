@@ -13,6 +13,7 @@ import { useState } from 'react';
 
 const meta = {
   title: 'Components/Feedback/Toast',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

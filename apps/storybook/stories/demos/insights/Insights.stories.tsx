@@ -118,6 +118,7 @@ function InsightsDashboard() {
 
 const meta = {
   title: 'Demos/Insights',
+  tags: ['autodocs', 'experimental'],
   parameters: {
     layout: 'fullscreen',
   },

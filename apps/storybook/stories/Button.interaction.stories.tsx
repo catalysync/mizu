@@ -11,6 +11,7 @@ import { expect, fn, userEvent, within } from 'storybook/test';
 
 const meta = {
   title: 'Components/Button/Interactions',
+  tags: ['autodocs', 'experimental'],
   component: Button,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof Button>;

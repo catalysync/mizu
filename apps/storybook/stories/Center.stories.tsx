@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Layouts/Center',
+  tags: ['autodocs', 'experimental'],
   component: Center,
   parameters: { layout: 'fullscreen' },
 } satisfies Meta<typeof Center>;

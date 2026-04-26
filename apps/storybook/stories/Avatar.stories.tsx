@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Avatar',
+  tags: ['autodocs', 'experimental'],
   component: Avatar,
   parameters: { layout: 'centered' },
   args: { initials: 'JD', size: 'md' },

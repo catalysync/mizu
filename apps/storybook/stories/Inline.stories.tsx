@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Layouts/Inline',
+  tags: ['autodocs', 'experimental'],
   component: Inline,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof Inline>;

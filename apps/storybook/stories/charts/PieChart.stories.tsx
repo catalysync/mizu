@@ -4,6 +4,7 @@ import { productShare } from './_fixtures';
 
 const meta = {
   title: 'Charts/PieChart',
+  tags: ['autodocs', 'experimental'],
   component: PieChart,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof PieChart>;

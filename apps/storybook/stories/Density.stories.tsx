@@ -74,6 +74,7 @@ function DensitySample() {
 
 const meta = {
   title: 'Foundations/Density',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const meta = {
   title: 'Components/Atoms/PasswordInput',
+  tags: ['autodocs', 'experimental'],
   component: PasswordInput,
   parameters: { layout: 'padded' },
   args: { 'aria-label': 'Password' },

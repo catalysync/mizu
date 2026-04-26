@@ -10,6 +10,7 @@ import { TemplatesPage } from './Templates';
 
 const meta = {
   title: 'Demos/Cloud',
+  tags: ['autodocs', 'experimental'],
   parameters: {
     layout: 'fullscreen',
     chromatic: { disableSnapshot: false },

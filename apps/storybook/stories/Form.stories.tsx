@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Form',
+  tags: ['autodocs', 'experimental'],
   component: Form,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof Form>;

@@ -23,6 +23,7 @@ const utilities: string[] = [
 
 const meta = {
   title: 'Foundations/Typography',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

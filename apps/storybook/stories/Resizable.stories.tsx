@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Layouts/Resizable',
+  tags: ['autodocs', 'experimental'],
   component: ResizableGroup,
   parameters: { layout: 'fullscreen' },
 } satisfies Meta<typeof ResizableGroup>;

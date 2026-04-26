@@ -152,6 +152,7 @@ function SectionCard({
 
 const meta = {
   title: 'Welcome',
+  tags: ['autodocs', 'experimental'],
   component: Welcome,
   parameters: {
     layout: 'fullscreen',

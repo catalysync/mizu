@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const meta = {
   title: 'Components/Atoms/StepFlow',
+  tags: ['autodocs', 'experimental'],
   component: StepFlow,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof StepFlow>;

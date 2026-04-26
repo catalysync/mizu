@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Input',
+  tags: ['autodocs', 'experimental'],
   component: Input,
   parameters: { layout: 'centered' },
   args: { placeholder: 'Type something…', 'aria-label': 'Demo input' },

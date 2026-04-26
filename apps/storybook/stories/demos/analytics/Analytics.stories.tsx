@@ -117,6 +117,7 @@ function AnalyticsWorkspace() {
 
 const meta = {
   title: 'Demos/Analytics',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'fullscreen' },
 } satisfies Meta;
 

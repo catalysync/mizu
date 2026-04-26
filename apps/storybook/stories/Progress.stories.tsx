@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Feedback/Progress',
+  tags: ['autodocs', 'experimental'],
   component: Progress,
   parameters: { layout: 'padded' },
   args: { value: 60, max: 100 },

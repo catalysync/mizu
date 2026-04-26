@@ -4,6 +4,7 @@ import { formatUsd, monthlyRevenue } from './_fixtures';
 
 const meta = {
   title: 'Charts/AreaChart',
+  tags: ['autodocs', 'experimental'],
   component: AreaChart,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof AreaChart>;

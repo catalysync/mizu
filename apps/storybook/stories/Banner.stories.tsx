@@ -5,6 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Commerce/Banner',
+  tags: ['autodocs', 'experimental'],
   component: Banner,
   parameters: { layout: 'padded' },
   args: { title: 'Notice', children: 'This is an informational banner.' },

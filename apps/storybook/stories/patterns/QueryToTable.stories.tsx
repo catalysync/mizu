@@ -163,6 +163,7 @@ function QueryToTableDemo() {
 
 const meta = {
   title: 'Patterns/Query to Table',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

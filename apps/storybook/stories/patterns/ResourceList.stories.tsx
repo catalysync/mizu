@@ -35,6 +35,7 @@ const tone = (s: string) =>
 
 const meta = {
   title: 'Patterns/Resource List',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

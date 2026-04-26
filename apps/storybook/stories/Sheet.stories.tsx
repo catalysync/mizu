@@ -12,6 +12,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Overlays/Sheet',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'centered' },
 } satisfies Meta;
 

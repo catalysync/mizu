@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Fieldset',
+  tags: ['autodocs', 'experimental'],
   component: Fieldset,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof Fieldset>;

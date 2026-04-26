@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Navigation/Breadcrumb',
+  tags: ['autodocs', 'experimental'],
   component: Breadcrumb,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof Breadcrumb>;

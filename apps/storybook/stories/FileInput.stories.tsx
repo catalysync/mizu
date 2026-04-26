@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/FileInput',
+  tags: ['autodocs', 'experimental'],
   component: FileInput,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof FileInput>;

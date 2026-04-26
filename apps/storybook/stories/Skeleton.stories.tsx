@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Feedback/Skeleton',
+  tags: ['autodocs', 'experimental'],
   component: Skeleton,
   parameters: { layout: 'padded' },
   argTypes: {

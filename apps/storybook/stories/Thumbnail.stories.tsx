@@ -7,6 +7,7 @@ const IMG = 'https://picsum.photos/seed/mizu/200';
 
 const meta = {
   title: 'Commerce/Thumbnail',
+  tags: ['autodocs', 'experimental'],
   component: Thumbnail,
   parameters: { layout: 'centered' },
   args: { source: IMG, alt: 'Product image' },

@@ -31,6 +31,7 @@ function DarkSample() {
 
 const meta = {
   title: 'Foundations/Dark Mode',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

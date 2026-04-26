@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Form Controls/Radio',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'centered' },
 } satisfies Meta;
 

@@ -51,6 +51,7 @@ function QueryBuilderEmptyDemo() {
 
 const meta = {
   title: 'Components/Data Display/QueryBuilder',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

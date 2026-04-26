@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Label',
+  tags: ['autodocs', 'experimental'],
   component: Label,
   parameters: { layout: 'padded' },
   args: { children: 'Email address' },

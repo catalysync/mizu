@@ -87,6 +87,7 @@ function PropertyFilterDemo() {
 
 const meta = {
   title: 'Components/Data Display/PropertyFilter',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

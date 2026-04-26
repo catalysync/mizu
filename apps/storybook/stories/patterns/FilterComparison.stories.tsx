@@ -169,6 +169,7 @@ function FilterComparisonDemo() {
 
 const meta = {
   title: 'Patterns/Filter Comparison',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

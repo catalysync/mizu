@@ -66,6 +66,7 @@ function ReportDocument() {
 
 const meta = {
   title: 'Demos/Reports',
+  tags: ['autodocs', 'experimental'],
   parameters: {
     layout: 'padded',
   },

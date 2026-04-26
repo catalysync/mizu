@@ -24,6 +24,7 @@ function FieldInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
 
 const meta = {
   title: 'Components/Atoms/Field',
+  tags: ['autodocs', 'experimental'],
   component: Field,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof Field>;

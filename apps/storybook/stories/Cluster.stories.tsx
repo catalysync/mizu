@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Layouts/Cluster',
+  tags: ['autodocs', 'experimental'],
   component: Cluster,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof Cluster>;

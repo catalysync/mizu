@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Data Display/FilterBar',
+  tags: ['autodocs', 'experimental'],
   component: FilterBar,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof FilterBar>;

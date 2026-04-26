@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/TimeInput',
+  tags: ['autodocs', 'experimental'],
   component: TimeInput,
   parameters: { layout: 'padded' },
   args: { 'aria-label': 'Time', defaultValue: '09:30' },

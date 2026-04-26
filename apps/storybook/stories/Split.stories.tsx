@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Layouts/Split',
+  tags: ['autodocs', 'experimental'],
   component: Split,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof Split>;

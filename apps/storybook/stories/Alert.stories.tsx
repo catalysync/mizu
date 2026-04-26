@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Feedback/Alert',
+  tags: ['autodocs', 'experimental'],
   component: Alert,
   parameters: { layout: 'padded' },
   args: { tone: 'info', children: 'This is an informational alert.' },

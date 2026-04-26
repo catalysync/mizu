@@ -7,6 +7,7 @@ const radii = tokensByPrefix(/^Radius/);
 
 const meta = {
   title: 'Foundations/Spacing',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

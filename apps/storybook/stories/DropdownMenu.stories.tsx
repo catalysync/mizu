@@ -11,6 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Overlays/DropdownMenu',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'centered' },
 } satisfies Meta;
 

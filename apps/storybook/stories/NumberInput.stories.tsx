@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const meta = {
   title: 'Components/Atoms/NumberInput',
+  tags: ['autodocs', 'experimental'],
   component: NumberInput,
   parameters: { layout: 'padded' },
   args: { defaultValue: 1, 'aria-label': 'Quantity' },

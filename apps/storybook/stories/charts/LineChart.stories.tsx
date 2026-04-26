@@ -4,6 +4,7 @@ import { formatUsd, monthlyRevenue } from './_fixtures';
 
 const meta = {
   title: 'Charts/LineChart',
+  tags: ['autodocs', 'experimental'],
   component: LineChart,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof LineChart>;

@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const meta = {
   title: 'Components/Atoms/Slider',
+  tags: ['autodocs', 'experimental'],
   component: Slider,
   parameters: { layout: 'centered' },
   args: {

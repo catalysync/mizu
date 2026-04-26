@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Switch',
+  tags: ['autodocs', 'experimental'],
   component: Switch,
   parameters: { layout: 'centered' },
   args: { 'aria-label': 'Toggle' },

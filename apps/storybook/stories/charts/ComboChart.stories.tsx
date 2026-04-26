@@ -4,6 +4,7 @@ import { formatUsd, monthlyRevenue } from './_fixtures';
 
 const meta = {
   title: 'Charts/ComboChart',
+  tags: ['autodocs', 'experimental'],
   component: ComboChart,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof ComboChart>;

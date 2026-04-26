@@ -14,6 +14,7 @@ import { TransactionsPage } from './TransactionsPage';
 
 const meta = {
   title: 'Demos/Finance',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'fullscreen' },
 } satisfies Meta;
 

@@ -4,6 +4,7 @@ import { formatUsd, monthlyRevenue } from './_fixtures';
 
 const meta = {
   title: 'Charts/BarChart',
+  tags: ['autodocs', 'experimental'],
   component: BarChart,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof BarChart>;

@@ -26,6 +26,7 @@ function Swatch({ entry }: { entry: TokenEntry }) {
 
 const meta = {
   title: 'Foundations/Colors',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

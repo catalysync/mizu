@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Spinner',
+  tags: ['autodocs', 'experimental'],
   component: Spinner,
   parameters: { layout: 'padded' },
   args: { size: 'sm' },

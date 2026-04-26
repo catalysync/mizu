@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Layouts/Grid',
+  tags: ['autodocs', 'experimental'],
   component: Grid,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof Grid>;

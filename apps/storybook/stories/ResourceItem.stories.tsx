@@ -7,6 +7,7 @@ const IMG = 'https://picsum.photos/seed/product/200';
 
 const meta = {
   title: 'Commerce/ResourceItem',
+  tags: ['autodocs', 'experimental'],
   component: ResourceItem,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof ResourceItem>;

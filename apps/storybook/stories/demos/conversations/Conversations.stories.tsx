@@ -69,6 +69,7 @@ function InboxPage() {
 
 const meta = {
   title: 'Demos/Conversations',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'fullscreen' },
 } satisfies Meta;
 

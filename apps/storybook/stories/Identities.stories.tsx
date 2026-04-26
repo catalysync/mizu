@@ -79,6 +79,7 @@ const identities = [
 
 const meta = {
   title: 'Foundations/Visual Identities',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'fullscreen' },
 } satisfies Meta;
 

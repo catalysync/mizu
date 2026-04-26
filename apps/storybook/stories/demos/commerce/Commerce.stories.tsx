@@ -127,6 +127,7 @@ function OverviewPage() {
 
 const meta = {
   title: 'Demos/Commerce',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'fullscreen' },
 } satisfies Meta;
 

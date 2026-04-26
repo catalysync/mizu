@@ -5,6 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Commerce/FormGroup',
+  tags: ['autodocs', 'experimental'],
   component: FormGroup,
   parameters: { layout: 'centered' },
 } satisfies Meta<typeof FormGroup>;

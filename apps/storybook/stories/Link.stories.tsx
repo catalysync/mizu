@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Link',
+  tags: ['autodocs', 'experimental'],
   component: Link,
   parameters: { layout: 'padded' },
   args: { href: '#', children: 'Read the documentation' },

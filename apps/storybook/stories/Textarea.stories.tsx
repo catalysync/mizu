@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Textarea',
+  tags: ['autodocs', 'experimental'],
   component: Textarea,
   parameters: { layout: 'centered' },
   args: { placeholder: 'Write something…', 'aria-label': 'Notes' },

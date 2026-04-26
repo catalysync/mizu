@@ -86,6 +86,7 @@ function AdvancedQueryBuilderDemo() {
 
 const meta = {
   title: 'Components/Data Display/AdvancedQueryBuilder',
+  tags: ['autodocs', 'experimental'],
   parameters: { layout: 'padded' },
 } satisfies Meta;
 

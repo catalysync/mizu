@@ -4,6 +4,7 @@ import { channelBreakdown } from './_fixtures';
 
 const meta = {
   title: 'Charts/VerticalBarChart',
+  tags: ['autodocs', 'experimental'],
   component: VerticalBarChart,
   parameters: { layout: 'padded' },
 } satisfies Meta<typeof VerticalBarChart>;

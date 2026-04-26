@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Atoms/Heading',
+  tags: ['autodocs', 'experimental'],
   component: Heading,
   parameters: { layout: 'padded' },
   args: { level: 1, children: 'Heading text' },
