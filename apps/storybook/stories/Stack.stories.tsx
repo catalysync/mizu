@@ -5,7 +5,15 @@ const meta = {
   title: 'Layouts/Stack',
   tags: ['autodocs', 'experimental'],
   component: Stack,
-  parameters: { layout: 'centered' },
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Vertical stack layout primitive. ⚠️ For forms use the `Form` component, not `Stack as="form"` — `Stack` is generic and skips form-specific affordances (noValidate, layout slots, disabled propagation).',
+      },
+    },
+  },
 } satisfies Meta<typeof Stack>;
 
 export default meta;

@@ -53,6 +53,10 @@
   background: color-mix(in srgb, var(--mizu-action-primary-default) 8%, transparent);
 }
 
+.mizu-table tbody tr[data-clickable="true"] {
+  cursor: pointer;
+}
+
 .mizu-table td {
   padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
   vertical-align: middle;

@@ -42,9 +42,22 @@ export interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement>
 }
 
 export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
-  ({ className, selected, ...props }, ref) => (
-    <tr ref={ref} className={cn(className)} data-selected={selected || undefined} {...props} />
-  ),
+  ({ className, selected, onClick, ...props }, ref) => {
+    /* When a row has an onClick (or the consumer passes role="button"), it's
+     * semantically interactive. Surface a data attribute so CSS can attach
+     * cursor + hover affordance without each consumer hand-rolling them. */
+    const interactive = !!onClick || props.role === 'button';
+    return (
+      <tr
+        ref={ref}
+        className={cn(className)}
+        data-selected={selected || undefined}
+        data-clickable={interactive || undefined}
+        onClick={onClick}
+        {...props}
+      />
+    );
+  },
 );
 TableRow.displayName = 'TableRow';
 
