@@ -1,33 +1,85 @@
 /*
- * Density overrides. Apply via data-mizu-density on any container.
- * Compact: ~25% tighter spacing, one step smaller text.
- * Comfortable: ~25% looser spacing, one step larger text.
+ * Default mizu spacing + font-size scale.
+ * Sourced from packages/tokens/src/base/spacing.json and typography.json.
+ * Declared at :root so consumers of @aspect/css get a working scale even
+ * if they haven't separately imported @aspect/tokens.
+ *
+ * Density overrides below layer on top via data-mizu-density. Compact
+ * multiplies the base scale by 0.875, comfortable by 1.125 — matching the
+ * canonical step(n) = (base * n / 16) * multiplier formula used by tweakmizu.
  */
 
+:root {
+  --mizu-spacing-0: 0;
+  --mizu-spacing-1: 0.25rem;
+  --mizu-spacing-2: 0.5rem;
+  --mizu-spacing-3: 0.75rem;
+  --mizu-spacing-4: 1rem;
+  --mizu-spacing-5: 1.25rem;
+  --mizu-spacing-6: 1.5rem;
+  --mizu-spacing-8: 2rem;
+  --mizu-spacing-10: 2.5rem;
+  --mizu-spacing-12: 3rem;
+  --mizu-spacing-16: 4rem;
+  --mizu-spacing-20: 5rem;
+  --mizu-spacing-24: 6rem;
+
+  --mizu-font-size-xs: 0.75rem;
+  --mizu-font-size-sm: 0.875rem;
+  --mizu-font-size-base: 1rem;
+  --mizu-font-size-lg: 1.125rem;
+  --mizu-font-size-xl: 1.25rem;
+  --mizu-font-size-2xl: 1.5rem;
+  --mizu-font-size-3xl: 1.875rem;
+  --mizu-font-size-4xl: 2.25rem;
+}
+
 [data-mizu-density="compact"] {
-  --mizu-spacing-1: 0.125rem;
-  --mizu-spacing-2: 0.25rem;
-  --mizu-spacing-3: 0.5rem;
-  --mizu-spacing-4: 0.75rem;
-  --mizu-spacing-5: 1rem;
-  --mizu-spacing-6: 1.25rem;
-  --mizu-spacing-8: 1.5rem;
-  --mizu-font-size-xs: 0.625rem;
-  --mizu-font-size-sm: 0.75rem;
+  --mizu-spacing-0: 0;
+  --mizu-spacing-1: 0.219rem;
+  --mizu-spacing-2: 0.438rem;
+  --mizu-spacing-3: 0.656rem;
+  --mizu-spacing-4: 0.875rem;
+  --mizu-spacing-5: 1.094rem;
+  --mizu-spacing-6: 1.313rem;
+  --mizu-spacing-8: 1.75rem;
+  --mizu-spacing-10: 2.188rem;
+  --mizu-spacing-12: 2.625rem;
+  --mizu-spacing-16: 3.5rem;
+  --mizu-spacing-20: 4.375rem;
+  --mizu-spacing-24: 5.25rem;
+
+  --mizu-font-size-xs: 0.656rem;
+  --mizu-font-size-sm: 0.766rem;
   --mizu-font-size-base: 0.875rem;
-  --mizu-font-size-lg: 1rem;
+  --mizu-font-size-lg: 0.984rem;
+  --mizu-font-size-xl: 1.094rem;
+  --mizu-font-size-2xl: 1.313rem;
+  --mizu-font-size-3xl: 1.641rem;
+  --mizu-font-size-4xl: 1.969rem;
 }
 
 [data-mizu-density="comfortable"] {
-  --mizu-spacing-1: 0.375rem;
-  --mizu-spacing-2: 0.75rem;
-  --mizu-spacing-3: 1rem;
-  --mizu-spacing-4: 1.25rem;
-  --mizu-spacing-5: 1.5rem;
-  --mizu-spacing-6: 2rem;
-  --mizu-spacing-8: 2.5rem;
-  --mizu-font-size-xs: 0.8125rem;
-  --mizu-font-size-sm: 0.9375rem;
-  --mizu-font-size-base: 1.0625rem;
-  --mizu-font-size-lg: 1.1875rem;
+  --mizu-spacing-0: 0;
+  --mizu-spacing-1: 0.281rem;
+  --mizu-spacing-2: 0.563rem;
+  --mizu-spacing-3: 0.844rem;
+  --mizu-spacing-4: 1.125rem;
+  --mizu-spacing-5: 1.406rem;
+  --mizu-spacing-6: 1.688rem;
+  --mizu-spacing-8: 2.25rem;
+  --mizu-spacing-10: 2.813rem;
+  --mizu-spacing-12: 3.375rem;
+  --mizu-spacing-16: 4.5rem;
+  --mizu-spacing-20: 5.625rem;
+  --mizu-spacing-24: 6.75rem;
+
+  --mizu-font-size-xs: 0.844rem;
+  --mizu-font-size-sm: 0.984rem;
+  --mizu-font-size-base: 1.125rem;
+  --mizu-font-size-lg: 1.266rem;
+  --mizu-font-size-xl: 1.406rem;
+  --mizu-font-size-2xl: 1.688rem;
+  --mizu-font-size-3xl: 2.109rem;
+  --mizu-font-size-4xl: 2.531rem;
 }
