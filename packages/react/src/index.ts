@@ -27,6 +27,7 @@ export * from './components/FilterBar';
 export * from './components/Form';
 export * from './components/Heading';
 export * from './components/HoverCard';
+export * from './components/Icon';
 export * from './components/Input';
 export * from './components/Label';
 export * from './components/Link';
@@ -65,7 +66,22 @@ export { usePrevious } from './hooks/use-previous';
 export { useScrollLock } from './hooks/use-scroll-lock';
 export { useThrottle } from './hooks/use-throttle';
 export * from './i18n';
-export { ArrowRight, Check, ChevronDown, ChevronRight, Search, X } from './icons';
+export {
+  ArrowRight,
+  Check,
+  ChevronDown,
+  ChevronRight,
+  FolderIcon,
+  HomeIcon,
+  LogOutIcon,
+  PlayIcon,
+  PlusIcon,
+  RefreshIcon,
+  Search,
+  TableIcon,
+  TrashIcon,
+  X,
+} from './icons';
 export * from './layouts';
 export * from './motion';
 export * from './shell';

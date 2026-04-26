@@ -1,35 +1,48 @@
-import * as React from 'react';
+import {
+  ArrowRight as LArrowRight,
+  Check as LCheck,
+  ChevronDown as LChevronDown,
+  ChevronRight as LChevronRight,
+  Folder as LFolder,
+  House as LHouse,
+  LogOut as LLogOut,
+  Play as LPlay,
+  Plus as LPlus,
+  RotateCw as LRotateCw,
+  Search as LSearch,
+  Table as LTable,
+  Trash2 as LTrash2,
+  X as LX,
+} from 'lucide-react';
+import { wrapIcon } from '../components/Icon/Icon';
 
-interface IconProps extends React.SVGAttributes<SVGElement> {
-  size?: number;
-}
+/**
+ * Curated icon set re-exported from `lucide-react` through our `Icon` wrapper.
+ * Each is pre-bound to a specific glyph so consumers write `<HomeIcon />`
+ * instead of `<Icon icon={House} />`.
+ *
+ * Wrapping (vs raw lucide imports) gives consumers our defaults:
+ * `currentColor`, `size: 16`, `aria-hidden` when decorative.
+ *
+ * Need a glyph that's not here? Two options:
+ * 1. Add it here and ship as part of the curated set.
+ * 2. Import from `lucide-react` directly + wrap with `<Icon icon={...} />`.
+ */
 
-function icon(displayName: string, path: string, opts?: { strokeWidth?: number }) {
-  const Component = React.forwardRef<SVGSVGElement, IconProps>(({ size = 16, ...props }, ref) => (
-    <svg
-      ref={ref}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={opts?.strokeWidth ?? 2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      width={size}
-      height={size}
-      aria-hidden="true"
-      {...props}
-    >
-      <path d={path} />
-    </svg>
-  ));
-  Component.displayName = displayName;
-  return Component;
-}
+// Existing 6 — kept so callers don't break when migrating from the old path.
+export const ChevronDown = wrapIcon('ChevronDown', LChevronDown);
+export const ChevronRight = wrapIcon('ChevronRight', LChevronRight);
+export const X = wrapIcon('X', LX);
+export const Check = wrapIcon('Check', LCheck);
+export const Search = wrapIcon('Search', LSearch);
+export const ArrowRight = wrapIcon('ArrowRight', LArrowRight);
 
-export const ChevronDown = icon('ChevronDown', 'm6 9 6 6 6-6');
-export const ChevronRight = icon('ChevronRight', 'm9 18 6-6-6-6');
-export const X = icon('X', 'M18 6 6 18M6 6l12 12');
-export const Check = icon('Check', 'M20 6 9 17l-5-5', { strokeWidth: 3 });
-export const Search = icon('Search', 'M21 21l-4.35-4.35M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z');
-export const ArrowRight = icon('ArrowRight', 'M5 12h14M12 5l7 7-7 7');
+// New: common product-shell glyphs.
+export const HomeIcon = wrapIcon('HomeIcon', LHouse);
+export const FolderIcon = wrapIcon('FolderIcon', LFolder);
+export const TableIcon = wrapIcon('TableIcon', LTable);
+export const PlusIcon = wrapIcon('PlusIcon', LPlus);
+export const PlayIcon = wrapIcon('PlayIcon', LPlay);
+export const LogOutIcon = wrapIcon('LogOutIcon', LLogOut);
+export const RefreshIcon = wrapIcon('RefreshIcon', LRotateCw);
+export const TrashIcon = wrapIcon('TrashIcon', LTrash2);
