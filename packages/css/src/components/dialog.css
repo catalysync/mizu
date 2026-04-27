@@ -1,9 +1,9 @@
 .mizu-dialog__overlay {
   position: fixed;
   inset: 0;
-  background: color-mix(in srgb, var(--mizu-color-slate-950) 60%, transparent);
+  background: color-mix(in srgb, var(--mizu-color-black, #000) 50%, transparent);
   z-index: var(--mizu-z-overlay);
-  animation: mizu-dialog-fade-in var(--mizu-duration-fast) var(--mizu-easing-out);
+  animation: mizu-fade-in var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
 .mizu-dialog__content {
@@ -17,17 +17,14 @@
   max-width: 32rem;
   max-height: 85vh;
   background: var(--mizu-surface-default);
+  border: 1px solid var(--mizu-border-default);
   border-radius: var(--mizu-radius-lg);
   box-shadow: var(--mizu-shadow-xl);
-  z-index: var(--mizu-z-modal);
-  animation: mizu-dialog-scale-in var(--mizu-duration-fast) var(--mizu-easing-out);
-}
-
-.mizu-dialog__content:focus {
   outline: none;
+  z-index: var(--mizu-z-modal);
+  animation: mizu-zoom-in var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
-/* Sizes */
 .mizu-dialog__content[data-size="sm"] {
   max-width: 24rem;
 }
@@ -46,6 +43,7 @@
   height: 100vh;
   max-height: 100vh;
   border-radius: 0;
+  border: none;
   top: 0;
   left: 0;
   transform: none;
@@ -65,12 +63,15 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-lg);
   font-weight: var(--mizu-font-weight-semibold);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--mizu-text-primary);
 }
 
 .mizu-dialog__description {
   margin: var(--mizu-spacing-1) 0 0;
   font-size: var(--mizu-font-size-sm);
+  line-height: 1.5;
   color: var(--mizu-text-secondary);
 }
 
@@ -94,43 +95,35 @@
 
 .mizu-dialog__close {
   position: absolute;
-  top: var(--mizu-spacing-3);
-  right: var(--mizu-spacing-3);
-  width: 1.75rem;
-  height: 1.75rem;
+  top: var(--mizu-spacing-4);
+  right: var(--mizu-spacing-4);
+  width: 1rem;
+  height: 1rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   border: none;
-  border-radius: var(--mizu-radius-md);
+  border-radius: var(--mizu-radius-sm, 2px);
   color: var(--mizu-text-secondary);
+  opacity: 0.6;
   cursor: pointer;
+  transition: opacity var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
 .mizu-dialog__close:hover {
-  background: var(--mizu-surface-secondary);
-  color: var(--mizu-text-primary);
+  opacity: 1;
 }
 
-@keyframes mizu-dialog-fade-in {
-  from {
-    opacity: 0;
-  }
+.mizu-dialog__close:focus-visible {
+  outline: 2px solid var(--mizu-action-primary-default);
+  outline-offset: 2px;
+  opacity: 1;
 }
 
-@keyframes mizu-dialog-scale-in {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.96);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mizu-dialog__overlay,
-  .mizu-dialog__overlay * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+.mizu-dialog__close > svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  pointer-events: none;
 }
