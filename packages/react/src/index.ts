@@ -25,6 +25,7 @@ export * from './components/Fieldset';
 export * from './components/FileInput';
 export * from './components/FilterBar';
 export * from './components/Form';
+export * from './components/FormField';
 export * from './components/Heading';
 export * from './components/HoverCard';
 export * from './components/Icon';

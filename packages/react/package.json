@@ -29,7 +29,13 @@
     "@aspect/tokens": ">=0.1.0",
     "lucide-react": ">=0.400.0",
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "react-hook-form": ">=7.50.0"
+  },
+  "peerDependenciesMeta": {
+    "react-hook-form": {
+      "optional": true
+    }
   },
   "files": [
     "dist"
@@ -75,6 +81,7 @@
     "lucide-react": "^0.488.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.74.0",
     "tsup": "^8.5.1",
     "vitest": "^3.0.0",
     "vitest-axe": "^0.1.0"
