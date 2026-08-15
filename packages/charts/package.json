@@ -47,7 +47,7 @@
     "jsdom": "^25.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "recharts": "^2.12.7",
+    "recharts": "^3.8.1",
     "tsup": "^8.5.0",
     "typescript": "^5.9.0",
     "vitest": "^3.0.0",
