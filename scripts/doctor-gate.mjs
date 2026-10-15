@@ -14,7 +14,7 @@ import { spawnSync } from 'node:child_process';
 // Strip ANSI so regexes don't get fooled by color codes.
 const stripAnsi = (s) => s.replace(/\x1b\[[0-9;]*m/g, '');
 
-const result = spawnSync('npx', ['-y', 'react-doctor@latest', '.', '-y'], {
+const result = spawnSync('pnpm', ['exec', 'react-doctor', '.', '-y'], {
   stdio: ['inherit', 'pipe', 'inherit'],
   encoding: 'utf8',
 });
