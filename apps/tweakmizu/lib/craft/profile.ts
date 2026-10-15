@@ -6,12 +6,12 @@ import { AppSchema, defaultAppSchema } from './app-schema';
  * design language on top of mizu, plus the application they want to build
  * with it. Two halves:
  *
- * 1. Language clusters (A–J) matching mizu-planning/11-design-language.md:
+ * 1. Language clusters (A–J):
  *    Foundation, Shape, Density, Type, Motion, Depth, Focus, Iconography,
  *    Voice, API-opinions.
  * 2. App schema (identity + entities + pages + components + shell + custom
  *    components) so the studio can render a multi-page preview and export a
- *    full monorepo. See mizu-planning/13-studio-v2-vision.md for the "why".
+ *    full monorepo.
  *
  * This is what gets exported as `mizu.language.json`, what the AI agent
  * mutates via Claude tool calls, and what the craft studio UI edits knob by
