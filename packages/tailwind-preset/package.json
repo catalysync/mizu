@@ -18,14 +18,18 @@
     "./legacy": "./src/legacy-preset.js"
   },
   "scripts": {
-    "lint": "stylelint 'src/**/*.css'"
+    "lint": "stylelint 'src/**/*.css'",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "@mizunagara/tokens": ">=0.2.0",
     "tailwindcss": ">=4.0.0"
   },
   "devDependencies": {
-    "@mizunagara/tokens": "workspace:^"
+    "@mizunagara/tokens": "workspace:^",
+    "@tailwindcss/node": "^4.2.2",
+    "tailwindcss": "^4.2.2",
+    "vitest": "^3.0.0"
   },
   "files": [
     "src"

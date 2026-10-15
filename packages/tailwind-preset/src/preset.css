@@ -94,3 +94,14 @@
   --ease-out: var(--mizu-easing-out);
   --ease-in-out: var(--mizu-easing-in-out);
 }
+
+/*
+ * Tailwind v4's preflight no longer gives buttons `cursor: pointer`, so they
+ * show the arrow cursor. Restore the affordance for enabled buttons only.
+ */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled, [aria-disabled="true"]) {
+    cursor: pointer;
+  }
+}
