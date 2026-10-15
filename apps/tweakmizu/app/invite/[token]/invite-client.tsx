@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Inline, Stack } from '@aspect/react';
+import { Button, Inline, Stack } from '@mizunagara/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

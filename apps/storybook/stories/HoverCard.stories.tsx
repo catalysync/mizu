@@ -1,4 +1,4 @@
-import { HoverCard, HoverCardContent, HoverCardTrigger, Stack } from '@aspect/react';
+import { HoverCard, HoverCardContent, HoverCardTrigger, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

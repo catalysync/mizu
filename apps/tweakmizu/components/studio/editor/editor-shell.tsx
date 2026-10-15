@@ -3,7 +3,7 @@
 import { useStudioStore } from '@/store/studio-store';
 import type { ThemeStyleProps } from '@/types/theme';
 import { cn } from '@/utils/cn';
-import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
+import { Badge, Button, Inline, Split, Stack } from '@mizunagara/react';
 import { Palette, Redo2, RotateCcw, Ruler, Sparkles, Type, Undo2 } from 'lucide-react';
 import { useState } from 'react';
 import { CommandPalette } from './command-palette';

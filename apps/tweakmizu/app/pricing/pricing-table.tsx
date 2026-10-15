@@ -11,7 +11,7 @@ import {
   Grid,
   Inline,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { Check, Sparkles, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';

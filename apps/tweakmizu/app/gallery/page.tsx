@@ -1,7 +1,16 @@
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { getAllPatterns } from '@/lib/patterns/registry';
-import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Grid, Stack } from '@aspect/react';
+import {
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Grid,
+  Stack,
+} from '@mizunagara/react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 

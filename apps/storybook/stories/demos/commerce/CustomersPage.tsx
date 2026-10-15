@@ -1,4 +1,4 @@
-import { formatCurrency } from '@aspect/finance';
+import { formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -14,7 +14,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { customers } from './data';
 
 export function CustomersPage() {

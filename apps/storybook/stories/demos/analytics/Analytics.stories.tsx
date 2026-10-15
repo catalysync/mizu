@@ -1,4 +1,4 @@
-import { formatCompact } from '@aspect/finance';
+import { formatCompact } from '@mizunagara/finance';
 import {
   AppBreadcrumbs,
   AppContent,
@@ -17,7 +17,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { datasets, pipelines, workspace, type WorkspaceItem } from './data';
 

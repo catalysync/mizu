@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Cluster } from '@aspect/react';
+import { Button, Cluster } from '@mizunagara/react';
 import { ArrowRight, Github } from 'lucide-react';
 import Link from 'next/link';
 

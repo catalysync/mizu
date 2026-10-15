@@ -3,7 +3,7 @@ import { SiteHeader } from '@/components/site-header';
 import { db } from '@/db';
 import { share } from '@/db/schema';
 import type { Plan } from '@/lib/studio/composer';
-import { Badge, Stack } from '@aspect/react';
+import { Badge, Stack } from '@mizunagara/react';
 import { eq } from 'drizzle-orm';
 import { notFound } from 'next/navigation';
 import { SharedPlanView } from './shared-plan-view';

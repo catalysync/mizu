@@ -1,4 +1,4 @@
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 import { StudioNewClient } from './client';
 
 export default function StudioNew() {

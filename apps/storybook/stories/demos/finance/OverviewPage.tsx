@@ -1,4 +1,4 @@
-import { DeltaIndicator, KpiCard, MetricTile, formatCurrency } from '@aspect/finance';
+import { DeltaIndicator, KpiCard, MetricTile, formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -15,7 +15,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { invoices, overviewKpis, transactions } from './data';
 
 export function OverviewPage() {

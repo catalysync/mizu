@@ -12,7 +12,7 @@ interface PageRendererProps {
 /**
  * Renders a single page from the profile's composition tree. Every section
  * kind maps to a small purpose-built component that only uses mizu CSS
- * variables — no actual @aspect/react imports — so the preview stays fast,
+ * variables — no actual @mizunagara/react imports — so the preview stays fast,
  * isolated, and styleable entirely through tokens.
  */
 export function PageRenderer({ page, profile }: PageRendererProps) {

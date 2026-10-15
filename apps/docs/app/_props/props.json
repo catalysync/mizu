@@ -878,6 +878,13 @@
       "interface": "HoverCardContentProps"
     }
   ],
+  "icon": [
+    {
+      "name": "icon",
+      "type": "LucideIcon",
+      "interface": "IconProps"
+    }
+  ],
   "input": [
     {
       "name": "error",

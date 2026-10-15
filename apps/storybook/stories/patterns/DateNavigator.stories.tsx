@@ -1,4 +1,4 @@
-import { DateNavigator, type DateNavigatorValue } from '@aspect/react';
+import { DateNavigator, type DateNavigatorValue } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

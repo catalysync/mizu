@@ -1,4 +1,4 @@
-import '@aspect/finance/css';
+import '@mizunagara/finance/css';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ChartOfAccountsPage } from './ChartOfAccountsPage';
 import { CustomersPage } from './CustomersPage';

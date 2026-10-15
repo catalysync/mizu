@@ -1,4 +1,4 @@
-import { Field, FileInput, Stack } from '@aspect/react';
+import { Field, FileInput, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

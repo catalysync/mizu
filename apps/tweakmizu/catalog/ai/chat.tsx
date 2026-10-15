@@ -1,6 +1,6 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { Button, Card, CardBody, Inline, Input, Stack } from '@aspect/react';
+import { Button, Card, CardBody, Inline, Input, Stack } from '@mizunagara/react';
 
 interface Message {
   id: string;
@@ -94,7 +94,7 @@ function Preview() {
   );
 }
 
-const TEMPLATE = `import { Button, Card, CardBody, Inline, Input, Stack } from '@aspect/react';
+const TEMPLATE = `import { Button, Card, CardBody, Inline, Input, Stack } from '@mizunagara/react';
 
 interface Message {
   id: string;
@@ -157,11 +157,11 @@ export const aiChat = definePattern({
     industries: ['ai-product', 'saas-admin'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Button',
-      '@aspect/react#Input',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Input',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
     ],
     sources: [
       {

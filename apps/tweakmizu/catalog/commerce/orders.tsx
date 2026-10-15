@@ -1,6 +1,6 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { formatCurrency } from '@aspect/finance';
+import { formatCurrency } from '@mizunagara/finance';
 import {
   Badge,
   Button,
@@ -16,7 +16,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 type OrderStatus = 'fulfilled' | 'pending' | 'refunded';
 
@@ -196,8 +196,8 @@ const TEMPLATE = `import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
-import { formatCurrency } from '@aspect/finance';
+} from '@mizunagara/react';
+import { formatCurrency } from '@mizunagara/finance';
 
 type OrderStatus = 'fulfilled' | 'pending' | 'refunded';
 
@@ -274,15 +274,15 @@ export const commerceOrders = definePattern({
     industries: ['ecommerce'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Table',
-      '@aspect/react#Badge',
-      '@aspect/react#Button',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
-      '@aspect/react#Separator',
-      '@aspect/commerce#Pagination',
-      '@aspect/finance#formatCurrency',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Table',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
+      '@mizunagara/react#Separator',
+      '@mizunagara/commerce#Pagination',
+      '@mizunagara/finance#formatCurrency',
     ],
     sources: [
       {

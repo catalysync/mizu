@@ -1,4 +1,4 @@
-import { Button, Field, Inline, Input, Stack, StepFlow } from '@aspect/react';
+import { Button, Field, Inline, Input, Stack, StepFlow } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

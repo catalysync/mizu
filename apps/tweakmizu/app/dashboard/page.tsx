@@ -1,6 +1,6 @@
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
-import { Button, Stack } from '@aspect/react';
+import { Button, Stack } from '@mizunagara/react';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { DashboardClient } from './dashboard-client';

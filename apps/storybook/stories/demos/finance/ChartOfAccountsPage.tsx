@@ -1,5 +1,5 @@
-import { ChartOfAccounts } from '@aspect/finance';
-import { AppContentHeader, Button, Card, CardBody, Inline, Stack } from '@aspect/react';
+import { ChartOfAccounts } from '@mizunagara/finance';
+import { AppContentHeader, Button, Card, CardBody, Inline, Stack } from '@mizunagara/react';
 import { accounts } from './data';
 
 export function ChartOfAccountsPage() {

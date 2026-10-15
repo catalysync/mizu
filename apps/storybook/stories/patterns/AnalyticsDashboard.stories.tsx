@@ -1,11 +1,11 @@
-import { AreaChart, BarChart, LineChart, PieChart } from '@aspect/charts';
+import { AreaChart, BarChart, LineChart, PieChart } from '@mizunagara/charts';
 import {
   AnalyticsDashboard,
   AnalyticsDashboardTile,
   Button,
   DateNavigator,
   type DateNavigatorValue,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

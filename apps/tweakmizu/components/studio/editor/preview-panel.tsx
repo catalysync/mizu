@@ -12,7 +12,7 @@ import {
   Inline,
   Input,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { useEffect, useRef } from 'react';
 
 interface Props {

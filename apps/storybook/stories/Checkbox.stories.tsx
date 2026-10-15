@@ -1,4 +1,4 @@
-import { Checkbox, Stack } from '@aspect/react';
+import { Checkbox, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

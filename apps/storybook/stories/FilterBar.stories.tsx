@@ -1,4 +1,4 @@
-import { Button, FilterBar } from '@aspect/react';
+import { Button, FilterBar } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

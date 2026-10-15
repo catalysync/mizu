@@ -34,7 +34,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { useEffect, useRef } from 'react';
 
 interface MizuComponentsPreviewProps {

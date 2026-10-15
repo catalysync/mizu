@@ -1,8 +1,8 @@
 /*
  * Default mizu spacing + font-size scale.
  * Sourced from packages/tokens/src/base/spacing.json and typography.json.
- * Declared at :root so consumers of @aspect/css get a working scale even
- * if they haven't separately imported @aspect/tokens.
+ * Declared at :root so consumers of @mizunagara/css get a working scale even
+ * if they haven't separately imported @mizunagara/tokens.
  *
  * Density overrides below layer on top via data-mizu-density. Compact
  * multiplies the base scale by 0.875, comfortable by 1.125 — matching the

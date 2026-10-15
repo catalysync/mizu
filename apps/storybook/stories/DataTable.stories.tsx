@@ -1,4 +1,4 @@
-import { Badge, DataTable, Stack, type DataTableColumn } from '@aspect/react';
+import { Badge, DataTable, Stack, type DataTableColumn } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

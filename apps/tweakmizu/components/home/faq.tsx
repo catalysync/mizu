@@ -1,6 +1,6 @@
 'use client';
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@aspect/react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@mizunagara/react';
 
 const items = [
   {
@@ -17,7 +17,7 @@ const items = [
   },
   {
     q: 'Can I theme the whole design system from here?',
-    a: 'Yes. Every semantic token in @aspect/tokens is editable — action, feedback, surface, text, border, plus radius, shadow, typography, and motion.',
+    a: 'Yes. Every semantic token in @mizunagara/tokens is editable — action, feedback, surface, text, border, plus radius, shadow, typography, and motion.',
   },
   {
     q: 'What does the exported CSS look like?',

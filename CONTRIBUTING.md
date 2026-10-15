@@ -39,8 +39,8 @@ pnpm turbo dev           # dev servers for apps that declare one
 Storybook and the docs site live under `apps/`:
 
 ```bash
-pnpm --filter @aspect/storybook dev
-pnpm --filter @aspect/docs dev
+pnpm --filter @mizunagara/storybook dev
+pnpm --filter @mizunagara/docs dev
 ```
 
 ## Repository layout
@@ -98,7 +98,7 @@ When adding or modifying a React component under `packages/react/src/`:
 ## Public API
 
 - Every package exports through its `src/index.ts` barrel.
-- `packages/react/src/index.ts` is the single entry for `@aspect/react`. A new component is only shipped once it's added to that barrel.
+- `packages/react/src/index.ts` is the single entry for `@mizunagara/react`. A new component is only shipped once it's added to that barrel.
 
 ## Commits
 
@@ -109,7 +109,7 @@ When adding or modifying a React component under `packages/react/src/`:
 
 ## Changesets
 
-Publishable packages (`@aspect/tokens`, `@aspect/css`, `@aspect/react`, `@aspect/tailwind-preset`, and the domain packs) are released via [changesets](https://github.com/changesets/changesets).
+Publishable packages (`@mizunagara/tokens`, `@mizunagara/css`, `@mizunagara/react`, `@mizunagara/tailwind-preset`, and the domain packs) are released via [changesets](https://github.com/changesets/changesets).
 
 If your change is user-facing for any of those packages, add a changeset:
 
@@ -143,7 +143,7 @@ Releases are driven by changesets via `.github/workflows/ci.yml`:
 
 1. Merged changesets accumulate in a "Version Packages" PR opened by the changesets bot.
 2. Merging that PR runs `changeset publish`, which bumps versions and publishes to npm.
-3. Apps (`@aspect/storybook`, `@aspect/docs`) are not published — they deploy independently.
+3. Apps (`@mizunagara/storybook`, `@mizunagara/docs`) are not published — they deploy independently.
 
 Maintainers handle the release PR. Contributors don't need to run changeset versioning by hand.
 

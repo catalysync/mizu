@@ -2,7 +2,7 @@
 
 import { useStudioStore } from '@/store/studio-store';
 import type { ThemeStyleProps } from '@/types/theme';
-import { Button, Inline, Stack, Textarea } from '@aspect/react';
+import { Button, Inline, Stack, Textarea } from '@mizunagara/react';
 import { Sparkles, X } from 'lucide-react';
 import { useEffect, useState, type FormEvent } from 'react';
 

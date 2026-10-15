@@ -1,4 +1,4 @@
-import { FormGroup } from '@aspect/commerce';
+import { FormGroup } from '@mizunagara/commerce';
 import {
   AppBreadcrumbs,
   AppContentHeader,
@@ -17,7 +17,7 @@ import {
   Stack,
   Switch,
   Textarea,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

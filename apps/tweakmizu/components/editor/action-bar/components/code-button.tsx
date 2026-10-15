@@ -14,7 +14,7 @@ import {
   ModalTrigger,
   ScrollArea,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { Braces, Check, Copy } from 'lucide-react';
 import { useMemo, useState } from 'react';
 

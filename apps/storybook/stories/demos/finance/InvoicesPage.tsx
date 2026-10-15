@@ -3,7 +3,7 @@ import {
   computeLineTotal,
   formatCurrency,
   type InvoiceLineItemValue,
-} from '@aspect/finance';
+} from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -29,7 +29,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { useMemo, useState } from 'react';
 import { invoices, type Invoice, type InvoiceStatus } from './data';
 

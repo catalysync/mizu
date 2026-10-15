@@ -1,4 +1,13 @@
-import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Grid, Inline } from '@aspect/react';
+import {
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Grid,
+  Inline,
+} from '@mizunagara/react';
 import * as React from 'react';
 import { mockApps, type AppRecord, type AppStatus } from './data';
 

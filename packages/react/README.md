@@ -1,20 +1,20 @@
-# @aspect/react
+# @mizunagara/react
 
 React components for the mizu design system. Built with [Radix](https://www.radix-ui.com/) primitives, [CVA](https://cva.style/) for variants, and [tsup](https://tsup.egoist.dev/) for bundling.
 
 ## Installation
 
 ```bash
-pnpm add @aspect/react @aspect/css @aspect/tokens
+pnpm add @mizunagara/react @mizunagara/css @mizunagara/tokens
 ```
 
 ```css
-@import '@aspect/tokens/css';
-@import '@aspect/css';
+@import '@mizunagara/tokens/css';
+@import '@mizunagara/css';
 ```
 
 ```tsx
-import { Button } from '@aspect/react';
+import { Button } from '@mizunagara/react';
 ```
 
 ## Development

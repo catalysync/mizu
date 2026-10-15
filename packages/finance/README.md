@@ -1,11 +1,11 @@
-# @aspect/finance
+# @mizunagara/finance
 
-Finance industry components for the mizu design system. Builds on `@aspect/react` with finance-specific compositions, utilities, and themes.
+Finance industry components for the mizu design system. Builds on `@mizunagara/react` with finance-specific compositions, utilities, and themes.
 
 ## Installation
 
 ```bash
-pnpm add @aspect/finance @aspect/react @aspect/css @aspect/tokens
+pnpm add @mizunagara/finance @mizunagara/react @mizunagara/css @mizunagara/tokens
 ```
 
 ## Components
@@ -20,7 +20,7 @@ pnpm add @aspect/finance @aspect/react @aspect/css @aspect/tokens
 ## Utilities
 
 ```ts
-import { formatCurrency, formatAccounting, formatDelta, formatCompact } from '@aspect/finance';
+import { formatCurrency, formatAccounting, formatDelta, formatCompact } from '@mizunagara/finance';
 
 formatCurrency(1234.5); // "$1,234.50"
 formatAccounting(-500); // "($500.00)"
@@ -31,9 +31,9 @@ formatCompact(1234567); // "1.2M"
 ## Themes
 
 ```css
-@import '@aspect/finance/themes/reports'; /* QuickBooks-style, monochrome, print-ready */
-@import '@aspect/finance/themes/insights'; /* Digits-style, dark + vibrant accent */
-@import '@aspect/finance/themes/analytics'; /* Dense workspace, cool slate */
+@import '@mizunagara/finance/themes/reports'; /* QuickBooks-style, monochrome, print-ready */
+@import '@mizunagara/finance/themes/insights'; /* Digits-style, dark + vibrant accent */
+@import '@mizunagara/finance/themes/analytics'; /* Dense workspace, cool slate */
 ```
 
 Apply via `data-mizu-theme` attribute on any container.

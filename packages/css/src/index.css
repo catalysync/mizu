@@ -1,13 +1,13 @@
 /* mizu Design System — Component CSS
- * Framework-agnostic. Requires @aspect/tokens CSS variables to be loaded.
+ * Framework-agnostic. Requires @mizunagara/tokens CSS variables to be loaded.
  *
  * Usage (any framework):
- *   @import "@aspect/tokens/css";
- *   @import "@aspect/css";
+ *   @import "@mizunagara/tokens/css";
+ *   @import "@mizunagara/css";
  *
  * Usage (cherry-pick):
- *   @import "@aspect/css/components/button";
- *   @import "@aspect/css/layouts/stack";
+ *   @import "@mizunagara/css/components/button";
+ *   @import "@mizunagara/css/layouts/stack";
  */
 
 /* Shared utilities + scales */

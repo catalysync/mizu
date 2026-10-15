@@ -1,4 +1,4 @@
-import { Inline, Switch } from '@aspect/react';
+import { Inline, Switch } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

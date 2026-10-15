@@ -26,6 +26,6 @@ mizu uses plain CSS with `--mizu-*` custom properties and BEM class names. No ru
 
 - CSS package is framework-agnostic — usable with Vue, Svelte, plain HTML
 - Zero runtime JS for styling
-- Tree-shakeable via per-component CSS imports (`@aspect/css/components/button`)
+- Tree-shakeable via per-component CSS imports (`@mizunagara/css/components/button`)
 - Identity themes work via pure CSS selector overrides, no JS needed
 - Trade-off: no dynamic style interpolation (handled by `style` prop or CSS variables when needed)

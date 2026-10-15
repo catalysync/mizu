@@ -1,4 +1,4 @@
-import { cn } from '@aspect/react';
+import { cn } from '@mizunagara/react';
 import * as React from 'react';
 
 export interface ChartEmptyProps extends React.HTMLAttributes<HTMLDivElement> {

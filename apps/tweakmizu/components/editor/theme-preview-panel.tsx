@@ -2,7 +2,7 @@
 
 import { useFullscreen } from '@/hooks/use-fullscreen';
 import type { ThemeStyleProps } from '@/types/theme';
-import { Button, ScrollArea, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
+import { Button, ScrollArea, Tabs, TabsContent, TabsList, TabsTrigger } from '@mizunagara/react';
 import { Maximize, Minimize } from 'lucide-react';
 import { useQueryState } from 'nuqs';
 import MizuColorPreview from './theme-preview/mizu-color-preview';

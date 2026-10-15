@@ -1,4 +1,4 @@
-import { formatCurrency } from '@aspect/finance';
+import { formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Button,
@@ -9,7 +9,7 @@ import {
   Inline,
   Stack,
   cn,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { useState } from 'react';
 import { reports, type ReportTile } from './data';
 

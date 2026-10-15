@@ -85,7 +85,7 @@ export interface AnalyticsDashboardProps extends Omit<
 
 /**
  * A responsive grid of chart / KPI tiles for dashboards. Doesn't ship with any
- * charts itself — consumers drop `@aspect/charts` components (or anything) into
+ * charts itself — consumers drop `@mizunagara/charts` components (or anything) into
  * `<AnalyticsDashboardTile>` children. The grid handles spacing and responsive
  * reflow; the tiles handle title + actions. Below `md` (768px), tiles stack
  * one per row regardless of `colSpan`.

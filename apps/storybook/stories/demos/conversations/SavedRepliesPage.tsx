@@ -1,4 +1,4 @@
-import { AppContentHeader, Badge, Button, Card, CardBody, Inline, Stack } from '@aspect/react';
+import { AppContentHeader, Badge, Button, Card, CardBody, Inline, Stack } from '@mizunagara/react';
 
 const replies = [
   {

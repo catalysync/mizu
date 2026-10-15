@@ -80,13 +80,13 @@ export default function HomePage() {
       <div className="docs-home__install">
         <h2>Install</h2>
         <pre>
-          <code>pnpm add @aspect/react @aspect/css @aspect/tokens</code>
+          <code>pnpm add @mizunagara/react @mizunagara/css @mizunagara/tokens</code>
         </pre>
         <pre>
-          <code>{`@import "@aspect/tokens/css";\n@import "@aspect/css";`}</code>
+          <code>{`@import "@mizunagara/tokens/css";\n@import "@mizunagara/css";`}</code>
         </pre>
         <pre>
-          <code>{`import { Button } from "@aspect/react";`}</code>
+          <code>{`import { Button } from "@mizunagara/react";`}</code>
         </pre>
       </div>
     </div>

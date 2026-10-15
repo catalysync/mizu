@@ -1,4 +1,4 @@
-import { ReconciliationRow, formatCurrency } from '@aspect/finance';
+import { ReconciliationRow, formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -14,7 +14,7 @@ import {
   SelectValue,
   Stack,
   cn,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { reconciliation } from './data';
 
 export function ReconciliationPage() {

@@ -1,33 +1,33 @@
-export const metadata = { title: '@aspect/tailwind-preset — mizu' };
+export const metadata = { title: '@mizunagara/tailwind-preset — mizu' };
 
-# @aspect/tailwind-preset
+# @mizunagara/tailwind-preset
 
 Tailwind v4 theme bridge for the mizu design system. Maps Tailwind utility classes to mizu design tokens.
 
 ## Installation
 
 ```bash
-pnpm add -D @aspect/tailwind-preset
+pnpm add -D @mizunagara/tailwind-preset
 ```
 
 ## Usage (Tailwind v4)
 
 ```css
 @import 'tailwindcss';
-@import '@aspect/tokens/css';
-@import '@aspect/tailwind-preset';
+@import '@mizunagara/tokens/css';
+@import '@mizunagara/tailwind-preset';
 ```
 
 Now you can use Tailwind utilities that resolve to mizu tokens:
 
 ```html
-<div class="bg-primary text-text-primary p-4 rounded-lg shadow-md">Token-driven Tailwind</div>
+<div class="bg-primary text-text-primary rounded-lg p-4 shadow-md">Token-driven Tailwind</div>
 ```
 
 ## Legacy (Tailwind v3)
 
 ```js
-const preset = require('@aspect/tailwind-preset/legacy');
+const preset = require('@mizunagara/tailwind-preset/legacy');
 module.exports = { presets: [preset] };
 ```
 

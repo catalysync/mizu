@@ -108,16 +108,16 @@ importers:
         specifier: ^3.23.0
         version: 3.23.0
     devDependencies:
-      '@aspect/css':
+      '@mizunagara/css':
         specifier: workspace:^
         version: link:../../packages/css
-      '@aspect/react':
+      '@mizunagara/react':
         specifier: workspace:^
         version: link:../../packages/react
-      '@aspect/tokens':
+      '@mizunagara/tokens':
         specifier: workspace:^
         version: link:../../packages/tokens
-      '@aspect/tsconfig':
+      '@mizunagara/tsconfig':
         specifier: workspace:^
         version: link:../../packages/tsconfig
       '@types/mdx':
@@ -138,31 +138,31 @@ importers:
 
   apps/storybook:
     devDependencies:
-      '@aspect/advanced-query-builder':
+      '@mizunagara/advanced-query-builder':
         specifier: workspace:^
         version: link:../../packages/advanced-query-builder
-      '@aspect/charts':
+      '@mizunagara/charts':
         specifier: workspace:^
         version: link:../../packages/charts
-      '@aspect/commerce':
+      '@mizunagara/commerce':
         specifier: workspace:^
         version: link:../../packages/commerce
-      '@aspect/css':
+      '@mizunagara/css':
         specifier: workspace:^
         version: link:../../packages/css
-      '@aspect/finance':
+      '@mizunagara/finance':
         specifier: workspace:^
         version: link:../../packages/finance
-      '@aspect/query-builder':
+      '@mizunagara/query-builder':
         specifier: workspace:^
         version: link:../../packages/query-builder
-      '@aspect/react':
+      '@mizunagara/react':
         specifier: workspace:^
         version: link:../../packages/react
-      '@aspect/tokens':
+      '@mizunagara/tokens':
         specifier: workspace:^
         version: link:../../packages/tokens
-      '@aspect/tsconfig':
+      '@mizunagara/tsconfig':
         specifier: workspace:^
         version: link:../../packages/tsconfig
       '@react-awesome-query-builder/ui':
@@ -228,19 +228,19 @@ importers:
       '@anthropic-ai/sdk':
         specifier: ^0.88.0
         version: 0.88.0(zod@3.25.76)
-      '@aspect/commerce':
+      '@mizunagara/commerce':
         specifier: workspace:^
         version: link:../../packages/commerce
-      '@aspect/css':
+      '@mizunagara/css':
         specifier: workspace:^
         version: link:../../packages/css
-      '@aspect/finance':
+      '@mizunagara/finance':
         specifier: workspace:^
         version: link:../../packages/finance
-      '@aspect/react':
+      '@mizunagara/react':
         specifier: workspace:^
         version: link:../../packages/react
-      '@aspect/tokens':
+      '@mizunagara/tokens':
         specifier: workspace:^
         version: link:../../packages/tokens
       '@neondatabase/serverless':
@@ -343,13 +343,13 @@ importers:
 
   packages/advanced-query-builder:
     devDependencies:
-      '@aspect/css':
+      '@mizunagara/css':
         specifier: workspace:^
         version: link:../css
-      '@aspect/react':
+      '@mizunagara/react':
         specifier: workspace:^
         version: link:../react
-      '@aspect/tsconfig':
+      '@mizunagara/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
       '@react-awesome-query-builder/ui':
@@ -373,16 +373,16 @@ importers:
 
   packages/charts:
     devDependencies:
-      '@aspect/css':
+      '@mizunagara/css':
         specifier: workspace:^
         version: link:../css
-      '@aspect/react':
+      '@mizunagara/react':
         specifier: workspace:^
         version: link:../react
-      '@aspect/tokens':
+      '@mizunagara/tokens':
         specifier: workspace:^
         version: link:../tokens
-      '@aspect/tsconfig':
+      '@mizunagara/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
       '@testing-library/jest-dom':
@@ -424,16 +424,16 @@ importers:
 
   packages/commerce:
     devDependencies:
-      '@aspect/css':
+      '@mizunagara/css':
         specifier: workspace:^
         version: link:../css
-      '@aspect/react':
+      '@mizunagara/react':
         specifier: workspace:^
         version: link:../react
-      '@aspect/tokens':
+      '@mizunagara/tokens':
         specifier: workspace:^
         version: link:../tokens
-      '@aspect/tsconfig':
+      '@mizunagara/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
       '@testing-library/jest-dom':
@@ -472,7 +472,7 @@ importers:
 
   packages/css:
     devDependencies:
-      '@aspect/tokens':
+      '@mizunagara/tokens':
         specifier: workspace:^
         version: link:../tokens
       lightningcss:
@@ -481,16 +481,16 @@ importers:
 
   packages/finance:
     devDependencies:
-      '@aspect/css':
+      '@mizunagara/css':
         specifier: workspace:^
         version: link:../css
-      '@aspect/react':
+      '@mizunagara/react':
         specifier: workspace:^
         version: link:../react
-      '@aspect/tokens':
+      '@mizunagara/tokens':
         specifier: workspace:^
         version: link:../tokens
-      '@aspect/tsconfig':
+      '@mizunagara/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
       '@testing-library/jest-dom':
@@ -539,7 +539,7 @@ importers:
         specifier: ^3.25.76
         version: 3.25.76
     devDependencies:
-      '@aspect/tsconfig':
+      '@mizunagara/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
       '@types/node':
@@ -551,13 +551,13 @@ importers:
 
   packages/query-builder:
     devDependencies:
-      '@aspect/css':
+      '@mizunagara/css':
         specifier: workspace:^
         version: link:../css
-      '@aspect/react':
+      '@mizunagara/react':
         specifier: workspace:^
         version: link:../react
-      '@aspect/tsconfig':
+      '@mizunagara/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
       '@types/react':
@@ -657,13 +657,13 @@ importers:
         specifier: ^3.0.0
         version: 3.0.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     devDependencies:
-      '@aspect/css':
+      '@mizunagara/css':
         specifier: workspace:^
         version: link:../css
-      '@aspect/tokens':
+      '@mizunagara/tokens':
         specifier: workspace:^
         version: link:../tokens
-      '@aspect/tsconfig':
+      '@mizunagara/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
       '@testing-library/jest-dom':
@@ -712,7 +712,7 @@ importers:
         specifier: '>=4.0.0'
         version: 4.2.2
     devDependencies:
-      '@aspect/tokens':
+      '@mizunagara/tokens':
         specifier: workspace:^
         version: link:../tokens
 

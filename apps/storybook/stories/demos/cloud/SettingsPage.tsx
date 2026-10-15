@@ -10,7 +10,7 @@ import {
   Separator,
   Stack,
   Switch,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 export function SettingsPage() {
   return (

@@ -1,4 +1,4 @@
-import { LineChart } from '@aspect/charts';
+import { LineChart } from '@mizunagara/charts';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { formatUsd, monthlyRevenue } from './_fixtures';
 

@@ -7,7 +7,7 @@ import {
   AppSidebarItem,
   AppSidebarSection,
   Input,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface CommerceShellProps {
   active: string;

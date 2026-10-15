@@ -3,7 +3,7 @@ import { SiteHeader } from '@/components/site-header';
 import { db } from '@/db';
 import { team, teamMember } from '@/db/schema';
 import { tryGetCurrentUserId } from '@/lib/shared';
-import { Badge, Button, Card, CardBody, CardHeader, Inline, Stack } from '@aspect/react';
+import { Badge, Button, Card, CardBody, CardHeader, Inline, Stack } from '@mizunagara/react';
 import { eq } from 'drizzle-orm';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';

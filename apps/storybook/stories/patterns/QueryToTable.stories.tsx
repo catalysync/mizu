@@ -1,5 +1,5 @@
-import type { RuleGroupType } from '@aspect/query-builder';
-import { MizuQueryBuilder, formatQuery } from '@aspect/query-builder';
+import type { RuleGroupType } from '@mizunagara/query-builder';
+import { MizuQueryBuilder, formatQuery } from '@mizunagara/query-builder';
 import {
   Badge,
   Button,
@@ -12,7 +12,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 

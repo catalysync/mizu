@@ -20,19 +20,19 @@ A code-first, framework-agnostic design system. Tokens → CSS → React binding
 
 ```
 packages/
-  tokens/                  → @aspect/tokens (DTCG JSON → CSS/JSON/ES6/RN)
-  css/                     → @aspect/css (framework-agnostic CSS)
+  tokens/                  → @mizunagara/tokens (DTCG JSON → CSS/JSON/ES6/RN)
+  css/                     → @mizunagara/css (framework-agnostic CSS)
     src/components/        → atomic components (button, input, badge, …)
     src/layouts/           → layout primitives (stack, inline, grid, …)
     src/shell/             → app shell (header, sidebar, content, layout, breadcrumbs)
     src/themes/            → per-demo theme overrides (cloud, ecommerce, finance, customer-engagement)
     src/typography.css     → standalone opt-in type sheet
-  react/                   → @aspect/react (React bindings, ESM+CJS+dts via tsup)
-  tailwind-preset/         → @aspect/tailwind-preset (v4 @theme bridge + ./legacy v3 fallback)
-  tsconfig/                → @aspect/tsconfig (shared base/react/react-native tsconfigs)
+  react/                   → @mizunagara/react (React bindings, ESM+CJS+dts via tsup)
+  tailwind-preset/         → @mizunagara/tailwind-preset (v4 @theme bridge + ./legacy v3 fallback)
+  tsconfig/                → @mizunagara/tsconfig (shared base/react/react-native tsconfigs)
 apps/
-  storybook/               → @aspect/storybook (Storybook 10 + Vite)
-  docs/                    → @aspect/docs (Next.js 16)
+  storybook/               → @mizunagara/storybook (Storybook 10 + Vite)
+  docs/                    → @mizunagara/docs (Next.js 16)
 .changeset/                → changesets config + pending changesets
 .github/workflows/ci.yml   → quality + release pipeline
 ```
@@ -43,9 +43,9 @@ apps/
 
 2. **Cloudscape is the atomic component reference, not the shell reference.** Component names, props, and patterns (PropertyFilter, KeyValuePairs, contentType presets, collection preferences) are borrowed from Cloudscape. The shell architecture is borrowed from Carbon.
 
-3. **Tailwind v4 only.** No v3 plugin API. The bridge is a single CSS file with a `@theme {}` block that maps Tailwind theme keys to `var(--mizu-*)` references. Zero JavaScript on the bridge side. v3 legacy preset exists at `@aspect/tailwind-preset/legacy` but is not the recommended path.
+3. **Tailwind v4 only.** No v3 plugin API. The bridge is a single CSS file with a `@theme {}` block that maps Tailwind theme keys to `var(--mizu-*)` references. Zero JavaScript on the bridge side. v3 legacy preset exists at `@mizunagara/tailwind-preset/legacy` but is not the recommended path.
 
-4. **Components / Patterns / Demos** is the Storybook structure. Components are reusable atoms (live in `@aspect/react/components/*` or `@aspect/react/shell/*`); Patterns are opinionated compositions; Demos are full app shells with mock data and theme overrides. Same components reused across demos. Mirror of Cloudscape / Polaris / Tailwind UI's structure.
+4. **Components / Patterns / Demos** is the Storybook structure. Components are reusable atoms (live in `@mizunagara/react/components/*` or `@mizunagara/react/shell/*`); Patterns are opinionated compositions; Demos are full app shells with mock data and theme overrides. Same components reused across demos. Mirror of Cloudscape / Polaris / Tailwind UI's structure.
 
 5. **Layout primitive vocabulary** (`Stack`, `Inline`, `Grid`, `Split`, `Center`, `Cluster`) is from **Braid** (SEEK) — the cleanest layout vocabulary in the field.
 
@@ -99,7 +99,7 @@ These are conventions established in earlier sessions. Apply automatically; do n
 
 - Every package exports through its `src/index.ts` barrel
 - `packages/react/src/index.ts` is the single entry — every new component must be added there to ship in the bundle
-- The bundled `dist/index.js` and `dist/index.cjs` are prefixed with `'use client';` via `scripts/prepend-use-client.mjs` (postbuild). tsup/esbuild strips directive-style banners, so a postbuild script is required. **Do NOT remove this** — it's what makes `@aspect/react` consumable from Next 14+ App Router (RSC).
+- The bundled `dist/index.js` and `dist/index.cjs` are prefixed with `'use client';` via `scripts/prepend-use-client.mjs` (postbuild). tsup/esbuild strips directive-style banners, so a postbuild script is required. **Do NOT remove this** — it's what makes `@mizunagara/react` consumable from Next 14+ App Router (RSC).
 
 ## Per-demo theming
 
@@ -115,9 +115,9 @@ These are conventions established in earlier sessions. Apply automatically; do n
 
 - 12 turbo tasks
 - All packages: build clean
-- `@aspect/react`: typecheck + lint + test (with vitest-axe a11y check)
-- `@aspect/css`: stylelint with BEM-friendly `selector-class-pattern`
-- `@aspect/storybook` and `@aspect/docs`: build to `storybook-static/` and `.next/` respectively
+- `@mizunagara/react`: typecheck + lint + test (with vitest-axe a11y check)
+- `@mizunagara/css`: stylelint with BEM-friendly `selector-class-pattern`
+- `@mizunagara/storybook` and `@mizunagara/docs`: build to `storybook-static/` and `.next/` respectively
 
 **React Doctor gate** — `pnpm doctor:gate` runs on every commit (husky pre-commit) and in a dedicated `doctor` CI job. Every workspace must score 100/100. Config: `react-doctor.config.json`, docs: `docs/react-doctor.md`, known debt: `mizu-planning/27-react-doctor-debt.md`.
 
@@ -133,7 +133,7 @@ CI runs the same commands on every push and PR. Release flow uses `changesets/ac
 - **ESLint:** flat config at root, every package with TS/JSX has a `lint` script that runs `eslint .`
 - **Stylelint:** root config at `stylelint.config.mjs` with BEM-friendly selector pattern + Tailwind at-rule whitelist (`@theme`, `@plugin`, `@source`, `@variant`, `@utility`, `@custom-variant`)
 - **Prettier:** runs via lint-staged on every commit (husky pre-commit hook)
-- **Changesets:** `access: public`, `ignore: ['@aspect/storybook', '@aspect/docs']` (apps don't get published)
+- **Changesets:** `access: public`, `ignore: ['@mizunagara/storybook', '@mizunagara/docs']` (apps don't get published)
 
 ## What NOT to do
 

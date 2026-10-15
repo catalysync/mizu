@@ -1,4 +1,4 @@
-import { Badge, Button, Card, CardBody, CardHeader, Inline, Input, Stack } from '@aspect/react';
+import { Badge, Button, Card, CardBody, CardHeader, Inline, Input, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 function DarkSample() {

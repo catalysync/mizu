@@ -10,7 +10,7 @@ import {
   Button,
   Input,
   type BreadcrumbItem,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import * as React from 'react';
 import {
   IconActivity,

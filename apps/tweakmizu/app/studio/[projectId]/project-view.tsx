@@ -7,7 +7,7 @@ import { resolvePatternsForPlan } from '@/lib/studio/composer';
 import { buildProjectZip, downloadBlob } from '@/lib/studio/exporter';
 import { usePlansStore } from '@/store/plans-store';
 import { cn } from '@/utils/cn';
-import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
+import { Badge, Button, Inline, Split, Stack } from '@mizunagara/react';
 import { Code2, Download, Eye, Sliders, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
@@ -235,7 +235,7 @@ function CodeTab({
     stack: plan.intent.stack,
     patterns: plan.entries.map((e) => e.patternId),
     primitives: ['Stack', 'Inline', 'Cluster', 'Grid', 'Center', 'Split'],
-    importPath: '@aspect/react',
+    importPath: '@mizunagara/react',
   };
 
   return (

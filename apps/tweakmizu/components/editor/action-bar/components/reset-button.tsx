@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@aspect/react';
+import { Button } from '@mizunagara/react';
 import { RefreshCw } from 'lucide-react';
 
 type ResetButtonProps = React.ComponentProps<typeof Button>;

@@ -1,7 +1,17 @@
 {
-  "name": "@aspect/commerce",
+  "name": "@mizunagara/commerce",
   "version": "0.1.0",
   "description": "Commerce industry components for the mizu design system",
+  "license": "MIT",
+  "homepage": "https://github.com/catalysync/mizu/tree/main/packages/commerce#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catalysync/mizu.git",
+    "directory": "packages/commerce"
+  },
+  "bugs": {
+    "url": "https://github.com/catalysync/mizu/issues"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -26,9 +36,9 @@
     "test": "vitest run --passWithNoTests"
   },
   "peerDependencies": {
-    "@aspect/css": ">=0.2.0",
-    "@aspect/react": ">=0.2.0",
-    "@aspect/tokens": ">=0.2.0",
+    "@mizunagara/css": ">=0.2.0",
+    "@mizunagara/react": ">=0.2.0",
+    "@mizunagara/tokens": ">=0.2.0",
     "react": ">=18",
     "react-dom": ">=18"
   },
@@ -37,10 +47,10 @@
     "src/css"
   ],
   "devDependencies": {
-    "@aspect/css": "workspace:^",
-    "@aspect/react": "workspace:^",
-    "@aspect/tokens": "workspace:^",
-    "@aspect/tsconfig": "workspace:^",
+    "@mizunagara/css": "workspace:^",
+    "@mizunagara/react": "workspace:^",
+    "@mizunagara/tokens": "workspace:^",
+    "@mizunagara/tsconfig": "workspace:^",
     "@testing-library/jest-dom": "^6.6.0",
     "@testing-library/react": "^16.0.0",
     "@types/react": "^19.0.0",
@@ -52,5 +62,9 @@
     "tsup": "^8.5.0",
     "typescript": "^5.9.0",
     "vitest": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

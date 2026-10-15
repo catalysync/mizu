@@ -56,7 +56,7 @@ export function Features() {
               </code>{' '}
               tokens that{' '}
               <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.85em]">
-                @aspect/tokens
+                @mizunagara/tokens
               </code>{' '}
               ships to every app in the monorepo.
             </p>

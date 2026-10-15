@@ -1,4 +1,4 @@
-import { LedgerRow, formatCurrency } from '@aspect/finance';
+import { LedgerRow, formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Button,
@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { useMemo, useState } from 'react';
 import { transactions } from './data';
 

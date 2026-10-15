@@ -1,4 +1,4 @@
-import { BarChart } from '@aspect/charts';
+import { BarChart } from '@mizunagara/charts';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { formatUsd, monthlyRevenue } from './_fixtures';
 

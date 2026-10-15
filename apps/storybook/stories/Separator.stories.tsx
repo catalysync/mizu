@@ -1,4 +1,4 @@
-import { Inline, Separator, Stack } from '@aspect/react';
+import { Inline, Separator, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

@@ -1,6 +1,6 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { Button, Card, CardBody, EmptyState, Stack } from '@aspect/react';
+import { Button, Card, CardBody, EmptyState, Stack } from '@mizunagara/react';
 import { FileStack } from 'lucide-react';
 
 function Preview() {
@@ -22,7 +22,7 @@ function Preview() {
   );
 }
 
-const TEMPLATE = `import { Button, Card, CardBody, EmptyState, Stack } from '@aspect/react';
+const TEMPLATE = `import { Button, Card, CardBody, EmptyState, Stack } from '@mizunagara/react';
 import { FileStack } from 'lucide-react';
 
 export default function EmptyStatePage() {
@@ -55,10 +55,10 @@ export const commonEmptyState = definePattern({
     industries: ['cloud', 'saas-admin', 'ecommerce', 'fintech', 'ai-product', 'devtools', 'other'],
     tier: 'free',
     depends: [
-      '@aspect/react#EmptyState',
-      '@aspect/react#Card',
-      '@aspect/react#Button',
-      '@aspect/react#Stack',
+      '@mizunagara/react#EmptyState',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Stack',
     ],
     sources: [
       {

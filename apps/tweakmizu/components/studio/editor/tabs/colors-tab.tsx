@@ -1,7 +1,7 @@
 'use client';
 
 import type { ThemeStyleProps } from '@/types/theme';
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 
 interface Props {
   styles: ThemeStyleProps;

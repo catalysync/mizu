@@ -1,4 +1,4 @@
-import { Badge, Card, CardBody, Heading, Inline, Link, Stack } from '@aspect/react';
+import { Badge, Card, CardBody, Heading, Inline, Link, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import './welcome.css';
 
@@ -54,22 +54,22 @@ function Welcome() {
         <Stack gap="0.5rem">
           <ArchRow
             title="1. Tokens"
-            pkg="@aspect/tokens"
+            pkg="@mizunagara/tokens"
             desc="DTCG JSON → CSS variables, JSON, ES module, React Native via Style Dictionary 5."
           />
           <ArchRow
             title="2. CSS"
-            pkg="@aspect/css"
+            pkg="@mizunagara/css"
             desc="Framework-agnostic component styles. BEM class names prefixed mizu-, references --mizu-* custom properties. Usable from any framework."
           />
           <ArchRow
             title="3. React"
-            pkg="@aspect/react"
+            pkg="@mizunagara/react"
             desc="React 19 bindings. Wraps Radix primitives for overlay/focus/keyboard. CVA for variants. forwardRef + data-component throughout."
           />
           <ArchRow
             title="4. Tailwind bridge"
-            pkg="@aspect/tailwind-preset"
+            pkg="@mizunagara/tailwind-preset"
             desc="Tailwind v4 @theme block mapping mizu tokens → Tailwind utilities. Zero-JS bridge."
           />
         </Stack>

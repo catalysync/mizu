@@ -9,7 +9,7 @@ import {
   Button,
   Inline,
   Input,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface ConversationsShellProps {
   active: string;

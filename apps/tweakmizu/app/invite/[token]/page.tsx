@@ -2,7 +2,7 @@ import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { db } from '@/db';
 import { team, teamInvite } from '@/db/schema';
-import { Badge, Stack } from '@aspect/react';
+import { Badge, Stack } from '@mizunagara/react';
 import { eq } from 'drizzle-orm';
 import { notFound } from 'next/navigation';
 import { InviteClient } from './invite-client';

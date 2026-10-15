@@ -35,7 +35,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: 'list_primitives',
       description:
-        'List the mizu layout primitives available in @aspect/react. Use these instead of manual flex/grid CSS.',
+        'List the mizu layout primitives available in @mizunagara/react. Use these instead of manual flex/grid CSS.',
       inputSchema: {
         type: 'object',
         properties: {},
@@ -44,7 +44,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: 'list_components',
       description:
-        'List the mizu UI components available in @aspect/react. Prefer these over raw HTML when generating UI.',
+        'List the mizu UI components available in @mizunagara/react. Prefer these over raw HTML when generating UI.',
       inputSchema: {
         type: 'object',
         properties: {},
@@ -112,7 +112,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           text: JSON.stringify(
             {
               primitives: DEFAULT_PRIMITIVES,
-              importPath: '@aspect/react',
+              importPath: '@mizunagara/react',
               note: 'Use these for layout. Never write manual flex/grid CSS.',
             },
             null,
@@ -131,10 +131,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           text: JSON.stringify(
             {
               components: DEFAULT_COMPONENTS,
-              importPath: '@aspect/react',
+              importPath: '@mizunagara/react',
               industryPackages: {
-                ecommerce: '@aspect/commerce',
-                fintech: '@aspect/finance',
+                ecommerce: '@mizunagara/commerce',
+                fintech: '@mizunagara/finance',
               },
             },
             null,

@@ -2,20 +2,20 @@
   "mode": "pre",
   "tag": "alpha",
   "initialVersions": {
-    "@aspect/docs": "0.0.0",
-    "@aspect/storybook": "0.0.0",
-    "@aspect/tweakmizu": "0.1.0",
-    "@aspect/advanced-query-builder": "0.1.0",
-    "@aspect/charts": "0.1.0",
-    "@aspect/commerce": "0.1.0",
-    "@aspect/css": "0.1.0",
-    "@aspect/finance": "0.1.0",
+    "@mizunagara/docs": "0.0.0",
+    "@mizunagara/storybook": "0.0.0",
+    "@mizunagara/tweakmizu": "0.1.0",
+    "@mizunagara/advanced-query-builder": "0.1.0",
+    "@mizunagara/charts": "0.1.0",
+    "@mizunagara/commerce": "0.1.0",
+    "@mizunagara/css": "0.1.0",
+    "@mizunagara/finance": "0.1.0",
     "@tweakmizu/mcp": "0.1.0",
-    "@aspect/query-builder": "0.1.0",
-    "@aspect/react": "0.1.0",
-    "@aspect/tailwind-preset": "0.1.0",
-    "@aspect/tokens": "0.1.0",
-    "@aspect/tsconfig": "0.0.0"
+    "@mizunagara/query-builder": "0.1.0",
+    "@mizunagara/react": "0.1.0",
+    "@mizunagara/tailwind-preset": "0.1.0",
+    "@mizunagara/tokens": "0.1.0",
+    "@mizunagara/tsconfig": "0.0.0"
   },
   "changesets": []
 }

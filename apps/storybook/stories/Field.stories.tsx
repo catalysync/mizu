@@ -1,4 +1,4 @@
-import { Field, Stack, useFieldContext } from '@aspect/react';
+import { Field, Stack, useFieldContext } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 // A thin wrapper that reads Field context and passes it to a raw input.

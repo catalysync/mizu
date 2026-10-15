@@ -1,4 +1,4 @@
-import { cn } from '@aspect/react';
+import { cn } from '@mizunagara/react';
 import * as React from 'react';
 
 export type ChartSkeletonShape = 'line' | 'bar' | 'vertical-bar' | 'area' | 'pie';

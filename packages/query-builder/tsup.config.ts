@@ -6,5 +6,5 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', 'react-querybuilder', '@aspect/react', '@aspect/css'],
+  external: ['react', 'react-dom', 'react-querybuilder', '@mizunagara/react', '@mizunagara/css'],
 });

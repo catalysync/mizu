@@ -4,7 +4,7 @@ import { getIndustry, industries } from '@/lib/studio/industries';
 import { tones } from '@/lib/studio/tones';
 import { intentSpecSchema, type Industry, type IntentSpec, type Tone } from '@/types/studio';
 import { cn } from '@/utils/cn';
-import { Button, Grid, Inline, Input, Stack, Textarea } from '@aspect/react';
+import { Button, Grid, Inline, Input, Stack, Textarea } from '@mizunagara/react';
 import { Sparkles } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 

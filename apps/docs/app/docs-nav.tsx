@@ -102,8 +102,8 @@ const nav: NavSection[] = [
   {
     title: 'Packages',
     items: [
-      { label: '@aspect/finance', href: '/packages/finance' },
-      { label: '@aspect/commerce', href: '/packages/commerce' },
+      { label: '@mizunagara/finance', href: '/packages/finance' },
+      { label: '@mizunagara/commerce', href: '/packages/commerce' },
       { label: 'Tailwind preset', href: '/packages/tailwind-preset' },
     ],
   },

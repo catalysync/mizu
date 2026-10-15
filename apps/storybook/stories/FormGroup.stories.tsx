@@ -1,6 +1,6 @@
-import { FormGroup } from '@aspect/commerce';
-import '@aspect/commerce/css';
-import { Input, Stack, Textarea } from '@aspect/react';
+import { FormGroup } from '@mizunagara/commerce';
+import '@mizunagara/commerce/css';
+import { Input, Stack, Textarea } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

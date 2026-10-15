@@ -3,20 +3,20 @@
  * Returns null if the file lives under a package that doesn't publish this
  * component (internal utilities, shell-only code, etc.).
  *
- * Mizu ships each package as its own barrel (@aspect/react, @aspect/charts,
- * @aspect/finance, @aspect/commerce) — no subpath entries. So the package
- * map is simply: packages/{name}/src/** → @aspect/{name}.
+ * Mizu ships each package as its own barrel (@mizunagara/react, @mizunagara/charts,
+ * @mizunagara/finance, @mizunagara/commerce) — no subpath entries. So the package
+ * map is simply: packages/{name}/src/** → @mizunagara/{name}.
  */
 
-// packages/{slug}/... → '@aspect/{scope}'
+// packages/{slug}/... → '@mizunagara/{scope}'
 const PACKAGE_MAP: Array<{ prefix: string; pkg: string }> = [
-  { prefix: 'packages/react/', pkg: '@aspect/react' },
-  { prefix: 'packages/charts/', pkg: '@aspect/charts' },
-  { prefix: 'packages/finance/', pkg: '@aspect/finance' },
-  { prefix: 'packages/commerce/', pkg: '@aspect/commerce' },
-  { prefix: 'packages/tokens/', pkg: '@aspect/tokens' },
-  { prefix: 'packages/query-builder/', pkg: '@aspect/query-builder' },
-  { prefix: 'packages/advanced-query-builder/', pkg: '@aspect/advanced-query-builder' },
+  { prefix: 'packages/react/', pkg: '@mizunagara/react' },
+  { prefix: 'packages/charts/', pkg: '@mizunagara/charts' },
+  { prefix: 'packages/finance/', pkg: '@mizunagara/finance' },
+  { prefix: 'packages/commerce/', pkg: '@mizunagara/commerce' },
+  { prefix: 'packages/tokens/', pkg: '@mizunagara/tokens' },
+  { prefix: 'packages/query-builder/', pkg: '@mizunagara/query-builder' },
+  { prefix: 'packages/advanced-query-builder/', pkg: '@mizunagara/advanced-query-builder' },
 ];
 
 export function resolveImportPath(fileName: string | undefined): string | null {

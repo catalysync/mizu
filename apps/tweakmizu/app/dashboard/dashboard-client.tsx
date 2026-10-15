@@ -12,7 +12,7 @@ import {
   Grid,
   Inline,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { FileStack, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useMemo } from 'react';

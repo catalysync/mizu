@@ -218,8 +218,8 @@ function generateNextjsStarter(profile: DesignLanguageProfile, vars: CssVarMap):
           next: '^15.0.0',
           react: '^19.0.0',
           'react-dom': '^19.0.0',
-          '@aspect/react': 'latest',
-          '@aspect/css': 'latest',
+          '@mizunagara/react': 'latest',
+          '@mizunagara/css': 'latest',
         },
         devDependencies: {
           typescript: '^5.0.0',
@@ -274,7 +274,7 @@ export default nextConfig;
   files.push({
     path: `${slug}/src/app/layout.tsx`,
     content: `import type { Metadata } from 'next';
-import '@aspect/css';
+import '@mizunagara/css';
 import './theme.css';
 import './globals.css';
 
