@@ -53,7 +53,8 @@ export function publishable() {
     const ready = [...remaining.values()]
       .filter((p) => internalDeps(p.manifest).every((d) => !remaining.has(d)))
       .sort((a, b) => a.manifest.name.localeCompare(b.manifest.name));
-    if (!ready.length) throw new Error(`dependency cycle among ${[...remaining.keys()].join(', ')}`);
+    if (!ready.length)
+      throw new Error(`dependency cycle among ${[...remaining.keys()].join(', ')}`);
     for (const p of ready) {
       ordered.push(p);
       remaining.delete(p.manifest.name);
@@ -93,7 +94,9 @@ export function peerProblems(pkgs) {
     for (const [dep, range] of Object.entries(manifest.peerDependencies ?? {})) {
       if (!versions.has(dep)) continue;
       if (!satisfies(versions.get(dep), range)) {
-        problems.push(`${manifest.name} peers on ${dep}@${range}, but ${dep} is ${versions.get(dep)}`);
+        problems.push(
+          `${manifest.name} peers on ${dep}@${range}, but ${dep} is ${versions.get(dep)}`,
+        );
       }
     }
     for (const field of ['dependencies', 'peerDependencies']) {
@@ -134,5 +137,6 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
       process.exit(1);
     }
   }
-  for (const { manifest, dir } of pkgs) console.log(`${manifest.name}\t${manifest.version}\t${dir}`);
+  for (const { manifest, dir } of pkgs)
+    console.log(`${manifest.name}\t${manifest.version}\t${dir}`);
 }

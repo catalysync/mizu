@@ -26,16 +26,19 @@ const manifest = JSON.parse(
 
 const problems = [];
 if (manifest.name !== wantName) problems.push(`name is ${manifest.name}, expected ${wantName}`);
-if (manifest.version !== wantVersion) problems.push(`version is ${manifest.version}, expected ${wantVersion}`);
+if (manifest.version !== wantVersion)
+  problems.push(`version is ${manifest.version}, expected ${wantVersion}`);
 if (manifest.license !== 'MIT') problems.push('license is not MIT');
 if (manifest.repository?.url !== 'git+https://github.com/catalysync/mizu.git') {
   problems.push('repository.url does not point at catalysync/mizu');
 }
-if (manifest.publishConfig?.access !== 'public') problems.push('publishConfig.access is not public');
+if (manifest.publishConfig?.access !== 'public')
+  problems.push('publishConfig.access is not public');
 
 for (const field of ['dependencies', 'peerDependencies', 'optionalDependencies']) {
   for (const [dep, range] of Object.entries(manifest[field] ?? {})) {
-    if (/^(workspace|link|file):/.test(String(range))) problems.push(`${field}.${dep} is "${range}"`);
+    if (/^(workspace|link|file):/.test(String(range)))
+      problems.push(`${field}.${dep} is "${range}"`);
   }
 }
 
@@ -44,7 +47,8 @@ const collect = (value) => {
   if (typeof value === 'string') entryPoints.push(value);
   else if (value && typeof value === 'object') Object.values(value).forEach(collect);
 };
-for (const field of ['main', 'module', 'types', 'typings', 'bin', 'exports']) collect(manifest[field]);
+for (const field of ['main', 'module', 'types', 'typings', 'bin', 'exports'])
+  collect(manifest[field]);
 for (const target of entryPoints) {
   if (target.includes('*')) continue; // subpath patterns are checked by their concrete files
   const path = target.replace(/^\.\//, '');
@@ -55,4 +59,6 @@ if (problems.length) {
   for (const p of problems) console.error(`verify-tarball ${wantName}@${wantVersion}: ${p}`);
   process.exit(1);
 }
-console.log(`verify-tarball: ${wantName}@${wantVersion} ok (${files.size} files, ${entryPoints.length} entry points)`);
+console.log(
+  `verify-tarball: ${wantName}@${wantVersion} ok (${files.size} files, ${entryPoints.length} entry points)`,
+);
