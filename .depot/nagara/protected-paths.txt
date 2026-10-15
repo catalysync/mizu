@@ -1,0 +1,46 @@
+# Paths an agent may not change without the owner's `owner-reviewed-infra` label.
+# Read by agent-guard.sh. One glob per line; `#` starts a comment.
+#   - A pattern with no `/` matches the file's basename anywhere in the repo.
+#   - A pattern with a `/` matches the whole repo-relative path; `*` also
+#     matches `/`, so `deploy/*` covers everything under deploy/.
+# Products may not edit this file (it is vendored and kit-integrity checks it);
+# extra product paths go in `.nagara-cicd` as `protect=<glob>` lines.
+
+# Pipeline definitions
+.github/workflows/*
+.github/actions/*
+.depot/*
+.nagara-cicd
+CODEOWNERS
+renovate.json
+renovate.json5
+.github/renovate.json
+.github/renovate.json5
+.github/dependabot.yml
+
+# Images and deploy config
+Dockerfile*
+Containerfile*
+*.Dockerfile
+.dockerignore
+.kamal/*
+config/deploy*.yml
+config/ship.env
+config/cosign.pub
+config/allowed_signers
+allowed_signers
+cosign.pub
+bin/ship
+script/ship
+script/deploy/*
+deploy/*
+infra/*
+iac/*
+
+# Migrations
+db/migrate/*
+*/db/migrate/*
+alembic/versions/*
+*/alembic/versions/*
+migrations/*
+*/migrations/*

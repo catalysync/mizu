@@ -1,0 +1,41 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "helpers:pinGitHubActionDigests", "docker:pinDigests"],
+  "minimumReleaseAge": "7 days",
+  "internalChecksFilter": "strict",
+  "pinDigests": true,
+  "prConcurrentLimit": 5,
+  "labels": ["dependencies"],
+  "github-actions": {
+    "managerFilePatterns": [
+      "/(^|/)\\.depot/workflows/[^/]+\\.ya?ml$/",
+      "/(^|/)\\.github/workflows/[^/]+\\.ya?ml$/"
+    ]
+  },
+  "dockerfile": {
+    "managerFilePatterns": [
+      "/(^|/)(Dockerfile|Containerfile)[^/]*$/",
+      "/(^|/)[^/]+\\.(Dockerfile|Containerfile)$/"
+    ]
+  },
+  "packageRules": [
+    {
+      "description": "Digest refreshes of pinned actions and images: also wait 7 days, then one grouped weekly PR.",
+      "matchUpdateTypes": ["digest", "pinDigest"],
+      "minimumReleaseAge": "7 days",
+      "groupName": "digest pins",
+      "schedule": ["before 6am on monday"]
+    },
+    {
+      "description": "Vendored kit workflows are owned by the kit: bump them with adopt.sh, not Renovate.",
+      "matchFileNames": [".depot/workflows/nagara-*.yml"],
+      "enabled": false
+    },
+    {
+      "description": "Language base images move with the repo's version files; never automerge.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ruby", "python", "node", "golang", "rust"],
+      "automerge": false
+    }
+  ]
+}

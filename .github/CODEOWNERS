@@ -1,0 +1,29 @@
+# Written by the Nagara CI/CD kit (cicd/common/CODEOWNERS.template). Routes every
+# protected path (common/protected-paths.txt) to the owner, so the ruleset's
+# "require code owner review" applies to them. Products may add lines.
+/.github/workflows/      @catalysync
+/.github/actions/        @catalysync
+/.github/CODEOWNERS      @catalysync
+/.depot/                 @catalysync
+/.nagara-cicd            @catalysync
+/renovate.json           @catalysync
+/renovate.json5          @catalysync
+Dockerfile*              @catalysync
+Containerfile*           @catalysync
+*.Dockerfile             @catalysync
+/.dockerignore           @catalysync
+/.kamal/                 @catalysync
+/config/deploy*.yml      @catalysync
+/config/ship.env         @catalysync
+/config/cosign.pub       @catalysync
+/config/allowed_signers  @catalysync
+allowed_signers          @catalysync
+/bin/ship                @catalysync
+/script/ship             @catalysync
+/script/deploy/          @catalysync
+/deploy/                 @catalysync
+/infra/                  @catalysync
+/iac/                    @catalysync
+db/migrate/              @catalysync
+alembic/versions/        @catalysync
+migrations/              @catalysync
