@@ -49,10 +49,11 @@ ROOT="$(git rev-parse --show-toplevel)"; cd "$ROOT"
 WORK="${XDG_CACHE_HOME:-$HOME/.cache}/mizu-approve/$$"
 mkdir -p "$WORK"
 cleanup() {
-  git -C "$ROOT" worktree remove --force "$WORK/src" >/dev/null 2>&1 || true
   rm -rf "$WORK"
+  git -C "$ROOT" worktree prune >/dev/null 2>&1 || true
 }
 trap cleanup EXIT
+trap 'exit 130' INT TERM HUP # run the EXIT cleanup on Ctrl-C or a closed terminal too
 
 say "1. staged versions (npm user: $who)"
 npm stage list --json > "$WORK/staged.json"
@@ -76,7 +77,8 @@ git worktree add --quiet --detach "$WORK/src" "$SHA"
 (
   cd "$WORK/src"
   pnpm install --frozen-lockfile --reporter=silent
-  pnpm turbo run build --filter='./packages/*' --output-logs=errors-only
+  # --force: never reuse turbo's cache (shared across worktrees); rebuild from source
+  pnpm turbo run build --filter='./packages/*' --output-logs=errors-only --force
   node scripts/release/packages.mjs --check > "$WORK/packages.tsv"
   mkdir -p "$WORK/local"
   while IFS=$'\t' read -r name version dir <&3; do
@@ -107,6 +109,17 @@ while IFS=$'\t' read -r name version dir <&3; do
   rm -rf "$WORK/x" && mkdir -p "$WORK/x/remote" "$WORK/x/local"
   tar -xzf "$remote_tgz" -C "$WORK/x/remote"
   tar -xzf "$local_tgz" -C "$WORK/x/local"
+  # pnpm pack writes rewritten dependency maps in no fixed key order, so
+  # package.json is compared as JSON (keys sorted); every other file by bytes.
+  for side in remote local; do
+    node -e '
+      const fs = require("fs");
+      const sort = (v) => Array.isArray(v) ? v.map(sort)
+        : v && typeof v === "object" ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, sort(v[k])])) : v;
+      const f = process.argv[1];
+      fs.writeFileSync(f, JSON.stringify(sort(JSON.parse(fs.readFileSync(f, "utf8"))), null, 2) + "\n");
+    ' "$WORK/x/$side/package/package.json"
+  done
   if diff -r "$WORK/x/remote" "$WORK/x/local" > "$WORK/x/diff.txt"; then
     files="$(find "$WORK/x/remote" -type f | wc -l | tr -d ' ')"
     echo "  ok   $name@$version  tag=$tag  $files files identical  sha256=$(sha256 "$remote_tgz")"
@@ -134,7 +147,7 @@ fi
 say "4. approve (npm will ask for your passkey)"
 awk -F'\t' '{ printf "  %s@%s  tag=%s\n", $1, $2, $4 }' "$plan"
 printf 'Publish these %s version(s) to npm? Type "publish" to continue: ' "$(wc -l < "$plan" | tr -d ' ')"
-read -r answer < /dev/tty
+read -r answer < /dev/tty || answer=""
 [ "$answer" = publish ] || die "not confirmed; nothing was published"
 
 started="$(date -u +%FT%TZ)"
