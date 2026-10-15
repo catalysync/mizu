@@ -3,8 +3,8 @@
  *
  * Consumer setup:
  *   @import "tailwindcss";
- *   @import "@aspect/tokens/css";
- *   @import "@aspect/tailwind-preset";
+ *   @import "@mizunagara/tokens/css";
+ *   @import "@mizunagara/tailwind-preset";
  *
  * After this, tailwind utilities like `bg-primary`, `text-text-primary`,
  * `rounded-lg`, `p-4` resolve to mizu design tokens.

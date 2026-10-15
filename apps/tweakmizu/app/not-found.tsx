@@ -1,6 +1,6 @@
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
-import { Button } from '@aspect/react';
+import { Button } from '@mizunagara/react';
 import Link from 'next/link';
 
 export default function NotFound() {

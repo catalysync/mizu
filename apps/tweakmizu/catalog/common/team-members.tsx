@@ -12,7 +12,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface Member {
   id: string;
@@ -136,7 +136,7 @@ const TEMPLATE = `import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface Member {
   id: string;
@@ -205,12 +205,12 @@ export const commonTeamMembers = definePattern({
     industries: ['cloud', 'saas-admin', 'ecommerce', 'fintech', 'ai-product', 'devtools', 'other'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Table',
-      '@aspect/react#Badge',
-      '@aspect/react#Button',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Table',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
     ],
     sources: [
       {

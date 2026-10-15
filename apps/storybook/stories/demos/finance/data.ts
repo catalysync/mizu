@@ -1,4 +1,4 @@
-import type { ChartOfAccountsNode } from '@aspect/finance';
+import type { ChartOfAccountsNode } from '@mizunagara/finance';
 
 export type CustomerStatus = 'active' | 'dormant' | 'lead';
 

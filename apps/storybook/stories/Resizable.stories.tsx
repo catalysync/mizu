@@ -1,4 +1,4 @@
-import { ResizableGroup, ResizableHandle, ResizablePanel } from '@aspect/react';
+import { ResizableGroup, ResizableHandle, ResizablePanel } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

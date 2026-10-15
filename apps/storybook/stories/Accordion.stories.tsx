@@ -1,4 +1,4 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@aspect/react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -23,8 +23,9 @@ export const Default: Story = {
       <AccordionItem value="item-2">
         <AccordionTrigger>How do I install it?</AccordionTrigger>
         <AccordionContent>
-          Install the packages with <code>pnpm add @aspect/tokens @aspect/css @aspect/react</code>{' '}
-          and import the CSS in your entry file.
+          Install the packages with{' '}
+          <code>pnpm add @mizunagara/tokens @mizunagara/css @mizunagara/react</code> and import the
+          CSS in your entry file.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3">

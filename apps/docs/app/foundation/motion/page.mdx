@@ -7,7 +7,7 @@ Animation primitives for entrance transitions and reduced-motion support.
 ## React components
 
 ```tsx
-import { FadeIn, SlideIn, ZoomIn, StaggeredEntrance } from '@aspect/react';
+import { FadeIn, SlideIn, ZoomIn, StaggeredEntrance } from '@mizunagara/react';
 ```
 
 ### FadeIn
@@ -72,7 +72,7 @@ Wraps multiple children and staggers their entrance animations.
 Hook that returns `true` when the user has `prefers-reduced-motion: reduce` enabled.
 
 ```tsx
-import { useIsReducedMotion } from '@aspect/react';
+import { useIsReducedMotion } from '@mizunagara/react';
 
 function MyComponent() {
   const reduceMotion = useIsReducedMotion();
@@ -85,7 +85,7 @@ function MyComponent() {
 The CSS package includes keyframe animations that work without React:
 
 ```css
-@import '@aspect/css';
+@import '@mizunagara/css';
 ```
 
 | Class                          | Effect                   |

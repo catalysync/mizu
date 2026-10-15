@@ -1,6 +1,6 @@
-import { ResourceItem, Thumbnail } from '@aspect/commerce';
-import '@aspect/commerce/css';
-import { Badge, Button, Card, Stack } from '@aspect/react';
+import { ResourceItem, Thumbnail } from '@mizunagara/commerce';
+import '@mizunagara/commerce/css';
+import { Badge, Button, Card, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const IMG = 'https://picsum.photos/seed/product/200';

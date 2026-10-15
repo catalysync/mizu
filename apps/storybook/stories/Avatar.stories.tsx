@@ -1,4 +1,4 @@
-import { Avatar, Inline } from '@aspect/react';
+import { Avatar, Inline } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

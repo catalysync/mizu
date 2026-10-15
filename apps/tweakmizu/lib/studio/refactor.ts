@@ -43,7 +43,7 @@ export async function refactorFile(input: RefactorInput): Promise<RefactorResult
   const systemPrompt = `You are a senior React engineer refactoring a single file inside a tweakmizu-generated project.
 
 The project uses the mizu design system. Read the substrate summary below and respect it:
-- Use layout primitives (Stack, Inline, Cluster, Grid, Center, Split) from @aspect/react instead of manual flex/grid CSS.
+- Use layout primitives (Stack, Inline, Cluster, Grid, Center, Split) from @mizunagara/react instead of manual flex/grid CSS.
 - Use semantic tokens (--mizu-text-*, --mizu-surface-*, --mizu-border-*, --mizu-action-*).
 - Use mizu components (Button, Card, Input, Table, etc.) over raw HTML.
 - Do not introduce new variants beyond what the substrate allows.

@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@aspect/storybook", "@aspect/docs"]
+  "ignore": ["@mizunagara/storybook", "@mizunagara/docs"]
 }

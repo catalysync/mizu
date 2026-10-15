@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 import { FileStack, Home, LayoutGrid, Menu, Sliders, Sparkles, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

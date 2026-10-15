@@ -1,7 +1,7 @@
 'use client';
 
 import { ThemeToggle } from '@/components/theme-toggle';
-import { Badge, Button } from '@aspect/react';
+import { Badge, Button } from '@mizunagara/react';
 import { AlertTriangle, ArrowLeft, Check, Sparkles, Trash2, X } from 'lucide-react';
 import Link from 'next/link';
 import './settings.css';

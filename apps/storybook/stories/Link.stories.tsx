@@ -1,4 +1,4 @@
-import { Link, Stack } from '@aspect/react';
+import { Link, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

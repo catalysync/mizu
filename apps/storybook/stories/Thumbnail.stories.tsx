@@ -1,6 +1,6 @@
-import { Thumbnail } from '@aspect/commerce';
-import '@aspect/commerce/css';
-import { Inline } from '@aspect/react';
+import { Thumbnail } from '@mizunagara/commerce';
+import '@mizunagara/commerce/css';
+import { Inline } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const IMG = 'https://picsum.photos/seed/mizu/200';

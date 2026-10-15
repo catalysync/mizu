@@ -1,4 +1,4 @@
-import { Heading, Inline, Stack } from '@aspect/react';
+import { Heading, Inline, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { labelFromPrefix, tokensByPrefix } from './tokens-helper';
 

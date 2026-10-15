@@ -7,7 +7,7 @@ const withMDX = createMDX({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
-  transpilePackages: ['@aspect/react', '@aspect/css', '@aspect/tokens'],
+  transpilePackages: ['@mizunagara/react', '@mizunagara/css', '@mizunagara/tokens'],
 };
 
 export default withMDX(nextConfig);

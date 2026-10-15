@@ -1,4 +1,4 @@
-import type { PropertyFilterProperty, PropertyFilterQuery } from '@aspect/react';
+import type { PropertyFilterProperty, PropertyFilterQuery } from '@mizunagara/react';
 import {
   Badge,
   Card,
@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 

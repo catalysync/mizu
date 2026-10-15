@@ -10,7 +10,7 @@ interface LivePreviewProps {
 /**
  * A token sandbox. Applies the passed CSS variable map to a local root and
  * renders a small set of representative components so every knob change is
- * visible within 16ms. Intentionally does not import from @aspect/react to
+ * visible within 16ms. Intentionally does not import from @mizunagara/react to
  * keep the rendered subtree isolated from ambient app tokens.
  */
 export function LivePreview({ vars }: LivePreviewProps) {

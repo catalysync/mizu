@@ -1,4 +1,4 @@
-import { Badge, Button, Card, EmptyState, Stack } from '@aspect/react';
+import { Badge, Button, Card, EmptyState, Stack } from '@mizunagara/react';
 import * as React from 'react';
 import { mockActivity, type ActivityEntry } from './data';
 import { IconActivity } from './icons';

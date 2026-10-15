@@ -1,5 +1,5 @@
 /**
- * Extracts prop interfaces from @aspect/react source files.
+ * Extracts prop interfaces from @mizunagara/react source files.
  * Outputs JSON files that docs pages can import.
  *
  * Usage: node scripts/extract-props.mjs

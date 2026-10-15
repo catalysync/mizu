@@ -1,4 +1,4 @@
-import { Center, Stack } from '@aspect/react';
+import { Center, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

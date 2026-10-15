@@ -1,7 +1,17 @@
 {
-  "name": "@aspect/css",
+  "name": "@mizunagara/css",
   "version": "0.1.0",
   "description": "Framework-agnostic component CSS for the mizu design system",
+  "license": "MIT",
+  "homepage": "https://github.com/catalysync/mizu/tree/main/packages/css#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catalysync/mizu.git",
+    "directory": "packages/css"
+  },
+  "bugs": {
+    "url": "https://github.com/catalysync/mizu/issues"
+  },
   "type": "module",
   "style": "./dist/mizu.css",
   "exports": {
@@ -18,15 +28,15 @@
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
-    "@aspect/tokens": ">=0.1.0"
+    "@mizunagara/tokens": ">=0.1.0"
   },
   "peerDependenciesMeta": {
-    "@aspect/tokens": {
+    "@mizunagara/tokens": {
       "optional": true
     }
   },
   "devDependencies": {
-    "@aspect/tokens": "workspace:^",
+    "@mizunagara/tokens": "workspace:^",
     "lightningcss": "^1.32.0"
   },
   "sideEffects": [
@@ -35,5 +45,9 @@
   "files": [
     "dist",
     "src"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }

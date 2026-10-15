@@ -7,5 +7,5 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   treeshake: true,
-  external: ['react', 'react-dom', '@aspect/react', '@aspect/css', '@aspect/tokens'],
+  external: ['react', 'react-dom', '@mizunagara/react', '@mizunagara/css', '@mizunagara/tokens'],
 });

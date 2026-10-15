@@ -7,14 +7,14 @@ A visual rule builder with AND/OR combinators that exports to SQL, JSON, or para
 ## Installation
 
 ```bash
-pnpm add @aspect/query-builder react-querybuilder
+pnpm add @mizunagara/query-builder react-querybuilder
 ```
 
 ## Import
 
 ```tsx
-import { MizuQueryBuilder, formatQuery } from '@aspect/query-builder';
-import type { RuleGroupType } from '@aspect/query-builder';
+import { MizuQueryBuilder, formatQuery } from '@mizunagara/query-builder';
+import type { RuleGroupType } from '@mizunagara/query-builder';
 ```
 
 ## Basic usage
@@ -102,7 +102,7 @@ Use `"parameterized"` or `"parameterized_named"` when sending queries to a backe
 ## Custom operators
 
 ```tsx
-import { MizuQueryBuilder } from '@aspect/query-builder';
+import { MizuQueryBuilder } from '@mizunagara/query-builder';
 
 const getOperators = (field: string) => {
   if (field === 'deploys') {

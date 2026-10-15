@@ -1,4 +1,4 @@
-import { ToggleGroup, ToggleGroupItem } from '@aspect/react';
+import { ToggleGroup, ToggleGroupItem } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

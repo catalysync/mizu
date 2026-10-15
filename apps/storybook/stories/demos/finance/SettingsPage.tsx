@@ -1,4 +1,4 @@
-import { TaxRateInput } from '@aspect/finance';
+import { TaxRateInput } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Button,
@@ -17,7 +17,7 @@ import {
   Stack,
   Switch,
   Textarea,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { useState } from 'react';
 
 type Section = 'general' | 'tax' | 'integrations' | 'users' | 'billing' | 'data';

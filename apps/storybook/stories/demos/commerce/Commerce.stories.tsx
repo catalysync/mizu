@@ -1,6 +1,6 @@
-import { Banner, ResourceItem, Thumbnail } from '@aspect/commerce';
-import '@aspect/commerce/css';
-import { DeltaIndicator, formatCurrency, KpiCard } from '@aspect/finance';
+import { Banner, ResourceItem, Thumbnail } from '@mizunagara/commerce';
+import '@mizunagara/commerce/css';
+import { DeltaIndicator, formatCurrency, KpiCard } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -13,7 +13,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CommerceShell } from './CommerceShell';
 import { CustomersPage } from './CustomersPage';

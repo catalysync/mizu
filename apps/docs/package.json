@@ -1,5 +1,5 @@
 {
-  "name": "@aspect/docs",
+  "name": "@mizunagara/docs",
   "version": "0.0.0",
   "description": "Documentation site for the mizu design system",
   "private": true,
@@ -23,10 +23,10 @@
     "shiki": "^3.23.0"
   },
   "devDependencies": {
-    "@aspect/css": "workspace:^",
-    "@aspect/react": "workspace:^",
-    "@aspect/tokens": "workspace:^",
-    "@aspect/tsconfig": "workspace:^",
+    "@mizunagara/css": "workspace:^",
+    "@mizunagara/react": "workspace:^",
+    "@mizunagara/tokens": "workspace:^",
+    "@mizunagara/tsconfig": "workspace:^",
     "@types/mdx": "^2.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",

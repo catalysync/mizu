@@ -1,4 +1,4 @@
-import { Button, Field, Form, Inline, Input, NumberInput, PasswordInput } from '@aspect/react';
+import { Button, Field, Form, Inline, Input, NumberInput, PasswordInput } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

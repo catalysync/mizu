@@ -1,6 +1,6 @@
-import '@aspect/css';
-import '@aspect/css/themes/dark';
-import '@aspect/tokens/css';
+import '@mizunagara/css';
+import '@mizunagara/css/themes/dark';
+import '@mizunagara/tokens/css';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { DocsNav } from './docs-nav';

@@ -1,4 +1,4 @@
-import { Slider, Stack } from '@aspect/react';
+import { Slider, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

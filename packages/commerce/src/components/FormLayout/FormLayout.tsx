@@ -1,4 +1,4 @@
-import { cn } from '@aspect/react';
+import { cn } from '@mizunagara/react';
 import * as React from 'react';
 
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {

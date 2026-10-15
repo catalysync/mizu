@@ -1,4 +1,4 @@
-import { Split } from '@aspect/react';
+import { Split } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

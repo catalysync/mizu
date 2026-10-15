@@ -1,4 +1,4 @@
-import { Inline, Spinner } from '@aspect/react';
+import { Inline, Spinner } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

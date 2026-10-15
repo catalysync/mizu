@@ -154,8 +154,8 @@ or port.
 123. ✅ Copy to clipboard with feedback
 124. Export as full `mizu.css` file
 125. Export as JS module — `export const theme = {...}`
-126. Export as React Native object (matches `@aspect/tokens/rn`)
-127. Export as DTCG JSON (matches `@aspect/tokens/json`)
+126. Export as React Native object (matches `@mizunagara/tokens/rn`)
+127. Export as DTCG JSON (matches `@mizunagara/tokens/json`)
 128. Export as Tailwind v4 `@theme` block
 129. `layout.tsx` boilerplate that imports the fonts our theme uses
 130. Registry command — `npx shadcn add ...` (skip)
@@ -261,7 +261,7 @@ free. A few are still missing inside `apps/tweakmizu` specifically.
 
 201. Turbopack SVGR loader in `next.config.ts` — tweakcn configures `@svgr/webpack` so `.svg` files can be imported as React components. We have no SVG imports yet, but if we start using icon files from `assets/` we'll need either this loader or we inline the SVG into JSX.
 202. `next.config.ts` image remote patterns — tweakcn doesn't use them but any `<Image>` to an external OG or avatar needs `remotePatterns` whitelisting.
-203. `experimental.optimizePackageImports` — worth adding `['@aspect/react', 'lucide-react']` to shrink client bundle.
+203. `experimental.optimizePackageImports` — worth adding `['@mizunagara/react', 'lucide-react']` to shrink client bundle.
 204. Font optimization via `next/font/google` — tweakcn preloads fonts via raw `<link>` in `layout.tsx` head, but `next/font` hashes/inlines them and removes the layout shift. We also use raw `<link>`. Worth considering a switch.
 205. `output: 'standalone'` for Docker deployments (skip — Vercel doesn't need it).
 206. `headers()` config in `next.config.ts` for CSP / Permissions-Policy / X-Frame-Options. Tweakcn doesn't add these; we should, since we're public.
@@ -312,7 +312,7 @@ free. A few are still missing inside `apps/tweakmizu` specifically.
 
 - `drizzle.config.ts` — no DB
 - `docker-compose.yml` — no Postgres service
-- `components.json` (shadcn config) — no shadcn registry; we use `@aspect/react`
+- `components.json` (shadcn config) — no shadcn registry; we use `@mizunagara/react`
 - `middleware.ts` — no auth-protected routes
 - `routes.ts` — no auth redirect helpers
 - `public/live-preview.js` — no embed script yet (item #144)

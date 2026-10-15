@@ -9,7 +9,7 @@ import {
   Input,
   Stack,
   Switch,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 function SampleUI() {

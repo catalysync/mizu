@@ -1,5 +1,5 @@
-import { AnnotationCard, DeltaIndicator, MetricTile, TransactionRow } from '@aspect/finance';
-import { Badge, Card, CardBody, CardHeader, Grid, Stack } from '@aspect/react';
+import { AnnotationCard, DeltaIndicator, MetricTile, TransactionRow } from '@mizunagara/finance';
+import { Badge, Card, CardBody, CardHeader, Grid, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { insights, metrics, recentTransactions, type Insight } from './data';
 

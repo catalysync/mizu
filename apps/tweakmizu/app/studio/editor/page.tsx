@@ -1,5 +1,5 @@
 import { StudioEditorShell } from '@/components/studio/editor/editor-shell';
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 import Link from 'next/link';
 
 export const metadata = {

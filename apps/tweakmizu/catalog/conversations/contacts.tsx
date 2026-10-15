@@ -13,7 +13,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface Contact {
   id: string;
@@ -140,7 +140,7 @@ const TEMPLATE = `import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface Contact {
   id: string;
@@ -213,13 +213,13 @@ export const conversationsContacts = definePattern({
     industries: ['saas-admin', 'other'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Table',
-      '@aspect/react#Badge',
-      '@aspect/react#Input',
-      '@aspect/react#Button',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Table',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Input',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
     ],
     sources: [
       {

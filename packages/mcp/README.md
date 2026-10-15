@@ -6,7 +6,7 @@ Model Context Protocol server for tweakmizu. Connects Claude Desktop, Cursor, Wi
 
 - `get_substrate(projectRoot)` — read `.tweakmizu/substrate.json` from a tweakmizu-generated project
 - `list_primitives()` — list mizu layout primitives (Stack, Inline, Cluster, Grid, Center, Split, Cover, Sidebar)
-- `list_components()` — list mizu UI components from `@aspect/react`
+- `list_components()` — list mizu UI components from `@mizunagara/react`
 - `suggest_pattern(description)` — return catalog pattern ids that match a plain-English UI description
 
 ## install

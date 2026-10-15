@@ -3,7 +3,7 @@
 import type { DesignLanguageProfile } from '@/lib/craft/profile';
 import { profileToCss } from '@/lib/craft/profile-to-css';
 import { useCraftStore } from '@/store/craft-store';
-import { Badge, Button, Stack } from '@aspect/react';
+import { Badge, Button, Stack } from '@mizunagara/react';
 import { useRouter } from 'next/navigation';
 
 interface SharedProfileViewProps {
