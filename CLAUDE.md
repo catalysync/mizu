@@ -14,7 +14,7 @@ A code-first, framework-agnostic design system. Tokens → CSS → React binding
 - **Tailwind bridge:** Tailwind **v4** only, CSS-first via `@theme` block (`packages/tailwind-preset/src/preset.css`). A v3 fallback exists at `./legacy` but is not the recommended path.
 - **Storybook:** v10, `@storybook/react-vite`, `addon-a11y` only (essentials are built into core in v9+)
 - **Docs site:** Next.js 16, App Router, `@next/mdx`
-- **Release:** changesets via `changesets/action@v1` in `.github/workflows/ci.yml`
+- **Release:** changesets + npm staged publishing from Depot CI, approved by a maintainer with 2FA (`docs/releasing.md`)
 
 ## Workspace layout
 
@@ -34,7 +34,7 @@ apps/
   storybook/               → @mizunagara/storybook (Storybook 10 + Vite)
   docs/                    → @mizunagara/docs (Next.js 16)
 .changeset/                → changesets config + pending changesets
-.github/workflows/ci.yml   → quality + release pipeline
+.depot/workflows/          → Depot CI: Nagara kit layers (nagara-*.yml, vendored), mizu.yml, npm-release.yml
 ```
 
 ## Architectural decisions
@@ -119,11 +119,11 @@ These are conventions established in earlier sessions. Apply automatically; do n
 - `@mizunagara/css`: stylelint with BEM-friendly `selector-class-pattern`
 - `@mizunagara/storybook` and `@mizunagara/docs`: build to `storybook-static/` and `.next/` respectively
 
-**React Doctor gate** — `pnpm doctor:gate` runs on every commit (husky pre-commit) and in a dedicated `doctor` CI job. Every workspace must score 100/100. Config: `react-doctor.config.json`, docs: `docs/react-doctor.md`, known debt: `mizu-planning/27-react-doctor-debt.md`.
+**React Doctor gate** — `pnpm doctor:gate` runs on every commit (husky pre-commit) and in a dedicated `doctor` CI job. Every workspace must score 100/100. Config: `react-doctor.config.json`, docs: `docs/react-doctor.md`. The gate pins `react-doctor` in the root devDependencies so its rules cannot drift.
 
 **Review loop** for every implementation — plan → implement → **run `pnpm doctor:diff` against changed files** → self-review → commit. Never skip the doctor step; it catches derived-state-in-effect, cascading setState, hydration flashes, and other React anti-patterns that lint + typecheck don't.
 
-CI runs the same commands on every push and PR. Release flow uses `changesets/action@v1`: dev creates a changeset (`pnpm changeset`), CI auto-opens a "Version Packages" PR, merging it triggers npm publish.
+Depot CI runs the same commands on every PR. Release flow: dev creates a changeset (`pnpm changeset`); a maintainer runs `pnpm release:version` to open the version PR; merging it stages the new versions on npm; a maintainer approves them with 2FA (`pnpm release:approve`). See `docs/releasing.md`.
 
 ## Conventions
 
