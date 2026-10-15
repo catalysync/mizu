@@ -25,7 +25,8 @@
   "scripts": {
     "build": "node build.mjs",
     "lint": "stylelint 'src/**/*.css'",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "@mizunagara/tokens": ">=0.2.0"
@@ -37,7 +38,8 @@
   },
   "devDependencies": {
     "@mizunagara/tokens": "workspace:^",
-    "lightningcss": "^1.32.0"
+    "lightningcss": "^1.32.0",
+    "vitest": "^3.0.0"
   },
   "sideEffects": [
     "**/*.css"
