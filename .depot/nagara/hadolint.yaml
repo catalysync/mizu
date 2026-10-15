@@ -1,0 +1,7 @@
+# hadolint config for guard / dockerfile-lint (passed with --config).
+failure-threshold: warning
+ignored:
+  # Pin apt package versions: Debian drops old versions from the archive, so
+  # pins break builds. Reproducibility comes from the digest-pinned base image
+  # instead, which Renovate refreshes after a 7-day cool-down.
+  - DL3008

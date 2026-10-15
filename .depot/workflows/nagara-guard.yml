@@ -1,0 +1,92 @@
+# guard - the language-independent PR checks of the Nagara CI/CD kit.
+# Vendored by cicd/adopt.sh to .depot/workflows/nagara-guard.yml; do not edit in
+# a product repo (kit-integrity fails). Change it in catalysync/nagara-platform.
+#
+# Checks: guard / secrets, workflow-lint, dockerfile-lint, agent-guard, kit-integrity
+# Depot CI: pull_request only, no secrets, no GITHUB_TOKEN, explicit cancel.
+name: guard
+
+on:
+  pull_request:
+    # labeled/unlabeled: agent-guard reads the owner's override labels from the event.
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nagara-guard-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  secrets:
+    name: secrets
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: gitleaks (commits this PR adds)
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          gitleaks="$(.depot/nagara/bin/fetch-tool.sh gitleaks)"
+          range="$(git merge-base "$BASE_SHA" HEAD)..HEAD"
+          echo "scanning $range"
+          "$gitleaks" git --no-banner --redact --verbose --log-opts="$range" .
+
+  workflow-lint:
+    name: workflow-lint
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: actionlint and zizmor
+        run: .depot/nagara/bin/workflow-lint.sh
+
+  dockerfile-lint:
+    name: dockerfile-lint
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: hadolint
+        run: |
+          hadolint="$(.depot/nagara/bin/fetch-tool.sh hadolint)"
+          mapfile -t files < <(git ls-files 'Dockerfile*' '**/Dockerfile*' 'Containerfile*' \
+            '**/Containerfile*' '*.Dockerfile' '**/*.Dockerfile' | grep -Ev '(^|/)(vendor|node_modules)/' | sort -u)
+          [ "${#files[@]}" -gt 0 ] || { echo "no Dockerfiles"; exit 0; }
+          printf '%s\n' "${files[@]}"
+          "$hadolint" --config .depot/nagara/hadolint.yaml "${files[@]}"
+
+  agent-guard:
+    name: agent-guard
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: agent-guard
+        env:
+          NAGARA_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: .depot/nagara/bin/agent-guard.sh
+
+  kit-integrity:
+    name: kit-integrity
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: vendored kit files match .nagara-cicd
+        run: .depot/nagara/bin/adopt.sh --check

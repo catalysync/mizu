@@ -1,0 +1,6 @@
+# actionlint config for Depot CI (passed with -config-file by guard / workflow-lint).
+self-hosted-runner:
+  labels:
+    - depot-ubuntu-*
+    - depot-windows-*
+    - depot-macos-*
