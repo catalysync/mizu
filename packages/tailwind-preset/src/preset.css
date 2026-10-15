@@ -28,6 +28,8 @@
   --color-warning-subtle: var(--mizu-feedback-warning-subtle);
   --color-danger: var(--mizu-feedback-danger-default);
   --color-danger-subtle: var(--mizu-feedback-danger-subtle);
+  --color-info: var(--mizu-feedback-info-default);
+  --color-info-subtle: var(--mizu-feedback-info-subtle);
 
   /* surfaces */
   --color-surface: var(--mizu-surface-default);
