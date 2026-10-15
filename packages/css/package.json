@@ -28,7 +28,7 @@
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
-    "@mizunagara/tokens": ">=0.1.0"
+    "@mizunagara/tokens": ">=0.2.0"
   },
   "peerDependenciesMeta": {
     "@mizunagara/tokens": {

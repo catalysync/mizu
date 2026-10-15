@@ -21,7 +21,7 @@
     "lint": "stylelint 'src/**/*.css'"
   },
   "peerDependencies": {
-    "@mizunagara/tokens": ">=0.1.0",
+    "@mizunagara/tokens": ">=0.2.0",
     "tailwindcss": ">=4.0.0"
   },
   "devDependencies": {
