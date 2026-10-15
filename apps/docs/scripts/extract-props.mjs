@@ -5,8 +5,8 @@
  * Usage: node scripts/extract-props.mjs
  */
 
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
-import { join, basename } from 'node:path';
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { basename, join } from 'node:path';
 
 const REACT_SRC = '../../packages/react/src/components';
 const OUT_DIR = './app/_props';
