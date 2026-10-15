@@ -42,6 +42,24 @@
   color: var(--mizu-feedback-danger-default);
 }
 
+.mizu-context-menu__item--checkable {
+  position: relative;
+  padding-inline-start: calc(var(--mizu-spacing-3) + 1.25rem);
+}
+
+.mizu-context-menu__indicator {
+  position: absolute;
+  inset-inline-start: var(--mizu-spacing-2);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mizu-action-primary-default);
+}
+
 .mizu-context-menu__label {
   padding: var(--mizu-spacing-2) var(--mizu-spacing-3) var(--mizu-spacing-1);
   font-size: var(--mizu-font-size-xs);

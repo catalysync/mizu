@@ -2,6 +2,7 @@ import * as Menu from '@radix-ui/react-dropdown-menu';
 import * as React from 'react';
 import { ChevronRight } from '../../icons';
 import { cn } from '../../utils/cn';
+import { MenuCheckGlyph, MenuDotGlyph } from '../../utils/menu-glyphs';
 
 export const DropdownMenu = Menu.Root;
 export const DropdownMenuTrigger = Menu.Trigger;
@@ -58,7 +59,7 @@ export const DropdownMenuCheckboxItem = React.forwardRef<
   >
     <span className="mizu-dropdown-menu__indicator" aria-hidden="true">
       <Menu.ItemIndicator>
-        <CheckGlyph />
+        <MenuCheckGlyph />
       </Menu.ItemIndicator>
     </span>
     {children}
@@ -77,7 +78,7 @@ export const DropdownMenuRadioItem = React.forwardRef<
   >
     <span className="mizu-dropdown-menu__indicator" aria-hidden="true">
       <Menu.ItemIndicator>
-        <DotGlyph />
+        <MenuDotGlyph />
       </Menu.ItemIndicator>
     </span>
     {children}
@@ -147,28 +148,3 @@ export const DropdownMenuShortcut = React.forwardRef<HTMLSpanElement, DropdownMe
   ),
 );
 DropdownMenuShortcut.displayName = 'DropdownMenuShortcut';
-
-function CheckGlyph() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="12"
-      height="12"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
-  );
-}
-
-function DotGlyph() {
-  return (
-    <svg viewBox="0 0 24 24" width="8" height="8" fill="currentColor">
-      <circle cx="12" cy="12" r="6" />
-    </svg>
-  );
-}
