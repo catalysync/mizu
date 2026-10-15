@@ -35,8 +35,8 @@
     "test:coverage": "vitest run --coverage"
   },
   "peerDependencies": {
-    "@mizunagara/css": ">=0.1.0",
-    "@mizunagara/tokens": ">=0.1.0",
+    "@mizunagara/css": ">=0.2.0",
+    "@mizunagara/tokens": ">=0.2.0",
     "lucide-react": ">=0.400.0",
     "react": ">=18",
     "react-dom": ">=18"
