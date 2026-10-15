@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { createRef } from 'react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
+import * as pkg from '../../index';
 import {
   Table,
   TableBody,
@@ -226,8 +227,7 @@ describe('Table section and cell names', () => {
     expect(screen.getByRole('columnheader', { name: 'Name' })).toBeInTheDocument();
   });
 
-  it('exports both names from the package entry', async () => {
-    const pkg = await import('../../index');
+  it('exports both names from the package entry', () => {
     expect(pkg.TableHeader.displayName).toBe('TableHeader');
     expect(pkg.TableHead.displayName).toBe('TableHead');
   });

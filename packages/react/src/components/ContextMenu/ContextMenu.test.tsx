@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
+import * as pkg from '../../index';
 import {
   ContextMenu,
   ContextMenuCheckboxItem,
@@ -101,8 +102,7 @@ describe('ContextMenu checkbox and radio items', () => {
     expect(onValueChange).toHaveBeenCalledWith('fill');
   });
 
-  it('is exported from the package entry', async () => {
-    const pkg = await import('../../index');
+  it('is exported from the package entry', () => {
     expect(pkg.ContextMenuCheckboxItem).toBeDefined();
     expect(pkg.ContextMenuRadioItem).toBeDefined();
   });
