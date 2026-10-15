@@ -25,11 +25,11 @@ function renderPackageJson(plan: Plan): OutputFile {
       typecheck: 'tsc --noEmit',
     },
     dependencies: {
-      '@aspect/commerce': '^0.1.0',
-      '@aspect/css': '^0.1.0',
-      '@aspect/finance': '^0.1.0',
-      '@aspect/react': '^0.1.0',
-      '@aspect/tokens': '^0.1.0',
+      '@mizunagara/commerce': '^0.1.0',
+      '@mizunagara/css': '^0.1.0',
+      '@mizunagara/finance': '^0.1.0',
+      '@mizunagara/react': '^0.1.0',
+      '@mizunagara/tokens': '^0.1.0',
       'lucide-react': '^0.488.0',
       next: '^15.4.10',
       react: '^19.0.0',
@@ -96,11 +96,11 @@ Read \`.tweakmizu/substrate.json\` for the full, machine-readable substrate.
 
 ## rules you must follow
 
-1. **Layout primitives only.** Use \`Stack\`, \`Inline\`, \`Cluster\`, \`Grid\`, \`Center\`, \`Split\` from \`@aspect/react\`. **Never** write manual \`flex\` / \`grid\` CSS for layout.
+1. **Layout primitives only.** Use \`Stack\`, \`Inline\`, \`Cluster\`, \`Grid\`, \`Center\`, \`Split\` from \`@mizunagara/react\`. **Never** write manual \`flex\` / \`grid\` CSS for layout.
 
 2. **Semantic tokens only.** Colors come from \`--mizu-text-*\`, \`--mizu-surface-*\`, \`--mizu-border-*\`, \`--mizu-action-*\`, \`--mizu-feedback-*\`. **Never** hardcode hex/rgb. **Never** introduce new spacing values — use the existing scale.
 
-3. **Mizu components over raw HTML.** Prefer \`Button\` over \`<button>\`, \`Card\` over \`<div class="card">\`, \`Table\` over raw tables, \`Input\` over \`<input>\`. Industry components come from \`@aspect/commerce\` and \`@aspect/finance\`.
+3. **Mizu components over raw HTML.** Prefer \`Button\` over \`<button>\`, \`Card\` over \`<div class="card">\`, \`Table\` over raw tables, \`Input\` over \`<input>\`. Industry components come from \`@mizunagara/commerce\` and \`@mizunagara/finance\`.
 
 4. **Do not introduce new button variants.** This project uses only: \`primary\`, \`secondary\`, \`ghost\`, \`destructive\`. If the design calls for something else, compose with existing variants or ask first.
 
@@ -148,11 +148,11 @@ description: >-
 This project uses the **tweakmizu** substrate. Before making any UI change:
 
 1. Read \`.tweakmizu/substrate.json\` for the full declarative substrate.
-2. Check \`primitives.available\` for layout primitives. **Use Stack, Inline, Cluster, Grid, Center, Split from \`@aspect/react\` — never manual flex/grid CSS.**
+2. Check \`primitives.available\` for layout primitives. **Use Stack, Inline, Cluster, Grid, Center, Split from \`@mizunagara/react\` — never manual flex/grid CSS.**
 3. Check \`patterns\` for pages already in use: ${patternIds}. If a new page is similar to an existing pattern, extend it rather than invent a new one.
 4. **Semantic tokens only** — no hardcoded hex, no manual spacing, no new button variants.
 5. **Mizu components over raw HTML** — \`Button\` not \`<button>\`, \`Card\` not \`<div class="card">\`.
-6. Industry components: \`@aspect/commerce\` (ResourceItem, Pagination, Banner, Thumbnail) and \`@aspect/finance\` (KpiCard, MetricTile, TransactionRow, formatCurrency, formatDelta).
+6. Industry components: \`@mizunagara/commerce\` (ResourceItem, Pagination, Banner, Thumbnail) and \`@mizunagara/finance\` (KpiCard, MetricTile, TransactionRow, formatCurrency, formatDelta).
 
 ## when uncertain
 
@@ -184,14 +184,14 @@ function renderSubstrate(plan: Plan): OutputFile {
     })),
     primitives: {
       available: ['Stack', 'Inline', 'Cluster', 'Grid', 'Center', 'Sidebar', 'Split', 'Cover'],
-      importPath: '@aspect/react',
+      importPath: '@mizunagara/react',
     },
     rules: [
       'Use layout primitives (Stack, Inline, Cluster, Grid) instead of manual flex/grid CSS',
       'Use semantic color tokens (surface, text, border, action, feedback)',
       'Do not hardcode pixel values for padding, margin, or gap — use the spacing scale',
       'Prefer mizu components over raw HTML when one exists (Button not <button>)',
-      'Import industry-specific components from @aspect/commerce or @aspect/finance when available',
+      'Import industry-specific components from @mizunagara/commerce or @mizunagara/finance when available',
     ],
   };
   return {
@@ -238,7 +238,7 @@ function renderNextConfig(): OutputFile {
 function renderGlobalsCss(): OutputFile {
   return {
     path: 'app/globals.css',
-    contents: `@import 'tailwindcss';\n@import '@aspect/tokens/css';\n@import '@aspect/css';\n\n@layer base {\n  body {\n    background-color: var(--mizu-surface-default);\n    color: var(--mizu-text-primary);\n    font-family: var(--mizu-font-family-sans);\n  }\n}\n`,
+    contents: `@import 'tailwindcss';\n@import '@mizunagara/tokens/css';\n@import '@mizunagara/css';\n\n@layer base {\n  body {\n    background-color: var(--mizu-surface-default);\n    color: var(--mizu-text-primary);\n    font-family: var(--mizu-font-family-sans);\n  }\n}\n`,
   };
 }
 

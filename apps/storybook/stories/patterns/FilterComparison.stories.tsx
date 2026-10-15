@@ -1,9 +1,9 @@
-import type { Config, ImmutableTree, JsonGroup } from '@aspect/advanced-query-builder';
-import { BasicConfig, MizuAdvancedQueryBuilder, Utils } from '@aspect/advanced-query-builder';
-import type { RuleGroupType } from '@aspect/query-builder';
-import { MizuQueryBuilder, formatQuery } from '@aspect/query-builder';
-import type { PropertyFilterProperty, PropertyFilterQuery } from '@aspect/react';
-import { Card, FilterBar, PropertyFilter, Separator, Stack } from '@aspect/react';
+import type { Config, ImmutableTree, JsonGroup } from '@mizunagara/advanced-query-builder';
+import { BasicConfig, MizuAdvancedQueryBuilder, Utils } from '@mizunagara/advanced-query-builder';
+import type { RuleGroupType } from '@mizunagara/query-builder';
+import { MizuQueryBuilder, formatQuery } from '@mizunagara/query-builder';
+import type { PropertyFilterProperty, PropertyFilterQuery } from '@mizunagara/react';
+import { Card, FilterBar, PropertyFilter, Separator, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 

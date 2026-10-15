@@ -13,7 +13,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const items = [
@@ -67,14 +67,14 @@ export const Default: Story = {
       </Inline>
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Status</TableHeader>
-              <TableHeader>Region</TableHeader>
-              <TableHeader>Deploys</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Region</TableHead>
+              <TableHead>Deploys</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {items.map((r) => (
               <TableRow key={r.name}>

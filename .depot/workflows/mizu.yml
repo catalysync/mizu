@@ -1,0 +1,54 @@
+# mizu - repo-specific PR checks that the Nagara kit layers do not cover.
+# The kit's node-ts layer (nagara-node-ts.yml) runs format:check + lint,
+# typecheck, test, audit and build; guard (nagara-guard.yml) runs secrets,
+# workflow lint, agent-guard and kit-integrity.
+#
+# Checks: mizu / doctor, mizu / boundary
+# Depot CI: pull_request only, no secrets, no GITHUB_TOKEN, explicit cancel.
+name: mizu
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mizu-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  doctor:
+    name: doctor
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: install
+        run: corepack enable && pnpm install --frozen-lockfile
+      - name: React Doctor gate (every workspace 100/100)
+        run: pnpm doctor:gate
+
+  boundary:
+    name: boundary
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: no private references in added lines
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: scripts/ci/boundary-guard.sh "$BASE_SHA"

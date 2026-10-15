@@ -1,6 +1,7 @@
 import * as Menu from '@radix-ui/react-context-menu';
 import * as React from 'react';
 import { cn } from '../../utils/cn';
+import { MenuCheckGlyph, MenuDotGlyph } from '../../utils/menu-glyphs';
 
 export const ContextMenu = Menu.Root;
 export const ContextMenuTrigger = Menu.Trigger;
@@ -42,6 +43,44 @@ export const ContextMenuItem = React.forwardRef<
   />
 ));
 ContextMenuItem.displayName = 'ContextMenuItem';
+
+export const ContextMenuCheckboxItem = React.forwardRef<
+  React.ElementRef<typeof Menu.CheckboxItem>,
+  React.ComponentPropsWithoutRef<typeof Menu.CheckboxItem>
+>(({ className, children, ...props }, ref) => (
+  <Menu.CheckboxItem
+    ref={ref}
+    className={cn('mizu-context-menu__item', 'mizu-context-menu__item--checkable', className)}
+    {...props}
+  >
+    <span className="mizu-context-menu__indicator" aria-hidden="true">
+      <Menu.ItemIndicator>
+        <MenuCheckGlyph />
+      </Menu.ItemIndicator>
+    </span>
+    {children}
+  </Menu.CheckboxItem>
+));
+ContextMenuCheckboxItem.displayName = 'ContextMenuCheckboxItem';
+
+export const ContextMenuRadioItem = React.forwardRef<
+  React.ElementRef<typeof Menu.RadioItem>,
+  React.ComponentPropsWithoutRef<typeof Menu.RadioItem>
+>(({ className, children, ...props }, ref) => (
+  <Menu.RadioItem
+    ref={ref}
+    className={cn('mizu-context-menu__item', 'mizu-context-menu__item--checkable', className)}
+    {...props}
+  >
+    <span className="mizu-context-menu__indicator" aria-hidden="true">
+      <Menu.ItemIndicator>
+        <MenuDotGlyph />
+      </Menu.ItemIndicator>
+    </span>
+    {children}
+  </Menu.RadioItem>
+));
+ContextMenuRadioItem.displayName = 'ContextMenuRadioItem';
 
 export const ContextMenuLabel = React.forwardRef<
   React.ElementRef<typeof Menu.Label>,

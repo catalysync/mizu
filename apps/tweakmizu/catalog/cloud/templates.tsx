@@ -1,6 +1,15 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Grid, Inline } from '@aspect/react';
+import {
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Grid,
+  Inline,
+} from '@mizunagara/react';
 import * as React from 'react';
 
 type TemplateCategory = 'framework' | 'fullstack' | 'database' | 'ai';
@@ -88,7 +97,7 @@ function Preview() {
 }
 
 const TEMPLATE = `import * as React from 'react';
-import { Card, CardHeader, CardBody, CardFooter, Badge, Button, Grid, Inline } from '@aspect/react';
+import { Card, CardHeader, CardBody, CardFooter, Badge, Button, Grid, Inline } from '@mizunagara/react';
 
 type TemplateCategory = 'framework' | 'fullstack' | 'database' | 'ai';
 
@@ -157,11 +166,11 @@ export const cloudTemplates = definePattern({
     industries: ['cloud'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Badge',
-      '@aspect/react#Grid',
-      '@aspect/react#Inline',
-      '@aspect/react#Button',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Grid',
+      '@mizunagara/react#Inline',
+      '@mizunagara/react#Button',
     ],
     sources: [
       {

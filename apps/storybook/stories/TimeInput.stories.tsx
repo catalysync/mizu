@@ -1,4 +1,4 @@
-import { Field, Stack, TimeInput } from '@aspect/react';
+import { Field, Stack, TimeInput } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

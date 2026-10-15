@@ -3,7 +3,7 @@
 import { saveProfile, shareProfile } from '@/actions/craft-profiles';
 import { exportProfile, type ExportFormat } from '@/lib/craft/exporter';
 import { useCraftStore } from '@/store/craft-store';
-import { Badge } from '@aspect/react';
+import { Badge } from '@mizunagara/react';
 import { Download, FileCode, FileJson, Globe, Lock, Package } from 'lucide-react';
 import { useState } from 'react';
 import { useIsPro } from './craft-pro-context';

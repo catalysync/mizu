@@ -1,6 +1,6 @@
-import { Banner } from '@aspect/commerce';
-import '@aspect/commerce/css';
-import { Stack } from '@aspect/react';
+import { Banner } from '@mizunagara/commerce';
+import '@mizunagara/commerce/css';
+import { Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

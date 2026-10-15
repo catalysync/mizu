@@ -1,0 +1,46 @@
+# Accepted advisories for `node-ts / audit` (osv-scanner over pnpm-lock.yaml).
+#
+# Every entry is dev or build tooling that never ships inside a published
+# @mizunagara/* package, and has no fix inside its current major. Each one
+# expires so it is re-checked; delete the entry once the parent upgrades.
+# Fixable advisories are resolved with `pnpm.overrides` in package.json instead.
+
+[[IgnoredVulns]]
+id = "GHSA-82fw-gwwq-j7x9"
+ignoreUntil = 2027-01-15
+reason = "vitest/@vitest/mocker 3.x: fixed only in vitest 4. Test runner only; mocks are repo-authored. Upgrade to vitest 4 separately."
+
+[[IgnoredVulns]]
+id = "GHSA-5gmw-xhrv-c9v3"
+ignoreUntil = 2027-01-15
+reason = "tinypool 1.x via vitest 3: fixed only in tinypool 2 (vitest 4). Worker options are repo-authored test config."
+
+[[IgnoredVulns]]
+id = "GHSA-85c8-ppgw-ccpr"
+ignoreUntil = 2027-01-15
+reason = "tinypool 1.x via vitest 3: fixed only in tinypool 2 (vitest 4). Worker options are repo-authored test config."
+
+[[IgnoredVulns]]
+id = "GHSA-67mh-4wv8-2f99"
+ignoreUntil = 2027-01-15
+reason = "esbuild 0.18 via @esbuild-kit (drizzle-kit dev CLI): dev-server issue; the dev server is never run from this path."
+
+[[IgnoredVulns]]
+id = "GHSA-g7r4-m6w7-qqqr"
+ignoreUntil = 2027-01-15
+reason = "esbuild 0.27 via vite 7: Windows-only dev-server file read; CI and releases build on Linux and never serve."
+
+[[IgnoredVulns]]
+id = "GHSA-hp3w-g68c-fv3c"
+ignoreUntil = 2027-01-15
+reason = "sprintf-js 1.0.3 via argparse 1 / js-yaml 3 (build tooling): no fixed release; inputs are repo files."
+
+[[IgnoredVulns]]
+id = "GHSA-vfj7-8cjw-p6xm"
+ignoreUntil = 2027-01-15
+reason = "braces 3.0.3 via micromatch/fast-glob (build tooling): no fixed release; glob patterns are repo-authored."
+
+[[IgnoredVulns]]
+id = "GHSA-w5hq-g745-h8pq"
+ignoreUntil = 2027-01-15
+reason = "uuid 8 via @storybook/test-runner (jest-junit, nyc): fixed only in uuid 11; dev-only, v3/v5/v6 buffer API unused."

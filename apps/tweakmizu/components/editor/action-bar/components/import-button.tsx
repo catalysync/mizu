@@ -14,7 +14,7 @@ import {
   ModalTrigger,
   Stack,
   Textarea,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { ClipboardPaste } from 'lucide-react';
 import { useState } from 'react';
 

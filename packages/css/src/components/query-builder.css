@@ -44,7 +44,7 @@
   padding: var(--mizu-spacing-1) var(--mizu-spacing-6) var(--mizu-spacing-1) var(--mizu-spacing-2);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  line-height: var(--mizu-line-height-normal);
+  line-height: var(--mizu-font-line-height-normal);
   color: var(--mizu-text-primary);
   background-color: var(--mizu-surface-primary);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m3 4.5 3 3 3-3'/%3E%3C/svg%3E");
@@ -66,7 +66,7 @@
   padding: var(--mizu-spacing-1) var(--mizu-spacing-2);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  line-height: var(--mizu-line-height-normal);
+  line-height: var(--mizu-font-line-height-normal);
   color: var(--mizu-text-primary);
   background: var(--mizu-surface-primary);
   border: 1px solid var(--mizu-border-default);
@@ -89,7 +89,7 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-xs);
   font-weight: var(--mizu-font-weight-medium);
-  line-height: var(--mizu-line-height-normal);
+  line-height: var(--mizu-font-line-height-normal);
   color: var(--mizu-text-primary);
   background: var(--mizu-surface-primary);
   border: 1px solid var(--mizu-border-default);

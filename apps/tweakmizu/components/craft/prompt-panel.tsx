@@ -1,7 +1,7 @@
 'use client';
 
 import { useCraftChat } from '@/hooks/use-craft-chat';
-import { Badge } from '@aspect/react';
+import { Badge } from '@mizunagara/react';
 import { Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { ChatDock } from './chat-dock';

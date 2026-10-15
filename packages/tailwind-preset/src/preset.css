@@ -3,8 +3,8 @@
  *
  * Consumer setup:
  *   @import "tailwindcss";
- *   @import "@aspect/tokens/css";
- *   @import "@aspect/tailwind-preset";
+ *   @import "@mizunagara/tokens/css";
+ *   @import "@mizunagara/tailwind-preset";
  *
  * After this, tailwind utilities like `bg-primary`, `text-text-primary`,
  * `rounded-lg`, `p-4` resolve to mizu design tokens.
@@ -28,6 +28,8 @@
   --color-warning-subtle: var(--mizu-feedback-warning-subtle);
   --color-danger: var(--mizu-feedback-danger-default);
   --color-danger-subtle: var(--mizu-feedback-danger-subtle);
+  --color-info: var(--mizu-feedback-info-default);
+  --color-info-subtle: var(--mizu-feedback-info-subtle);
 
   /* surfaces */
   --color-surface: var(--mizu-surface-default);
@@ -93,4 +95,15 @@
   --ease-in: var(--mizu-easing-in);
   --ease-out: var(--mizu-easing-out);
   --ease-in-out: var(--mizu-easing-in-out);
+}
+
+/*
+ * Tailwind v4's preflight no longer gives buttons `cursor: pointer`, so they
+ * show the arrow cursor. Restore the affordance for enabled buttons only.
+ */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled, [aria-disabled="true"]) {
+    cursor: pointer;
+  }
 }

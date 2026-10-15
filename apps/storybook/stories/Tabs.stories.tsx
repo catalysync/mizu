@@ -1,4 +1,4 @@
-import { Badge, Inline, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
+import { Badge, Inline, Tabs, TabsContent, TabsList, TabsTrigger } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

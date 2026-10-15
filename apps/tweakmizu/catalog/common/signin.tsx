@@ -1,6 +1,6 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { Button, Card, CardBody, CardFooter, CardHeader, Input, Stack } from '@aspect/react';
+import { Button, Card, CardBody, CardFooter, CardHeader, Input, Stack } from '@mizunagara/react';
 
 function Preview() {
   return (
@@ -29,7 +29,7 @@ function Preview() {
   );
 }
 
-const TEMPLATE = `import { Button, Card, CardBody, CardFooter, CardHeader, Input, Stack } from '@aspect/react';
+const TEMPLATE = `import { Button, Card, CardBody, CardFooter, CardHeader, Input, Stack } from '@mizunagara/react';
 
 export default function SignInPage() {
   return (
@@ -64,10 +64,10 @@ export const commonSignin = definePattern({
     industries: ['cloud', 'saas-admin', 'ecommerce', 'fintech', 'ai-product', 'devtools', 'other'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Input',
-      '@aspect/react#Button',
-      '@aspect/react#Stack',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Input',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Stack',
     ],
     sources: [
       {

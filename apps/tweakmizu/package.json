@@ -1,5 +1,5 @@
 {
-  "name": "@aspect/tweakmizu",
+  "name": "@mizunagara/tweakmizu",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,11 +17,11 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.88.0",
-    "@aspect/commerce": "workspace:^",
-    "@aspect/css": "workspace:^",
-    "@aspect/finance": "workspace:^",
-    "@aspect/react": "workspace:^",
-    "@aspect/tokens": "workspace:^",
+    "@mizunagara/commerce": "workspace:^",
+    "@mizunagara/css": "workspace:^",
+    "@mizunagara/finance": "workspace:^",
+    "@mizunagara/react": "workspace:^",
+    "@mizunagara/tokens": "workspace:^",
     "@neondatabase/serverless": "^1.0.2",
     "@polar-sh/better-auth": "^1.8.3",
     "@polar-sh/checkout": "^0.2.0",

@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@aspect/react';
+import { cn } from '@mizunagara/react';
 import { Loader2, Send, Sparkles } from 'lucide-react';
 import { useRef, useState, type FormEvent } from 'react';
 import './chat-dock.css';

@@ -1,4 +1,4 @@
-import { formatCurrency } from '@aspect/finance';
+import { formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -15,7 +15,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { orders } from './data';
 
 const statusTone = {
@@ -57,16 +57,16 @@ export function OrdersPage() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Order</TableHeader>
-              <TableHeader>Customer</TableHeader>
-              <TableHeader>Items</TableHeader>
-              <TableHeader>Total</TableHeader>
-              <TableHeader>Date</TableHeader>
-              <TableHeader>Status</TableHeader>
+              <TableHead>Order</TableHead>
+              <TableHead>Customer</TableHead>
+              <TableHead>Items</TableHead>
+              <TableHead>Total</TableHead>
+              <TableHead>Date</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {orders.map((o) => (
               <TableRow key={o.id}>
@@ -103,13 +103,13 @@ export function OrdersPage() {
             </span>
             <Separator />
             <Table density="compact">
-              <TableHead>
+              <TableHeader>
                 <TableRow>
-                  <TableHeader>Item</TableHeader>
-                  <TableHeader>Qty</TableHeader>
-                  <TableHeader>Price</TableHeader>
+                  <TableHead>Item</TableHead>
+                  <TableHead>Qty</TableHead>
+                  <TableHead>Price</TableHead>
                 </TableRow>
-              </TableHead>
+              </TableHeader>
               <TableBody>
                 <TableRow>
                   <TableCell>Minimal Desk Lamp</TableCell>

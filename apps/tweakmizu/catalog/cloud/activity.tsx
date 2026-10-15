@@ -1,6 +1,6 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { Badge, Button, Card, EmptyState, Stack } from '@aspect/react';
+import { Badge, Button, Card, EmptyState, Stack } from '@mizunagara/react';
 import * as React from 'react';
 
 type ActivityType = 'deploy' | 'config' | 'addon' | 'env';
@@ -89,7 +89,7 @@ function Preview() {
 }
 
 const TEMPLATE = `import * as React from 'react';
-import { Card, Badge, Stack, EmptyState, Button } from '@aspect/react';
+import { Card, Badge, Stack, EmptyState, Button } from '@mizunagara/react';
 
 type ActivityType = 'deploy' | 'config' | 'addon' | 'env';
 
@@ -159,11 +159,11 @@ export const cloudActivity = definePattern({
     industries: ['cloud'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Badge',
-      '@aspect/react#Stack',
-      '@aspect/react#EmptyState',
-      '@aspect/react#Button',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#EmptyState',
+      '@mizunagara/react#Button',
     ],
     sources: [
       {

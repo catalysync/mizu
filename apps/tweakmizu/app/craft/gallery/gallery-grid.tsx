@@ -3,7 +3,7 @@
 import { safeParseProfile } from '@/lib/craft/profile';
 import { profileToCss } from '@/lib/craft/profile-to-css';
 import { useCraftStore } from '@/store/craft-store';
-import { Badge, Button } from '@aspect/react';
+import { Badge, Button } from '@mizunagara/react';
 import { Heart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import './gallery.css';

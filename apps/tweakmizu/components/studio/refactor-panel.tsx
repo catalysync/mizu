@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Inline, Stack, Textarea } from '@aspect/react';
+import { Button, Inline, Stack, Textarea } from '@mizunagara/react';
 import { Check, Sparkles, X } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 

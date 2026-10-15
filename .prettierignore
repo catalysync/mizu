@@ -8,3 +8,6 @@ pnpm-lock.yaml
 packages/tokens/dist
 packages/icons/src/generated
 research
+
+# vendored Nagara CI/CD kit (kit-integrity checks exact bytes)
+.depot/nagara

@@ -14,7 +14,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 function DensitySample() {
@@ -37,13 +37,13 @@ function DensitySample() {
         <CardHeader title="Recent deploys" description="Last 3 deployments." />
         <CardBody>
           <Table>
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>App</TableHeader>
-                <TableHeader>Status</TableHeader>
-                <TableHeader>Region</TableHeader>
+                <TableHead>App</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Region</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               <TableRow>
                 <TableCell>frosty-mountain</TableCell>

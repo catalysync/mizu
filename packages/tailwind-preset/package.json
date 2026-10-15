@@ -1,23 +1,41 @@
 {
-  "name": "@aspect/tailwind-preset",
+  "name": "@mizunagara/tailwind-preset",
   "version": "0.1.0",
   "description": "Tailwind v4 theme bridge for the mizu design system",
+  "license": "MIT",
+  "homepage": "https://github.com/catalysync/mizu/tree/main/packages/tailwind-preset#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catalysync/mizu.git",
+    "directory": "packages/tailwind-preset"
+  },
+  "bugs": {
+    "url": "https://github.com/catalysync/mizu/issues"
+  },
   "type": "module",
   "exports": {
     ".": "./src/preset.css",
     "./legacy": "./src/legacy-preset.js"
   },
   "scripts": {
-    "lint": "stylelint 'src/**/*.css'"
+    "lint": "stylelint 'src/**/*.css'",
+    "test": "vitest run"
   },
   "peerDependencies": {
-    "@aspect/tokens": ">=0.1.0",
+    "@mizunagara/tokens": ">=0.2.0",
     "tailwindcss": ">=4.0.0"
   },
   "devDependencies": {
-    "@aspect/tokens": "workspace:^"
+    "@mizunagara/tokens": "workspace:^",
+    "@tailwindcss/node": "^4.2.2",
+    "tailwindcss": "^4.2.2",
+    "vitest": "^3.0.0"
   },
   "files": [
     "src"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }

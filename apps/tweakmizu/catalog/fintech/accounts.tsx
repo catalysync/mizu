@@ -1,7 +1,12 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { AccountSummary, DeltaIndicator, TransactionRow, formatCurrency } from '@aspect/finance';
-import { Card, CardBody, CardHeader, Grid, Stack } from '@aspect/react';
+import {
+  AccountSummary,
+  DeltaIndicator,
+  TransactionRow,
+  formatCurrency,
+} from '@mizunagara/finance';
+import { Card, CardBody, CardHeader, Grid, Stack } from '@mizunagara/react';
 
 interface Account {
   id: string;
@@ -71,13 +76,13 @@ function Preview() {
   );
 }
 
-const TEMPLATE = `import { Card, CardBody, CardHeader, Grid, Stack } from '@aspect/react';
+const TEMPLATE = `import { Card, CardBody, CardHeader, Grid, Stack } from '@mizunagara/react';
 import {
   AccountSummary,
   DeltaIndicator,
   TransactionRow,
   formatCurrency,
-} from '@aspect/finance';
+} from '@mizunagara/finance';
 
 interface Account {
   id: string;
@@ -143,18 +148,18 @@ export const fintechAccounts = definePattern({
     id: 'fintech.accounts',
     name: 'Fintech Accounts Overview',
     description:
-      'Two-column fintech dashboard showing account summaries with deltas and a recent-transactions stream. Uses @aspect/finance AccountSummary + TransactionRow.',
+      'Two-column fintech dashboard showing account summaries with deltas and a recent-transactions stream. Uses @mizunagara/finance AccountSummary + TransactionRow.',
     kind: 'page',
     industries: ['fintech', 'saas-admin'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Grid',
-      '@aspect/react#Stack',
-      '@aspect/finance#AccountSummary',
-      '@aspect/finance#TransactionRow',
-      '@aspect/finance#DeltaIndicator',
-      '@aspect/finance#formatCurrency',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Grid',
+      '@mizunagara/react#Stack',
+      '@mizunagara/finance#AccountSummary',
+      '@mizunagara/finance#TransactionRow',
+      '@mizunagara/finance#DeltaIndicator',
+      '@mizunagara/finance#formatCurrency',
     ],
     sources: [
       {

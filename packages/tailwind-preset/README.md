@@ -1,4 +1,4 @@
-# @aspect/tailwind-preset
+# @mizunagara/tailwind-preset
 
 Tailwind v4 theme bridge for the mizu design system. Maps Tailwind utility classes to `var(--mizu-*)` tokens.
 
@@ -6,13 +6,13 @@ Tailwind v4 theme bridge for the mizu design system. Maps Tailwind utility class
 
 ```css
 @import 'tailwindcss';
-@import '@aspect/tokens/css';
-@import '@aspect/tailwind-preset';
+@import '@mizunagara/tokens/css';
+@import '@mizunagara/tailwind-preset';
 ```
 
 ## Usage (Tailwind v3 legacy)
 
 ```js
-const preset = require('@aspect/tailwind-preset/legacy');
+const preset = require('@mizunagara/tailwind-preset/legacy');
 module.exports = { presets: [preset] };
 ```

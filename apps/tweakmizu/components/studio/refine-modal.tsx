@@ -1,7 +1,7 @@
 'use client';
 
 import type { Plan } from '@/lib/studio/composer';
-import { Button, Inline, Stack, Textarea } from '@aspect/react';
+import { Button, Inline, Stack, Textarea } from '@mizunagara/react';
 import { Sparkles, X } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 

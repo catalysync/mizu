@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import { Button } from '@aspect/react';
+import { Button } from '@mizunagara/react';
 import { ChevronRight, Github, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';

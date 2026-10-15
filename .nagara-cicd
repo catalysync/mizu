@@ -1,0 +1,21 @@
+# Nagara CI/CD kit pin, written by cicd/adopt.sh. Protected path: a change needs
+# the owner's `owner-reviewed-infra` label. adopt.sh rewrites version/lang/postgres
+# and keeps every other line.
+#
+# Product settings (read by .depot/nagara/bin/ci-step.sh and agent-guard.sh):
+#   <lang>.<job>=<command>|skip      replace a default job command, e.g.
+#                                    python.test=uv run pytest -m "not slow"
+#   <lang>.env.<NAME>=<value>        extra env for that layer's jobs
+#   protect=<glob>                   extra protected path for agent-guard
+version=cicd-v1.0.0
+postgres=17
+lang=node-ts:.
+
+# mizu: format check runs with lint (prettier over the whole repo, then eslint/stylelint per package)
+node-ts.lint=pnpm format:check && pnpm turbo run lint
+
+# release configuration: changes need the owner's review
+protect=.changeset/config.json
+protect=.changeset/pre.json
+protect=scripts/release/*
+protect=commitlint.config.mjs

@@ -1,6 +1,6 @@
 ---
-'@aspect/react': patch
-'@aspect/css': patch
+'@mizunagara/react': patch
+'@mizunagara/css': patch
 ---
 
 `TableRow` now toggles `data-clickable="true"` when an `onClick` handler (or `role="button"`) is set, and `.mizu-table tbody tr[data-clickable="true"]` gets `cursor: pointer`. Consumers no longer need to hand-roll `className="cursor-pointer"` on every clickable row.

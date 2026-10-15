@@ -1,7 +1,7 @@
 'use client';
 
 import { authClient } from '@/lib/auth-client';
-import { Button, Inline, Input, Stack } from '@aspect/react';
+import { Button, Inline, Input, Stack } from '@mizunagara/react';
 import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
 

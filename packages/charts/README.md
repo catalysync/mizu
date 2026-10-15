@@ -1,25 +1,25 @@
-# @aspect/charts
+# @mizunagara/charts
 
 Chart components for the mizu design system, built on [recharts](https://recharts.org).
 
 ## Install
 
 ```sh
-pnpm add @aspect/charts recharts
+pnpm add @mizunagara/charts recharts
 ```
 
 Charts pick colors from `--mizu-chart-categorical-{1..8}` tokens. Import the base CSS once:
 
 ```css
-@import '@aspect/tokens/css';
-@import '@aspect/css';
-@import '@aspect/css/components/chart'; /* or cherry-pick */
+@import '@mizunagara/tokens/css';
+@import '@mizunagara/css';
+@import '@mizunagara/css/components/chart'; /* or cherry-pick */
 ```
 
 ## Usage
 
 ```tsx
-import { LineChart } from '@aspect/charts';
+import { LineChart } from '@mizunagara/charts';
 
 <LineChart
   aria-label="Monthly revenue"

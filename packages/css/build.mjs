@@ -16,7 +16,7 @@ function build(input, output) {
 // Bundled barrel — single import for the whole library
 build('src/index.css', 'dist/mizu.css');
 
-// Standalone typography sheet — opt-in via "@aspect/css/typography"
+// Standalone typography sheet — opt-in via "@mizunagara/css/typography"
 build('src/typography.css', 'dist/typography.css');
 
 // Per-file outputs so cherry-pick imports survive future @import chains
@@ -27,4 +27,4 @@ for (const subdir of ['components', 'layouts', 'shell', 'themes']) {
   }
 }
 
-console.log('built @aspect/css');
+console.log('built @mizunagara/css');

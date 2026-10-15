@@ -1,7 +1,17 @@
 {
-  "name": "@aspect/react",
+  "name": "@mizunagara/react",
   "version": "0.1.0",
   "description": "React components for the mizu design system",
+  "license": "MIT",
+  "homepage": "https://github.com/catalysync/mizu/tree/main/packages/react#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catalysync/mizu.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/catalysync/mizu/issues"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -25,8 +35,8 @@
     "test:coverage": "vitest run --coverage"
   },
   "peerDependencies": {
-    "@aspect/css": ">=0.1.0",
-    "@aspect/tokens": ">=0.1.0",
+    "@mizunagara/css": ">=0.2.0",
+    "@mizunagara/tokens": ">=0.2.0",
     "lucide-react": ">=0.400.0",
     "react": ">=18",
     "react-dom": ">=18"
@@ -62,9 +72,9 @@
     "react-resizable-panels": "^3.0.0"
   },
   "devDependencies": {
-    "@aspect/css": "workspace:^",
-    "@aspect/tokens": "workspace:^",
-    "@aspect/tsconfig": "workspace:^",
+    "@mizunagara/css": "workspace:^",
+    "@mizunagara/tokens": "workspace:^",
+    "@mizunagara/tsconfig": "workspace:^",
     "@testing-library/jest-dom": "^6.6.0",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.0",
@@ -78,5 +88,9 @@
     "tsup": "^8.5.1",
     "vitest": "^3.0.0",
     "vitest-axe": "^0.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

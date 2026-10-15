@@ -2,7 +2,7 @@
 
 import { resolvePatternsForPlan, type Plan } from '@/lib/studio/composer';
 import { cn } from '@/utils/cn';
-import { Badge, Split, Stack } from '@aspect/react';
+import { Badge, Split, Stack } from '@mizunagara/react';
 import { useMemo, useState } from 'react';
 
 export function SharedPlanView({ plan }: { plan: Plan }) {

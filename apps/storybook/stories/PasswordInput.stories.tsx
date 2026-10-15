@@ -1,4 +1,4 @@
-import { estimatePasswordStrength, Field, PasswordInput, Stack } from '@aspect/react';
+import { estimatePasswordStrength, Field, PasswordInput, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

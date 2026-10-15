@@ -3,7 +3,7 @@
  * Modern consumers should use ./preset.css with Tailwind v4 instead.
  *
  * Usage (Tailwind v3):
- *   const mizuPreset = require('@aspect/tailwind-preset/legacy');
+ *   const mizuPreset = require('@mizunagara/tailwind-preset/legacy');
  *   module.exports = { presets: [mizuPreset], ... };
  */
 
@@ -24,7 +24,7 @@ const flattenValue = (obj) => {
 
 let tokens;
 try {
-  tokens = require('@aspect/tokens/json');
+  tokens = require('@mizunagara/tokens/json');
 } catch {
   tokens = {};
 }

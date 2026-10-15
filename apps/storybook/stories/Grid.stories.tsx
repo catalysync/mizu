@@ -1,4 +1,4 @@
-import { Card, CardBody, Grid } from '@aspect/react';
+import { Card, CardBody, Grid } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

@@ -4,7 +4,7 @@ import { getAllPatterns } from '@/lib/patterns/registry';
 import type { PatternModule } from '@/lib/patterns/types';
 import type { Industry } from '@/types/studio';
 import { cn } from '@/utils/cn';
-import { Badge, Cluster, Inline, Split, Stack } from '@aspect/react';
+import { Badge, Cluster, Inline, Split, Stack } from '@mizunagara/react';
 import { useMemo, useState } from 'react';
 
 type IndustryFilter = Industry | 'all';

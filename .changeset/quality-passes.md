@@ -1,6 +1,6 @@
 ---
-'@aspect/react': minor
-'@aspect/css': minor
+'@mizunagara/react': minor
+'@mizunagara/css': minor
 ---
 
 Quality passes (5 rounds of sage-carbon comparison):

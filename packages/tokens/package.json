@@ -1,7 +1,17 @@
 {
-  "name": "@aspect/tokens",
+  "name": "@mizunagara/tokens",
   "version": "0.1.0",
   "description": "Design tokens for the mizu design system (DTCG format)",
+  "license": "MIT",
+  "homepage": "https://github.com/catalysync/mizu/tree/main/packages/tokens#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catalysync/mizu.git",
+    "directory": "packages/tokens"
+  },
+  "bugs": {
+    "url": "https://github.com/catalysync/mizu/issues"
+  },
   "type": "module",
   "scripts": {
     "build": "node build/config.mjs",
@@ -18,5 +28,9 @@
   ],
   "devDependencies": {
     "style-dictionary": "^5.4.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

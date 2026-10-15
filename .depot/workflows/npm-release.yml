@@ -1,0 +1,47 @@
+# npm-release - stage every @mizunagara/* version that is not on npm yet.
+# Runs on main after the "version packages" PR (pnpm release:version) merges;
+# with changesets still pending it stages nothing. Staging is not publishing:
+# the owner approves each staged version with 2FA on their own machine
+# (scripts/release/approve.sh). See docs/releasing.md.
+#
+# Secret: NPM_STAGE_TOKEN, a granular npm token with "stage only" write access
+# to @mizunagara/*, used by this workflow alone. It cannot publish.
+name: npm-release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mizu-npm-release
+  cancel-in-progress: false # never cancel a half-staged release
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  stage:
+    name: stage
+    runs-on: depot-ubuntu-24.04-4
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: install
+        run: corepack enable && pnpm install --frozen-lockfile
+      - name: build and test the packages
+        run: pnpm turbo run build test --filter='./packages/*'
+      - name: stage
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_STAGE_TOKEN }}
+        # pnpm run puts the lockfile-pinned npm (>= 11.15, has `npm stage`) first on PATH
+        run: pnpm release:stage

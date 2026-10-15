@@ -1,4 +1,4 @@
-import { DatePicker, DateRangePicker, Field, Stack } from '@aspect/react';
+import { DatePicker, DateRangePicker, Field, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 

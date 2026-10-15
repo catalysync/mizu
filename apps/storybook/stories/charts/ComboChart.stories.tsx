@@ -1,4 +1,4 @@
-import { ComboChart } from '@aspect/charts';
+import { ComboChart } from '@mizunagara/charts';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { formatUsd, monthlyRevenue } from './_fixtures';
 

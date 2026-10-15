@@ -1,4 +1,4 @@
-import { Button, EmptyState, Inline } from '@aspect/react';
+import { Button, EmptyState, Inline } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

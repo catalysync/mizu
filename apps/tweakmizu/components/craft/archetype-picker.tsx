@@ -3,7 +3,7 @@
 import { archetypes } from '@/lib/craft/archetypes';
 import { profileToCss } from '@/lib/craft/profile-to-css';
 import { useCraftStore } from '@/store/craft-store';
-import { Badge, Button } from '@aspect/react';
+import { Badge, Button } from '@mizunagara/react';
 import { ArrowRight, Lock, Shuffle, Sparkles } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';

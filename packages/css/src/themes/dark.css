@@ -8,12 +8,28 @@
   --mizu-surface-default: var(--mizu-color-slate-950);
   --mizu-surface-secondary: var(--mizu-color-slate-900);
   --mizu-surface-inverse: var(--mizu-color-white);
+  --mizu-surface-hover: var(--mizu-color-slate-800);
 
-  --mizu-text-primary: var(--mizu-color-white);
+  /* off-white: pure #fff on near-black halates (glows) for many readers */
+  --mizu-text-primary: var(--mizu-color-slate-100);
   --mizu-text-secondary: var(--mizu-color-slate-400);
   --mizu-text-inverse: var(--mizu-color-slate-900);
   --mizu-text-disabled: var(--mizu-color-slate-600);
 
+  /* slate-500 is 4.2:1 on the dark surface (below AA); slate-400 is 7.9:1 */
+  --mizu-text-tertiary: var(--mizu-color-slate-400);
+
   --mizu-border-default: var(--mizu-color-slate-800);
+  --mizu-border-subtle: var(--mizu-color-slate-900);
   --mizu-border-strong: var(--mizu-color-slate-600);
+
+  /* chart series stepped for the dark surface */
+  --mizu-chart-categorical-1: var(--mizu-color-chart-dark-1);
+  --mizu-chart-categorical-2: var(--mizu-color-chart-dark-2);
+  --mizu-chart-categorical-3: var(--mizu-color-chart-dark-3);
+  --mizu-chart-categorical-4: var(--mizu-color-chart-dark-4);
+  --mizu-chart-categorical-5: var(--mizu-color-chart-dark-5);
+  --mizu-chart-categorical-6: var(--mizu-color-chart-dark-6);
+  --mizu-chart-categorical-7: var(--mizu-color-chart-dark-7);
+  --mizu-chart-categorical-8: var(--mizu-color-chart-dark-8);
 }

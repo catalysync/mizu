@@ -34,7 +34,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { useEffect, useRef } from 'react';
 
 interface MizuComponentsPreviewProps {
@@ -231,13 +231,13 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
 
         <Section title="Table">
           <Table>
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>Name</TableHeader>
-                <TableHeader>Role</TableHeader>
-                <TableHeader>Status</TableHeader>
+                <TableHead>Name</TableHead>
+                <TableHead>Role</TableHead>
+                <TableHead>Status</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               <TableRow>
                 <TableCell>

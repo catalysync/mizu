@@ -1,4 +1,4 @@
-import { ScrollArea, Stack } from '@aspect/react';
+import { ScrollArea, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

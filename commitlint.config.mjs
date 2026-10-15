@@ -23,13 +23,17 @@ const noAttributionRule = (parsed) => {
     { pattern: /\bgenerated with\b.*(claude|anthropic|ai)/i, label: 'AI-generated marker' },
     { pattern: /🤖\s*generated/i, label: 'robot emoji generated marker' },
     {
-      pattern: /\b(inspired by|ported from)\s+(cloudscape|sage|shadcn|radix|blueprint|atlassian|polaris|fluent|material)\b/i,
+      pattern:
+        /\b(inspired by|ported from)\s+(cloudscape|sage|shadcn|radix|blueprint|atlassian|polaris|fluent|material)\b/i,
       label: 'external-DS attribution',
     },
   ];
   for (const { pattern, label } of banned) {
     if (pattern.test(text)) {
-      return [false, `commit must not contain ${label} — attribution belongs in planning docs or NOTICE, never commits`];
+      return [
+        false,
+        `commit must not contain ${label} — attribution belongs in planning docs or NOTICE, never commits`,
+      ];
     }
   }
   return [true];

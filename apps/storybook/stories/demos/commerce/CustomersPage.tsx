@@ -1,4 +1,4 @@
-import { formatCurrency } from '@aspect/finance';
+import { formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -14,7 +14,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { customers } from './data';
 
 export function CustomersPage() {
@@ -42,16 +42,16 @@ export function CustomersPage() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Customer</TableHeader>
-              <TableHeader>Email</TableHeader>
-              <TableHeader>Orders</TableHeader>
-              <TableHeader>Total spent</TableHeader>
-              <TableHeader>Last order</TableHeader>
-              <TableHeader>Status</TableHeader>
+              <TableHead>Customer</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Orders</TableHead>
+              <TableHead>Total spent</TableHead>
+              <TableHead>Last order</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {customers.map((c) => (
               <TableRow key={c.id}>

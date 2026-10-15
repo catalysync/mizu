@@ -11,7 +11,7 @@ import {
   Separator,
   Stack,
   Switch,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 function Preview() {
   return (
@@ -96,7 +96,7 @@ const TEMPLATE = `import {
   Separator,
   Stack,
   Switch,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 export default function SettingsPage() {
   return (
@@ -177,14 +177,14 @@ export const cloudSettings = definePattern({
     industries: ['cloud', 'saas-admin'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Input',
-      '@aspect/react#Select',
-      '@aspect/react#Switch',
-      '@aspect/react#Separator',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
-      '@aspect/react#Button',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Input',
+      '@mizunagara/react#Select',
+      '@mizunagara/react#Switch',
+      '@mizunagara/react#Separator',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
+      '@mizunagara/react#Button',
     ],
     sources: [
       {

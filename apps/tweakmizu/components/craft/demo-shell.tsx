@@ -3,7 +3,7 @@
 import { ThemeToggle } from '@/components/theme-toggle';
 import type { ChromaIntensity } from '@/lib/craft/profile';
 import { useCraftStore } from '@/store/craft-store';
-import { Button } from '@aspect/react';
+import { Button } from '@mizunagara/react';
 import { ChevronLeft, Eye, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';

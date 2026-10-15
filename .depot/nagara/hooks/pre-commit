@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# pre-commit - gitleaks over the staged changes. Required in agent sandboxes.
+#
+# Enable in a product checkout (chains with an existing hook manager rather
+# than replacing it; pick one):
+#   ln -s ../../.depot/nagara/hooks/pre-commit .git/hooks/pre-commit
+#   lefthook / pre-commit: run `.depot/nagara/hooks/pre-commit` as a command
+#
+# A hit blocks the commit with the secret redacted. Do not bypass with
+# --no-verify: remove the secret, and rotate it if it was ever pushed.
+set -euo pipefail
+if ! command -v gitleaks >/dev/null; then
+  echo "pre-commit: gitleaks 8.30.1 is not installed (github.com/gitleaks/gitleaks/releases); refusing to commit unscanned" >&2
+  exit 1
+fi
+exec gitleaks git --pre-commit --staged --redact --no-banner --verbose .

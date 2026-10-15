@@ -1,6 +1,6 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { formatCurrency } from '@aspect/finance';
+import { formatCurrency } from '@mizunagara/finance';
 import {
   Badge,
   Button,
@@ -15,7 +15,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface CustomerRow {
   id: string;
@@ -84,16 +84,16 @@ function Preview() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Customer</TableHeader>
-              <TableHeader>Email</TableHeader>
-              <TableHeader>Orders</TableHeader>
-              <TableHeader>Total spent</TableHeader>
-              <TableHeader>Last order</TableHeader>
-              <TableHeader>Status</TableHeader>
+              <TableHead>Customer</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Orders</TableHead>
+              <TableHead>Total spent</TableHead>
+              <TableHead>Last order</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {customers.map((c) => (
               <TableRow key={c.id}>
@@ -165,11 +165,11 @@ const TEMPLATE = `import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
+  TableHead,
   TableRow,
-} from '@aspect/react';
-import { formatCurrency } from '@aspect/finance';
+} from '@mizunagara/react';
+import { formatCurrency } from '@mizunagara/finance';
 
 interface CustomerRow {
   id: string;
@@ -204,16 +204,16 @@ export default function CustomersPage() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Customer</TableHeader>
-              <TableHeader>Email</TableHeader>
-              <TableHeader>Orders</TableHeader>
-              <TableHeader>Total spent</TableHeader>
-              <TableHeader>Last order</TableHeader>
-              <TableHeader>Status</TableHeader>
+              <TableHead>Customer</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Orders</TableHead>
+              <TableHead>Total spent</TableHead>
+              <TableHead>Last order</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {customers.map((c) => (
               <TableRow key={c.id}>
@@ -251,15 +251,15 @@ export const commerceCustomers = definePattern({
     industries: ['ecommerce'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Table',
-      '@aspect/react#Input',
-      '@aspect/react#Badge',
-      '@aspect/react#Button',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
-      '@aspect/commerce#Pagination',
-      '@aspect/finance#formatCurrency',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Table',
+      '@mizunagara/react#Input',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
+      '@mizunagara/commerce#Pagination',
+      '@mizunagara/finance#formatCurrency',
     ],
     sources: [
       {

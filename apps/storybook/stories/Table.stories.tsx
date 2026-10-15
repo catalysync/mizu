@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -41,14 +41,14 @@ const tone = (s: string) =>
 export const Default: Story = {
   render: (args) => (
     <Table {...args}>
-      <TableHead>
+      <TableHeader>
         <TableRow>
-          <TableHeader>Name</TableHeader>
-          <TableHeader>Status</TableHeader>
-          <TableHeader>Region</TableHeader>
-          <TableHeader>Deploys</TableHeader>
+          <TableHead>Name</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Region</TableHead>
+          <TableHead>Deploys</TableHead>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody>
         {rows.map((r) => (
           <TableRow key={r.name}>
@@ -75,12 +75,12 @@ export const Comfortable: Story = { ...Default, args: { density: 'comfortable' }
 export const WithSelection: Story = {
   render: () => (
     <Table>
-      <TableHead>
+      <TableHeader>
         <TableRow>
-          <TableHeader>Name</TableHeader>
-          <TableHeader>Status</TableHeader>
+          <TableHead>Name</TableHead>
+          <TableHead>Status</TableHead>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody>
         <TableRow selected>
           <TableCell>frosty-mountain</TableCell>
@@ -158,12 +158,12 @@ export const Bordered: Story = {
 export const Empty: Story = {
   render: () => (
     <Table>
-      <TableHead>
+      <TableHeader>
         <TableRow>
-          <TableHeader>Name</TableHeader>
-          <TableHeader>Status</TableHeader>
+          <TableHead>Name</TableHead>
+          <TableHead>Status</TableHead>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody />
     </Table>
   ),

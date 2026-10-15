@@ -1,4 +1,4 @@
-import { AreaChart } from '@aspect/charts';
+import { AreaChart } from '@mizunagara/charts';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { formatUsd, monthlyRevenue } from './_fixtures';
 

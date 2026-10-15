@@ -1,5 +1,5 @@
-import type { RuleGroupType } from '@aspect/query-builder';
-import { MizuQueryBuilder, formatQuery } from '@aspect/query-builder';
+import type { RuleGroupType } from '@mizunagara/query-builder';
+import { MizuQueryBuilder, formatQuery } from '@mizunagara/query-builder';
 import {
   Badge,
   Button,
@@ -12,7 +12,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
@@ -123,16 +123,16 @@ function QueryToTableDemo() {
           <EmptyState heading="No results" body="Try adjusting your query to match more records." />
         ) : (
           <Table density="compact">
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>App</TableHeader>
-                <TableHeader>Status</TableHeader>
-                <TableHeader>Region</TableHeader>
-                <TableHeader>Framework</TableHeader>
-                <TableHeader>Deploys</TableHeader>
-                <TableHeader>Last deployed</TableHeader>
+                <TableHead>App</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Region</TableHead>
+                <TableHead>Framework</TableHead>
+                <TableHead>Deploys</TableHead>
+                <TableHead>Last deployed</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               {results.map((app) => (
                 <TableRow key={app.id}>

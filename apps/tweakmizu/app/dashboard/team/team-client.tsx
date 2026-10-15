@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Card, CardBody, CardHeader, Inline, Input, Stack } from '@aspect/react';
+import { Button, Card, CardBody, CardHeader, Inline, Input, Stack } from '@mizunagara/react';
 import { Plus, UserPlus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';

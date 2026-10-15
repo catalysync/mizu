@@ -54,7 +54,7 @@ The other 30–40% does not fit a knob shape, and pretending otherwise just brea
 | **Context-varying values**     | Compact tables + comfortable forms in the same app, or calm admin + playful marketing. One global knob forces a compromise.                  | Surface-context overrides (second axis, not a knob) |
 | **Motion choreography**        | "Drawer slides from right" vs "fades in" vs "scales from trigger" is a recipe, not a duration.                                               | Motion packs                                        |
 | **Empty / loading philosophy** | Platform-wide defaults — illustration slots? retry buttons on errors? skeletons vs spinners? — are recipes the system either has or doesn't. | Patterns + pack defaults                            |
-| **Domain components**          | Debit/credit ledger rows, shipment timelines, redline diffs. Not universal — pack-level.                                                     | Domain packs (see `@aspect/finance`)                |
+| **Domain components**          | Debit/credit ledger rows, shipment timelines, redline diffs. Not universal — pack-level.                                                     | Domain packs (see `@mizunagara/finance`)            |
 | **Composition boundaries**     | "Many small primitives" vs "few slot-rich components" is a library-wide philosophy, not a per-component dial.                                | Core decision, documented in architecture           |
 
 ### The stack that resolves it
@@ -81,16 +81,16 @@ If X doesn't fit any of the four, that's a real gap — open an issue, because e
 ## Quick start
 
 ```bash
-pnpm add @aspect/react @aspect/css @aspect/tokens
+pnpm add @mizunagara/react @mizunagara/css @mizunagara/tokens
 ```
 
 ```css
-@import '@aspect/tokens/css';
-@import '@aspect/css';
+@import '@mizunagara/tokens/css';
+@import '@mizunagara/css';
 ```
 
 ```tsx
-import { Button } from '@aspect/react';
+import { Button } from '@mizunagara/react';
 ```
 
 No React? Use the CSS classes directly:
@@ -101,14 +101,14 @@ No React? Use the CSS classes directly:
 
 ## Packages
 
-| Package                   | What it does                                                 |
-| ------------------------- | ------------------------------------------------------------ |
-| `@aspect/tokens`          | Design tokens → CSS variables, JSON, ES module, React Native |
-| `@aspect/css`             | Framework-agnostic component CSS                             |
-| `@aspect/react`           | React components (Radix + CVA + tsup)                        |
-| `@aspect/finance`         | Finance industry components and utilities                    |
-| `@aspect/tailwind-preset` | Tailwind v4 theme bridge                                     |
-| `@aspect/tsconfig`        | Shared TypeScript configs                                    |
+| Package                       | What it does                                                 |
+| ----------------------------- | ------------------------------------------------------------ |
+| `@mizunagara/tokens`          | Design tokens → CSS variables, JSON, ES module, React Native |
+| `@mizunagara/css`             | Framework-agnostic component CSS                             |
+| `@mizunagara/react`           | React components (Radix + CVA + tsup)                        |
+| `@mizunagara/finance`         | Finance industry components and utilities                    |
+| `@mizunagara/tailwind-preset` | Tailwind v4 theme bridge                                     |
+| `@mizunagara/tsconfig`        | Shared TypeScript configs                                    |
 
 ## Apps
 

@@ -1,4 +1,4 @@
-import { formatAccounting } from '@aspect/finance';
+import { formatAccounting } from '@mizunagara/finance';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { balanceSheet, profitAndLoss, type ReportRow } from './data';
 

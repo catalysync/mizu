@@ -1,4 +1,4 @@
-import { formatCurrency } from '@aspect/finance';
+import { formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -22,7 +22,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { useMemo, useState } from 'react';
 import { customers, invoices, type Customer, type CustomerStatus } from './data';
 
@@ -68,16 +68,16 @@ export function CustomersPage() {
             />
 
             <Table>
-              <TableHead>
+              <TableHeader>
                 <TableRow>
-                  <TableHeader>Customer</TableHeader>
-                  <TableHeader>Email</TableHeader>
-                  <TableHeader className="finance-demo__th-end">Balance</TableHeader>
-                  <TableHeader className="finance-demo__th-end">Open invoices</TableHeader>
-                  <TableHeader>Last transaction</TableHeader>
-                  <TableHeader>Status</TableHeader>
+                  <TableHead>Customer</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead className="finance-demo__th-end">Balance</TableHead>
+                  <TableHead className="finance-demo__th-end">Open invoices</TableHead>
+                  <TableHead>Last transaction</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
-              </TableHead>
+              </TableHeader>
               <TableBody>
                 {visible.map((c) => (
                   <TableRow

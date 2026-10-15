@@ -1,12 +1,14 @@
 /*
  * Default mizu spacing + font-size scale.
  * Sourced from packages/tokens/src/base/spacing.json and typography.json.
- * Declared at :root so consumers of @aspect/css get a working scale even
- * if they haven't separately imported @aspect/tokens.
+ * Declared at :root so consumers of @mizunagara/css get a working scale even
+ * if they haven't separately imported @mizunagara/tokens.
  *
  * Density overrides below layer on top via data-mizu-density. Compact
  * multiplies the base scale by 0.875, comfortable by 1.125 — matching the
  * canonical step(n) = (base * n / 16) * multiplier formula used by tweakmizu.
+ * Font sizes are then rounded to whole pixels: fractional sizes (10.5px)
+ * render blurry and let adjacent steps collapse to one pixel size.
  */
 
 :root {
@@ -49,14 +51,14 @@
   --mizu-spacing-20: 4.375rem;
   --mizu-spacing-24: 5.25rem;
 
-  --mizu-font-size-xs: 0.656rem;
-  --mizu-font-size-sm: 0.766rem;
+  --mizu-font-size-xs: 0.6875rem;
+  --mizu-font-size-sm: 0.75rem;
   --mizu-font-size-base: 0.875rem;
-  --mizu-font-size-lg: 0.984rem;
-  --mizu-font-size-xl: 1.094rem;
-  --mizu-font-size-2xl: 1.313rem;
-  --mizu-font-size-3xl: 1.641rem;
-  --mizu-font-size-4xl: 1.969rem;
+  --mizu-font-size-lg: 1rem;
+  --mizu-font-size-xl: 1.125rem;
+  --mizu-font-size-2xl: 1.3125rem;
+  --mizu-font-size-3xl: 1.625rem;
+  --mizu-font-size-4xl: 2rem;
 }
 
 [data-mizu-density="comfortable"] {
@@ -74,12 +76,12 @@
   --mizu-spacing-20: 5.625rem;
   --mizu-spacing-24: 6.75rem;
 
-  --mizu-font-size-xs: 0.844rem;
-  --mizu-font-size-sm: 0.984rem;
+  --mizu-font-size-xs: 0.875rem;
+  --mizu-font-size-sm: 1rem;
   --mizu-font-size-base: 1.125rem;
-  --mizu-font-size-lg: 1.266rem;
-  --mizu-font-size-xl: 1.406rem;
-  --mizu-font-size-2xl: 1.688rem;
-  --mizu-font-size-3xl: 2.109rem;
-  --mizu-font-size-4xl: 2.531rem;
+  --mizu-font-size-lg: 1.25rem;
+  --mizu-font-size-xl: 1.4375rem;
+  --mizu-font-size-2xl: 1.6875rem;
+  --mizu-font-size-3xl: 2.125rem;
+  --mizu-font-size-4xl: 2.5625rem;
 }

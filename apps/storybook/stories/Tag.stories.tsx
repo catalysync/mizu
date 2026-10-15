@@ -1,4 +1,4 @@
-import { Inline, Tag } from '@aspect/react';
+import { Inline, Tag } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

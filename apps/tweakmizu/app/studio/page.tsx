@@ -1,4 +1,4 @@
-import { Button, Grid, Inline, Stack } from '@aspect/react';
+import { Button, Grid, Inline, Stack } from '@mizunagara/react';
 import { ArrowRight, LayoutGrid, Sliders, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
