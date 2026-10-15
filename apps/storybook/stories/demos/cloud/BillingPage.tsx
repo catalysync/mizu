@@ -93,14 +93,14 @@ export function BillingPage() {
         <CardHeader title="Invoice history" />
         <CardBody>
           <Table density="compact">
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>Invoice</TableHeader>
-                <TableHeader>Date</TableHeader>
-                <TableHeader>Amount</TableHeader>
-                <TableHeader>Status</TableHeader>
+                <TableHead>Invoice</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               {invoices.map((inv) => (
                 <TableRow key={inv.id}>

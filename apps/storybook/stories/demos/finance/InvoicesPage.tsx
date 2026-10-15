@@ -100,17 +100,17 @@ export function InvoicesPage() {
             </Inline>
 
             <Table>
-              <TableHead>
+              <TableHeader>
                 <TableRow>
-                  <TableHeader>Number</TableHeader>
-                  <TableHeader>Customer</TableHeader>
-                  <TableHeader>Issued</TableHeader>
-                  <TableHeader>Due</TableHeader>
-                  <TableHeader className="finance-demo__th-end">Amount</TableHeader>
-                  <TableHeader className="finance-demo__th-end">Balance</TableHeader>
-                  <TableHeader>Status</TableHeader>
+                  <TableHead>Number</TableHead>
+                  <TableHead>Customer</TableHead>
+                  <TableHead>Issued</TableHead>
+                  <TableHead>Due</TableHead>
+                  <TableHead className="finance-demo__th-end">Amount</TableHead>
+                  <TableHead className="finance-demo__th-end">Balance</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
-              </TableHead>
+              </TableHeader>
               <TableBody>
                 {visible.map((inv) => (
                   <TableRow

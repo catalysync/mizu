@@ -78,15 +78,15 @@ function Preview() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Role</TableHeader>
-              <TableHeader>Status</TableHeader>
-              <TableHeader>Joined</TableHeader>
-              <TableHeader></TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Joined</TableHead>
+              <TableHead></TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {members.map((m) => (
               <TableRow key={m.id}>
@@ -133,8 +133,8 @@ const TEMPLATE = `import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
+  TableHead,
   TableRow,
 } from '@mizunagara/react';
 
@@ -168,15 +168,15 @@ export default function TeamPage() {
       </Inline>
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Role</TableHeader>
-              <TableHeader>Status</TableHeader>
-              <TableHeader>Joined</TableHeader>
-              <TableHeader></TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Joined</TableHead>
+              <TableHead></TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {members.map((m) => (
               <TableRow key={m.id}>

@@ -231,13 +231,13 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
 
         <Section title="Table">
           <Table>
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>Name</TableHeader>
-                <TableHeader>Role</TableHeader>
-                <TableHeader>Status</TableHeader>
+                <TableHead>Name</TableHead>
+                <TableHead>Role</TableHead>
+                <TableHead>Status</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               <TableRow>
                 <TableCell>

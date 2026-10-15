@@ -324,7 +324,7 @@
   display: block;
 }
 
-/* TableHeader in overview — end aligned currency */
+/* TableHead in overview — end aligned currency */
 .finance-demo__th-end {
   text-align: end;
 }

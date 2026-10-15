@@ -67,14 +67,14 @@ export const Default: Story = {
       </Inline>
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Status</TableHeader>
-              <TableHeader>Region</TableHeader>
-              <TableHeader>Deploys</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Region</TableHead>
+              <TableHead>Deploys</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {items.map((r) => (
               <TableRow key={r.name}>

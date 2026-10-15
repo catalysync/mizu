@@ -15,12 +15,12 @@ import {
 function BasicTable() {
   return (
     <Table>
-      <TableHead>
+      <TableHeader>
         <TableRow>
-          <TableHeader>Name</TableHeader>
-          <TableHeader>Email</TableHeader>
+          <TableHead>Name</TableHead>
+          <TableHead>Email</TableHead>
         </TableRow>
-      </TableHead>
+      </TableHeader>
       <TableBody>
         <TableRow>
           <TableCell>Ada</TableCell>
@@ -185,11 +185,61 @@ describe('Table', () => {
     const { container } = render(
       <Table>
         <TableCaption>List</TableCaption>
-        <TableHead>
+        <TableHeader>
           <TableRow>
-            <TableHeader>Name</TableHeader>
+            <TableHead>Name</TableHead>
           </TableRow>
-        </TableHead>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>Ada</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
+describe('Table section and cell names', () => {
+  // TableHeader is the <thead> section and TableHead is the <th> cell, the
+  // names most React table APIs use. They were reversed, which produced a
+  // <th> where <thead> was meant (invalid DOM) for anyone typing them.
+  it('TableHeader renders <thead> and TableHead renders <th>', () => {
+    const { container } = render(
+      <Table>
+        <TableHeader data-testid="section">
+          <TableRow>
+            <TableHead data-testid="cell">Name</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>Ada</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(screen.getByTestId('section').tagName).toBe('THEAD');
+    expect(screen.getByTestId('cell').tagName).toBe('TH');
+    expect(container.querySelector('table > thead > tr > th')).not.toBeNull();
+    expect(screen.getByRole('columnheader', { name: 'Name' })).toBeInTheDocument();
+  });
+
+  it('exports both names from the package entry', async () => {
+    const pkg = await import('../../index');
+    expect(pkg.TableHeader.displayName).toBe('TableHeader');
+    expect(pkg.TableHead.displayName).toBe('TableHead');
+  });
+
+  it('has no axe violations with the corrected names', async () => {
+    const { container } = render(
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+          </TableRow>
+        </TableHeader>
         <TableBody>
           <TableRow>
             <TableCell>Ada</TableCell>

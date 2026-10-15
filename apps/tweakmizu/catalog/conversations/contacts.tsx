@@ -92,15 +92,15 @@ function Preview() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Company</TableHeader>
-              <TableHeader>Conversations</TableHeader>
-              <TableHeader>Last seen</TableHeader>
-              <TableHeader>Plan</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Company</TableHead>
+              <TableHead>Conversations</TableHead>
+              <TableHead>Last seen</TableHead>
+              <TableHead>Plan</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {contacts.map((c) => (
               <TableRow key={c.id}>
@@ -137,8 +137,8 @@ const TEMPLATE = `import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
+  TableHead,
   TableRow,
 } from '@mizunagara/react';
 
@@ -176,15 +176,15 @@ export default function ContactsPage() {
       </Inline>
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Company</TableHeader>
-              <TableHeader>Conversations</TableHeader>
-              <TableHeader>Last seen</TableHeader>
-              <TableHeader>Plan</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Company</TableHead>
+              <TableHead>Conversations</TableHead>
+              <TableHead>Last seen</TableHead>
+              <TableHead>Plan</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {contacts.map((c) => (
               <TableRow key={c.id}>
