@@ -10,7 +10,8 @@
   --mizu-surface-inverse: var(--mizu-color-white);
   --mizu-surface-hover: var(--mizu-color-slate-800);
 
-  --mizu-text-primary: var(--mizu-color-white);
+  /* off-white: pure #fff on near-black halates (glows) for many readers */
+  --mizu-text-primary: var(--mizu-color-slate-100);
   --mizu-text-secondary: var(--mizu-color-slate-400);
   --mizu-text-inverse: var(--mizu-color-slate-900);
   --mizu-text-disabled: var(--mizu-color-slate-600);
