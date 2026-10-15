@@ -8,11 +8,12 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "turbo run typecheck",
-    "doctor": "npx -y react-doctor@latest . -y",
-    "doctor:diff": "npx -y react-doctor@latest . -y --diff main",
-    "doctor:score": "npx -y react-doctor@latest . -y --score",
+    "doctor": "react-doctor . -y",
+    "doctor:diff": "react-doctor . -y --diff main",
+    "doctor:score": "react-doctor . -y --score",
     "doctor:gate": "node scripts/doctor-gate.mjs",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "turbo run test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",
@@ -34,6 +35,7 @@
     "prettier": "^3.7.4",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "react-doctor": "0.0.39",
     "stylelint": "^17.6.0",
     "stylelint-config-standard": "^40.0.0",
     "turbo": "^2.9.4",
@@ -46,5 +48,48 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,css,json,md,mdx}": "prettier --write"
+  },
+  "pnpm": {
+    "overrides": {
+      "@anthropic-ai/sdk@>=0.88.0 <0.91.1": "0.91.1",
+      "@babel/core@>=7.0.0 <7.29.6": "7.29.6",
+      "@hono/node-server@>=1.0.0 <1.19.15": "1.19.15",
+      "@humanfs/node@>=0.16.0 <0.16.8": "0.16.8",
+      "@modelcontextprotocol/sdk@>=1.0.0 <1.31.0": "1.31.0",
+      "axios@>=1.0.0 <1.20.0": "1.20.0",
+      "baseline-browser-mapping@>=2.0.0 <2.11.0": "2.11.0",
+      "better-auth@>=1.0.0 <1.6.22": "1.6.22",
+      "body-parser@>=2.0.0 <2.3.0": "2.3.0",
+      "brace-expansion@>=1.0.0 <1.1.21": "1.1.21",
+      "brace-expansion@>=2.0.0 <2.1.7": "2.1.7",
+      "brace-expansion@>=5.0.0 <5.0.12": "5.0.12",
+      "browserslist@>=4.0.0 <4.28.7": "4.28.7",
+      "colord@>=2.0.0 <2.9.4": "2.9.4",
+      "fast-uri@>=3.0.0 <3.1.8": "3.1.8",
+      "form-data@>=4.0.0 <4.0.6": "4.0.6",
+      "hono@>=4.0.0 <4.13.7": "4.13.7",
+      "immutable@>=4.0.0 <4.3.9": "4.3.9",
+      "ip-address@>=10.0.0 <10.7.1": "10.7.1",
+      "joi@>=17.0.0 <17.13.8": "17.13.8",
+      "js-yaml@>=3.0.0 <3.15.2": "3.15.2",
+      "js-yaml@>=4.0.0 <4.3.2": "4.3.2",
+      "kysely@>=0.28.0 <0.28.17": "0.28.17",
+      "moment@>=2.0.0 <2.31.0": "2.31.0",
+      "nanoid@>=3.0.0 <3.3.18": "3.3.18",
+      "next@>=15.0.0 <15.5.27": "15.5.27",
+      "next@>=16.0.0 <16.3.8": "16.3.8",
+      "postcss@>=8.0.0 <8.5.23": "8.5.23",
+      "postcss-selector-parser@>=7.0.0 <7.1.6": "7.1.6",
+      "proxy-addr@>=2.0.0 <2.0.8": "2.0.8",
+      "qs@>=6.0.0 <6.16.0": "6.16.0",
+      "source-map-js@>=1.0.0 <1.2.2": "1.2.2",
+      "style-dictionary@>=5.0.0 <5.4.4": "5.4.4",
+      "turbo@>=2.0.0 <2.9.14": "2.9.14",
+      "valibot@>=1.0.0 <1.4.2": "1.4.2",
+      "vite@>=7.0.0 <7.3.5": "7.3.5",
+      "ws@>=8.0.0 <8.21.0": "8.21.0",
+      "vitest@>=3.0.0 <3.2.7": "3.2.7",
+      "@vitest/coverage-v8@>=3.0.0 <3.2.7": "3.2.7"
+    }
   }
 }
