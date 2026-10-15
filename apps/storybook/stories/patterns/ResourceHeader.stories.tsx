@@ -1,10 +1,8 @@
 import {
   Badge,
   Breadcrumb,
-  BreadcrumbItem,
+  BreadcrumbCurrent,
   BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
   Button,
   Inline,
   ResourceHeader,
@@ -50,13 +48,8 @@ export const FullExample: Story = {
   args: {
     eyebrow: (
       <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/customers">Customers</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>Acme Corp</BreadcrumbItem>
-        </BreadcrumbList>
+        <BreadcrumbLink href="/customers">Customers</BreadcrumbLink>
+        <BreadcrumbCurrent>Acme Corp</BreadcrumbCurrent>
       </Breadcrumb>
     ),
     title: 'Acme Corp',

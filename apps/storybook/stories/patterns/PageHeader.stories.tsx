@@ -1,9 +1,7 @@
 import {
   Breadcrumb,
-  BreadcrumbItem,
+  BreadcrumbCurrent,
   BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
   Button,
   DateNavigator,
   type DateNavigatorValue,
@@ -42,13 +40,8 @@ export const WithBreadcrumbsAndActions: Story = {
     description: 'All customers across all workspaces.',
     breadcrumbs: (
       <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>Customers</BreadcrumbItem>
-        </BreadcrumbList>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        <BreadcrumbCurrent>Customers</BreadcrumbCurrent>
       </Breadcrumb>
     ),
     actions: (
@@ -74,13 +67,8 @@ export const WithToolbar: Story = {
         description="Explore revenue, cost, and margin across the selected time range."
         breadcrumbs={
           <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>Reports</BreadcrumbItem>
-            </BreadcrumbList>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbCurrent>Reports</BreadcrumbCurrent>
           </Breadcrumb>
         }
         actions={
