@@ -1,0 +1,74 @@
+{
+  "color": {
+    "chart": {
+      "$description": "Categorical chart series, kept apart from the status (feedback) colours: every step is at least OKLab ΔE 10 from success, warning and danger. Order is fixed; validated for colour-vision deficiency on white and on slate-950.",
+      "1": {
+        "$value": "#2a78d6",
+        "$type": "color"
+      },
+      "2": {
+        "$value": "#c76b01",
+        "$type": "color"
+      },
+      "3": {
+        "$value": "#3fc6af",
+        "$type": "color"
+      },
+      "4": {
+        "$value": "#4a3aa7",
+        "$type": "color"
+      },
+      "5": {
+        "$value": "#e378c2",
+        "$type": "color"
+      },
+      "6": {
+        "$value": "#b8960f",
+        "$type": "color"
+      },
+      "7": {
+        "$value": "#006800",
+        "$type": "color"
+      },
+      "8": {
+        "$value": "#f06e8c",
+        "$type": "color"
+      }
+    },
+    "chart-dark": {
+      "$description": "The same eight series stepped for the dark sample theme (themes/dark.css).",
+      "1": {
+        "$value": "#3987e5",
+        "$type": "color"
+      },
+      "2": {
+        "$value": "#c76c0c",
+        "$type": "color"
+      },
+      "3": {
+        "$value": "#28a6b0",
+        "$type": "color"
+      },
+      "4": {
+        "$value": "#9085e9",
+        "$type": "color"
+      },
+      "5": {
+        "$value": "#db55ad",
+        "$type": "color"
+      },
+      "6": {
+        "$value": "#b2912c",
+        "$type": "color"
+      },
+      "7": {
+        "$value": "#1c7718",
+        "$type": "color"
+      },
+      "8": {
+        "$value": "#d86e8a",
+        "$type": "color"
+      }
+    }
+  }
+}
