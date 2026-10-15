@@ -49,13 +49,13 @@ function PropertyFilterDemo() {
       />
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>App</TableHeader>
-              <TableHeader>Status</TableHeader>
-              <TableHeader>Region</TableHeader>
+              <TableHead>App</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Region</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             <TableRow>
               <TableCell>frosty-mountain</TableCell>

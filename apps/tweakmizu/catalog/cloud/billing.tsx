@@ -102,14 +102,14 @@ function Preview() {
         <CardHeader title="Invoice history" />
         <CardBody>
           <Table density="compact">
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>Invoice</TableHeader>
-                <TableHeader>Date</TableHeader>
-                <TableHeader>Amount</TableHeader>
-                <TableHeader>Status</TableHeader>
+                <TableHead>Invoice</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               {invoices.map((inv) => (
                 <TableRow key={inv.id}>
@@ -144,8 +144,8 @@ const TEMPLATE = `import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
+  TableHead,
   TableRow,
 } from '@mizunagara/react';
 
@@ -209,14 +209,14 @@ export default function BillingPage() {
         <CardHeader title="Invoice history" />
         <CardBody>
           <Table density="compact">
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>Invoice</TableHeader>
-                <TableHeader>Date</TableHeader>
-                <TableHeader>Amount</TableHeader>
-                <TableHeader>Status</TableHeader>
+                <TableHead>Invoice</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               {invoices.map((inv) => (
                 <TableRow key={inv.id}>

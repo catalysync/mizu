@@ -84,16 +84,16 @@ function Preview() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Customer</TableHeader>
-              <TableHeader>Email</TableHeader>
-              <TableHeader>Orders</TableHeader>
-              <TableHeader>Total spent</TableHeader>
-              <TableHeader>Last order</TableHeader>
-              <TableHeader>Status</TableHeader>
+              <TableHead>Customer</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Orders</TableHead>
+              <TableHead>Total spent</TableHead>
+              <TableHead>Last order</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {customers.map((c) => (
               <TableRow key={c.id}>
@@ -165,8 +165,8 @@ const TEMPLATE = `import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
+  TableHead,
   TableRow,
 } from '@mizunagara/react';
 import { formatCurrency } from '@mizunagara/finance';
@@ -204,16 +204,16 @@ export default function CustomersPage() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Customer</TableHeader>
-              <TableHeader>Email</TableHeader>
-              <TableHeader>Orders</TableHeader>
-              <TableHeader>Total spent</TableHeader>
-              <TableHeader>Last order</TableHeader>
-              <TableHeader>Status</TableHeader>
+              <TableHead>Customer</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Orders</TableHead>
+              <TableHead>Total spent</TableHead>
+              <TableHead>Last order</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {customers.map((c) => (
               <TableRow key={c.id}>

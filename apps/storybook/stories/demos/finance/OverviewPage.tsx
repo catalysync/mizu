@@ -70,15 +70,15 @@ export function OverviewPage() {
           />
           <CardBody>
             <Table>
-              <TableHead>
+              <TableHeader>
                 <TableRow>
-                  <TableHeader>Number</TableHeader>
-                  <TableHeader>Customer</TableHeader>
-                  <TableHeader>Due</TableHeader>
-                  <TableHeader className="finance-demo__th-end">Balance</TableHeader>
-                  <TableHeader>Status</TableHeader>
+                  <TableHead>Number</TableHead>
+                  <TableHead>Customer</TableHead>
+                  <TableHead>Due</TableHead>
+                  <TableHead className="finance-demo__th-end">Balance</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
-              </TableHead>
+              </TableHeader>
               <TableBody>
                 {openInvoices.slice(0, 5).map((inv) => (
                   <TableRow key={inv.id}>
@@ -118,16 +118,16 @@ export function OverviewPage() {
         <CardHeader title="Aged receivables" />
         <CardBody>
           <Table>
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>Current</TableHeader>
-                <TableHeader>1–30</TableHeader>
-                <TableHeader>31–60</TableHeader>
-                <TableHeader>61–90</TableHeader>
-                <TableHeader>90+</TableHeader>
-                <TableHeader className="finance-demo__th-end">Total</TableHeader>
+                <TableHead>Current</TableHead>
+                <TableHead>1–30</TableHead>
+                <TableHead>31–60</TableHead>
+                <TableHead>61–90</TableHead>
+                <TableHead>90+</TableHead>
+                <TableHead className="finance-demo__th-end">Total</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               <TableRow>
                 <TableCell>{formatCurrency(9600)}</TableCell>

@@ -123,16 +123,16 @@ function QueryToTableDemo() {
           <EmptyState heading="No results" body="Try adjusting your query to match more records." />
         ) : (
           <Table density="compact">
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>App</TableHeader>
-                <TableHeader>Status</TableHeader>
-                <TableHeader>Region</TableHeader>
-                <TableHeader>Framework</TableHeader>
-                <TableHeader>Deploys</TableHeader>
-                <TableHeader>Last deployed</TableHeader>
+                <TableHead>App</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Region</TableHead>
+                <TableHead>Framework</TableHead>
+                <TableHead>Deploys</TableHead>
+                <TableHead>Last deployed</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               {results.map((app) => (
                 <TableRow key={app.id}>

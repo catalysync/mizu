@@ -141,13 +141,13 @@ function AllComponents() {
       <section>
         <h2 className="mizu-h3 story-section-title">Table</h2>
         <Table>
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Status</TableHeader>
-              <TableHeader>Region</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Region</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             <TableRow>
               <TableCell>frosty-mountain</TableCell>
