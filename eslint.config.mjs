@@ -1,15 +1,15 @@
 import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import prettier from 'eslint-config-prettier';
+import jestDom from 'eslint-plugin-jest-dom';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import noUnsanitized from 'eslint-plugin-no-unsanitized';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
 import ssrFriendly from 'eslint-plugin-ssr-friendly';
-import noUnsanitized from 'eslint-plugin-no-unsanitized';
-import testingLibrary from 'eslint-plugin-testing-library';
-import jestDom from 'eslint-plugin-jest-dom';
 import storybook from 'eslint-plugin-storybook';
-import prettier from 'eslint-config-prettier';
+import testingLibrary from 'eslint-plugin-testing-library';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {

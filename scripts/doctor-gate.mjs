@@ -34,11 +34,16 @@ if (!scanBlocks.length) {
 const failures = [];
 
 for (const block of scanBlocks) {
-  const workspaceLine = block.split('\n', 1)[0]?.replace(/\.{3}\s*$/, '').trim() ?? 'unknown';
+  const workspaceLine =
+    block
+      .split('\n', 1)[0]
+      ?.replace(/\.{3}\s*$/, '')
+      .trim() ?? 'unknown';
   const passedNoIssues = /No issues detected/.test(block);
   const scoreMatch = block.match(/(\d{1,3})\s*\/\s*100/);
   const hasErrors = /(✗|\bx\b)\s+\d+\s+errors?\b/i.test(block);
-  const hasWarnings = /(⚠|!|warning)\s*\d+\s*warnings?/i.test(block) || /\d+\s+warnings?\b/.test(block);
+  const hasWarnings =
+    /(⚠|!|warning)\s*\d+\s*warnings?/i.test(block) || /\d+\s+warnings?\b/.test(block);
 
   if (scoreMatch) {
     const score = Number(scoreMatch[1]);
