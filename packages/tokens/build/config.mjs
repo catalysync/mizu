@@ -1,4 +1,7 @@
+import { rmSync } from 'node:fs';
 import StyleDictionary from 'style-dictionary';
+
+rmSync('dist', { recursive: true, force: true });
 
 const sd = new StyleDictionary({
   source: ['src/base/**/*.json', 'src/semantic/**/*.json', 'src/component/**/*.json'],
