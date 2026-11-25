@@ -14,6 +14,14 @@ try {
   ok = false;
 }
 
+// A button-only bundle must not contain other components' code.
+const treeshake = fileURLToPath(new URL('./check-treeshake.mjs', import.meta.url));
+try {
+  execFileSync(process.execPath, [treeshake, 'button'], { stdio: 'inherit' });
+} catch {
+  ok = false;
+}
+
 for (const f of readdirSync('dist').filter((n) => /\.c?js$/.test(n)).map((n) => `dist/${n}`)) {
   const content = readFileSync(f, 'utf8');
   if (!content.startsWith('"use client"')) {
