@@ -15,7 +15,7 @@
   "type": "module",
   "exports": {
     ".": "./src/preset.css",
-    "./legacy": "./src/legacy-preset.js"
+    "./legacy": "./src/legacy-preset.cjs"
   },
   "scripts": {
     "lint": "stylelint 'src/**/*.css'",
