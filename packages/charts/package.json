@@ -32,9 +32,9 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "@mizunagara/css": ">=0.2.0",
-    "@mizunagara/react": ">=0.2.0",
-    "@mizunagara/tokens": ">=0.2.0",
+    "@mizunagara/css": ">=0.1.0",
+    "@mizunagara/react": ">=0.1.0",
+    "@mizunagara/tokens": ">=0.1.0",
     "react": ">=18",
     "react-dom": ">=18",
     "recharts": ">=2.12 <3"

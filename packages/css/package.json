@@ -29,7 +29,7 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "@mizunagara/tokens": ">=0.2.0"
+    "@mizunagara/tokens": ">=0.1.0"
   },
   "peerDependenciesMeta": {
     "@mizunagara/tokens": {
