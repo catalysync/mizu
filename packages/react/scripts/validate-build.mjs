@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 let ok = true;
@@ -14,8 +14,7 @@ try {
   ok = false;
 }
 
-for (const f of ['dist/index.js', 'dist/index.cjs']) {
-  if (!existsSync(f)) continue;
+for (const f of readdirSync('dist').filter((n) => /\.c?js$/.test(n)).map((n) => `dist/${n}`)) {
   const content = readFileSync(f, 'utf8');
   if (!content.startsWith('"use client"')) {
     console.error(`missing "use client" directive: ${f}`);
