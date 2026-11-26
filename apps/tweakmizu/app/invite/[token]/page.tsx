@@ -42,8 +42,8 @@ export default async function InviteAcceptPage({ params }: Props) {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-md px-4 py-16">
-          <Stack gap="1.5rem">
-            <Stack gap="0.5rem">
+          <Stack gap="6">
+            <Stack gap="2">
               <Badge tone="info">Invitation</Badge>
               <h1 className="text-foreground text-3xl font-bold tracking-tight">
                 Join {row.team.name}

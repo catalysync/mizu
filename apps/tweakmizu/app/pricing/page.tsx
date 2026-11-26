@@ -17,7 +17,7 @@ export default function PricingPage() {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-6xl px-4 py-16">
-          <Stack gap="2rem">
+          <Stack gap="8">
             <Button asChild variant="ghost" size="sm" className="self-start">
               <Link href="/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -25,7 +25,7 @@ export default function PricingPage() {
               </Link>
             </Button>
 
-            <Stack gap="0.75rem" align="start">
+            <Stack gap="3" align="start">
               <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
                 Pricing
               </span>

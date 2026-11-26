@@ -58,12 +58,12 @@ function UsageBar({ pct }: { pct: number }) {
 
 function Preview() {
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <Card>
         <CardHeader title="Current plan" />
         <CardBody>
           <Inline gap="1rem" align="center" style={{ justifyContent: 'space-between' }}>
-            <Stack gap="0.25rem">
+            <Stack gap="1">
               <Inline gap="0.5rem" align="center">
                 <span className="mizu-heading-md">Pro</span>
                 <Badge tone="success">Active</Badge>
@@ -82,7 +82,7 @@ function Preview() {
       <Card>
         <CardHeader title="Usage this period" description="Mar 1 – Mar 31, 2026" />
         <CardBody>
-          <Stack gap="0.75rem">
+          <Stack gap="3">
             {usage.map((u) => (
               <div key={u.resource}>
                 <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>

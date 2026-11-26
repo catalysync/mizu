@@ -23,7 +23,7 @@ export function OverviewPage() {
   const overdue = invoices.filter((i) => i.status === 'overdue');
 
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppContentHeader
         title="Overview"
         description="April 1 — April 11, 2026"
@@ -98,7 +98,7 @@ export function OverviewPage() {
           </CardBody>
         </Card>
 
-        <Stack gap="1rem">
+        <Stack gap="4">
           <MetricTile
             label="Invoices due"
             value={String(openInvoices.length)}
@@ -147,10 +147,10 @@ export function OverviewPage() {
       <Card>
         <CardHeader title="Recent transactions" />
         <CardBody>
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             {transactions.slice(0, 5).map((t) => (
               <Inline key={t.id} gap="1rem" align="center" className="finance-demo__between">
-                <Stack gap="0.125rem">
+                <Stack gap="1">
                   <strong>{t.description}</strong>
                   <span className="finance-demo__hint">
                     {t.date} · {t.category}

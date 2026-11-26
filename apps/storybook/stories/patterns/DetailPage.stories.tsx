@@ -26,7 +26,7 @@ type Story = StoryObj<typeof meta>;
 
 export const ResourceDetail: Story = {
   render: () => (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppBreadcrumbs items={[{ label: 'Apps', href: '#' }, { label: 'frosty-mountain-1234' }]} />
       <AppContentHeader
         title="frosty-mountain-1234"
@@ -53,7 +53,7 @@ export const ResourceDetail: Story = {
           <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
         <TabsContent value="overview">
-          <Stack gap="1rem">
+          <Stack gap="4">
             <Card>
               <CardHeader title="Details" />
               <CardBody>

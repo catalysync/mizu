@@ -20,7 +20,7 @@ const longContent = Array.from({ length: 30 }, (_, i) => (
 export const Vertical: Story = {
   render: () => (
     <ScrollArea style={{ height: 240, width: 280 }}>
-      <Stack gap="0.5rem">{longContent}</Stack>
+      <Stack gap="2">{longContent}</Stack>
     </ScrollArea>
   ),
 };
@@ -54,7 +54,7 @@ export const Both: Story = {
   render: () => (
     <ScrollArea orientation="both" style={{ height: 240, width: 320 }}>
       <div style={{ width: 800 }}>
-        <Stack gap="0.5rem">{longContent}</Stack>
+        <Stack gap="2">{longContent}</Stack>
       </div>
     </ScrollArea>
   ),

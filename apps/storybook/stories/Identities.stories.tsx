@@ -15,7 +15,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 function SampleUI() {
   return (
-    <Stack gap="1.25rem">
+    <Stack gap="5">
       <Inline gap="0.5rem" align="center">
         <Button variant="primary">Primary</Button>
         <Button variant="secondary">Secondary</Button>

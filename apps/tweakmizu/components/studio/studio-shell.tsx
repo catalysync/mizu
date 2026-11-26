@@ -67,7 +67,7 @@ export function StudioShell({ children }: { children: React.ReactNode }) {
   }, [sidebarOpen]);
 
   const navContent = (
-    <Stack gap="0.25rem">
+    <Stack gap="1">
       <span className="text-muted-foreground px-3 py-1 text-xs font-semibold tracking-wider uppercase">
         Studio
       </span>

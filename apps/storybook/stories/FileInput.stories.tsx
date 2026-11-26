@@ -49,7 +49,7 @@ export const Disabled: Story = {
 
 export const Examples: Story = {
   render: () => (
-    <Stack gap="1.5rem" style={{ maxWidth: 480 }}>
+    <Stack gap="6" style={{ maxWidth: 480 }}>
       <Field label="Profile photo" description="Square image, at least 400×400">
         <FileInput accept="image/*" maxSize={2 * 1024 * 1024} hint="PNG or JPG up to 2 MB" />
       </Field>

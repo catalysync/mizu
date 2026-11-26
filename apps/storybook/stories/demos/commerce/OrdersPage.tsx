@@ -26,7 +26,7 @@ const statusTone = {
 
 export function OrdersPage() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <AppContentHeader
         title="Orders"
         description={`${orders.length} total orders`}
@@ -96,7 +96,7 @@ export function OrdersPage() {
 
       <Card>
         <CardBody>
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             <span className="mizu-heading-sm">Order #1042</span>
             <span className="mizu-caption" style={{ color: 'var(--mizu-text-secondary)' }}>
               Placed Mar 28, 2026 by Sarah Chen

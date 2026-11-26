@@ -72,7 +72,7 @@ const contacts = [
 
 export function ContactsPage() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <AppContentHeader
         title="Contacts"
         description={`${contacts.length} contacts`}

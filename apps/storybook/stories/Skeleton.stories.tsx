@@ -44,10 +44,10 @@ export const CardPlaceholder: Story = {
         borderRadius: 'var(--mizu-radius-md)',
       }}
     >
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         <Inline gap="0.75rem" align="center">
           <Skeleton variant="circle" width={40} height={40} />
-          <Stack gap="0.25rem" style={{ flex: 1 }}>
+          <Stack gap="1" style={{ flex: 1 }}>
             <Skeleton variant="text" width="60%" />
             <Skeleton variant="text" width="40%" />
           </Stack>

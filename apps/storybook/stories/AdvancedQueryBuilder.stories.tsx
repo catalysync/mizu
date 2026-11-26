@@ -73,7 +73,7 @@ function AdvancedQueryBuilderDemo() {
   }, []);
 
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <MizuAdvancedQueryBuilder config={config} value={initialValue} onChange={handleChange} />
       {output && (
         <Card>

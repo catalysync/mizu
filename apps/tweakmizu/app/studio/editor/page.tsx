@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function StudioEditorPage() {
   return (
-    <Stack gap="1.5rem">
-      <Stack gap="0.5rem">
+    <Stack gap="6">
+      <Stack gap="2">
         <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
           Editor
         </span>

@@ -46,7 +46,7 @@ export function CustomersPage() {
   const totalBalance = customers.reduce((s, c) => s + c.balance, 0);
 
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppContentHeader
         title="Customers"
         description={`${customers.length} total · ${activeCount} active · ${formatCurrency(
@@ -57,7 +57,7 @@ export function CustomersPage() {
 
       <Card>
         <CardBody>
-          <Stack gap="1rem">
+          <Stack gap="4">
             <Input
               size="sm"
               placeholder="Search by name…"
@@ -128,8 +128,8 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
         <Badge tone={customer.status === 'active' ? 'success' : 'neutral'}>{customer.status}</Badge>
       </DrawerHeader>
       <DrawerBody>
-        <Stack gap="1rem">
-          <Stack gap="0.25rem">
+        <Stack gap="4">
+          <Stack gap="1">
             <strong>Contact</strong>
             <span className="finance-demo__muted">{customer.email}</span>
             <span className="finance-demo__muted">
@@ -137,7 +137,7 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
             </span>
           </Stack>
 
-          <Stack gap="0.25rem">
+          <Stack gap="1">
             <strong>Balance</strong>
             <span
               className={cn(
@@ -152,7 +152,7 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
             </span>
           </Stack>
 
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             <strong>Outstanding invoices</strong>
             {outstanding.length === 0 ? (
               <span className="finance-demo__muted">None</span>
@@ -168,7 +168,7 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
             )}
           </Stack>
 
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             <strong>Recently paid</strong>
             {paid.length === 0 ? (
               <span className="finance-demo__muted">None</span>

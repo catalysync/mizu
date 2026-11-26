@@ -40,7 +40,7 @@ export const Dismissible: Story = {
 
 export const AllTones: Story = {
   render: () => (
-    <Stack gap="0.75rem">
+    <Stack gap="3">
       <Alert tone="info">
         <AlertTitle>Info</AlertTitle>A new version is available.
       </Alert>

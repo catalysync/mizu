@@ -47,7 +47,7 @@ export const LiveStrength: Story = {
   render: () => {
     const [value, setValue] = useState('');
     return (
-      <Stack gap="0.5rem" style={{ maxWidth: 400 }}>
+      <Stack gap="2" style={{ maxWidth: 400 }}>
         <Field label="New password" required>
           <PasswordInput
             value={value}

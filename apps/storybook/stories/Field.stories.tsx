@@ -94,7 +94,7 @@ export const WithInfoLink: Story = {
 
 export const FormExample: Story = {
   render: () => (
-    <Stack gap="1rem" style={{ maxWidth: 480 }}>
+    <Stack gap="4" style={{ maxWidth: 480 }}>
       <Field label="Full name" required>
         <FieldInput />
       </Field>

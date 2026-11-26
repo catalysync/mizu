@@ -22,7 +22,7 @@ export const NoIcon: Story = { args: { showIcon: false } };
 
 export const InsideField: Story = {
   render: () => (
-    <Stack gap="1rem" style={{ maxWidth: 360 }}>
+    <Stack gap="4" style={{ maxWidth: 360 }}>
       <Field label="Start time" required>
         <TimeInput defaultValue="09:00" />
       </Field>

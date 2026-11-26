@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 function DarkSample() {
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <Inline gap="0.5rem" align="center">
         <Button variant="primary">Primary</Button>
         <Button variant="secondary">Secondary</Button>

@@ -25,7 +25,7 @@ export const Default: Story = {
     const index = STEPS.findIndex((s) => s.id === active);
     return (
       <StepFlow steps={STEPS} activeStep={active} onStepChange={setActive}>
-        <Stack gap="1rem" style={{ maxWidth: 480 }}>
+        <Stack gap="4" style={{ maxWidth: 480 }}>
           <h3>{STEPS[index].title}</h3>
           <p>Step content for {STEPS[index].title}</p>
           <Inline gap="0.5rem">
@@ -76,7 +76,7 @@ export const Vertical: Story = {
         orientation="vertical"
         style={{ maxWidth: 540 }}
       >
-        <Stack gap="1rem">
+        <Stack gap="4">
           <h3>Line items</h3>
           <Field label="Product">
             <Input placeholder="Search catalogue…" />

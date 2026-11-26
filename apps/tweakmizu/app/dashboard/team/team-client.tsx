@@ -82,7 +82,7 @@ export function TeamClient({ existingTeams }: { existingTeams: Team[] }) {
 
   if (!creating && existingTeams.length === 0) {
     return (
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         <p className="text-muted-foreground text-sm">
           Team tier: $39/mo for 3 seats + $12/mo per additional seat.
         </p>
@@ -97,13 +97,13 @@ export function TeamClient({ existingTeams }: { existingTeams: Team[] }) {
   }
 
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       {creating ? (
         <Card>
           <CardHeader title="New team" />
           <CardBody>
             <form onSubmit={handleCreate}>
-              <Stack gap="0.75rem">
+              <Stack gap="3">
                 <Field label="Team name">
                   <Input
                     value={name}
@@ -147,7 +147,7 @@ export function TeamClient({ existingTeams }: { existingTeams: Team[] }) {
           <CardHeader title="Invite a member" />
           <CardBody>
             <form onSubmit={handleInvite}>
-              <Stack gap="0.75rem">
+              <Stack gap="3">
                 <Field label="Email">
                   <Input
                     type="email"

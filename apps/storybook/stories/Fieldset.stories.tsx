@@ -14,12 +14,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <Fieldset legend="Contact details">
-      <Stack gap="0.75rem">
-        <Stack gap="0.25rem">
+      <Stack gap="3">
+        <Stack gap="1">
           <Label htmlFor="name">Full name</Label>
           <Input id="name" />
         </Stack>
-        <Stack gap="0.25rem">
+        <Stack gap="1">
           <Label htmlFor="email">Email</Label>
           <Input id="email" type="email" />
         </Stack>
@@ -34,7 +34,7 @@ export const WithDescription: Story = {
       legend="Notification preferences"
       description="Choose which emails you'd like to receive."
     >
-      <Stack gap="0.5rem">
+      <Stack gap="2">
         <Checkbox>Product updates</Checkbox>
         <Checkbox>Billing reminders</Checkbox>
         <Checkbox>Security alerts</Checkbox>
@@ -46,12 +46,12 @@ export const WithDescription: Story = {
 export const Disabled: Story = {
   render: () => (
     <Fieldset legend="Billing address" description="Sign in to edit your billing details." disabled>
-      <Stack gap="0.75rem">
-        <Stack gap="0.25rem">
+      <Stack gap="3">
+        <Stack gap="1">
           <Label htmlFor="street">Street</Label>
           <Input id="street" />
         </Stack>
-        <Stack gap="0.25rem">
+        <Stack gap="1">
           <Label htmlFor="city">City</Label>
           <Input id="city" />
         </Stack>

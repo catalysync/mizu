@@ -9,4 +9,4 @@ export {
   type ResizableGroupProps,
 } from './Resizable';
 export { Split, type SplitProps } from './Split';
-export { Stack, type StackProps } from './Stack';
+export { Stack, type StackGap, type StackProps } from './Stack';

@@ -35,9 +35,22 @@ describe('Stack', () => {
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 
-  it('accepts gap prop', () => {
-    const { container } = render(<Stack gap="1rem">X</Stack>);
-    expect(container.firstChild).toBeTruthy();
+  it('maps gap steps to the spacing scale', () => {
+    const { container } = render(<Stack gap="4">X</Stack>);
+    expect(container.firstChild).toHaveStyle({ '--mizu-stack-gap': 'var(--mizu-spacing-4)' });
+  });
+
+  it('maps gap="none" to spacing-0', () => {
+    const { container } = render(<Stack gap="none">X</Stack>);
+    expect(container.firstChild).toHaveStyle({ '--mizu-stack-gap': 'var(--mizu-spacing-0)' });
+  });
+
+  it('rejects gap values outside the scale at the type level', () => {
+    // @ts-expect-error raw CSS lengths are not part of the spacing scale
+    const bad = <Stack gap="13px">X</Stack>;
+    // @ts-expect-error rem strings are not part of the spacing scale
+    const alsoBad = <Stack gap="1rem">X</Stack>;
+    expect([bad, alsoBad]).toHaveLength(2);
   });
 
   it('renders as specified element when as prop is set', () => {

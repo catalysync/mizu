@@ -19,7 +19,7 @@ function Preview() {
         description="Welcome back. Use your email and password or continue with a provider."
       />
       <CardBody>
-        <Stack gap="1rem">
+        <Stack gap="4">
           <Field label="Email">
             <Input type="email" defaultValue="you@example.com" />
           </Field>
@@ -29,7 +29,7 @@ function Preview() {
         </Stack>
       </CardBody>
       <CardFooter>
-        <Stack gap="0.5rem" style={{ width: '100%' }}>
+        <Stack gap="2" style={{ width: '100%' }}>
           <Button variant="primary" style={{ width: '100%' }}>
             Sign in
           </Button>

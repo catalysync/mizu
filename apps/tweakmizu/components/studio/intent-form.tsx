@@ -54,8 +54,8 @@ export function IntentForm({ onSubmit }: Props) {
 
   return (
     <form onSubmit={handleSubmit} aria-label="Studio intent form">
-      <Stack gap="2rem">
-        <Stack as="fieldset" gap="0.75rem">
+      <Stack gap="8">
+        <Stack as="fieldset" gap="3">
           <legend className="text-foreground text-sm font-semibold">Industry</legend>
           <Grid gap="0.75rem" min="16rem">
             {industries.map((item) => {
@@ -74,7 +74,7 @@ export function IntentForm({ onSubmit }: Props) {
                       : 'border-border hover:border-border-strong',
                   )}
                 >
-                  <Stack gap="0.25rem" align="start">
+                  <Stack gap="1" align="start">
                     <input
                       id={inputId}
                       type="radio"
@@ -133,7 +133,7 @@ export function IntentForm({ onSubmit }: Props) {
           </Field>
         </Grid>
 
-        <Stack as="fieldset" gap="0.75rem">
+        <Stack as="fieldset" gap="3">
           <legend className="text-foreground text-sm font-semibold">Tone</legend>
           <Grid gap="0.5rem" min="14rem">
             {tones.map((item) => {
@@ -151,7 +151,7 @@ export function IntentForm({ onSubmit }: Props) {
                       : 'border-border hover:border-border-strong',
                   )}
                 >
-                  <Stack gap="0.125rem" align="start">
+                  <Stack gap="1" align="start">
                     <input
                       id={inputId}
                       type="radio"
@@ -170,7 +170,7 @@ export function IntentForm({ onSubmit }: Props) {
           </Grid>
         </Stack>
 
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           <label htmlFor="refinement" className="text-foreground text-sm font-semibold">
             Extra constraints <span className="text-muted-foreground">(optional)</span>
           </label>

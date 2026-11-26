@@ -29,7 +29,7 @@ export function SharedProfileView({ profile }: SharedProfileViewProps) {
 
   return (
     <div style={{ maxWidth: '40rem', margin: '0 auto' }}>
-      <Stack gap="1.5rem">
+      <Stack gap="6">
         <div
           style={{
             ...(vars as React.CSSProperties),
@@ -93,7 +93,7 @@ export function SharedProfileView({ profile }: SharedProfileViewProps) {
           </div>
         </div>
 
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }}>{profile.name}</h1>
           <div style={{ display: 'flex', gap: '0.375rem', flexWrap: 'wrap' }}>
             {profile.archetype ? <Badge tone="info">{profile.archetype}</Badge> : null}

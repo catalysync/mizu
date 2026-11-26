@@ -62,7 +62,7 @@ export const WithTextarea: Story = {
 
 export const FullForm: Story = {
   render: () => (
-    <Stack gap="1rem" className="story-md">
+    <Stack gap="4" className="story-md">
       <FormGroup label="Product name" htmlFor="ff-name">
         <Input id="ff-name" defaultValue="Minimal Desk Lamp" />
       </FormGroup>

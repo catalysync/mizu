@@ -43,7 +43,7 @@ const replies: SavedReply[] = [
 
 function Preview() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <span className="text-muted-foreground text-sm">
           {replies.length} templates · Type the shortcut in any reply to insert
@@ -52,11 +52,11 @@ function Preview() {
           New reply
         </Button>
       </Inline>
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         {replies.map((r) => (
           <Card key={r.id}>
             <CardBody>
-              <Stack gap="0.5rem">
+              <Stack gap="2">
                 <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
                   <Inline gap="0.5rem" align="center">
                     <strong className="mizu-body--sm">{r.title}</strong>

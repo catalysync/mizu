@@ -55,7 +55,7 @@ export function TransactionsPage() {
   const totalCredit = visible.reduce((s, t) => s + t.credit, 0);
 
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppContentHeader
         title="Transactions"
         description={`${visible.length} entries in view`}
@@ -64,7 +64,7 @@ export function TransactionsPage() {
 
       <Card>
         <CardBody>
-          <Stack gap="1rem">
+          <Stack gap="4">
             <Inline gap="0.75rem" align="end">
               <div className="finance-demo__filter-date">
                 <Field label="Date range">
