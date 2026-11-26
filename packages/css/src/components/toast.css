@@ -27,6 +27,17 @@
   box-shadow: var(--mizu-shadow-lg);
 }
 
+.mizu-toast[data-has-actions] {
+  flex-wrap: wrap;
+}
+
+.mizu-toast__actions {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--mizu-spacing-2);
+}
+
 .mizu-toast__content {
   flex: 1;
   min-width: 0;
