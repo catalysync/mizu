@@ -42,3 +42,15 @@ describe('generated dark theme (tokens build)', () => {
     expect(Object.keys(dark).sort()).toEqual(Object.keys(EXPECTED).sort());
   });
 });
+
+describe('css dark theme source', () => {
+  it('src/themes/dark.css is the tokens build output, not a hand-written copy', () => {
+    expect(read('packages/css/src/themes/dark.css')).toBe(generated);
+  });
+
+  it('the @mizunagara/css/themes/dark path ships the same overrides in the identity layer', () => {
+    const built = read('packages/css/dist/themes/dark.css');
+    expect(built).toContain('@layer mizu.identity');
+    expect(declarations(built, /^\[data-theme="dark"\]$/)).toEqual(dark);
+  });
+});
