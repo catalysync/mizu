@@ -34,3 +34,9 @@
   color: var(--mizu-text-primary);
   font-weight: var(--mizu-font-weight-medium);
 }
+
+.mizu-app-breadcrumbs__overflow {
+  display: inline-flex;
+  align-items: center;
+  color: var(--mizu-text-disabled);
+}

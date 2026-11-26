@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import { AppBreadcrumbs } from '../../shell/AppBreadcrumbs';
+import { Breadcrumb } from './Breadcrumb';
 
 describe('Breadcrumb (AppBreadcrumbs)', () => {
   const items = [
@@ -41,6 +42,13 @@ describe('Breadcrumb (AppBreadcrumbs)', () => {
     expect(screen.getByRole('navigation', { name: 'Breadcrumb' })).toBeInTheDocument();
   });
 
+  it('uses an ordered list with one listitem per crumb', () => {
+    render(<AppBreadcrumbs items={items} />);
+    const list = screen.getByRole('list');
+    expect(list.tagName).toBe('OL');
+    expect(screen.getAllByRole('listitem')).toHaveLength(3);
+  });
+
   it('renders a single item without separator', () => {
     const { container } = render(<AppBreadcrumbs items={[{ label: 'Home' }]} />);
     expect(container.querySelectorAll('.mizu-app-breadcrumbs__separator').length).toBe(0);
@@ -59,5 +67,60 @@ describe('Breadcrumb (AppBreadcrumbs)', () => {
   it('has no axe violations (single item)', async () => {
     const { container } = render(<AppBreadcrumbs items={[{ label: 'Dashboard' }]} />);
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  describe('maxVisible overflow', () => {
+    const long = ['A', 'B', 'C', 'D', 'E', 'F'].map((label) => ({ label, href: `/${label}` }));
+
+    it('collapses the middle items into an ellipsis', () => {
+      const { container } = render(<AppBreadcrumbs items={long} maxVisible={3} />);
+      expect(screen.getByText('A')).toBeInTheDocument();
+      expect(screen.queryByText('B')).not.toBeInTheDocument();
+      expect(screen.queryByText('C')).not.toBeInTheDocument();
+      expect(screen.queryByText('D')).not.toBeInTheDocument();
+      expect(screen.getByText('E')).toBeInTheDocument();
+      expect(screen.getByText('F').closest('[aria-current]')).toHaveAttribute(
+        'aria-current',
+        'page',
+      );
+      // three crumbs plus the overflow item
+      expect(screen.getAllByRole('listitem')).toHaveLength(4);
+      expect(container.querySelector('.mizu-app-breadcrumbs__overflow')).toHaveTextContent('…');
+      expect(screen.getByText('3 more levels')).toHaveClass('mizu-sr-only');
+    });
+
+    it('does not collapse when the item count fits', () => {
+      render(<AppBreadcrumbs items={long} maxVisible={6} />);
+      expect(screen.getAllByRole('listitem')).toHaveLength(6);
+      expect(screen.queryByText('…')).not.toBeInTheDocument();
+    });
+
+    it('treats maxVisible below 2 as 2', () => {
+      render(<AppBreadcrumbs items={long} maxVisible={0} />);
+      expect(screen.getByText('A')).toBeInTheDocument();
+      expect(screen.getByText('F')).toBeInTheDocument();
+      expect(screen.getAllByRole('listitem')).toHaveLength(3);
+    });
+
+    it('has no axe violations when collapsed', async () => {
+      const { container } = render(<AppBreadcrumbs items={long} maxVisible={3} />);
+      expect(await axe(container)).toHaveNoViolations();
+    });
+  });
+});
+
+describe('Breadcrumb (deprecated span family)', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('warns in development that the span family is deprecated', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    render(
+      <Breadcrumb>
+        <span>Home</span>
+      </Breadcrumb>,
+    );
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('Breadcrumb is deprecated'));
   });
 });
