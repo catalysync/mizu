@@ -2,15 +2,17 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '../../utils/cn';
 
-const alertVariants = cva('mizu-alert', {
-  variants: {
-    tone: {
-      info: 'mizu-alert--info',
-      success: 'mizu-alert--success',
-      warning: 'mizu-alert--warning',
-      danger: 'mizu-alert--danger',
-    },
+export const MIZU_ALERT_VARIANTS = {
+  tone: {
+    info: 'mizu-alert--info',
+    success: 'mizu-alert--success',
+    warning: 'mizu-alert--warning',
+    danger: 'mizu-alert--danger',
   },
+} as const;
+
+const alertVariants = cva('mizu-alert', {
+  variants: MIZU_ALERT_VARIANTS,
   defaultVariants: { tone: 'info' },
 });
 

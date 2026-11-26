@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { createRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
-import { Button } from './Button';
+import { Button, MIZU_BUTTON_VARIANTS } from './Button';
 
 describe('Button', () => {
   // -- Rendering --
@@ -371,5 +371,14 @@ describe('Button', () => {
   it('has no axe violations with gradient variant', async () => {
     const { container } = render(<Button variant="gradient">Generate</Button>);
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  // -- Variant constants --
+  it('renders the class mapped by each exported variant constant', () => {
+    for (const [variant, className] of Object.entries(MIZU_BUTTON_VARIANTS.variant)) {
+      const { unmount } = render(<Button variant={variant as 'primary'}>Go</Button>);
+      expect(screen.getByRole('button')).toHaveClass(className);
+      unmount();
+    }
   });
 });

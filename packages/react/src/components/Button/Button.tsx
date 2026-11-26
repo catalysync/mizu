@@ -4,22 +4,24 @@ import * as React from 'react';
 import { cn } from '../../utils/cn';
 import { Logger } from '../../utils/logger';
 
-const buttonVariants = cva('mizu-button', {
-  variants: {
-    variant: {
-      primary: 'mizu-button--primary',
-      secondary: 'mizu-button--secondary',
-      ghost: 'mizu-button--ghost',
-      destructive: 'mizu-button--destructive',
-      gradient: 'mizu-button--gradient',
-    },
-    size: {
-      sm: 'mizu-button--sm',
-      md: 'mizu-button--md',
-      lg: 'mizu-button--lg',
-      icon: 'mizu-button--icon',
-    },
+export const MIZU_BUTTON_VARIANTS = {
+  variant: {
+    primary: 'mizu-button--primary',
+    secondary: 'mizu-button--secondary',
+    ghost: 'mizu-button--ghost',
+    destructive: 'mizu-button--destructive',
+    gradient: 'mizu-button--gradient',
   },
+  size: {
+    sm: 'mizu-button--sm',
+    md: 'mizu-button--md',
+    lg: 'mizu-button--lg',
+    icon: 'mizu-button--icon',
+  },
+} as const;
+
+const buttonVariants = cva('mizu-button', {
+  variants: MIZU_BUTTON_VARIANTS,
   defaultVariants: {
     variant: 'primary',
     size: 'md',
