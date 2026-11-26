@@ -15,7 +15,7 @@
   flex-direction: column;
   width: 90vw;
   max-width: 32rem;
-  background: var(--mizu-surface-default);
+  background: var(--mizu-surface-default, #fff);
   border-radius: var(--mizu-radius-lg);
   box-shadow: var(--mizu-shadow-xl);
   z-index: var(--mizu-z-modal);

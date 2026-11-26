@@ -1,6 +1,6 @@
 .mizu-dropdown-menu {
   min-width: 12rem;
-  background: var(--mizu-surface-default);
+  background: var(--mizu-surface-default, #fff);
   border: 1px solid var(--mizu-border-default);
   border-radius: var(--mizu-radius-lg);
   padding: var(--mizu-spacing-1);
