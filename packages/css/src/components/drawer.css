@@ -67,6 +67,32 @@
   color: var(--mizu-text-secondary);
 }
 
+.mizu-drawer__close {
+  position: absolute;
+  top: var(--mizu-spacing-3);
+  right: var(--mizu-spacing-3);
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--mizu-radius-md);
+  color: var(--mizu-text-secondary);
+  cursor: pointer;
+}
+
+.mizu-drawer__close:hover {
+  background: var(--mizu-surface-secondary);
+  color: var(--mizu-text-primary);
+}
+
+/* Keep a long title from running under the close button. */
+.mizu-drawer__content:has(> .mizu-drawer__close) > .mizu-drawer__header {
+  padding-inline-end: calc(var(--mizu-spacing-5) + 1.75rem + var(--mizu-spacing-3));
+}
+
 .mizu-drawer__body {
   flex: 1;
   padding: var(--mizu-spacing-5);

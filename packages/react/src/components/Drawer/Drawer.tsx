@@ -10,12 +10,14 @@ export const DrawerClose = Dialog.Close;
 
 export interface DrawerContentProps extends React.ComponentPropsWithoutRef<typeof Dialog.Content> {
   side?: DrawerSide;
+  /** Renders a close icon in the top-right corner. Set to false when the drawer has its own close control. */
+  closeButton?: boolean;
 }
 
 export const DrawerContent = React.forwardRef<
   React.ElementRef<typeof Dialog.Content>,
   DrawerContentProps
->(({ className, children, side = 'right', ...props }, ref) => (
+>(({ className, children, side = 'right', closeButton = true, ...props }, ref) => (
   <Dialog.Portal>
     <Dialog.Overlay className="mizu-drawer__overlay" />
     <Dialog.Content
@@ -26,6 +28,23 @@ export const DrawerContent = React.forwardRef<
       {...props}
     >
       {children}
+      {closeButton ? (
+        <Dialog.Close className="mizu-drawer__close" aria-label="Close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            width="16"
+            height="16"
+            aria-hidden="true"
+          >
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </Dialog.Close>
+      ) : null}
     </Dialog.Content>
   </Dialog.Portal>
 ));
