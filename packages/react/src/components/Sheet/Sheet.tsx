@@ -68,6 +68,13 @@ export const SheetDescription = React.forwardRef<
 ));
 SheetDescription.displayName = 'SheetDescription';
 
+export const SheetFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn('mizu-sheet__footer', className)} {...props} />
+  ),
+);
+SheetFooter.displayName = 'SheetFooter';
+
 export const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={cn('mizu-sheet__body', className)} {...props} />

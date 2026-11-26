@@ -54,6 +54,9 @@
 
 .mizu-sheet__header {
   padding: var(--mizu-spacing-5);
+
+  /* Leave room for the absolutely positioned close button so a long title never runs under it. */
+  padding-right: calc(var(--mizu-spacing-5) + 1.75rem);
   border-bottom: 1px solid var(--mizu-border-default);
 }
 
@@ -77,6 +80,20 @@
   overflow-y: auto;
 }
 
+.mizu-sheet__footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--mizu-spacing-2);
+  padding: var(--mizu-spacing-4) var(--mizu-spacing-5);
+  border-top: 1px solid var(--mizu-border-default);
+
+  /* Opaque on purpose: scrolled body content must not show through the footer. */
+  background: var(--mizu-surface-default, #fff);
+}
+
 .mizu-sheet__close {
   position: absolute;
   top: var(--mizu-spacing-3);
@@ -96,6 +113,12 @@
 .mizu-sheet__close:hover {
   background: var(--mizu-surface-secondary);
   color: var(--mizu-text-primary);
+}
+
+.mizu-sheet__close:focus-visible {
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
+  outline-offset: var(--mizu-focus-ring-offset, 2px);
 }
 
 @keyframes mizu-sheet-fade-in {

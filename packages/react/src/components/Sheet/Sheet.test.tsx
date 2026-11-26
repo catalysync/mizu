@@ -1,7 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
-import { Sheet, SheetBody, SheetContent, SheetDescription, SheetHeader, SheetTitle } from './Sheet';
+import {
+  Sheet,
+  SheetBody,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from './Sheet';
 
 function TestSheet({ side = 'right', open = true }: { side?: string; open?: boolean }) {
   return (
@@ -76,6 +84,39 @@ describe('Sheet', () => {
   it('renders body with class', () => {
     render(<TestSheet />);
     expect(document.querySelector('.mizu-sheet__body')).toBeInTheDocument();
+  });
+
+  it('renders footer with class and its children', () => {
+    render(
+      <Sheet open>
+        <SheetContent>
+          <SheetBody>Body content</SheetBody>
+          <SheetFooter>
+            <button type="button">Save</button>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>,
+    );
+    expect(document.querySelector('.mizu-sheet__footer')).toContainElement(
+      screen.getByRole('button', { name: 'Save' }),
+    );
+  });
+
+  it('has no axe violations with a footer', async () => {
+    render(
+      <Sheet open>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Sheet title</SheetTitle>
+          </SheetHeader>
+          <SheetBody>Body content</SheetBody>
+          <SheetFooter>
+            <button type="button">Save</button>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>,
+    );
+    expect(await axe(document.body)).toHaveNoViolations();
   });
 
   it('has no axe violations (right)', async () => {
