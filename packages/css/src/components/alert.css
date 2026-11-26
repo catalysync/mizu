@@ -6,7 +6,7 @@
   font-size: var(--mizu-font-size-sm);
   border: 1px solid var(--mizu-border-default);
   border-radius: var(--mizu-radius-md);
-  background: var(--mizu-surface-primary);
+  background: var(--mizu-surface-default, #fff);
   color: var(--mizu-text-primary);
 }
 
@@ -48,7 +48,7 @@
 
 .mizu-alert--info {
   border-color: var(--mizu-feedback-info-default);
-  background: color-mix(in srgb, var(--mizu-feedback-info-default) 6%, var(--mizu-surface-primary));
+  background: color-mix(in srgb, var(--mizu-feedback-info-default) 6%, var(--mizu-surface-default, #fff));
 }
 
 .mizu-alert--success {
@@ -56,7 +56,7 @@
   background: color-mix(
     in srgb,
     var(--mizu-feedback-success-default) 6%,
-    var(--mizu-surface-primary)
+    var(--mizu-surface-default, #fff)
   );
 }
 
@@ -65,7 +65,7 @@
   background: color-mix(
     in srgb,
     var(--mizu-feedback-warning-default) 6%,
-    var(--mizu-surface-primary)
+    var(--mizu-surface-default, #fff)
   );
 }
 
@@ -74,6 +74,6 @@
   background: color-mix(
     in srgb,
     var(--mizu-feedback-danger-default) 6%,
-    var(--mizu-surface-primary)
+    var(--mizu-surface-default, #fff)
   );
 }

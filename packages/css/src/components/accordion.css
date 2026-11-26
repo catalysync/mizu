@@ -18,7 +18,7 @@
   font-size: var(--mizu-font-size-sm);
   font-weight: var(--mizu-font-weight-medium);
   color: var(--mizu-text-primary);
-  background: var(--mizu-surface-primary);
+  background: var(--mizu-surface-default, #fff);
   border: none;
   cursor: pointer;
   text-align: left;
@@ -26,7 +26,7 @@
 }
 
 .mizu-accordion__trigger:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 4%, var(--mizu-surface-primary));
+  background: color-mix(in srgb, var(--mizu-text-primary) 4%, var(--mizu-surface-default, #fff));
 }
 
 .mizu-accordion__chevron {
