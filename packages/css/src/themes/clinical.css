@@ -23,32 +23,26 @@
   --mizu-duration-fast: 100ms;
   --mizu-duration-normal: 200ms;
   --mizu-easing-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --mizu-button-border-width: 2px;
+  --mizu-button-min-height: 2.75rem;
+  --mizu-button-focus-ring-width: 3px;
+  --mizu-button-focus-ring-color: var(--mizu-action-primary-default);
+  --mizu-button-focus-ring-offset: 2px;
+  --mizu-input-border-width: 2px;
+  --mizu-input-min-height: 2.75rem;
+  --mizu-input-font-size: 1rem;
+  --mizu-table-head-border-top: 3px solid var(--mizu-action-primary-default);
 }
 
-/* Clinical structural: thicker borders and focus rings */
+/* stylelint-disable mizu/identity-tokens-only -- padding on every button, including unsized ones, is a new declaration, and a token would override reset layers such as Tailwind preflight; kept as an identity rule */
 [data-mizu-identity="clinical"] .mizu-button {
-  border-width: 2px;
-  min-height: 2.75rem;
   padding: 0.625rem 1.25rem;
 }
+/* stylelint-enable mizu/identity-tokens-only */
 
-[data-mizu-identity="clinical"] .mizu-button:focus-visible {
-  outline: 3px solid var(--mizu-action-primary-default, #2563eb);
-  outline-offset: 2px;
-}
-
-[data-mizu-identity="clinical"] .mizu-input {
-  border-width: 2px;
-  min-height: 2.75rem;
-  font-size: 1rem;
-}
-
+/* stylelint-disable mizu/identity-tokens-only -- focus ring: focus-visible, forced-colors and aria-invalid rules set the same outline or shadow, so a token here would change the forced-colors and mouse-focus states */
 [data-mizu-identity="clinical"] .mizu-input:focus {
   outline: 3px solid var(--mizu-action-primary-default, #2563eb);
   outline-offset: 0;
 }
-
-/* Clinical structural: tables have thick top border on header */
-[data-mizu-identity="clinical"] .mizu-table thead {
-  border-top: 3px solid var(--mizu-action-primary-default, #2563eb);
-}
+/* stylelint-enable mizu/identity-tokens-only */

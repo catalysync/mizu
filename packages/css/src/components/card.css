@@ -1,9 +1,18 @@
+/* Card tokens, read by identity themes: --mizu-card-border (shorthand), -border-top,
+ * -border-color, -radius, -shadow, -background. Unset values keep the defaults below. */
 .mizu-card {
+  --_border: var(
+    --mizu-card-border,
+    1px solid var(--mizu-card-border-color, var(--mizu-border-default, #e2e8f0))
+  );
+
   display: flex;
   flex-direction: column;
-  background: var(--mizu-surface-default, #fff);
-  border: 1px solid var(--mizu-border-default, #e2e8f0);
-  border-radius: var(--mizu-radius-lg);
+  background: var(--mizu-card-background, var(--mizu-surface-default, #fff));
+  border: var(--_border);
+  border-top: var(--mizu-card-border-top, var(--_border));
+  border-radius: var(--mizu-card-radius, var(--mizu-radius-lg));
+  box-shadow: var(--mizu-card-shadow, unset);
   overflow: hidden;
 }
 
@@ -15,8 +24,8 @@
 }
 
 .mizu-card--interactive:hover {
-  border-color: var(--mizu-border-strong, #94a3b8);
-  box-shadow: var(--mizu-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 5%));
+  border-color: var(--mizu-card-hover-border-color, var(--mizu-border-strong, #94a3b8));
+  box-shadow: var(--mizu-card-shadow, var(--mizu-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 5%)));
 }
 
 .mizu-card__header {

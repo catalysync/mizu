@@ -23,42 +23,30 @@
   --mizu-duration-fast: 100ms;
   --mizu-duration-normal: 200ms;
   --mizu-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --mizu-button-primary-shadow: 0 0 12px rgb(0 245 212 / 30%), 0 0 4px rgb(0 245 212 / 20%);
+  --mizu-button-primary-shadow-hover: 0 0 20px rgb(0 245 212 / 40%), 0 0 8px rgb(0 245 212 / 30%);
+  --mizu-card-border-color: color-mix(in srgb, var(--mizu-action-primary-default) 15%, transparent);
+  --mizu-badge-success-shadow: 0 0 6px rgb(52 211 153 / 30%);
+  --mizu-badge-danger-shadow: 0 0 6px rgb(248 113 113 / 30%);
 }
 
 /* Neon structural: primary buttons have glow */
+/* stylelint-disable mizu/identity-tokens-only -- the data-inverse primary variant sets its own colour, so a token here would change inverse primary buttons */
 [data-mizu-identity="neon"] .mizu-button--primary {
-  box-shadow:
-    0 0 12px rgb(0 245 212 / 30%),
-    0 0 4px rgb(0 245 212 / 20%);
   color: #000;
 }
-
-[data-mizu-identity="neon"] .mizu-button--primary:hover {
-  box-shadow:
-    0 0 20px rgb(0 245 212 / 40%),
-    0 0 8px rgb(0 245 212 / 30%);
-}
+/* stylelint-enable mizu/identity-tokens-only */
 
 /* Neon structural: inputs have subtle glow on focus */
+/* stylelint-disable mizu/identity-tokens-only -- focus ring: focus-visible, forced-colors and aria-invalid rules set the same outline or shadow, so a token here would change the forced-colors and mouse-focus states */
 [data-mizu-identity="neon"] .mizu-input:focus {
   box-shadow: 0 0 0 2px rgb(0 245 212 / 30%);
   border-color: var(--mizu-action-primary-default, #2563eb);
 }
+/* stylelint-enable mizu/identity-tokens-only */
 
-/* Neon structural: cards have border glow */
-[data-mizu-identity="neon"] .mizu-card {
-  border-color: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 15%, transparent);
-}
-
+/* stylelint-disable mizu/identity-tokens-only -- a hover border token would also recolour the top edge of cards with their own border-top, and no default keeps them unchanged */
 [data-mizu-identity="neon"] .mizu-card:hover {
   border-color: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 30%, transparent);
 }
-
-/* Neon structural: badges use glow */
-[data-mizu-identity="neon"] .mizu-badge--success {
-  box-shadow: 0 0 6px rgb(52 211 153 / 30%);
-}
-
-[data-mizu-identity="neon"] .mizu-badge--danger {
-  box-shadow: 0 0 6px rgb(248 113 113 / 30%);
-}
+/* stylelint-enable mizu/identity-tokens-only */

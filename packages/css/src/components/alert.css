@@ -5,7 +5,8 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
   border: 1px solid var(--mizu-border-default, #e2e8f0);
-  border-radius: var(--mizu-radius-md);
+  border-left-width: var(--mizu-alert-border-left-width, 1px);
+  border-radius: var(--mizu-alert-radius, var(--mizu-radius-md));
   background: var(--mizu-surface-default, #fff);
   color: var(--mizu-text-primary, #0f172a);
 }

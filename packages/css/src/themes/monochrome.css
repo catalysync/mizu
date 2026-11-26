@@ -24,22 +24,23 @@
   --mizu-duration-fast: 150ms;
   --mizu-duration-normal: 200ms;
   --mizu-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --mizu-card-shadow: none;
+  --mizu-card-border-color: var(--mizu-border-default);
+  --mizu-card-hover-border-color: var(--mizu-border-default);
 }
 
 /* Monochrome structural: primary buttons invert (white text on black) */
+/* stylelint-disable mizu/identity-tokens-only -- the data-inverse primary variant sets its own colour, so a token here would change inverse primary buttons */
 [data-mizu-identity="monochrome"] .mizu-button--primary {
   color: #fff;
 }
-
-/* Monochrome structural: cards are border-driven, no shadow */
-[data-mizu-identity="monochrome"] .mizu-card {
-  box-shadow: none;
-  border: 1px solid var(--mizu-border-default, #e2e8f0);
-}
+/* stylelint-enable mizu/identity-tokens-only */
 
 /* Monochrome structural: inputs have 1px border, no shadow */
+/* stylelint-disable mizu/identity-tokens-only -- focus ring: focus-visible, forced-colors and aria-invalid rules set the same outline or shadow, so a token here would change the forced-colors and mouse-focus states */
 [data-mizu-identity="monochrome"] .mizu-input:focus {
   box-shadow: none;
   outline: var(--mizu-focus-ring-width, 2px) solid var(--mizu-focus-ring-color, #000);
   outline-offset: -1px;
 }
+/* stylelint-enable mizu/identity-tokens-only */
