@@ -157,6 +157,13 @@ describe('Callout', () => {
     expect(screen.getByRole('note')).toBeInTheDocument();
   });
 
+  it('uses role note for success and warning', () => {
+    const { rerender } = render(<Callout tone="success">Saved</Callout>);
+    expect(screen.getByRole('note')).toBeInTheDocument();
+    rerender(<Callout tone="warning">Check this</Callout>);
+    expect(screen.getByRole('note')).toBeInTheDocument();
+  });
+
   it('uses role alert for danger', () => {
     render(<Callout tone="danger">Broken</Callout>);
     expect(screen.getByRole('alert')).toBeInTheDocument();
