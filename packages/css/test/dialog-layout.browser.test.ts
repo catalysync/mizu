@@ -45,6 +45,20 @@ describe.skipIf(!hasBrowser)('dialog close placement', () => {
   });
 });
 
+describe.skipIf(!hasBrowser)('dialog title clearance', () => {
+  it('keeps a long title clear of the close button', async () => {
+    const html = contentHtml('md').replace('>Title<', `>${'Long dialog title '.repeat(20)}<`);
+    const edges = await withPage([css(DIALOG)], html, (page) =>
+      page.evaluate(() => {
+        const title = document.querySelector('.mizu-dialog__title')!.getBoundingClientRect();
+        const close = document.querySelector('.mizu-dialog__close')!.getBoundingClientRect();
+        return { titleRight: title.right, closeLeft: close.left };
+      }),
+    );
+    expect(edges.titleRight).toBeLessThanOrEqual(edges.closeLeft);
+  });
+});
+
 describe.skipIf(!hasBrowser)('dialog size via custom property', () => {
   it('uses the size token width when no consumer class is set', async () => {
     const width = await withPage([css(DIALOG)], contentHtml('lg'), (page) =>
