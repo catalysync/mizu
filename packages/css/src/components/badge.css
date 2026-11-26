@@ -1,3 +1,4 @@
+/* Public overrides: --mizu-badge-bg, --mizu-badge-fg, --mizu-badge-border. Each falls back to the tone's value. */
 .mizu-badge {
   --_bg: var(--mizu-surface-secondary);
   --_color: var(--mizu-text-secondary);
@@ -12,9 +13,9 @@
   font-size: var(--mizu-font-size-xs);
   font-weight: var(--mizu-font-weight-medium);
   border-radius: var(--mizu-radius-full);
-  border: 1px solid var(--_border);
-  background: var(--_bg);
-  color: var(--_color);
+  border: 1px solid var(--mizu-badge-border, var(--_border));
+  background: var(--mizu-badge-bg, var(--_bg));
+  color: var(--mizu-badge-fg, var(--_color));
   white-space: nowrap;
 }
 
@@ -56,11 +57,17 @@
   background: currentcolor;
 }
 
-/* Sizes */
+/* Sizes. md is set explicitly so the React default is visible in the DOM and the CSS. */
 .mizu-badge[data-size="sm"] {
   height: 1rem;
   padding: 0 var(--mizu-spacing-1);
   font-size: 0.625rem;
+}
+
+.mizu-badge[data-size="md"] {
+  height: 1.25rem;
+  padding: 0 var(--mizu-spacing-2);
+  font-size: var(--mizu-font-size-xs);
 }
 
 .mizu-badge[data-size="lg"] {
@@ -74,4 +81,15 @@
   min-width: 1.25rem;
   justify-content: center;
   font-variant-numeric: tabular-nums;
+}
+
+/* Dot appearance — a solid status marker. Declared last so it wins over the size rules. */
+.mizu-badge[data-appearance="dot"] {
+  width: 0.5rem;
+  height: 0.5rem;
+  min-width: 0;
+  padding: 0;
+  border-width: 0;
+  border-radius: 50%;
+  background: var(--mizu-badge-fg, var(--_color));
 }
