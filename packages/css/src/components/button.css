@@ -1,56 +1,13 @@
-/* Button component tokens (tier 3) — bridge between semantic tokens and component usage.
- * Override these to change button appearance without affecting other action surfaces. */
-:root {
-  /* Primary */
-  --mizu-button-primary-bg: var(--mizu-action-primary-default);
-  --mizu-button-primary-bg-hover: var(--mizu-action-primary-hover);
-  --mizu-button-primary-bg-active: var(--mizu-action-primary-active);
-  --mizu-button-primary-bg-disabled: var(--mizu-action-primary-default);
-  --mizu-button-primary-color: var(--mizu-color-white);
-  --mizu-button-primary-color-disabled: var(--mizu-color-white);
-  --mizu-button-primary-border: transparent;
-
-  /* Secondary */
-  --mizu-button-secondary-bg: transparent;
-  --mizu-button-secondary-bg-hover: var(--mizu-surface-secondary);
-  --mizu-button-secondary-bg-active: var(--mizu-surface-secondary);
-  --mizu-button-secondary-bg-disabled: transparent;
-  --mizu-button-secondary-color: var(--mizu-text-primary);
-  --mizu-button-secondary-color-disabled: var(--mizu-text-disabled);
-  --mizu-button-secondary-border: var(--mizu-border-default);
-  --mizu-button-secondary-border-disabled: var(--mizu-border-default);
-
-  /* Ghost */
-  --mizu-button-ghost-bg: transparent;
-  --mizu-button-ghost-bg-hover: var(--mizu-surface-secondary);
-  --mizu-button-ghost-bg-active: var(--mizu-surface-secondary);
-  --mizu-button-ghost-color: var(--mizu-text-primary);
-  --mizu-button-ghost-color-disabled: var(--mizu-text-disabled);
-
-  /* Destructive */
-  --mizu-button-destructive-bg: var(--mizu-action-destructive-default, #dc2626);
-  --mizu-button-destructive-bg-hover: var(--mizu-action-destructive-hover, #b91c1c);
-  --mizu-button-destructive-bg-active: var(--mizu-action-destructive-active, #991b1b);
-  --mizu-button-destructive-bg-disabled: var(--mizu-action-destructive-default, #dc2626);
-  --mizu-button-destructive-color: var(--mizu-color-white);
-  --mizu-button-destructive-color-disabled: var(--mizu-color-white);
-
-  /* Gradient (AI) */
-  --mizu-button-gradient-bg: linear-gradient(
-    135deg,
-    var(--mizu-action-primary-default) 0%,
-    #8b5cf6 50%,
-    #ec4899 100%
-  );
-  --mizu-button-gradient-bg-hover: linear-gradient(
-    135deg,
-    var(--mizu-action-primary-hover) 0%,
-    #7c3aed 50%,
-    #db2777 100%
-  );
-  --mizu-button-gradient-color: var(--mizu-color-white);
-}
-
+/* Button component tokens (tier 3). Each one is an optional public override read by the
+ * variant rules below; when unset, the variant falls back to the semantic token in the
+ * second argument. The substrate declares none of them, so set them on any ancestor
+ * (a theme wrapper, a page section) and every button inside picks them up:
+ *
+ *   --mizu-button-{variant}-bg | -bg-hover | -bg-active | -bg-disabled
+ *   --mizu-button-{variant}-color | -color-disabled | -border | -border-disabled
+ *
+ *   variant: primary | secondary | ghost | destructive | gradient
+ */
 .mizu-button {
   --_bg: transparent;
   --_bg-hover: var(--mizu-surface-secondary);
@@ -131,49 +88,49 @@
   }
 }
 
-/* Variants — reference component tokens, not semantic tokens directly */
+/* Variants — read the public tier-3 names and fall back to the semantic token */
 .mizu-button--primary {
-  --_bg: var(--mizu-button-primary-bg);
-  --_bg-hover: var(--mizu-button-primary-bg-hover);
-  --_bg-active: var(--mizu-button-primary-bg-active);
-  --_bg-disabled: var(--mizu-button-primary-bg-disabled);
-  --_color: var(--mizu-button-primary-color);
-  --_color-disabled: var(--mizu-button-primary-color-disabled);
-  --_border: var(--mizu-button-primary-border);
+  --_bg: var(--mizu-button-primary-bg, var(--mizu-action-primary-default));
+  --_bg-hover: var(--mizu-button-primary-bg-hover, var(--mizu-action-primary-hover));
+  --_bg-active: var(--mizu-button-primary-bg-active, var(--mizu-action-primary-active));
+  --_bg-disabled: var(--mizu-button-primary-bg-disabled, var(--mizu-action-primary-default));
+  --_color: var(--mizu-button-primary-color, var(--mizu-color-white));
+  --_color-disabled: var(--mizu-button-primary-color-disabled, var(--mizu-color-white));
+  --_border: var(--mizu-button-primary-border, transparent);
 }
 
 .mizu-button--secondary {
-  --_bg: var(--mizu-button-secondary-bg);
-  --_bg-hover: var(--mizu-button-secondary-bg-hover);
-  --_bg-active: var(--mizu-button-secondary-bg-active);
-  --_bg-disabled: var(--mizu-button-secondary-bg-disabled);
-  --_color: var(--mizu-button-secondary-color);
-  --_color-disabled: var(--mizu-button-secondary-color-disabled);
-  --_border: var(--mizu-button-secondary-border);
-  --_border-disabled: var(--mizu-button-secondary-border-disabled);
+  --_bg: var(--mizu-button-secondary-bg, transparent);
+  --_bg-hover: var(--mizu-button-secondary-bg-hover, var(--mizu-surface-secondary));
+  --_bg-active: var(--mizu-button-secondary-bg-active, var(--mizu-surface-secondary));
+  --_bg-disabled: var(--mizu-button-secondary-bg-disabled, transparent);
+  --_color: var(--mizu-button-secondary-color, var(--mizu-text-primary));
+  --_color-disabled: var(--mizu-button-secondary-color-disabled, var(--mizu-text-disabled));
+  --_border: var(--mizu-button-secondary-border, var(--mizu-border-default));
+  --_border-disabled: var(--mizu-button-secondary-border-disabled, var(--mizu-border-default));
 }
 
 .mizu-button--ghost {
-  --_bg: var(--mizu-button-ghost-bg);
-  --_bg-hover: var(--mizu-button-ghost-bg-hover);
-  --_bg-active: var(--mizu-button-ghost-bg-active);
-  --_color: var(--mizu-button-ghost-color);
-  --_color-disabled: var(--mizu-button-ghost-color-disabled);
+  --_bg: var(--mizu-button-ghost-bg, transparent);
+  --_bg-hover: var(--mizu-button-ghost-bg-hover, var(--mizu-surface-secondary));
+  --_bg-active: var(--mizu-button-ghost-bg-active, var(--mizu-surface-secondary));
+  --_color: var(--mizu-button-ghost-color, var(--mizu-text-primary));
+  --_color-disabled: var(--mizu-button-ghost-color-disabled, var(--mizu-text-disabled));
 }
 
 .mizu-button--destructive {
-  --_bg: var(--mizu-button-destructive-bg);
-  --_bg-hover: var(--mizu-button-destructive-bg-hover);
-  --_bg-active: var(--mizu-button-destructive-bg-active);
-  --_bg-disabled: var(--mizu-button-destructive-bg-disabled);
-  --_color: var(--mizu-button-destructive-color);
-  --_color-disabled: var(--mizu-button-destructive-color-disabled);
+  --_bg: var(--mizu-button-destructive-bg, var(--mizu-action-destructive-default, #dc2626));
+  --_bg-hover: var(--mizu-button-destructive-bg-hover, var(--mizu-action-destructive-hover, #b91c1c));
+  --_bg-active: var(--mizu-button-destructive-bg-active, var(--mizu-action-destructive-active, #991b1b));
+  --_bg-disabled: var(--mizu-button-destructive-bg-disabled, var(--mizu-action-destructive-default, #dc2626));
+  --_color: var(--mizu-button-destructive-color, var(--mizu-color-white));
+  --_color-disabled: var(--mizu-button-destructive-color-disabled, var(--mizu-color-white));
 }
 
 .mizu-button--gradient {
-  --_bg: var(--mizu-button-gradient-bg);
-  --_bg-hover: var(--mizu-button-gradient-bg-hover);
-  --_color: var(--mizu-button-gradient-color);
+  --_bg: var(--mizu-button-gradient-bg, linear-gradient(135deg, var(--mizu-action-primary-default) 0%, #8b5cf6 50%, #ec4899 100%));
+  --_bg-hover: var(--mizu-button-gradient-bg-hover, linear-gradient(135deg, var(--mizu-action-primary-hover) 0%, #7c3aed 50%, #db2777 100%));
+  --_color: var(--mizu-button-gradient-color, var(--mizu-color-white));
 
   background-size: 200% 200%;
 }
