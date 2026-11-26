@@ -35,3 +35,10 @@
   cursor: not-allowed;
   resize: none;
 }
+
+/* autoResize sets the height from the content, so the drag handle and the CSS min-height no
+ * longer apply; the component decides when the content should scroll. */
+.mizu-textarea[data-auto-resize] {
+  resize: none;
+  min-height: 0;
+}
