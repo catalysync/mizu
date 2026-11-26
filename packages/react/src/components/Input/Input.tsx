@@ -53,7 +53,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const [charCount, setCharCount] = React.useState(0);
+    const valueLength = (v: unknown) => (v == null ? 0 : String(v).length);
+    const [uncontrolledCount, setCharCount] = React.useState(() =>
+      valueLength(props.value ?? props.defaultValue),
+    );
+    // Controlled inputs follow `value` so a parent-driven reset updates the counter too.
+    const charCount = props.value !== undefined ? valueLength(props.value) : uncontrolledCount;
     const [charCountLive, setCharCountLive] = React.useState<'off' | 'polite'>('off');
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (maxCharacters != null) setCharCount(e.target.value.length);

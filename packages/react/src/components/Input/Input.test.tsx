@@ -170,6 +170,24 @@ describe('Input', () => {
     expect(screen.getByText('5/50')).toBeInTheDocument();
   });
 
+  it('starts the counter from defaultValue', () => {
+    render(<Input maxCharacters={10} defaultValue="hello" aria-label="Bio" />);
+    expect(screen.getByText('5/10')).toBeInTheDocument();
+  });
+
+  it('starts the counter from a controlled value', () => {
+    render(<Input maxCharacters={10} value="hi" onChange={() => {}} aria-label="Bio" />);
+    expect(screen.getByText('2/10')).toBeInTheDocument();
+  });
+
+  it('follows a controlled value changed by the parent', () => {
+    const { rerender } = render(
+      <Input maxCharacters={10} value="hi" onChange={() => {}} aria-label="Bio" />,
+    );
+    rerender(<Input maxCharacters={10} value="" onChange={() => {}} aria-label="Bio" />);
+    expect(screen.getByText('0/10')).toBeInTheDocument();
+  });
+
   it('enforces maxLength from maxCharacters', () => {
     render(<Input maxCharacters={3} aria-label="X" />);
     expect(screen.getByRole('textbox')).toHaveAttribute('maxLength', '3');
