@@ -16,6 +16,7 @@
     "prepare": "husky",
     "test": "turbo run test",
     "validate": "node scripts/check-exports.mjs",
+    "codegen:registry": "node --experimental-strip-types packages/registry/scripts/generate.ts && prettier --write packages/registry/component-registry.json packages/registry/src/schemas.ts",
     "release:version": "scripts/release/version-pr.sh",
     "release:stage": "scripts/release/stage-publish.sh",
     "release:approve": "scripts/release/approve.sh"
