@@ -80,14 +80,13 @@ export default tseslint.config(
     },
   },
   {
-    // Accessibility rules from @mizunagara/lint. Warnings for now: the React components have
-    // not been swept against them yet. Flip to error once the sweep is clean.
+    // Accessibility rules from @mizunagara/lint, applied to the React components.
     files: ['packages/react/src/**/*.{ts,tsx}'],
     plugins: { mizu: mizuPlugin },
     rules: {
-      'mizu/icon-button-label': 'warn',
-      'mizu/aria-invalid-bound-style': 'warn',
-      'mizu/no-static-click': 'warn',
+      'mizu/icon-button-label': 'error',
+      'mizu/aria-invalid-bound-style': 'error',
+      'mizu/no-static-click': 'error',
     },
   },
   {

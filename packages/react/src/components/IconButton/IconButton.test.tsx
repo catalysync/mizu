@@ -55,7 +55,7 @@ describe('IconButton', () => {
   it('requires aria-label in its type', () => {
     // Compile-time check, enforced by `pnpm typecheck`: an icon button with no name is an error.
     // @ts-expect-error aria-label is required on IconButton
-    const missingName = <IconButton>×</IconButton>;
+    const missingName = <IconButton>×</IconButton>; // eslint-disable-line mizu/icon-button-label -- the type error is the assertion; never rendered
     expect(missingName).toBeDefined();
   });
 });
