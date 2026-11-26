@@ -13,7 +13,6 @@
 /* Shared utilities + scales */
 @import url("./utilities.css");
 @import url("./focus.css");
-@import url("./z-index.css");
 
 /* Components */
 @import url("./components/button.css");
