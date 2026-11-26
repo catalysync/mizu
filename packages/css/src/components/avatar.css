@@ -41,3 +41,13 @@
   height: 100%;
   object-fit: cover;
 }
+
+.mizu-avatar__initials {
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.mizu-avatar__icon {
+  width: 60%;
+  height: 60%;
+}
