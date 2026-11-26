@@ -50,14 +50,14 @@
   color: var(--mizu-text-disabled);
 }
 
-.mizu-pagination__page:hover:not(:disabled) {
+.mizu-pagination__page:hover:not(:disabled, [data-current="true"]) {
   background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
   color: var(--mizu-text-primary);
 }
 
 .mizu-pagination__page[data-current="true"] {
   background: var(--mizu-action-primary-default);
-  color: #fff;
+  color: var(--mizu-text-on-primary);
   font-weight: var(--mizu-font-weight-semibold);
 }
 

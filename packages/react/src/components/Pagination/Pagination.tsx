@@ -2,6 +2,13 @@ import * as React from 'react';
 import { cn } from '../../utils/cn';
 import { Button } from '../Button';
 
+export interface PaginationLabels {
+  navigation?: string;
+  previous?: string;
+  next?: string;
+  page?: (page: number) => string;
+}
+
 export interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
   page?: number;
   totalPages?: number;
@@ -13,6 +20,7 @@ export interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
   label?: React.ReactNode;
   siblingCount?: number;
   showPageNumbers?: boolean;
+  labels?: PaginationLabels;
 }
 
 function range(start: number, end: number): number[] {
@@ -24,7 +32,8 @@ function buildPageList(
   total: number,
   siblings: number,
 ): Array<number | 'ellipsis'> {
-  if (total <= 1) return [1];
+  if (total < 1) return [];
+  if (total === 1) return [1];
   const first = 1;
   const last = total;
   const leftSibling = Math.max(current - siblings, first);
@@ -60,6 +69,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
       label,
       siblingCount = 1,
       showPageNumbers = true,
+      labels,
       ...props
     },
     ref,
@@ -87,13 +97,14 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
         goTo(page + 1);
       }
     };
+    const pageLabel = labels?.page ?? ((p: number) => `Go to page ${p}`);
 
     return (
       <nav
         ref={ref}
         data-component="mizu-pagination"
         className={cn('mizu-pagination', className)}
-        aria-label="Pagination"
+        aria-label={labels?.navigation ?? 'Pagination'}
         {...props}
       >
         {label != null ? <span>{label}</span> : <span />}
@@ -103,7 +114,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
             variant="ghost"
             disabled={!resolvedHasPrevious}
             onClick={handlePrevious}
-            aria-label="Previous page"
+            aria-label={labels?.previous ?? 'Previous page'}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +146,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
                     className="mizu-pagination__page"
                     data-current={entry === page || undefined}
                     aria-current={entry === page ? 'page' : undefined}
-                    aria-label={`Go to page ${entry}`}
+                    aria-label={pageLabel(entry)}
                     onClick={() => goTo(entry)}
                   >
                     {entry}
@@ -149,7 +160,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
             variant="ghost"
             disabled={!resolvedHasNext}
             onClick={handleNext}
-            aria-label="Next page"
+            aria-label={labels?.next ?? 'Next page'}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
