@@ -10,7 +10,7 @@ describe('substrate CSS', () => {
     const offenders = walk('packages/css/src', ['.css'])
       .filter((file) => !file.includes('/themes/'))
       .flatMap((file) =>
-        [...stripComments(read(file)).matchAll(/([a-z-]+)\s*:\s*([^;{}]+);/gi)]
+        [...stripComments(read(file)).matchAll(/([a-z-]+)\s*:\s*([^;{}]+)(?=[;}])/gi)]
           .map((m) => ({ prop: m[1], hex: findHexColour(m[2]) }))
           .filter((d) => d.hex !== null)
           .map((d) => `${file}: ${d.prop} ${d.hex}`),
