@@ -1,0 +1,4 @@
+.mizu-card {
+  color: var(--mizu-text-primary);
+  border: 1px solid var(--mizu-border-default);
+}

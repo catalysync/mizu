@@ -1,6 +1,9 @@
+import { stylelintPlugins } from './packages/lint/src/stylelint.mjs';
+
 /** @type {import('stylelint').Config} */
 export default {
   extends: ['stylelint-config-standard'],
+  plugins: stylelintPlugins,
   ignoreFiles: [
     '**/dist/**',
     '**/node_modules/**',
@@ -26,4 +29,27 @@ export default {
     'custom-property-empty-line-before': null,
     'custom-property-pattern': null,
   },
+  overrides: [
+    {
+      // Warning until the fallback sweep lands; the rule itself reports at error level when asked.
+      files: ['packages/css/src/**/*.css'],
+      rules: { 'mizu/var-fallback': 'warning' },
+    },
+    {
+      // Warning until the raw hex literals outside themes are tokenised. Themes are left out on
+      // purpose: a theme is where raw colour values are meant to live.
+      files: [
+        'packages/css/src/components/**/*.css',
+        'packages/css/src/layouts/**/*.css',
+        'packages/css/src/shell/**/*.css',
+        'packages/css/src/*.css',
+      ],
+      rules: { 'mizu/no-hex-color': 'warning' },
+    },
+    {
+      // Warning until the 21 identity files drop their component selectors (T10 sweep).
+      files: ['packages/css/src/themes/**/*.css'],
+      rules: { 'mizu/identity-tokens-only': 'warning' },
+    },
+  ],
 };

@@ -1,0 +1,71 @@
+{
+  "name": "@mizunagara/lint",
+  "version": "0.1.0",
+  "description": "ESLint and stylelint rules that keep mizu components on tokens and accessible markup",
+  "license": "MIT",
+  "homepage": "https://github.com/catalysync/mizu/tree/main/packages/lint#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catalysync/mizu.git",
+    "directory": "packages/lint"
+  },
+  "bugs": {
+    "url": "https://github.com/catalysync/mizu/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.mts",
+  "typesVersions": {
+    "*": {
+      "stylelint": [
+        "./dist/stylelint.d.mts"
+      ],
+      "eslint": [
+        "./dist/eslint.d.mts"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./src/index.mjs"
+    },
+    "./stylelint": {
+      "types": "./dist/stylelint.d.mts",
+      "default": "./src/stylelint.mjs"
+    },
+    "./eslint": {
+      "types": "./dist/eslint.d.mts",
+      "default": "./src/eslint.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test test/rules.test.mjs",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "eslint": ">=9.0.0",
+    "stylelint": ">=17.0.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    },
+    "stylelint": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@mizunagara/tsconfig": "workspace:^",
+    "eslint": "9.39.4",
+    "stylelint": "17.6.0"
+  },
+  "private": true
+}
