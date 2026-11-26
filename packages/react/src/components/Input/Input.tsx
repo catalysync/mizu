@@ -29,6 +29,8 @@ export interface InputProps
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   maxCharacters?: number;
+  /** Asks 1Password, Bitwarden and LastPass to leave this field alone (no autofill or save prompt). */
+  passwordManagerIgnore?: boolean;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -43,6 +45,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       prefix,
       suffix,
       maxCharacters,
+      passwordManagerIgnore,
       id,
       required,
       disabled,
@@ -98,6 +101,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         aria-describedby={resolvedDescribedBy}
         maxLength={maxCharacters}
         onChange={handleChange}
+        data-1p-ignore={passwordManagerIgnore || undefined}
+        data-bwignore={passwordManagerIgnore || undefined}
+        data-lpignore={passwordManagerIgnore ? 'true' : undefined}
         {...props}
         /* Set after the spread so a consumer onFocus/onBlur cannot replace this handler. */
         onFocus={(e) => {

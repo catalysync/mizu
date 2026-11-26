@@ -201,6 +201,22 @@ describe('Input', () => {
     expect(screen.getByText('0/10')).toBeInTheDocument();
   });
 
+  it('adds password manager ignore attributes with passwordManagerIgnore', () => {
+    render(<Input passwordManagerIgnore aria-label="Code" />);
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveAttribute('data-1p-ignore');
+    expect(input).toHaveAttribute('data-bwignore');
+    expect(input).toHaveAttribute('data-lpignore', 'true');
+  });
+
+  it('omits password manager ignore attributes by default', () => {
+    render(<Input aria-label="Code" />);
+    const input = screen.getByRole('textbox');
+    expect(input).not.toHaveAttribute('data-1p-ignore');
+    expect(input).not.toHaveAttribute('data-bwignore');
+    expect(input).not.toHaveAttribute('data-lpignore');
+  });
+
   it('enforces maxLength from maxCharacters', () => {
     render(<Input maxCharacters={3} aria-label="X" />);
     expect(screen.getByRole('textbox')).toHaveAttribute('maxLength', '3');
