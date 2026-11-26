@@ -42,6 +42,9 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
         onKeyDown={(e) => {
           // cmdk turns Home/End into list navigation; in an editable field they move the caret.
           if ((e.key === 'Home' || e.key === 'End') && !props.readOnly) e.stopPropagation();
+          // cmdk always preventDefaults Enter. With nothing highlighted there is nothing to
+          // select, so let Enter reach the form (implicit submit) instead.
+          if (e.key === 'Enter' && (!open || !activeId)) e.stopPropagation();
           props.onKeyDown?.(e);
         }}
       />

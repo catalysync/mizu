@@ -106,6 +106,21 @@ describe('Combobox', () => {
     expect(onValueChange).not.toHaveBeenCalled();
   });
 
+  it('starts a new search when typing into a closed field with a selected label', () => {
+    render(<Combobox options={OPTIONS} value="us" />);
+    const input = screen.getByRole('combobox');
+    fireEvent.keyDown(input, { key: 'a' });
+    expect(input).toHaveValue('');
+    expect(screen.getByRole('listbox')).toBeInTheDocument();
+  });
+
+  it('lets Enter pass through when no option is highlighted', () => {
+    render(<Combobox options={OPTIONS} />);
+    const input = screen.getByRole('combobox');
+    // fireEvent returns false when the handler called preventDefault.
+    expect(fireEvent.keyDown(input, { key: 'Enter' })).toBe(true);
+  });
+
   it('closes on Escape', () => {
     render(<Combobox options={OPTIONS} />);
     const input = screen.getByRole('combobox');

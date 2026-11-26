@@ -70,6 +70,13 @@ describe('Autocomplete', () => {
     expect(onOptionSelect).toHaveBeenCalledWith(OPTIONS[1]);
   });
 
+  it('lets Enter pass through when there is no suggestion to pick', () => {
+    render(<Autocomplete options={OPTIONS} />);
+    const input = screen.getByRole('combobox');
+    fireEvent.change(input, { target: { value: 'zzz' } });
+    expect(fireEvent.keyDown(input, { key: 'Enter' })).toBe(true);
+  });
+
   it('keeps free text when nothing is selected', () => {
     const onValueChange = vi.fn();
     render(<Autocomplete options={OPTIONS} onValueChange={onValueChange} />);
