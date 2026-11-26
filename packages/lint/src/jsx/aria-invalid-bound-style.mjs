@@ -1,5 +1,17 @@
 import { findAttribute, hasSpread } from './attr.mjs';
 
+// aria-invalid={false} announces nothing, so there is no error to style.
+function isExplicitlyValid(attr) {
+  const value = attr.value;
+  if (!value) return false;
+  if (value.type === 'Literal') return value.value === 'false';
+  return (
+    value.type === 'JSXExpressionContainer' &&
+    value.expression.type === 'Literal' &&
+    value.expression.value === false
+  );
+}
+
 // aria-invalid tells assistive tech a field is in error, but mizu draws the error state from
 // data-invalid. Setting only aria-invalid announces the error without showing it.
 export default {
@@ -16,7 +28,8 @@ export default {
     return {
       JSXOpeningElement(node) {
         if (hasSpread(node)) return;
-        if (!findAttribute(node, 'aria-invalid')) return;
+        const invalid = findAttribute(node, 'aria-invalid');
+        if (!invalid || isExplicitlyValid(invalid)) return;
         if (findAttribute(node, 'data-invalid')) return;
         context.report({ node, messageId: 'unboundInvalid' });
       },
