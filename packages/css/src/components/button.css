@@ -47,7 +47,9 @@
   outline-offset: var(--mizu-focus-ring-offset, 2px);
 }
 
-.mizu-button:disabled {
+/* Loading buttons are not disabled (they keep focus), so they take the disabled look here. */
+.mizu-button:disabled,
+.mizu-button[data-loading="true"] {
   background: var(--_bg-disabled);
   color: var(--_color-disabled);
   border-color: var(--_border-disabled);
@@ -69,8 +71,9 @@
   pointer-events: none;
 }
 
+/* Opacity, not visibility: visibility:hidden would remove the label from the accessible name. */
 .mizu-button[data-loading="true"] .mizu-button__label {
-  visibility: hidden;
+  opacity: 0;
 }
 
 .mizu-button__spinner {
@@ -161,7 +164,7 @@
   background-size: 200% 200%;
 }
 
-.mizu-button--gradient:not(:disabled) {
+.mizu-button--gradient:not(:disabled, [data-loading="true"]) {
   animation: mizu-button-gradient-loop 4s ease infinite;
 }
 
@@ -228,7 +231,7 @@
 @media (prefers-reduced-motion: reduce) {
   .mizu-button,
   .mizu-button *,
-  .mizu-button--gradient:not(:disabled) {
+  .mizu-button--gradient:not(:disabled, [data-loading="true"]) {
     animation-duration: 0.01ms;
     animation-iteration-count: 1;
     transition-duration: 0.01ms;
