@@ -28,3 +28,15 @@ Applied by setting `data-mizu-identity` on a root element. No React refactoring 
 - Themes are CSS-only and framework-agnostic
 - Storybook toolbar switcher activates them via `data-mizu-identity` attribute
 - Trade-off: structural overrides use specificity (component selector inside attribute selector) which can be overridden accidentally
+
+## Contract
+
+The attributes this decision relies on, and the code that enforces each one, are in
+[docs/identity.md](../docs/identity.md). In short:
+
+- Identity is `data-mizu-identity`, mode is `data-theme` (`dark` sets `color-scheme` too), and
+  density is `data-mizu-density` (spacing only).
+- Portalled overlays copy those attributes from their trigger ancestor (`packages/react/src/primitives/Portal.tsx`).
+- Identity and dark sets share one cascade layer. Put `data-mizu-identity` on an ancestor of any
+  `data-theme="dark"` element. Placing both on one element, or placing identity inside a dark wrapper,
+  gives the wrong text colour in a real browser. This is still open; see the docs page.
