@@ -31,6 +31,11 @@ export default {
   },
   overrides: [
     {
+      // Warning until the fallback sweep lands; the rule itself reports at error level when asked.
+      files: ['packages/css/src/**/*.css'],
+      rules: { 'mizu/var-fallback': 'warning' },
+    },
+    {
       // Warning until the four raw hex literals in step-flow.css and date-picker.css are tokenised.
       files: ['packages/css/src/components/**/*.css'],
       rules: { 'mizu/no-hex-color': 'warning' },

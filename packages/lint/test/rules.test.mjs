@@ -16,6 +16,7 @@ const fixtures = join(here, 'fixtures');
 
 const CSS_RULES = {
   'no-hex-color': { id: 'mizu/no-hex-color', option: true },
+  'var-fallback': { id: 'mizu/var-fallback', option: 'warning' },
 };
 const JSX_RULES = {};
 
@@ -81,6 +82,17 @@ for (const [rule, { id, option }] of Object.entries(CSS_RULES)) {
     }
   });
 }
+
+describe('mizu/var-fallback severity', () => {
+  it('reports at warning level when the option is "warning"', async () => {
+    const [w] = await lintCss('var-fallback/fail-no-fallback.css', 'mizu/var-fallback', 'warning');
+    assert.equal(w.severity, 'warning');
+  });
+  it('reports at error level when the option is true', async () => {
+    const [w] = await lintCss('var-fallback/fail-no-fallback.css', 'mizu/var-fallback', true);
+    assert.equal(w.severity, 'error');
+  });
+});
 
 for (const [rule, ruleName] of Object.entries(JSX_RULES)) {
   describe(`mizu/${ruleName}`, () => {
