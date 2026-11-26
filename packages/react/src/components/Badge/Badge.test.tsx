@@ -96,9 +96,53 @@ describe('Badge', () => {
     expect(screen.getByText('L')).toHaveAttribute('data-size', 'lg');
   });
 
-  it('does not set data-size for md (default)', () => {
+  it('applies the md size by default', () => {
     render(<Badge>M</Badge>);
-    expect(screen.getByText('M')).not.toHaveAttribute('data-size');
+    expect(screen.getByText('M')).toHaveAttribute('data-size', 'md');
+  });
+
+  // -- Count accessibility --
+  it('puts the count and its label into the accessible name', () => {
+    render(<Badge count={3} label="unread messages" />);
+    expect(screen.getByRole('img', { name: '3 unread messages' })).toBeInTheDocument();
+  });
+
+  it('uses the overflowed count in the accessible name', () => {
+    render(<Badge count={150} maxCount={99} label="unread messages" />);
+    expect(screen.getByRole('img', { name: '99+ unread messages' })).toBeInTheDocument();
+  });
+
+  it('uses the bare count as the accessible name when no label is given', () => {
+    render(<Badge count={8} />);
+    expect(screen.getByRole('img', { name: '8' })).toBeInTheDocument();
+  });
+
+  it('does not add an image role to text badges', () => {
+    render(<Badge>Active</Badge>);
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  });
+
+  // -- Dot appearance --
+  it('renders a dot appearance with no visible text', () => {
+    const { container } = render(<Badge appearance="dot" tone="success" />);
+    const badge = container.querySelector('.mizu-badge');
+    expect(badge).toHaveAttribute('data-appearance', 'dot');
+    expect(badge).toBeEmptyDOMElement();
+  });
+
+  it('keeps the dot appearance label as screen-reader text', () => {
+    const { container } = render(
+      <Badge appearance="dot" tone="danger">
+        Offline
+      </Badge>,
+    );
+    expect(screen.getByText('Offline')).toHaveClass('mizu-sr-only');
+    expect(container.querySelector('.mizu-badge')).toHaveAttribute('data-appearance', 'dot');
+  });
+
+  it('does not set data-appearance by default', () => {
+    render(<Badge>Text</Badge>);
+    expect(screen.getByText('Text')).not.toHaveAttribute('data-appearance');
   });
 
   // -- className --
@@ -133,6 +177,20 @@ describe('Badge', () => {
 
   it('has no axe violations (counter)', async () => {
     const { container } = render(<Badge count={42} tone="danger" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (counter with label)', async () => {
+    const { container } = render(<Badge count={42} label="open tasks" tone="danger" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (dot appearance)', async () => {
+    const { container } = render(
+      <Badge appearance="dot" tone="warning">
+        Degraded
+      </Badge>,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 });
