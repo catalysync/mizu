@@ -2,10 +2,12 @@ import * as React from 'react';
 import { CartesianGrid, Line, LineChart as RLineChart, XAxis, YAxis } from 'recharts';
 
 import { ChartContainer } from './ChartContainer';
+import { ChartDataTable } from './ChartDataTable';
 import { ChartEmpty } from './ChartEmpty';
 import { ChartSkeleton } from './ChartSkeleton';
 import { ChartTooltip, ChartTooltipContent } from './ChartTooltip';
 import { resolveColor } from './utils/colors';
+import { cartesianTable } from './utils/dataTable';
 import { cartesianGridProps, chartTooltipProps, xAxisProps, yAxisProps } from './utils/elements';
 import { prepareData } from './utils/muncher';
 import type { ChartBaseProps, ChartConfig } from './utils/types';
@@ -62,7 +64,13 @@ function LineChartInner<K extends ChartConfig>(
       config={dataConfig}
       height={height}
       className={className}
-      role="img"
+      role="group"
+      dataTable={
+        <ChartDataTable
+          caption={props['aria-label']}
+          {...cartesianTable(data, dataConfig, yAxis?.tickFormatter)}
+        />
+      }
       {...props}
     >
       <RLineChart

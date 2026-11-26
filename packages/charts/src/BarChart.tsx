@@ -2,11 +2,13 @@ import * as React from 'react';
 import { Bar, CartesianGrid, BarChart as RBarChart, XAxis, YAxis } from 'recharts';
 
 import { ChartContainer } from './ChartContainer';
+import { ChartDataTable } from './ChartDataTable';
 import { ChartEmpty } from './ChartEmpty';
 import { ChartLegend, ChartLegendContent } from './ChartLegend';
 import { ChartSkeleton } from './ChartSkeleton';
 import { ChartTooltip, ChartTooltipContent } from './ChartTooltip';
 import { resolveColor } from './utils/colors';
+import { cartesianTable } from './utils/dataTable';
 import { cartesianGridProps, chartTooltipProps, xAxisProps, yAxisProps } from './utils/elements';
 import { prepareData } from './utils/muncher';
 import type { ChartBaseProps, ChartConfig } from './utils/types';
@@ -65,7 +67,13 @@ function BarChartInner<K extends ChartConfig>(
       config={dataConfig}
       height={height}
       className={className}
-      role="img"
+      role="group"
+      dataTable={
+        <ChartDataTable
+          caption={props['aria-label']}
+          {...cartesianTable(data, dataConfig, yAxis?.tickFormatter)}
+        />
+      }
       {...props}
     >
       <RBarChart
