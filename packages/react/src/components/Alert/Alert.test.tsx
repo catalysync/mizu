@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { createRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
-import { Alert, AlertTitle } from './Alert';
+import { Alert, AlertTitle, Callout } from './Alert';
 
 describe('Alert', () => {
   it('renders with text content', () => {
@@ -141,6 +141,49 @@ describe('Alert', () => {
         <AlertTitle>Warning</AlertTitle>
         Something might go wrong
       </Alert>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
+describe('Callout', () => {
+  it('renders with role note for info', () => {
+    render(<Callout tone="info">Tip</Callout>);
+    expect(screen.getByRole('note')).toHaveTextContent('Tip');
+  });
+
+  it('renders with role note by default', () => {
+    render(<Callout>Tip</Callout>);
+    expect(screen.getByRole('note')).toBeInTheDocument();
+  });
+
+  it('uses role alert for danger', () => {
+    render(<Callout tone="danger">Broken</Callout>);
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+  });
+
+  it('keeps the alert classes and tone', () => {
+    const { container } = render(<Callout tone="success">Done</Callout>);
+    expect(container.firstChild).toHaveClass('mizu-alert', 'mizu-alert--success');
+  });
+
+  it('lets role override the default', () => {
+    render(<Callout role="status">Live</Callout>);
+    expect(screen.getByRole('status')).toBeInTheDocument();
+  });
+
+  it('forwards ref', () => {
+    const ref = createRef<HTMLDivElement>();
+    render(<Callout ref={ref}>X</Callout>);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it('has no axe violations', async () => {
+    const { container } = render(
+      <Callout tone="info">
+        <AlertTitle>Note</AlertTitle>
+        Details
+      </Callout>,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
