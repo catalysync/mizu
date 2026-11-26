@@ -685,7 +685,8 @@
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "test": "vitest run",
+    "check:axe": "node scripts/check-axe.mjs",
+    "test": "node scripts/check-axe.mjs && vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   },
