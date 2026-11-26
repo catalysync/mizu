@@ -22,39 +22,50 @@ export interface ProgressProps
   label?: string;
   showValue?: boolean;
   indeterminate?: boolean;
+  /** Screen-reader text for the current value, e.g. "3 of 5 files". Defaults to the percentage. */
+  valueText?: string;
 }
 
 export const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   ProgressProps
->(({ className, value, max = 100, tone, label, showValue, indeterminate, ...props }, ref) => {
-  const percentage = value != null ? Math.round((value / max) * 100) : 0;
+>(
+  (
+    { className, value, max = 100, tone, label, showValue, indeterminate, valueText, ...props },
+    ref,
+  ) => {
+    // Clamp before Radix sees the value: Radix treats anything outside 0..max as indeterminate.
+    const clampedValue = value == null ? null : Math.min(max, Math.max(0, value));
+    const percentage = clampedValue == null ? 0 : Math.round((clampedValue / max) * 100);
 
-  return (
-    <div
-      data-component="mizu-progress"
-      className={cn('mizu-progress', indeterminate && 'mizu-progress--indeterminate', className)}
-    >
-      {(label || showValue) && (
-        <div className="mizu-progress__label">
-          {label && <span>{label}</span>}
-          {showValue && !indeterminate && <span>{percentage}%</span>}
-        </div>
-      )}
-      <ProgressPrimitive.Root
-        ref={ref}
-        className="mizu-progress__track"
-        value={indeterminate ? null : value}
-        max={max}
-        aria-label={label || props['aria-label'] || 'Progress'}
-        {...props}
+    return (
+      <div
+        data-component="mizu-progress"
+        data-state={indeterminate ? 'indeterminate' : 'determinate'}
+        className={cn('mizu-progress', className)}
       >
-        <ProgressPrimitive.Indicator
-          className={fillVariants({ tone })}
-          style={indeterminate ? undefined : { width: `${percentage}%` }}
-        />
-      </ProgressPrimitive.Root>
-    </div>
-  );
-});
+        {(label || showValue) && (
+          <div className="mizu-progress__label">
+            {label && <span>{label}</span>}
+            {showValue && !indeterminate && <span>{percentage}%</span>}
+          </div>
+        )}
+        <ProgressPrimitive.Root
+          ref={ref}
+          className="mizu-progress__track"
+          value={indeterminate ? null : clampedValue}
+          max={max}
+          getValueLabel={valueText ? () => valueText : undefined}
+          {...props}
+          aria-label={label || props['aria-label'] || 'Progress'}
+        >
+          <ProgressPrimitive.Indicator
+            className={fillVariants({ tone })}
+            style={indeterminate ? undefined : { width: `${percentage}%` }}
+          />
+        </ProgressPrimitive.Root>
+      </div>
+    );
+  },
+);
 Progress.displayName = 'Progress';

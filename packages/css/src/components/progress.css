@@ -38,7 +38,7 @@
   background: var(--mizu-feedback-danger-default);
 }
 
-.mizu-progress--indeterminate .mizu-progress__fill {
+.mizu-progress[data-state="indeterminate"] .mizu-progress__fill {
   width: 30%;
   animation: mizu-progress-indeterminate 1.5s ease-in-out infinite;
 }
@@ -56,7 +56,7 @@
 @media (prefers-reduced-motion: reduce) {
   .mizu-progress,
   .mizu-progress *,
-  .mizu-progress--indeterminate .mizu-progress__fill {
+  .mizu-progress[data-state="indeterminate"] .mizu-progress__fill {
     animation-duration: 0.01ms;
     animation-iteration-count: 1;
     transition-duration: 0.01ms;
