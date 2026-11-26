@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { createRef } from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import * as pkg from '../../index';
 import {
@@ -385,5 +385,166 @@ describe('TableHead scope', () => {
       </Table>,
     );
     expect(screen.getByRole('rowheader', { name: 'Ada' })).toHaveAttribute('scope', 'row');
+  });
+});
+
+describe('TableRow keyboard and selection', () => {
+  it('is not focusable or keyboard-activated without onClick', () => {
+    render(
+      <Table>
+        <TableBody>
+          <TableRow>
+            <TableCell>Static</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    const row = screen.getByRole('row');
+    expect(row).not.toHaveAttribute('tabindex');
+    expect(row).not.toHaveAttribute('data-clickable');
+  });
+
+  it('is focusable when clickable', () => {
+    render(
+      <Table>
+        <TableBody>
+          <TableRow onClick={() => {}}>
+            <TableCell>Open</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(screen.getByRole('row')).toHaveAttribute('tabindex', '0');
+  });
+
+  it('lets a caller override tabIndex', () => {
+    render(
+      <Table>
+        <TableBody>
+          <TableRow onClick={() => {}} tabIndex={-1}>
+            <TableCell>Open</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(screen.getByRole('row')).toHaveAttribute('tabindex', '-1');
+  });
+
+  it('Enter fires onClick', () => {
+    const onClick = vi.fn();
+    render(
+      <Table>
+        <TableBody>
+          <TableRow onClick={onClick}>
+            <TableCell>Open</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    fireEvent.keyDown(screen.getByRole('row'), { key: 'Enter' });
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('Space fires onClick and prevents page scroll', () => {
+    const onClick = vi.fn();
+    render(
+      <Table>
+        <TableBody>
+          <TableRow onClick={onClick}>
+            <TableCell>Open</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    const notPrevented = fireEvent.keyDown(screen.getByRole('row'), { key: ' ' });
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(notPrevented).toBe(false);
+  });
+
+  it('other keys do not fire onClick', () => {
+    const onClick = vi.fn();
+    render(
+      <Table>
+        <TableBody>
+          <TableRow onClick={onClick}>
+            <TableCell>Open</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    fireEvent.keyDown(screen.getByRole('row'), { key: 'a' });
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('keys pressed on a nested control do not fire the row onClick', () => {
+    const onClick = vi.fn();
+    render(
+      <Table>
+        <TableBody>
+          <TableRow onClick={onClick}>
+            <TableCell>
+              <button type="button">Inner</button>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    fireEvent.keyDown(screen.getByRole('button', { name: 'Inner' }), { key: 'Enter' });
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('calls a consumer onKeyDown as well', () => {
+    const onKeyDown = vi.fn();
+    render(
+      <Table>
+        <TableBody>
+          <TableRow onClick={() => {}} onKeyDown={onKeyDown}>
+            <TableCell>Open</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    fireEvent.keyDown(screen.getByRole('row'), { key: 'a' });
+    expect(onKeyDown).toHaveBeenCalledTimes(1);
+  });
+
+  it('sets aria-selected only when selectable', () => {
+    render(
+      <Table>
+        <TableBody>
+          <TableRow selectable selected>
+            <TableCell>On</TableCell>
+          </TableRow>
+          <TableRow selectable>
+            <TableCell>Off</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Plain</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    const rows = screen.getAllByRole('row');
+    expect(rows[0]).toHaveAttribute('aria-selected', 'true');
+    expect(rows[1]).toHaveAttribute('aria-selected', 'false');
+    expect(rows[2]).not.toHaveAttribute('aria-selected');
+  });
+
+  it('has no axe violations with clickable and selectable rows', async () => {
+    const { container } = render(
+      <Table caption="Orders">
+        <TableHeader>
+          <TableRow>
+            <TableHead>Order</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow selectable selected onClick={() => {}}>
+            <TableCell>#1001</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
