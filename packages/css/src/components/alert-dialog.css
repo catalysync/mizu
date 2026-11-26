@@ -16,11 +16,24 @@
   flex-direction: column;
   width: 90vw;
   max-width: 32rem;
+  max-height: 85vh;
   background: var(--mizu-surface-default, #fff);
   border-radius: var(--mizu-radius-lg);
   box-shadow: var(--mizu-shadow-xl);
   z-index: var(--mizu-z-modal);
   animation: mizu-alert-dialog-scale-in var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+.mizu-alert-dialog__content[data-size="sm"] {
+  max-width: 24rem;
+}
+
+.mizu-alert-dialog__content[data-size="lg"] {
+  max-width: 48rem;
+}
+
+.mizu-alert-dialog__content[data-size="xl"] {
+  max-width: 64rem;
 }
 
 .mizu-alert-dialog__content:focus {
@@ -44,6 +57,13 @@
   margin: var(--mizu-spacing-1) 0 0;
   font-size: var(--mizu-font-size-sm);
   color: var(--mizu-text-secondary);
+}
+
+.mizu-alert-dialog__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--mizu-spacing-5);
 }
 
 .mizu-alert-dialog__footer {

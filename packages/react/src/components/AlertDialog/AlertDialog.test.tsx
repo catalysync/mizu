@@ -5,6 +5,7 @@ import { axe } from 'vitest-axe';
 import {
   AlertDialog,
   AlertDialogAction,
+  AlertDialogBody,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -112,8 +113,71 @@ describe('AlertDialog', () => {
     expect(onAction).toHaveBeenCalled();
   });
 
+  it('applies the md size by default', () => {
+    render(<TestAlertDialog />);
+    expect(document.querySelector('.mizu-alert-dialog__content')).toHaveAttribute(
+      'data-size',
+      'md',
+    );
+  });
+
+  it('applies the requested size', () => {
+    render(
+      <AlertDialog open>
+        <AlertDialogContent size="lg">
+          <AlertDialogTitle>Wide</AlertDialogTitle>
+        </AlertDialogContent>
+      </AlertDialog>,
+    );
+    expect(document.querySelector('.mizu-alert-dialog__content')).toHaveAttribute(
+      'data-size',
+      'lg',
+    );
+  });
+
+  it('renders a body region between header and footer', () => {
+    render(
+      <AlertDialog open>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Long</AlertDialogTitle>
+          </AlertDialogHeader>
+          <AlertDialogBody>
+            <p>Body text</p>
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <AlertDialogAction>OK</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>,
+    );
+    const body = document.querySelector('.mizu-alert-dialog__body');
+    expect(body).toContainElement(screen.getByText('Body text'));
+    expect(body?.nextElementSibling).toHaveClass('mizu-alert-dialog__footer');
+  });
+
   it('has no axe violations', async () => {
     render(<TestAlertDialog />);
+    expect(await axe(document.body)).toHaveNoViolations();
+  });
+
+  it('has no axe violations with a body region', async () => {
+    render(
+      <AlertDialog open>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirm</AlertDialogTitle>
+          </AlertDialogHeader>
+          <AlertDialogBody>
+            <p>Body text</p>
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <AlertDialogCancel>No</AlertDialogCancel>
+            <AlertDialogAction>Yes</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>,
+    );
     expect(await axe(document.body)).toHaveNoViolations();
   });
 });
