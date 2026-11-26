@@ -9,13 +9,19 @@ const components = readdirSync('src/components', { withFileTypes: true })
   .map((d) => [kebab(d.name), `src/components/${d.name}/index.ts`]);
 
 export default defineConfig({
-  entry: { index: 'src/index.ts', ...Object.fromEntries(components) },
+  // Not a component: the react-hook-form adapter. Its own subpath keeps react-hook-form
+  // out of the root entry.
+  entry: {
+    index: 'src/index.ts',
+    'react-hook-form': 'src/form/index.ts',
+    ...Object.fromEntries(components),
+  },
   format: ['esm', 'cjs'],
   dts: true,
   sourcemap: true,
   clean: true,
   treeshake: true,
-  external: ['react', 'react-dom', '@mizunagara/css', '@mizunagara/tokens'],
+  external: ['react', 'react-dom', 'react-hook-form', '@mizunagara/css', '@mizunagara/tokens'],
   // 'use client' is added by ./scripts/prepend-use-client.mjs as a postbuild step,
   // because esbuild strips directive-style banners.
 });
