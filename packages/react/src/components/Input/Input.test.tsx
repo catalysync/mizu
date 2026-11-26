@@ -224,6 +224,21 @@ describe('Input', () => {
     expect(onFocus).toHaveBeenCalledOnce();
   });
 
+  it('keeps the char counter live on focus when a consumer onFocus is passed', () => {
+    const onFocus = vi.fn();
+    const onBlur = vi.fn();
+    render(<Input maxCharacters={10} onFocus={onFocus} onBlur={onBlur} aria-label="Bio" />);
+    const input = screen.getByRole('textbox');
+    const counter = screen.getByText('0/10');
+    expect(counter).toHaveAttribute('aria-live', 'off');
+    fireEvent.focus(input);
+    expect(onFocus).toHaveBeenCalledOnce();
+    expect(counter).toHaveAttribute('aria-live', 'polite');
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledOnce();
+    expect(counter).toHaveAttribute('aria-live', 'off');
+  });
+
   // -- a11y --
   it('has no axe violations (plain)', async () => {
     const { container } = render(<Input aria-label="Name" />);

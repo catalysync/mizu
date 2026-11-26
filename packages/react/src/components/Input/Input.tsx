@@ -93,6 +93,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         aria-describedby={resolvedDescribedBy}
         maxLength={maxCharacters}
         onChange={handleChange}
+        {...props}
+        /* Set after the spread so a consumer onFocus/onBlur cannot replace this handler. */
         onFocus={(e) => {
           if (maxCharacters != null) setCharCountLive('polite');
           props.onFocus?.(e);
@@ -101,7 +103,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           if (maxCharacters != null) setCharCountLive('off');
           props.onBlur?.(e);
         }}
-        {...props}
       />
     );
 
