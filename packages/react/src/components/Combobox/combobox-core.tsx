@@ -1,6 +1,7 @@
 import * as Popover from '@radix-ui/react-popover';
 import { Command as CommandPrimitive, useCommandState } from 'cmdk';
 import * as React from 'react';
+import { usePortalIdentity } from '../../primitives/Portal';
 
 // Shared by Combobox and Autocomplete. cmdk's root owns arrow/Home/End/Enter handling and
 // the listbox; the input is ours because cmdk's Command.Input hard-codes aria-expanded=true
@@ -69,29 +70,36 @@ export const ComboboxListbox = ({
   multiple,
   emptyMessage,
   children,
-}: ComboboxListboxProps) => (
-  <Popover.Portal>
-    <Popover.Content
-      className={`${block}__content`}
-      aria-label="Suggestions"
-      sideOffset={4}
-      align="start"
-      // Focus stays in the input; the list is driven through aria-activedescendant.
-      onOpenAutoFocus={(e) => e.preventDefault()}
-      // Clicks on the input must not dismiss and then immediately reopen the list.
-      onInteractOutside={(e) => {
-        if (anchorRef.current?.contains(e.target as Node)) e.preventDefault();
-      }}
-    >
-      <CommandPrimitive.List
-        ref={listRef}
-        className={`${block}__list`}
-        aria-multiselectable={multiple || undefined}
+}: ComboboxListboxProps) => {
+  // The input is the trigger, so the listbox takes its identity from there rather than from a marker.
+  const identity = usePortalIdentity<HTMLDivElement>(undefined, anchorRef);
+  return (
+    <Popover.Portal>
+      <Popover.Content
+        ref={identity.ref}
+        className={`${block}__content`}
+        aria-label="Suggestions"
+        sideOffset={4}
+        align="start"
+        // Focus stays in the input; the list is driven through aria-activedescendant.
+        onOpenAutoFocus={(e) => e.preventDefault()}
+        // Clicks on the input must not dismiss and then immediately reopen the list.
+        onInteractOutside={(e) => {
+          if (anchorRef.current?.contains(e.target as Node)) e.preventDefault();
+        }}
       >
-        {children}
-      </CommandPrimitive.List>
-      <CommandPrimitive.Empty className={`${block}__empty`}>{emptyMessage}</CommandPrimitive.Empty>
-    </Popover.Content>
-  </Popover.Portal>
-);
+        <CommandPrimitive.List
+          ref={listRef}
+          className={`${block}__list`}
+          aria-multiselectable={multiple || undefined}
+        >
+          {children}
+        </CommandPrimitive.List>
+        <CommandPrimitive.Empty className={`${block}__empty`}>
+          {emptyMessage}
+        </CommandPrimitive.Empty>
+      </Popover.Content>
+    </Popover.Portal>
+  );
+};
 ComboboxListbox.displayName = 'ComboboxListbox';

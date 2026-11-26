@@ -1,6 +1,7 @@
 import * as Menu from '@radix-ui/react-dropdown-menu';
 import * as React from 'react';
 import { ChevronRight } from '../../icons';
+import { usePortalIdentity } from '../../primitives/Portal';
 import { cn } from '../../utils/cn';
 import { MenuCheckGlyph, MenuDotGlyph } from '../../utils/menu-glyphs';
 
@@ -13,17 +14,23 @@ export const DropdownMenuRadioGroup = Menu.RadioGroup;
 export const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof Menu.Content>,
   React.ComponentPropsWithoutRef<typeof Menu.Content>
->(({ className, sideOffset = 6, ...props }, ref) => (
-  <Menu.Portal>
-    <Menu.Content
-      ref={ref}
-      sideOffset={sideOffset}
-      data-component="mizu-dropdown-menu"
-      className={cn('mizu-dropdown-menu', className)}
-      {...props}
-    />
-  </Menu.Portal>
-));
+>(({ className, sideOffset = 6, ...props }, forwardedRef) => {
+  const identity = usePortalIdentity<React.ElementRef<typeof Menu.Content>>(forwardedRef);
+  return (
+    <>
+      {identity.anchor}
+      <Menu.Portal>
+        <Menu.Content
+          ref={identity.ref}
+          sideOffset={sideOffset}
+          data-component="mizu-dropdown-menu"
+          className={cn('mizu-dropdown-menu', className)}
+          {...props}
+        />
+      </Menu.Portal>
+    </>
+  );
+});
 DropdownMenuContent.displayName = 'DropdownMenuContent';
 
 export interface DropdownMenuItemProps extends React.ComponentPropsWithoutRef<typeof Menu.Item> {
@@ -109,11 +116,21 @@ DropdownMenuSubTrigger.displayName = 'DropdownMenuSubTrigger';
 export const DropdownMenuSubContent = React.forwardRef<
   React.ElementRef<typeof Menu.SubContent>,
   React.ComponentPropsWithoutRef<typeof Menu.SubContent>
->(({ className, ...props }, ref) => (
-  <Menu.Portal>
-    <Menu.SubContent ref={ref} className={cn('mizu-dropdown-menu', className)} {...props} />
-  </Menu.Portal>
-));
+>(({ className, ...props }, forwardedRef) => {
+  const identity = usePortalIdentity<React.ElementRef<typeof Menu.SubContent>>(forwardedRef);
+  return (
+    <>
+      {identity.anchor}
+      <Menu.Portal>
+        <Menu.SubContent
+          ref={identity.ref}
+          className={cn('mizu-dropdown-menu', className)}
+          {...props}
+        />
+      </Menu.Portal>
+    </>
+  );
+});
 DropdownMenuSubContent.displayName = 'DropdownMenuSubContent';
 
 export const DropdownMenuLabel = React.forwardRef<

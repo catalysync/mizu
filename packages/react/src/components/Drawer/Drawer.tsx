@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import * as React from 'react';
+import { usePortalIdentity } from '../../primitives/Portal';
 import { cn } from '../../utils/cn';
 
 export type DrawerSide = 'left' | 'right' | 'top' | 'bottom';
@@ -17,37 +18,43 @@ export interface DrawerContentProps extends React.ComponentPropsWithoutRef<typeo
 export const DrawerContent = React.forwardRef<
   React.ElementRef<typeof Dialog.Content>,
   DrawerContentProps
->(({ className, children, side = 'right', closeButton = true, ...props }, ref) => (
-  <Dialog.Portal>
-    <Dialog.Overlay className="mizu-drawer__overlay" />
-    <Dialog.Content
-      ref={ref}
-      data-component="mizu-drawer"
-      className={cn('mizu-drawer__content', className)}
-      data-side={side}
-      {...props}
-    >
-      {children}
-      {closeButton ? (
-        <Dialog.Close className="mizu-drawer__close" aria-label="Close">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            width="16"
-            height="16"
-            aria-hidden="true"
-          >
-            <path d="M18 6 6 18M6 6l12 12" />
-          </svg>
-        </Dialog.Close>
-      ) : null}
-    </Dialog.Content>
-  </Dialog.Portal>
-));
+>(({ className, children, side = 'right', closeButton = true, ...props }, forwardedRef) => {
+  const identity = usePortalIdentity<React.ElementRef<typeof Dialog.Content>>(forwardedRef);
+  return (
+    <>
+      {identity.anchor}
+      <Dialog.Portal>
+        <Dialog.Overlay ref={identity.applyIdentity} className="mizu-drawer__overlay" />
+        <Dialog.Content
+          ref={identity.ref}
+          data-component="mizu-drawer"
+          className={cn('mizu-drawer__content', className)}
+          data-side={side}
+          {...props}
+        >
+          {children}
+          {closeButton ? (
+            <Dialog.Close className="mizu-drawer__close" aria-label="Close">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                width="16"
+                height="16"
+                aria-hidden="true"
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </Dialog.Close>
+          ) : null}
+        </Dialog.Content>
+      </Dialog.Portal>
+    </>
+  );
+});
 DrawerContent.displayName = 'DrawerContent';
 
 export const DrawerHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(

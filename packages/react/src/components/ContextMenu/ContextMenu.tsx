@@ -1,5 +1,6 @@
 import * as Menu from '@radix-ui/react-context-menu';
 import * as React from 'react';
+import { usePortalIdentity } from '../../primitives/Portal';
 import { cn } from '../../utils/cn';
 import { MenuCheckGlyph, MenuDotGlyph } from '../../utils/menu-glyphs';
 
@@ -12,16 +13,22 @@ export const ContextMenuRadioGroup = Menu.RadioGroup;
 export const ContextMenuContent = React.forwardRef<
   React.ElementRef<typeof Menu.Content>,
   React.ComponentPropsWithoutRef<typeof Menu.Content>
->(({ className, ...props }, ref) => (
-  <Menu.Portal>
-    <Menu.Content
-      ref={ref}
-      data-component="mizu-context-menu"
-      className={cn('mizu-context-menu', className)}
-      {...props}
-    />
-  </Menu.Portal>
-));
+>(({ className, ...props }, forwardedRef) => {
+  const identity = usePortalIdentity<React.ElementRef<typeof Menu.Content>>(forwardedRef);
+  return (
+    <>
+      {identity.anchor}
+      <Menu.Portal>
+        <Menu.Content
+          ref={identity.ref}
+          data-component="mizu-context-menu"
+          className={cn('mizu-context-menu', className)}
+          {...props}
+        />
+      </Menu.Portal>
+    </>
+  );
+});
 ContextMenuContent.displayName = 'ContextMenuContent';
 
 export interface ContextMenuItemProps extends React.ComponentPropsWithoutRef<typeof Menu.Item> {
