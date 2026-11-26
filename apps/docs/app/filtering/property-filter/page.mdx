@@ -61,6 +61,32 @@ function FilteredTable() {
 
 The query object uses the format `{ operation: 'and' | 'or', tokens: [...] }` where each token has `propertyKey`, `operator`, and `value`.
 
+## Typing a filter
+
+Users can type a filter instead of picking it from the list. The input reads the operator from the text:
+
+- `Status = running` or `Status: running` adds an equality token
+- `Status != idle` adds a not-equal token
+- `Framework contains react` adds a `contains` token. Word operators (`contains`, `startsWith`) need spaces around them.
+
+The property is matched by its `label` or its `key`, without regard to case. A bare `:` means `=` unless the property only allows other operators. If the operator is not in the property's `operators` list, the text does not produce a token.
+
+## Keyboard
+
+| Key                     | Action                                                                                                      |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `ArrowDown` / `ArrowUp` | Move the highlight through the suggestions                                                                  |
+| `Enter`                 | Select the highlighted suggestion. With no highlight, adds a token from the typed text when it is complete. |
+| `Escape`                | Close the suggestion list                                                                                   |
+
+Selecting a property suggestion fills the input with `Label: ` and keeps the list open, so the next step offers that property's known `options`. Selecting a value adds the token and clears the input.
+
+The input is a `combobox` with `aria-autocomplete="list"`. The highlighted suggestion is exposed through `aria-activedescendant`.
+
+## Removing filters
+
+Each pill has a remove button labelled `Remove <property> filter`. When there are two or more tokens, a `Clear all` button removes them all. Both call `onQueryChange` with the new query. The component does not change the query on its own.
+
 ## Types
 
 ```tsx
@@ -94,6 +120,8 @@ interface PropertyFilterQuery {
 | `properties`    | `PropertyFilterProperty[]`             | —                               | Available filter properties                     |
 | `placeholder`   | `string`                               | `'Filter by property or value'` | Input placeholder                               |
 | `countText`     | `string`                               | —                               | Text shown next to the input (e.g. "3 matches") |
+
+Other props are passed to the wrapper `div`, and the ref points to it.
 
 ## When to use
 
