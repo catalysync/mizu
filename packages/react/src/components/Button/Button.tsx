@@ -66,6 +66,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const handleClick = React.useCallback(
       (e: React.MouseEvent<HTMLButtonElement>) => {
+        // Loading uses aria-disabled rather than the disabled attribute so the button keeps
+        // focus. Enter/Space still fire click, so the guard also cancels the default action
+        // (form submission for type="submit", navigation for asChild links).
+        if (isLoading) {
+          e.preventDefault();
+          return;
+        }
         const result = onClick?.(e);
         if (result && typeof (result as { then?: unknown }).then === 'function') {
           setAutoLoading(true);
@@ -77,7 +84,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           });
         }
       },
-      [onClick],
+      [onClick, isLoading],
     );
 
     const Comp = asChild ? Slot : 'button';
@@ -90,8 +97,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         data-inverse={inverse || undefined}
         data-full-width={fullWidth || undefined}
         aria-busy={isLoading || undefined}
+        aria-disabled={isLoading || undefined}
         type={asChild ? undefined : type}
-        disabled={disabled ?? isLoading}
+        disabled={disabled}
         onClick={handleClick}
         {...props}
       >
