@@ -1,0 +1,17 @@
+{
+  "extends": "@mizunagara/tsconfig/base.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "rootDir": "src",
+    "outDir": "dist",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022"],
+    "types": []
+  },
+  "include": ["src/**/*.mjs"]
+}
