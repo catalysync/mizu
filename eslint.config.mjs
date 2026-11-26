@@ -10,6 +10,7 @@ import storybook from 'eslint-plugin-storybook';
 import testingLibrary from 'eslint-plugin-testing-library';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import { eslintPlugin as mizuPlugin } from './packages/lint/src/eslint.mjs';
 
 export default tseslint.config(
   {
@@ -77,6 +78,22 @@ export default tseslint.config(
     rules: {
       'react-hooks/rules-of-hooks': 'off',
     },
+  },
+  {
+    // Accessibility rules from @mizunagara/lint. Warnings for now: the React components have
+    // not been swept against them yet. Flip to error once the sweep is clean.
+    files: ['packages/react/src/**/*.{ts,tsx}'],
+    plugins: { mizu: mizuPlugin },
+    rules: {
+      'mizu/icon-button-label': 'warn',
+      'mizu/aria-invalid-bound-style': 'warn',
+      'mizu/no-static-click': 'warn',
+    },
+  },
+  {
+    // Tests set aria-invalid to assert on it; they do not render the error style.
+    files: ['packages/react/src/**/*.test.{ts,tsx}'],
+    rules: { 'mizu/aria-invalid-bound-style': 'off' },
   },
   ...storybook.configs['flat/recommended'],
   prettier,

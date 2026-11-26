@@ -19,7 +19,11 @@ const CSS_RULES = {
   'var-fallback': { id: 'mizu/var-fallback', option: 'warning' },
   'identity-tokens-only': { id: 'mizu/identity-tokens-only', option: true },
 };
-const JSX_RULES = {};
+const JSX_RULES = {
+  'icon-button-label': 'icon-button-label',
+  'aria-invalid-bound-style': 'aria-invalid-bound-style',
+  'no-static-click': 'no-static-click',
+};
 
 async function lintCss(file, ruleId, option) {
   const code = readFileSync(join(fixtures, dirname(file), '..', file), 'utf8');
