@@ -77,9 +77,9 @@ writeFileSync(
   `@layer mizu.tokens, mizu.base, mizu.components, mizu.shell, mizu.identity;\n@layer mizu.tokens {\n${vars.trimEnd()}\n:root {\n  color-scheme: light;\n}\n}\n`,
 );
 
+// Fails loudly if Style Dictionary changes the scope line; a silent miss would drop color-scheme.
 const darkOut = 'dist/css/dark.css';
-writeFileSync(
-  darkOut,
-  readFileSync(darkOut, 'utf8').replace(/(\[data-theme="dark"\] \{\n)/, '$1  color-scheme: dark;\n'),
-);
-
+const dark = readFileSync(darkOut, 'utf8');
+const darkScope = /\[data-theme="dark"\] \{\n/;
+if (!darkScope.test(dark)) throw new Error('build tokens: dark.css scope selector not found');
+writeFileSync(darkOut, dark.replace(darkScope, (scope) => `${scope}  color-scheme: dark;\n`));
