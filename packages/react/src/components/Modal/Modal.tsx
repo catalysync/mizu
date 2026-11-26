@@ -10,14 +10,21 @@ export type ModalSize = 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen';
 
 export interface ModalContentProps extends React.ComponentPropsWithoutRef<typeof Dialog.Content> {
   size?: ModalSize;
+  /** Extra classes for the scrim behind the content. */
+  overlayClassName?: string;
+  /** Extra props for the scrim, e.g. `id` or `data-*` hooks. */
+  overlayProps?: React.ComponentPropsWithoutRef<typeof Dialog.Overlay>;
 }
 
 export const ModalContent = React.forwardRef<
   React.ElementRef<typeof Dialog.Content>,
   ModalContentProps
->(({ className, children, size = 'md', ...props }, ref) => (
+>(({ className, children, size = 'md', overlayClassName, overlayProps, ...props }, ref) => (
   <Dialog.Portal>
-    <Dialog.Overlay className="mizu-dialog__overlay" />
+    <Dialog.Overlay
+      {...overlayProps}
+      className={cn('mizu-dialog__overlay', overlayClassName, overlayProps?.className)}
+    />
     <Dialog.Content
       ref={ref}
       data-component="mizu-modal"

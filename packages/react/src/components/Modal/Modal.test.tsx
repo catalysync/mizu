@@ -136,3 +136,25 @@ describe('Modal', () => {
     expect(await axe(document.body)).toHaveNoViolations();
   });
 });
+
+describe('ModalContent overlay props', () => {
+  it('applies overlayClassName and overlayProps to the scrim', () => {
+    render(
+      <Modal open>
+        <ModalContent
+          overlayClassName="brand-scrim"
+          overlayProps={{ id: 'scrim', className: 'extra-scrim' }}
+        >
+          <ModalBody>Body</ModalBody>
+        </ModalContent>
+      </Modal>,
+    );
+    const overlay = document.getElementById('scrim');
+    expect(overlay).toHaveClass('mizu-dialog__overlay', 'brand-scrim', 'extra-scrim');
+  });
+
+  it('keeps the default scrim class when no overlay props are passed', () => {
+    render(<TestModal />);
+    expect(document.querySelector('.mizu-dialog__overlay')).toHaveClass('mizu-dialog__overlay');
+  });
+});
