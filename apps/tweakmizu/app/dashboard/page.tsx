@@ -15,7 +15,7 @@ export default function DashboardPage() {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-5xl px-4 py-10">
-          <Stack gap="2rem">
+          <Stack gap="8">
             <Button asChild variant="ghost" size="sm" className="self-start">
               <Link href="/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -23,7 +23,7 @@ export default function DashboardPage() {
               </Link>
             </Button>
 
-            <Stack gap="0.5rem">
+            <Stack gap="2">
               <h1 className="text-foreground text-3xl font-bold tracking-tight md:text-4xl">
                 Dashboard
               </h1>

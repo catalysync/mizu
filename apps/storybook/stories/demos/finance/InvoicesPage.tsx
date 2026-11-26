@@ -59,7 +59,7 @@ export function InvoicesPage() {
   const totalOpen = invoices.filter((i) => i.status !== 'paid').length;
 
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppContentHeader
         title="Invoices"
         description={`${invoices.length} total · ${totalOpen} outstanding`}
@@ -75,7 +75,7 @@ export function InvoicesPage() {
 
       <Card>
         <CardBody>
-          <Stack gap="1rem">
+          <Stack gap="4">
             <Inline gap="0.5rem" align="center" className="finance-demo__between">
               <Inline gap="0.25rem">
                 {STATUSES.map((s) => (
@@ -195,7 +195,7 @@ function InvoiceDrawer({ invoice }: { invoice: Invoice }) {
         <Badge tone={toneFor(invoice.status)}>{invoice.status}</Badge>
       </DrawerHeader>
       <DrawerBody>
-        <Stack gap="1rem">
+        <Stack gap="4">
           <Field label="Customer">
             <Input defaultValue={invoice.customerName} />
           </Field>
@@ -212,7 +212,7 @@ function InvoiceDrawer({ invoice }: { invoice: Invoice }) {
             </div>
           </Inline>
 
-          <Stack gap="0.25rem">
+          <Stack gap="1">
             <strong>Line items</strong>
             <div className="finance-demo__drawer-lines">
               {lines.map((line) => (
@@ -226,7 +226,7 @@ function InvoiceDrawer({ invoice }: { invoice: Invoice }) {
             </div>
           </Stack>
 
-          <Stack gap="0.25rem" className="finance-demo__subtotal">
+          <Stack gap="1" className="finance-demo__subtotal">
             <Row label="Subtotal" value={formatCurrency(subtotal)} />
             <Row label="Tax" value={formatCurrency(tax)} />
             <Row label="Total" value={formatCurrency(total)} strong />

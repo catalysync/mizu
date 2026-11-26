@@ -34,7 +34,7 @@ const SECTIONS: { id: Section; label: string }[] = [
 export function SettingsPage() {
   const [active, setActive] = useState<Section>('general');
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppContentHeader
         title="Settings"
         description="Manage your company profile, tax rules, users, and integrations."
@@ -42,7 +42,7 @@ export function SettingsPage() {
 
       <div className="finance-demo__settings">
         <nav aria-label="Settings sections">
-          <Stack gap="0.125rem">
+          <Stack gap="1">
             {SECTIONS.map((s) => (
               <button
                 key={s.id}
@@ -89,7 +89,7 @@ function GeneralSection() {
       }
     >
       <Fieldset legend="Identity">
-        <Stack gap="0.75rem">
+        <Stack gap="3">
           <Field label="Company name" required>
             <Input defaultValue="Aspect Labs Inc." />
           </Field>
@@ -102,7 +102,7 @@ function GeneralSection() {
         </Stack>
       </Fieldset>
       <Fieldset legend="Address">
-        <Stack gap="0.75rem">
+        <Stack gap="3">
           <Field label="Street" required>
             <Input defaultValue="101 Harbor Way" />
           </Field>
@@ -156,7 +156,7 @@ function TaxSection() {
         <Input defaultValue="EIN 12-3456789" />
       </Field>
       <Fieldset legend="Reporting">
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           <Inline gap="0.75rem" align="center">
             <Switch defaultChecked aria-label="Collect tax on exports" />
             <span>Collect tax on exports</span>
@@ -173,7 +173,7 @@ function TaxSection() {
 
 function IntegrationsSection() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <h3 className="finance-demo__section-title">Integrations</h3>
       <p className="finance-demo__section-desc">
         Connect your bank, payment processor, and accounting tools.
@@ -187,7 +187,7 @@ function IntegrationsSection() {
         <Card key={i.name}>
           <CardBody>
             <Inline gap="1rem" align="center" className="finance-demo__between">
-              <Stack gap="0.125rem">
+              <Stack gap="1">
                 <strong>{i.name}</strong>
                 <span className="finance-demo__muted-sm">{i.desc}</span>
               </Stack>
@@ -239,7 +239,7 @@ function UsersSection() {
 
 function BillingSection() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <h3 className="finance-demo__section-title">Billing</h3>
       <p className="finance-demo__section-desc">
         You&apos;re on the <strong>Team</strong> plan — $49/month, billed annually.
@@ -254,7 +254,7 @@ function BillingSection() {
 
 function DataSection() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <h3 className="finance-demo__section-title">Data export</h3>
       <p className="finance-demo__section-desc">
         Download a full copy of your data in CSV or JSON.

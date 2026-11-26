@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Horizontal: Story = {
   render: () => (
-    <Stack gap="1rem" className="story-md">
+    <Stack gap="4" className="story-md">
       <p className="mizu-body">Above the separator</p>
       <Separator />
       <p className="mizu-body">Below the separator</p>

@@ -50,7 +50,7 @@ export function SignInForm() {
 
   return (
     <form onSubmit={handleSubmit} aria-label="Sign in form">
-      <Stack gap="1rem">
+      <Stack gap="4">
         <Inline gap="0.5rem" align="center">
           <Button
             type="button"

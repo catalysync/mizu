@@ -53,7 +53,7 @@ export const HiddenSteppers: Story = {
 
 export const InsideField: Story = {
   render: () => (
-    <Stack gap="1rem" style={{ maxWidth: 360 }}>
+    <Stack gap="4" style={{ maxWidth: 360 }}>
       <Field label="Quantity" required>
         <NumberInput defaultValue={1} min={1} max={99} />
       </Field>
@@ -71,7 +71,7 @@ export const Controlled: Story = {
   render: () => {
     const [value, setValue] = useState<number | null>(10);
     return (
-      <Stack gap="0.5rem">
+      <Stack gap="2">
         <Field label="Quantity">
           <NumberInput value={value} onValueChange={setValue} min={0} max={100} />
         </Field>

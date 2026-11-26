@@ -92,9 +92,9 @@ function QueryToTableDemo() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Card>
-        <Stack gap="0.75rem">
+        <Stack gap="3">
           <MizuQueryBuilder fields={fields} query={query} onQueryChange={setQuery} />
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <Button onClick={runQuery} loading={loading}>

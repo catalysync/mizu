@@ -86,7 +86,7 @@ function FilterComparisonDemo() {
   const [raqbOutput, setRaqbOutput] = React.useState('');
 
   return (
-    <Stack gap="2rem">
+    <Stack gap="8">
       <div>
         <h3 className="mizu-heading-sm" style={{ marginBottom: '0.5rem' }}>
           1. FilterBar

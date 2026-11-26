@@ -41,8 +41,8 @@ export function EditorPreviewPanel({ styles }: Props) {
         fontFamily: 'var(--mizu-font-family-sans)',
       }}
     >
-      <Stack gap="1.5rem">
-        <Stack gap="0.5rem">
+      <Stack gap="6">
+        <Stack gap="2">
           <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 600 }}>Theme preview</h3>
           <p style={{ margin: 0, color: 'var(--mizu-text-secondary)', fontSize: '0.875rem' }}>
             Every component below reads from the tokens you edit on the left.
@@ -55,7 +55,7 @@ export function EditorPreviewPanel({ styles }: Props) {
             description="Update your team profile and notification preferences."
           />
           <CardBody>
-            <Stack gap="1rem">
+            <Stack gap="4">
               <Field label="Team name">
                 <Input defaultValue="Aspect Labs" />
               </Field>
@@ -79,7 +79,7 @@ export function EditorPreviewPanel({ styles }: Props) {
           </CardFooter>
         </Card>
 
-        <Stack gap="0.75rem">
+        <Stack gap="3">
           <h4
             style={{
               margin: 0,
@@ -99,7 +99,7 @@ export function EditorPreviewPanel({ styles }: Props) {
           </Inline>
         </Stack>
 
-        <Stack gap="0.75rem">
+        <Stack gap="3">
           <h4
             style={{
               margin: 0,

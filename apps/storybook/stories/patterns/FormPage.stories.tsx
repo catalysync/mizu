@@ -31,13 +31,13 @@ type Story = StoryObj<typeof meta>;
 
 export const CreateResource: Story = {
   render: () => (
-    <Stack gap="1.5rem" className="story-lg">
+    <Stack gap="6" className="story-lg">
       <AppBreadcrumbs items={[{ label: 'Apps', href: '#' }, { label: 'Create app' }]} />
       <AppContentHeader title="Create app" description="Deploy a new application." />
       <Card>
         <CardHeader title="General" />
         <CardBody>
-          <Stack gap="1rem">
+          <Stack gap="4">
             <FormGroup label="App name" htmlFor="f-name">
               <Input id="f-name" placeholder="my-awesome-app" />
             </FormGroup>
@@ -66,7 +66,7 @@ export const CreateResource: Story = {
       <Card>
         <CardHeader title="Settings" />
         <CardBody>
-          <Stack gap="1rem">
+          <Stack gap="4">
             <Inline gap="0.5rem" align="center">
               <Switch id="f-auto" aria-label="Auto-deploy" defaultChecked />
               <label htmlFor="f-auto" className="mizu-body--sm">

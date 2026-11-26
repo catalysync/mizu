@@ -82,7 +82,7 @@ const PLAN_TONE: Record<Contact['plan'], 'neutral' | 'info' | 'success' | 'warni
 
 function Preview() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Inline gap="0.75rem" align="center">
         <Input size="sm" placeholder="Search contacts…" aria-label="Search contacts" />
         <Button size="sm" variant="primary">
@@ -105,7 +105,7 @@ function Preview() {
             {contacts.map((c) => (
               <TableRow key={c.id}>
                 <TableCell>
-                  <Stack gap="0.125rem" align="start">
+                  <Stack gap="1" align="start">
                     <strong>{c.name}</strong>
                     <span style={{ color: 'var(--mizu-text-secondary)', fontSize: '0.75rem' }}>
                       {c.email}

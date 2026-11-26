@@ -44,7 +44,7 @@ function Preview() {
       <Card>
         <CardHeader title="Accounts" description="Your balances across all linked accounts" />
         <CardBody>
-          <Stack gap="0">
+          <Stack gap="none">
             {accounts.map((a) => (
               <AccountSummary
                 key={a.id}
@@ -59,7 +59,7 @@ function Preview() {
       <Card>
         <CardHeader title="Recent transactions" description="Last 5 movements" />
         <CardBody>
-          <Stack gap="0">
+          <Stack gap="none">
             {transactions.map((t) => (
               <TransactionRow
                 key={t.id}

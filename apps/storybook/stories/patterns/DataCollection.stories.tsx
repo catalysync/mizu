@@ -103,7 +103,7 @@ export const ThreeViews: Story = {
             {data.map((c) => (
               <Card key={c.id}>
                 <CardBody>
-                  <Stack gap="0.5rem">
+                  <Stack gap="2">
                     <Inline justify="between" align="center">
                       <Heading level={3} size="sm">
                         {c.name}
@@ -119,12 +119,12 @@ export const ThreeViews: Story = {
           </Grid>
         )}
         renderList={(data) => (
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             {data.map((c) => (
               <Card key={c.id}>
                 <CardBody>
                   <Inline justify="between" align="center">
-                    <Stack gap="0.25rem">
+                    <Stack gap="1">
                       <strong>{c.name}</strong>
                       <span style={{ color: 'var(--mizu-text-secondary)', fontSize: 14 }}>
                         {c.email}
@@ -151,7 +151,7 @@ export const Loading: Story = {
       data={[]}
       loading
       loadingFallback={
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           {Array.from({ length: 3 }, (_, i) => (
             <Skeleton key={i} variant="text" width="100%" />
           ))}

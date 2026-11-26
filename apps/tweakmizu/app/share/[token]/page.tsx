@@ -38,8 +38,8 @@ export default async function SharePage({ params }: Props) {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-5xl px-4 py-10">
-          <Stack gap="1.5rem">
-            <Stack gap="0.5rem">
+          <Stack gap="6">
+            <Stack gap="2">
               <Badge tone="info">Shared project</Badge>
               <h1 className="text-foreground text-3xl font-bold tracking-tight md:text-4xl">
                 {plan.intent.productName}

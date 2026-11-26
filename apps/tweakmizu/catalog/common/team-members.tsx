@@ -66,7 +66,7 @@ const ROLE_TONE: Record<Member['role'], 'success' | 'info' | 'neutral'> = {
 
 function Preview() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <span className="text-muted-foreground text-sm">
           {members.length} members · {members.filter((m) => m.status === 'invited').length} pending
@@ -91,7 +91,7 @@ function Preview() {
             {members.map((m) => (
               <TableRow key={m.id}>
                 <TableCell>
-                  <Stack gap="0.125rem" align="start">
+                  <Stack gap="1" align="start">
                     <strong>{m.name}</strong>
                     <span
                       style={{

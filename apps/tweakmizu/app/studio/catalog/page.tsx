@@ -9,8 +9,8 @@ export const metadata = {
 
 export default function StudioCatalog() {
   return (
-    <Stack gap="2rem">
-      <Stack gap="0.5rem">
+    <Stack gap="8">
+      <Stack gap="2">
         <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
           Catalog
         </span>

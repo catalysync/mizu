@@ -22,7 +22,7 @@ function QueryBuilderDemo() {
   });
 
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <MizuQueryBuilder fields={fields} query={query} onQueryChange={setQuery} />
       <Card>
         <pre style={{ margin: 0, fontSize: '0.8125rem', whiteSpace: 'pre-wrap' }}>
@@ -40,7 +40,7 @@ function QueryBuilderEmptyDemo() {
   });
 
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <MizuQueryBuilder fields={fields} query={query} onQueryChange={setQuery} />
       <Card>
         <pre style={{ margin: 0, fontSize: '0.8125rem' }}>{formatQuery(query, 'json')}</pre>

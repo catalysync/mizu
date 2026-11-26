@@ -44,7 +44,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <AppContentHeader
         title="Apps"
         description="5 applications"

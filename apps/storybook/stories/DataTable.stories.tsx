@@ -101,7 +101,7 @@ export const Selectable: Story = {
   render: () => {
     const [selected, setSelected] = useState<Set<string>>(new Set(['1', '4']));
     return (
-      <Stack gap="0.5rem">
+      <Stack gap="2">
         <DataTable
           columns={COLUMNS}
           data={DATA}
@@ -129,7 +129,7 @@ export const Expandable: Story = {
         expandedIds={expanded}
         onExpandChange={setExpanded}
         renderExpanded={(r) => (
-          <Stack gap="0.25rem">
+          <Stack gap="1">
             <strong>{r.name}</strong>
             <span>Email: {r.email}</span>
             <span>Balance: ${r.balance.toLocaleString()}</span>
