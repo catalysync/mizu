@@ -24,7 +24,8 @@ if (!own) {
 }
 
 const requireFromTsup = createRequire(createRequire(join(pkgDir, 'package.json')).resolve('tsup'));
-const esbuild = await import(requireFromTsup.resolve('esbuild'));
+// esbuild is resolved from tsup's own dependency tree (not user input).
+const esbuild = requireFromTsup('esbuild');
 
 const result = await esbuild.build({
   entryPoints: [join(pkgDir, 'src/components', own, 'index.ts')],
