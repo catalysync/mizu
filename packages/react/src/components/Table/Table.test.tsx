@@ -150,8 +150,8 @@ describe('Table', () => {
     expect(screen.getByText('Customer list')).toBeInTheDocument();
   });
 
-  it('merges custom className on Table', () => {
-    render(
+  it('puts className on the scroll wrapper, not the table', () => {
+    const { container } = render(
       <Table className="custom">
         <TableBody>
           <TableRow>
@@ -160,11 +160,12 @@ describe('Table', () => {
         </TableBody>
       </Table>,
     );
-    expect(screen.getByRole('table')).toHaveClass('custom');
+    expect(container.querySelector('.mizu-table-wrapper')).toHaveClass('custom');
+    expect(screen.getByRole('table')).not.toHaveClass('custom');
   });
 
-  it('forwards ref', () => {
-    const ref = createRef<HTMLTableElement>();
+  it('forwards ref to the scroll wrapper', () => {
+    const ref = createRef<HTMLDivElement>();
     render(
       <Table ref={ref}>
         <TableBody>
@@ -174,7 +175,34 @@ describe('Table', () => {
         </TableBody>
       </Table>,
     );
-    expect(ref.current).toBeInstanceOf(HTMLTableElement);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
+    expect(ref.current).toHaveClass('mizu-table-wrapper');
+  });
+
+  it('applies bordered, striped and stickyFirstColumn as modifier classes', () => {
+    render(
+      <Table bordered striped stickyFirstColumn>
+        <TableBody>
+          <TableRow>
+            <TableCell>X</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    const table = screen.getByRole('table');
+    expect(table).toHaveClass(
+      'mizu-table--bordered',
+      'mizu-table--striped',
+      'mizu-table--sticky-first',
+    );
+  });
+
+  it('applies no modifier classes by default', () => {
+    render(<BasicTable />);
+    const table = screen.getByRole('table');
+    expect(table).not.toHaveClass('mizu-table--bordered');
+    expect(table).not.toHaveClass('mizu-table--striped');
+    expect(table).not.toHaveClass('mizu-table--sticky-first');
   });
 
   it('has no axe violations', async () => {

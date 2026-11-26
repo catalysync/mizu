@@ -4,24 +4,50 @@ import { cn } from '../../utils/cn';
 export type TableDensity = 'compact' | 'default' | 'comfortable';
 
 export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> {
+  /** Applied to the scroll wrapper, not the `<table>`. Ref and style follow the same rule. */
+  className?: string;
+  style?: React.CSSProperties;
   density?: TableDensity;
   stickyHeader?: boolean;
+  striped?: boolean;
+  bordered?: boolean;
+  stickyFirstColumn?: boolean;
 }
 
-export const Table = React.forwardRef<HTMLTableElement, TableProps>(
-  ({ className, density = 'default', stickyHeader, children, ...props }, ref) => (
-    <div className="mizu-table-wrapper">
-      <table
-        ref={ref}
-        data-component="mizu-table"
-        className={cn('mizu-table', stickyHeader && 'mizu-table--sticky', className)}
-        data-density={density === 'default' ? undefined : density}
-        {...props}
-      >
-        {children}
-      </table>
-    </div>
-  ),
+export const Table = React.forwardRef<HTMLDivElement, TableProps>(
+  (
+    {
+      className,
+      style,
+      density = 'default',
+      stickyHeader,
+      striped,
+      bordered,
+      stickyFirstColumn,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    return (
+      <div ref={ref} className={cn('mizu-table-wrapper', className)} style={style}>
+        <table
+          data-component="mizu-table"
+          className={cn(
+            'mizu-table',
+            stickyHeader && 'mizu-table--sticky',
+            striped && 'mizu-table--striped',
+            bordered && 'mizu-table--bordered',
+            stickyFirstColumn && 'mizu-table--sticky-first',
+          )}
+          data-density={density === 'default' ? undefined : density}
+          {...props}
+        >
+          {children}
+        </table>
+      </div>
+    );
+  },
 );
 Table.displayName = 'Table';
 
@@ -48,6 +74,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
      * semantically interactive. Surface a data attribute so CSS can attach
      * cursor + hover affordance without each consumer hand-rolling them. */
     const interactive = !!onClick || props.role === 'button';
+
     return (
       <tr
         ref={ref}
