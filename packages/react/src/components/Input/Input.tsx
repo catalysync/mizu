@@ -23,7 +23,8 @@ export interface InputProps
   extends
     Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'>,
     VariantProps<typeof inputVariants> {
-  error?: string | boolean;
+  /** Marks the input invalid. Show the message with `<Field errorMessage="...">`. */
+  error?: boolean;
   warning?: string | boolean;
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
@@ -61,13 +62,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const ctx = useFieldContext();
 
     const inputId = id ?? ctx?.controlId;
-    const errorId = error && typeof error === 'string' ? `${inputId}-error` : undefined;
 
     const resolvedRequired = required ?? ctx?.required;
     const resolvedDisabled = disabled ?? ctx?.disabled;
     const resolvedInvalid = ariaInvalidProp ?? (!!error || ctx?.invalid || undefined);
+    // Only ids of nodes Field actually renders; Input no longer renders its own error or help text.
     const resolvedDescribedBy =
-      [errorId, ctx?.descriptionId, ctx?.errorId, ariaDescribedByProp].filter(Boolean).join(' ') ||
+      [ctx?.descriptionId, ctx?.errorId, ariaDescribedByProp].filter(Boolean).join(' ') ||
       undefined;
 
     const hasAdornments = prefix != null || suffix != null;
@@ -122,19 +123,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       inputEl
     );
 
-    if (!error && maxCharacters == null) return input;
+    const showWarning = typeof warning === 'string' && warning !== '' && !error;
+    if (!showWarning && maxCharacters == null) return input;
 
     return (
       <div className="mizu-form-group">
         {input}
-        {error && typeof error === 'string' && (
-          <span id={errorId} className="mizu-form-group__error">
-            {error}
-          </span>
-        )}
-        {warning && typeof warning === 'string' && !error && (
-          <span className="mizu-form-group__warning">{warning}</span>
-        )}
+        {showWarning && <span className="mizu-form-group__warning">{warning}</span>}
         {maxCharacters != null ? (
           <span className="mizu-form-group__char-count" aria-live={charCountLive}>
             {charCount}/{maxCharacters}

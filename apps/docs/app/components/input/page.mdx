@@ -41,6 +41,16 @@ Wrap the input in `Field`. Its `label` and `description` props render the label 
 
 Move each `label` to `Field`'s `label` prop and each `helpText` to `Field`'s `description` prop, then search your code for `label=` and `helpText=` on `<Input>` tags to find the rest.
 
+## Error state
+
+Set `error` on the input for the invalid styling, and pass the message to `Field`. `Field` renders the message and links it to the input with `aria-describedby`.
+
+```tsx
+<Field label="Price" errorMessage="Must be greater than 0">
+  <Input error />
+</Field>
+```
+
 ## Sizes
 
 ```tsx
@@ -51,13 +61,11 @@ Move each `label` to `Field`'s `label` prop and each `helpText` to `Field`'s `de
 
 ## Props
 
-| Prop       | Type                   | Default | Description                |
-| ---------- | ---------------------- | ------- | -------------------------- |
-| `size`     | `'sm' \| 'md' \| 'lg'` | `'md'`  | Input height               |
-| `label`    | `string`               | —       | Auto-wraps in a form group |
-| `error`    | `string \| boolean`    | —       | Error message or state     |
-| `helpText` | `ReactNode`            | —       | Help text below            |
-| `disabled` | `boolean`              | `false` | Disables the input         |
+| Prop       | Type                   | Default | Description             |
+| ---------- | ---------------------- | ------- | ----------------------- |
+| `size`     | `'sm' \| 'md' \| 'lg'` | `'md'`  | Input height            |
+| `error`    | `boolean`              | `false` | Marks the input invalid |
+| `disabled` | `boolean`              | `false` | Disables the input      |
 
 All native `<input>` attributes are also accepted.
 
