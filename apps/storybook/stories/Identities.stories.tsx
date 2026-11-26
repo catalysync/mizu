@@ -5,6 +5,7 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Field,
   Inline,
   Input,
   Stack,
@@ -29,7 +30,9 @@ function SampleUI() {
         <Badge tone="danger">Failed</Badge>
         <Badge tone="info">New</Badge>
       </Inline>
-      <Input label="Email" placeholder="you@example.com" />
+      <Field label="Email">
+        <Input placeholder="you@example.com" />
+      </Field>
       <Card>
         <CardHeader title="Project settings" description="Configure your workspace." />
         <CardBody>

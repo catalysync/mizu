@@ -1,7 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '../../utils/cn';
-import { Logger } from '../../utils/logger';
 import { useFieldContext } from '../Field/field-context';
 
 const inputVariants = cva('mizu-input', {
@@ -26,10 +25,6 @@ export interface InputProps
     VariantProps<typeof inputVariants> {
   error?: string | boolean;
   warning?: string | boolean;
-  /** @deprecated Use `<Field>` wrapper instead of inline helpText. */
-  helpText?: React.ReactNode;
-  /** @deprecated Use `<Field label="...">` wrapper instead of Input label prop. */
-  label?: string;
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   maxCharacters?: number;
@@ -44,8 +39,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       type = 'text',
       error,
       warning,
-      helpText,
-      label,
       prefix,
       suffix,
       maxCharacters,
@@ -59,10 +52,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    if (label) Logger.deprecate('Input label prop', '<Field label="..."><Input /></Field>');
-    if (helpText)
-      Logger.deprecate('Input helpText prop', '<Field description="..."><Input /></Field>');
-
     const [charCount, setCharCount] = React.useState(0);
     const [charCountLive, setCharCountLive] = React.useState<'off' | 'polite'>('off');
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,19 +60,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
     const ctx = useFieldContext();
 
-    const localInputId =
-      id || (label ? `input-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
-    const inputId = localInputId ?? ctx?.controlId;
+    const inputId = id ?? ctx?.controlId;
     const errorId = error && typeof error === 'string' ? `${inputId}-error` : undefined;
-    const helpId = helpText ? `${inputId}-help` : undefined;
 
     const resolvedRequired = required ?? ctx?.required;
     const resolvedDisabled = disabled ?? ctx?.disabled;
     const resolvedInvalid = ariaInvalidProp ?? (!!error || ctx?.invalid || undefined);
     const resolvedDescribedBy =
-      [errorId, helpId, ctx?.descriptionId, ctx?.errorId, ariaDescribedByProp]
-        .filter(Boolean)
-        .join(' ') || undefined;
+      [errorId, ctx?.descriptionId, ctx?.errorId, ariaDescribedByProp].filter(Boolean).join(' ') ||
+      undefined;
 
     const hasAdornments = prefix != null || suffix != null;
     const inputEl = (
@@ -137,24 +122,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       inputEl
     );
 
-    if (!label && !error && !helpText && maxCharacters == null) return input;
+    if (!error && maxCharacters == null) return input;
 
     return (
       <div className="mizu-form-group">
-        {label && (
-          <label htmlFor={inputId} className="mizu-label">
-            {label}
-          </label>
-        )}
         {input}
         {error && typeof error === 'string' && (
           <span id={errorId} className="mizu-form-group__error">
             {error}
-          </span>
-        )}
-        {helpText && !error && (
-          <span id={helpId} className="mizu-form-group__help">
-            {helpText}
           </span>
         )}
         {warning && typeof warning === 'string' && !error && (

@@ -6,6 +6,7 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Field,
   Inline,
   Input,
   Separator,
@@ -20,9 +21,15 @@ function Preview() {
         <CardHeader title="General" description="Configure your account settings." />
         <CardBody>
           <Stack gap="1rem">
-            <Input label="Team name" defaultValue="Aspect Labs" />
-            <Input label="Slug" defaultValue="aspect-labs" />
-            <Input label="Default region" defaultValue="US East (Virginia)" />
+            <Field label="Team name">
+              <Input defaultValue="Aspect Labs" />
+            </Field>
+            <Field label="Slug">
+              <Input defaultValue="aspect-labs" />
+            </Field>
+            <Field label="Default region">
+              <Input defaultValue="US East (Virginia)" />
+            </Field>
           </Stack>
         </CardBody>
         <CardFooter>
@@ -90,6 +97,7 @@ const TEMPLATE = `import {
   CardBody,
   CardFooter,
   CardHeader,
+  Field,
   Inline,
   Input,
   Select,
@@ -105,8 +113,12 @@ export default function SettingsPage() {
         <CardHeader title="General" description="Configure your account settings." />
         <CardBody>
           <Stack gap="1rem">
-            <Input label="Team name" defaultValue="Aspect Labs" />
-            <Input label="Slug" defaultValue="aspect-labs" />
+            <Field label="Team name">
+              <Input defaultValue="Aspect Labs" />
+            </Field>
+            <Field label="Slug">
+              <Input defaultValue="aspect-labs" />
+            </Field>
             <Select label="Default region">
               <option value="us-east">US East (Virginia)</option>
               <option value="us-west">US West (Oregon)</option>

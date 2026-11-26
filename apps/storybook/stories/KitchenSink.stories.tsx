@@ -8,6 +8,7 @@ import {
   CardHeader,
   Checkbox,
   EmptyState,
+  Field,
   FilterBar,
   Grid,
   Inline,
@@ -86,7 +87,9 @@ function AllComponents() {
       <section>
         <h2 className="mizu-h3 story-section-title">Form Controls</h2>
         <Grid gap="1.25rem" min="14rem">
-          <Input label="Text input" placeholder="Type something" />
+          <Field label="Text input">
+            <Input placeholder="Type something" />
+          </Field>
           <Textarea label="Textarea" placeholder="Notes" rows={2} />
           <Select label="Select">
             <option value="">Choose…</option>

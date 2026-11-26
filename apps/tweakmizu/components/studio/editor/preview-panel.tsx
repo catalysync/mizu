@@ -9,6 +9,7 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Field,
   Inline,
   Input,
   Stack,
@@ -55,8 +56,12 @@ export function EditorPreviewPanel({ styles }: Props) {
           />
           <CardBody>
             <Stack gap="1rem">
-              <Input label="Team name" defaultValue="Aspect Labs" />
-              <Input label="Contact email" defaultValue="hi@aspect.dev" />
+              <Field label="Team name">
+                <Input defaultValue="Aspect Labs" />
+              </Field>
+              <Field label="Contact email">
+                <Input defaultValue="hi@aspect.dev" />
+              </Field>
               <Inline gap="0.5rem" align="center">
                 <Badge tone="success">Active plan</Badge>
                 <Badge tone="info">14 members</Badge>

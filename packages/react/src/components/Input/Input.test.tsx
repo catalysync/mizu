@@ -92,25 +92,29 @@ describe('Input', () => {
   });
 
   it('renders error message text', () => {
-    render(<Input error="Required field" label="Name" />);
+    render(<Input error="Required field" aria-label="Name" />);
     expect(screen.getByText('Required field')).toBeInTheDocument();
   });
 
-  // -- Help text --
-  it('renders help text', () => {
-    render(<Input helpText="Enter your full name" label="Name" />);
-    expect(screen.getByText('Enter your full name')).toBeInTheDocument();
+  // -- Removed props (0.x breaking change: use <Field> instead) --
+  it('no longer accepts a label prop', () => {
+    render(<Input {...({ label: 'Email' } as object)} aria-label="Other" />);
+    expect(document.querySelector('label')).toBeNull();
+    expect(screen.getByRole('textbox', { name: 'Other' })).toBeInTheDocument();
   });
 
-  it('hides help text when error is shown', () => {
-    render(<Input helpText="Help" error="Error" label="Name" />);
-    expect(screen.queryByText('Help')).not.toBeInTheDocument();
-    expect(screen.getByText('Error')).toBeInTheDocument();
+  it('no longer accepts a helpText prop', () => {
+    render(<Input {...({ helpText: 'Enter your full name' } as object)} aria-label="Name" />);
+    expect(screen.queryByText('Enter your full name')).not.toBeInTheDocument();
   });
 
   // -- Label --
-  it('renders an associated label', () => {
-    render(<Input label="Email" />);
+  it('renders an associated label through Field', () => {
+    render(
+      <Field label="Email">
+        <Input />
+      </Field>,
+    );
     expect(screen.getByLabelText('Email')).toBeInTheDocument();
   });
 
@@ -133,12 +137,12 @@ describe('Input', () => {
 
   // -- Character count --
   it('renders a character counter when maxCharacters is set', () => {
-    render(<Input maxCharacters={50} label="Bio" />);
+    render(<Input maxCharacters={50} aria-label="Bio" />);
     expect(screen.getByText('0/50')).toBeInTheDocument();
   });
 
   it('updates the counter as user types', async () => {
-    render(<Input maxCharacters={50} label="Bio" />);
+    render(<Input maxCharacters={50} aria-label="Bio" />);
     await userEvent.setup().type(screen.getByLabelText('Bio'), 'Hello');
     expect(screen.getByText('5/50')).toBeInTheDocument();
   });
@@ -204,12 +208,20 @@ describe('Input', () => {
   });
 
   it('has no axe violations (with label)', async () => {
-    const { container } = render(<Input label="Email" />);
+    const { container } = render(
+      <Field label="Email">
+        <Input />
+      </Field>,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no axe violations (with error)', async () => {
-    const { container } = render(<Input label="Email" error="Required" />);
+    const { container } = render(
+      <Field label="Email">
+        <Input error="Required" />
+      </Field>,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 

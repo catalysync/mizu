@@ -18,7 +18,9 @@ import { Popover, PopoverTrigger, PopoverContent } from '@mizunagara/react';
     <Button variant="secondary">Edit</Button>
   </PopoverTrigger>
   <PopoverContent showArrow>
-    <Input label="Name" defaultValue="frosty-mountain" />
+    <Field label="Name">
+      <Input defaultValue="frosty-mountain" />
+    </Field>
     <Button size="sm" variant="primary">
       Save
     </Button>

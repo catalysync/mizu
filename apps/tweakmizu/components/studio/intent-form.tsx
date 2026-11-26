@@ -4,7 +4,7 @@ import { getIndustry, industries } from '@/lib/studio/industries';
 import { tones } from '@/lib/studio/tones';
 import { intentSpecSchema, type Industry, type IntentSpec, type Tone } from '@/types/studio';
 import { cn } from '@/utils/cn';
-import { Button, Grid, Inline, Input, Stack, Textarea } from '@mizunagara/react';
+import { Button, Field, Grid, Inline, Input, Stack, Textarea } from '@mizunagara/react';
 import { Sparkles } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 
@@ -111,24 +111,26 @@ export function IntentForm({ onSubmit }: Props) {
         </Stack>
 
         <Grid gap="1.5rem" min="18rem">
-          <Input
-            label="Product name"
-            value={productName}
-            onChange={(event) => setProductName(event.target.value)}
-            placeholder="my-cloud-dashboard"
-            required
-            error={errors.productName}
-            maxLength={80}
-          />
-          <Input
-            label="One-sentence description"
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-            placeholder="Heroku-style PaaS for deploying Next.js apps"
-            required
-            error={errors.description}
-            maxLength={240}
-          />
+          <Field label="Product name">
+            <Input
+              value={productName}
+              onChange={(event) => setProductName(event.target.value)}
+              placeholder="my-cloud-dashboard"
+              required
+              error={errors.productName}
+              maxLength={80}
+            />
+          </Field>
+          <Field label="One-sentence description">
+            <Input
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+              placeholder="Heroku-style PaaS for deploying Next.js apps"
+              required
+              error={errors.description}
+              maxLength={240}
+            />
+          </Field>
         </Grid>
 
         <Stack as="fieldset" gap="0.75rem">
