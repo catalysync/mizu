@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import { DataTable, type DataTableColumn } from './DataTable';
@@ -151,6 +152,30 @@ describe('DataTable', () => {
     expect(onSort).toHaveBeenLastCalledWith('name', 'asc');
     expect(fireEvent.keyDown(nameHeader, { key: ' ' })).toBe(false);
     expect(onSort).toHaveBeenLastCalledWith('name', 'asc');
+    expect(onSort).toHaveBeenCalledTimes(2);
+  });
+
+  it('reaches sortable headers with Tab and cycles the sort with Enter', async () => {
+    const user = userEvent.setup();
+    const onSort = vi.fn();
+    render(
+      <DataTable
+        columns={COLUMNS}
+        data={DATA}
+        getRowId={(r) => r.id}
+        sortColumn={null}
+        sortDirection={null}
+        onSort={onSort}
+      />,
+    );
+    await user.tab();
+    expect(screen.getByText('Name').closest('th')).toHaveFocus();
+    await user.keyboard('{Enter}');
+    expect(onSort).toHaveBeenLastCalledWith('name', 'asc');
+    await user.tab();
+    expect(screen.getByText('Amount').closest('th')).toHaveFocus();
+    await user.keyboard(' ');
+    expect(onSort).toHaveBeenLastCalledWith('amount', 'asc');
     expect(onSort).toHaveBeenCalledTimes(2);
   });
 
