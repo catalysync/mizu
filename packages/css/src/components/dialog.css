@@ -1,7 +1,8 @@
 .mizu-dialog__overlay {
   position: fixed;
   inset: 0;
-  background: color-mix(in srgb, var(--mizu-color-black, #000) 50%, transparent);
+  background: var(--mizu-overlay-scrim, rgb(0 0 0 / 50%));
+  backdrop-filter: blur(var(--mizu-overlay-scrim-blur, 0));
   z-index: var(--mizu-z-overlay);
   animation: mizu-fade-in var(--mizu-duration-fast) var(--mizu-easing-out);
 }
