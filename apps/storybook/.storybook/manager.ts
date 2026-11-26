@@ -2,7 +2,7 @@ import { addons } from 'storybook/manager-api';
 import { mizuStorybookTheme } from './mizu-storybook-theme';
 
 // Native Storybook tagBadges API. Renders in sidebar + toolbar when a story's
-// meta includes one of these tags. See CLAUDE.md §status tags for the rule.
+// meta includes one of these tags. See AGENTS.md (Stories → Status tags) for the rule.
 addons.setConfig({
   theme: mizuStorybookTheme,
   sidebar: {

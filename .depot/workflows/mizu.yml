@@ -68,6 +68,17 @@ jobs:
         run: corepack enable && pnpm install --frozen-lockfile
       - name: build packages (react build also runs tree-shaking)
         run: pnpm exec turbo run build --filter='./packages/*'
+      - name: registry drift (generated registry must be committed)
+        run: |
+          pnpm codegen:registry
+          if ! git diff --exit-code -- packages/registry; then
+            echo "::error::packages/registry is stale. Run 'pnpm codegen:registry' and commit the result."
+            exit 1
+          fi
+          if [ -n "$(git ls-files --others --exclude-standard -- packages/registry)" ]; then
+            echo "::error::packages/registry has untracked generated files. Run 'pnpm codegen:registry' and commit the result."
+            exit 1
+          fi
       - name: export gate (publint + attw on each packed package)
         run: pnpm validate
       - name: packed-tarball fixture (install and load every entry)
