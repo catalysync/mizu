@@ -76,3 +76,27 @@
   opacity: 0.7;
   pointer-events: none;
 }
+
+/* Invalid controls share one error look, driven by aria-invalid so the state reaches assistive
+ * tech and styling from the same attribute. Listed after the per-component rules so it wins at
+ * equal specificity; the tint on focus keeps the danger colour when the ring is shown. */
+:is(.mizu-input, .mizu-textarea, .mizu-select__trigger)[aria-invalid="true"] {
+  border-color: var(--mizu-feedback-danger-default);
+}
+
+:is(.mizu-input, .mizu-textarea, .mizu-select__trigger)[aria-invalid="true"]:focus-visible,
+.mizu-select__trigger[aria-invalid="true"][data-state="open"] {
+  border-color: var(--mizu-feedback-danger-default);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mizu-feedback-danger-default) 20%, transparent);
+}
+
+/* The underline appearance draws only a bottom edge, so the error colour goes there alone. */
+.mizu-input--underline[aria-invalid="true"] {
+  border-color: transparent;
+  border-bottom-color: var(--mizu-feedback-danger-default);
+}
+
+.mizu-input--underline[aria-invalid="true"]:focus-visible {
+  border-bottom-color: var(--mizu-feedback-danger-default);
+  box-shadow: none;
+}
