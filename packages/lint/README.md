@@ -8,7 +8,7 @@ Stylelint rules (`@mizunagara/lint/stylelint`):
 
 - `mizu/no-hex-color`: no hex literal in a declaration value. A hex inside a `var()` fallback is allowed, and so are `url()` and quoted strings.
 - `mizu/var-fallback`: a colour declaration that reads a `--mizu-*` token needs a non-empty `var()` fallback, including nested fallbacks.
-- `mizu/identity-tokens-only`: a file that defines `[data-mizu-identity]` may only style that attribute (optionally narrowed by more data attributes) and only set custom properties. Keyframe steps are exempt.
+- `mizu/identity-tokens-only`: a file that defines `[data-mizu-identity]` may only style that attribute (optionally narrowed by more data attributes) and only set custom properties. Keyframe steps are exempt. A component selector that cannot move to a token yet can be wrapped in `/* stylelint-disable mizu/identity-tokens-only -- reason */` and `/* stylelint-enable mizu/identity-tokens-only */`; the disable is scoped to that block.
 
 ESLint rules (`@mizunagara/lint/eslint`):
 

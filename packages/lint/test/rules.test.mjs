@@ -88,6 +88,25 @@ for (const [rule, { id, option }] of Object.entries(CSS_RULES)) {
   });
 }
 
+describe('mizu/identity-tokens-only severity', () => {
+  it('reports at error level when the option is true', async () => {
+    const [w] = await lintCss(
+      'identity-tokens-only/fail-empty-component-rule.css',
+      'mizu/identity-tokens-only',
+      true,
+    );
+    assert.equal(w.severity, 'error');
+  });
+  it('reports at warning level when the option is "warning"', async () => {
+    const [w] = await lintCss(
+      'identity-tokens-only/fail-empty-component-rule.css',
+      'mizu/identity-tokens-only',
+      'warning',
+    );
+    assert.equal(w.severity, 'warning');
+  });
+});
+
 describe('mizu/var-fallback severity', () => {
   it('reports at warning level when the option is "warning"', async () => {
     const [w] = await lintCss('var-fallback/fail-no-fallback.css', 'mizu/var-fallback', 'warning');

@@ -1,0 +1,7 @@
+/* T10 case: an identity file that keeps an empty component rule. */
+[data-mizu-identity="atlas"] {
+  --mizu-radius-md: 0.25rem;
+}
+
+.mizu-table {
+}
