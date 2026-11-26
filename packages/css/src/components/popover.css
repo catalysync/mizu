@@ -32,3 +32,13 @@
     transition-duration: 0.01ms;
   }
 }
+
+/* Radix popover wrapper used by DatePicker and DateRangePicker. The calendar inside
+   supplies its own padding, border and shadow, so the wrapper only needs the surface,
+   radius and stacking. */
+.mizu-popover-content {
+  background: var(--mizu-surface-default, #fff);
+  border-radius: var(--mizu-radius-lg);
+  z-index: var(--mizu-z-popover);
+  outline: none;
+}
