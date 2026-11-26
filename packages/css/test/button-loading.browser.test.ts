@@ -44,3 +44,24 @@ describe.skipIf(!hasBrowser)('button loading state in a browser', () => {
     expect(opacity).toBe('0.55');
   });
 });
+
+describe.skipIf(!hasBrowser)('icon button sizes in a browser', () => {
+  const sized = (cls: string) =>
+    withPage(
+      styles(),
+      `<button id="b" class="mizu-button mizu-button--primary mizu-button--md mizu-button--icon mizu-icon-button ${cls}" aria-label="Close">×</button>`,
+      (page) => computed(page, '#b', 'width'),
+    );
+
+  it('sizes sm from the sm control height', async () => {
+    expect(await sized('mizu-icon-button--sm')).toBe('32px');
+  });
+
+  it('sizes md from the md control height, beating the size classes', async () => {
+    expect(await sized('mizu-icon-button--md')).toBe('40px');
+  });
+
+  it('sizes lg from the lg control height', async () => {
+    expect(await sized('mizu-icon-button--lg')).toBe('44px');
+  });
+});
