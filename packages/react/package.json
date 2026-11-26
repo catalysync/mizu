@@ -97,6 +97,16 @@
         "default": "./dist/badge.cjs"
       }
     },
+    "./banner": {
+      "import": {
+        "types": "./dist/banner.d.ts",
+        "default": "./dist/banner.js"
+      },
+      "require": {
+        "types": "./dist/banner.d.cts",
+        "default": "./dist/banner.cjs"
+      }
+    },
     "./breadcrumb": {
       "import": {
         "types": "./dist/breadcrumb.d.ts",

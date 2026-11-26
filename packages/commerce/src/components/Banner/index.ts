@@ -1,1 +1,1 @@
-export { Banner, type BannerProps } from './Banner';
+export { Banner, type BannerProps } from '@mizunagara/react';

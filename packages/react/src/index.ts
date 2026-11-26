@@ -4,6 +4,7 @@ export * from './components/AlertDialog';
 export * from './components/AnalyticsDashboard';
 export * from './components/Avatar';
 export * from './components/Badge';
+export * from './components/Banner';
 export * from './components/Breadcrumb';
 export * from './components/Button';
 export * from './components/Card';
