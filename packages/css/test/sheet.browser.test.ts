@@ -49,6 +49,30 @@ describe.skipIf(!hasBrowser)('sheet footer', () => {
   );
 });
 
+describe.skipIf(!hasBrowser)('sheet scrim stacking', () => {
+  it(
+    'the scrim of a second sheet paints above the first sheet panel',
+    async () => {
+      const body = `
+        <div class="mizu-sheet__content" data-side="right" id="first"></div>
+        <div class="mizu-sheet__overlay" id="scrim"></div>
+        <div class="mizu-sheet__content" data-side="left" id="second"></div>`;
+      await withPage([tokens(), sheet(), NO_MOTION], body, async (page) => {
+        expect(await computed(page, '#scrim', 'z-index')).toBe('1100');
+        expect(await computed(page, '#first', 'z-index')).toBe('1100');
+        // The second sheet is on the left, so the probe point over the first panel is uncovered.
+        const hit = await page.evaluate(() => {
+          const r = document.getElementById('first')!.getBoundingClientRect();
+          const el = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+          return el?.id;
+        });
+        expect(hit).toBe('scrim');
+      });
+    },
+    BROWSER_TIMEOUT,
+  );
+});
+
 describe.skipIf(!hasBrowser)('sheet close button focus', () => {
   it(
     'shows a focus ring on the close button when it has keyboard focus',

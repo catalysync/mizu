@@ -3,7 +3,9 @@
   inset: 0;
   background: var(--mizu-overlay-scrim, rgb(0 0 0 / 50%));
   backdrop-filter: blur(var(--mizu-overlay-scrim-blur, 0));
-  z-index: var(--mizu-z-overlay);
+
+  /* Same tier as the sheet panel, so a stacked sheet's scrim lands above the sheet beneath it. */
+  z-index: var(--mizu-z-drawer);
   animation: mizu-sheet-fade-in var(--mizu-duration-normal) var(--mizu-easing-out);
 }
 
