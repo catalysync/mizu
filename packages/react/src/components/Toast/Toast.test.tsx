@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import {
   Toast,
@@ -8,7 +8,9 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
+  Toaster,
 } from './Toast';
+import { dismissToast, getToastsSnapshot, toast } from './toast-queue';
 
 describe('Toast', () => {
   it('renders without crashing', () => {
@@ -83,5 +85,90 @@ describe('Toast', () => {
       </ToastProvider>,
     );
     expect(screen.getByRole('region', { name: /^Alerts \(/ })).toBeInTheDocument();
+  });
+
+  it('fires the onClick of an action button', () => {
+    const onUndo = vi.fn();
+    render(
+      <ToastProvider>
+        <Toast open actions={[{ children: 'Undo', onClick: onUndo }]}>
+          <ToastTitle>Deleted</ToastTitle>
+        </Toast>
+        <ToastViewport />
+      </ToastProvider>,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Undo' }));
+    expect(onUndo).toHaveBeenCalledTimes(1);
+  });
+
+  it('has no axe violations with actions', async () => {
+    const { container } = render(
+      <ToastProvider>
+        <Toast open actions={[{ children: 'Undo' }]}>
+          <ToastTitle>Deleted</ToastTitle>
+          <ToastClose />
+        </Toast>
+        <ToastViewport />
+      </ToastProvider>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
+describe('toast() queue', () => {
+  afterEach(() => {
+    act(() => {
+      for (const item of getToastsSnapshot()) dismissToast(item.id);
+    });
+  });
+
+  it('replaces an entry with the same id instead of adding a second one', () => {
+    render(<Toaster />);
+    act(() => {
+      toast({ id: 'save', title: 'Saving' });
+    });
+    act(() => {
+      toast({ id: 'save', title: 'Saved' });
+    });
+    expect(getToastsSnapshot()).toHaveLength(1);
+    expect(document.querySelectorAll('[data-component="mizu-toast"]')).toHaveLength(1);
+    expect(screen.getByText('Saved')).toBeInTheDocument();
+    expect(screen.queryByText('Saving')).not.toBeInTheDocument();
+  });
+
+  it('shows queued toasts with their action buttons and fires the action', () => {
+    const onRetry = vi.fn();
+    render(<Toaster />);
+    act(() => {
+      toast({
+        title: 'Upload failed',
+        description: 'Check your connection.',
+        tone: 'danger',
+        actions: [{ children: 'Retry', onClick: onRetry }],
+      });
+    });
+    const item = document.querySelector<HTMLElement>('[data-component="mizu-toast"]');
+    if (!item) throw new Error('queued toast was not rendered');
+    expect(within(item).getByText('Upload failed')).toBeInTheDocument();
+    expect(within(item).getByText('Check your connection.')).toBeInTheDocument();
+    fireEvent.click(within(item).getByRole('button', { name: 'Retry' }));
+    expect(onRetry).toHaveBeenCalledTimes(1);
+  });
+
+  it('removes a toast when its close button is pressed', () => {
+    render(<Toaster />);
+    act(() => {
+      toast({ id: 'once', title: 'Copied' });
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Close' }));
+    expect(getToastsSnapshot()).toHaveLength(0);
+  });
+
+  it('has no axe violations with queued toasts', async () => {
+    const { container } = render(<Toaster />);
+    act(() => {
+      toast({ title: 'Saved', actions: [{ children: 'Undo' }] });
+    });
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

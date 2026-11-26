@@ -3,9 +3,8 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { useLocale } from '../../i18n';
 import { cn } from '../../utils/cn';
-
-// No locale key exists for notifications yet, so the English label is a default that a prop overrides.
-const DEFAULT_VIEWPORT_LABEL = 'Notifications ({hotkey})';
+import { Button, type ButtonProps } from '../Button';
+import { dismissToast, getToastsSnapshot, subscribeToasts } from './toast-queue';
 
 const toastVariants = cva('mizu-toast', {
   variants: {
@@ -19,6 +18,9 @@ const toastVariants = cva('mizu-toast', {
   },
   defaultVariants: { tone: 'default' },
 });
+
+// No locale key exists for notifications yet, so the English label is a default that a prop overrides.
+const DEFAULT_VIEWPORT_LABEL = 'Notifications ({hotkey})';
 
 export const ToastProvider = ToastPrimitive.Provider;
 
@@ -38,17 +40,33 @@ ToastViewport.displayName = 'ToastViewport';
 export interface ToastProps
   extends
     React.ComponentPropsWithoutRef<typeof ToastPrimitive.Root>,
-    VariantProps<typeof toastVariants> {}
+    VariantProps<typeof toastVariants> {
+  /** Buttons rendered in a row under the toast content. */
+  actions?: ButtonProps[];
+}
 
 export const Toast = React.forwardRef<React.ElementRef<typeof ToastPrimitive.Root>, ToastProps>(
-  ({ className, tone, ...props }, ref) => (
-    <ToastPrimitive.Root
-      ref={ref}
-      data-component="mizu-toast"
-      className={cn(toastVariants({ tone, className }))}
-      {...props}
-    />
-  ),
+  ({ className, tone, actions, children, ...props }, ref) => {
+    const hasActions = actions !== undefined && actions.length > 0;
+    return (
+      <ToastPrimitive.Root
+        ref={ref}
+        data-component="mizu-toast"
+        data-has-actions={hasActions || undefined}
+        className={cn(toastVariants({ tone, className }))}
+        {...props}
+      >
+        {children}
+        {hasActions && (
+          <div className="mizu-toast__actions">
+            {actions.map((action, index) => (
+              <Button key={index} size="sm" variant="secondary" {...action} />
+            ))}
+          </div>
+        )}
+      </ToastPrimitive.Root>
+    );
+  },
 );
 Toast.displayName = 'Toast';
 
@@ -101,3 +119,38 @@ export const ToastClose = React.forwardRef<
   );
 });
 ToastClose.displayName = 'ToastClose';
+
+export interface ToasterProps {
+  /** Overrides the viewport landmark label. */
+  label?: string;
+}
+
+/** Renders the queue filled by `toast()`. Mount once per app. */
+export const Toaster = ({ label }: ToasterProps) => {
+  const items = React.useSyncExternalStore(subscribeToasts, getToastsSnapshot, getToastsSnapshot);
+  return (
+    <ToastProvider>
+      {items.map((item) => (
+        <Toast
+          key={item.id}
+          open
+          tone={item.tone}
+          actions={item.actions}
+          onOpenChange={(open) => {
+            if (!open) dismissToast(item.id);
+          }}
+        >
+          <div className="mizu-toast__content">
+            <ToastTitle>{item.title}</ToastTitle>
+            {item.description !== undefined && (
+              <ToastDescription>{item.description}</ToastDescription>
+            )}
+          </div>
+          <ToastClose />
+        </Toast>
+      ))}
+      <ToastViewport label={label} />
+    </ToastProvider>
+  );
+};
+Toaster.displayName = 'Toaster';
