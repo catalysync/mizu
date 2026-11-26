@@ -74,7 +74,9 @@ SelectTrigger.displayName = 'SelectTrigger';
 
 /**
  * Renders one SelectItem per entry of an object map, keyed by value. Keeps option lists that already
- * exist as `Record<value, label>` out of the JSX.
+ * exist as `Record<value, label>` out of the JSX. Object key order applies: integer-like keys such
+ * as "2" and "10" come out in numeric order, not insertion order, and items cannot be disabled
+ * individually. Use separate SelectItem elements when either matters.
  */
 export function SelectItems({ items }: { items: Record<string, React.ReactNode> }) {
   return (
