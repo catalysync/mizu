@@ -507,6 +507,16 @@
         "default": "./dist/section-header.cjs"
       }
     },
+    "./segmented-control": {
+      "import": {
+        "types": "./dist/segmented-control.d.ts",
+        "default": "./dist/segmented-control.js"
+      },
+      "require": {
+        "types": "./dist/segmented-control.d.cts",
+        "default": "./dist/segmented-control.cjs"
+      }
+    },
     "./select": {
       "import": {
         "types": "./dist/select.d.ts",
