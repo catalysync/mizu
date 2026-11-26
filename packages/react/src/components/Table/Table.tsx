@@ -12,6 +12,8 @@ export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> 
   striped?: boolean;
   bordered?: boolean;
   stickyFirstColumn?: boolean;
+  /** Caps the wrapper height. Pair with `stickyHeader` to keep the header in view while the body scrolls. */
+  maxHeight?: string | number;
   /** Rendered as the table's `<caption>`. */
   caption?: React.ReactNode;
 }
@@ -26,14 +28,25 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
       striped,
       bordered,
       stickyFirstColumn,
+      maxHeight,
       caption,
       children,
       ...props
     },
     ref,
   ) => {
+    const maxHeightStyle =
+      maxHeight === undefined
+        ? undefined
+        : ({
+            '--mizu-table-max-height': typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight,
+          } as React.CSSProperties);
     return (
-      <div ref={ref} className={cn('mizu-table-wrapper', className)} style={style}>
+      <div
+        ref={ref}
+        className={cn('mizu-table-wrapper', className)}
+        style={maxHeightStyle ? { ...style, ...maxHeightStyle } : style}
+      >
         <table
           data-component="mizu-table"
           className={cn(

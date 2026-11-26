@@ -4,6 +4,9 @@
   border: 1px solid var(--mizu-border-default);
   border-radius: var(--mizu-radius-lg);
   background: var(--mizu-surface-default);
+
+  /* The wrapper is the scroll container, so a capped height lets a sticky header stay in view. */
+  max-height: var(--mizu-table-max-height, none);
 }
 
 .mizu-table {

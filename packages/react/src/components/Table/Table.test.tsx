@@ -205,6 +205,30 @@ describe('Table', () => {
     expect(table).not.toHaveClass('mizu-table--sticky-first');
   });
 
+  it('sets the wrapper max-height custom property from maxHeight', () => {
+    const { container, rerender } = render(
+      <Table maxHeight={240}>
+        <TableBody>
+          <TableRow>
+            <TableCell>X</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    const wrapper = container.querySelector<HTMLElement>('.mizu-table-wrapper');
+    expect(wrapper?.style.getPropertyValue('--mizu-table-max-height')).toBe('240px');
+    rerender(
+      <Table maxHeight="40vh">
+        <TableBody>
+          <TableRow>
+            <TableCell>X</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(wrapper?.style.getPropertyValue('--mizu-table-max-height')).toBe('40vh');
+  });
+
   it('renders the caption prop as a <caption> inside the table', () => {
     render(
       <Table caption="Customer list">
