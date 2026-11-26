@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Card, CardBody, CardHeader, Inline, Input, Stack } from '@mizunagara/react';
+import { Button, Card, CardBody, CardHeader, Field, Inline, Input, Stack } from '@mizunagara/react';
 import { Plus, UserPlus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
@@ -104,23 +104,25 @@ export function TeamClient({ existingTeams }: { existingTeams: Team[] }) {
           <CardBody>
             <form onSubmit={handleCreate}>
               <Stack gap="0.75rem">
-                <Input
-                  label="Team name"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  required
-                  minLength={2}
-                  maxLength={80}
-                />
-                <Input
-                  label="Slug (lowercase, dashes)"
-                  value={slug}
-                  onChange={(event) => setSlug(event.target.value)}
-                  pattern="[a-z0-9\-]+"
-                  required
-                  minLength={2}
-                  maxLength={60}
-                />
+                <Field label="Team name">
+                  <Input
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    required
+                    minLength={2}
+                    maxLength={80}
+                  />
+                </Field>
+                <Field label="Slug (lowercase, dashes)">
+                  <Input
+                    value={slug}
+                    onChange={(event) => setSlug(event.target.value)}
+                    pattern="[a-z0-9\-]+"
+                    required
+                    minLength={2}
+                    maxLength={60}
+                  />
+                </Field>
                 {error ? (
                   <span className="text-danger text-sm" role="alert">
                     {error}
@@ -146,13 +148,14 @@ export function TeamClient({ existingTeams }: { existingTeams: Team[] }) {
           <CardBody>
             <form onSubmit={handleInvite}>
               <Stack gap="0.75rem">
-                <Input
-                  label="Email"
-                  type="email"
-                  value={inviteEmail}
-                  onChange={(event) => setInviteEmail(event.target.value)}
-                  required
-                />
+                <Field label="Email">
+                  <Input
+                    type="email"
+                    value={inviteEmail}
+                    onChange={(event) => setInviteEmail(event.target.value)}
+                    required
+                  />
+                </Field>
                 {inviteError ? (
                   <span className="text-danger text-sm" role="alert">
                     {inviteError}

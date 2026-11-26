@@ -1,14 +1,16 @@
-import { Input } from '@mizunagara/react';
+import { Field, Input } from '@mizunagara/react';
 import { Preview } from '../preview';
 
 export const metadata = { title: 'Input — mizu' };
 
 # Input
 
-A text input with sizes, labels, error states, and help text.
+A text input with sizes, error states and adornments. Labels and help text come from `Field`.
 
 <Preview>
-  <Input label="Email" placeholder="you@example.com" className="story-md" />
+  <Field label="Email" description="We won't share this.">
+    <Input placeholder="you@example.com" className="story-md" />
+  </Field>
 </Preview>
 
 ## Import
@@ -19,15 +21,25 @@ import { Input } from '@mizunagara/react';
 
 ## With label and help text
 
-```tsx
-<Input label="Email" helpText="We won't share this." />
-```
-
-## Error state
+Wrap the input in `Field`. Its `label` and `description` props render the label and help text, and it wires up `htmlFor` and `aria-describedby` for you.
 
 ```tsx
-<Input label="Price" error="Must be greater than 0" />
+<Field label="Email" description="We won't share this.">
+  <Input placeholder="you@example.com" />
+</Field>
 ```
+
+## Migrating from `label` and `helpText`
+
+`Input` no longer accepts `label` or `helpText` (a breaking change in 0.x). Wrap the input in `Field` instead:
+
+| Before                                    | After                                                       |
+| ----------------------------------------- | ----------------------------------------------------------- |
+| `<Input label="Email" />`                 | `<Field label="Email"><Input /></Field>`                    |
+| `<Input helpText="Help" />`               | `<Field description="Help"><Input /></Field>`               |
+| `<Input label="Email" helpText="Help" />` | `<Field label="Email" description="Help"><Input /></Field>` |
+
+Move each `label` to `Field`'s `label` prop and each `helpText` to `Field`'s `description` prop, then search your code for `label=` and `helpText=` on `<Input>` tags to find the rest.
 
 ## Sizes
 
