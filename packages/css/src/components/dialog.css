@@ -102,8 +102,12 @@
   position: absolute;
   top: var(--mizu-spacing-4);
   right: var(--mizu-spacing-4);
-  width: 1rem;
-  height: 1rem;
+
+  /* Above the sticky header (z-index 1), which otherwise paints over it. */
+  z-index: 2;
+  width: var(--mizu-spacing-6, 1.5rem);
+  height: var(--mizu-spacing-6, 1.5rem);
+  padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
