@@ -77,6 +77,16 @@
         "default": "./dist/analytics-dashboard.cjs"
       }
     },
+    "./autocomplete": {
+      "import": {
+        "types": "./dist/autocomplete.d.ts",
+        "default": "./dist/autocomplete.js"
+      },
+      "require": {
+        "types": "./dist/autocomplete.d.cts",
+        "default": "./dist/autocomplete.cjs"
+      }
+    },
     "./avatar": {
       "import": {
         "types": "./dist/avatar.d.ts",

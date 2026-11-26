@@ -38,6 +38,7 @@
 @import url("./components/filter-bar.css");
 @import url("./components/query-builder.css");
 @import url("./components/advanced-query-builder.css");
+@import url("./components/autocomplete.css");
 @import url("./components/avatar.css");
 @import url("./components/tag.css");
 @import url("./components/alert.css");
