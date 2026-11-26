@@ -73,7 +73,21 @@ export function resolveLiteral(map, name, depth = 0) {
   const value = map[name];
   if (value === undefined) throw new Error(`${name} has no light value in the token sheet`);
   if (depth > 20) throw new Error(`${name}: reference cycle`);
-  return value.replace(BARE_VAR, (_, ref) => resolveLiteral(map, ref, depth + 1));
+  return lightBranch(value.replace(BARE_VAR, (_, ref) => resolveLiteral(map, ref, depth + 1)));
+}
+
+/** `light-dark(a, b)` → `a`, splitting on the top-level comma; other values pass through. */
+export function lightBranch(value) {
+  const m = /^light-dark\((.*)\)$/s.exec(value.trim());
+  if (!m) return value;
+  let depth = 0;
+  for (let i = 0; i < m[1].length; i++) {
+    const c = m[1][i];
+    if (c === '(') depth++;
+    else if (c === ')') depth--;
+    else if (c === ',' && depth === 0) return lightBranch(m[1].slice(0, i).trim());
+  }
+  throw new Error(`malformed light-dark(): ${value}`);
 }
 
 /**

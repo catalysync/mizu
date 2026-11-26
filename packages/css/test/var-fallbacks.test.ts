@@ -4,6 +4,7 @@ import {
   cssFiles,
   DEFAULT_DIRS,
   findBareColourVars,
+  lightBranch,
   lightTokens,
   resolveLiteral,
 } from '../../../scripts/codemods/add-var-fallbacks.mjs';
@@ -18,6 +19,12 @@ describe('colour var fallbacks', () => {
     const missing = needs.map((n) => `${n.name} in ${n.prop}`);
     expect(missing).toEqual([]);
     expect(unresolved.map((u) => u.name)).toEqual([]);
+  });
+
+  it('takes the light side of a light-dark() pair', () => {
+    expect(lightBranch('light-dark(#0f172a, #f1f5f9)')).toBe('#0f172a');
+    expect(lightBranch('light-dark(rgb(0 0 0 / 5%), #fff)')).toBe('rgb(0 0 0 / 5%)');
+    expect(lightBranch('#fff')).toBe('#fff');
   });
 
   it('the codemod writes the resolved light value as the fallback', () => {
