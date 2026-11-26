@@ -1,0 +1,14 @@
+{
+  "name": "@mizunagara/registry",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Generated component registry and variant schemas for the mizu design system",
+  "type": "module",
+  "exports": {
+    "./component-registry.json": "./component-registry.json",
+    "./schemas": "./src/schemas.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --test scripts/generate.test.ts"
+  }
+}
