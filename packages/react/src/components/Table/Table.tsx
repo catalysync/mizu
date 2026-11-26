@@ -59,7 +59,7 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
           data-density={density === 'default' ? undefined : density}
           {...props}
         >
-          {caption !== undefined && <caption>{caption}</caption>}
+          {caption != null && <caption>{caption}</caption>}
           {children}
         </table>
       </div>

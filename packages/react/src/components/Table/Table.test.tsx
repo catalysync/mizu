@@ -249,6 +249,19 @@ describe('Table', () => {
     expect(table).toHaveAccessibleName('Customer list');
   });
 
+  it('omits the <caption> element when caption is null', () => {
+    const { container } = render(
+      <Table caption={null}>
+        <TableBody>
+          <TableRow>
+            <TableCell>X</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(container.querySelector('caption')).toBeNull();
+  });
+
   it('has no axe violations with the caption prop', async () => {
     const { container } = render(
       <Table caption="Customer list">
