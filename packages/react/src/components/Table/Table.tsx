@@ -83,14 +83,28 @@ TableBody.displayName = 'TableBody';
 
 export interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
   selected?: boolean;
+  /** Exposes `aria-selected` so assistive tech hears the selection state. */
+  selectable?: boolean;
 }
 
 export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
-  ({ className, selected, onClick, ...props }, ref) => {
+  ({ className, selected, selectable, onClick, onKeyDown, ...props }, ref) => {
     /* When a row has an onClick (or the consumer passes role="button"), it's
      * semantically interactive. Surface a data attribute so CSS can attach
      * cursor + hover affordance without each consumer hand-rolling them. */
     const interactive = !!onClick || props.role === 'button';
+
+    // Keys are handled on the row only, so Enter or Space pressed on a nested
+    // control (a checkbox, a link) keeps its own behaviour. `click()` reuses the
+    // consumer's onClick without widening its type to keyboard events.
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLTableRowElement>) => {
+      onKeyDown?.(event);
+      if (!interactive || event.defaultPrevented || event.target !== event.currentTarget) return;
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        event.currentTarget.click();
+      }
+    };
 
     return (
       <tr
@@ -98,7 +112,10 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         className={cn(className)}
         data-selected={selected || undefined}
         data-clickable={interactive || undefined}
+        aria-selected={selectable ? !!selected : undefined}
+        tabIndex={interactive ? 0 : undefined}
         onClick={onClick}
+        onKeyDown={handleKeyDown}
         {...props}
       />
     );

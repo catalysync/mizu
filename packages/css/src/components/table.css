@@ -60,6 +60,12 @@
   cursor: pointer;
 }
 
+.mizu-table tbody tr[data-clickable="true"]:focus-visible {
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
+  outline-offset: calc(-1 * var(--mizu-focus-ring-width, 2px));
+}
+
 .mizu-table td {
   padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
   vertical-align: middle;
