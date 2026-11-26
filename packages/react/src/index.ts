@@ -30,6 +30,7 @@ export * from './components/Form';
 export * from './components/Heading';
 export * from './components/HoverCard';
 export * from './components/Icon';
+export * from './components/IconButton';
 export * from './components/Input';
 export * from './components/Label';
 export * from './components/Link';

@@ -223,6 +223,27 @@
   padding: 0;
 }
 
+/* Icon button: a square button sized by the control-height tokens. Selectors are doubled so
+ * they beat the size classes above, whichever is loaded first. */
+.mizu-button.mizu-icon-button {
+  padding: 0;
+}
+
+.mizu-button.mizu-icon-button--sm {
+  width: var(--mizu-control-height-sm, 2rem);
+  height: var(--mizu-control-height-sm, 2rem);
+}
+
+.mizu-button.mizu-icon-button--md {
+  width: var(--mizu-control-height-md, 2.5rem);
+  height: var(--mizu-control-height-md, 2.5rem);
+}
+
+.mizu-button.mizu-icon-button--lg {
+  width: var(--mizu-control-height-lg, 2.75rem);
+  height: var(--mizu-control-height-lg, 2.75rem);
+}
+
 /* Full width */
 .mizu-button[data-full-width="true"] {
   width: 100%;

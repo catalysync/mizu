@@ -137,6 +137,16 @@
         "default": "./dist/button.cjs"
       }
     },
+    "./icon-button": {
+      "import": {
+        "types": "./dist/icon-button.d.ts",
+        "default": "./dist/icon-button.js"
+      },
+      "require": {
+        "types": "./dist/icon-button.d.cts",
+        "default": "./dist/icon-button.cjs"
+      }
+    },
     "./card": {
       "import": {
         "types": "./dist/card.d.ts",
