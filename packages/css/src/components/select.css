@@ -121,3 +121,19 @@
     transition-duration: 0.01ms;
   }
 }
+
+/* Triggers ring with box-shadow, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-select__trigger:focus-visible {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: var(--mizu-focus-ring-offset, 2px);
+  }
+}
+
+/* Items highlight with a background tint, which forced-colors drops. Ring inside the item: the list scrolls. */
+@media (forced-colors: active) {
+  .mizu-select__item[data-highlighted] {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: -2px;
+  }
+}

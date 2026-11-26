@@ -147,3 +147,11 @@
   font-variant-numeric: tabular-nums;
   margin-top: var(--mizu-spacing-1);
 }
+
+/* These controls zero their outline and ring with box-shadow, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-input:focus-visible {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: var(--mizu-focus-ring-offset, 2px);
+  }
+}

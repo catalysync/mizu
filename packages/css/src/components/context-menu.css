@@ -88,3 +88,11 @@
     transition-duration: 0.01ms;
   }
 }
+
+/* Highlighted items show only a background tint, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-context-menu__item[data-highlighted] {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: -2px;
+  }
+}
