@@ -2,7 +2,6 @@
   display: inline-flex;
   border-radius: var(--mizu-radius-md);
   border: 1px solid var(--mizu-border-default);
-  overflow: hidden;
 }
 
 .mizu-toggle-group__item {
@@ -28,6 +27,15 @@
 
 .mizu-toggle-group__item:last-child {
   border-right: none;
+  border-start-end-radius: inherit;
+  border-end-end-radius: inherit;
+}
+
+/* The group no longer clips its items, so the outer items take the group's corners
+   themselves; otherwise their hover and on-state backgrounds square off the rounded edge. */
+.mizu-toggle-group__item:first-child {
+  border-start-start-radius: inherit;
+  border-end-start-radius: inherit;
 }
 
 .mizu-toggle-group__item:hover {
