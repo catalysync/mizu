@@ -46,11 +46,14 @@ export const AnalyticsDashboardTile = React.forwardRef<HTMLElement, AnalyticsDas
       data-component="mizu-analytics-dashboard-tile"
       data-loading={loading || undefined}
       aria-busy={loading || undefined}
-      style={{
-        gridColumn: `span ${colSpan}`,
-        gridRow: `span ${rowSpan}`,
-        ...style,
-      }}
+      style={
+        {
+          // Column span travels as a custom property so the stylesheet can reset it on narrow screens.
+          '--mizu-analytics-dashboard-tile-col-span': colSpan,
+          gridRow: `span ${rowSpan}`,
+          ...style,
+        } as React.CSSProperties
+      }
       {...props}
     >
       <header className="mizu-analytics-dashboard__tile-header">

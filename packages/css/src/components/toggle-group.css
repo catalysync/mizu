@@ -51,6 +51,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mizu-toggle-group__item {
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.01ms;
   }
 }

@@ -67,14 +67,10 @@
   .mizu-analytics-dashboard__grid {
     grid-template-columns: 1fr;
   }
-
-  .mizu-analytics-dashboard__tile {
-    /* Cancel col-span overrides on narrow screens so tiles stack cleanly. */
-    grid-column: span 1 !important;
-  }
 }
 
 .mizu-analytics-dashboard__tile {
+  grid-column: span var(--mizu-analytics-dashboard-tile-col-span, 1);
   display: flex;
   flex-direction: column;
   gap: var(--mizu-spacing-3);
@@ -83,6 +79,13 @@
   border: 1px solid var(--mizu-border-default);
   border-radius: var(--mizu-radius-lg);
   min-width: 0;
+}
+
+@media (width <= 768px) {
+  /* Cancel col-span overrides on narrow screens so tiles stack cleanly. */
+  .mizu-analytics-dashboard__tile {
+    grid-column: span 1;
+  }
 }
 
 .mizu-analytics-dashboard__tile-header {
