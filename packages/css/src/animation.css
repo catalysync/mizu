@@ -79,3 +79,16 @@
 .mizu-animate-spin {
   animation: mizu-spin var(--mizu-duration-slower) linear infinite;
 }
+
+/* Reduced motion: the utility animations finish immediately. Component spinners
+ * keep running (slower) via their own rules, so this is scoped to the utilities. */
+@media (prefers-reduced-motion: reduce) {
+  .mizu-animate-fade-in,
+  .mizu-animate-fade-in-up,
+  .mizu-animate-fade-in-down,
+  .mizu-animate-zoom-in,
+  .mizu-animate-spin {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+}
