@@ -76,12 +76,13 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
       onPageChange?.(p);
     };
 
+    // One click fires one callback: onPrevious/onNext when given, otherwise onPageChange.
     const handlePrevious = () => {
-      onPrevious?.();
+      if (onPrevious) return onPrevious();
       if (typeof page === 'number' && page > 1) goTo(page - 1);
     };
     const handleNext = () => {
-      onNext?.();
+      if (onNext) return onNext();
       if (typeof page === 'number' && typeof totalPages === 'number' && page < totalPages) {
         goTo(page + 1);
       }

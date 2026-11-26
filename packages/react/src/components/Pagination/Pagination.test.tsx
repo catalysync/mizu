@@ -45,6 +45,34 @@ describe('Pagination', () => {
     expect(onPageChange).toHaveBeenCalledWith(4);
   });
 
+  it('fires one callback per click: onPrevious wins over onPageChange', () => {
+    const onPageChange = vi.fn();
+    const onPrevious = vi.fn();
+    render(
+      <Pagination page={3} totalPages={10} onPageChange={onPageChange} onPrevious={onPrevious} />,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Previous page' }));
+    expect(onPrevious).toHaveBeenCalledTimes(1);
+    expect(onPageChange).not.toHaveBeenCalled();
+  });
+
+  it('fires one callback per click: onNext wins over onPageChange', () => {
+    const onPageChange = vi.fn();
+    const onNext = vi.fn();
+    render(<Pagination page={3} totalPages={10} onPageChange={onPageChange} onNext={onNext} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
+    expect(onNext).toHaveBeenCalledTimes(1);
+    expect(onPageChange).not.toHaveBeenCalled();
+  });
+
+  it('calls onPageChange exactly once for previous when no onPrevious is given', () => {
+    const onPageChange = vi.fn();
+    render(<Pagination page={3} totalPages={10} onPageChange={onPageChange} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Previous page' }));
+    expect(onPageChange).toHaveBeenCalledTimes(1);
+    expect(onPageChange).toHaveBeenCalledWith(2);
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(<Pagination page={3} totalPages={10} label="21–30 of 100" />);
     expect(await axe(container)).toHaveNoViolations();
