@@ -13,10 +13,19 @@ export interface DataTableColumn<T> {
   width?: string;
 }
 
+export interface DataTableLabels<T> {
+  selectAll?: string;
+  selectRow?: (row: T, index: number) => string;
+  expandRow?: string;
+  collapseRow?: string;
+  empty?: string;
+}
+
 export interface DataTableProps<T> extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   columns: DataTableColumn<T>[];
   data: T[];
   getRowId: (row: T) => string;
+  labels?: DataTableLabels<T>;
 
   sortColumn?: string | null;
   sortDirection?: SortDirection;
@@ -52,6 +61,7 @@ function DataTableInner<T>(
     columns,
     data,
     getRowId,
+    labels,
     sortColumn,
     sortDirection,
     onSort,
@@ -67,7 +77,7 @@ function DataTableInner<T>(
     density = 'default',
     loading = false,
     loadingRows = 5,
-    emptyMessage = 'No data to display.',
+    emptyMessage,
     caption,
     className,
     tableClassName,
@@ -75,15 +85,23 @@ function DataTableInner<T>(
   }: DataTableProps<T>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const allIds = React.useMemo(() => new Set(data.map(getRowId)), [data, getRowId]);
+  // Select-all only touches the rows in `data`. A consumer that filters `data`
+  // keeps selections made on rows that are currently hidden.
+  const visibleIds = React.useMemo(() => new Set(data.map(getRowId)), [data, getRowId]);
   const selected = selectedIds ?? new Set<string>();
   const expanded = expandedIds ?? new Set<string>();
-  const allSelected = allIds.size > 0 && allIds.size === selected.size;
-  const someSelected = selected.size > 0 && !allSelected;
+  const selectedVisibleCount = [...visibleIds].filter((id) => selected.has(id)).length;
+  const allSelected = visibleIds.size > 0 && selectedVisibleCount === visibleIds.size;
+  const someSelected = selectedVisibleCount > 0 && !allSelected;
 
   const toggleAll = () => {
     if (!onSelectionChange) return;
-    onSelectionChange(allSelected ? new Set() : new Set(allIds));
+    const next = new Set(selected);
+    for (const id of visibleIds) {
+      if (allSelected) next.delete(id);
+      else next.add(id);
+    }
+    onSelectionChange(next);
   };
 
   const toggleRow = (id: string) => {
@@ -108,7 +126,17 @@ function DataTableInner<T>(
     onSort(colId, next);
   };
 
+  // Enter and Space act like a click. Space would otherwise scroll the page.
+  // Ignore keys from focusable content inside the header (a filter input, say).
+  const handleSortKeyDown = (event: React.KeyboardEvent<HTMLTableCellElement>, colId: string) => {
+    if (event.target !== event.currentTarget) return;
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    handleSort(colId);
+  };
+
   const totalCols = columns.length + (selectable ? 1 : 0) + (expandable ? 1 : 0);
+  const resolvedEmpty = emptyMessage ?? labels?.empty ?? 'No data to display.';
 
   return (
     <div
@@ -136,7 +164,7 @@ function DataTableInner<T>(
                     if (el) el.indeterminate = someSelected;
                   }}
                   onChange={toggleAll}
-                  aria-label="Select all rows"
+                  aria-label={labels?.selectAll ?? 'Select all rows'}
                 />
               </th>
             ) : null}
@@ -150,7 +178,9 @@ function DataTableInner<T>(
                 }
                 data-align={col.align}
                 style={col.width ? { width: col.width } : undefined}
+                tabIndex={col.sortable ? 0 : undefined}
                 onClick={col.sortable ? () => handleSort(col.id) : undefined}
+                onKeyDown={col.sortable ? (e) => handleSortKeyDown(e, col.id) : undefined}
                 aria-sort={
                   sortColumn === col.id && sortDirection
                     ? sortDirection === 'asc'
@@ -192,11 +222,11 @@ function DataTableInner<T>(
           ) : data.length === 0 ? (
             <tr>
               <td colSpan={totalCols} className="mizu-data-table__empty">
-                {emptyMessage}
+                {resolvedEmpty}
               </td>
             </tr>
           ) : (
-            data.map((row) => {
+            data.map((row, index) => {
               const id = getRowId(row);
               const isSelected = selected.has(id);
               const isExpanded = expanded.has(id);
@@ -209,7 +239,11 @@ function DataTableInner<T>(
                           type="checkbox"
                           checked={isSelected}
                           onChange={() => toggleRow(id)}
-                          aria-label={`Select row ${id}`}
+                          aria-label={
+                            labels?.selectRow
+                              ? labels.selectRow(row, index)
+                              : `Select row ${index + 1}`
+                          }
                         />
                       </td>
                     ) : null}
@@ -220,7 +254,11 @@ function DataTableInner<T>(
                           className="mizu-data-table__expand-btn"
                           data-expanded={isExpanded || undefined}
                           onClick={() => toggleExpand(id)}
-                          aria-label={isExpanded ? 'Collapse row' : 'Expand row'}
+                          aria-label={
+                            isExpanded
+                              ? (labels?.collapseRow ?? 'Collapse row')
+                              : (labels?.expandRow ?? 'Expand row')
+                          }
                           aria-expanded={isExpanded}
                         >
                           ›
