@@ -32,11 +32,12 @@ function fitHeight(el: HTMLTextAreaElement, maxRows: number | undefined) {
 
   if (maxRows != null) {
     // With `rows` set to maxRows and no inline height, the box is exactly that many lines tall.
-    const rows = el.rows;
+    const rowsAttr = el.getAttribute('rows');
     el.rows = maxRows;
     el.style.height = 'auto';
     const maxBox = borderBox ? el.offsetHeight : el.offsetHeight - paddingY - borderY;
-    el.rows = rows;
+    if (rowsAttr === null) el.removeAttribute('rows');
+    else el.setAttribute('rows', rowsAttr);
     overflowing = height > maxBox;
     height = Math.min(height, maxBox);
   }
@@ -65,7 +66,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ) => {
     const ctx = useFieldContext();
     const innerRef = React.useRef<HTMLTextAreaElement>(null);
-    React.useImperativeHandle(ref, () => innerRef.current as HTMLTextAreaElement);
+    // The element is stable for the component's lifetime, so the handle needs no dependencies.
+    React.useImperativeHandle(ref, () => innerRef.current as HTMLTextAreaElement, []);
 
     const resolvedId = id ?? ctx?.controlId;
     const resolvedRequired = required ?? ctx?.required;
@@ -79,7 +81,13 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     // handler below covers typing; this covers resets and programmatic updates.
     useIsomorphicLayoutEffect(() => {
       const el = innerRef.current;
-      if (!autoResize || !el) return;
+      if (!el) return;
+      if (!autoResize) {
+        // Clear what a previous autoResize left behind, so the fixed box and scrolling come back.
+        el.style.height = '';
+        el.style.overflowY = '';
+        return;
+      }
       fitHeight(el, maxRows);
     });
 

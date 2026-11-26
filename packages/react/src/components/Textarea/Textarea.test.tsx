@@ -160,4 +160,12 @@ describe('Textarea', () => {
     const { container } = render(<Textarea autoResize aria-label="Notes" />);
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it('clears the inline height when autoResize is turned off', () => {
+    stubLayout(200 + 8, 600);
+    const { rerender } = render(<Textarea autoResize aria-label="Notes" defaultValue="x" />);
+    expect(screen.getByRole('textbox')).toHaveStyle({ height: '208px' });
+    rerender(<Textarea aria-label="Notes" defaultValue="x" />);
+    expect(screen.getByRole('textbox').getAttribute('style') ?? '').not.toMatch(/height/);
+  });
 });
