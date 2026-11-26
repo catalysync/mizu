@@ -35,9 +35,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mizu-collapsible__content {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .mizu-collapsible__content[data-state="open"],
+  .mizu-collapsible__content[data-state="closed"] {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
   }
 }

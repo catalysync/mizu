@@ -39,7 +39,7 @@
 }
 
 .mizu-progress--indeterminate .mizu-progress__fill {
-  width: 30% !important;
+  width: 30%;
   animation: mizu-progress-indeterminate 1.5s ease-in-out infinite;
 }
 
@@ -55,9 +55,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mizu-progress,
-  .mizu-progress * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .mizu-progress *,
+  .mizu-progress--indeterminate .mizu-progress__fill {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
   }
 }

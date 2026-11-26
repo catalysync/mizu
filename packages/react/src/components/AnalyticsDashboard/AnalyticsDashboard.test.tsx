@@ -18,7 +18,7 @@ describe('AnalyticsDashboard', () => {
     expect(screen.getByText('ARR')).toBeInTheDocument();
   });
 
-  it('forwards colSpan to grid-column style', () => {
+  it('forwards colSpan as the tile column-span custom property', () => {
     const { container } = render(
       <AnalyticsDashboard>
         <AnalyticsDashboardTile title="Wide" colSpan={2}>
@@ -27,7 +27,7 @@ describe('AnalyticsDashboard', () => {
       </AnalyticsDashboard>,
     );
     const tile = container.querySelector('.mizu-analytics-dashboard__tile') as HTMLElement;
-    expect(tile).toHaveStyle({ gridColumn: 'span 2' });
+    expect(tile.style.getPropertyValue('--mizu-analytics-dashboard-tile-col-span')).toBe('2');
   });
 
   it('reflects loading state with aria-busy + data-loading', () => {
