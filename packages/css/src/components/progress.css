@@ -8,34 +8,34 @@
   margin-bottom: var(--mizu-spacing-1);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-xs);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-progress__track {
   width: 100%;
   height: 0.375rem;
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
   border-radius: var(--mizu-radius-full);
   overflow: hidden;
 }
 
 .mizu-progress__fill {
   height: 100%;
-  background: var(--mizu-action-primary-default);
+  background: var(--mizu-action-primary-default, #2563eb);
   border-radius: var(--mizu-radius-full);
   transition: width var(--mizu-duration-normal) var(--mizu-easing-out);
 }
 
 .mizu-progress__fill--success {
-  background: var(--mizu-feedback-success-default);
+  background: var(--mizu-feedback-success-default, #059669);
 }
 
 .mizu-progress__fill--warning {
-  background: var(--mizu-feedback-warning-default);
+  background: var(--mizu-feedback-warning-default, #f59e0b);
 }
 
 .mizu-progress__fill--danger {
-  background: var(--mizu-feedback-danger-default);
+  background: var(--mizu-feedback-danger-default, #dc2626);
 }
 
 .mizu-progress[data-state="indeterminate"] .mizu-progress__fill {

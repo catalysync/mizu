@@ -5,9 +5,9 @@
   padding: var(--mizu-spacing-3);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
-  background: var(--mizu-surface-default);
-  border: 1px solid var(--mizu-border-default);
+  color: var(--mizu-text-primary, #0f172a);
+  background: var(--mizu-surface-default, #fff);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-md);
   outline: none;
   resize: vertical;
@@ -17,21 +17,22 @@
 }
 
 .mizu-textarea::placeholder {
-  color: var(--mizu-text-disabled);
+  color: var(--mizu-text-disabled, #94a3b8);
 }
 
 .mizu-textarea:hover {
-  border-color: var(--mizu-border-strong);
+  border-color: var(--mizu-border-strong, #94a3b8);
 }
 
 .mizu-textarea:focus-visible {
-  border-color: var(--mizu-action-primary-default);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mizu-action-primary-default) 20%, transparent);
+  border-color: var(--mizu-action-primary-default, #2563eb);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 20%, transparent);
 }
 
 .mizu-textarea:disabled {
-  background: var(--mizu-surface-secondary);
-  color: var(--mizu-text-disabled);
+  background: var(--mizu-surface-secondary, #f8fafc);
+  color: var(--mizu-text-disabled, #94a3b8);
   cursor: not-allowed;
   resize: none;
 }

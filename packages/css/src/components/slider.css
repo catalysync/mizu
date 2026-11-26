@@ -12,7 +12,7 @@
   position: relative;
   flex-grow: 1;
   height: 0.25rem;
-  background: var(--mizu-border-default);
+  background: var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-full);
   overflow: hidden;
 }
@@ -20,7 +20,7 @@
 .mizu-slider__range {
   position: absolute;
   height: 100%;
-  background: var(--mizu-action-primary-default);
+  background: var(--mizu-action-primary-default, #2563eb);
   border-radius: var(--mizu-radius-full);
 }
 
@@ -28,10 +28,10 @@
   display: block;
   width: 1rem;
   height: 1rem;
-  background: var(--mizu-surface-default);
-  border: 2px solid var(--mizu-action-primary-default);
+  background: var(--mizu-surface-default, #fff);
+  border: 2px solid var(--mizu-action-primary-default, #2563eb);
   border-radius: var(--mizu-radius-full);
-  box-shadow: var(--mizu-shadow-sm);
+  box-shadow: var(--mizu-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 5%));
   transition:
     box-shadow var(--mizu-duration-fast) var(--mizu-easing-out),
     border-color var(--mizu-duration-fast) var(--mizu-easing-out);
@@ -41,8 +41,8 @@
 .mizu-slider__thumb:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 2px var(--mizu-surface-default),
-    0 0 0 4px var(--mizu-action-primary-default);
+    0 0 0 2px var(--mizu-surface-default, #fff),
+    0 0 0 4px var(--mizu-action-primary-default, #2563eb);
 }
 
 /* The box-shadow ring is dropped in forced-colors mode, so restore an outline there. */
@@ -54,7 +54,7 @@
 }
 
 .mizu-slider__thumb:hover {
-  border-color: var(--mizu-action-primary-hover);
+  border-color: var(--mizu-action-primary-hover, #1d4ed8);
 }
 
 .mizu-slider[data-disabled] {

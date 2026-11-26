@@ -15,24 +15,25 @@
   min-height: 2.5rem;
   padding: var(--mizu-spacing-1) var(--mizu-spacing-3);
   padding-inline-end: 2rem;
-  background: var(--mizu-surface-default);
-  border: 1px solid var(--mizu-border-default);
+  background: var(--mizu-surface-default, #fff);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-md);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   transition:
     border-color var(--mizu-duration-fast) var(--mizu-easing-out),
     box-shadow var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
 .mizu-combobox__control:hover {
-  border-color: var(--mizu-border-strong);
+  border-color: var(--mizu-border-strong, #94a3b8);
 }
 
 .mizu-combobox__control:focus-within {
-  border-color: var(--mizu-action-primary-default);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mizu-action-primary-default) 20%, transparent);
+  border-color: var(--mizu-action-primary-default, #2563eb);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 20%, transparent);
 }
 
 .mizu-combobox__control[data-invalid] {
@@ -40,8 +41,8 @@
 }
 
 .mizu-combobox__control[data-disabled] {
-  background: var(--mizu-surface-secondary);
-  color: var(--mizu-text-disabled);
+  background: var(--mizu-surface-secondary, #f8fafc);
+  color: var(--mizu-text-disabled, #94a3b8);
   cursor: not-allowed;
 }
 
@@ -61,7 +62,7 @@
 }
 
 .mizu-combobox__input::placeholder {
-  color: var(--mizu-text-disabled);
+  color: var(--mizu-text-disabled, #94a3b8);
   opacity: 1;
 }
 
@@ -70,7 +71,7 @@
   inset-inline-end: var(--mizu-spacing-2);
   top: 50%;
   transform: translateY(-50%);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   pointer-events: none;
   font-size: 0.75rem;
 }
@@ -80,11 +81,11 @@
   align-items: center;
   gap: 0.25rem;
   padding: 0.125rem 0.375rem;
-  background: var(--mizu-surface-secondary);
-  border: 1px solid var(--mizu-border-subtle);
+  background: var(--mizu-surface-secondary, #f8fafc);
+  border: 1px solid var(--mizu-border-subtle, #f1f5f9);
   border-radius: var(--mizu-radius-sm);
   font-size: var(--mizu-font-size-xs);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   line-height: 1.4;
 }
 
@@ -98,14 +99,14 @@
   background: transparent;
   border: 0;
   border-radius: 2px;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   font-size: 0.625rem;
   cursor: pointer;
 }
 
 .mizu-combobox__pill-remove:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 12%, transparent);
-  color: var(--mizu-text-primary);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 12%, transparent);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-combobox__content {
@@ -113,7 +114,7 @@
   max-height: 16rem;
   overflow-y: auto;
   background: var(--mizu-surface-default, #fff);
-  border: 1px solid var(--mizu-border-default);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-lg);
   box-shadow: 0 8px 24px -8px rgb(0 0 0 / 18%);
   padding: var(--mizu-spacing-1);
@@ -131,21 +132,21 @@
   border-radius: var(--mizu-radius-sm);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   text-align: start;
   cursor: pointer;
 }
 
 .mizu-combobox__option[data-selected="true"] {
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
 }
 
 .mizu-combobox__option[aria-checked="true"] {
-  color: var(--mizu-action-primary-default);
+  color: var(--mizu-action-primary-default, #2563eb);
 }
 
 .mizu-combobox__option[aria-disabled="true"] {
-  color: var(--mizu-text-disabled);
+  color: var(--mizu-text-disabled, #94a3b8);
   cursor: not-allowed;
 }
 
@@ -164,14 +165,14 @@
 }
 
 .mizu-combobox__option-description {
-  color: var(--mizu-text-tertiary);
+  color: var(--mizu-text-tertiary, #64748b);
   font-size: var(--mizu-font-size-xs);
 }
 
 .mizu-combobox__empty {
   padding: var(--mizu-spacing-3) var(--mizu-spacing-2);
   text-align: center;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   font-size: var(--mizu-font-size-sm);
 }
 

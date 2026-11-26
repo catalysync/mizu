@@ -39,13 +39,13 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-2xl);
   font-weight: var(--mizu-font-weight-semibold);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   margin: 0;
 }
 
 .mizu-app-content__description {
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   margin: 0;
 }

@@ -17,7 +17,7 @@
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   font-size: var(--mizu-font-size-sm);
 }
 
@@ -30,7 +30,7 @@
   inset-inline-end: var(--mizu-spacing-3);
   top: 50%;
   transform: translateY(-50%);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   font-size: var(--mizu-font-size-xs);
   font-family: var(--mizu-font-family-sans);
   pointer-events: none;

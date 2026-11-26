@@ -1,5 +1,5 @@
 .mizu-separator {
-  background: var(--mizu-border-default);
+  background: var(--mizu-border-default, #e2e8f0);
   border: none;
 }
 

@@ -8,20 +8,20 @@
 
 .mizu-chat-bubble--inbound {
   align-self: flex-start;
-  background: var(--mizu-surface-secondary);
-  color: var(--mizu-text-primary);
+  background: var(--mizu-surface-secondary, #f8fafc);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-chat-bubble--outbound {
   align-self: flex-end;
-  background: var(--mizu-action-primary-default);
-  color: var(--mizu-text-inverse);
+  background: var(--mizu-action-primary-default, #2563eb);
+  color: var(--mizu-text-inverse, #fff);
 }
 
 .mizu-chat-bubble--bot {
   align-self: flex-end;
-  background: color-mix(in srgb, var(--mizu-action-primary-default) 10%, transparent);
-  color: var(--mizu-text-primary);
+  background: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 10%, transparent);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-chat-bubble__sender {
@@ -46,11 +46,11 @@
 }
 
 .mizu-conversation-item:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 5%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 5%, transparent);
 }
 
 .mizu-conversation-item[aria-current="page"] {
-  background: color-mix(in srgb, var(--mizu-action-primary-default) 8%, transparent);
+  background: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 8%, transparent);
 }
 
 .mizu-conversation-item__header {
@@ -63,8 +63,8 @@
   width: 2rem;
   height: 2rem;
   border-radius: var(--mizu-radius-full);
-  background: var(--mizu-action-primary-default);
-  color: var(--mizu-text-inverse);
+  background: var(--mizu-action-primary-default, #2563eb);
+  color: var(--mizu-text-inverse, #fff);
   display: inline-flex;
   align-items: center;
   justify-content: center;

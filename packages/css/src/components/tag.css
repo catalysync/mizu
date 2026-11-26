@@ -1,7 +1,7 @@
 .mizu-tag {
-  --_bg: var(--mizu-surface-secondary);
-  --_color: var(--mizu-text-primary);
-  --_border: var(--mizu-border-default);
+  --_bg: var(--mizu-surface-secondary, #f8fafc);
+  --_color: var(--mizu-text-primary, #0f172a);
+  --_border: var(--mizu-border-default, #e2e8f0);
 
   display: inline-flex;
   align-items: center;
@@ -18,32 +18,32 @@
 }
 
 .mizu-tag--neutral {
-  --_bg: var(--mizu-surface-secondary);
-  --_color: var(--mizu-text-primary);
-  --_border: var(--mizu-border-default);
+  --_bg: var(--mizu-surface-secondary, #f8fafc);
+  --_color: var(--mizu-text-primary, #0f172a);
+  --_border: var(--mizu-border-default, #e2e8f0);
 }
 
 .mizu-tag--success {
-  --_bg: var(--mizu-feedback-success-subtle);
-  --_color: var(--mizu-feedback-success-default);
+  --_bg: var(--mizu-feedback-success-subtle, #ecfdf5);
+  --_color: var(--mizu-feedback-success-default, #059669);
   --_border: transparent;
 }
 
 .mizu-tag--warning {
-  --_bg: var(--mizu-feedback-warning-subtle);
-  --_color: var(--mizu-feedback-warning-default);
+  --_bg: var(--mizu-feedback-warning-subtle, #fffbeb);
+  --_color: var(--mizu-feedback-warning-default, #f59e0b);
   --_border: transparent;
 }
 
 .mizu-tag--danger {
-  --_bg: var(--mizu-feedback-danger-subtle);
-  --_color: var(--mizu-feedback-danger-default);
+  --_bg: var(--mizu-feedback-danger-subtle, #fef2f2);
+  --_color: var(--mizu-feedback-danger-default, #dc2626);
   --_border: transparent;
 }
 
 .mizu-tag--info {
-  --_bg: var(--mizu-feedback-info-subtle);
-  --_color: var(--mizu-feedback-info-default);
+  --_bg: var(--mizu-feedback-info-subtle, #eff6ff);
+  --_color: var(--mizu-feedback-info-default, #2563eb);
   --_border: transparent;
 }
 

@@ -10,11 +10,11 @@
  */
 .mizu-button {
   --_bg: transparent;
-  --_bg-hover: var(--mizu-surface-secondary);
-  --_bg-active: var(--mizu-surface-secondary);
+  --_bg-hover: var(--mizu-surface-secondary, #f8fafc);
+  --_bg-active: var(--mizu-surface-secondary, #f8fafc);
   --_bg-disabled: transparent;
-  --_color: var(--mizu-text-primary);
-  --_color-disabled: var(--mizu-text-disabled);
+  --_color: var(--mizu-text-primary, #0f172a);
+  --_color-disabled: var(--mizu-text-disabled, #94a3b8);
   --_border: transparent;
   --_border-disabled: transparent;
   --_radius: var(--mizu-radius-lg);
@@ -94,32 +94,41 @@
 
 /* Variants — read the public tier-3 names and fall back to the semantic token */
 .mizu-button--primary {
-  --_bg: var(--mizu-button-primary-bg, var(--mizu-action-primary-default));
-  --_bg-hover: var(--mizu-button-primary-bg-hover, var(--mizu-action-primary-hover));
-  --_bg-active: var(--mizu-button-primary-bg-active, var(--mizu-action-primary-active));
-  --_bg-disabled: var(--mizu-button-primary-bg-disabled, var(--mizu-action-primary-default));
-  --_color: var(--mizu-button-primary-color, var(--mizu-color-white));
-  --_color-disabled: var(--mizu-button-primary-color-disabled, var(--mizu-color-white));
+  --_bg: var(--mizu-button-primary-bg, var(--mizu-action-primary-default, #2563eb));
+  --_bg-hover: var(--mizu-button-primary-bg-hover, var(--mizu-action-primary-hover, #1d4ed8));
+  --_bg-active: var(--mizu-button-primary-bg-active, var(--mizu-action-primary-active, #1e40af));
+  --_bg-disabled: var(
+    --mizu-button-primary-bg-disabled,
+    var(--mizu-action-primary-default, #2563eb)
+  );
+  --_color: var(--mizu-button-primary-color, var(--mizu-color-white, #fff));
+  --_color-disabled: var(--mizu-button-primary-color-disabled, var(--mizu-color-white, #fff));
   --_border: var(--mizu-button-primary-border, transparent);
 }
 
 .mizu-button--secondary {
   --_bg: var(--mizu-button-secondary-bg, transparent);
-  --_bg-hover: var(--mizu-button-secondary-bg-hover, var(--mizu-surface-secondary));
-  --_bg-active: var(--mizu-button-secondary-bg-active, var(--mizu-surface-secondary));
+  --_bg-hover: var(--mizu-button-secondary-bg-hover, var(--mizu-surface-secondary, #f8fafc));
+  --_bg-active: var(--mizu-button-secondary-bg-active, var(--mizu-surface-secondary, #f8fafc));
   --_bg-disabled: var(--mizu-button-secondary-bg-disabled, transparent);
-  --_color: var(--mizu-button-secondary-color, var(--mizu-text-primary));
-  --_color-disabled: var(--mizu-button-secondary-color-disabled, var(--mizu-text-disabled));
-  --_border: var(--mizu-button-secondary-border, var(--mizu-border-default));
-  --_border-disabled: var(--mizu-button-secondary-border-disabled, var(--mizu-border-default));
+  --_color: var(--mizu-button-secondary-color, var(--mizu-text-primary, #0f172a));
+  --_color-disabled: var(
+    --mizu-button-secondary-color-disabled,
+    var(--mizu-text-disabled, #94a3b8)
+  );
+  --_border: var(--mizu-button-secondary-border, var(--mizu-border-default, #e2e8f0));
+  --_border-disabled: var(
+    --mizu-button-secondary-border-disabled,
+    var(--mizu-border-default, #e2e8f0)
+  );
 }
 
 .mizu-button--ghost {
   --_bg: var(--mizu-button-ghost-bg, transparent);
-  --_bg-hover: var(--mizu-button-ghost-bg-hover, var(--mizu-surface-secondary));
-  --_bg-active: var(--mizu-button-ghost-bg-active, var(--mizu-surface-secondary));
-  --_color: var(--mizu-button-ghost-color, var(--mizu-text-primary));
-  --_color-disabled: var(--mizu-button-ghost-color-disabled, var(--mizu-text-disabled));
+  --_bg-hover: var(--mizu-button-ghost-bg-hover, var(--mizu-surface-secondary, #f8fafc));
+  --_bg-active: var(--mizu-button-ghost-bg-active, var(--mizu-surface-secondary, #f8fafc));
+  --_color: var(--mizu-button-ghost-color, var(--mizu-text-primary, #0f172a));
+  --_color-disabled: var(--mizu-button-ghost-color-disabled, var(--mizu-text-disabled, #94a3b8));
 }
 
 .mizu-button--destructive {
@@ -136,8 +145,8 @@
     --mizu-button-destructive-bg-disabled,
     var(--mizu-action-destructive-default, #dc2626)
   );
-  --_color: var(--mizu-button-destructive-color, var(--mizu-color-white));
-  --_color-disabled: var(--mizu-button-destructive-color-disabled, var(--mizu-color-white));
+  --_color: var(--mizu-button-destructive-color, var(--mizu-color-white, #fff));
+  --_color-disabled: var(--mizu-button-destructive-color-disabled, var(--mizu-color-white, #fff));
 }
 
 .mizu-button--gradient {
@@ -147,19 +156,19 @@
     --mizu-button-gradient-bg,
     linear-gradient(
       135deg,
-      var(--mizu-button-gradient-from, var(--mizu-action-primary-default)) 0%,
-      var(--mizu-button-gradient-to, var(--mizu-action-primary-hover)) 100%
+      var(--mizu-button-gradient-from, var(--mizu-action-primary-default, #2563eb)) 0%,
+      var(--mizu-button-gradient-to, var(--mizu-action-primary-hover, #1d4ed8)) 100%
     )
   );
   --_bg-hover: var(
     --mizu-button-gradient-bg-hover,
     linear-gradient(
       135deg,
-      var(--mizu-button-gradient-from, var(--mizu-action-primary-hover)) 0%,
-      var(--mizu-button-gradient-to, var(--mizu-action-primary-active)) 100%
+      var(--mizu-button-gradient-from, var(--mizu-action-primary-hover, #1d4ed8)) 0%,
+      var(--mizu-button-gradient-to, var(--mizu-action-primary-active, #1e40af)) 100%
     )
   );
-  --_color: var(--mizu-button-gradient-color, var(--mizu-color-white));
+  --_color: var(--mizu-button-gradient-color, var(--mizu-color-white, #fff));
 
   background-size: 200% 200%;
 }
@@ -184,7 +193,7 @@
 
 /* Inverse — for use on dark backgrounds */
 .mizu-button[data-inverse="true"] {
-  --_color: var(--mizu-color-white);
+  --_color: var(--mizu-color-white, #fff);
   --_border: color-mix(in srgb, white 30%, transparent);
 }
 
@@ -193,8 +202,8 @@
 }
 
 .mizu-button[data-inverse="true"].mizu-button--primary {
-  --_bg: var(--mizu-color-white);
-  --_color: var(--mizu-text-primary);
+  --_bg: var(--mizu-color-white, #fff);
+  --_color: var(--mizu-text-primary, #0f172a);
   --_bg-hover: color-mix(in srgb, white 90%, transparent);
 }
 

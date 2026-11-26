@@ -5,8 +5,8 @@
   gap: var(--mizu-spacing-4);
   padding: 0 var(--mizu-spacing-6);
   height: var(--mizu-app-header-height, 3.5rem);
-  background: var(--mizu-surface-default);
-  border-bottom: 1px solid var(--mizu-border-default);
+  background: var(--mizu-surface-default, #fff);
+  border-bottom: 1px solid var(--mizu-border-default, #e2e8f0);
   position: sticky;
   top: 0;
   z-index: var(--mizu-z-header);
@@ -19,7 +19,7 @@
   font-family: var(--mizu-font-family-sans);
   font-weight: var(--mizu-font-weight-semibold);
   font-size: var(--mizu-font-size-base);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   text-decoration: none;
 }
 

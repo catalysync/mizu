@@ -1,8 +1,8 @@
 /* Public overrides: --mizu-badge-bg, --mizu-badge-fg, --mizu-badge-border. Each falls back to the tone's value. */
 .mizu-badge {
-  --_bg: var(--mizu-surface-secondary);
-  --_color: var(--mizu-text-secondary);
-  --_border: var(--mizu-border-default);
+  --_bg: var(--mizu-surface-secondary, #f8fafc);
+  --_color: var(--mizu-text-secondary, #475569);
+  --_border: var(--mizu-border-default, #e2e8f0);
 
   display: inline-flex;
   align-items: center;
@@ -20,32 +20,32 @@
 }
 
 .mizu-badge--neutral {
-  --_bg: var(--mizu-surface-secondary);
-  --_color: var(--mizu-text-secondary);
-  --_border: var(--mizu-border-default);
+  --_bg: var(--mizu-surface-secondary, #f8fafc);
+  --_color: var(--mizu-text-secondary, #475569);
+  --_border: var(--mizu-border-default, #e2e8f0);
 }
 
 .mizu-badge--success {
-  --_bg: var(--mizu-feedback-success-subtle);
-  --_color: var(--mizu-feedback-success-default);
+  --_bg: var(--mizu-feedback-success-subtle, #ecfdf5);
+  --_color: var(--mizu-feedback-success-default, #059669);
   --_border: transparent;
 }
 
 .mizu-badge--warning {
-  --_bg: var(--mizu-feedback-warning-subtle);
-  --_color: var(--mizu-feedback-warning-default);
+  --_bg: var(--mizu-feedback-warning-subtle, #fffbeb);
+  --_color: var(--mizu-feedback-warning-default, #f59e0b);
   --_border: transparent;
 }
 
 .mizu-badge--danger {
-  --_bg: var(--mizu-feedback-danger-subtle);
-  --_color: var(--mizu-feedback-danger-default);
+  --_bg: var(--mizu-feedback-danger-subtle, #fef2f2);
+  --_color: var(--mizu-feedback-danger-default, #dc2626);
   --_border: transparent;
 }
 
 .mizu-badge--info {
-  --_bg: color-mix(in srgb, var(--mizu-action-primary-default) 10%, transparent);
-  --_color: var(--mizu-action-primary-default);
+  --_bg: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 10%, transparent);
+  --_color: var(--mizu-action-primary-default, #2563eb);
   --_border: transparent;
 }
 

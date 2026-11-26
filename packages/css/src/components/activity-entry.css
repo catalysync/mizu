@@ -6,7 +6,7 @@
 }
 
 .mizu-activity-entry + .mizu-activity-entry {
-  border-top: 1px solid var(--mizu-border-default);
+  border-top: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
 .mizu-activity-entry__body {
@@ -17,12 +17,12 @@
 .mizu-activity-entry__message {
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-activity-entry__meta {
   margin-top: var(--mizu-spacing-1);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-xs);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }

@@ -8,13 +8,13 @@
 
 .mizu-data-table__wrapper {
   overflow-x: auto;
-  border: 1px solid var(--mizu-border-default);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-lg);
 }
 
 /* Header */
 .mizu-data-table thead {
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
 }
 
 .mizu-data-table th {
@@ -22,11 +22,11 @@
   text-align: start;
   font-weight: var(--mizu-font-weight-medium);
   font-size: var(--mizu-font-size-xs);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   white-space: nowrap;
-  border-bottom: 1px solid var(--mizu-border-default);
+  border-bottom: 1px solid var(--mizu-border-default, #e2e8f0);
   user-select: none;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .mizu-data-table th[data-sortable="true"]:hover {
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-data-table th[data-sortable="true"]:focus-visible {
@@ -54,19 +54,19 @@
 
 .mizu-data-table th[data-sort-direction] .mizu-data-table__sort-icon {
   opacity: 1;
-  color: var(--mizu-action-primary-default);
+  color: var(--mizu-action-primary-default, #2563eb);
 }
 
 /* Body */
 .mizu-data-table td {
   padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
-  color: var(--mizu-text-primary);
-  border-bottom: 1px solid var(--mizu-border-subtle);
+  color: var(--mizu-text-primary, #0f172a);
+  border-bottom: 1px solid var(--mizu-border-subtle, #f1f5f9);
   vertical-align: middle;
 }
 
 .mizu-data-table tbody tr:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 3%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 3%, transparent);
 }
 
 /* Selection */
@@ -77,7 +77,7 @@
 }
 
 .mizu-data-table tbody tr[data-selected="true"] {
-  background: color-mix(in srgb, var(--mizu-action-primary-default) 8%, transparent);
+  background: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 8%, transparent);
 }
 
 /* Expandable */
@@ -97,13 +97,13 @@
   background: transparent;
   border: 0;
   border-radius: var(--mizu-radius-sm);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   cursor: pointer;
   transition: transform var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
 .mizu-data-table__expand-btn:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 8%, transparent);
 }
 
 .mizu-data-table__expand-btn[data-expanded="true"] {
@@ -112,15 +112,15 @@
 
 .mizu-data-table__expanded-row td {
   padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
-  background: var(--mizu-surface-secondary);
-  border-bottom: 1px solid var(--mizu-border-default);
+  background: var(--mizu-surface-secondary, #f8fafc);
+  border-bottom: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
 /* Empty + loading (before density so specificity is correct) */
 .mizu-data-table__empty {
   padding: var(--mizu-spacing-6) var(--mizu-spacing-4);
   text-align: center;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-data-table__loading-row td {
@@ -129,7 +129,7 @@
 
 /* Zebra */
 .mizu-data-table[data-striped="true"] tbody tr:nth-child(even) {
-  background: color-mix(in srgb, var(--mizu-text-primary) 2%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 2%, transparent);
 }
 
 /* Density */
@@ -149,7 +149,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
 }
 
 /* Column alignment */
@@ -166,7 +166,7 @@
 .mizu-data-table__loading-bar {
   height: 0.75rem;
   border-radius: var(--mizu-radius-sm);
-  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 8%, transparent);
   animation: mizu-data-table-pulse 1.5s ease-in-out infinite;
 }
 
