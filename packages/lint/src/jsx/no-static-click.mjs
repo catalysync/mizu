@@ -1,17 +1,8 @@
 import { elementName, findAttribute, hasSpread } from './attr.mjs';
 
-// Elements that the browser already treats as interactive (focusable, activated by keyboard).
-const INTERACTIVE = new Set([
-  'a',
-  'button',
-  'input',
-  'select',
-  'textarea',
-  'option',
-  'summary',
-  'label',
-  'details',
-]);
+// Elements the browser already treats as interactive (focusable, activated by keyboard).
+// A label is not one of them: it only forwards clicks to its control.
+const INTERACTIVE = new Set(['a', 'button', 'input', 'select', 'textarea', 'option', 'summary']);
 
 // A click handler on a plain element is invisible to keyboard and screen reader users unless
 // the element also declares a role. Components that need a role should set it explicitly.
@@ -28,9 +19,11 @@ export default {
   create(context) {
     return {
       JSXOpeningElement(node) {
+        // Intrinsic elements are plain identifiers starting lowercase; components and member
+        // expressions (<ui.div>) are skipped.
+        if (node.name.type !== 'JSXIdentifier') return;
         const name = elementName(node);
-        // Intrinsic elements start with a lowercase letter; components (capitalised) are skipped.
-        if (!name || !/^[a-z]/.test(name) || INTERACTIVE.has(name)) return;
+        if (!/^[a-z]/.test(name) || INTERACTIVE.has(name)) return;
         if (hasSpread(node) || !findAttribute(node, 'onClick')) return;
         if (findAttribute(node, 'role')) return;
         context.report({ node, messageId: 'staticClick', data: { name } });
