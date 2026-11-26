@@ -8,3 +8,7 @@ export {
   CommandMenuSeparator,
   type CommandMenuProps,
 } from './CommandMenu';
+export {
+  useCommandMenuShortcut,
+  type UseCommandMenuShortcutOptions,
+} from './useCommandMenuShortcut';
