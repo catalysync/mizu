@@ -97,6 +97,7 @@
 }
 
 .mizu-input--underline[aria-invalid="true"]:focus-visible {
+  border-color: transparent;
   border-bottom-color: var(--mizu-feedback-danger-default);
   box-shadow: none;
 }
