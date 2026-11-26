@@ -38,6 +38,33 @@ const sd = new StyleDictionary({
 
 await sd.buildAllPlatforms();
 
+// The dark theme is its own dictionary: its tokens override the base and semantic names, so
+// they must not be merged into the light source. Base and semantic files are `include`d so the
+// theme's references resolve, and the platform filter keeps them out of dark.css.
+const darkSd = new StyleDictionary({
+  source: ['themes/mizu-dark.json'],
+  include: ['src/base/**/*.json', 'src/semantic/**/*.json', 'src/component/**/*.json'],
+  // The filtered-out base references are the point: dark.css points at the base palette.
+  log: { warnings: 'disabled' },
+  platforms: {
+    css: {
+      transformGroup: 'css',
+      buildPath: 'dist/css/',
+      prefix: 'mizu',
+      files: [
+        {
+          destination: 'dark.css',
+          format: 'css/variables',
+          filter: (token) => token.filePath.endsWith('mizu-dark.json'),
+          options: { selector: '[data-theme="dark"]', outputReferences: true },
+        },
+      ],
+    },
+  },
+});
+
+await darkSd.buildAllPlatforms();
+
 // The CSS variables sit in the lowest mizu cascade layer, so an identity theme on any element
 // (including <html>) and any unlayered consumer rule override them. The order statement matches
 // @mizunagara/css, whichever of the two a page loads first.
@@ -47,3 +74,4 @@ writeFileSync(
   cssOut,
   `@layer mizu.tokens, mizu.base, mizu.components, mizu.shell, mizu.identity;\n@layer mizu.tokens {\n${vars.trimEnd()}\n}\n`,
 );
+
