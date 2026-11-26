@@ -34,5 +34,5 @@
 /* Atlas structural: cards have no shadow by default, border only */
 [data-mizu-identity="atlas"] .mizu-card {
   box-shadow: none;
-  border: 1px solid var(--mizu-border-default);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
 }

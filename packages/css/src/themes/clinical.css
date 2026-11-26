@@ -33,7 +33,7 @@
 }
 
 [data-mizu-identity="clinical"] .mizu-button:focus-visible {
-  outline: 3px solid var(--mizu-action-primary-default);
+  outline: 3px solid var(--mizu-action-primary-default, #2563eb);
   outline-offset: 2px;
 }
 
@@ -44,11 +44,11 @@
 }
 
 [data-mizu-identity="clinical"] .mizu-input:focus {
-  outline: 3px solid var(--mizu-action-primary-default);
+  outline: 3px solid var(--mizu-action-primary-default, #2563eb);
   outline-offset: 0;
 }
 
 /* Clinical structural: tables have thick top border on header */
 [data-mizu-identity="clinical"] .mizu-table thead {
-  border-top: 3px solid var(--mizu-action-primary-default);
+  border-top: 3px solid var(--mizu-action-primary-default, #2563eb);
 }

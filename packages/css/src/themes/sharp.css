@@ -12,7 +12,7 @@
   --mizu-shadow-sm: none;
   --mizu-shadow-md: none;
   --mizu-shadow-lg: none;
-  --mizu-shadow-xl: 0 0 0 1px var(--mizu-border-default);
+  --mizu-shadow-xl: 0 0 0 1px var(--mizu-border-default, #e2e8f0);
   --mizu-font-family-sans: "Geist", system-ui, sans-serif;
   --mizu-font-family-mono: "Geist Mono", "Fira Code", monospace;
   --mizu-action-primary-default: #171717;
