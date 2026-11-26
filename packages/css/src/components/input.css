@@ -9,11 +9,12 @@
   height: 2.5rem;
   padding: 0 var(--mizu-spacing-3);
   font-family: var(--mizu-font-family-sans);
-  font-size: var(--mizu-font-size-sm);
+  font-size: var(--mizu-input-font-size, var(--mizu-font-size-sm));
   color: var(--mizu-text-primary, #0f172a);
   background: var(--mizu-surface-default, #fff);
-  border: 1px solid var(--_border);
+  border: var(--mizu-input-border-width, 1px) solid var(--_border);
   border-radius: var(--mizu-radius-md);
+  min-height: var(--mizu-input-min-height, unset);
   outline: none;
   transition:
     border-color var(--mizu-duration-fast) var(--mizu-easing-out),
@@ -53,12 +54,12 @@
 
 .mizu-input--sm {
   height: 2rem;
-  font-size: var(--mizu-font-size-xs);
+  font-size: var(--mizu-input-font-size, var(--mizu-font-size-xs));
 }
 
 .mizu-input--lg {
   height: 2.75rem;
-  font-size: var(--mizu-font-size-base);
+  font-size: var(--mizu-input-font-size, var(--mizu-font-size-base));
 }
 
 /* Appearance: filled — no visible border, tinted background */
