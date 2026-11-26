@@ -1,6 +1,6 @@
 import { bundleAsync } from 'lightningcss';
-import { createRequire } from 'node:module';
 import { mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 
 const require = createRequire(import.meta.url);
@@ -16,7 +16,12 @@ const LAYER_BY_FILE = {
   'reduced-motion.css': 'base',
   'typography.css': 'base',
 };
-const LAYER_BY_DIR = { components: 'components', layouts: 'components', shell: 'shell', themes: 'identity' };
+const LAYER_BY_DIR = {
+  components: 'components',
+  layouts: 'components',
+  shell: 'shell',
+  themes: 'identity',
+};
 
 function layerForImport(rel) {
   const parts = rel.replace(/^\.\//, '').split('/');
@@ -47,11 +52,10 @@ async function build(input, output, layer) {
 // The layered text is served from memory; the source index.css is not modified.
 const barrelSource = readFileSync('src/index.css', 'utf8');
 const barrelEntry = resolve('src/index.css');
-const barrelLayered =
-  barrelSource.replace(
-    /@import url\("(\.\/[^"]+)"\);/g,
-    (_, rel) => `@import url("${rel}") layer(mizu.${layerForImport(rel)});`,
-  );
+const barrelLayered = barrelSource.replace(
+  /@import url\("(\.\/[^"]+)"\);/g,
+  (_, rel) => `@import url("${rel}") layer(mizu.${layerForImport(rel)});`,
+);
 {
   // bundleAsync is required for a custom resolver; the sync bundle() ignores it.
   const { code } = await bundleAsync({
@@ -64,7 +68,9 @@ const barrelLayered =
   // The native binding returns a Buffer. lightningcss does not keep the order statement from
   // the entry, so it is written back explicitly; the bundle's own layer blocks follow it.
   const bundled = code.toString();
-  const css = bundled.includes('@layer mizu.tokens,') ? bundled : `@layer ${LAYER_ORDER};\n${bundled}`;
+  const css = bundled.includes('@layer mizu.tokens,')
+    ? bundled
+    : `@layer ${LAYER_ORDER};\n${bundled}`;
   if (css.includes('@import')) throw new Error('build-css: dist/mizu.css still has an @import');
   writeFileSync('dist/mizu.css', css);
 }
@@ -107,7 +113,8 @@ function checkTokens() {
   }
   const missing = bare.filter((r) => !defined.has(r.name));
   if (missing.length) {
-    for (const r of missing) console.error(`unresolved token ${r.name} (no definition, no fallback) in ${r.file}`);
+    for (const r of missing)
+      console.error(`unresolved token ${r.name} (no definition, no fallback) in ${r.file}`);
     throw new Error(`build-css: ${missing.length} unresolved token reference(s)`);
   }
 }

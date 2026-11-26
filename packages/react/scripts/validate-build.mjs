@@ -22,7 +22,9 @@ try {
   ok = false;
 }
 
-for (const f of readdirSync('dist').filter((n) => /\.c?js$/.test(n)).map((n) => `dist/${n}`)) {
+for (const f of readdirSync('dist')
+  .filter((n) => /\.c?js$/.test(n))
+  .map((n) => `dist/${n}`)) {
   const content = readFileSync(f, 'utf8');
   if (!content.startsWith('"use client"')) {
     console.error(`missing "use client" directive: ${f}`);

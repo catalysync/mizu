@@ -8,13 +8,22 @@
 // Fails on any load error, a missing entry, or any npm warning during install.
 // Run after `pnpm build` in the packages (`pnpm validate` does both).
 import { execFileSync, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../../../', import.meta.url));
-const packages = ['tokens', 'css', 'tailwind-preset', 'react'].map((d) => join(root, 'packages', d));
+const packages = ['tokens', 'css', 'tailwind-preset', 'react'].map((d) =>
+  join(root, 'packages', d),
+);
 
 const work = mkdtempSync(join(tmpdir(), 'mizu-fixture-'));
 const tarballs = join(work, 'tarballs');
@@ -41,7 +50,10 @@ for (const d of readdirSync(tarballs)) {
 }
 
 // 2. install into a clean consumer
-writeFileSync(join(consumer, 'package.json'), JSON.stringify({ name: 'fixture', private: true, type: 'commonjs' }));
+writeFileSync(
+  join(consumer, 'package.json'),
+  JSON.stringify({ name: 'fixture', private: true, type: 'commonjs' }),
+);
 const install = spawnSync(
   'npm',
   ['install', '--prefer-offline', '--no-audit', '--no-fund', ...tgzs],
@@ -54,11 +66,17 @@ else ok('npm install of packed tarballs (no warnings)');
 
 // 3. load every entry from inside the consumer, so resolution goes through its node_modules
 const probe = (code) =>
-  spawnSync(process.execPath, ['--input-type=module', '-e', code], { cwd: consumer, encoding: 'utf8' });
-const probeCjs = (code) => spawnSync(process.execPath, ['-e', code], { cwd: consumer, encoding: 'utf8' });
+  spawnSync(process.execPath, ['--input-type=module', '-e', code], {
+    cwd: consumer,
+    encoding: 'utf8',
+  });
+const probeCjs = (code) =>
+  spawnSync(process.execPath, ['-e', code], { cwd: consumer, encoding: 'utf8' });
 const reportProbe = (res, label) => {
   if (res.status === 0) return ok(label);
-  fail(`${label.split(' ')[0]} failed: ${(res.stderr || res.stdout).trim().split('\n').slice(0, 3).join(' | ')}`);
+  fail(
+    `${label.split(' ')[0]} failed: ${(res.stderr || res.stdout).trim().split('\n').slice(0, 3).join(' | ')}`,
+  );
 };
 const targetOf = (value) => {
   if (typeof value === 'string') return value;
@@ -88,7 +106,10 @@ for (const dir of packages) {
       continue;
     }
     if (/\.(css|ts)$/.test(target)) {
-      reportProbe(probeCjs(`require.resolve(${JSON.stringify(spec)})`), `${spec} resolves to ${target}`);
+      reportProbe(
+        probeCjs(`require.resolve(${JSON.stringify(spec)})`),
+        `${spec} resolves to ${target}`,
+      );
       continue;
     }
     if (target.endsWith('.json')) {

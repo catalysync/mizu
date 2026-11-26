@@ -12,7 +12,8 @@ describe('button.css colour substrate', () => {
     expect(withoutVarFallbacks(button).match(HEX) ?? []).toEqual([]);
   });
 
-  const gradientBlock = stripComments(button).match(/\.mizu-button--gradient\s*\{([^}]*)\}/)?.[1] ?? '';
+  const gradientBlock =
+    stripComments(button).match(/\.mizu-button--gradient\s*\{([^}]*)\}/)?.[1] ?? '';
 
   it('keeps the gradient free of brand colours', () => {
     expect(gradientBlock).toContain('linear-gradient(');

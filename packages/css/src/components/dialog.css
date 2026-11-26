@@ -20,7 +20,11 @@
   background: var(--mizu-surface-default, #fff);
   border: 1px solid var(--mizu-border-default, #e5e7eb);
   border-radius: var(--mizu-radius-lg);
-  box-shadow: var(--mizu-shadow-xl, 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%));
+  box-shadow: var(
+    --mizu-shadow-xl,
+    0 20px 25px -5px rgb(0 0 0 / 10%),
+    0 8px 10px -6px rgb(0 0 0 / 10%)
+  );
   outline: none;
   z-index: var(--mizu-z-modal);
   animation: mizu-zoom-in var(--mizu-duration-fast) var(--mizu-easing-out);

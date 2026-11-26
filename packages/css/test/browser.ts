@@ -46,9 +46,5 @@ export async function withPage<T>(
 
 /** getComputedStyle(el)[prop] for the first element matching `selector`. */
 export function computed(page: Page, selector: string, prop: string) {
-  return page.$eval(
-    selector,
-    (el, p) => getComputedStyle(el).getPropertyValue(p),
-    prop,
-  );
+  return page.$eval(selector, (el, p) => getComputedStyle(el).getPropertyValue(p), prop);
 }

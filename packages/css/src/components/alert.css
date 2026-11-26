@@ -48,7 +48,11 @@
 
 .mizu-alert--info {
   border-color: var(--mizu-feedback-info-default);
-  background: color-mix(in srgb, var(--mizu-feedback-info-default) 6%, var(--mizu-surface-default, #fff));
+  background: color-mix(
+    in srgb,
+    var(--mizu-feedback-info-default) 6%,
+    var(--mizu-surface-default, #fff)
+  );
 }
 
 .mizu-alert--success {

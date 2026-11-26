@@ -121,9 +121,18 @@
 
 .mizu-button--destructive {
   --_bg: var(--mizu-button-destructive-bg, var(--mizu-action-destructive-default, #dc2626));
-  --_bg-hover: var(--mizu-button-destructive-bg-hover, var(--mizu-action-destructive-hover, #b91c1c));
-  --_bg-active: var(--mizu-button-destructive-bg-active, var(--mizu-action-destructive-active, #991b1b));
-  --_bg-disabled: var(--mizu-button-destructive-bg-disabled, var(--mizu-action-destructive-default, #dc2626));
+  --_bg-hover: var(
+    --mizu-button-destructive-bg-hover,
+    var(--mizu-action-destructive-hover, #b91c1c)
+  );
+  --_bg-active: var(
+    --mizu-button-destructive-bg-active,
+    var(--mizu-action-destructive-active, #991b1b)
+  );
+  --_bg-disabled: var(
+    --mizu-button-destructive-bg-disabled,
+    var(--mizu-action-destructive-default, #dc2626)
+  );
   --_color: var(--mizu-button-destructive-color, var(--mizu-color-white));
   --_color-disabled: var(--mizu-button-destructive-color-disabled, var(--mizu-color-white));
 }
