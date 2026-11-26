@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { css, hasBrowser, withPage } from './browser';
+import { computed, css, hasBrowser, withPage } from './browser';
 
 const DIALOG = 'packages/css/dist/components/dialog.css';
+// The dist build puts mizu in a cascade layer, so unlayered consumer CSS wins there whatever the
+// specificity. The unlayered source is where a specificity fight can happen, so the consumer cases use it.
+const DIALOG_SRC = 'packages/css/src/components/dialog.css';
 // Stands in for a consumer utility class (Tailwind `max-w-md`) loaded by the app.
 const UTILITY = '.max-w-md { max-width: 28rem; }';
 
@@ -39,5 +42,39 @@ describe.skipIf(!hasBrowser)('dialog close placement', () => {
     expect(result.height).toBe(24);
     expect(result.headerOverlapsClose).toBe(true);
     expect(result.hitIsClose).toBe(true);
+  });
+});
+
+describe.skipIf(!hasBrowser)('dialog size via custom property', () => {
+  it('uses the size token width when no consumer class is set', async () => {
+    const width = await withPage([css(DIALOG)], contentHtml('lg'), (page) =>
+      computed(page, '.mizu-dialog__content', 'max-width'),
+    );
+    expect(width).toBe('768px');
+  });
+
+  it('defaults to 32rem for md', async () => {
+    const width = await withPage([css(DIALOG)], contentHtml('md'), (page) =>
+      computed(page, '.mizu-dialog__content', 'max-width'),
+    );
+    expect(width).toBe('512px');
+  });
+
+  it('lets a consumer max-w-md win over size="lg" when the utility loads after dialog.css', async () => {
+    const width = await withPage(
+      [css(DIALOG_SRC), UTILITY],
+      contentHtml('lg', 'max-w-md'),
+      (page) => computed(page, '.mizu-dialog__content', 'max-width'),
+    );
+    expect(width).toBe('448px');
+  });
+
+  it('lets a consumer max-w-md win over size="lg" when the utility loads before dialog.css', async () => {
+    const width = await withPage(
+      [UTILITY, css(DIALOG_SRC)],
+      contentHtml('lg', 'max-w-md'),
+      (page) => computed(page, '.mizu-dialog__content', 'max-width'),
+    );
+    expect(width).toBe('448px');
   });
 });

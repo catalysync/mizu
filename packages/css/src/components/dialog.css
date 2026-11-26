@@ -7,6 +7,14 @@
   animation: mizu-fade-in var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
+/*
+ * Width comes from a custom property so the rule has zero specificity. A consumer
+ * utility such as `max-w-md` then wins in any stylesheet order, with no override flag.
+ */
+:where(.mizu-dialog__content) {
+  max-width: var(--mizu-dialog-max-width, 32rem);
+}
+
 .mizu-dialog__content {
   position: fixed;
   top: 50%;
@@ -15,7 +23,6 @@
   display: flex;
   flex-direction: column;
   width: 90vw;
-  max-width: 32rem;
   max-height: 85vh;
   background: var(--mizu-surface-default, #fff);
   border: 1px solid var(--mizu-border-default, #e5e7eb);
@@ -31,20 +38,21 @@
 }
 
 .mizu-dialog__content[data-size="sm"] {
-  max-width: 24rem;
+  --mizu-dialog-max-width: 24rem;
 }
 
 .mizu-dialog__content[data-size="lg"] {
-  max-width: 48rem;
+  --mizu-dialog-max-width: 48rem;
 }
 
 .mizu-dialog__content[data-size="xl"] {
-  max-width: 64rem;
+  --mizu-dialog-max-width: 64rem;
 }
 
 .mizu-dialog__content[data-size="fullscreen"] {
+  --mizu-dialog-max-width: 100vw;
+
   width: 100vw;
-  max-width: 100vw;
   height: 100vh;
   max-height: 100vh;
   border-radius: 0;
