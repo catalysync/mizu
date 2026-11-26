@@ -1,6 +1,9 @@
+import { stylelintPlugins } from './packages/lint/src/stylelint.mjs';
+
 /** @type {import('stylelint').Config} */
 export default {
   extends: ['stylelint-config-standard'],
+  plugins: stylelintPlugins,
   ignoreFiles: [
     '**/dist/**',
     '**/node_modules/**',
@@ -26,4 +29,11 @@ export default {
     'custom-property-empty-line-before': null,
     'custom-property-pattern': null,
   },
+  overrides: [
+    {
+      // Warning until the four raw hex literals in step-flow.css and date-picker.css are tokenised.
+      files: ['packages/css/src/components/**/*.css'],
+      rules: { 'mizu/no-hex-color': 'warning' },
+    },
+  ],
 };

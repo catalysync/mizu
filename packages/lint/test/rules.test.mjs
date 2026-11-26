@@ -1,13 +1,107 @@
+// One harness for every rule. Each rule directory under test/fixtures/<rule>/ must hold at
+// least one pass-*.{css,jsx} file (no findings for that rule) and one fail-*.{css,jsx} file
+// (at least one finding for that rule). A rule without both fails the suite.
+import { Linter } from 'eslint';
 import assert from 'node:assert/strict';
+import { readdirSync, readFileSync } from 'node:fs';
+import { dirname, extname, join } from 'node:path';
 import { describe, it } from 'node:test';
-import { eslintPlugin, eslintRules } from '../src/eslint.mjs';
-import { stylelintPlugins, stylelintRules } from '../src/stylelint.mjs';
+import { fileURLToPath } from 'node:url';
+import stylelint from 'stylelint';
+import { eslintPlugin } from '../src/eslint.mjs';
+import { stylelintPlugins } from '../src/stylelint.mjs';
 
-describe('@mizunagara/lint entry points', () => {
-  it('load with no rules registered yet', () => {
-    assert.deepEqual(stylelintPlugins, []);
-    assert.deepEqual(stylelintRules, {});
-    assert.deepEqual(Object.keys(eslintPlugin.rules), []);
-    assert.deepEqual(eslintRules, {});
+const here = dirname(fileURLToPath(import.meta.url));
+const fixtures = join(here, 'fixtures');
+
+const CSS_RULES = {
+  'no-hex-color': { id: 'mizu/no-hex-color', option: true },
+};
+const JSX_RULES = {};
+
+async function lintCss(file, ruleId, option) {
+  const code = readFileSync(join(fixtures, dirname(file), '..', file), 'utf8');
+  const result = await stylelint.lint({
+    code,
+    codeFilename: file,
+    config: { plugins: stylelintPlugins, rules: { [ruleId]: option } },
   });
-});
+  return result.results[0].warnings.filter((w) => w.rule === ruleId);
+}
+
+const linter = new Linter({ configType: 'flat' });
+function lintJsx(file, ruleName) {
+  const code = readFileSync(join(fixtures, file), 'utf8');
+  const all = linter.verify(
+    code,
+    [
+      {
+        files: ['**/*.jsx'],
+        plugins: { mizu: eslintPlugin },
+        languageOptions: {
+          ecmaVersion: 'latest',
+          sourceType: 'module',
+          parserOptions: { ecmaFeatures: { jsx: true } },
+        },
+        rules: { [`mizu/${ruleName}`]: 'error' },
+      },
+    ],
+    file,
+  );
+  // A parse error or an unmatched config yields no finding for the rule; fail on it instead.
+  const fatal = all.filter((m) => m.ruleId === null);
+  assert.deepEqual(fatal, [], `fixture ${file} did not lint`);
+  return all.filter((m) => m.ruleId === `mizu/${ruleName}`);
+}
+
+function fixtureFiles(rule) {
+  return readdirSync(join(fixtures, rule));
+}
+
+for (const [rule, { id, option }] of Object.entries(CSS_RULES)) {
+  describe(id, () => {
+    it('has a passing and a failing fixture', () => {
+      const names = fixtureFiles(rule);
+      assert.ok(
+        names.some((n) => n.startsWith('pass-') && extname(n) === '.css'),
+        'pass fixture',
+      );
+      assert.ok(
+        names.some((n) => n.startsWith('fail-') && extname(n) === '.css'),
+        'fail fixture',
+      );
+    });
+    for (const name of fixtureFiles(rule).filter((n) => extname(n) === '.css')) {
+      it(`${name} ${name.startsWith('pass-') ? 'reports nothing' : 'reports findings'}`, async () => {
+        const warnings = await lintCss(join(rule, name), id, option);
+        if (name.startsWith('pass-'))
+          assert.equal(warnings.length, 0, JSON.stringify(warnings, null, 2));
+        else assert.ok(warnings.length > 0, 'expected at least one finding');
+      });
+    }
+  });
+}
+
+for (const [rule, ruleName] of Object.entries(JSX_RULES)) {
+  describe(`mizu/${ruleName}`, () => {
+    it('has a passing and a failing fixture', () => {
+      const names = fixtureFiles(rule);
+      assert.ok(
+        names.some((n) => n.startsWith('pass-') && extname(n) === '.jsx'),
+        'pass fixture',
+      );
+      assert.ok(
+        names.some((n) => n.startsWith('fail-') && extname(n) === '.jsx'),
+        'fail fixture',
+      );
+    });
+    for (const name of fixtureFiles(rule).filter((n) => extname(n) === '.jsx')) {
+      it(`${name} ${name.startsWith('pass-') ? 'reports nothing' : 'reports findings'}`, () => {
+        const messages = lintJsx(join(rule, name), ruleName);
+        if (name.startsWith('pass-'))
+          assert.equal(messages.length, 0, JSON.stringify(messages, null, 2));
+        else assert.ok(messages.length > 0, 'expected at least one finding');
+      });
+    }
+  });
+}
