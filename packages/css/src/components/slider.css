@@ -45,6 +45,14 @@
     0 0 0 4px var(--mizu-action-primary-default);
 }
 
+/* The box-shadow ring is dropped in forced-colors mode, so restore an outline there. */
+@media (forced-colors: active) {
+  .mizu-slider__thumb:focus-visible {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: var(--mizu-focus-ring-offset, 2px);
+  }
+}
+
 .mizu-slider__thumb:hover {
   border-color: var(--mizu-action-primary-hover);
 }

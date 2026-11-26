@@ -203,3 +203,11 @@
   padding-top: var(--mizu-spacing-2);
   border-top: 1px solid var(--mizu-border-subtle);
 }
+
+/* These controls zero their outline and ring with box-shadow, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-date-picker__trigger:focus-visible {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: var(--mizu-focus-ring-offset, 2px);
+  }
+}

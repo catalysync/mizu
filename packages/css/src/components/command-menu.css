@@ -162,3 +162,20 @@
     animation: none;
   }
 }
+
+/* Selected items show only a background tint, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-command-menu__item[data-selected="true"],
+  .mizu-command-menu__item[aria-selected="true"] {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: -2px;
+  }
+}
+
+/* The input is borderless and has no ring of its own, so the wrapper carries the focus ring. */
+@media (forced-colors: active) {
+  .mizu-command-menu__input-wrapper:focus-within {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: var(--mizu-focus-ring-offset, 2px);
+  }
+}

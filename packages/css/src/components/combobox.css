@@ -174,3 +174,19 @@
   color: var(--mizu-text-secondary);
   font-size: var(--mizu-font-size-sm);
 }
+
+/* The control rings with box-shadow on focus-within, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-combobox__control:focus-within {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: var(--mizu-focus-ring-offset, 2px);
+  }
+}
+
+/* Selected options show only a background tint, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-combobox__option[data-selected="true"] {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: -2px;
+  }
+}

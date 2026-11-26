@@ -100,3 +100,19 @@
   color: var(--mizu-text-secondary);
   font-size: var(--mizu-font-size-sm);
 }
+
+/* The input zeroes its outline and rings with box-shadow, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-autocomplete__input:focus {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: var(--mizu-focus-ring-offset, 2px);
+  }
+}
+
+/* Selected options show only a background tint, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-autocomplete__option[data-selected="true"] {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: -2px;
+  }
+}
