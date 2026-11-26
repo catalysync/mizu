@@ -8,8 +8,8 @@
 }
 
 /*
- * Width comes from a custom property so the rule has zero specificity. A consumer
- * utility such as `max-w-md` then wins in any stylesheet order, with no override flag.
+ * Width comes from a custom property so this rule has zero specificity. In unlayered CSS a
+ * consumer utility such as `max-w-md` then overrides `size` without an override flag.
  */
 :where(.mizu-dialog__content) {
   max-width: var(--mizu-dialog-max-width, 32rem);
@@ -23,6 +23,10 @@
   display: flex;
   flex-direction: column;
   width: 90vw;
+
+  /* Set on the element, not inherited, so a dialog nested in a sized one keeps its own width. */
+  --mizu-dialog-max-width: 32rem;
+
   max-height: 85vh;
   background: var(--mizu-surface-default, #fff);
   border: 1px solid var(--mizu-border-default, #e5e7eb);
@@ -71,6 +75,13 @@
   background: var(--mizu-surface-default);
 }
 
+/* Keep the title clear of the close button, which sits in the header's top-right corner. */
+.mizu-dialog__content:has(> .mizu-dialog__close) > .mizu-dialog__header {
+  padding-inline-end: calc(
+    var(--mizu-spacing-4, 1rem) + var(--mizu-spacing-6, 1.5rem) + var(--mizu-spacing-2, 0.5rem)
+  );
+}
+
 .mizu-dialog__title {
   margin: 0;
   font-family: var(--mizu-font-family-sans);
@@ -108,8 +119,8 @@
 
 .mizu-dialog__close {
   position: absolute;
-  top: var(--mizu-spacing-4);
-  right: var(--mizu-spacing-4);
+  top: var(--mizu-spacing-4, 1rem);
+  right: var(--mizu-spacing-4, 1rem);
 
   /* Above the sticky header (z-index 1), which otherwise paints over it. */
   z-index: 2;

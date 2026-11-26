@@ -2,4 +2,4 @@
 '@mizunagara/css': patch
 ---
 
-Dialog width now comes from a `--mizu-dialog-max-width` custom property read by a zero-specificity rule. A consumer `max-w-*` class therefore wins over `size` without `!important`, in any stylesheet order. The default widths for each size are unchanged.
+Dialog width now comes from a `--mizu-dialog-max-width` custom property, which consumers can set. The size rule has zero specificity, so a `max-w-*` class on an unlayered stylesheet overrides `size` without `!important`. Default widths for each size are unchanged.
