@@ -201,6 +201,23 @@ describe('DataTable', () => {
     expect(onSort).not.toHaveBeenCalled();
   });
 
+  it('exposes a sorted header as a column header with its sort state', () => {
+    render(
+      <DataTable
+        columns={COLUMNS}
+        data={DATA}
+        getRowId={(r) => r.id}
+        sortColumn="name"
+        sortDirection="desc"
+        onSort={vi.fn()}
+      />,
+    );
+    expect(screen.getByRole('columnheader', { name: 'Name' })).toHaveAttribute(
+      'aria-sort',
+      'descending',
+    );
+  });
+
   it('does not make non-sortable headers focusable', () => {
     render(<DataTable columns={COLUMNS} data={DATA} getRowId={(r) => r.id} onSort={vi.fn()} />);
     expect(screen.getByText('Status').closest('th')).not.toHaveAttribute('tabindex');

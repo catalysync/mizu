@@ -170,6 +170,9 @@ function DataTableInner<T>(
             ) : null}
             {expandable ? <th className="mizu-data-table__expand-cell" /> : null}
             {columns.map((col) => (
+              // The th keeps its implicit columnheader role. A sortable header is operated from the
+              // keyboard through tabIndex and onKeyDown, which the rule does not look at.
+              // eslint-disable-next-line mizu/no-static-click
               <th
                 key={col.id}
                 data-sortable={col.sortable || undefined}
