@@ -21,7 +21,7 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
   color: var(--mizu-text-primary);
-  background: var(--mizu-surface-primary);
+  background: var(--mizu-surface-default, #fff);
   border: 1px solid var(--mizu-border-default);
   border-radius: var(--mizu-radius-md);
   box-shadow: var(--mizu-shadow-lg);

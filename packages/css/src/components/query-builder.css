@@ -14,7 +14,7 @@
   padding: var(--mizu-spacing-3);
   border: 1px solid var(--mizu-border-default);
   border-radius: var(--mizu-radius-md);
-  background: var(--mizu-surface-primary);
+  background: var(--mizu-surface-default, #fff);
 }
 
 .mizu-query-builder .ruleGroup .ruleGroup {
@@ -46,7 +46,7 @@
   font-size: var(--mizu-font-size-sm);
   line-height: var(--mizu-font-line-height-normal);
   color: var(--mizu-text-primary);
-  background-color: var(--mizu-surface-primary);
+  background-color: var(--mizu-surface-default, #fff);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m3 4.5 3 3 3-3'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.5rem center;
@@ -69,7 +69,7 @@
   font-size: var(--mizu-font-size-sm);
   line-height: var(--mizu-font-line-height-normal);
   color: var(--mizu-text-primary);
-  background: var(--mizu-surface-primary);
+  background: var(--mizu-surface-default, #fff);
   border: 1px solid var(--mizu-border-default);
   border-radius: var(--mizu-radius-sm);
 }
@@ -93,7 +93,7 @@
   font-weight: var(--mizu-font-weight-medium);
   line-height: var(--mizu-font-line-height-normal);
   color: var(--mizu-text-primary);
-  background: var(--mizu-surface-primary);
+  background: var(--mizu-surface-default, #fff);
   border: 1px solid var(--mizu-border-default);
   border-radius: var(--mizu-radius-sm);
   cursor: pointer;

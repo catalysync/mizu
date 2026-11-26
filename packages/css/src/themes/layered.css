@@ -39,7 +39,7 @@
   background: color-mix(
     in srgb,
     var(--mizu-action-primary-default) 4%,
-    var(--mizu-surface-primary)
+    var(--mizu-surface-default, #fff)
   );
 }
 
