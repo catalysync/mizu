@@ -72,7 +72,7 @@ export function contrast(a: string, b: string) {
 export function darkTokens() {
   return {
     ...rootTokens(),
-    ...declarations(read('packages/css/src/themes/dark.css'), /^\[data-theme="dark"\]$/),
+    ...declarations(read('packages/tokens/dist/css/dark.css'), /^\[data-theme="dark"\]$/),
   };
 }
 
