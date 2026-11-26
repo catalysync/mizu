@@ -79,6 +79,10 @@ const nav: NavSection[] = [
     ],
   },
   {
+    title: 'Patterns',
+    items: [{ label: 'Responsive sheet or dialog', href: '/patterns/responsive-sheet-or-dialog' }],
+  },
+  {
     title: 'Layouts',
     items: [
       { label: 'Stack', href: '/layouts/stack' },
