@@ -168,7 +168,7 @@
 
 .mizu-calendar__day[data-selected="true"] {
   background: var(--mizu-action-primary-default, #2563eb);
-  color: #fff;
+  color: var(--mizu-text-on-primary, #fff);
 }
 
 .mizu-calendar__day[data-selected="true"]:hover {
