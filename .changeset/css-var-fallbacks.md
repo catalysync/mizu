@@ -2,4 +2,4 @@
 '@mizunagara/css': patch
 ---
 
-Theme and typography styles now give every colour token a fallback, the same as components already did. If a token is unset, the declaration falls back to the token's light value instead of being dropped. Rendering is unchanged wherever the tokens are defined.
+Colour, border, background and shadow references in component, layout and shell CSS now carry a fallback to the light theme value. Theme and typography styles now do too. Components keep their borders and colours when the token sheet is not loaded, and nothing changes where the tokens are present. Not breaking.

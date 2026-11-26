@@ -2,4 +2,4 @@
 '@mizunagara/lint': minor
 ---
 
-Adds the `mizu/var-fallback` stylelint rule, which flags a colour declaration that reads a `--mizu-*` token with no fallback. It runs as a warning on `packages/css` until the fallback sweep lands.
+Adds the `mizu/var-fallback` stylelint rule, which flags a colour declaration that reads a `--mizu-*` token with no fallback. The rule is an error on `packages/css`.
