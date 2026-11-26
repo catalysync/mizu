@@ -205,6 +205,57 @@ describe('Table', () => {
     expect(table).not.toHaveClass('mizu-table--sticky-first');
   });
 
+  it('renders the caption prop as a <caption> inside the table', () => {
+    render(
+      <Table caption="Customer list">
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>Ada</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    const table = screen.getByRole('table');
+    expect(table.querySelector(':scope > caption')).toHaveTextContent('Customer list');
+    expect(table).toHaveAccessibleName('Customer list');
+  });
+
+  it('omits the <caption> element when caption is null', () => {
+    const { container } = render(
+      <Table caption={null}>
+        <TableBody>
+          <TableRow>
+            <TableCell>X</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(container.querySelector('caption')).toBeNull();
+  });
+
+  it('has no axe violations with the caption prop', async () => {
+    const { container } = render(
+      <Table caption="Customer list">
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>Ada</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(<BasicTable />);
     expect(await axe(container)).toHaveNoViolations();
@@ -276,5 +327,39 @@ describe('Table section and cell names', () => {
       </Table>,
     );
     expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
+describe('TableHead scope', () => {
+  it('defaults header cells to scope="col"', () => {
+    render(
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>Ada</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(screen.getByRole('columnheader', { name: 'Name' })).toHaveAttribute('scope', 'col');
+  });
+
+  it('lets callers set scope="row"', () => {
+    render(
+      <Table>
+        <TableBody>
+          <TableRow>
+            <TableHead scope="row">Ada</TableHead>
+            <TableCell>Engineer</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(screen.getByRole('rowheader', { name: 'Ada' })).toHaveAttribute('scope', 'row');
   });
 });

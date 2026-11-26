@@ -12,6 +12,8 @@ export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> 
   striped?: boolean;
   bordered?: boolean;
   stickyFirstColumn?: boolean;
+  /** Rendered as the table's `<caption>`. */
+  caption?: React.ReactNode;
 }
 
 export const Table = React.forwardRef<HTMLDivElement, TableProps>(
@@ -24,6 +26,7 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
       striped,
       bordered,
       stickyFirstColumn,
+      caption,
       children,
       ...props
     },
@@ -43,6 +46,7 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
           data-density={density === 'default' ? undefined : density}
           {...props}
         >
+          {caption != null && <caption>{caption}</caption>}
           {children}
         </table>
       </div>
@@ -89,11 +93,13 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
 );
 TableRow.displayName = 'TableRow';
 
-/** A `<th>` header cell. */
+/** A `<th>` header cell. Defaults to `scope="col"`; pass `scope="row"` for row headers. */
 export const TableHead = React.forwardRef<
   HTMLTableCellElement,
   React.ThHTMLAttributes<HTMLTableCellElement>
->(({ className, ...props }, ref) => <th ref={ref} className={cn(className)} {...props} />);
+>(({ className, scope = 'col', ...props }, ref) => (
+  <th ref={ref} scope={scope} className={cn(className)} {...props} />
+));
 TableHead.displayName = 'TableHead';
 
 export const TableCell = React.forwardRef<
