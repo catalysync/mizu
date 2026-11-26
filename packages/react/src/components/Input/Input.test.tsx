@@ -87,13 +87,36 @@ describe('Input', () => {
   });
 
   it('sets aria-invalid when error is set', () => {
-    render(<Input error="Required" aria-label="X" />);
+    render(<Input error aria-label="X" />);
     expect(screen.getByRole('textbox')).toHaveAttribute('aria-invalid', 'true');
   });
 
-  it('renders error message text', () => {
-    render(<Input error="Required field" aria-label="Name" />);
+  it('renders the error message through Field, not Input', () => {
+    const { container } = render(
+      <Field label="Name" errorMessage="Required field">
+        <Input error />
+      </Field>,
+    );
     expect(screen.getByText('Required field')).toBeInTheDocument();
+    expect(container.querySelector('.mizu-form-group__error')).toBeNull();
+  });
+
+  it('points aria-describedby at the Field error element in the DOM', () => {
+    render(
+      <Field label="Name" errorMessage="Required field">
+        <Input error />
+      </Field>,
+    );
+    const input = screen.getByLabelText('Name');
+    const describedBy = input.getAttribute('aria-describedby') ?? '';
+    const errorEl = screen.getByText('Required field');
+    expect(describedBy.split(' ')).toContain(errorEl.id);
+    expect(document.getElementById(errorEl.id)).toBe(errorEl);
+  });
+
+  it('sets no aria-describedby without Field or ariaDescribedBy', () => {
+    render(<Input error aria-label="X" />);
+    expect(screen.getByRole('textbox')).not.toHaveAttribute('aria-describedby');
   });
 
   // -- Removed props (0.x breaking change: use <Field> instead) --
@@ -218,8 +241,8 @@ describe('Input', () => {
 
   it('has no axe violations (with error)', async () => {
     const { container } = render(
-      <Field label="Email">
-        <Input error="Required" />
+      <Field label="Email" errorMessage="Required">
+        <Input error />
       </Field>,
     );
     expect(await axe(container)).toHaveNoViolations();

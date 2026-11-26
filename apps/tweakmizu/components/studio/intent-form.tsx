@@ -111,23 +111,23 @@ export function IntentForm({ onSubmit }: Props) {
         </Stack>
 
         <Grid gap="1.5rem" min="18rem">
-          <Field label="Product name">
+          <Field label="Product name" errorMessage={errors.productName}>
             <Input
               value={productName}
               onChange={(event) => setProductName(event.target.value)}
               placeholder="my-cloud-dashboard"
               required
-              error={errors.productName}
+              error={!!errors.productName}
               maxLength={80}
             />
           </Field>
-          <Field label="One-sentence description">
+          <Field label="One-sentence description" errorMessage={errors.description}>
             <Input
               value={description}
               onChange={(event) => setDescription(event.target.value)}
               placeholder="Heroku-style PaaS for deploying Next.js apps"
               required
-              error={errors.description}
+              error={!!errors.description}
               maxLength={240}
             />
           </Field>
