@@ -1,5 +1,9 @@
 import { findAttribute, hasSpread } from './attr.mjs';
 
+// Native form controls get the error look from the form sheet, which styles
+// [aria-invalid="true"] on .mizu-input, .mizu-textarea and .mizu-select__trigger.
+const FORM_CONTROLS = new Set(['input', 'select', 'textarea']);
+
 // aria-invalid={false} announces nothing, so there is no error to style.
 function isExplicitlyValid(attr) {
   const value = attr.value;
@@ -12,26 +16,28 @@ function isExplicitlyValid(attr) {
   );
 }
 
-// aria-invalid tells assistive tech a field is in error, but mizu draws the error state from
-// data-invalid. Setting only aria-invalid announces the error without showing it.
+// On a plain element, aria-invalid does not change how the element looks. It needs a data-invalid
+// binding that the stylesheet reads. Components are skipped: their markup is not visible here.
 export default {
   meta: {
     type: 'problem',
-    docs: { description: 'Require a data-invalid style binding wherever aria-invalid is set' },
+    docs: { description: 'Require a data-invalid binding on plain elements that set aria-invalid' },
     messages: {
       unboundInvalid:
-        'aria-invalid is set without data-invalid, so the error is announced but not styled. Bind data-invalid too.',
+        'aria-invalid on <{{name}}> changes nothing on screen. Bind data-invalid and style it, or use a form control.',
     },
     schema: [],
   },
   create(context) {
     return {
       JSXOpeningElement(node) {
-        if (hasSpread(node)) return;
+        if (hasSpread(node) || node.name.type !== 'JSXIdentifier') return;
+        const name = node.name.name;
+        if (!/^[a-z]/.test(name) || FORM_CONTROLS.has(name)) return;
         const invalid = findAttribute(node, 'aria-invalid');
         if (!invalid || isExplicitlyValid(invalid)) return;
         if (findAttribute(node, 'data-invalid')) return;
-        context.report({ node, messageId: 'unboundInvalid' });
+        context.report({ node, messageId: 'unboundInvalid', data: { name } });
       },
     };
   },

@@ -1,1 +1,1 @@
-export const field = <input aria-invalid={invalid} />;
+export const field = <div aria-invalid={invalid} />;
