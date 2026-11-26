@@ -2,16 +2,18 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '../../utils/cn';
 
-const badgeVariants = cva('mizu-badge', {
-  variants: {
-    tone: {
-      neutral: 'mizu-badge--neutral',
-      success: 'mizu-badge--success',
-      warning: 'mizu-badge--warning',
-      danger: 'mizu-badge--danger',
-      info: 'mizu-badge--info',
-    },
+export const MIZU_BADGE_VARIANTS = {
+  tone: {
+    neutral: 'mizu-badge--neutral',
+    success: 'mizu-badge--success',
+    warning: 'mizu-badge--warning',
+    danger: 'mizu-badge--danger',
+    info: 'mizu-badge--info',
   },
+} as const;
+
+const badgeVariants = cva('mizu-badge', {
+  variants: MIZU_BADGE_VARIANTS,
   defaultVariants: { tone: 'neutral' },
 });
 

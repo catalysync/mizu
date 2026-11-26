@@ -1,1 +1,1 @@
-export { Button, buttonVariants, type ButtonProps } from './Button';
+export { Button, MIZU_BUTTON_VARIANTS, buttonVariants, type ButtonProps } from './Button';

@@ -1,1 +1,1 @@
-export { Input, type InputProps } from './Input';
+export { Input, MIZU_INPUT_VARIANTS, type InputProps } from './Input';

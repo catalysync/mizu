@@ -3,19 +3,21 @@ import * as React from 'react';
 import { cn } from '../../utils/cn';
 import { useFieldContext } from '../Field/field-context';
 
-const inputVariants = cva('mizu-input', {
-  variants: {
-    size: {
-      sm: 'mizu-input--sm',
-      md: '',
-      lg: 'mizu-input--lg',
-    },
-    appearance: {
-      outline: '',
-      filled: 'mizu-input--filled',
-      underline: 'mizu-input--underline',
-    },
+export const MIZU_INPUT_VARIANTS = {
+  size: {
+    sm: 'mizu-input--sm',
+    md: '',
+    lg: 'mizu-input--lg',
   },
+  appearance: {
+    outline: '',
+    filled: 'mizu-input--filled',
+    underline: 'mizu-input--underline',
+  },
+} as const;
+
+const inputVariants = cva('mizu-input', {
+  variants: MIZU_INPUT_VARIANTS,
   defaultVariants: { size: 'md', appearance: 'outline' },
 });
 
