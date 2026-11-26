@@ -3,6 +3,7 @@
  */
 
 [data-theme="dark"] {
+  color-scheme: dark;
   --mizu-text-primary: var(--mizu-color-slate-100);
   --mizu-text-secondary: var(--mizu-color-slate-400);
   --mizu-text-inverse: var(--mizu-color-slate-900);
