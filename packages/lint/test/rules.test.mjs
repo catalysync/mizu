@@ -17,6 +17,7 @@ const fixtures = join(here, 'fixtures');
 const CSS_RULES = {
   'no-hex-color': { id: 'mizu/no-hex-color', option: true },
   'var-fallback': { id: 'mizu/var-fallback', option: 'warning' },
+  'identity-tokens-only': { id: 'mizu/identity-tokens-only', option: true },
 };
 const JSX_RULES = {};
 
