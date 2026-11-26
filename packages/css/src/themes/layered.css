@@ -53,7 +53,8 @@
 }
 
 [data-mizu-identity="layered"] .mizu-input:focus {
-  outline: 2px solid var(--mizu-action-primary-default);
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
 }
 
 /* Layered structural: badges get rounded pill shape */

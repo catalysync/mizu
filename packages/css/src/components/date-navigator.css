@@ -43,8 +43,9 @@
 }
 
 .mizu-date-navigator__preset:focus-visible {
-  outline: 2px solid var(--mizu-action-primary-default);
-  outline-offset: 2px;
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
+  outline-offset: var(--mizu-focus-ring-offset, 2px);
 }
 
 .mizu-date-navigator__stepper {
@@ -77,8 +78,9 @@
 }
 
 .mizu-date-navigator__arrow:focus-visible {
-  outline: 2px solid var(--mizu-action-primary-default);
-  outline-offset: 2px;
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
+  outline-offset: var(--mizu-focus-ring-offset, 2px);
 }
 
 .mizu-date-navigator__label {

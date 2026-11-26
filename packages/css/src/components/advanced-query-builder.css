@@ -58,7 +58,8 @@
 }
 
 .mizu-advanced-query-builder select:focus {
-  outline: 2px solid var(--mizu-action-primary-default);
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
   outline-offset: -1px;
 }
 
@@ -74,7 +75,8 @@
 }
 
 .mizu-advanced-query-builder input:focus {
-  outline: 2px solid var(--mizu-action-primary-default);
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
   outline-offset: -1px;
 }
 

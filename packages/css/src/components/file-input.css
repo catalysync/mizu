@@ -31,8 +31,9 @@
 }
 
 .mizu-file-input__dropzone:focus-visible {
-  outline: 2px solid var(--mizu-action-primary-default);
-  outline-offset: 2px;
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
+  outline-offset: var(--mizu-focus-ring-offset, 2px);
 }
 
 .mizu-file-input[data-dragging="true"] .mizu-file-input__dropzone {
@@ -143,6 +144,7 @@
 }
 
 .mizu-file-input__remove:focus-visible {
-  outline: 2px solid var(--mizu-action-primary-default);
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
   outline-offset: 1px;
 }

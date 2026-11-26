@@ -99,7 +99,8 @@
 }
 
 .mizu-calendar__nav:focus-visible {
-  outline: 2px solid var(--mizu-action-primary-default);
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
   outline-offset: 1px;
 }
 
@@ -149,7 +150,8 @@
 }
 
 .mizu-calendar__day:focus-visible {
-  outline: 2px solid var(--mizu-action-primary-default);
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
   outline-offset: 1px;
 }
 
