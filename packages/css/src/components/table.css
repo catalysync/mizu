@@ -1,9 +1,9 @@
 .mizu-table-wrapper {
   width: 100%;
   overflow-x: auto;
-  border: 1px solid var(--mizu-border-default);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-lg);
-  background: var(--mizu-surface-default);
+  background: var(--mizu-surface-default, #fff);
 
   /* The wrapper is the scroll container, so a capped height lets a sticky header stay in view. */
   max-height: var(--mizu-table-max-height, none);
@@ -14,19 +14,19 @@
   border-collapse: collapse;
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-table caption {
   padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
   text-align: left;
   font-size: var(--mizu-font-size-xs);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-table thead {
-  background: var(--mizu-surface-secondary);
-  border-bottom: 1px solid var(--mizu-border-default);
+  background: var(--mizu-surface-secondary, #f8fafc);
+  border-bottom: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
 .mizu-table th {
@@ -34,14 +34,14 @@
   text-align: left;
   font-weight: var(--mizu-font-weight-semibold);
   font-size: var(--mizu-font-size-xs);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
 .mizu-table tbody tr {
-  border-top: 1px solid var(--mizu-border-default);
+  border-top: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
 .mizu-table tbody tr:first-child {
@@ -49,11 +49,11 @@
 }
 
 .mizu-table tbody tr:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 3%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 3%, transparent);
 }
 
 .mizu-table tbody tr[data-selected="true"] {
-  background: color-mix(in srgb, var(--mizu-action-primary-default) 8%, transparent);
+  background: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 8%, transparent);
 }
 
 .mizu-table tbody tr[data-clickable="true"] {
@@ -79,11 +79,11 @@
 
 .mizu-table--bordered td,
 .mizu-table--bordered th {
-  border: 1px solid var(--mizu-border-default);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
 .mizu-table--striped tbody tr:nth-child(even) {
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
 }
 
 .mizu-table--sticky-first th:first-child,

@@ -4,7 +4,7 @@
   width: 2.5rem;
   height: 1.5rem;
   padding: 2px;
-  background: var(--mizu-border-strong);
+  background: var(--mizu-border-strong, #94a3b8);
   border-radius: var(--mizu-radius-full);
   border: none;
   cursor: pointer;
@@ -12,7 +12,7 @@
 }
 
 .mizu-switch[data-state="checked"] {
-  background: var(--mizu-action-primary-default);
+  background: var(--mizu-action-primary-default, #2563eb);
 }
 
 .mizu-switch[data-disabled] {
@@ -24,9 +24,9 @@
   display: block;
   width: 1.25rem;
   height: 1.25rem;
-  background: var(--mizu-color-white);
+  background: var(--mizu-color-white, #fff);
   border-radius: var(--mizu-radius-full);
-  box-shadow: var(--mizu-shadow-sm);
+  box-shadow: var(--mizu-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 5%));
   transition: transform var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 

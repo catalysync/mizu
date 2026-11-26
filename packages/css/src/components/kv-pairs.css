@@ -10,14 +10,14 @@
 
 .mizu-kv-pairs dt,
 .mizu-definition-list dt {
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   font-weight: var(--mizu-font-weight-medium);
 }
 
 .mizu-kv-pairs dd,
 .mizu-definition-list dd {
   margin: 0;
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-definition-list[data-orientation="vertical"] {

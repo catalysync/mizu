@@ -8,18 +8,23 @@ function table(sticky: boolean) {
 }
 
 async function scrollAndMeasure(sticky: boolean) {
-  return withPage([css('packages/css/src/components/table.css')], table(sticky), (page) =>
-    page.evaluate(() => {
-      const wrapper = document.querySelector<HTMLElement>('.mizu-table-wrapper')!;
-      wrapper.scrollTop = 400;
-      const head = document.querySelector('thead')!.getBoundingClientRect();
-      const box = wrapper.getBoundingClientRect();
-      return {
-        scrollTop: wrapper.scrollTop,
-        height: box.height,
-        headOffset: head.top - box.top,
-      };
-    }),
+  // Load the token sheet too, so the wrapper's 1px border renders as it does in consumer apps.
+  return withPage(
+    [css('packages/tokens/dist/css/variables.css'), css('packages/css/src/components/table.css')],
+    table(sticky),
+    (page) =>
+      page.evaluate(() => {
+        const wrapper = document.querySelector<HTMLElement>('.mizu-table-wrapper')!;
+        wrapper.scrollTop = 400;
+        const head = document.querySelector('thead')!.getBoundingClientRect();
+        const box = wrapper.getBoundingClientRect();
+        return {
+          scrollTop: wrapper.scrollTop,
+          // max-height caps the padding box; the border sits outside it.
+          height: wrapper.clientHeight,
+          headOffset: head.top - box.top,
+        };
+      }),
   );
 }
 

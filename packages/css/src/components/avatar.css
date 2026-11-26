@@ -4,8 +4,8 @@
   justify-content: center;
   flex-shrink: 0;
   border-radius: var(--mizu-radius-full);
-  background: var(--mizu-surface-secondary);
-  color: var(--mizu-text-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
+  color: var(--mizu-text-secondary, #475569);
   font-family: var(--mizu-font-family-sans);
   font-weight: var(--mizu-font-weight-medium);
   overflow: hidden;

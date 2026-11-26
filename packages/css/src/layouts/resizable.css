@@ -11,7 +11,7 @@
 .mizu-resizable-handle {
   position: relative;
   flex: 0 0 1px;
-  background: var(--mizu-border-default);
+  background: var(--mizu-border-default, #e2e8f0);
   transition: background-color var(--mizu-duration-fast) var(--mizu-easing-out);
   outline: none;
 }
@@ -28,7 +28,7 @@
 
 .mizu-resizable-handle:hover,
 .mizu-resizable-handle[data-resize-handle-active] {
-  background: var(--mizu-action-primary-default);
+  background: var(--mizu-action-primary-default, #2563eb);
 }
 
 .mizu-resizable-handle::after {
