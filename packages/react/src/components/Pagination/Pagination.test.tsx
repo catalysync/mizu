@@ -73,6 +73,32 @@ describe('Pagination', () => {
     expect(onPageChange).toHaveBeenCalledWith(2);
   });
 
+  it('renders no page-number buttons when totalPages is 0', () => {
+    render(<Pagination page={1} totalPages={0} />);
+    expect(screen.queryByRole('button', { name: /Go to page/ })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
+  });
+
+  it('uses custom labels for the navigation and its buttons', async () => {
+    const { container } = render(
+      <Pagination
+        page={3}
+        totalPages={10}
+        labels={{
+          navigation: 'Seitennavigation',
+          previous: 'Vorherige Seite',
+          next: 'Nächste Seite',
+          page: (p) => `Zur Seite ${p}`,
+        }}
+      />,
+    );
+    expect(screen.getByRole('navigation', { name: 'Seitennavigation' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Vorherige Seite' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Nächste Seite' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Zur Seite 2' })).toBeInTheDocument();
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(<Pagination page={3} totalPages={10} label="21–30 of 100" />);
     expect(await axe(container)).toHaveNoViolations();
