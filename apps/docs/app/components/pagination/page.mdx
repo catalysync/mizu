@@ -37,7 +37,7 @@ const [page, setPage] = React.useState(1);
 
 ## Previous and next only
 
-When you do not know the total page count, leave out `totalPages`. The page numbers are hidden and the buttons are driven by `hasPrevious` and `hasNext`. This suits cursor-based APIs.
+When you do not know the total page count, leave out `totalPages`. The page numbers are hidden and the buttons are driven by `hasPrevious` and `hasNext`. This suits cursor-based APIs. Next and previous call `onNext` and `onPrevious`, so pass both. Without `totalPages`, a click on Next does nothing unless `onNext` is set.
 
 ```tsx
 <Pagination
@@ -53,7 +53,7 @@ Without `page`, `hasPrevious` and `hasNext` default to `false`. Pass them explic
 
 ## Behaviour
 
-- With `page` and `totalPages`, previous and next are disabled at the first and last page.
+- With `page` and `totalPages`, previous and next are disabled at the first and last page, unless `hasPrevious` or `hasNext` is passed explicitly, which overrides that default.
 - A click on previous or next calls `onPrevious` or `onNext` when you pass them. Otherwise it calls `onPageChange` with the new page.
 - `onPageChange` is never called with a page outside `1…totalPages`.
 - Numbered pages are shown as buttons. The current page has `aria-current="page"` and `data-current`.

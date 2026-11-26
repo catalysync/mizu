@@ -97,13 +97,31 @@ Keep confirmations at `sm` or `md`. Use `lg` or `xl` only when the dialog shows 
 </AlertDialogAction>
 ```
 
-For an async action that can fail, control the dialog with `open` and `onOpenChange`. Keep it open while the request runs, and close it only when the request succeeds.
+For an async action that can fail, control the dialog with `open` and `onOpenChange`, and stop the action from closing it. `AlertDialogAction` closes the dialog on click, so call `event.preventDefault()` in its `onClick`. Close the dialog yourself once the request succeeds.
 
 ```tsx
 const [open, setOpen] = React.useState(false);
 
 <AlertDialog open={open} onOpenChange={setOpen}>
-  ...
+  <AlertDialogContent>
+    ...
+    <AlertDialogAction asChild>
+      <Button
+        variant="destructive"
+        onClick={async (event) => {
+          event.preventDefault();
+          try {
+            await deleteApp(app.id);
+            setOpen(false);
+          } catch {
+            // keep the dialog open and show the error
+          }
+        }}
+      >
+        Delete
+      </Button>
+    </AlertDialogAction>
+  </AlertDialogContent>
 </AlertDialog>;
 ```
 
@@ -123,10 +141,10 @@ const [open, setOpen] = React.useState(false);
 
 ## Props (AlertDialogContent)
 
-| Prop        | Type                           | Default | Description                                   |
-| ----------- | ------------------------------ | ------- | --------------------------------------------- |
-| `size`      | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`  | Maximum width of the panel                    |
-| `className` | `string`                       | —       | Added to the panel. Use it to override width. |
+| Prop        | Type                           | Default | Description                                                                                                        |
+| ----------- | ------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------ |
+| `size`      | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`  | Maximum width of the panel                                                                                         |
+| `className` | `string`                       | —       | Added to the panel. Width comes from `size`, so override it with a selector at least as specific as the size rule. |
 
 Other props are passed to the Radix `Content`, so event props such as `onOpenAutoFocus` and `onEscapeKeyDown` work as in Radix. The overlay does not close the dialog on click, and there is no prop that turns that on.
 
@@ -141,5 +159,5 @@ Other props are passed to the Radix `Content`, so event props such as `onOpenAut
 **Don't:**
 
 - Don't use an AlertDialog for information that does not need an answer. Use a Toast or a Banner.
-- Don't use a Modal where a confirmation is required. A Modal can be dismissed by clicking outside.
+- Don't use a Modal where a confirmation is required. A Modal can be dismissed by clicking outside, by default.
 - Don't nest a dialog inside another dialog.

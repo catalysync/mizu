@@ -5,7 +5,7 @@ import { DataTableDemo } from './data-table-demo';
 
 # DataTable
 
-A table driven by a `data` array and a `columns` definition. It adds sorting, row selection, expandable rows, loading skeletons and an empty state on top of the markup in [Table](/components/table).
+A table driven by a `data` array and a `columns` definition. It adds sorting, row selection, expandable rows, loading skeletons and an empty state. It renders its own `<table>` and does not wrap [Table](/components/table), so use `Table` when you need the markup-first API.
 
 <Preview>
   <DataTableDemo />
@@ -51,14 +51,14 @@ const columns: DataTableColumn<Deployment>[] = [
 
 ## Columns
 
-| Field      | Type                           | Description                                                 |
-| ---------- | ------------------------------ | ----------------------------------------------------------- |
-| `id`       | `string`                       | Unique column key. Also the value passed to `onSort`.       |
-| `header`   | `ReactNode`                    | Column heading                                              |
-| `cell`     | `(row: T) => ReactNode`        | Renders the cell for one row                                |
-| `sortable` | `boolean`                      | Makes the header clickable and keyboard-operable            |
-| `align`    | `'start' \| 'center' \| 'end'` | Text alignment. Use `'end'` for numbers.                    |
-| `width`    | `string`                       | CSS width applied to the header cell, for example `'12rem'` |
+| Field      | Type                           | Description                                                                                                                         |
+| ---------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `id`       | `string`                       | Unique column key. Also the value passed to `onSort`.                                                                               |
+| `header`   | `ReactNode`                    | Column heading                                                                                                                      |
+| `cell`     | `(row: T) => ReactNode`        | Renders the cell for one row                                                                                                        |
+| `sortable` | `boolean`                      | Makes the header focusable and wires click and Enter/Space to `onSort`. Without `onSort`, the header is focusable but does nothing. |
+| `align`    | `'start' \| 'center' \| 'end'` | Text alignment. Use `'end'` for numbers.                                                                                            |
+| `width`    | `string`                       | CSS width applied to the header cell, for example `'12rem'`                                                                         |
 
 ## Sorting
 
