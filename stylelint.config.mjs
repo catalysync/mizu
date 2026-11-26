@@ -36,8 +36,14 @@ export default {
       rules: { 'mizu/var-fallback': 'warning' },
     },
     {
-      // Warning until the four raw hex literals in step-flow.css and date-picker.css are tokenised.
-      files: ['packages/css/src/components/**/*.css'],
+      // Warning until the raw hex literals outside themes are tokenised. Themes are left out on
+      // purpose: a theme is where raw colour values are meant to live.
+      files: [
+        'packages/css/src/components/**/*.css',
+        'packages/css/src/layouts/**/*.css',
+        'packages/css/src/shell/**/*.css',
+        'packages/css/src/*.css',
+      ],
       rules: { 'mizu/no-hex-color': 'warning' },
     },
     {
