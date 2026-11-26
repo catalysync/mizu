@@ -1,5 +1,6 @@
 import * as Sel from '@radix-ui/react-select';
 import * as React from 'react';
+import { usePortalIdentity } from '../../primitives/Portal';
 import { cn } from '../../utils/cn';
 import { useFieldContext } from '../Field/field-context';
 
@@ -93,17 +94,23 @@ export function SelectItems({ items }: { items: Record<string, React.ReactNode> 
 export const SelectContent = React.forwardRef<
   React.ElementRef<typeof Sel.Content>,
   React.ComponentPropsWithoutRef<typeof Sel.Content>
->(({ className, position = 'popper', sideOffset = 6, ...props }, ref) => (
-  <Sel.Portal>
-    <Sel.Content
-      ref={ref}
-      className={cn('mizu-select__content', className)}
-      position={position}
-      sideOffset={sideOffset}
-      {...props}
-    />
-  </Sel.Portal>
-));
+>(({ className, position = 'popper', sideOffset = 6, ...props }, forwardedRef) => {
+  const identity = usePortalIdentity<React.ElementRef<typeof Sel.Content>>(forwardedRef);
+  return (
+    <>
+      {identity.anchor}
+      <Sel.Portal>
+        <Sel.Content
+          ref={identity.ref}
+          className={cn('mizu-select__content', className)}
+          position={position}
+          sideOffset={sideOffset}
+          {...props}
+        />
+      </Sel.Portal>
+    </>
+  );
+});
 SelectContent.displayName = 'SelectContent';
 
 export const SelectItem = React.forwardRef<

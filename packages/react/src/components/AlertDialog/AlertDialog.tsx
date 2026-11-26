@@ -1,5 +1,6 @@
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import * as React from 'react';
+import { usePortalIdentity } from '../../primitives/Portal';
 import { cn } from '../../utils/cn';
 
 export const AlertDialog = AlertDialogPrimitive.Root;
@@ -16,20 +17,30 @@ export interface AlertDialogContentProps extends React.ComponentPropsWithoutRef<
 export const AlertDialogContent = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Content>,
   AlertDialogContentProps
->(({ className, children, size = 'md', ...props }, ref) => (
-  <AlertDialogPrimitive.Portal>
-    <AlertDialogPrimitive.Overlay className="mizu-alert-dialog__overlay" />
-    <AlertDialogPrimitive.Content
-      ref={ref}
-      data-component="mizu-alert-dialog"
-      className={cn('mizu-alert-dialog__content', className)}
-      data-size={size}
-      {...props}
-    >
-      {children}
-    </AlertDialogPrimitive.Content>
-  </AlertDialogPrimitive.Portal>
-));
+>(({ className, children, size = 'md', ...props }, forwardedRef) => {
+  const identity =
+    usePortalIdentity<React.ElementRef<typeof AlertDialogPrimitive.Content>>(forwardedRef);
+  return (
+    <>
+      {identity.anchor}
+      <AlertDialogPrimitive.Portal>
+        <AlertDialogPrimitive.Overlay
+          ref={identity.applyIdentity}
+          className="mizu-alert-dialog__overlay"
+        />
+        <AlertDialogPrimitive.Content
+          ref={identity.ref}
+          data-component="mizu-alert-dialog"
+          className={cn('mizu-alert-dialog__content', className)}
+          data-size={size}
+          {...props}
+        >
+          {children}
+        </AlertDialogPrimitive.Content>
+      </AlertDialogPrimitive.Portal>
+    </>
+  );
+});
 AlertDialogContent.displayName = 'AlertDialogContent';
 
 export const AlertDialogHeader = React.forwardRef<
