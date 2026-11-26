@@ -23,13 +23,18 @@
   --mizu-action-primary-active: #000;
   --mizu-duration-fast: 0ms;
   --mizu-duration-normal: 0ms;
-  --mizu-button-ghost-text-decoration: underline;
-  --mizu-button-ghost-text-underline-offset: 3px;
   --mizu-table-th-border-bottom: 2px solid var(--mizu-text-primary);
   --mizu-table-th-font-style: italic;
   --mizu-table-th-font-weight: 400;
   --mizu-table-td-border-bottom: 1px solid var(--mizu-border-default);
 }
+
+/* stylelint-disable mizu/identity-tokens-only -- text-decoration on ghost buttons; a token with an unset default removes the underline from ghost links (a link's UA underline) */
+[data-mizu-identity="editorial"] .mizu-button--ghost {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* stylelint-enable mizu/identity-tokens-only */
 
 /* stylelint-disable mizu/identity-tokens-only -- the interactive hover border differs per edge here (top edge only), and one token cannot hold per-edge colours */
 [data-mizu-identity="editorial"] .mizu-card {

@@ -11,10 +11,9 @@
  * Shape and type tokens apply to every button and every size:
  *
  *   --mizu-button-radius | -border-width | -min-height | -font-size
- *   --mizu-button-font-weight | -letter-spacing
+ *   --mizu-button-font-weight
  *   --mizu-button-focus-ring-width | -focus-ring-color | -focus-ring-offset
  *   --mizu-button-primary-shadow | -primary-shadow-hover
- *   --mizu-button-ghost-text-decoration | -ghost-text-underline-offset
  */
 .mizu-button {
   --_bg: transparent;
@@ -37,7 +36,6 @@
   font-weight: var(--mizu-button-font-weight, var(--mizu-font-weight-medium));
   font-size: var(--mizu-button-font-size, var(--mizu-font-size-sm));
   line-height: var(--mizu-font-line-height-tight);
-  letter-spacing: var(--mizu-button-letter-spacing, unset);
   min-height: var(--mizu-button-min-height, unset);
   background: var(--_bg);
   color: var(--_color);
@@ -143,8 +141,6 @@
 }
 
 .mizu-button--ghost {
-  text-decoration: var(--mizu-button-ghost-text-decoration, unset);
-  text-underline-offset: var(--mizu-button-ghost-text-underline-offset, unset);
   --_bg: var(--mizu-button-ghost-bg, transparent);
   --_bg-hover: var(--mizu-button-ghost-bg-hover, var(--mizu-surface-secondary, #f8fafc));
   --_bg-active: var(--mizu-button-ghost-bg-active, var(--mizu-surface-secondary, #f8fafc));

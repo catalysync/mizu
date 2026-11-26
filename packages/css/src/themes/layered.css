@@ -27,13 +27,18 @@
   --mizu-easing-in-out: cubic-bezier(0.2, 0, 0, 1);
   --mizu-button-radius: 9999px;
   --mizu-button-font-weight: 500;
-  --mizu-button-letter-spacing: 0.02em;
   --mizu-card-background: color-mix(
     in srgb,
     var(--mizu-action-primary-default) 4%,
     var(--mizu-surface-default, #fff)
   );
 }
+
+/* stylelint-disable mizu/identity-tokens-only -- letter-spacing on every button; a token would inherit into buttons, which default to normal (not inherit), changing buttons in letter-spaced containers */
+[data-mizu-identity="layered"] .mizu-button {
+  letter-spacing: 0.02em;
+}
+/* stylelint-enable mizu/identity-tokens-only */
 
 /* Layered structural: inputs have filled background */
 /* stylelint-disable mizu/identity-tokens-only -- input edges: hover, focus, variant and aria-invalid rules set the same border colours and radius, so a token needs all of them to move together */
