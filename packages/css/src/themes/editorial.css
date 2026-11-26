@@ -23,33 +23,19 @@
   --mizu-action-primary-active: #000;
   --mizu-duration-fast: 0ms;
   --mizu-duration-normal: 0ms;
+  --mizu-button-ghost-text-decoration: underline;
+  --mizu-button-ghost-text-underline-offset: 3px;
+  --mizu-table-th-border-bottom: 2px solid var(--mizu-text-primary);
+  --mizu-table-th-font-style: italic;
+  --mizu-table-th-font-weight: 400;
+  --mizu-table-td-border-bottom: 1px solid var(--mizu-border-default);
 }
 
-/* Editorial structural: buttons are underlined text, not filled */
-[data-mizu-identity="editorial"] .mizu-button--ghost {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-/* Editorial structural: cards have no border, just separator lines */
+/* stylelint-disable mizu/identity-tokens-only -- the interactive hover border differs per edge here (top edge only), and one token cannot hold per-edge colours */
 [data-mizu-identity="editorial"] .mizu-card {
   border: none;
   border-top: 1px solid var(--mizu-border-default);
   border-radius: 0;
   box-shadow: none;
 }
-
-/* Editorial structural: table has minimal chrome */
-[data-mizu-identity="editorial"] .mizu-table {
-  border-collapse: collapse;
-}
-
-[data-mizu-identity="editorial"] .mizu-table th {
-  border-bottom: 2px solid var(--mizu-text-primary);
-  font-style: italic;
-  font-weight: 400;
-}
-
-[data-mizu-identity="editorial"] .mizu-table td {
-  border-bottom: 1px solid var(--mizu-border-default);
-}
+/* stylelint-enable mizu/identity-tokens-only */

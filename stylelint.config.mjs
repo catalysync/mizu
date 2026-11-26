@@ -47,9 +47,10 @@ export default {
       rules: { 'mizu/no-hex-color': 'warning' },
     },
     {
-      // Warning until the 21 identity files drop their component selectors (T10 sweep).
+      // Identity files set tokens only. Component selectors that cannot move to a token yet
+      // carry a stylelint-disable comment with the reason.
       files: ['packages/css/src/themes/**/*.css'],
-      rules: { 'mizu/identity-tokens-only': 'warning' },
+      rules: { 'mizu/identity-tokens-only': true },
     },
   ],
 };

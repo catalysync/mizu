@@ -7,6 +7,14 @@
  *   --mizu-button-{variant}-color | -color-disabled | -border | -border-disabled
  *
  *   variant: primary | secondary | ghost | destructive | gradient
+ *
+ * Shape and type tokens apply to every button and every size:
+ *
+ *   --mizu-button-radius | -border-width | -min-height | -font-size
+ *   --mizu-button-font-weight | -letter-spacing
+ *   --mizu-button-focus-ring-width | -focus-ring-color | -focus-ring-offset
+ *   --mizu-button-primary-shadow | -primary-shadow-hover
+ *   --mizu-button-ghost-text-decoration | -ghost-text-underline-offset
  */
 .mizu-button {
   --_bg: transparent;
@@ -17,7 +25,7 @@
   --_color-disabled: var(--mizu-text-disabled, #94a3b8);
   --_border: transparent;
   --_border-disabled: transparent;
-  --_radius: var(--mizu-radius-lg);
+  --_radius: var(--mizu-button-radius, var(--mizu-radius-lg));
 
   position: relative;
   display: inline-flex;
@@ -26,12 +34,14 @@
   gap: var(--mizu-spacing-2);
   white-space: nowrap;
   font-family: var(--mizu-font-family-sans);
-  font-weight: var(--mizu-font-weight-medium);
-  font-size: var(--mizu-font-size-sm);
+  font-weight: var(--mizu-button-font-weight, var(--mizu-font-weight-medium));
+  font-size: var(--mizu-button-font-size, var(--mizu-font-size-sm));
   line-height: var(--mizu-font-line-height-tight);
+  letter-spacing: var(--mizu-button-letter-spacing, unset);
+  min-height: var(--mizu-button-min-height, unset);
   background: var(--_bg);
   color: var(--_color);
-  border: 1px solid var(--_border);
+  border: var(--mizu-button-border-width, 1px) solid var(--_border);
   border-radius: var(--_radius);
   cursor: pointer;
   outline: none;
@@ -42,9 +52,12 @@
 }
 
 .mizu-button:focus-visible {
-  outline: var(--mizu-focus-ring-width, 2px) solid
-    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
-  outline-offset: var(--mizu-focus-ring-offset, 2px);
+  outline: var(--mizu-button-focus-ring-width, var(--mizu-focus-ring-width, 2px)) solid
+    var(
+      --mizu-button-focus-ring-color,
+      var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb))
+    );
+  outline-offset: var(--mizu-button-focus-ring-offset, var(--mizu-focus-ring-offset, 2px));
 }
 
 /* Loading buttons are not disabled (they keep focus), so they take the disabled look here. */
@@ -94,6 +107,7 @@
 
 /* Variants — read the public tier-3 names and fall back to the semantic token */
 .mizu-button--primary {
+  box-shadow: var(--mizu-button-primary-shadow, unset);
   --_bg: var(--mizu-button-primary-bg, var(--mizu-action-primary-default, #2563eb));
   --_bg-hover: var(--mizu-button-primary-bg-hover, var(--mizu-action-primary-hover, #1d4ed8));
   --_bg-active: var(--mizu-button-primary-bg-active, var(--mizu-action-primary-active, #1e40af));
@@ -104,6 +118,11 @@
   --_color: var(--mizu-button-primary-color, var(--mizu-color-white, #fff));
   --_color-disabled: var(--mizu-button-primary-color-disabled, var(--mizu-color-white, #fff));
   --_border: var(--mizu-button-primary-border, transparent);
+}
+
+/* Hover falls back to the resting shadow, so a theme that sets only the resting shadow keeps it on hover. */
+.mizu-button--primary:hover {
+  box-shadow: var(--mizu-button-primary-shadow-hover, var(--mizu-button-primary-shadow, unset));
 }
 
 .mizu-button--secondary {
@@ -124,6 +143,8 @@
 }
 
 .mizu-button--ghost {
+  text-decoration: var(--mizu-button-ghost-text-decoration, unset);
+  text-underline-offset: var(--mizu-button-ghost-text-underline-offset, unset);
   --_bg: var(--mizu-button-ghost-bg, transparent);
   --_bg-hover: var(--mizu-button-ghost-bg-hover, var(--mizu-surface-secondary, #f8fafc));
   --_bg-active: var(--mizu-button-ghost-bg-active, var(--mizu-surface-secondary, #f8fafc));
@@ -211,19 +232,19 @@
 .mizu-button--sm {
   height: 2rem;
   padding: 0 var(--mizu-spacing-3);
-  font-size: var(--mizu-font-size-xs);
+  font-size: var(--mizu-button-font-size, var(--mizu-font-size-xs));
 }
 
 .mizu-button--md {
   height: 2.5rem;
   padding: 0 var(--mizu-spacing-4);
-  font-size: var(--mizu-font-size-sm);
+  font-size: var(--mizu-button-font-size, var(--mizu-font-size-sm));
 }
 
 .mizu-button--lg {
   height: 2.75rem;
   padding: 0 var(--mizu-spacing-5);
-  font-size: var(--mizu-font-size-base);
+  font-size: var(--mizu-button-font-size, var(--mizu-font-size-base));
 }
 
 .mizu-button--icon {

@@ -33,73 +33,63 @@
   --mizu-duration-fast: 100ms;
   --mizu-duration-normal: 150ms;
   --mizu-easing-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --mizu-button-radius: 2rem;
+  --mizu-button-border-width: 2px;
+  --mizu-button-font-weight: 500;
+  --mizu-card-border: none;
+  --mizu-card-radius: 0.5rem;
+  --mizu-card-shadow: var(--mizu-shadow-sm);
+  --mizu-table-head-background: #335b70;
+  --mizu-table-head-color: #fff;
+  --mizu-table-row-border-bottom-color: #ccd6db;
+  --mizu-badge-radius: 2rem;
+  --mizu-alert-radius: 0.5rem;
+  --mizu-alert-border-left-width: 3px;
+  --mizu-card-hover-border-color: currentcolor;
 }
 
-/* Sage structural: pill buttons with 2px border */
-[data-mizu-identity="sage"] .mizu-button {
-  border-radius: 2rem;
-  border-width: 2px;
-  font-weight: 500;
-}
-
+/* stylelint-disable mizu/identity-tokens-only -- the focus shadow competes with the primary-button shadow token and the forced-colors ring, so a token here would change primary focus states */
 [data-mizu-identity="sage"] .mizu-button:focus-visible {
   outline: 3px solid #ffbc19;
   outline-offset: 3px;
   box-shadow: 0 0 0 6px rgb(0 0 0 / 90%);
 }
+/* stylelint-enable mizu/identity-tokens-only */
 
 /* Sage structural: inputs with 8px radius */
+/* stylelint-disable mizu/identity-tokens-only -- input edges: hover, focus, variant and aria-invalid rules set the same border colours and radius, so a token needs all of them to move together */
 [data-mizu-identity="sage"] .mizu-input,
 [data-mizu-identity="sage"] .mizu-textarea,
 [data-mizu-identity="sage"] .mizu-select__trigger {
   border-color: #668494;
   border-radius: 0.5rem;
 }
+/* stylelint-enable mizu/identity-tokens-only */
 
+/* stylelint-disable mizu/identity-tokens-only -- focus ring: focus-visible, forced-colors and aria-invalid rules set the same outline or shadow, so a token here would change the forced-colors and mouse-focus states */
 [data-mizu-identity="sage"] .mizu-input:focus,
 [data-mizu-identity="sage"] .mizu-textarea:focus {
   outline: 3px solid #ffbc19;
   outline-offset: 0;
   box-shadow: 0 0 0 6px rgb(0 0 0 / 90%);
 }
+/* stylelint-enable mizu/identity-tokens-only */
 
-/* Sage structural: cards with shadow, no border */
-[data-mizu-identity="sage"] .mizu-card {
-  border: none;
-  border-radius: 0.5rem;
-  box-shadow: var(--mizu-shadow-sm);
-}
-
-/* Sage structural: table with dark slate header */
-[data-mizu-identity="sage"] .mizu-table thead {
-  background: #335b70;
-  color: #fff;
-}
-
+/* stylelint-disable mizu/identity-tokens-only -- th border-right and its last-child reset need the bordered variant and an edge-by-edge token, not expressed yet */
 [data-mizu-identity="sage"] .mizu-table thead th {
   font-weight: 500;
   border-right: 1px solid #668494;
 }
+/* stylelint-enable mizu/identity-tokens-only */
 
+/* stylelint-disable mizu/identity-tokens-only -- th border-right and its last-child reset need the bordered variant and an edge-by-edge token, not expressed yet */
 [data-mizu-identity="sage"] .mizu-table thead th:last-child {
   border-right: none;
 }
+/* stylelint-enable mizu/identity-tokens-only */
 
-[data-mizu-identity="sage"] .mizu-table tbody tr {
-  border-bottom-color: #ccd6db;
-}
-
+/* stylelint-disable mizu/identity-tokens-only -- even-row background competes with the hover and striped rules on the same rows */
 [data-mizu-identity="sage"] .mizu-table tbody tr:nth-child(even) {
   background: #fafbfb;
 }
-
-/* Sage structural: badges are pill-shaped */
-[data-mizu-identity="sage"] .mizu-badge {
-  border-radius: 2rem;
-}
-
-/* Sage structural: alert with left validation bar */
-[data-mizu-identity="sage"] .mizu-alert {
-  border-left-width: 3px;
-  border-radius: 0.5rem;
-}
+/* stylelint-enable mizu/identity-tokens-only */

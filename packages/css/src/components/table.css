@@ -25,23 +25,34 @@
 }
 
 .mizu-table thead {
-  background: var(--mizu-surface-secondary, #f8fafc);
+  background: var(--mizu-table-head-background, var(--mizu-surface-secondary, #f8fafc));
+  color: var(--mizu-table-head-color, unset);
+  border-top: var(--mizu-table-head-border-top, unset);
   border-bottom: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
+/* Cell tokens (identity themes): --mizu-table-cell-padding and -font-size apply to every cell;
+ * --mizu-table-th-* and --mizu-table-td-* apply to one kind of cell. */
 .mizu-table th {
-  padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
+  padding: var(--mizu-table-cell-padding, var(--mizu-spacing-3) var(--mizu-spacing-4));
   text-align: left;
-  font-weight: var(--mizu-font-weight-semibold);
-  font-size: var(--mizu-font-size-xs);
+  font-weight: var(--mizu-table-th-font-weight, var(--mizu-font-weight-semibold));
+  font-style: var(--mizu-table-th-font-style, unset);
+  font-size: var(
+    --mizu-table-th-font-size,
+    var(--mizu-table-cell-font-size, var(--mizu-font-size-xs))
+  );
   color: var(--mizu-text-secondary, #475569);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  background: var(--mizu-table-th-background, unset);
+  border-bottom: var(--mizu-table-th-border-bottom, unset);
+  text-transform: var(--mizu-table-th-text-transform, uppercase);
+  letter-spacing: var(--mizu-table-th-letter-spacing, 0.04em);
   white-space: nowrap;
 }
 
 .mizu-table tbody tr {
   border-top: 1px solid var(--mizu-border-default, #e2e8f0);
+  border-bottom-color: var(--mizu-table-row-border-bottom-color, unset);
 }
 
 .mizu-table tbody tr:first-child {
@@ -67,7 +78,9 @@
 }
 
 .mizu-table td {
-  padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
+  padding: var(--mizu-table-cell-padding, var(--mizu-spacing-3) var(--mizu-spacing-4));
+  font-size: var(--mizu-table-cell-font-size, unset);
+  border-bottom: var(--mizu-table-td-border-bottom, unset);
   vertical-align: middle;
 }
 
@@ -82,11 +95,25 @@
   border: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
+.mizu-table--bordered th {
+  border-bottom: var(--mizu-table-th-border-bottom, 1px solid var(--mizu-border-default, #e2e8f0));
+}
+
+.mizu-table--bordered td {
+  border-bottom: var(--mizu-table-td-border-bottom, 1px solid var(--mizu-border-default, #e2e8f0));
+}
+
 .mizu-table--striped tbody tr:nth-child(even) {
   background: var(--mizu-surface-secondary, #f8fafc);
 }
 
-.mizu-table--sticky-first th:first-child,
+.mizu-table--sticky-first th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--mizu-table-th-background, inherit);
+}
+
 .mizu-table--sticky-first td:first-child {
   position: sticky;
   left: 0;
@@ -94,7 +121,13 @@
   background: inherit;
 }
 
-.mizu-table--sticky-last th:last-child,
+.mizu-table--sticky-last th:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background: var(--mizu-table-th-background, inherit);
+}
+
 .mizu-table--sticky-last td:last-child {
   position: sticky;
   right: 0;
@@ -104,10 +137,10 @@
 
 .mizu-table[data-density="compact"] th,
 .mizu-table[data-density="compact"] td {
-  padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
+  padding: var(--mizu-table-cell-padding, var(--mizu-spacing-2) var(--mizu-spacing-3));
 }
 
 .mizu-table[data-density="comfortable"] th,
 .mizu-table[data-density="comfortable"] td {
-  padding: var(--mizu-spacing-4) var(--mizu-spacing-5);
+  padding: var(--mizu-table-cell-padding, var(--mizu-spacing-4) var(--mizu-spacing-5));
 }
