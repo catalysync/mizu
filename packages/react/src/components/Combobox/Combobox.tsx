@@ -188,6 +188,19 @@ export const Combobox = React.forwardRef<HTMLDivElement, ComboboxProps>(
                 }}
                 onKeyDown={(e) => {
                   if (!open && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) setOpen(true);
+                  // Typing into a closed field that shows a selected label starts a new search
+                  // instead of appending to the label.
+                  if (
+                    !open &&
+                    searchable &&
+                    e.key.length === 1 &&
+                    !e.ctrlKey &&
+                    !e.metaKey &&
+                    !e.altKey
+                  ) {
+                    setSearch('');
+                    setOpen(true);
+                  }
                 }}
               />
               <span className="mizu-combobox__chevron" aria-hidden="true">
