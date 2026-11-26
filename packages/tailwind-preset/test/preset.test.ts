@@ -64,6 +64,19 @@ describe('tailwind v4 bridge', () => {
     for (const selector of pointerButtonSelectors) expect(selector).toMatch(/:not\(:disabled[,)]/);
   });
 
+  // Component-tier variables belong on the component, not on :root. Only the
+  // @theme bridge (theme keys like --color-primary) may be declared there.
+  it('keeps component-level variables off :root', async () => {
+    const css = await build(['bg-primary']);
+    const rootRules = rulesFor(css, ':root');
+    expect(rootRules.length).toBeGreaterThan(0);
+    const declared = rootRules.flatMap((r) =>
+      [...r.body.matchAll(/(--[\w-]+)\s*:/g)].map((m) => m[1]),
+    );
+    expect(declared).toContain('--color-primary');
+    expect(declared.filter((name) => name.startsWith('--mizu-'))).toEqual([]);
+  });
+
   it('still maps theme keys to mizu tokens', async () => {
     const css = await build(['bg-primary']);
     expect(css).toMatch(/--color-primary:\s*var\(--mizu-action-primary-default\)/);
