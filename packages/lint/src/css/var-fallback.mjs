@@ -3,16 +3,13 @@ import { isColourProperty, varCalls } from './values.mjs';
 
 export const ruleName = 'mizu/var-fallback';
 
-// Names of --mizu-* tokens read without a fallback. Nested calls count too: in
-// var(--a, var(--b)) the outer call has a fallback, but --b does not.
+// Names of --mizu-* tokens read without a fallback. An empty fallback (var(--a,)) is no fallback.
+// Nested calls count too: in var(--a, var(--b)) the outer call has a fallback, but --b does not.
 function unfallbackedTokens(value) {
   const names = [];
   for (const call of varCalls(value)) {
-    if (call.fallback === null) {
-      if (call.name.startsWith('--mizu-')) names.push(call.name);
-    } else {
-      names.push(...unfallbackedTokens(call.fallback));
-    }
+    if (call.fallback) names.push(...unfallbackedTokens(call.fallback));
+    else if (call.name.startsWith('--mizu-')) names.push(call.name);
   }
   return names;
 }

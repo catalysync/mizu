@@ -1,0 +1,13 @@
+[data-mizu-identity="atlas"] {
+  --mizu-duration-normal: 200ms;
+}
+
+@keyframes pulse {
+  from {
+    --mizu-pulse-scale: 1;
+  }
+
+  to {
+    --mizu-pulse-scale: 1.1;
+  }
+}

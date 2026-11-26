@@ -15,6 +15,18 @@ const COLOUR_PROPERTIES = new Set([
   'border-bottom-color',
   'border-left',
   'border-left-color',
+  'border-block',
+  'border-block-color',
+  'border-block-start',
+  'border-block-start-color',
+  'border-block-end',
+  'border-block-end-color',
+  'border-inline',
+  'border-inline-color',
+  'border-inline-start',
+  'border-inline-start-color',
+  'border-inline-end',
+  'border-inline-end-color',
   'outline',
   'outline-color',
   'fill',
@@ -22,23 +34,27 @@ const COLOUR_PROPERTIES = new Set([
   'box-shadow',
   'text-decoration',
   'text-decoration-color',
+  'text-emphasis-color',
   'caret-color',
   'accent-color',
   'column-rule',
   'column-rule-color',
+  'scrollbar-color',
 ]);
 
 export function isColourProperty(prop) {
   return COLOUR_PROPERTIES.has(prop.toLowerCase());
 }
 
-// Returns every top-level `var(` call in `value` as { start, end, name, fallback }.
-// `fallback` is null when the call has no top-level comma.
+// Every top-level var( call in `value`, as { start, end, name, fallback }. `fallback` is null
+// when the call has no top-level comma. CSS function names are case-insensitive, so VAR( counts.
+// A call nested in an earlier call's fallback is reached through that fallback instead.
 export function varCalls(value) {
   const calls = [];
-  let index = value.indexOf('var(');
-  while (index !== -1) {
-    const open = index + 3;
+  let from = 0;
+  for (const match of value.matchAll(/var\(/gi)) {
+    if (match.index < from) continue;
+    const open = match.index + 3;
     let depth = 0;
     let end = -1;
     let comma = -1;
@@ -54,11 +70,10 @@ export function varCalls(value) {
       } else if (ch === ',' && depth === 1 && comma === -1) comma = i;
     }
     if (end === -1) break;
-    const inner = value.slice(open + 1, end);
-    const name = (comma === -1 ? inner : value.slice(open + 1, comma)).trim();
+    const name = (comma === -1 ? value.slice(open + 1, end) : value.slice(open + 1, comma)).trim();
     const fallback = comma === -1 ? null : value.slice(comma + 1, end).trim();
-    calls.push({ start: index, end: end + 1, name, fallback });
-    index = value.indexOf('var(', end + 1);
+    calls.push({ start: match.index, end: end + 1, name, fallback });
+    from = end + 1;
   }
   return calls;
 }
@@ -79,6 +94,9 @@ const HEX_COLOUR =
   /#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})(?![0-9a-zA-Z_-])/;
 
 export function findHexColour(value) {
-  const match = stripVarFallbacks(value).match(HEX_COLOUR);
+  const visible = stripVarFallbacks(value)
+    .replace(/url\([^)]*\)/gi, '') // url(#id) names an element, not a colour
+    .replace(/"[^"]*"|'[^']*'/g, ''); // string contents are not values
+  const match = visible.match(HEX_COLOUR);
   return match ? match[0] : null;
 }

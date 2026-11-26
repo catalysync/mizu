@@ -1,0 +1,7 @@
+[data-mizu-identity="atlas"] {
+  --mizu-radius-md: 0.25rem;
+}
+
+[data-mizu-identity="atlas"][data-mizu-mode="dark"] {
+  --mizu-surface-default: #111827;
+}
