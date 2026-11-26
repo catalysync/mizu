@@ -31,9 +31,8 @@ export default {
   },
   overrides: [
     {
-      // Warning until the fallback sweep lands; the rule itself reports at error level when asked.
       files: ['packages/css/src/**/*.css'],
-      rules: { 'mizu/var-fallback': 'warning' },
+      rules: { 'mizu/var-fallback': true },
     },
     {
       // Themes are left out on purpose: a theme is where raw colour values are meant to live.

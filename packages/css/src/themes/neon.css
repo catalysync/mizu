@@ -42,16 +42,16 @@
 /* Neon structural: inputs have subtle glow on focus */
 [data-mizu-identity="neon"] .mizu-input:focus {
   box-shadow: 0 0 0 2px rgb(0 245 212 / 30%);
-  border-color: var(--mizu-action-primary-default);
+  border-color: var(--mizu-action-primary-default, #2563eb);
 }
 
 /* Neon structural: cards have border glow */
 [data-mizu-identity="neon"] .mizu-card {
-  border-color: color-mix(in srgb, var(--mizu-action-primary-default) 15%, transparent);
+  border-color: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 15%, transparent);
 }
 
 [data-mizu-identity="neon"] .mizu-card:hover {
-  border-color: color-mix(in srgb, var(--mizu-action-primary-default) 30%, transparent);
+  border-color: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 30%, transparent);
 }
 
 /* Neon structural: badges use glow */

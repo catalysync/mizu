@@ -41,5 +41,5 @@
 /* Precise structural: cards use border, not shadow */
 [data-mizu-identity="precise"] .mizu-card {
   box-shadow: none;
-  border: 1px solid var(--mizu-border-default);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
 }

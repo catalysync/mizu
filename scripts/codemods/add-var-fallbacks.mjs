@@ -13,9 +13,9 @@ import { fileURLToPath } from 'node:url';
 
 const repo = fileURLToPath(new URL('../../', import.meta.url));
 
-export const DEFAULT_DIRS = ['components', 'layouts', 'shell'].map((d) =>
-  join(repo, 'packages/css/src', d),
-);
+// The whole css source tree, themes included: a theme that reads a token without a fallback
+// renders nothing when the token is unset, the same as a component does.
+export const DEFAULT_DIRS = [join(repo, 'packages/css/src')];
 export const TOKEN_SHEET = join(repo, 'packages/tokens/dist/css/variables.css');
 
 export const COLOUR_PROPS = new Set([

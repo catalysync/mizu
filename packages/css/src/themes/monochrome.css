@@ -34,7 +34,7 @@
 /* Monochrome structural: cards are border-driven, no shadow */
 [data-mizu-identity="monochrome"] .mizu-card {
   box-shadow: none;
-  border: 1px solid var(--mizu-border-default);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
 /* Monochrome structural: inputs have 1px border, no shadow */

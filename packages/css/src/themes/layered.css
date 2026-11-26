@@ -38,7 +38,7 @@
 [data-mizu-identity="layered"] .mizu-card {
   background: color-mix(
     in srgb,
-    var(--mizu-action-primary-default) 4%,
+    var(--mizu-action-primary-default, #2563eb) 4%,
     var(--mizu-surface-default, #fff)
   );
 }
@@ -47,7 +47,7 @@
 [data-mizu-identity="layered"] .mizu-input {
   border: none;
   border-radius: var(--mizu-radius-sm);
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 }
@@ -61,5 +61,5 @@
 [data-mizu-identity="layered"] .mizu-badge {
   border-radius: 0.5rem;
   border: none;
-  background: color-mix(in srgb, var(--mizu-action-primary-default) 12%, transparent);
+  background: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 12%, transparent);
 }

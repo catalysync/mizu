@@ -40,5 +40,5 @@
 
 /* Refined structural: cards have subtle gradient top border */
 [data-mizu-identity="refined"] .mizu-card {
-  border-top: 2px solid var(--mizu-action-primary-default);
+  border-top: 2px solid var(--mizu-action-primary-default, #2563eb);
 }
