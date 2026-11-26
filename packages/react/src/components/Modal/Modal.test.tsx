@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import {
   Modal,
@@ -156,5 +156,113 @@ describe('ModalContent overlay props', () => {
   it('keeps the default scrim class when no overlay props are passed', () => {
     render(<TestModal />);
     expect(document.querySelector('.mizu-dialog__overlay')).toHaveClass('mizu-dialog__overlay');
+  });
+});
+
+describe('ModalContent closeButton', () => {
+  it('renders no close icon when closeButton is false', () => {
+    render(
+      <Modal open>
+        <ModalContent closeButton={false}>
+          <ModalTitle>Only title</ModalTitle>
+        </ModalContent>
+      </Modal>,
+    );
+    expect(screen.queryByLabelText('Close')).not.toBeInTheDocument();
+    expect(document.querySelector('.mizu-dialog__close')).toBeNull();
+  });
+
+  it('renders the close icon by default', () => {
+    render(
+      <Modal open>
+        <ModalContent>
+          <ModalTitle>Title</ModalTitle>
+        </ModalContent>
+      </Modal>,
+    );
+    expect(screen.getByLabelText('Close')).toBeInTheDocument();
+  });
+
+  it('has no axe violations without the close icon', async () => {
+    render(
+      <Modal open>
+        <ModalContent closeButton={false}>
+          <ModalTitle>Only title</ModalTitle>
+        </ModalContent>
+      </Modal>,
+    );
+    expect(await axe(document.body)).toHaveNoViolations();
+  });
+});
+
+describe('ModalContent dismissable', () => {
+  it('closes on Escape by default', () => {
+    const onOpenChange = vi.fn();
+    render(
+      <Modal open onOpenChange={onOpenChange}>
+        <ModalContent>
+          <ModalTitle>Title</ModalTitle>
+        </ModalContent>
+      </Modal>,
+    );
+    fireEvent.keyDown(document.activeElement ?? document.body, { key: 'Escape' });
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+  });
+
+  it('ignores Escape when dismissable is false', () => {
+    const onOpenChange = vi.fn();
+    render(
+      <Modal open onOpenChange={onOpenChange}>
+        <ModalContent dismissable={false}>
+          <ModalTitle>Title</ModalTitle>
+        </ModalContent>
+      </Modal>,
+    );
+    fireEvent.keyDown(document.activeElement ?? document.body, { key: 'Escape' });
+    expect(onOpenChange).not.toHaveBeenCalled();
+  });
+
+  it('ignores outside pointer presses when dismissable is false', async () => {
+    const onOpenChange = vi.fn();
+    render(
+      <Modal open onOpenChange={onOpenChange}>
+        <ModalContent dismissable={false}>
+          <ModalTitle>Title</ModalTitle>
+        </ModalContent>
+      </Modal>,
+    );
+    // Radix registers its outside-press listener after mount; let it attach first.
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    fireEvent.pointerDown(document.body);
+    fireEvent.mouseDown(document.body);
+    expect(onOpenChange).not.toHaveBeenCalled();
+  });
+
+  it('closes on outside pointer presses by default', async () => {
+    const onOpenChange = vi.fn();
+    render(
+      <Modal open onOpenChange={onOpenChange}>
+        <ModalContent>
+          <ModalTitle>Title</ModalTitle>
+        </ModalContent>
+      </Modal>,
+    );
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    fireEvent.pointerDown(document.body);
+    fireEvent.mouseDown(document.body);
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+  });
+
+  it('still closes through the close icon when dismissable is false', () => {
+    const onOpenChange = vi.fn();
+    render(
+      <Modal open onOpenChange={onOpenChange}>
+        <ModalContent dismissable={false}>
+          <ModalTitle>Title</ModalTitle>
+        </ModalContent>
+      </Modal>,
+    );
+    fireEvent.click(screen.getByLabelText('Close'));
+    expect(onOpenChange).toHaveBeenCalledWith(false);
   });
 });
