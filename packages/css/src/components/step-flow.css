@@ -90,17 +90,17 @@
 
 .mizu-step-flow__step[data-status="current"] .mizu-step-flow__indicator {
   background: var(--mizu-action-primary-default, #2563eb);
-  color: #fff;
+  color: var(--mizu-text-on-primary, #fff);
 }
 
 .mizu-step-flow__step[data-status="complete"] .mizu-step-flow__indicator {
   background: var(--mizu-feedback-success-default, #059669);
-  color: #fff;
+  color: var(--mizu-text-on-primary, #fff);
 }
 
 .mizu-step-flow__step[data-status="error"] .mizu-step-flow__indicator {
   background: var(--mizu-feedback-danger-default, #dc2626);
-  color: #fff;
+  color: var(--mizu-text-on-primary, #fff);
 }
 
 .mizu-step-flow__title {

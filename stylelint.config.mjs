@@ -36,15 +36,14 @@ export default {
       rules: { 'mizu/var-fallback': 'warning' },
     },
     {
-      // Warning until the raw hex literals outside themes are tokenised. Themes are left out on
-      // purpose: a theme is where raw colour values are meant to live.
+      // Themes are left out on purpose: a theme is where raw colour values are meant to live.
       files: [
         'packages/css/src/components/**/*.css',
         'packages/css/src/layouts/**/*.css',
         'packages/css/src/shell/**/*.css',
         'packages/css/src/*.css',
       ],
-      rules: { 'mizu/no-hex-color': 'warning' },
+      rules: { 'mizu/no-hex-color': true },
     },
     {
       // Warning until the 21 identity files drop their component selectors (T10 sweep).
