@@ -19,6 +19,13 @@ const EXPECTED: Record<string, string> = {
   '--mizu-border-default': 'var(--mizu-color-slate-800)',
   '--mizu-border-subtle': 'var(--mizu-color-slate-900)',
   '--mizu-border-strong': 'var(--mizu-color-slate-600)',
+  '--mizu-shadow-sm': '0 0 0 1px rgb(255 255 255 / 6%), 0 1px 2px 0 rgb(0 0 0 / 60%)',
+  '--mizu-shadow-md':
+    '0 0 0 1px rgb(255 255 255 / 6%), 0 4px 6px -1px rgb(0 0 0 / 60%), 0 2px 4px -2px rgb(0 0 0 / 60%)',
+  '--mizu-shadow-lg':
+    '0 0 0 1px rgb(255 255 255 / 6%), 0 10px 15px -3px rgb(0 0 0 / 60%), 0 4px 6px -4px rgb(0 0 0 / 60%)',
+  '--mizu-shadow-xl':
+    '0 0 0 1px rgb(255 255 255 / 6%), 0 20px 25px -5px rgb(0 0 0 / 60%), 0 8px 10px -6px rgb(0 0 0 / 60%)',
   '--mizu-feedback-success-default': 'var(--mizu-color-emerald-300)',
   '--mizu-feedback-success-subtle': 'var(--mizu-color-emerald-900)',
   '--mizu-feedback-warning-default': 'var(--mizu-color-amber-300)',
