@@ -1,4 +1,4 @@
-import { rmSync } from 'node:fs';
+import { readFileSync, rmSync, writeFileSync } from 'node:fs';
 import StyleDictionary from 'style-dictionary';
 
 rmSync('dist', { recursive: true, force: true });
@@ -37,3 +37,13 @@ const sd = new StyleDictionary({
 });
 
 await sd.buildAllPlatforms();
+
+// The CSS variables sit in the lowest mizu cascade layer, so an identity theme on any element
+// (including <html>) and any unlayered consumer rule override them. The order statement matches
+// @mizunagara/css, whichever of the two a page loads first.
+const cssOut = 'dist/css/variables.css';
+const vars = readFileSync(cssOut, 'utf8');
+writeFileSync(
+  cssOut,
+  `@layer mizu.tokens, mizu.base, mizu.components, mizu.shell, mizu.identity;\n@layer mizu.tokens {\n${vars.trimEnd()}\n}\n`,
+);
