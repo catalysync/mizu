@@ -10,9 +10,55 @@ describe('Alert', () => {
     expect(screen.getByText('Something happened')).toBeInTheDocument();
   });
 
-  it('renders the alert role', () => {
-    render(<Alert>Info</Alert>);
+  it('uses role alert for danger', () => {
+    render(<Alert tone="danger">Failed</Alert>);
     expect(screen.getByRole('alert')).toBeInTheDocument();
+  });
+
+  it('uses role status for info, success and warning', () => {
+    const { rerender } = render(<Alert>Info</Alert>);
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    rerender(<Alert tone="success">OK</Alert>);
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    rerender(<Alert tone="warning">Careful</Alert>);
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+
+  it('lets an explicit role override the tone default', () => {
+    render(
+      <Alert tone="info" role="note">
+        Note
+      </Alert>,
+    );
+    expect(screen.getByRole('note')).toBeInTheDocument();
+  });
+
+  it('renders a default icon for each tone', () => {
+    const { container } = render(<Alert tone="warning">Careful</Alert>);
+    const icon = container.querySelector('.mizu-alert__icon svg');
+    expect(icon).not.toBeNull();
+    expect(icon).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('hides the icon when icon is null', () => {
+    const { container } = render(<Alert icon={null}>Plain</Alert>);
+    expect(container.querySelector('.mizu-alert__icon')).toBeNull();
+  });
+
+  it('uses a custom icon when provided', () => {
+    render(<Alert icon={<span data-testid="custom-icon" />}>X</Alert>);
+    expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
+  });
+
+  it('labels the dismiss button with dismissLabel', () => {
+    render(
+      <Alert onDismiss={() => {}} dismissLabel="Close notice">
+        X
+      </Alert>,
+    );
+    expect(screen.getByRole('button', { name: 'Close notice' })).toBeInTheDocument();
+    expect(screen.queryByLabelText('Dismiss')).not.toBeInTheDocument();
   });
 
   it('renders AlertTitle', () => {
