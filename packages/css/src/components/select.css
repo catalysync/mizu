@@ -4,7 +4,7 @@
   justify-content: space-between;
   gap: var(--mizu-spacing-2);
   width: 100%;
-  height: 2.5rem;
+  height: var(--mizu-control-height-md);
   padding: 0 var(--mizu-spacing-3);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
@@ -17,6 +17,17 @@
   transition:
     border-color var(--mizu-duration-fast) var(--mizu-easing-out),
     box-shadow var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+/* Sizes follow the shared control height scale; md is the default. */
+.mizu-select__trigger[data-size="sm"] {
+  height: var(--mizu-control-height-sm);
+  font-size: var(--mizu-font-size-xs);
+}
+
+.mizu-select__trigger[data-size="lg"] {
+  height: var(--mizu-control-height-lg);
+  font-size: var(--mizu-font-size-base);
 }
 
 .mizu-select__trigger:hover {

@@ -7,9 +7,16 @@ export const Select = Sel.Root;
 export const SelectGroup = Sel.Group;
 export const SelectValue = Sel.Value;
 
+export type SelectSize = 'sm' | 'md' | 'lg';
+
+export interface SelectTriggerProps extends React.ComponentPropsWithoutRef<typeof Sel.Trigger> {
+  /** Height and text size from the shared control scale. */
+  size?: SelectSize;
+}
+
 export const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof Sel.Trigger>,
-  React.ComponentPropsWithoutRef<typeof Sel.Trigger>
+  SelectTriggerProps
 >(
   (
     {
@@ -17,6 +24,7 @@ export const SelectTrigger = React.forwardRef<
       children,
       id,
       disabled,
+      size = 'md',
       'aria-invalid': ariaInvalidProp,
       'aria-describedby': ariaDescribedByProp,
       ...props
@@ -40,6 +48,7 @@ export const SelectTrigger = React.forwardRef<
         aria-describedby={resolvedDescribedBy}
         aria-required={ctx?.required || undefined}
         data-component="mizu-select"
+        data-size={size}
         className={cn('mizu-select__trigger', className)}
         {...props}
       >
@@ -62,6 +71,22 @@ export const SelectTrigger = React.forwardRef<
   },
 );
 SelectTrigger.displayName = 'SelectTrigger';
+
+/**
+ * Renders one SelectItem per entry of an object map, keyed by value. Keeps option lists that already
+ * exist as `Record<value, label>` out of the JSX.
+ */
+export function SelectItems({ items }: { items: Record<string, React.ReactNode> }) {
+  return (
+    <>
+      {Object.entries(items).map(([value, label]) => (
+        <SelectItem key={value} value={value}>
+          {label}
+        </SelectItem>
+      ))}
+    </>
+  );
+}
 
 export const SelectContent = React.forwardRef<
   React.ElementRef<typeof Sel.Content>,
