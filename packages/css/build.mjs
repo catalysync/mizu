@@ -10,7 +10,6 @@ const require = createRequire(import.meta.url);
 // when a consumer loads a single per-file sheet.
 const LAYER_ORDER = 'mizu.tokens, mizu.base, mizu.components, mizu.shell, mizu.identity';
 const LAYER_BY_FILE = {
-  'z-index.css': 'tokens',
   'density.css': 'tokens',
   'utilities.css': 'base',
   'animation.css': 'base',
