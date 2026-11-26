@@ -59,20 +59,21 @@ interface ParsedInput {
 }
 
 function parseInput(input: string): ParsedInput | null {
+  // Whichever operator appears first splits the label from the value, so "a contains b=c" is not read as "=".
   const symbol = SYMBOL_PATTERN.exec(input);
+  const word = WORD_PATTERN.exec(input);
+  if (word && (!symbol || word[1].length < symbol[1].length)) {
+    return {
+      label: word[1].trim(),
+      operator: word[2] as PropertyFilterOperator,
+      value: word[3].trim(),
+    };
+  }
   if (symbol) {
     return {
       label: symbol[1].trim(),
       operator: symbol[2] as PropertyFilterOperator | ':',
       value: symbol[3].trim(),
-    };
-  }
-  const word = WORD_PATTERN.exec(input);
-  if (word) {
-    return {
-      label: word[1].trim(),
-      operator: word[2] as PropertyFilterOperator,
-      value: word[3].trim(),
     };
   }
   return null;

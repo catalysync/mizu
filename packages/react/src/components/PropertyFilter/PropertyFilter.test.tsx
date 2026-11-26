@@ -138,6 +138,20 @@ describe('PropertyFilter', () => {
     });
   });
 
+  it('splits on a word operator that comes before a symbol in the value', async () => {
+    const onChange = vi.fn();
+    const user = userEvent.setup();
+    const props: PropertyFilterProperty[] = [
+      { key: 'name', label: 'Name', operators: ['contains'] },
+    ];
+    render(<PropertyFilter query={emptyQuery} onQueryChange={onChange} properties={props} />);
+    await user.type(screen.getByRole('combobox'), 'Name contains a=b{Enter}');
+    expect(onChange).toHaveBeenCalledWith({
+      operation: 'and',
+      tokens: [{ propertyKey: 'name', operator: 'contains', value: 'a=b' }],
+    });
+  });
+
   it('rejects operators the property does not declare', async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
