@@ -40,5 +40,10 @@ export default {
       files: ['packages/css/src/components/**/*.css'],
       rules: { 'mizu/no-hex-color': 'warning' },
     },
+    {
+      // Warning until the 21 identity files drop their component selectors (T10 sweep).
+      files: ['packages/css/src/themes/**/*.css'],
+      rules: { 'mizu/identity-tokens-only': 'warning' },
+    },
   ],
 };
