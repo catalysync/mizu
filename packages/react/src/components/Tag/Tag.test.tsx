@@ -35,6 +35,21 @@ describe('Tag', () => {
     expect(container.firstChild).toHaveClass('mizu-tag--danger');
   });
 
+  it('applies the info tone', () => {
+    const { container } = render(<Tag tone="info">Beta</Tag>);
+    expect(container.firstChild).toHaveClass('mizu-tag--info');
+  });
+
+  it('wraps the text in the label element', () => {
+    render(<Tag>Feature</Tag>);
+    expect(screen.getByText('Feature')).toHaveClass('mizu-tag__label');
+  });
+
+  it('renders the dismiss control with the dismiss class', () => {
+    render(<Tag onDismiss={() => {}}>Bug</Tag>);
+    expect(screen.getByLabelText(/remove/i)).toHaveClass('mizu-tag__dismiss');
+  });
+
   it('renders a remove button when onDismiss is provided', () => {
     render(<Tag onDismiss={() => {}}>X</Tag>);
     expect(screen.getByLabelText(/remove/i)).toBeInTheDocument();
