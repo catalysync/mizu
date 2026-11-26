@@ -2,16 +2,33 @@
   "surface": {
     "default": { "$value": "{color.slate.950}", "$type": "color" },
     "secondary": { "$value": "{color.slate.900}", "$type": "color" },
-    "inverse": { "$value": "{color.white}", "$type": "color" }
+    "inverse": { "$value": "{color.white}", "$type": "color" },
+    "hover": { "$value": "{color.slate.800}", "$type": "color" }
   },
   "text": {
-    "primary": { "$value": "{color.white}", "$type": "color" },
+    "$description": "Off-white primary text: pure #fff on near-black halates (glows) for many readers. Tertiary is slate-400 because slate-500 is 4.2:1 on the dark surface (below AA); slate-400 is 7.9:1.",
+    "primary": { "$value": "{color.slate.100}", "$type": "color" },
     "secondary": { "$value": "{color.slate.400}", "$type": "color" },
     "inverse": { "$value": "{color.slate.900}", "$type": "color" },
-    "disabled": { "$value": "{color.slate.600}", "$type": "color" }
+    "disabled": { "$value": "{color.slate.600}", "$type": "color" },
+    "tertiary": { "$value": "{color.slate.400}", "$type": "color" }
   },
   "border": {
     "default": { "$value": "{color.slate.800}", "$type": "color" },
+    "subtle": { "$value": "{color.slate.900}", "$type": "color" },
     "strong": { "$value": "{color.slate.600}", "$type": "color" }
+  },
+  "chart": {
+    "categorical": {
+      "$description": "Chart series stepped for the dark surface (base color.chart-dark.*).",
+      "1": { "$value": "{color.chart-dark.1}", "$type": "color" },
+      "2": { "$value": "{color.chart-dark.2}", "$type": "color" },
+      "3": { "$value": "{color.chart-dark.3}", "$type": "color" },
+      "4": { "$value": "{color.chart-dark.4}", "$type": "color" },
+      "5": { "$value": "{color.chart-dark.5}", "$type": "color" },
+      "6": { "$value": "{color.chart-dark.6}", "$type": "color" },
+      "7": { "$value": "{color.chart-dark.7}", "$type": "color" },
+      "8": { "$value": "{color.chart-dark.8}", "$type": "color" }
+    }
   }
 }
