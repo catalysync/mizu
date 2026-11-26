@@ -1,0 +1,145 @@
+export const metadata = { title: 'AlertDialog — mizu' };
+
+import { Preview } from '../preview';
+import { AlertDialogDemo } from './alert-dialog-demo';
+
+# AlertDialog
+
+A modal that interrupts the user to confirm or decline something. Built on Radix AlertDialog. Use it for actions that are hard to undo, or for a message that needs an answer before the user continues.
+
+<Preview>
+  <AlertDialogDemo />
+</Preview>
+
+## Import
+
+```tsx
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from '@mizunagara/react';
+import type { AlertDialogSize, AlertDialogContentProps } from '@mizunagara/react';
+```
+
+## Usage
+
+```tsx
+<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="destructive">Delete app</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This will permanently delete the app and all its data.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel asChild>
+        <Button variant="ghost">Cancel</Button>
+      </AlertDialogCancel>
+      <AlertDialogAction asChild>
+        <Button variant="destructive">Delete</Button>
+      </AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+```
+
+`AlertDialogCancel` and `AlertDialogAction` close the dialog when clicked. Use `asChild` to pass your own `Button`, as above, so the button keeps its styling.
+
+## Parts
+
+| Part                     | Purpose                                                                    |
+| ------------------------ | -------------------------------------------------------------------------- |
+| `AlertDialog`            | Root. Holds the open state. Accepts `open`, `defaultOpen`, `onOpenChange`. |
+| `AlertDialogTrigger`     | Opens the dialog                                                           |
+| `AlertDialogContent`     | Portal, overlay and dialog panel. Takes `size`.                            |
+| `AlertDialogHeader`      | Groups the title and description                                           |
+| `AlertDialogTitle`       | Required heading. Names the dialog for assistive tech.                     |
+| `AlertDialogDescription` | Explains the consequence. Describes the dialog for assistive tech.         |
+| `AlertDialogBody`        | Optional content area between the header and the footer                    |
+| `AlertDialogFooter`      | Holds the actions                                                          |
+| `AlertDialogCancel`      | Closes the dialog without acting                                           |
+| `AlertDialogAction`      | Closes the dialog after the user confirms. Run your handler on it.         |
+
+## Sizes
+
+`AlertDialogContent` takes a `size` prop. The default is `md`.
+
+| Size | Max width |
+| ---- | --------- |
+| `sm` | 24rem     |
+| `md` | Default   |
+| `lg` | 48rem     |
+| `xl` | 64rem     |
+
+Keep confirmations at `sm` or `md`. Use `lg` or `xl` only when the dialog shows a body with real content, such as a diff or a list of affected items.
+
+## Running an action on confirm
+
+`AlertDialogAction` closes the dialog as soon as it is clicked. Run your handler on it. Do not close the dialog yourself.
+
+```tsx
+<AlertDialogAction asChild>
+  <Button variant="destructive" onClick={() => deleteApp(app.id)}>
+    Delete
+  </Button>
+</AlertDialogAction>
+```
+
+For an async action that can fail, control the dialog with `open` and `onOpenChange`. Keep it open while the request runs, and close it only when the request succeeds.
+
+```tsx
+const [open, setOpen] = React.useState(false);
+
+<AlertDialog open={open} onOpenChange={setOpen}>
+  ...
+</AlertDialog>;
+```
+
+## Behaviour
+
+- Focus moves to `AlertDialogCancel` when the dialog opens. A user who presses Enter by reflex cancels rather than confirms.
+- Escape closes the dialog.
+- Clicking the overlay does not close it. A confirmation must be answered with a button.
+- Focus returns to the trigger when the dialog closes.
+
+## Accessibility
+
+- Always include an `AlertDialogTitle`. It is the accessible name of the dialog.
+- Put the consequence in `AlertDialogDescription`, so the user hears what will happen before they choose.
+- Give the action a verb that names the outcome, such as "Delete", not "OK" or "Yes".
+- Focus stays inside the dialog while it is open. The rest of the page is hidden from assistive tech.
+
+## Props (AlertDialogContent)
+
+| Prop        | Type                           | Default | Description                                   |
+| ----------- | ------------------------------ | ------- | --------------------------------------------- |
+| `size`      | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`  | Maximum width of the panel                    |
+| `className` | `string`                       | —       | Added to the panel. Use it to override width. |
+
+Other props are passed to the Radix `Content`, so event props such as `onOpenAutoFocus` and `onEscapeKeyDown` work as in Radix. The overlay does not close the dialog on click, and there is no prop that turns that on.
+
+## Guidelines
+
+**Do:**
+
+- Use for irreversible or high-impact actions
+- Name the object in the title, such as "Delete app?"
+- Use `variant="destructive"` on the action for destructive confirmations
+
+**Don't:**
+
+- Don't use an AlertDialog for information that does not need an answer. Use a Toast or a Banner.
+- Don't use a Modal where a confirmation is required. A Modal can be dismissed by clicking outside.
+- Don't nest a dialog inside another dialog.
