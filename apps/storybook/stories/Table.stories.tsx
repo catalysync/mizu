@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Data Display/Table',
-  tags: ['autodocs', 'experimental'],
+  tags: ['autodocs', 'stable'],
   component: Table,
   parameters: { layout: 'padded' },
   argTypes: {
