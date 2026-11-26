@@ -19,6 +19,14 @@ const EXPECTED: Record<string, string> = {
   '--mizu-border-default': 'var(--mizu-color-slate-800)',
   '--mizu-border-subtle': 'var(--mizu-color-slate-900)',
   '--mizu-border-strong': 'var(--mizu-color-slate-600)',
+  '--mizu-feedback-success-default': 'var(--mizu-color-emerald-300)',
+  '--mizu-feedback-success-subtle': 'var(--mizu-color-emerald-900)',
+  '--mizu-feedback-warning-default': 'var(--mizu-color-amber-300)',
+  '--mizu-feedback-warning-subtle': 'var(--mizu-color-amber-900)',
+  '--mizu-feedback-danger-default': 'var(--mizu-color-red-300)',
+  '--mizu-feedback-danger-subtle': 'var(--mizu-color-red-900)',
+  '--mizu-feedback-info-default': 'var(--mizu-color-blue-300)',
+  '--mizu-feedback-info-subtle': 'var(--mizu-color-blue-900)',
   ...Object.fromEntries(
     Array.from({ length: 8 }, (_, i) => [
       `--mizu-chart-categorical-${i + 1}`,
