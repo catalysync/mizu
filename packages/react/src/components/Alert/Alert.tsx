@@ -126,3 +126,13 @@ export const AlertTitle = React.forwardRef<HTMLDivElement, React.HTMLAttributes<
   ),
 );
 AlertTitle.displayName = 'AlertTitle';
+
+export type CalloutProps = AlertProps;
+
+// Same markup as Alert for inline notes; non-danger tones are notes rather than status updates.
+export const Callout = React.forwardRef<HTMLDivElement, CalloutProps>(
+  ({ tone, role, ...props }, ref) => (
+    <Alert ref={ref} tone={tone} role={role ?? (tone === 'danger' ? 'alert' : 'note')} {...props} />
+  ),
+);
+Callout.displayName = 'Callout';
