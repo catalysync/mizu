@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import { Pagination } from './Pagination';
@@ -36,6 +37,28 @@ describe('Pagination', () => {
     render(<Pagination page={1} totalPages={5} />);
     expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
     expect(screen.getByRole('button', { name: 'Next page' })).toBeEnabled();
+  });
+
+  it('reaches page buttons with Tab and activates them with Enter and Space', async () => {
+    const user = userEvent.setup();
+    const onPageChange = vi.fn();
+    render(<Pagination page={3} totalPages={10} onPageChange={onPageChange} />);
+    // Tab order: Previous, pages 1–4, 10, Next. Page 3 is current, Previous is enabled.
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Previous page' })).toHaveFocus();
+    await user.tab();
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Go to page 2' })).toHaveFocus();
+    await user.keyboard('{Enter}');
+    expect(onPageChange).toHaveBeenLastCalledWith(2);
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Next page' })).toHaveFocus();
+    await user.keyboard(' ');
+    expect(onPageChange).toHaveBeenLastCalledWith(4);
+    expect(onPageChange).toHaveBeenCalledTimes(2);
   });
 
   it('clicking next advances the page', () => {
