@@ -118,7 +118,7 @@ for (const token of LIGHT_DARK_TOKENS) {
     throw new Error(`build tokens: ${name} must appear once in light and once in dark`);
   }
   const light = matches[0][1];
-  vars = vars.replace(line, `  ${name}: light-dark(${light}, ${darkValues[name]});`);
+  vars = vars.replace(line, () => `  ${name}: light-dark(${light}, ${darkValues[name]});`);
 }
 writeFileSync(
   cssOut,
