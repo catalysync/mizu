@@ -8,7 +8,7 @@
 
 .mizu-drawer__content {
   position: fixed;
-  background: var(--mizu-surface-default);
+  background: var(--mizu-surface-default, #fff);
   box-shadow: var(--mizu-shadow-xl);
   z-index: var(--mizu-z-drawer);
   display: flex;

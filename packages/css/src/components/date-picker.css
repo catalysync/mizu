@@ -62,7 +62,7 @@
   flex-direction: column;
   gap: var(--mizu-spacing-2);
   padding: var(--mizu-spacing-3);
-  background: var(--mizu-surface-default);
+  background: var(--mizu-surface-default, #fff);
   border: 1px solid var(--mizu-border-subtle);
   border-radius: var(--mizu-radius-lg);
   box-shadow: 0 10px 30px -12px rgb(0 0 0 / 18%);
