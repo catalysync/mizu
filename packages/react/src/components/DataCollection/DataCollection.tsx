@@ -45,6 +45,8 @@ export interface DataCollectionProps<T> extends Omit<
 
   /** sr-only label for the view-switch radio group. Defaults to "View". */
   viewSwitchLabel?: string;
+  /** Overrides for the per-view accessible names (e.g. localised strings). Missing keys fall back to the defaults. */
+  labels?: Partial<Record<DataCollectionView, string>>;
 }
 
 const VIEW_LABEL: Record<DataCollectionView, string> = {
@@ -127,6 +129,9 @@ function DataCollectionInner<T>(
     loadingFallback,
     emptyState,
     viewSwitchLabel = 'View',
+    labels,
+    // Accepted on the props type for id-keyed consumers; not rendered, so keep it off the DOM.
+    getRowId: _getRowId,
     className,
     ...props
   }: DataCollectionProps<T>,
@@ -152,6 +157,42 @@ function DataCollectionInner<T>(
     onViewChange?.(next);
   };
 
+  // Roving tabindex: only the selected radio sits in the tab order; arrow keys move
+  // selection (and focus) through the group, as in the WAI-ARIA radio pattern.
+  const buttonRefs = React.useRef<Partial<Record<DataCollectionView, HTMLButtonElement | null>>>(
+    {},
+  );
+  const onViewKeyDown = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    from: DataCollectionView,
+  ) => {
+    const index = availableViews.indexOf(from);
+    const count = availableViews.length;
+    let nextIndex: number | null = null;
+    switch (event.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        nextIndex = (index + 1) % count;
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        nextIndex = (index - 1 + count) % count;
+        break;
+      case 'Home':
+        nextIndex = 0;
+        break;
+      case 'End':
+        nextIndex = count - 1;
+        break;
+      default:
+        return;
+    }
+    event.preventDefault();
+    const next = availableViews[nextIndex];
+    selectView(next);
+    buttonRefs.current[next]?.focus();
+  };
+
   const renderView = () => {
     if (view === 'table' && renderTable) return renderTable(data);
     if (view === 'grid' && renderGrid) return renderGrid(data);
@@ -160,6 +201,8 @@ function DataCollectionInner<T>(
   };
 
   const hasHeader = Boolean(toolbar || search || actions || availableViews.length > 1);
+  // The selected view owns the tab stop; if the controlled `view` has no renderer, fall back to the first.
+  const tabStop = availableViews.includes(view) ? view : availableViews[0];
 
   return (
     <div
@@ -185,13 +228,18 @@ function DataCollectionInner<T>(
                 return (
                   <button
                     key={v}
+                    ref={(el) => {
+                      buttonRefs.current[v] = el;
+                    }}
                     type="button"
                     role="radio"
                     aria-checked={selected}
-                    aria-label={VIEW_LABEL[v]}
+                    aria-label={labels?.[v] ?? VIEW_LABEL[v]}
+                    tabIndex={v === tabStop ? 0 : -1}
                     data-selected={selected || undefined}
                     className="mizu-data-collection__view-button"
                     onClick={() => selectView(v)}
+                    onKeyDown={(event) => onViewKeyDown(event, v)}
                   >
                     {VIEW_ICON[v]}
                   </button>
