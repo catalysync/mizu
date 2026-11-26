@@ -114,6 +114,19 @@ describe('Input', () => {
     expect(document.getElementById(errorEl.id)).toBe(errorEl);
   });
 
+  it('references only description and error nodes that are in the DOM', () => {
+    render(
+      <Field label="Email" description="We won't share this." errorMessage="Required">
+        <Input error />
+      </Field>,
+    );
+    const ids = (screen.getByLabelText('Email').getAttribute('aria-describedby') ?? '')
+      .split(' ')
+      .filter(Boolean);
+    expect(ids).toHaveLength(2);
+    for (const id of ids) expect(document.getElementById(id)).not.toBeNull();
+  });
+
   it('sets no aria-describedby without Field or ariaDescribedBy', () => {
     render(<Input error aria-label="X" />);
     expect(screen.getByRole('textbox')).not.toHaveAttribute('aria-describedby');
@@ -276,6 +289,24 @@ describe('Input', () => {
     const { container } = render(
       <Field label="Email" errorMessage="Required">
         <Input error />
+      </Field>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (help and error states)', async () => {
+    const { container } = render(
+      <Field label="Email" description="We won't share this." errorMessage="Required">
+        <Input error />
+      </Field>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (help state)', async () => {
+    const { container } = render(
+      <Field label="Email" description="We won't share this.">
+        <Input />
       </Field>,
     );
     expect(await axe(container)).toHaveNoViolations();
