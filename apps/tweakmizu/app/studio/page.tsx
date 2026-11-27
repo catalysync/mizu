@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 export default function StudioHome() {
   return (
-    <Stack gap="2rem">
-      <Stack gap="1rem">
+    <Stack gap="8">
+      <Stack gap="4">
         <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
           Studio
         </span>
@@ -84,7 +84,7 @@ function QuickCard({
       href={href}
       className="border-border bg-background hover:border-border-strong hover:bg-muted/40 rounded-lg border p-5 transition-colors"
     >
-      <Stack gap="0.375rem" align="start">
+      <Stack gap="2" align="start">
         <span className="text-foreground text-base font-semibold">{title}</span>
         <span className="text-muted-foreground text-sm">{description}</span>
       </Stack>

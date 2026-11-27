@@ -1,7 +1,9 @@
 import * as Popover from '@radix-ui/react-popover';
+import { Command as CommandPrimitive } from 'cmdk';
 import * as React from 'react';
 import { cn } from '../../utils/cn';
 import { useFieldContext } from '../Field/field-context';
+import { ComboboxInput, ComboboxListbox } from './combobox-core';
 
 export interface ComboboxOption {
   value: string;
@@ -58,24 +60,35 @@ export const Combobox = React.forwardRef<HTMLDivElement, ComboboxProps>(
 
     const [open, setOpen] = React.useState(false);
     const [search, setSearch] = React.useState('');
-    const searchRef = React.useRef<HTMLInputElement>(null);
+    // cmdk keeps its highlight across open/close; clearing it on close makes the first option
+    // active again on the next open.
+    const [active, setActive] = React.useState('');
+    const [listId, setListId] = React.useState<string>();
+    const anchorRef = React.useRef<HTMLDivElement>(null);
+    const inputRef = React.useRef<HTMLInputElement>(null);
+    const listRef = React.useCallback((el: HTMLDivElement | null) => setListId(el?.id), []);
+
+    const setOpenState = (next: boolean) => {
+      setOpen(next);
+      if (!next) {
+        setSearch('');
+        setActive('');
+      }
+    };
 
     const selected = React.useMemo<Set<string>>(() => {
       if (!valueProp) return new Set();
       return new Set(Array.isArray(valueProp) ? valueProp : [valueProp]);
     }, [valueProp]);
 
-    const filtered = React.useMemo(
-      () =>
-        search
-          ? options.filter(
-              (o) =>
-                o.label.toLowerCase().includes(search.toLowerCase()) ||
-                o.description?.toLowerCase().includes(search.toLowerCase()),
-            )
-          : options,
-      [options, search],
-    );
+    const filtered = React.useMemo(() => {
+      if (!search) return options;
+      const query = search.toLowerCase();
+      return options.filter(
+        (o) =>
+          o.label.toLowerCase().includes(query) || o.description?.toLowerCase().includes(query),
+      );
+    }, [options, search]);
 
     const toggle = (optValue: string) => {
       if (!onValueChange) return;
@@ -86,7 +99,7 @@ export const Combobox = React.forwardRef<HTMLDivElement, ComboboxProps>(
         onValueChange(Array.from(next));
       } else {
         onValueChange(optValue);
-        setOpen(false);
+        setOpenState(false);
       }
     };
 
@@ -98,43 +111,36 @@ export const Combobox = React.forwardRef<HTMLDivElement, ComboboxProps>(
     };
 
     const displayValue = React.useMemo(() => {
-      if (selected.size === 0) return null;
-      if (!multiple) {
-        const opt = options.find((o) => selected.has(o.value));
-        return opt?.label ?? null;
-      }
-      return null;
+      if (selected.size === 0 || multiple) return null;
+      const opt = options.find((o) => selected.has(o.value));
+      return opt?.label ?? null;
     }, [selected, multiple, options]);
 
+    const hasSelection = selected.size > 0;
+    const inputValue = open && searchable ? search : (displayValue ?? '');
+
     return (
-      <div
+      <CommandPrimitive
         ref={ref}
+        shouldFilter={false}
+        loop
+        value={active}
+        onValueChange={setActive}
         className={cn('mizu-combobox', className)}
         data-component="mizu-combobox"
         {...props}
       >
-        <Popover.Root
-          open={open}
-          onOpenChange={(next) => {
-            setOpen(next);
-            if (!next) setSearch('');
-          }}
-        >
-          <Popover.Trigger asChild>
-            <button
-              type="button"
-              id={resolvedId}
-              className="mizu-combobox__trigger"
-              disabled={resolvedDisabled}
+        <Popover.Root open={open} onOpenChange={setOpenState}>
+          <Popover.Anchor asChild>
+            <div
+              ref={anchorRef}
+              className="mizu-combobox__control"
               data-required={resolvedRequired || undefined}
               data-invalid={resolvedInvalid || undefined}
-              aria-describedby={resolvedDescribedBy}
-              aria-haspopup="listbox"
-              aria-expanded={open}
+              data-disabled={resolvedDisabled || undefined}
             >
-              {multiple && selected.size > 0 ? (
-                <>
-                  {Array.from(selected).map((v) => {
+              {multiple
+                ? Array.from(selected).map((v) => {
                     const opt = options.find((o) => o.value === v);
                     return (
                       <span key={v} className="mizu-combobox__pill">
@@ -142,9 +148,12 @@ export const Combobox = React.forwardRef<HTMLDivElement, ComboboxProps>(
                         <button
                           type="button"
                           className="mizu-combobox__pill-remove"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            removePill(v);
+                          disabled={resolvedDisabled}
+                          onClick={() => removePill(v)}
+                          // cmdk's root turns Enter into "select highlighted option" and would
+                          // swallow the native click, so keep Enter on the button.
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') e.stopPropagation();
                           }}
                           aria-label={`Remove ${opt?.label ?? v}`}
                         >
@@ -152,76 +161,86 @@ export const Combobox = React.forwardRef<HTMLDivElement, ComboboxProps>(
                         </button>
                       </span>
                     );
-                  })}
-                </>
-              ) : displayValue ? (
-                <span>{displayValue}</span>
-              ) : (
-                <span className="mizu-combobox__placeholder">{placeholder}</span>
-              )}
+                  })
+                : null}
+              <ComboboxInput
+                ref={inputRef}
+                id={resolvedId}
+                className="mizu-combobox__input"
+                listId={listId}
+                open={open}
+                value={inputValue}
+                readOnly={!searchable}
+                disabled={resolvedDisabled}
+                aria-required={resolvedRequired || undefined}
+                aria-invalid={resolvedInvalid || undefined}
+                aria-describedby={resolvedDescribedBy}
+                placeholder={
+                  open && searchable ? searchPlaceholder : hasSelection ? undefined : placeholder
+                }
+                onClick={() => {
+                  if (!resolvedDisabled) setOpen(true);
+                }}
+                onChange={(e) => {
+                  if (!searchable) return;
+                  setSearch(e.target.value);
+                  setOpen(true);
+                }}
+                onKeyDown={(e) => {
+                  if (!open && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) setOpen(true);
+                  // Typing into a closed field that shows a selected label starts a new search
+                  // instead of appending to the label.
+                  if (
+                    !open &&
+                    searchable &&
+                    e.key.length === 1 &&
+                    !e.ctrlKey &&
+                    !e.metaKey &&
+                    !e.altKey
+                  ) {
+                    setSearch('');
+                    setOpen(true);
+                  }
+                }}
+              />
               <span className="mizu-combobox__chevron" aria-hidden="true">
                 ▾
               </span>
-            </button>
-          </Popover.Trigger>
-          <Popover.Portal>
-            <Popover.Content
-              className="mizu-combobox__content"
-              sideOffset={4}
-              align="start"
-              onOpenAutoFocus={(e) => {
-                e.preventDefault();
-                searchRef.current?.focus();
-              }}
-            >
-              {searchable ? (
-                <div className="mizu-combobox__search">
-                  <input
-                    ref={searchRef}
-                    type="text"
-                    className="mizu-combobox__search-input"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder={searchPlaceholder}
-                    aria-label="Filter options"
-                  />
-                </div>
-              ) : null}
-              <div role="listbox" aria-multiselectable={multiple || undefined}>
-                {filtered.length === 0 ? (
-                  <div className="mizu-combobox__empty">{emptyMessage}</div>
-                ) : (
-                  filtered.map((opt) => {
-                    const isSelected = selected.has(opt.value);
-                    return (
-                      <button
-                        key={opt.value}
-                        type="button"
-                        role="option"
-                        className="mizu-combobox__option"
-                        data-selected={isSelected || undefined}
-                        aria-selected={isSelected}
-                        disabled={opt.disabled}
-                        onClick={() => toggle(opt.value)}
-                      >
-                        <span className="mizu-combobox__option-check">{isSelected ? '✓' : ''}</span>
-                        <span>
-                          <span className="mizu-combobox__option-label">{opt.label}</span>
-                          {opt.description ? (
-                            <span className="mizu-combobox__option-description">
-                              {opt.description}
-                            </span>
-                          ) : null}
-                        </span>
-                      </button>
-                    );
-                  })
-                )}
-              </div>
-            </Popover.Content>
-          </Popover.Portal>
+            </div>
+          </Popover.Anchor>
+          <ComboboxListbox
+            block="mizu-combobox"
+            anchorRef={anchorRef}
+            listRef={listRef}
+            multiple={multiple}
+            emptyMessage={emptyMessage}
+          >
+            {filtered.map((opt) => {
+              const isSelected = selected.has(opt.value);
+              return (
+                <CommandPrimitive.Item
+                  key={opt.value}
+                  value={opt.value}
+                  disabled={opt.disabled}
+                  onSelect={() => toggle(opt.value)}
+                  className="mizu-combobox__option"
+                  aria-checked={isSelected}
+                >
+                  <span className="mizu-combobox__option-check" aria-hidden="true">
+                    {isSelected ? '✓' : ''}
+                  </span>
+                  <span>
+                    <span className="mizu-combobox__option-label">{opt.label}</span>
+                    {opt.description ? (
+                      <span className="mizu-combobox__option-description">{opt.description}</span>
+                    ) : null}
+                  </span>
+                </CommandPrimitive.Item>
+              );
+            })}
+          </ComboboxListbox>
         </Popover.Root>
-      </div>
+      </CommandPrimitive>
     );
   },
 );

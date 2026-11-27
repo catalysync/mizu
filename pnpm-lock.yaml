@@ -147,7 +147,7 @@ importers:
         version: 16.2.2(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.2.14)(react@19.2.4))
       next:
         specifier: 16.3.8
-        version: 16.3.8(@opentelemetry/api@1.9.1)(@types/node@22.19.17)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 16.3.8(@babel/core@7.29.6)(@opentelemetry/api@1.9.1)(@types/node@22.19.17)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react:
         specifier: ^19.0.0
         version: 19.2.4
@@ -265,7 +265,7 @@ importers:
         version: 19.2.4(react@19.2.4)
       react-querybuilder:
         specifier: ^8.0.0
-        version: 8.14.4(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9)
+        version: 8.14.4(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.29.6))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9)
       recharts:
         specifier: ^2.12.7
         version: 2.15.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -589,6 +589,18 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0(vitest@3.2.7(@types/debug@4.1.13)(@types/node@25.6.0)(jiti@2.7.0)(jsdom@25.0.1)(lightningcss@1.32.0)(msw@2.13.2(@types/node@25.6.0)(typescript@5.9.2))(tsx@4.21.0)(yaml@2.9.1))
 
+  packages/lint:
+    devDependencies:
+      '@mizunagara/tsconfig':
+        specifier: workspace:^
+        version: link:../tsconfig
+      eslint:
+        specifier: 9.39.4
+        version: 9.39.4(jiti@2.7.0)
+      stylelint:
+        specifier: 17.6.0
+        version: 17.6.0(typescript@5.9.2)
+
   packages/mcp:
     dependencies:
       '@modelcontextprotocol/sdk':
@@ -630,7 +642,7 @@ importers:
         version: 19.2.4(react@19.2.4)
       react-querybuilder:
         specifier: ^8.0.0
-        version: 8.14.4(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9)
+        version: 8.14.4(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.29.6))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9)
       tsup:
         specifier: ^8.5.0
         version: 8.5.1(@swc/core@1.15.30(@swc/helpers@0.5.23))(jiti@2.7.0)(postcss@8.5.23)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.9.1)
@@ -755,6 +767,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
+      react-hook-form:
+        specifier: ^7.70.0
+        version: 7.70.0(react@19.2.4)
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(@swc/core@1.15.30(@swc/helpers@0.5.23))(jiti@2.7.0)(postcss@8.5.23)(tsx@4.21.0)(typescript@5.9.2)(yaml@2.9.1)
@@ -764,6 +779,8 @@ importers:
       vitest-axe:
         specifier: ^0.1.0
         version: 0.1.0(vitest@3.2.7(@types/debug@4.1.13)(@types/node@25.6.0)(jiti@2.7.0)(jsdom@25.0.1)(lightningcss@1.32.0)(msw@2.13.2(@types/node@25.6.0)(typescript@5.9.2))(tsx@4.21.0)(yaml@2.9.1))
+
+  packages/registry: {}
 
   packages/tailwind-preset:
     devDependencies:
@@ -12234,7 +12251,7 @@ snapshots:
       - '@types/react-dom'
       - react-native
 
-  '@react-querybuilder/core@8.14.4(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0))(json-logic-js@2.0.5)(spel2js@0.2.9)':
+  '@react-querybuilder/core@8.14.4(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.29.6))(json-logic-js@2.0.5)(spel2js@0.2.9)':
     dependencies:
       '@ts-jison/lexer': 0.4.1-alpha.1
       '@ts-jison/parser': 0.4.1-alpha.1
@@ -16765,7 +16782,7 @@ snapshots:
       - '@types/node'
       - babel-plugin-macros
 
-  next@16.3.8(@opentelemetry/api@1.9.1)(@types/node@22.19.17)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  next@16.3.8(@babel/core@7.29.6)(@opentelemetry/api@1.9.1)(@types/node@22.19.17)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       '@next/env': 16.3.8
       '@swc/helpers': 0.5.23
@@ -17409,9 +17426,9 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-querybuilder@8.14.4(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9):
+  react-querybuilder@8.14.4(@types/react@19.2.14)(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.29.6))(json-logic-js@2.0.5)(react@19.2.4)(redux@5.0.1)(spel2js@0.2.9):
     dependencies:
-      '@react-querybuilder/core': 8.14.4(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0))(json-logic-js@2.0.5)(spel2js@0.2.9)
+      '@react-querybuilder/core': 8.14.4(drizzle-orm@0.45.2(@neondatabase/serverless@1.0.2)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(kysely@0.29.6))(json-logic-js@2.0.5)(spel2js@0.2.9)
       '@reduxjs/toolkit': 2.11.2(react-redux@9.2.0(@types/react@19.2.14)(react@19.2.4)(redux@5.0.1))(react@19.2.4)
       react: 19.2.4
       react-redux: 9.2.0(@types/react@19.2.14)(react@19.2.4)(redux@5.0.1)

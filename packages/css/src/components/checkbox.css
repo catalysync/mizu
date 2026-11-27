@@ -4,9 +4,9 @@
   justify-content: center;
   width: 1.125rem;
   height: 1.125rem;
-  border: 1.5px solid var(--mizu-border-strong);
+  border: 1.5px solid var(--mizu-border-strong, #94a3b8);
   border-radius: var(--mizu-radius-sm);
-  background: var(--mizu-surface-default);
+  background: var(--mizu-surface-default, #fff);
   cursor: pointer;
   transition:
     background-color var(--mizu-duration-fast) var(--mizu-easing-out),
@@ -16,9 +16,9 @@
 
 .mizu-checkbox[data-state="checked"],
 .mizu-checkbox[data-state="indeterminate"] {
-  background: var(--mizu-action-primary-default);
-  border-color: var(--mizu-action-primary-default);
-  color: var(--mizu-text-inverse);
+  background: var(--mizu-action-primary-default, #2563eb);
+  border-color: var(--mizu-action-primary-default, #2563eb);
+  color: var(--mizu-text-inverse, #fff);
 }
 
 .mizu-checkbox:focus-visible {
@@ -50,16 +50,16 @@
   justify-content: center;
   width: 1.125rem;
   height: 1.125rem;
-  border: 1.5px solid var(--mizu-border-strong);
+  border: 1.5px solid var(--mizu-border-strong, #94a3b8);
   border-radius: var(--mizu-radius-full);
-  background: var(--mizu-surface-default);
+  background: var(--mizu-surface-default, #fff);
   cursor: pointer;
   transition: border-color var(--mizu-duration-fast) var(--mizu-easing-out);
   flex-shrink: 0;
 }
 
 .mizu-radio-item[data-state="checked"] {
-  border-color: var(--mizu-action-primary-default);
+  border-color: var(--mizu-action-primary-default, #2563eb);
 }
 
 .mizu-radio-item:focus-visible {
@@ -78,5 +78,5 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: var(--mizu-radius-full);
-  background: var(--mizu-action-primary-default);
+  background: var(--mizu-action-primary-default, #2563eb);
 }

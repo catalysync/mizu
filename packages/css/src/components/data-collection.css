@@ -38,8 +38,8 @@
   display: inline-flex;
   padding: 2px;
   gap: 2px;
-  background: var(--mizu-surface-secondary);
-  border: 1px solid var(--mizu-border-default);
+  background: var(--mizu-surface-secondary, #f8fafc);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-md);
 }
 
@@ -47,7 +47,7 @@
   appearance: none;
   border: none;
   background: transparent;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   padding: var(--mizu-spacing-1) var(--mizu-spacing-2);
   display: inline-flex;
   align-items: center;
@@ -60,14 +60,14 @@
 }
 
 .mizu-data-collection__view-button:hover {
-  color: var(--mizu-text-primary);
-  background: color-mix(in srgb, var(--mizu-text-primary) 6%, transparent);
+  color: var(--mizu-text-primary, #0f172a);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 6%, transparent);
 }
 
 .mizu-data-collection__view-button[data-selected] {
-  background: var(--mizu-surface-default);
-  color: var(--mizu-text-primary);
-  box-shadow: var(--mizu-shadow-sm);
+  background: var(--mizu-surface-default, #fff);
+  color: var(--mizu-text-primary, #0f172a);
+  box-shadow: var(--mizu-shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 5%));
 }
 
 .mizu-data-collection__view-button:focus-visible {

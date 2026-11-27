@@ -1,0 +1,12 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "test": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "../react/src/components/**",
+        "../../apps/storybook/stories/*.stories.tsx"
+      ]
+    }
+  }
+}

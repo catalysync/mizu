@@ -16,12 +16,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Scale: Story = {
   render: () => (
-    <Stack gap="2rem">
-      <Stack gap="0.75rem">
+    <Stack gap="8">
+      <Stack gap="3">
         <Heading level={2} size="md" className="story-section-title">
           Spacing scale
         </Heading>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           {spacings.map((s) => (
             <Inline key={s.name} gap="1rem" align="center">
               <code className="mizu-body--sm" style={{ width: '3rem' }}>
@@ -44,7 +44,7 @@ export const Scale: Story = {
         </Stack>
       </Stack>
 
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         <Heading level={2} size="md" className="story-section-title">
           Radius scale
         </Heading>
@@ -52,7 +52,7 @@ export const Scale: Story = {
           {radii.map((r) => {
             const label = labelFromPrefix(r.name, 'Radius');
             return (
-              <Stack key={r.name} gap="0.5rem" align="center">
+              <Stack key={r.name} gap="2" align="center">
                 <div
                   aria-label={`Radius ${label}`}
                   style={{
@@ -63,7 +63,7 @@ export const Scale: Story = {
                     borderRadius: `var(${r.cssVar})`,
                   }}
                 />
-                <Stack gap="0.125rem" align="center">
+                <Stack gap="1" align="center">
                   <code className="mizu-body--sm">{label}</code>
                   <code className="mizu-body--sm" style={{ opacity: 0.7 }}>
                     {r.value}

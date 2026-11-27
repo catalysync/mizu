@@ -34,7 +34,7 @@ export const Right: Story = {
           <DrawerDescription>Update your app configuration.</DrawerDescription>
         </DrawerHeader>
         <DrawerBody>
-          <Stack gap="1rem">
+          <Stack gap="4">
             <div>
               <span className="mizu-caption">App name</span>
               <Input defaultValue="frosty-mountain-1234" aria-label="App name" />

@@ -2,16 +2,18 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '../../utils/cn';
 
-const tagVariants = cva('mizu-tag', {
-  variants: {
-    tone: {
-      neutral: 'mizu-tag--neutral',
-      success: 'mizu-tag--success',
-      warning: 'mizu-tag--warning',
-      danger: 'mizu-tag--danger',
-      info: 'mizu-tag--info',
-    },
+export const MIZU_TAG_VARIANTS = {
+  tone: {
+    neutral: 'mizu-tag--neutral',
+    success: 'mizu-tag--success',
+    warning: 'mizu-tag--warning',
+    danger: 'mizu-tag--danger',
+    info: 'mizu-tag--info',
   },
+} as const;
+
+const tagVariants = cva('mizu-tag', {
+  variants: MIZU_TAG_VARIANTS,
   defaultVariants: { tone: 'neutral' },
 });
 

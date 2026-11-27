@@ -20,7 +20,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 // (CSS, JSON) or TypeScript sources that Node cannot load, so attw skips them.
 // publint still checks that every one of them exists on disk.
 const ATTW_EXCLUDE = {
-  '@mizunagara/tokens': ['css', 'json', 'ts', 'rn'],
+  '@mizunagara/tokens': ['css', 'css/dark', 'json', 'ts', 'rn'],
   '@mizunagara/commerce': ['css'],
   '@mizunagara/finance': ['css', 'themes/*'],
 };

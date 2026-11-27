@@ -21,7 +21,7 @@ export const DisabledChecked: Story = {
 
 export const Group: Story = {
   render: () => (
-    <Stack gap="0.5rem">
+    <Stack gap="2">
       <Checkbox label="Email notifications" defaultChecked />
       <Checkbox label="Push notifications" />
       <Checkbox label="SMS notifications" disabled />

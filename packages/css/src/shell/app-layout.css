@@ -1,11 +1,14 @@
 .mizu-app-layout {
   display: grid;
   grid-template:
-    "header header" auto "sidebar content" 1fr / var(--mizu-app-layout-sidebar-width, 16rem)
+    "header header" auto "sidebar content" 1fr / var(
+      --mizu-app-sidebar-width,
+      var(--mizu-app-layout-sidebar-width, 16rem)
+    )
     1fr;
   min-height: 100vh;
-  background: var(--mizu-surface-default);
-  color: var(--mizu-text-primary);
+  background: var(--mizu-surface-default, #fff);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-app-layout[data-sidebar-collapsed="true"] {

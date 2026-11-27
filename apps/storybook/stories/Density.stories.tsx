@@ -19,7 +19,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 function DensitySample() {
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <Inline gap="0.5rem" align="center">
         <Button variant="primary" size="sm">
           Save

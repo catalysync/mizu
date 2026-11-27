@@ -26,14 +26,14 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-lg);
   font-weight: var(--mizu-font-weight-semibold);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   margin: 0;
 }
 
 .mizu-form__description {
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   margin: 0;
 }
 
@@ -43,7 +43,7 @@
   justify-content: flex-end;
   gap: var(--mizu-spacing-2);
   padding-top: var(--mizu-spacing-3);
-  border-top: 1px solid var(--mizu-border-subtle);
+  border-top: 1px solid var(--mizu-border-subtle, #f1f5f9);
 }
 
 .mizu-form__footer[data-align="start"] {
@@ -62,12 +62,13 @@
   padding: var(--mizu-spacing-3);
   background: color-mix(
     in srgb,
-    var(--mizu-feedback-danger-default) 8%,
-    var(--mizu-surface-default)
+    var(--mizu-feedback-danger-default, #dc2626) 8%,
+    var(--mizu-surface-default, #fff)
   );
-  border: 1px solid color-mix(in srgb, var(--mizu-feedback-danger-default) 40%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--mizu-feedback-danger-default, #dc2626) 40%, transparent);
   border-radius: var(--mizu-radius-md);
-  color: var(--mizu-feedback-danger-default);
+  color: var(--mizu-feedback-danger-default, #dc2626);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
 }
@@ -75,4 +76,30 @@
 .mizu-form[data-disabled="true"] {
   opacity: 0.7;
   pointer-events: none;
+}
+
+/* Invalid controls share one error look, driven by aria-invalid so the state reaches assistive
+ * tech and styling from the same attribute. Listed after the per-component rules so it wins at
+ * equal specificity; the tint on focus keeps the danger colour when the ring is shown. */
+:is(.mizu-input, .mizu-textarea, .mizu-select__trigger)[aria-invalid="true"] {
+  border-color: var(--mizu-feedback-danger-default, #dc2626);
+}
+
+:is(.mizu-input, .mizu-textarea, .mizu-select__trigger)[aria-invalid="true"]:focus-visible,
+.mizu-select__trigger[aria-invalid="true"][data-state="open"] {
+  border-color: var(--mizu-feedback-danger-default, #dc2626);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--mizu-feedback-danger-default, #dc2626) 20%, transparent);
+}
+
+/* The underline appearance draws only a bottom edge, so the error colour goes there alone. */
+.mizu-input--underline[aria-invalid="true"] {
+  border-color: transparent;
+  border-bottom-color: var(--mizu-feedback-danger-default, #dc2626);
+}
+
+.mizu-input--underline[aria-invalid="true"]:focus-visible {
+  border-color: transparent;
+  border-bottom-color: var(--mizu-feedback-danger-default, #dc2626);
+  box-shadow: none;
 }

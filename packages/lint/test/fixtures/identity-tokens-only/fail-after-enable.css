@@ -1,0 +1,14 @@
+/* The disable covers only the rule before the enable; the table rule below is still reported. */
+[data-mizu-identity="atlas"] {
+  --mizu-radius-md: 0.25rem;
+}
+
+/* stylelint-disable mizu/identity-tokens-only -- temporary */
+[data-mizu-identity="atlas"] .mizu-input {
+  border-color: transparent;
+}
+/* stylelint-enable mizu/identity-tokens-only */
+
+.mizu-table {
+  border-radius: 0;
+}

@@ -38,9 +38,11 @@
 @import url("./components/filter-bar.css");
 @import url("./components/query-builder.css");
 @import url("./components/advanced-query-builder.css");
+@import url("./components/autocomplete.css");
 @import url("./components/avatar.css");
 @import url("./components/tag.css");
 @import url("./components/alert.css");
+@import url("./components/banner.css");
 @import url("./components/breadcrumb.css");
 @import url("./components/accordion.css");
 @import url("./components/progress.css");
@@ -70,6 +72,7 @@
 @import url("./components/collapsible.css");
 @import url("./components/context-menu.css");
 @import url("./components/toggle-group.css");
+@import url("./components/segmented-control.css");
 @import url("./components/hover-card.css");
 @import url("./components/chart.css");
 @import url("./components/resource-header.css");

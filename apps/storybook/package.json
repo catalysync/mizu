@@ -9,7 +9,9 @@
     "build": "storybook build -o storybook-static",
     "clean": "rm -rf storybook-static",
     "lint": "eslint .",
-    "test-storybook": "test-storybook"
+    "test-storybook": "test-storybook",
+    "check:tags": "node scripts/check-stability-tags.mjs",
+    "test:layout": "node --test tests/layout/overlays.test.mjs"
   },
   "devDependencies": {
     "@mizunagara/advanced-query-builder": "workspace:^",

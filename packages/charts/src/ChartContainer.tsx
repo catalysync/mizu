@@ -20,10 +20,12 @@ export interface ChartContainerProps extends React.HTMLAttributes<HTMLDivElement
   config: ChartConfig;
   height?: number | string;
   children: React.ReactElement;
+  /** Visually hidden data table, rendered beside the chart for assistive tech. */
+  dataTable?: React.ReactNode;
 }
 
 export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerProps>(
-  ({ config, height = 320, className, children, style, ...props }, ref) => (
+  ({ config, height = 320, className, children, style, dataTable, ...props }, ref) => (
     <ChartContext.Provider value={{ config }}>
       <div
         ref={ref}
@@ -35,6 +37,7 @@ export const ChartContainer = React.forwardRef<HTMLDivElement, ChartContainerPro
         <ResponsiveContainer width="100%" height="100%">
           {children}
         </ResponsiveContainer>
+        {dataTable}
       </div>
     </ChartContext.Provider>
   ),

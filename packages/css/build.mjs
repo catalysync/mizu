@@ -78,6 +78,10 @@ const barrelLayered = barrelSource.replace(
 // Standalone typography sheet — opt-in via "@mizunagara/css/typography"
 await build('src/typography.css', 'dist/typography.css', 'base');
 
+// The dark theme comes straight from the tokens build (packages/tokens/themes/mizu-dark.json), so
+// there is no hand-maintained copy in src. dist/themes/dark.css is the @mizunagara/css/themes/dark path.
+await build(require.resolve('@mizunagara/tokens/css/dark'), 'dist/themes/dark.css', 'identity');
+
 // Per-file outputs so cherry-pick imports survive future @import chains
 for (const subdir of ['components', 'layouts', 'shell', 'themes']) {
   for (const file of readdirSync(join('src', subdir))) {

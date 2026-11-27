@@ -37,7 +37,7 @@ describe.skipIf(!hasBrowser)(
     it('indeterminate progress fill keeps its 30% width and the reduced duration', async () => {
       await withPage(
         styles,
-        '<div class="mizu-progress mizu-progress--indeterminate"><div class="mizu-progress__track" style="width: 200px"><div class="mizu-progress__fill" id="t"></div></div></div>',
+        '<div class="mizu-progress" data-state="indeterminate"><div class="mizu-progress__track" style="width: 200px"><div class="mizu-progress__fill" id="t"></div></div></div>',
         async (page) => {
           expect(await computed(page, '#t', 'animation-name')).toBe('mizu-progress-indeterminate');
           expect(await computed(page, '#t', 'width')).toBe('60px');

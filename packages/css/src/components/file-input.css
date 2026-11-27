@@ -13,10 +13,10 @@
   justify-content: center;
   gap: var(--mizu-spacing-2);
   padding: var(--mizu-spacing-5) var(--mizu-spacing-4);
-  background: var(--mizu-surface-default);
-  border: 1.5px dashed var(--mizu-border-default);
+  background: var(--mizu-surface-default, #fff);
+  border: 1.5px dashed var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-lg);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
   cursor: pointer;
@@ -26,8 +26,12 @@
 }
 
 .mizu-file-input__dropzone:hover {
-  border-color: var(--mizu-border-strong);
-  background: color-mix(in srgb, var(--mizu-text-primary) 2%, var(--mizu-surface-default));
+  border-color: var(--mizu-border-strong, #94a3b8);
+  background: color-mix(
+    in srgb,
+    var(--mizu-text-primary, #0f172a) 2%,
+    var(--mizu-surface-default, #fff)
+  );
 }
 
 .mizu-file-input__dropzone:focus-visible {
@@ -37,20 +41,20 @@
 }
 
 .mizu-file-input[data-dragging="true"] .mizu-file-input__dropzone {
-  border-color: var(--mizu-action-primary-default);
+  border-color: var(--mizu-action-primary-default, #2563eb);
   background: color-mix(
     in srgb,
-    var(--mizu-action-primary-default) 6%,
-    var(--mizu-surface-default)
+    var(--mizu-action-primary-default, #2563eb) 6%,
+    var(--mizu-surface-default, #fff)
   );
 }
 
 .mizu-file-input[data-invalid="true"] .mizu-file-input__dropzone {
-  border-color: var(--mizu-feedback-danger-default);
+  border-color: var(--mizu-feedback-danger-default, #dc2626);
   background: color-mix(
     in srgb,
-    var(--mizu-feedback-danger-default) 4%,
-    var(--mizu-surface-default)
+    var(--mizu-feedback-danger-default, #dc2626) 4%,
+    var(--mizu-surface-default, #fff)
   );
 }
 
@@ -71,21 +75,21 @@
 
 .mizu-file-input__icon {
   font-size: 1.5rem;
-  color: var(--mizu-text-tertiary);
+  color: var(--mizu-text-tertiary, #64748b);
 }
 
 .mizu-file-input__primary {
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   font-weight: var(--mizu-font-weight-medium);
 }
 
 .mizu-file-input__browse {
-  color: var(--mizu-action-primary-default);
+  color: var(--mizu-action-primary-default, #2563eb);
   text-decoration: underline;
 }
 
 .mizu-file-input__hint {
-  color: var(--mizu-text-tertiary);
+  color: var(--mizu-text-tertiary, #64748b);
   font-size: var(--mizu-font-size-xs);
 }
 
@@ -103,10 +107,10 @@
   align-items: center;
   gap: var(--mizu-spacing-2);
   padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
   border-radius: var(--mizu-radius-md);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-file-input__file-name {
@@ -117,7 +121,7 @@
 }
 
 .mizu-file-input__file-size {
-  color: var(--mizu-text-tertiary);
+  color: var(--mizu-text-tertiary, #64748b);
   font-size: var(--mizu-font-size-xs);
   font-variant-numeric: tabular-nums;
 }
@@ -132,15 +136,15 @@
   background: transparent;
   border: 0;
   border-radius: var(--mizu-radius-sm);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   font-size: var(--mizu-font-size-sm);
   cursor: pointer;
   transition: background-color var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
 .mizu-file-input__remove:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
-  color: var(--mizu-text-primary);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 8%, transparent);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-file-input__remove:focus-visible {

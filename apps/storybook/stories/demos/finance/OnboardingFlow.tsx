@@ -52,8 +52,8 @@ export function OnboardingFlow() {
   return (
     <div data-mizu-theme="finance" className="finance-demo__onboarding">
       <Center maxInlineSize="48rem">
-        <Stack gap="2rem">
-          <Stack gap="0.5rem" className="finance-demo__onboarding-header">
+        <Stack gap="8">
+          <Stack gap="2" className="finance-demo__onboarding-header">
             <Heading level={1} size="2xl">
               Set up your books
             </Heading>
@@ -98,12 +98,12 @@ export function OnboardingFlow() {
 
 function ProfileStep() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Heading level={2} size="md">
         Company profile
       </Heading>
       <Fieldset>
-        <Stack gap="0.75rem">
+        <Stack gap="3">
           <Field label="Company name" required>
             <Input placeholder="Aspect Labs Inc." />
           </Field>
@@ -131,14 +131,14 @@ function ProfileStep() {
 function AccountsStep() {
   const [template, setTemplate] = useState('consulting');
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Heading level={2} size="md">
         Chart of accounts template
       </Heading>
       <p className="finance-demo__section-desc">
         Pick a starting point. You can add, rename, or delete accounts later.
       </p>
-      <Stack gap="0.5rem">
+      <Stack gap="2">
         {[
           { id: 'consulting', label: 'Consulting / professional services', desc: '28 accounts' },
           { id: 'saas', label: 'SaaS / subscription', desc: '32 accounts' },
@@ -164,7 +164,7 @@ function AccountsStep() {
 
 function TaxStep() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Heading level={2} size="md">
         Tax settings
       </Heading>
@@ -187,14 +187,14 @@ function TaxStep() {
 
 function BankStep() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Heading level={2} size="md">
         Connect your bank
       </Heading>
       <p className="finance-demo__section-desc">
         We&apos;ll pull in your last 90 days of transactions and keep reconciliation current.
       </p>
-      <Stack gap="0.5rem">
+      <Stack gap="2">
         {['Chase', 'Bank of America', 'Wells Fargo', 'Capital One', 'Mercury'].map((bank) => (
           <Inline key={bank} gap="1rem" align="center" className="finance-demo__bank-row">
             <strong>{bank}</strong>

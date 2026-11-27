@@ -1,6 +1,15 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { Button, Card, CardBody, CardFooter, CardHeader, Input, Stack } from '@mizunagara/react';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Field,
+  Input,
+  Stack,
+} from '@mizunagara/react';
 
 function Preview() {
   return (
@@ -10,13 +19,17 @@ function Preview() {
         description="Welcome back. Use your email and password or continue with a provider."
       />
       <CardBody>
-        <Stack gap="1rem">
-          <Input label="Email" type="email" defaultValue="you@example.com" />
-          <Input label="Password" type="password" defaultValue="••••••••" />
+        <Stack gap="4">
+          <Field label="Email">
+            <Input type="email" defaultValue="you@example.com" />
+          </Field>
+          <Field label="Password">
+            <Input type="password" defaultValue="••••••••" />
+          </Field>
         </Stack>
       </CardBody>
       <CardFooter>
-        <Stack gap="0.5rem" style={{ width: '100%' }}>
+        <Stack gap="2" style={{ width: '100%' }}>
           <Button variant="primary" style={{ width: '100%' }}>
             Sign in
           </Button>
@@ -29,7 +42,7 @@ function Preview() {
   );
 }
 
-const TEMPLATE = `import { Button, Card, CardBody, CardFooter, CardHeader, Input, Stack } from '@mizunagara/react';
+const TEMPLATE = `import { Button, Card, CardBody, CardFooter, CardHeader, Field, Input, Stack } from '@mizunagara/react';
 
 export default function SignInPage() {
   return (
@@ -38,8 +51,12 @@ export default function SignInPage() {
         <CardHeader title="Sign in" description="Welcome back. Use your email and password or continue with a provider." />
         <CardBody>
           <Stack gap="1rem">
-            <Input label="Email" type="email" required />
-            <Input label="Password" type="password" required />
+            <Field label="Email">
+              <Input type="email" required />
+            </Field>
+            <Field label="Password">
+              <Input type="password" required />
+            </Field>
           </Stack>
         </CardBody>
         <CardFooter>

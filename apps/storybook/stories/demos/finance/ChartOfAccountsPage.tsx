@@ -4,7 +4,7 @@ import { accounts } from './data';
 
 export function ChartOfAccountsPage() {
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppContentHeader
         title="Chart of accounts"
         description="Hierarchical ledger of every account you track."

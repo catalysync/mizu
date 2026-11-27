@@ -91,7 +91,7 @@ export const Basic: Story = {
         <SidebarNav />
       </AppSidebar>
       <AppContent>
-        <Stack gap="1.5rem">
+        <Stack gap="6">
           <AppBreadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Customers' }]} />
           <Heading level={1}>Customers</Heading>
           <Card>

@@ -17,16 +17,16 @@ describe('button.css colour substrate', () => {
 
   it('keeps the gradient free of brand colours', () => {
     expect(gradientBlock).toContain('linear-gradient(');
-    expect(gradientBlock.match(HEX) ?? []).toEqual([]);
+    expect(withoutVarFallbacks(gradientBlock).match(HEX) ?? []).toEqual([]);
   });
 
   it('takes gradient stops from theme tokens with action colour fallbacks', () => {
     const oneLine = gradientBlock.replace(/\s+/g, ' ');
     expect(oneLine).toContain(
-      'var(--mizu-button-gradient-from, var(--mizu-action-primary-default)) 0%, var(--mizu-button-gradient-to, var(--mizu-action-primary-hover)) 100%',
+      'var(--mizu-button-gradient-from, var(--mizu-action-primary-default, #2563eb)) 0%, var(--mizu-button-gradient-to, var(--mizu-action-primary-hover, #1d4ed8)) 100%',
     );
     expect(oneLine).toContain(
-      'var(--mizu-button-gradient-from, var(--mizu-action-primary-hover)) 0%, var(--mizu-button-gradient-to, var(--mizu-action-primary-active)) 100%',
+      'var(--mizu-button-gradient-from, var(--mizu-action-primary-hover, #1d4ed8)) 0%, var(--mizu-button-gradient-to, var(--mizu-action-primary-active, #1e40af)) 100%',
     );
   });
 

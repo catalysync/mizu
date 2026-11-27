@@ -1,9 +1,11 @@
 /* Focus rings are drawn with outline in the --mizu-focus-ring-* tokens so a theme
  * can restyle every control from one place. Forced-colors mode replaces author
- * colours, so the ring falls back to the system Highlight colour there. */
+ * colours and drops box-shadow, so a control that only rings with box-shadow needs
+ * an outline there too. Components that set their own outline still win. */
 
 @media (forced-colors: active) {
   :focus-visible {
-    outline-color: Highlight;
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: var(--mizu-focus-ring-offset, 2px);
   }
 }

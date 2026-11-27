@@ -108,7 +108,7 @@ export const Grid: Story = {
 
 export const Stacked: Story = {
   render: () => (
-    <Stack gap="1rem" className="story-md">
+    <Stack gap="4" className="story-md">
       <Card>
         <CardHeader title="First card" />
         <CardBody>

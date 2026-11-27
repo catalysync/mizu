@@ -69,7 +69,7 @@ function Preview() {
 
   return (
     <Card>
-      <Stack gap="0">
+      <Stack gap="none">
         {entries.map((entry) => (
           <div key={entry.id} className="mizu-activity-entry">
             <Badge tone={TYPE_TONE[entry.type]}>{entry.type}</Badge>

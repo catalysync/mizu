@@ -24,15 +24,8 @@
   --mizu-duration-fast: 100ms;
   --mizu-duration-normal: 200ms;
   --mizu-easing-out: cubic-bezier(0.15, 1, 0.3, 1);
-}
-
-/* Atlas structural: buttons get pill radius */
-[data-mizu-identity="atlas"] .mizu-button {
-  border-radius: var(--mizu-radius-2xl);
-}
-
-/* Atlas structural: cards have no shadow by default, border only */
-[data-mizu-identity="atlas"] .mizu-card {
-  box-shadow: none;
-  border: 1px solid var(--mizu-border-default);
+  --mizu-button-radius: var(--mizu-radius-2xl);
+  --mizu-card-shadow: none;
+  --mizu-card-border-color: var(--mizu-border-default, #e2e8f0);
+  --mizu-card-hover-border-color: var(--mizu-border-default, #e2e8f0);
 }

@@ -1,0 +1,4 @@
+.mizu-button {
+  color: var(--mizu-text-primary, #fff);
+  background: var(--mizu-surface-default, rgb(0 0 0 / 0%));
+}

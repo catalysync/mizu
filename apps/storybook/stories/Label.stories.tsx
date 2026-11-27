@@ -28,7 +28,7 @@ export const CustomRequiredLabel: Story = {
 
 export const WithInput: Story = {
   render: () => (
-    <Stack gap="0.25rem">
+    <Stack gap="1">
       <Label htmlFor="email" required>
         Email address
       </Label>

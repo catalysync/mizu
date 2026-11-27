@@ -25,7 +25,7 @@ function formatKpi(kpi: Kpi): string {
 
 function Preview() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <span className="text-muted-foreground text-sm">Last 30 days · vs previous period</span>
       </Inline>
@@ -40,7 +40,7 @@ function Preview() {
         ))}
       </Grid>
       <Card>
-        <Stack gap="0.5rem" style={{ padding: '1rem' }}>
+        <Stack gap="2" style={{ padding: '1rem' }}>
           <span className="mizu-heading-sm">Recent activity</span>
           <span className="mizu-caption" style={{ color: 'var(--mizu-text-secondary)' }}>
             Revenue, expansion, and churn events for the last 24 hours.

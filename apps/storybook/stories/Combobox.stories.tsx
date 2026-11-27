@@ -89,7 +89,7 @@ export const NoSearch: Story = {
 
 export const FormExample: Story = {
   render: () => (
-    <Stack gap="1rem" style={{ maxWidth: 360 }}>
+    <Stack gap="4" style={{ maxWidth: 360 }}>
       <Field label="Country" required>
         <Combobox options={COUNTRIES} />
       </Field>

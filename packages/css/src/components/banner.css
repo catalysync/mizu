@@ -1,0 +1,68 @@
+.mizu-banner {
+  display: flex;
+  gap: var(--mizu-spacing-3);
+  padding: var(--mizu-spacing-4) var(--mizu-spacing-5);
+  border-radius: var(--mizu-radius-lg);
+  font-family: var(--mizu-font-family-sans);
+  font-size: var(--mizu-font-size-sm);
+}
+
+.mizu-banner--info {
+  background: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 20%, transparent);
+  color: var(--mizu-text-primary, #0f172a);
+}
+
+.mizu-banner--success {
+  background: var(--mizu-feedback-success-subtle, #ecfdf5);
+  border: 1px solid
+    color-mix(in srgb, var(--mizu-feedback-success-default, #059669) 25%, transparent);
+}
+
+.mizu-banner--warning {
+  background: var(--mizu-feedback-warning-subtle, #fffbeb);
+  border: 1px solid
+    color-mix(in srgb, var(--mizu-feedback-warning-default, #f59e0b) 25%, transparent);
+}
+
+.mizu-banner--critical {
+  background: var(--mizu-feedback-danger-subtle, #fef2f2);
+  border: 1px solid
+    color-mix(in srgb, var(--mizu-feedback-danger-default, #dc2626) 25%, transparent);
+}
+
+.mizu-banner__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.0625rem;
+}
+
+.mizu-banner__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.mizu-banner__title {
+  font-weight: var(--mizu-font-weight-semibold);
+  margin-bottom: var(--mizu-spacing-1);
+}
+
+.mizu-banner__dismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: none;
+  border: none;
+  border-radius: var(--mizu-radius-md);
+  color: var(--mizu-text-secondary, #475569);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.mizu-banner__dismiss:hover {
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 8%, transparent);
+}

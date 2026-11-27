@@ -50,8 +50,8 @@ export default function GalleryPage() {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-6xl px-4 py-12">
-          <Stack gap="2.5rem">
-            <Stack gap="0.75rem" align="start">
+          <Stack gap="10">
+            <Stack gap="3" align="start">
               <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
                 Gallery
               </span>
@@ -73,8 +73,8 @@ export default function GalleryPage() {
             </Stack>
 
             {industries.map(([industry, group]) => (
-              <Stack key={industry} gap="1rem">
-                <Stack gap="0.25rem">
+              <Stack key={industry} gap="4">
+                <Stack gap="1">
                   <h2 className="text-foreground text-xl font-semibold">
                     {INDUSTRY_LABEL[industry] ?? industry}
                   </h2>
@@ -90,11 +90,11 @@ export default function GalleryPage() {
                         description={pattern.meta.description}
                       />
                       <CardBody>
-                        <Stack gap="0.5rem">
+                        <Stack gap="2">
                           <span className="text-muted-foreground text-xs tracking-wider uppercase">
                             Sources
                           </span>
-                          <Stack gap="0.25rem">
+                          <Stack gap="1">
                             {pattern.meta.sources.slice(0, 3).map((src, i) => (
                               <span
                                 key={`${src.system}-${i}`}

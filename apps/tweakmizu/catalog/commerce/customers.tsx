@@ -71,7 +71,7 @@ function Preview() {
   const totalSpent = customers.reduce((sum, c) => sum + c.spent, 0);
 
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Inline gap="0.75rem" align="center">
         <Input size="sm" placeholder="Search customers…" aria-label="Search customers" />
         <Badge tone="neutral">All ({customers.length})</Badge>
@@ -124,22 +124,22 @@ function Preview() {
       />
 
       <Card>
-        <Stack gap="0.5rem" style={{ padding: '1rem' }}>
+        <Stack gap="2" style={{ padding: '1rem' }}>
           <span className="mizu-heading-sm">Customer summary</span>
           <Inline gap="2rem">
-            <Stack gap="0.25rem">
+            <Stack gap="1">
               <span className="mizu-caption" style={{ color: 'var(--mizu-text-secondary)' }}>
                 Total customers
               </span>
               <span className="mizu-heading-lg">{customers.length}</span>
             </Stack>
-            <Stack gap="0.25rem">
+            <Stack gap="1">
               <span className="mizu-caption" style={{ color: 'var(--mizu-text-secondary)' }}>
                 Total revenue
               </span>
               <span className="mizu-heading-lg">{formatCurrency(totalSpent)}</span>
             </Stack>
-            <Stack gap="0.25rem">
+            <Stack gap="1">
               <span className="mizu-caption" style={{ color: 'var(--mizu-text-secondary)' }}>
                 Avg per customer
               </span>

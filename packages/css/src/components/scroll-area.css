@@ -28,12 +28,12 @@
 }
 
 .mizu-scroll-area__scrollbar:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 4%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 4%, transparent);
 }
 
 .mizu-scroll-area__thumb {
   flex: 1;
-  background: var(--mizu-border-strong);
+  background: var(--mizu-border-strong, #94a3b8);
   border-radius: var(--mizu-radius-full);
   position: relative;
 }

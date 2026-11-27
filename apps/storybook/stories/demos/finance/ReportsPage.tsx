@@ -17,7 +17,7 @@ export function ReportsPage() {
   const [active, setActive] = useState<ReportTile | null>(null);
 
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppContentHeader
         title="Reports"
         description="Canonical templates for the metrics you need most."
@@ -28,8 +28,8 @@ export function ReportsPage() {
         {reports.map((r) => (
           <Card key={r.id}>
             <CardBody>
-              <Stack gap="0.75rem">
-                <Stack gap="0.25rem">
+              <Stack gap="3">
+                <Stack gap="1">
                   <strong>{r.title}</strong>
                   <span className="finance-demo__muted-sm">{r.description}</span>
                 </Stack>

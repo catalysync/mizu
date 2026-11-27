@@ -50,7 +50,7 @@ function OverviewPage() {
           <TabsTrigger value="orders">Orders</TabsTrigger>
         </TabsList>
         <TabsContent value="products">
-          <Stack gap="1rem">
+          <Stack gap="4">
             <AppContentHeader
               title="Products"
               description={`${products.length} items in your catalog`}
@@ -61,7 +61,7 @@ function OverviewPage() {
               }
             />
             <Card>
-              <Stack gap="0">
+              <Stack gap="none">
                 {products.map((p) => (
                   <ResourceItem
                     key={p.id}
@@ -99,10 +99,10 @@ function OverviewPage() {
           </Stack>
         </TabsContent>
         <TabsContent value="orders">
-          <Stack gap="1rem">
+          <Stack gap="4">
             <AppContentHeader title="Orders" description={`${orders.length} recent orders`} />
             <Card>
-              <Stack gap="0">
+              <Stack gap="none">
                 {orders.map((o) => (
                   <ResourceItem
                     key={o.id}

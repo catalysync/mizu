@@ -1,10 +1,14 @@
 .mizu-context-menu {
   min-width: 12rem;
   background: var(--mizu-surface-default, #fff);
-  border: 1px solid var(--mizu-border-default);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-lg);
   padding: var(--mizu-spacing-1);
-  box-shadow: var(--mizu-shadow-lg);
+  box-shadow: var(
+    --mizu-shadow-lg,
+    0 10px 15px -3px rgb(0 0 0 / 10%),
+    0 4px 6px -4px rgb(0 0 0 / 10%)
+  );
   z-index: var(--mizu-z-dropdown);
   animation: mizu-context-menu-in 120ms ease;
 }
@@ -17,29 +21,29 @@
   border-radius: var(--mizu-radius-md);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   cursor: pointer;
   outline: none;
   user-select: none;
 }
 
 .mizu-context-menu__item[data-highlighted] {
-  background: color-mix(in srgb, var(--mizu-action-primary-default) 10%, transparent);
-  color: var(--mizu-action-primary-default);
+  background: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 10%, transparent);
+  color: var(--mizu-action-primary-default, #2563eb);
 }
 
 .mizu-context-menu__item[data-disabled] {
-  color: var(--mizu-text-disabled);
+  color: var(--mizu-text-disabled, #94a3b8);
   pointer-events: none;
 }
 
 .mizu-context-menu__item--danger {
-  color: var(--mizu-feedback-danger-default);
+  color: var(--mizu-feedback-danger-default, #dc2626);
 }
 
 .mizu-context-menu__item--danger[data-highlighted] {
-  background: var(--mizu-feedback-danger-subtle);
-  color: var(--mizu-feedback-danger-default);
+  background: var(--mizu-feedback-danger-subtle, #fef2f2);
+  color: var(--mizu-feedback-danger-default, #dc2626);
 }
 
 .mizu-context-menu__item--checkable {
@@ -57,20 +61,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--mizu-action-primary-default);
+  color: var(--mizu-action-primary-default, #2563eb);
 }
 
 .mizu-context-menu__label {
   padding: var(--mizu-spacing-2) var(--mizu-spacing-3) var(--mizu-spacing-1);
   font-size: var(--mizu-font-size-xs);
   font-weight: var(--mizu-font-weight-semibold);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-context-menu__separator {
   height: 1px;
   margin: var(--mizu-spacing-1) 0;
-  background: var(--mizu-border-default);
+  background: var(--mizu-border-default, #e2e8f0);
 }
 
 @keyframes mizu-context-menu-in {
@@ -86,5 +90,13 @@
     animation-duration: 0.01ms;
     animation-iteration-count: 1;
     transition-duration: 0.01ms;
+  }
+}
+
+/* Highlighted items show only a background tint, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-context-menu__item[data-highlighted] {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: -2px;
   }
 }

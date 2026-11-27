@@ -1,22 +1,23 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '../../utils/cn';
-import { Logger } from '../../utils/logger';
 import { useFieldContext } from '../Field/field-context';
 
-const inputVariants = cva('mizu-input', {
-  variants: {
-    size: {
-      sm: 'mizu-input--sm',
-      md: '',
-      lg: 'mizu-input--lg',
-    },
-    appearance: {
-      outline: '',
-      filled: 'mizu-input--filled',
-      underline: 'mizu-input--underline',
-    },
+export const MIZU_INPUT_VARIANTS = {
+  size: {
+    sm: 'mizu-input--sm',
+    md: '',
+    lg: 'mizu-input--lg',
   },
+  appearance: {
+    outline: '',
+    filled: 'mizu-input--filled',
+    underline: 'mizu-input--underline',
+  },
+} as const;
+
+const inputVariants = cva('mizu-input', {
+  variants: MIZU_INPUT_VARIANTS,
   defaultVariants: { size: 'md', appearance: 'outline' },
 });
 
@@ -24,15 +25,14 @@ export interface InputProps
   extends
     Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'>,
     VariantProps<typeof inputVariants> {
-  error?: string | boolean;
+  /** Marks the input invalid. Show the message with `<Field errorMessage="...">`. */
+  error?: boolean;
   warning?: string | boolean;
-  /** @deprecated Use `<Field>` wrapper instead of inline helpText. */
-  helpText?: React.ReactNode;
-  /** @deprecated Use `<Field label="...">` wrapper instead of Input label prop. */
-  label?: string;
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   maxCharacters?: number;
+  /** Asks 1Password, Bitwarden and LastPass to leave this field alone (no autofill or save prompt). */
+  passwordManagerIgnore?: boolean;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -44,11 +44,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       type = 'text',
       error,
       warning,
-      helpText,
-      label,
       prefix,
       suffix,
       maxCharacters,
+      passwordManagerIgnore,
       id,
       required,
       disabled,
@@ -59,11 +58,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    if (label) Logger.deprecate('Input label prop', '<Field label="..."><Input /></Field>');
-    if (helpText)
-      Logger.deprecate('Input helpText prop', '<Field description="..."><Input /></Field>');
-
-    const [charCount, setCharCount] = React.useState(0);
+    const valueLength = (v: unknown) => (v == null ? 0 : String(v).length);
+    const [uncontrolledCount, setCharCount] = React.useState(() =>
+      valueLength(props.value ?? props.defaultValue),
+    );
+    // Controlled inputs follow `value` so a parent-driven reset updates the counter too.
+    const charCount = props.value !== undefined ? valueLength(props.value) : uncontrolledCount;
     const [charCountLive, setCharCountLive] = React.useState<'off' | 'polite'>('off');
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (maxCharacters != null) setCharCount(e.target.value.length);
@@ -71,19 +71,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
     const ctx = useFieldContext();
 
-    const localInputId =
-      id || (label ? `input-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
-    const inputId = localInputId ?? ctx?.controlId;
-    const errorId = error && typeof error === 'string' ? `${inputId}-error` : undefined;
-    const helpId = helpText ? `${inputId}-help` : undefined;
+    const inputId = id ?? ctx?.controlId;
 
     const resolvedRequired = required ?? ctx?.required;
     const resolvedDisabled = disabled ?? ctx?.disabled;
     const resolvedInvalid = ariaInvalidProp ?? (!!error || ctx?.invalid || undefined);
+    // Only ids of nodes Field actually renders; Input no longer renders its own error or help text.
     const resolvedDescribedBy =
-      [errorId, helpId, ctx?.descriptionId, ctx?.errorId, ariaDescribedByProp]
-        .filter(Boolean)
-        .join(' ') || undefined;
+      [ctx?.descriptionId, ctx?.errorId, ariaDescribedByProp].filter(Boolean).join(' ') ||
+      undefined;
 
     const hasAdornments = prefix != null || suffix != null;
     const inputEl = (
@@ -107,6 +103,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         aria-describedby={resolvedDescribedBy}
         maxLength={maxCharacters}
         onChange={handleChange}
+        data-1p-ignore={passwordManagerIgnore || undefined}
+        data-bwignore={passwordManagerIgnore || undefined}
+        data-lpignore={passwordManagerIgnore ? 'true' : undefined}
+        {...props}
+        /* Set after the spread so a consumer onFocus/onBlur cannot replace this handler. */
         onFocus={(e) => {
           if (maxCharacters != null) setCharCountLive('polite');
           props.onFocus?.(e);
@@ -115,7 +116,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           if (maxCharacters != null) setCharCountLive('off');
           props.onBlur?.(e);
         }}
-        {...props}
       />
     );
 
@@ -137,29 +137,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       inputEl
     );
 
-    if (!label && !error && !helpText && maxCharacters == null) return input;
+    const showWarning = typeof warning === 'string' && warning !== '' && !error;
+    if (!showWarning && maxCharacters == null) return input;
 
     return (
       <div className="mizu-form-group">
-        {label && (
-          <label htmlFor={inputId} className="mizu-label">
-            {label}
-          </label>
-        )}
         {input}
-        {error && typeof error === 'string' && (
-          <span id={errorId} className="mizu-form-group__error">
-            {error}
-          </span>
-        )}
-        {helpText && !error && (
-          <span id={helpId} className="mizu-form-group__help">
-            {helpText}
-          </span>
-        )}
-        {warning && typeof warning === 'string' && !error && (
-          <span className="mizu-form-group__warning">{warning}</span>
-        )}
+        {showWarning && <span className="mizu-form-group__warning">{warning}</span>}
         {maxCharacters != null ? (
           <span className="mizu-form-group__char-count" aria-live={charCountLive}>
             {charCount}/{maxCharacters}

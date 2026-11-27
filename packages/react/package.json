@@ -77,6 +77,16 @@
         "default": "./dist/analytics-dashboard.cjs"
       }
     },
+    "./autocomplete": {
+      "import": {
+        "types": "./dist/autocomplete.d.ts",
+        "default": "./dist/autocomplete.js"
+      },
+      "require": {
+        "types": "./dist/autocomplete.d.cts",
+        "default": "./dist/autocomplete.cjs"
+      }
+    },
     "./avatar": {
       "import": {
         "types": "./dist/avatar.d.ts",
@@ -97,6 +107,16 @@
         "default": "./dist/badge.cjs"
       }
     },
+    "./banner": {
+      "import": {
+        "types": "./dist/banner.d.ts",
+        "default": "./dist/banner.js"
+      },
+      "require": {
+        "types": "./dist/banner.d.cts",
+        "default": "./dist/banner.cjs"
+      }
+    },
     "./breadcrumb": {
       "import": {
         "types": "./dist/breadcrumb.d.ts",
@@ -115,6 +135,16 @@
       "require": {
         "types": "./dist/button.d.cts",
         "default": "./dist/button.cjs"
+      }
+    },
+    "./icon-button": {
+      "import": {
+        "types": "./dist/icon-button.d.ts",
+        "default": "./dist/icon-button.js"
+      },
+      "require": {
+        "types": "./dist/icon-button.d.cts",
+        "default": "./dist/icon-button.cjs"
       }
     },
     "./card": {
@@ -457,6 +487,16 @@
         "default": "./dist/radio.cjs"
       }
     },
+    "./react-hook-form": {
+      "import": {
+        "types": "./dist/react-hook-form.d.ts",
+        "default": "./dist/react-hook-form.js"
+      },
+      "require": {
+        "types": "./dist/react-hook-form.d.cts",
+        "default": "./dist/react-hook-form.cjs"
+      }
+    },
     "./resource-header": {
       "import": {
         "types": "./dist/resource-header.d.ts",
@@ -485,6 +525,16 @@
       "require": {
         "types": "./dist/section-header.d.cts",
         "default": "./dist/section-header.cjs"
+      }
+    },
+    "./segmented-control": {
+      "import": {
+        "types": "./dist/segmented-control.d.ts",
+        "default": "./dist/segmented-control.js"
+      },
+      "require": {
+        "types": "./dist/segmented-control.d.cts",
+        "default": "./dist/segmented-control.cjs"
       }
     },
     "./select": {
@@ -655,7 +705,8 @@
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "test": "vitest run",
+    "check:axe": "node scripts/check-axe.mjs",
+    "test": "node scripts/check-axe.mjs && vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   },
@@ -664,7 +715,13 @@
     "@mizunagara/tokens": ">=0.1.0",
     "lucide-react": ">=0.400.0",
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "react-hook-form": ">=7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-hook-form": {
+      "optional": true
+    }
   },
   "files": [
     "dist"
@@ -710,6 +767,7 @@
     "lucide-react": "^0.488.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.70.0",
     "tsup": "^8.5.1",
     "vitest": "^3.0.0",
     "vitest-axe": "^0.1.0"

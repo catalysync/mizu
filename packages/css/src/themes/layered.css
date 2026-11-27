@@ -25,41 +25,44 @@
   --mizu-duration-normal: 300ms;
   --mizu-easing-out: cubic-bezier(0.05, 0.7, 0.1, 1);
   --mizu-easing-in-out: cubic-bezier(0.2, 0, 0, 1);
-}
-
-/* Layered structural: buttons get pill shape */
-[data-mizu-identity="layered"] .mizu-button {
-  border-radius: 9999px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-}
-
-/* Layered structural: cards have tonal surface tint */
-[data-mizu-identity="layered"] .mizu-card {
-  background: color-mix(
+  --mizu-button-radius: 9999px;
+  --mizu-button-font-weight: 500;
+  --mizu-card-background: color-mix(
     in srgb,
-    var(--mizu-action-primary-default) 4%,
+    var(--mizu-action-primary-default, #2563eb) 4%,
     var(--mizu-surface-default, #fff)
   );
 }
 
+/* stylelint-disable mizu/identity-tokens-only -- letter-spacing on every button; a token would inherit into buttons, which default to normal (not inherit), changing buttons in letter-spaced containers */
+[data-mizu-identity="layered"] .mizu-button {
+  letter-spacing: 0.02em;
+}
+/* stylelint-enable mizu/identity-tokens-only */
+
 /* Layered structural: inputs have filled background */
+/* stylelint-disable mizu/identity-tokens-only -- input edges: hover, focus, variant and aria-invalid rules set the same border colours and radius, so a token needs all of them to move together */
 [data-mizu-identity="layered"] .mizu-input {
   border: none;
   border-radius: var(--mizu-radius-sm);
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 }
+/* stylelint-enable mizu/identity-tokens-only */
 
+/* stylelint-disable mizu/identity-tokens-only -- focus ring: focus-visible, forced-colors and aria-invalid rules set the same outline or shadow, so a token here would change the forced-colors and mouse-focus states */
 [data-mizu-identity="layered"] .mizu-input:focus {
   outline: var(--mizu-focus-ring-width, 2px) solid
     var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
 }
+/* stylelint-enable mizu/identity-tokens-only */
 
 /* Layered structural: badges get rounded pill shape */
+/* stylelint-disable mizu/identity-tokens-only -- the dot appearance sets its own radius and background, and a token here would also change dot badges */
 [data-mizu-identity="layered"] .mizu-badge {
   border-radius: 0.5rem;
   border: none;
-  background: color-mix(in srgb, var(--mizu-action-primary-default) 12%, transparent);
+  background: color-mix(in srgb, var(--mizu-action-primary-default, #2563eb) 12%, transparent);
 }
+/* stylelint-enable mizu/identity-tokens-only */

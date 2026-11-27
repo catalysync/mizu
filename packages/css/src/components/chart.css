@@ -6,7 +6,7 @@
   position: relative;
   width: 100%;
   font-family: var(--mizu-font-family-sans);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-chart--empty,
@@ -16,32 +16,32 @@
   justify-content: center;
   padding: var(--mizu-spacing-4);
   border-radius: var(--mizu-radius-md);
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
 }
 
 .mizu-chart__empty-message {
   font-size: var(--mizu-text-sm-size);
   line-height: var(--mizu-text-sm-line-height);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 /* Recharts overrides — axis + grid + cursor colors */
 .mizu-chart .recharts-cartesian-axis-tick text {
-  fill: var(--mizu-text-secondary);
+  fill: var(--mizu-text-secondary, #475569);
   font-size: var(--mizu-text-xs-size);
 }
 
 .mizu-chart .recharts-cartesian-grid line {
-  stroke: var(--mizu-chart-grid);
+  stroke: var(--mizu-chart-grid, #e2e8f0);
 }
 
 .mizu-chart .recharts-tooltip-cursor {
-  stroke: var(--mizu-border-default);
-  fill: color-mix(in srgb, var(--mizu-text-primary) 4%, transparent);
+  stroke: var(--mizu-border-default, #e2e8f0);
+  fill: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 4%, transparent);
 }
 
 .mizu-chart .recharts-active-dot circle {
-  stroke: var(--mizu-surface-default);
+  stroke: var(--mizu-surface-default, #fff);
   stroke-width: 2;
 }
 
@@ -51,17 +51,21 @@
   gap: var(--mizu-spacing-2);
   min-width: 10rem;
   padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
-  background: var(--mizu-surface-default);
-  border: 1px solid var(--mizu-border-default);
+  background: var(--mizu-surface-default, #fff);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-md);
-  box-shadow: var(--mizu-shadow-md);
+  box-shadow: var(
+    --mizu-shadow-md,
+    0 4px 6px -1px rgb(0 0 0 / 10%),
+    0 2px 4px -2px rgb(0 0 0 / 10%)
+  );
   font-size: var(--mizu-text-sm-size);
   line-height: var(--mizu-text-sm-line-height);
 }
 
 .mizu-chart__tooltip-label {
   font-weight: var(--mizu-font-weight-semibold);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-chart__tooltip-items {
@@ -84,12 +88,12 @@
 }
 
 .mizu-chart__tooltip-name {
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   flex: 1;
 }
 
 .mizu-chart__tooltip-value {
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   font-variant-numeric: tabular-nums;
   font-weight: var(--mizu-font-weight-medium);
 }
@@ -104,7 +108,7 @@
   list-style: none;
   justify-content: center;
   font-size: var(--mizu-text-sm-size);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-chart__legend-item {
@@ -135,12 +139,12 @@
     linear-gradient(
       90deg,
       transparent 0,
-      color-mix(in srgb, var(--mizu-text-primary) 8%, transparent) 40%,
-      color-mix(in srgb, var(--mizu-text-primary) 8%, transparent) 60%,
+      color-mix(in srgb, var(--mizu-text-primary, #0f172a) 8%, transparent) 40%,
+      color-mix(in srgb, var(--mizu-text-primary, #0f172a) 8%, transparent) 60%,
       transparent 100%
     ),
-    linear-gradient(var(--mizu-border-default), var(--mizu-border-default)) 0 80% / 100% 1px
-      no-repeat;
+    linear-gradient(var(--mizu-border-default, #e2e8f0), var(--mizu-border-default, #e2e8f0)) 0
+      80% / 100% 1px no-repeat;
   background-size:
     200% 2px,
     100% 1px;
@@ -161,7 +165,7 @@
 .mizu-chart__skeleton-bars > span,
 .mizu-chart__skeleton-vbars > span {
   flex: 1;
-  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 8%, transparent);
   border-radius: var(--mizu-radius-sm);
   animation: mizu-chart-skeleton-pulse 1.6s ease-in-out infinite;
 }
@@ -178,9 +182,9 @@
 .mizu-chart__skeleton-pie {
   border-radius: 50%;
   background: conic-gradient(
-    color-mix(in srgb, var(--mizu-text-primary) 8%, transparent) 0 35%,
-    color-mix(in srgb, var(--mizu-text-primary) 12%, transparent) 35% 65%,
-    color-mix(in srgb, var(--mizu-text-primary) 6%, transparent) 65% 100%
+    color-mix(in srgb, var(--mizu-text-primary, #0f172a) 8%, transparent) 0 35%,
+    color-mix(in srgb, var(--mizu-text-primary, #0f172a) 12%, transparent) 35% 65%,
+    color-mix(in srgb, var(--mizu-text-primary, #0f172a) 6%, transparent) 65% 100%
   );
   aspect-ratio: 1 / 1;
   max-height: 100%;

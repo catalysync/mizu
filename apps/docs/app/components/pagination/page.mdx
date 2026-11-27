@@ -1,0 +1,126 @@
+export const metadata = { title: 'Pagination — mizu' };
+
+import { Preview } from '../preview';
+import { PaginationDemo } from './pagination-demo';
+
+# Pagination
+
+Moves between pages of a result set. It renders previous and next buttons, and optionally numbered page buttons with ellipses for long ranges.
+
+<Preview>
+  <PaginationDemo />
+</Preview>
+
+## Import
+
+```tsx
+import { Pagination } from '@mizunagara/react';
+import type { PaginationLabels, PaginationProps } from '@mizunagara/react';
+```
+
+## Usage
+
+Pass the current page and the page count. Page numbers appear automatically.
+
+```tsx
+const [page, setPage] = React.useState(1);
+
+<Pagination
+  page={page}
+  totalPages={40}
+  onPageChange={setPage}
+  label="Showing 1–50 of 2,000 orders"
+/>;
+```
+
+`Pagination` is a `<nav>` with the label `Pagination`. Put a short summary in `label`, such as the item range, and it appears to the left of the controls.
+
+## Previous and next only
+
+When you do not know the total page count, leave out `totalPages`. The page numbers are hidden and the buttons are driven by `hasPrevious` and `hasNext`. This suits cursor-based APIs. Next and previous call `onNext` and `onPrevious`, so pass both. Without `totalPages`, a click on Next does nothing unless `onNext` is set.
+
+```tsx
+<Pagination
+  label="Newest first"
+  hasPrevious={!!prevCursor}
+  hasNext={!!nextCursor}
+  onPrevious={() => loadPage(prevCursor)}
+  onNext={() => loadPage(nextCursor)}
+/>
+```
+
+Without `page`, `hasPrevious` and `hasNext` default to `false`. Pass them explicitly.
+
+## Behaviour
+
+- With `page` and `totalPages`, previous and next are disabled at the first and last page, unless `hasPrevious` or `hasNext` is passed explicitly, which overrides that default.
+- A click on previous or next calls `onPrevious` or `onNext` when you pass them. Otherwise it calls `onPageChange` with the new page.
+- `onPageChange` is never called with a page outside `1…totalPages`.
+- Numbered pages are shown as buttons. The current page has `aria-current="page"` and `data-current`.
+- The ellipsis is `aria-hidden`, so screen readers do not announce it.
+
+## Controlling the page list
+
+`siblingCount` sets how many pages appear on each side of the current page. The default is `1`. The first and last pages are always shown.
+
+```tsx
+<Pagination page={5} totalPages={100} siblingCount={2} onPageChange={setPage} />
+```
+
+Set `showPageNumbers={false}` to hide the numbered buttons even when `page` and `totalPages` are present.
+
+## Labels
+
+Every button has an accessible name. Override them with `labels` to translate the text.
+
+```tsx
+<Pagination
+  page={page}
+  totalPages={12}
+  onPageChange={setPage}
+  labels={{
+    navigation: 'Seiten',
+    previous: 'Vorherige Seite',
+    next: 'Nächste Seite',
+    page: (p) => `Seite ${p}`,
+  }}
+/>
+```
+
+`labels.page` is called with the page number for each numbered button.
+
+## Props
+
+| Prop              | Type                     | Default             | Description                                                               |
+| ----------------- | ------------------------ | ------------------- | ------------------------------------------------------------------------- |
+| `page`            | `number`                 | —                   | Current page, starting at 1                                               |
+| `totalPages`      | `number`                 | —                   | Total number of pages. Needed for numbered pages.                         |
+| `onPageChange`    | `(page: number) => void` | —                   | Called with the target page when a number or a fallback button is clicked |
+| `hasPrevious`     | `boolean`                | `page > 1`          | Enables the previous button                                               |
+| `hasNext`         | `boolean`                | `page < totalPages` | Enables the next button                                                   |
+| `onPrevious`      | `() => void`             | —                   | Overrides `onPageChange` for the previous button                          |
+| `onNext`          | `() => void`             | —                   | Overrides `onPageChange` for the next button                              |
+| `label`           | `ReactNode`              | —                   | Summary text shown beside the controls                                    |
+| `siblingCount`    | `number`                 | `1`                 | Pages shown on each side of the current page                              |
+| `showPageNumbers` | `boolean`                | `true`              | Set `false` to show only previous and next                                |
+| `labels`          | `PaginationLabels`       | English defaults    | Accessible names: `navigation`, `previous`, `next` and `page(n)`          |
+
+`Pagination` is a forwarded ref to the `<nav>` and accepts the other native `nav` attributes.
+
+## Accessibility
+
+- The `<nav>` is labelled `Pagination` by default. Set `labels.navigation` if the page has more than one navigation landmark.
+- Previous and next are real buttons. When they are disabled, the browser removes them from the tab order.
+- Use a `label` that states the range, so the position is known without reading the page numbers.
+
+## Guidelines
+
+**Do:**
+
+- Show the item range in `label`
+- Keep the page number in the URL when the list is shareable
+- Reset to page 1 when filters change
+
+**Don't:**
+
+- Don't show numbered pages with an API that has no total count. Use `hasPrevious` and `hasNext`.

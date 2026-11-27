@@ -78,8 +78,8 @@ function Preview() {
   return (
     <Card>
       <CardBody>
-        <Stack gap="1rem">
-          <Stack gap="0.75rem">
+        <Stack gap="4">
+          <Stack gap="3">
             {messages.map((m) => (
               <MessageBubble key={m.id} message={m} />
             ))}

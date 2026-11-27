@@ -88,7 +88,7 @@ function PropertyFilterTableDemo() {
   }, [query, fetchData]);
 
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <PropertyFilter
         query={query}
         onQueryChange={setQuery}

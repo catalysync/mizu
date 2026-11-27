@@ -4,22 +4,24 @@ import * as React from 'react';
 import { cn } from '../../utils/cn';
 import { Logger } from '../../utils/logger';
 
-const buttonVariants = cva('mizu-button', {
-  variants: {
-    variant: {
-      primary: 'mizu-button--primary',
-      secondary: 'mizu-button--secondary',
-      ghost: 'mizu-button--ghost',
-      destructive: 'mizu-button--destructive',
-      gradient: 'mizu-button--gradient',
-    },
-    size: {
-      sm: 'mizu-button--sm',
-      md: 'mizu-button--md',
-      lg: 'mizu-button--lg',
-      icon: 'mizu-button--icon',
-    },
+export const MIZU_BUTTON_VARIANTS = {
+  variant: {
+    primary: 'mizu-button--primary',
+    secondary: 'mizu-button--secondary',
+    ghost: 'mizu-button--ghost',
+    destructive: 'mizu-button--destructive',
+    gradient: 'mizu-button--gradient',
   },
+  size: {
+    sm: 'mizu-button--sm',
+    md: 'mizu-button--md',
+    lg: 'mizu-button--lg',
+    icon: 'mizu-button--icon',
+  },
+} as const;
+
+const buttonVariants = cva('mizu-button', {
+  variants: MIZU_BUTTON_VARIANTS,
   defaultVariants: {
     variant: 'primary',
     size: 'md',
@@ -66,6 +68,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const handleClick = React.useCallback(
       (e: React.MouseEvent<HTMLButtonElement>) => {
+        // Loading uses aria-disabled rather than the disabled attribute so the button keeps
+        // focus. Enter/Space still fire click, so the guard also cancels the default action
+        // (form submission for type="submit", navigation for asChild links).
+        if (isLoading) {
+          e.preventDefault();
+          return;
+        }
         const result = onClick?.(e);
         if (result && typeof (result as { then?: unknown }).then === 'function') {
           setAutoLoading(true);
@@ -77,7 +86,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           });
         }
       },
-      [onClick],
+      [onClick, isLoading],
     );
 
     const Comp = asChild ? Slot : 'button';
@@ -90,8 +99,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         data-inverse={inverse || undefined}
         data-full-width={fullWidth || undefined}
         aria-busy={isLoading || undefined}
+        aria-disabled={isLoading || undefined}
         type={asChild ? undefined : type}
-        disabled={disabled ?? isLoading}
+        disabled={disabled}
         onClick={handleClick}
         {...props}
       >

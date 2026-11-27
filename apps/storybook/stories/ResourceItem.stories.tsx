@@ -47,7 +47,7 @@ export const WithActions: Story = {
 export const ProductList: Story = {
   render: () => (
     <Card className="story-lg">
-      <Stack gap="0">
+      <Stack gap="none">
         <ResourceItem
           media={<Thumbnail source="https://picsum.photos/seed/lamp/200" alt="Lamp" size="sm" />}
           name="Minimal Desk Lamp"
@@ -82,7 +82,7 @@ export const ProductList: Story = {
 export const OrderList: Story = {
   render: () => (
     <Card className="story-lg">
-      <Stack gap="0">
+      <Stack gap="none">
         <ResourceItem
           name="Order #1042"
           meta="Sarah Chen · 3 items · $247.00 · Mar 28"

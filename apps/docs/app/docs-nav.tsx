@@ -55,6 +55,8 @@ const nav: NavSection[] = [
     title: 'Data display',
     items: [
       { label: 'Table', href: '/components/table' },
+      { label: 'DataTable', href: '/components/data-table' },
+      { label: 'Pagination', href: '/components/pagination' },
       { label: 'Tabs', href: '/components/tabs' },
     ],
   },
@@ -72,11 +74,16 @@ const nav: NavSection[] = [
     title: 'Overlays',
     items: [
       { label: 'Modal', href: '/components/modal' },
+      { label: 'AlertDialog', href: '/components/alert-dialog' },
       { label: 'Drawer', href: '/components/drawer' },
       { label: 'Popover', href: '/components/popover' },
       { label: 'Tooltip', href: '/components/tooltip' },
       { label: 'DropdownMenu', href: '/components/dropdown-menu' },
     ],
+  },
+  {
+    title: 'Patterns',
+    items: [{ label: 'Responsive sheet or dialog', href: '/patterns/responsive-sheet-or-dialog' }],
   },
   {
     title: 'Layouts',

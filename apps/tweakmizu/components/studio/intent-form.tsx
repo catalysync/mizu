@@ -4,7 +4,7 @@ import { getIndustry, industries } from '@/lib/studio/industries';
 import { tones } from '@/lib/studio/tones';
 import { intentSpecSchema, type Industry, type IntentSpec, type Tone } from '@/types/studio';
 import { cn } from '@/utils/cn';
-import { Button, Grid, Inline, Input, Stack, Textarea } from '@mizunagara/react';
+import { Button, Field, Grid, Inline, Input, Stack, Textarea } from '@mizunagara/react';
 import { Sparkles } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 
@@ -54,8 +54,8 @@ export function IntentForm({ onSubmit }: Props) {
 
   return (
     <form onSubmit={handleSubmit} aria-label="Studio intent form">
-      <Stack gap="2rem">
-        <Stack as="fieldset" gap="0.75rem">
+      <Stack gap="8">
+        <Stack as="fieldset" gap="3">
           <legend className="text-foreground text-sm font-semibold">Industry</legend>
           <Grid gap="0.75rem" min="16rem">
             {industries.map((item) => {
@@ -74,7 +74,7 @@ export function IntentForm({ onSubmit }: Props) {
                       : 'border-border hover:border-border-strong',
                   )}
                 >
-                  <Stack gap="0.25rem" align="start">
+                  <Stack gap="1" align="start">
                     <input
                       id={inputId}
                       type="radio"
@@ -111,27 +111,29 @@ export function IntentForm({ onSubmit }: Props) {
         </Stack>
 
         <Grid gap="1.5rem" min="18rem">
-          <Input
-            label="Product name"
-            value={productName}
-            onChange={(event) => setProductName(event.target.value)}
-            placeholder="my-cloud-dashboard"
-            required
-            error={errors.productName}
-            maxLength={80}
-          />
-          <Input
-            label="One-sentence description"
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-            placeholder="Heroku-style PaaS for deploying Next.js apps"
-            required
-            error={errors.description}
-            maxLength={240}
-          />
+          <Field label="Product name" errorMessage={errors.productName}>
+            <Input
+              value={productName}
+              onChange={(event) => setProductName(event.target.value)}
+              placeholder="my-cloud-dashboard"
+              required
+              error={!!errors.productName}
+              maxLength={80}
+            />
+          </Field>
+          <Field label="One-sentence description" errorMessage={errors.description}>
+            <Input
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+              placeholder="Heroku-style PaaS for deploying Next.js apps"
+              required
+              error={!!errors.description}
+              maxLength={240}
+            />
+          </Field>
         </Grid>
 
-        <Stack as="fieldset" gap="0.75rem">
+        <Stack as="fieldset" gap="3">
           <legend className="text-foreground text-sm font-semibold">Tone</legend>
           <Grid gap="0.5rem" min="14rem">
             {tones.map((item) => {
@@ -149,7 +151,7 @@ export function IntentForm({ onSubmit }: Props) {
                       : 'border-border hover:border-border-strong',
                   )}
                 >
-                  <Stack gap="0.125rem" align="start">
+                  <Stack gap="1" align="start">
                     <input
                       id={inputId}
                       type="radio"
@@ -168,7 +170,7 @@ export function IntentForm({ onSubmit }: Props) {
           </Grid>
         </Stack>
 
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           <label htmlFor="refinement" className="text-foreground text-sm font-semibold">
             Extra constraints <span className="text-muted-foreground">(optional)</span>
           </label>

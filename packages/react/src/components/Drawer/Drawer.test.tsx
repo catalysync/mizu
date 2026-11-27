@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
 import {
@@ -88,6 +89,41 @@ describe('Drawer', () => {
   it('renders footer with class', () => {
     render(<TestDrawer />);
     expect(document.querySelector('.mizu-drawer__footer')).toBeInTheDocument();
+  });
+
+  it('renders a labelled close button by default', () => {
+    render(
+      <Drawer open>
+        <DrawerContent>
+          <DrawerTitle>Default close</DrawerTitle>
+        </DrawerContent>
+      </Drawer>,
+    );
+    expect(screen.getByRole('button', { name: 'Close' })).toHaveClass('mizu-drawer__close');
+  });
+
+  it('omits the close icon when closeButton is false', () => {
+    render(
+      <Drawer open>
+        <DrawerContent closeButton={false}>
+          <DrawerTitle>Only title</DrawerTitle>
+        </DrawerContent>
+      </Drawer>,
+    );
+    expect(document.querySelector('.mizu-drawer__close')).not.toBeInTheDocument();
+  });
+
+  it('closes when the close icon is clicked', async () => {
+    const user = userEvent.setup();
+    render(
+      <Drawer defaultOpen>
+        <DrawerContent>
+          <DrawerTitle>Closable</DrawerTitle>
+        </DrawerContent>
+      </Drawer>,
+    );
+    await user.click(screen.getByRole('button', { name: 'Close' }));
+    expect(screen.queryByText('Closable')).not.toBeInTheDocument();
   });
 
   it('has no axe violations (right)', async () => {

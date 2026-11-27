@@ -1,6 +1,7 @@
 export {
   AlertDialog,
   AlertDialogAction,
+  AlertDialogBody,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -9,3 +10,4 @@ export {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from './AlertDialog';
+export type { AlertDialogContentProps, AlertDialogSize } from './AlertDialog';

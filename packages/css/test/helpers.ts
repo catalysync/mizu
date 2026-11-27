@@ -41,12 +41,31 @@ export function declarations(css: string, selector: RegExp) {
   ) as Record<string, string>;
 }
 
-/** The token sheet every consumer loads, plus mizu's own :root scale. */
+/**
+ * The light side of a `light-dark(light, dark)` value; any other value passes through. The light
+ * checks read this side, and the dark theme is checked through darkTokens().
+ */
+export function lightSide(value: string) {
+  if (!value.startsWith('light-dark(') || !value.endsWith(')')) return value;
+  const body = value.slice('light-dark('.length, -1);
+  let depth = 0;
+  for (let i = 0; i < body.length; i++) {
+    if (body[i] === '(') depth++;
+    else if (body[i] === ')') depth--;
+    else if (body[i] === ',' && depth === 0) return body.slice(0, i).trim();
+  }
+  throw new Error(`malformed light-dark(): ${value}`);
+}
+
+/** The token sheet every consumer loads, plus mizu's own :root scale (light side). */
 export function rootTokens() {
-  return {
+  const tokens = {
     ...declarations(read('packages/tokens/dist/css/variables.css'), /^:root$/),
     ...declarations(read('packages/css/src/density.css'), /^:root$/),
   };
+  return Object.fromEntries(
+    Object.entries(tokens).map(([name, value]) => [name, lightSide(value)]),
+  );
 }
 
 /** Resolve `var(--x)` chains (no fallbacks) against a token map. */
@@ -72,7 +91,7 @@ export function contrast(a: string, b: string) {
 export function darkTokens() {
   return {
     ...rootTokens(),
-    ...declarations(read('packages/css/src/themes/dark.css'), /^\[data-theme="dark"\]$/),
+    ...declarations(read('packages/tokens/dist/css/dark.css'), /^\[data-theme="dark"\]$/),
   };
 }
 

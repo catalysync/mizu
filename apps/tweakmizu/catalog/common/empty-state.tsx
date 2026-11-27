@@ -12,7 +12,7 @@ function Preview() {
           title="Nothing here yet"
           description="Kick things off by creating your first item. It takes less than a minute."
           actions={
-            <Stack gap="0.5rem" align="start">
+            <Stack gap="2" align="start">
               <Button variant="primary">Get started</Button>
             </Stack>
           }
