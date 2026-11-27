@@ -15,14 +15,14 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
   font-weight: var(--mizu-font-weight-semibold);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   line-height: 1.25rem;
 }
 
 .mizu-fieldset__description {
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-xs);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   line-height: 1rem;
   margin: 0 0 var(--mizu-spacing-2) 0;
 }

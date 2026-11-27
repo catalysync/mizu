@@ -47,6 +47,46 @@ describe('Progress', () => {
     expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '100');
   });
 
+  it('clamps values above max to 100%', () => {
+    const { container } = render(<Progress value={150} />);
+    const bar = screen.getByRole('progressbar');
+    expect(bar).toHaveAttribute('aria-valuenow', '100');
+    expect(bar).toHaveAttribute('data-state', 'complete');
+    expect(container.querySelector('.mizu-progress__fill')).toHaveStyle({ width: '100%' });
+  });
+
+  it('clamps negative values to 0%', () => {
+    const { container } = render(<Progress value={-20} />);
+    expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '0');
+    expect(container.querySelector('.mizu-progress__fill')).toHaveStyle({ width: '0%' });
+  });
+
+  it('marks indeterminate progress with data-state', () => {
+    const { container } = render(<Progress indeterminate />);
+    expect(container.querySelector('.mizu-progress')).toHaveAttribute(
+      'data-state',
+      'indeterminate',
+    );
+    expect(container.querySelector('.mizu-progress')).not.toHaveClass(
+      'mizu-progress--indeterminate',
+    );
+  });
+
+  it('uses the label prop as the accessible name over aria-label', () => {
+    render(<Progress value={50} label="Uploading" aria-label="Other" />);
+    expect(screen.getByRole('progressbar')).toHaveAccessibleName('Uploading');
+  });
+
+  it('uses aria-label when no label prop is given', () => {
+    render(<Progress value={50} aria-label="Storage used" />);
+    expect(screen.getByRole('progressbar')).toHaveAccessibleName('Storage used');
+  });
+
+  it('exposes valueText as aria-valuetext', () => {
+    render(<Progress value={3} max={5} valueText="3 of 5 files" />);
+    expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuetext', '3 of 5 files');
+  });
+
   it('merges custom className', () => {
     const { container } = render(<Progress value={50} className="custom" />);
     expect(container.querySelector('.mizu-progress')).toHaveClass('custom');
@@ -65,6 +105,13 @@ describe('Progress', () => {
 
   it('has no axe violations (with label)', async () => {
     const { container } = render(<Progress value={75} label="75% complete" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (with valueText)', async () => {
+    const { container } = render(
+      <Progress value={3} max={5} label="Files" valueText="3 of 5 files" />,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 

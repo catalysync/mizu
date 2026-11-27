@@ -1,4 +1,4 @@
-import { Pagination, Stack } from '@aspect/react';
+import { Pagination, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
@@ -54,7 +54,7 @@ export const Controlled: Story = {
   render: () => {
     const [page, setPage] = useState(3);
     return (
-      <Stack gap="0.5rem">
+      <Stack gap="2">
         <Pagination page={page} totalPages={10} onPageChange={setPage} />
         <p>Current page: {page}</p>
       </Stack>

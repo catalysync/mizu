@@ -1,7 +1,8 @@
 .mizu-command-menu__overlay {
   position: fixed;
   inset: 0;
-  background: color-mix(in srgb, var(--mizu-text-primary) 40%, transparent);
+  background: var(--mizu-overlay-scrim, rgb(0 0 0 / 50%));
+  backdrop-filter: blur(var(--mizu-overlay-scrim-blur, 0));
   z-index: var(--mizu-z-overlay);
   animation: mizu-command-menu-overlay-in var(--mizu-duration-fast) var(--mizu-easing-out);
 }
@@ -16,13 +17,30 @@
   max-height: 60vh;
   display: flex;
   flex-direction: column;
-  background: var(--mizu-surface-primary);
-  border: 1px solid var(--mizu-border-default);
+  background: var(--mizu-surface-default, #fff);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-lg);
-  box-shadow: var(--mizu-shadow-xl);
+  box-shadow: var(
+    --mizu-shadow-xl,
+    0 20px 25px -5px rgb(0 0 0 / 10%),
+    0 8px 10px -6px rgb(0 0 0 / 10%)
+  );
   overflow: hidden;
   z-index: var(--mizu-z-modal);
   animation: mizu-command-menu-in var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+/* Dialog title for screen readers only; the menu is labelled by its input. */
+.mizu-command-menu__title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .mizu-command-menu__input-wrapper {
@@ -30,14 +48,14 @@
   align-items: center;
   gap: var(--mizu-spacing-2);
   padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
-  border-bottom: 1px solid var(--mizu-border-default);
+  border-bottom: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
 .mizu-command-menu__search-icon {
   flex-shrink: 0;
   width: 1rem;
   height: 1rem;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-command-menu__input {
@@ -47,11 +65,11 @@
   outline: none;
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-command-menu__input::placeholder {
-  color: var(--mizu-text-disabled);
+  color: var(--mizu-text-disabled, #94a3b8);
 }
 
 .mizu-command-menu__list {
@@ -65,7 +83,7 @@
   text-align: center;
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-command-menu__group-heading {
@@ -73,7 +91,7 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-xs);
   font-weight: var(--mizu-font-weight-medium);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -85,7 +103,7 @@
   padding: var(--mizu-spacing-2) var(--mizu-spacing-2);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   border-radius: var(--mizu-radius-sm);
   cursor: pointer;
   user-select: none;
@@ -93,30 +111,30 @@
 
 .mizu-command-menu__item[data-selected="true"],
 .mizu-command-menu__item[aria-selected="true"] {
-  background: color-mix(in srgb, var(--mizu-text-primary) 6%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 6%, transparent);
 }
 
 .mizu-command-menu__item:active {
-  background: color-mix(in srgb, var(--mizu-text-primary) 10%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 10%, transparent);
 }
 
 .mizu-command-menu__item-icon {
   flex-shrink: 0;
   width: 1rem;
   height: 1rem;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-command-menu__item-shortcut {
   margin-left: auto;
   font-size: var(--mizu-font-size-xs);
-  color: var(--mizu-text-disabled);
+  color: var(--mizu-text-disabled, #94a3b8);
   letter-spacing: 0.05em;
 }
 
 .mizu-command-menu__separator {
   height: 1px;
-  background: var(--mizu-border-default);
+  background: var(--mizu-border-default, #e2e8f0);
   margin: var(--mizu-spacing-2) calc(-1 * var(--mizu-spacing-2));
 }
 
@@ -146,5 +164,22 @@
   .mizu-command-menu__dialog,
   .mizu-command-menu__overlay {
     animation: none;
+  }
+}
+
+/* Selected items show only a background tint, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-command-menu__item[data-selected="true"],
+  .mizu-command-menu__item[aria-selected="true"] {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: -2px;
+  }
+}
+
+/* The input is borderless and has no ring of its own, so the wrapper carries the focus ring. */
+@media (forced-colors: active) {
+  .mizu-command-menu__input-wrapper:focus-within {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: var(--mizu-focus-ring-offset, 2px);
   }
 }

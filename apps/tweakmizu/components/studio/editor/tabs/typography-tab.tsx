@@ -1,7 +1,7 @@
 'use client';
 
 import type { ThemeStyleProps } from '@/types/theme';
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 
 interface Props {
   styles: ThemeStyleProps;
@@ -27,8 +27,8 @@ const MONO_FAMILIES = [
 
 export function TypographyTab({ styles, onChange }: Props) {
   return (
-    <Stack gap="1.25rem">
-      <Stack gap="0.5rem">
+    <Stack gap="5">
+      <Stack gap="2">
         <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
           Sans family
         </h3>
@@ -38,7 +38,7 @@ export function TypographyTab({ styles, onChange }: Props) {
           onChange={(next) => onChange({ 'font-family-sans': next })}
         />
       </Stack>
-      <Stack gap="0.5rem">
+      <Stack gap="2">
         <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
           Mono family
         </h3>
@@ -62,7 +62,7 @@ function FamilyPicker({
   onChange: (next: string) => void;
 }) {
   return (
-    <Stack gap="0.375rem">
+    <Stack gap="2">
       {options.map((option) => {
         const active = option === value;
         return (

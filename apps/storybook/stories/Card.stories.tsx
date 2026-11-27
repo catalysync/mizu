@@ -7,7 +7,7 @@ import {
   CardHeader,
   Inline,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -108,7 +108,7 @@ export const Grid: Story = {
 
 export const Stacked: Story = {
   render: () => (
-    <Stack gap="1rem" className="story-md">
+    <Stack gap="4" className="story-md">
       <Card>
         <CardHeader title="First card" />
         <CardBody>

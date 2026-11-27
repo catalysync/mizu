@@ -1,7 +1,7 @@
 'use client';
 
 import type { ThemeStyleProps } from '@/types/theme';
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 
 interface Props {
   styles: ThemeStyleProps;
@@ -32,7 +32,7 @@ function pxToRem(px: number): string {
 
 export function RadiusTab({ styles, onChange }: Props) {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <p className="text-muted-foreground text-xs">
         Radius tokens applied to cards, buttons, inputs, and dialogs.
       </p>
@@ -40,7 +40,7 @@ export function RadiusTab({ styles, onChange }: Props) {
         const value = styles[step.key] ?? '';
         const px = remToPx(value);
         return (
-          <Stack key={step.key} gap="0.375rem">
+          <Stack key={step.key} gap="2">
             <div className="flex items-center justify-between text-sm">
               <span className="text-foreground font-medium">{step.label}</span>
               <span className="text-muted-foreground font-mono text-xs">{value}</span>

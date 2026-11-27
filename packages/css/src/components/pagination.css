@@ -6,7 +6,7 @@
   padding: var(--mizu-spacing-3) 0;
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-pagination__buttons {
@@ -29,7 +29,7 @@
   height: 2rem;
   padding: 0 var(--mizu-spacing-2);
   background: transparent;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   border: 1px solid transparent;
   border-radius: var(--mizu-radius-sm);
   cursor: pointer;
@@ -40,23 +40,24 @@
 }
 
 .mizu-pagination__page:focus-visible {
-  outline: 2px solid var(--mizu-action-primary-default);
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
   outline-offset: 1px;
 }
 
 .mizu-pagination__page:disabled {
   cursor: not-allowed;
-  color: var(--mizu-text-disabled);
+  color: var(--mizu-text-disabled, #94a3b8);
 }
 
-.mizu-pagination__page:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
-  color: var(--mizu-text-primary);
+.mizu-pagination__page:hover:not(:disabled, [data-current="true"]) {
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 8%, transparent);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-pagination__page[data-current="true"] {
-  background: var(--mizu-action-primary-default);
-  color: #fff;
+  background: var(--mizu-action-primary-default, #2563eb);
+  color: var(--mizu-text-on-primary, #fff);
   font-weight: var(--mizu-font-weight-semibold);
 }
 
@@ -66,5 +67,5 @@
   justify-content: center;
   min-width: 2rem;
   height: 2rem;
-  color: var(--mizu-text-tertiary);
+  color: var(--mizu-text-tertiary, #64748b);
 }

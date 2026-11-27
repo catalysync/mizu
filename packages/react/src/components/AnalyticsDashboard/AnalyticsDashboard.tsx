@@ -46,11 +46,14 @@ export const AnalyticsDashboardTile = React.forwardRef<HTMLElement, AnalyticsDas
       data-component="mizu-analytics-dashboard-tile"
       data-loading={loading || undefined}
       aria-busy={loading || undefined}
-      style={{
-        gridColumn: `span ${colSpan}`,
-        gridRow: `span ${rowSpan}`,
-        ...style,
-      }}
+      style={
+        {
+          // Column span travels as a custom property so the stylesheet can reset it on narrow screens.
+          '--mizu-analytics-dashboard-tile-col-span': colSpan,
+          gridRow: `span ${rowSpan}`,
+          ...style,
+        } as React.CSSProperties
+      }
       {...props}
     >
       <header className="mizu-analytics-dashboard__tile-header">
@@ -85,7 +88,7 @@ export interface AnalyticsDashboardProps extends Omit<
 
 /**
  * A responsive grid of chart / KPI tiles for dashboards. Doesn't ship with any
- * charts itself — consumers drop `@aspect/charts` components (or anything) into
+ * charts itself — consumers drop `@mizunagara/charts` components (or anything) into
  * `<AnalyticsDashboardTile>` children. The grid handles spacing and responsive
  * reflow; the tiles handle title + actions. Below `md` (768px), tiles stack
  * one per row regardless of `colSpan`.

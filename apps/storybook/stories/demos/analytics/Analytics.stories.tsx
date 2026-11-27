@@ -1,4 +1,4 @@
-import { formatCompact } from '@aspect/finance';
+import { formatCompact } from '@mizunagara/finance';
 import {
   AppBreadcrumbs,
   AppContent,
@@ -17,7 +17,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { datasets, pipelines, workspace, type WorkspaceItem } from './data';
 
@@ -78,15 +78,15 @@ function AnalyticsWorkspace() {
           }
         />
         <Table density="compact" stickyHeader>
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Owner</TableHeader>
-              <TableHeader>Rows</TableHeader>
-              <TableHeader>Last Modified</TableHeader>
-              <TableHeader>Status</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Owner</TableHead>
+              <TableHead>Rows</TableHead>
+              <TableHead>Last Modified</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {datasets.map((d) => (
               <TableRow key={d.id}>
@@ -165,16 +165,16 @@ function PipelinesPage() {
           }
         />
         <Table density="compact" stickyHeader>
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Owner</TableHeader>
-              <TableHeader>Schedule</TableHeader>
-              <TableHeader>Last Run</TableHeader>
-              <TableHeader>Duration</TableHeader>
-              <TableHeader>Status</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Owner</TableHead>
+              <TableHead>Schedule</TableHead>
+              <TableHead>Last Run</TableHead>
+              <TableHead>Duration</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {pipelines.map((p) => (
               <TableRow key={p.id}>

@@ -4,32 +4,76 @@ import { cn } from '../../utils/cn';
 export type TableDensity = 'compact' | 'default' | 'comfortable';
 
 export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> {
+  /** Applied to the scroll wrapper, not the `<table>`. Ref and style follow the same rule. */
+  className?: string;
+  style?: React.CSSProperties;
   density?: TableDensity;
   stickyHeader?: boolean;
+  striped?: boolean;
+  bordered?: boolean;
+  stickyFirstColumn?: boolean;
+  /** Caps the wrapper height. Pair with `stickyHeader` to keep the header in view while the body scrolls. */
+  maxHeight?: string | number;
+  /** Rendered as the table's `<caption>`. */
+  caption?: React.ReactNode;
 }
 
-export const Table = React.forwardRef<HTMLTableElement, TableProps>(
-  ({ className, density = 'default', stickyHeader, children, ...props }, ref) => (
-    <div className="mizu-table-wrapper">
-      <table
+export const Table = React.forwardRef<HTMLDivElement, TableProps>(
+  (
+    {
+      className,
+      style,
+      density = 'default',
+      stickyHeader,
+      striped,
+      bordered,
+      stickyFirstColumn,
+      maxHeight,
+      caption,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const maxHeightStyle =
+      maxHeight === undefined
+        ? undefined
+        : ({
+            '--mizu-table-max-height': typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight,
+          } as React.CSSProperties);
+    return (
+      <div
         ref={ref}
-        data-component="mizu-table"
-        className={cn('mizu-table', stickyHeader && 'mizu-table--sticky', className)}
-        data-density={density === 'default' ? undefined : density}
-        {...props}
+        className={cn('mizu-table-wrapper', className)}
+        style={maxHeightStyle ? { ...style, ...maxHeightStyle } : style}
       >
-        {children}
-      </table>
-    </div>
-  ),
+        <table
+          data-component="mizu-table"
+          className={cn(
+            'mizu-table',
+            stickyHeader && 'mizu-table--sticky',
+            striped && 'mizu-table--striped',
+            bordered && 'mizu-table--bordered',
+            stickyFirstColumn && 'mizu-table--sticky-first',
+          )}
+          data-density={density === 'default' ? undefined : density}
+          {...props}
+        >
+          {caption != null && <caption>{caption}</caption>}
+          {children}
+        </table>
+      </div>
+    );
+  },
 );
 Table.displayName = 'Table';
 
-export const TableHead = React.forwardRef<
+/** The `<thead>` section. */
+export const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => <thead ref={ref} className={cn(className)} {...props} />);
-TableHead.displayName = 'TableHead';
+TableHeader.displayName = 'TableHeader';
 
 export const TableBody = React.forwardRef<
   HTMLTableSectionElement,
@@ -39,21 +83,39 @@ TableBody.displayName = 'TableBody';
 
 export interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
   selected?: boolean;
+  /** Exposes `aria-selected` so assistive tech hears the selection state. */
+  selectable?: boolean;
 }
 
 export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
-  ({ className, selected, onClick, ...props }, ref) => {
+  ({ className, selected, selectable, onClick, onKeyDown, ...props }, ref) => {
     /* When a row has an onClick (or the consumer passes role="button"), it's
      * semantically interactive. Surface a data attribute so CSS can attach
      * cursor + hover affordance without each consumer hand-rolling them. */
     const interactive = !!onClick || props.role === 'button';
+
+    // Keys are handled on the row only, so Enter or Space pressed on a nested
+    // control (a checkbox, a link) keeps its own behaviour. `click()` reuses the
+    // consumer's onClick without widening its type to keyboard events.
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLTableRowElement>) => {
+      onKeyDown?.(event);
+      if (!interactive || event.defaultPrevented || event.target !== event.currentTarget) return;
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        event.currentTarget.click();
+      }
+    };
+
     return (
       <tr
         ref={ref}
         className={cn(className)}
         data-selected={selected || undefined}
         data-clickable={interactive || undefined}
+        aria-selected={selectable ? !!selected : undefined}
+        tabIndex={interactive ? 0 : undefined}
         onClick={onClick}
+        onKeyDown={handleKeyDown}
         {...props}
       />
     );
@@ -61,11 +123,14 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
 );
 TableRow.displayName = 'TableRow';
 
-export const TableHeader = React.forwardRef<
+/** A `<th>` header cell. Defaults to `scope="col"`; pass `scope="row"` for row headers. */
+export const TableHead = React.forwardRef<
   HTMLTableCellElement,
   React.ThHTMLAttributes<HTMLTableCellElement>
->(({ className, ...props }, ref) => <th ref={ref} className={cn(className)} {...props} />);
-TableHeader.displayName = 'TableHeader';
+>(({ className, scope = 'col', ...props }, ref) => (
+  <th ref={ref} scope={scope} className={cn(className)} {...props} />
+));
+TableHead.displayName = 'TableHead';
 
 export const TableCell = React.forwardRef<
   HTMLTableCellElement,

@@ -4,7 +4,7 @@ import { useEditorStore } from '@/store/editor-store';
 import { useThemePresetStore } from '@/store/preset-store';
 import { cn } from '@/utils/cn';
 import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
-import { Button, Popover, PopoverContent, PopoverTrigger, ScrollArea } from '@aspect/react';
+import { Button, Popover, PopoverContent, PopoverTrigger, ScrollArea } from '@mizunagara/react';
 import { ArrowLeft, ArrowRight, Check, ChevronDown, Search, Shuffle } from 'lucide-react';
 import React, { useCallback, useMemo, useState } from 'react';
 

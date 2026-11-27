@@ -1,0 +1,7 @@
+[data-mizu-identity="atlas"] {
+  --mizu-radius-md: 0.25rem;
+}
+
+.mizu-table {
+  border-radius: 0;
+}

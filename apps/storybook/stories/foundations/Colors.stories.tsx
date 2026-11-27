@@ -1,4 +1,4 @@
-import { Heading, Inline, Stack } from '@aspect/react';
+import { Heading, Inline, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { tokensByPrefix, type TokenEntry } from './tokens-helper';
 
@@ -35,16 +35,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Palette: Story = {
   render: () => (
-    <Stack gap="2rem">
+    <Stack gap="8">
       {groups.map((group) => {
         const entries = tokensByPrefix(group.filter);
         if (entries.length === 0) return null;
         return (
-          <Stack key={group.title} gap="0.75rem">
+          <Stack key={group.title} gap="3">
             <Heading level={2} size="md" className="story-section-title">
               {group.title}
             </Heading>
-            <Stack gap="0.5rem">
+            <Stack gap="2">
               {entries.map((entry) => (
                 <Swatch key={entry.name} entry={entry} />
               ))}

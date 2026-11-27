@@ -1,4 +1,4 @@
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -36,16 +36,16 @@ const items = (count = 4) =>
   ));
 
 export const Default: Story = {
-  render: () => <Stack gap="0.5rem">{items()}</Stack>,
+  render: () => <Stack gap="2">{items()}</Stack>,
 };
 
 export const LargeGap: Story = {
-  render: () => <Stack gap="2rem">{items()}</Stack>,
+  render: () => <Stack gap="8">{items()}</Stack>,
 };
 
 export const AlignCenter: Story = {
   render: () => (
-    <Stack gap="0.5rem" align="center" style={{ width: 320 }}>
+    <Stack gap="2" align="center" style={{ width: 320 }}>
       <div style={{ ...box('a', 0), minWidth: 100 }}>Short</div>
       <div style={{ ...box('b', 1), minWidth: 200 }}>Medium width</div>
       <div style={{ ...box('c', 2), minWidth: 260 }}>Wider content block</div>
@@ -55,9 +55,9 @@ export const AlignCenter: Story = {
 
 export const Nested: Story = {
   render: () => (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <div style={box('header', 0)}>Header</div>
-      <Stack gap="0.25rem">
+      <Stack gap="1">
         <div style={box('a', 1)}>Nested a</div>
         <div style={box('b', 2)}>Nested b</div>
       </Stack>

@@ -2,7 +2,7 @@
 
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useEditorStore } from '@/store/editor-store';
-import { Separator } from '@aspect/react';
+import { Separator } from '@mizunagara/react';
 import { CodeButton } from './code-button';
 import { ImportButton } from './import-button';
 import { ResetButton } from './reset-button';

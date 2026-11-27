@@ -3,7 +3,7 @@
 import ControlSection from '@/components/editor/control-section';
 import ThemePresetSelect from '@/components/editor/theme-preset-select';
 import type { ThemeStyleProps } from '@/types/theme';
-import { ScrollArea, Slider, Tabs, TabsContent, TabsList, TabsTrigger } from '@aspect/react';
+import { ScrollArea, Slider, Tabs, TabsContent, TabsList, TabsTrigger } from '@mizunagara/react';
 import { useQueryState } from 'nuqs';
 import React from 'react';
 import { ColorPicker } from './color-picker';

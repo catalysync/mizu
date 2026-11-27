@@ -1,4 +1,4 @@
-import { Progress, Stack } from '@aspect/react';
+import { Progress, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -40,7 +40,7 @@ export const Indeterminate: Story = {
 
 export const AllTones: Story = {
   render: () => (
-    <Stack gap="1rem" style={{ maxWidth: 400 }}>
+    <Stack gap="4" style={{ maxWidth: 400 }}>
       <Progress value={40} label="Default" showValue />
       <Progress value={70} tone="success" label="Success" showValue />
       <Progress value={85} tone="warning" label="Warning" showValue />

@@ -2,7 +2,7 @@ import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { db } from '@/db';
 import { team, teamInvite } from '@/db/schema';
-import { Badge, Stack } from '@aspect/react';
+import { Badge, Stack } from '@mizunagara/react';
 import { eq } from 'drizzle-orm';
 import { notFound } from 'next/navigation';
 import { InviteClient } from './invite-client';
@@ -42,8 +42,8 @@ export default async function InviteAcceptPage({ params }: Props) {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-md px-4 py-16">
-          <Stack gap="1.5rem">
-            <Stack gap="0.5rem">
+          <Stack gap="6">
+            <Stack gap="2">
               <Badge tone="info">Invitation</Badge>
               <h1 className="text-foreground text-3xl font-bold tracking-tight">
                 Join {row.team.name}

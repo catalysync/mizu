@@ -1,0 +1,5 @@
+.mizu-card {
+  color: var(--mizu-text-primary, #111);
+  padding: var(--mizu-space-2);
+  --_edge: var(--mizu-border-default);
+}

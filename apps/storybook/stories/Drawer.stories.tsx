@@ -10,7 +10,7 @@ import {
   DrawerTrigger,
   Input,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -34,7 +34,7 @@ export const Right: Story = {
           <DrawerDescription>Update your app configuration.</DrawerDescription>
         </DrawerHeader>
         <DrawerBody>
-          <Stack gap="1rem">
+          <Stack gap="4">
             <div>
               <span className="mizu-caption">App name</span>
               <Input defaultValue="frosty-mountain-1234" aria-label="App name" />

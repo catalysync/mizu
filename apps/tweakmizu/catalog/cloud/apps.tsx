@@ -1,6 +1,15 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Grid, Inline } from '@aspect/react';
+import {
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Grid,
+  Inline,
+} from '@mizunagara/react';
 import * as React from 'react';
 
 type AppStatus = 'running' | 'building' | 'crashed' | 'idle';
@@ -131,7 +140,7 @@ import {
   CardHeader,
   Grid,
   Inline,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 type AppStatus = 'running' | 'building' | 'crashed' | 'idle';
 
@@ -217,11 +226,11 @@ export const cloudApps = definePattern({
     industries: ['cloud'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Badge',
-      '@aspect/react#Grid',
-      '@aspect/react#Inline',
-      '@aspect/react#Button',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Grid',
+      '@mizunagara/react#Inline',
+      '@mizunagara/react#Button',
     ],
     sources: [
       {

@@ -14,7 +14,7 @@ import {
   ModalTrigger,
   Stack,
   Textarea,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { ClipboardPaste } from 'lucide-react';
 import { useState } from 'react';
 
@@ -92,7 +92,7 @@ export function ImportButton() {
           </ModalDescription>
         </ModalHeader>
         <ModalBody>
-          <Stack gap="0.75rem">
+          <Stack gap="3">
             <Textarea
               value={css}
               onChange={(e) => setCss(e.target.value)}

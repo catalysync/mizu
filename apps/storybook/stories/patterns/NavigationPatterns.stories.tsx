@@ -10,7 +10,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -55,7 +55,7 @@ export const SidebarWithTabsAndBreadcrumbs: Story = {
         </nav>
       </AppSidebar>
       <AppContent>
-        <Stack gap="1.5rem">
+        <Stack gap="6">
           <AppBreadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Settings' }]} />
           <Heading level={1}>Settings</Heading>
           <Tabs defaultValue="general">

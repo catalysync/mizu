@@ -1,15 +1,16 @@
 import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import prettier from 'eslint-config-prettier';
+import jestDom from 'eslint-plugin-jest-dom';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import noUnsanitized from 'eslint-plugin-no-unsanitized';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
 import ssrFriendly from 'eslint-plugin-ssr-friendly';
-import noUnsanitized from 'eslint-plugin-no-unsanitized';
-import testingLibrary from 'eslint-plugin-testing-library';
-import jestDom from 'eslint-plugin-jest-dom';
 import storybook from 'eslint-plugin-storybook';
-import prettier from 'eslint-config-prettier';
+import testingLibrary from 'eslint-plugin-testing-library';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
+import { eslintPlugin as mizuPlugin } from './packages/lint/src/eslint.mjs';
 
 export default tseslint.config(
   {
@@ -77,6 +78,21 @@ export default tseslint.config(
     rules: {
       'react-hooks/rules-of-hooks': 'off',
     },
+  },
+  {
+    // Accessibility rules from @mizunagara/lint, applied to the React components.
+    files: ['packages/react/src/**/*.{ts,tsx}'],
+    plugins: { mizu: mizuPlugin },
+    rules: {
+      'mizu/icon-button-label': 'error',
+      'mizu/aria-invalid-bound-style': 'error',
+      'mizu/no-static-click': 'error',
+    },
+  },
+  {
+    // Tests set aria-invalid to assert on it; they do not render the error style.
+    files: ['packages/react/src/**/*.test.{ts,tsx}'],
+    rules: { 'mizu/aria-invalid-bound-style': 'off' },
   },
   ...storybook.configs['flat/recommended'],
   prettier,

@@ -1,0 +1,12 @@
+{
+  "overlay": {
+    "scrim": {
+      "$value": "rgb(0 0 0 / 50%)",
+      "$type": "other"
+    },
+    "scrim-blur": {
+      "$value": "0px",
+      "$type": "dimension"
+    }
+  }
+}

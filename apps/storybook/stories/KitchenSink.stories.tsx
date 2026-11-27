@@ -1,4 +1,4 @@
-import type { PropertyFilterProperty, PropertyFilterQuery } from '@aspect/react';
+import type { PropertyFilterProperty, PropertyFilterQuery } from '@mizunagara/react';
 import {
   Badge,
   Button,
@@ -8,6 +8,7 @@ import {
   CardHeader,
   Checkbox,
   EmptyState,
+  Field,
   FilterBar,
   Grid,
   Inline,
@@ -30,7 +31,7 @@ import {
   TabsList,
   TabsTrigger,
   Textarea,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
@@ -46,10 +47,10 @@ function AllComponents() {
   });
 
   return (
-    <Stack gap="2.5rem">
+    <Stack gap="10">
       <section>
         <h2 className="mizu-h3 story-section-title">Buttons</h2>
-        <Stack gap="0.75rem">
+        <Stack gap="3">
           <Inline gap="0.5rem" align="center">
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
@@ -86,14 +87,16 @@ function AllComponents() {
       <section>
         <h2 className="mizu-h3 story-section-title">Form Controls</h2>
         <Grid gap="1.25rem" min="14rem">
-          <Input label="Text input" placeholder="Type something" />
+          <Field label="Text input">
+            <Input placeholder="Type something" />
+          </Field>
           <Textarea label="Textarea" placeholder="Notes" rows={2} />
           <Select label="Select">
             <option value="">Choose…</option>
             <option value="a">Option A</option>
             <option value="b">Option B</option>
           </Select>
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             <span className="mizu-label">Checkboxes</span>
             <Checkbox label="Option one" defaultChecked />
             <Checkbox label="Option two" />
@@ -141,13 +144,13 @@ function AllComponents() {
       <section>
         <h2 className="mizu-h3 story-section-title">Table</h2>
         <Table>
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Status</TableHeader>
-              <TableHeader>Region</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Region</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             <TableRow>
               <TableCell>frosty-mountain</TableCell>
@@ -194,7 +197,7 @@ function AllComponents() {
 
       <section>
         <h2 className="mizu-h3 story-section-title">Filtering</h2>
-        <Stack gap="1rem">
+        <Stack gap="4">
           <FilterBar
             searchValue=""
             onSearchChange={() => {}}

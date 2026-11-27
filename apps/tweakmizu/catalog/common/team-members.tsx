@@ -12,7 +12,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface Member {
   id: string;
@@ -66,7 +66,7 @@ const ROLE_TONE: Record<Member['role'], 'success' | 'info' | 'neutral'> = {
 
 function Preview() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <span className="text-muted-foreground text-sm">
           {members.length} members · {members.filter((m) => m.status === 'invited').length} pending
@@ -78,20 +78,20 @@ function Preview() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Role</TableHeader>
-              <TableHeader>Status</TableHeader>
-              <TableHeader>Joined</TableHeader>
-              <TableHeader></TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Joined</TableHead>
+              <TableHead></TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {members.map((m) => (
               <TableRow key={m.id}>
                 <TableCell>
-                  <Stack gap="0.125rem" align="start">
+                  <Stack gap="1" align="start">
                     <strong>{m.name}</strong>
                     <span
                       style={{
@@ -133,10 +133,10 @@ const TEMPLATE = `import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
+  TableHead,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface Member {
   id: string;
@@ -168,15 +168,15 @@ export default function TeamPage() {
       </Inline>
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Role</TableHeader>
-              <TableHeader>Status</TableHeader>
-              <TableHeader>Joined</TableHeader>
-              <TableHeader></TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Joined</TableHead>
+              <TableHead></TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {members.map((m) => (
               <TableRow key={m.id}>
@@ -205,12 +205,12 @@ export const commonTeamMembers = definePattern({
     industries: ['cloud', 'saas-admin', 'ecommerce', 'fintech', 'ai-product', 'devtools', 'other'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Table',
-      '@aspect/react#Badge',
-      '@aspect/react#Button',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Table',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
     ],
     sources: [
       {

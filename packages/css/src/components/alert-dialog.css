@@ -1,7 +1,8 @@
 .mizu-alert-dialog__overlay {
   position: fixed;
   inset: 0;
-  background: color-mix(in srgb, var(--mizu-color-slate-950) 60%, transparent);
+  background: var(--mizu-overlay-scrim, rgb(0 0 0 / 50%));
+  backdrop-filter: blur(var(--mizu-overlay-scrim-blur, 0));
   z-index: var(--mizu-z-overlay);
   animation: mizu-alert-dialog-fade-in var(--mizu-duration-fast) var(--mizu-easing-out);
 }
@@ -15,11 +16,28 @@
   flex-direction: column;
   width: 90vw;
   max-width: 32rem;
-  background: var(--mizu-surface-default);
+  max-height: 85vh;
+  background: var(--mizu-surface-default, #fff);
   border-radius: var(--mizu-radius-lg);
-  box-shadow: var(--mizu-shadow-xl);
+  box-shadow: var(
+    --mizu-shadow-xl,
+    0 20px 25px -5px rgb(0 0 0 / 10%),
+    0 8px 10px -6px rgb(0 0 0 / 10%)
+  );
   z-index: var(--mizu-z-modal);
   animation: mizu-alert-dialog-scale-in var(--mizu-duration-fast) var(--mizu-easing-out);
+}
+
+.mizu-alert-dialog__content[data-size="sm"] {
+  max-width: 24rem;
+}
+
+.mizu-alert-dialog__content[data-size="lg"] {
+  max-width: 48rem;
+}
+
+.mizu-alert-dialog__content[data-size="xl"] {
+  max-width: 64rem;
 }
 
 .mizu-alert-dialog__content:focus {
@@ -28,7 +46,7 @@
 
 .mizu-alert-dialog__header {
   padding: var(--mizu-spacing-5);
-  border-bottom: 1px solid var(--mizu-border-default);
+  border-bottom: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
 .mizu-alert-dialog__title {
@@ -36,13 +54,20 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-lg);
   font-weight: var(--mizu-font-weight-semibold);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-alert-dialog__description {
   margin: var(--mizu-spacing-1) 0 0;
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
+}
+
+.mizu-alert-dialog__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--mizu-spacing-5);
 }
 
 .mizu-alert-dialog__footer {
@@ -50,8 +75,8 @@
   justify-content: flex-end;
   gap: var(--mizu-spacing-2);
   padding: var(--mizu-spacing-4) var(--mizu-spacing-5);
-  border-top: 1px solid var(--mizu-border-default);
-  background: var(--mizu-surface-secondary);
+  border-top: 1px solid var(--mizu-border-default, #e2e8f0);
+  background: var(--mizu-surface-secondary, #f8fafc);
   border-radius: 0 0 var(--mizu-radius-lg) var(--mizu-radius-lg);
 }
 
@@ -71,8 +96,8 @@
 @media (prefers-reduced-motion: reduce) {
   .mizu-alert-dialog__overlay,
   .mizu-alert-dialog__content {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
   }
 }

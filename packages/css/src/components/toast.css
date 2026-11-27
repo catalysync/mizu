@@ -20,11 +20,26 @@
   padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
-  background: var(--mizu-surface-primary);
-  border: 1px solid var(--mizu-border-default);
+  color: var(--mizu-text-primary, #0f172a);
+  background: var(--mizu-surface-default, #fff);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-md);
-  box-shadow: var(--mizu-shadow-lg);
+  box-shadow: var(
+    --mizu-shadow-lg,
+    0 10px 15px -3px rgb(0 0 0 / 10%),
+    0 4px 6px -4px rgb(0 0 0 / 10%)
+  );
+}
+
+.mizu-toast[data-has-actions] {
+  flex-wrap: wrap;
+}
+
+.mizu-toast__actions {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--mizu-spacing-2);
 }
 
 .mizu-toast__content {
@@ -37,7 +52,7 @@
 }
 
 .mizu-toast__description {
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   margin-top: var(--mizu-spacing-1);
 }
 
@@ -52,28 +67,28 @@
   background: none;
   border: none;
   border-radius: var(--mizu-radius-sm);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   cursor: pointer;
 }
 
 .mizu-toast__close:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 6%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 6%, transparent);
 }
 
 .mizu-toast--success {
-  border-color: var(--mizu-feedback-success-default);
+  border-color: var(--mizu-feedback-success-default, #059669);
 }
 
 .mizu-toast--warning {
-  border-color: var(--mizu-feedback-warning-default);
+  border-color: var(--mizu-feedback-warning-default, #f59e0b);
 }
 
 .mizu-toast--danger {
-  border-color: var(--mizu-feedback-danger-default);
+  border-color: var(--mizu-feedback-danger-default, #dc2626);
 }
 
 .mizu-toast--info {
-  border-color: var(--mizu-feedback-info-default);
+  border-color: var(--mizu-feedback-info-default, #2563eb);
 }
 
 .mizu-toast[data-state="open"] {

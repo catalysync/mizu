@@ -1,5 +1,5 @@
-import { AnnotationCard, DeltaIndicator, MetricTile, TransactionRow } from '@aspect/finance';
-import { Badge, Card, CardBody, CardHeader, Grid, Stack } from '@aspect/react';
+import { AnnotationCard, DeltaIndicator, MetricTile, TransactionRow } from '@mizunagara/finance';
+import { Badge, Card, CardBody, CardHeader, Grid, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { insights, metrics, recentTransactions, type Insight } from './data';
 
@@ -59,7 +59,7 @@ function InsightsDashboard() {
         color: 'var(--mizu-text-primary)',
       }}
     >
-      <Stack gap="2rem">
+      <Stack gap="8">
         <div>
           <h1 className="mizu-h2" style={{ color: 'var(--mizu-text-primary)' }}>
             Dashboard
@@ -82,7 +82,7 @@ function InsightsDashboard() {
           <Card>
             <CardHeader title="AI Insights" />
             <CardBody>
-              <Stack gap="0.75rem">
+              <Stack gap="3">
                 {insights.map((ins) => (
                   <AnnotationCard key={ins.id} icon={SEVERITY_ICON[ins.severity]} title={ins.title}>
                     {ins.body}
@@ -95,7 +95,7 @@ function InsightsDashboard() {
           <Card>
             <CardHeader title="Recent Transactions" />
             <CardBody>
-              <Stack gap="0">
+              <Stack gap="none">
                 {recentTransactions.map((tx) => (
                   <TransactionRow
                     key={tx.id}
@@ -142,7 +142,7 @@ function TransactionsPage() {
         color: 'var(--mizu-text-primary)',
       }}
     >
-      <Stack gap="1.5rem">
+      <Stack gap="6">
         <div>
           <h1 className="mizu-h2" style={{ color: 'var(--mizu-text-primary)' }}>
             Transactions
@@ -159,7 +159,7 @@ function TransactionsPage() {
         <Card>
           <CardHeader title="All Transactions" />
           <CardBody>
-            <Stack gap="0">
+            <Stack gap="none">
               {recentTransactions.map((tx) => (
                 <TransactionRow
                   key={tx.id}

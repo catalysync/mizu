@@ -1,4 +1,4 @@
-import { cn, Skeleton } from '@aspect/react';
+import { cn, Skeleton } from '@mizunagara/react';
 import * as React from 'react';
 
 export interface ResourceItemProps extends React.HTMLAttributes<HTMLDivElement> {

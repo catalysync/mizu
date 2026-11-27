@@ -2,12 +2,12 @@ export const metadata = { title: 'Stack — mizu' };
 
 # Stack
 
-A layout primitive from the `@aspect/react` package.
+A layout primitive from the `@mizunagara/react` package.
 
 ## Import
 
 ```tsx
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 ```
 
 ## CSS class
@@ -21,7 +21,7 @@ import { Stack } from '@aspect/react';
 ## Usage
 
 ```tsx
-<Stack gap="1rem">
+<Stack gap="4">
   <div>Child 1</div>
   <div>Child 2</div>
 </Stack>
@@ -29,9 +29,9 @@ import { Stack } from '@aspect/react';
 
 ## Props
 
-| Prop        | Type     | Default       | Description        |
-| ----------- | -------- | ------------- | ------------------ |
-| `gap`       | `string` | Token default | CSS gap value      |
-| `className` | `string` | —             | Additional classes |
+| Prop        | Type       | Default      | Description                                                                                                  |
+| ----------- | ---------- | ------------ | ------------------------------------------------------------------------------------------------------------ |
+| `gap`       | `StackGap` | `'4'` (1rem) | Spacing scale step: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `8`, `10`, `12`, `16`, `20`, `24`. `1` is 0.25rem. |
+| `className` | `string`   | —            | Additional classes                                                                                           |
 
 See the [Storybook](https://mizu-storybook.vercel.app) for interactive examples.

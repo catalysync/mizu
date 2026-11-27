@@ -1,4 +1,4 @@
-import { Input, Label, Stack } from '@aspect/react';
+import { Input, Label, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -28,7 +28,7 @@ export const CustomRequiredLabel: Story = {
 
 export const WithInput: Story = {
   render: () => (
-    <Stack gap="0.25rem">
+    <Stack gap="1">
       <Label htmlFor="email" required>
         Email address
       </Label>

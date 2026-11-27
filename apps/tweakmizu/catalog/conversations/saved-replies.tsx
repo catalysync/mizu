@@ -1,6 +1,6 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { Badge, Button, Card, CardBody, Inline, Stack } from '@aspect/react';
+import { Badge, Button, Card, CardBody, Inline, Stack } from '@mizunagara/react';
 
 interface SavedReply {
   id: string;
@@ -43,7 +43,7 @@ const replies: SavedReply[] = [
 
 function Preview() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <span className="text-muted-foreground text-sm">
           {replies.length} templates · Type the shortcut in any reply to insert
@@ -52,11 +52,11 @@ function Preview() {
           New reply
         </Button>
       </Inline>
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         {replies.map((r) => (
           <Card key={r.id}>
             <CardBody>
-              <Stack gap="0.5rem">
+              <Stack gap="2">
                 <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
                   <Inline gap="0.5rem" align="center">
                     <strong className="mizu-body--sm">{r.title}</strong>
@@ -94,7 +94,7 @@ function Preview() {
   );
 }
 
-const TEMPLATE = `import { Badge, Button, Card, CardBody, Inline, Stack } from '@aspect/react';
+const TEMPLATE = `import { Badge, Button, Card, CardBody, Inline, Stack } from '@mizunagara/react';
 
 interface SavedReply {
   id: string;
@@ -154,11 +154,11 @@ export const conversationsSavedReplies = definePattern({
     industries: ['saas-admin', 'other'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Badge',
-      '@aspect/react#Button',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
     ],
     sources: [
       {

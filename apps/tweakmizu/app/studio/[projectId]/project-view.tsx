@@ -7,7 +7,7 @@ import { resolvePatternsForPlan } from '@/lib/studio/composer';
 import { buildProjectZip, downloadBlob } from '@/lib/studio/exporter';
 import { usePlansStore } from '@/store/plans-store';
 import { cn } from '@/utils/cn';
-import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
+import { Badge, Button, Inline, Split, Stack } from '@mizunagara/react';
 import { Code2, Download, Eye, Sliders, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
@@ -47,8 +47,8 @@ export function ProjectView({ projectId }: { projectId: string }) {
   };
 
   return (
-    <Stack gap="1.5rem">
-      <Stack as="header" gap="0.75rem">
+    <Stack gap="6">
+      <Stack as="header" gap="3">
         <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
           <Inline gap="0.5rem" align="center">
             <h1 className="text-foreground text-2xl font-bold tracking-tight md:text-3xl">
@@ -126,7 +126,7 @@ export function ProjectView({ projectId }: { projectId: string }) {
 
 function MissingPlan() {
   return (
-    <Stack gap="1rem" className="border-border bg-muted/30 rounded-lg border p-8">
+    <Stack gap="4" className="border-border bg-muted/30 rounded-lg border p-8">
       <h2 className="text-foreground text-lg font-semibold">Project not found</h2>
       <p className="text-muted-foreground text-sm">
         Plans are stored locally in your browser. This project may have been generated on a
@@ -163,7 +163,7 @@ function PreviewTab({
   const Preview = pattern?.Preview;
   return (
     <Split fraction="240px 1fr" gap="1.5rem">
-      <Stack as="nav" gap="0.25rem" aria-label="Generated pages">
+      <Stack as="nav" gap="1" aria-label="Generated pages">
         {plan.entries.map((item, index) => {
           const active = index === activeIndex;
           const p = patterns[index];
@@ -180,7 +180,7 @@ function PreviewTab({
                   : 'hover:border-border hover:bg-muted/60 border-transparent',
               )}
             >
-              <Stack gap="0.25rem" align="start">
+              <Stack gap="1" align="start">
                 <span className="text-foreground text-sm font-semibold">{item.title}</span>
                 <span className="text-muted-foreground text-xs">{item.route}</span>
                 <span className="text-muted-foreground text-[11px]">
@@ -235,12 +235,12 @@ function CodeTab({
     stack: plan.intent.stack,
     patterns: plan.entries.map((e) => e.patternId),
     primitives: ['Stack', 'Inline', 'Cluster', 'Grid', 'Center', 'Split'],
-    importPath: '@aspect/react',
+    importPath: '@mizunagara/react',
   };
 
   return (
     <Split fraction="240px 1fr" gap="1.5rem">
-      <Stack as="nav" gap="0.25rem" aria-label="Generated files">
+      <Stack as="nav" gap="1" aria-label="Generated files">
         {plan.entries.map((item, index) => {
           const active = index === activeIndex;
           return (
@@ -261,7 +261,7 @@ function CodeTab({
           );
         })}
       </Stack>
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         {files.map((file) => (
           <article key={file.path} className="border-border overflow-hidden rounded-lg border">
             <header className="border-border bg-muted/40 border-b px-3 py-2 text-xs">
@@ -346,8 +346,8 @@ function ExportTab({ plan }: { plan: StoredPlan }) {
   };
 
   return (
-    <Stack gap="1rem">
-      <Stack gap="0.75rem" className="border-border bg-background rounded-lg border p-6">
+    <Stack gap="4">
+      <Stack gap="3" className="border-border bg-background rounded-lg border p-6">
         <h2 className="text-foreground text-lg font-semibold">Download as a zip</h2>
         <p className="text-muted-foreground text-sm">
           The generated project is a standalone Next.js app. Unzip, run <code>pnpm install</code>,
@@ -363,7 +363,7 @@ function ExportTab({ plan }: { plan: StoredPlan }) {
         </Inline>
       </Stack>
 
-      <Stack gap="0.75rem" className="border-border bg-background rounded-lg border p-6">
+      <Stack gap="3" className="border-border bg-background rounded-lg border p-6">
         <h2 className="text-foreground text-lg font-semibold">Share link</h2>
         <p className="text-muted-foreground text-sm">
           Create a read-only preview URL for this project. Sign-in required — the share is tied to

@@ -1,10 +1,10 @@
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 import { StudioNewClient } from './client';
 
 export default function StudioNew() {
   return (
-    <Stack gap="1.5rem">
-      <Stack gap="0.5rem">
+    <Stack gap="6">
+      <Stack gap="2">
         <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
           New project
         </span>

@@ -12,8 +12,9 @@ export const CommandMenu = ({ children, ...props }: CommandMenuProps) => (
       <Dialog.Content
         data-component="mizu-command-menu"
         className="mizu-command-menu__dialog"
-        aria-label="Command menu"
+        aria-describedby={undefined}
       >
+        <Dialog.Title className="mizu-command-menu__title">Command menu</Dialog.Title>
         <CommandPrimitive>{children}</CommandPrimitive>
       </Dialog.Content>
     </Dialog.Portal>

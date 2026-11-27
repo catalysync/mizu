@@ -1,0 +1,211 @@
+export const metadata = { title: 'DataTable — mizu' };
+
+import { Preview } from '../preview';
+import { DataTableDemo } from './data-table-demo';
+
+# DataTable
+
+A table driven by a `data` array and a `columns` definition. It adds sorting, row selection, expandable rows, loading skeletons and an empty state. It renders its own `<table>` and does not wrap [Table](/components/table), so use `Table` when you need the markup-first API.
+
+<Preview>
+  <DataTableDemo />
+</Preview>
+
+## Import
+
+```tsx
+import { DataTable } from '@mizunagara/react';
+import type {
+  DataTableColumn,
+  DataTableDensity,
+  DataTableLabels,
+  DataTableProps,
+  SortDirection,
+} from '@mizunagara/react';
+```
+
+## Usage
+
+```tsx
+interface Deployment {
+  id: string;
+  service: string;
+  requests: number;
+}
+
+const columns: DataTableColumn<Deployment>[] = [
+  { id: 'service', header: 'Service', cell: (r) => r.service, sortable: true },
+  {
+    id: 'requests',
+    header: 'Requests / min',
+    cell: (r) => r.requests.toLocaleString(),
+    align: 'end',
+    sortable: true,
+  },
+];
+
+<DataTable columns={columns} data={rows} getRowId={(r) => r.id} caption="Deployments" />;
+```
+
+`getRowId` must return a stable, unique string for each row. Selection and expansion are keyed by that id, so they survive re-sorting and re-filtering.
+
+## Columns
+
+| Field      | Type                           | Description                                                                                                                         |
+| ---------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `id`       | `string`                       | Unique column key. Also the value passed to `onSort`.                                                                               |
+| `header`   | `ReactNode`                    | Column heading                                                                                                                      |
+| `cell`     | `(row: T) => ReactNode`        | Renders the cell for one row                                                                                                        |
+| `sortable` | `boolean`                      | Makes the header focusable and wires click and Enter/Space to `onSort`. Without `onSort`, the header is focusable but does nothing. |
+| `align`    | `'start' \| 'center' \| 'end'` | Text alignment. Use `'end'` for numbers.                                                                                            |
+| `width`    | `string`                       | CSS width applied to the header cell, for example `'12rem'`                                                                         |
+
+## Sorting
+
+DataTable does not sort the data. It reports the request through `onSort`, and you reorder `data` yourself. This keeps server-side sorting and client-side sorting on the same API.
+
+- Clicking a sortable header cycles `asc`, then `desc`, then no sort.
+- Enter and Space on a focused sortable header do the same.
+- The active header gets `aria-sort` and `data-sort-direction`.
+
+```tsx
+const [sortColumn, setSortColumn] = React.useState<string | null>(null);
+const [sortDirection, setSortDirection] = React.useState<SortDirection>(null);
+
+<DataTable
+  columns={columns}
+  data={sortedRows}
+  getRowId={(r) => r.id}
+  sortColumn={sortColumn}
+  sortDirection={sortDirection}
+  onSort={(column, direction) => {
+    setSortColumn(column);
+    setSortDirection(direction);
+  }}
+/>;
+```
+
+## Selection
+
+Set `selectable` and control the selection with `selectedIds` and `onSelectionChange`. The header checkbox selects every row in `data`.
+
+```tsx
+const [selected, setSelected] = React.useState<Set<string>>(new Set());
+
+<DataTable
+  columns={columns}
+  data={rows}
+  getRowId={(r) => r.id}
+  selectable
+  selectedIds={selected}
+  onSelectionChange={setSelected}
+/>;
+```
+
+If you filter `data`, select-all and deselect-all only touch the rows that are currently shown. Selections on rows that are hidden stay in `selectedIds`.
+
+The header checkbox is indeterminate when only some visible rows are selected.
+
+## Expandable rows
+
+Set `expandable`, control the open rows with `expandedIds` and `onExpandChange`, and render the detail with `renderExpanded`.
+
+```tsx
+<DataTable
+  columns={columns}
+  data={rows}
+  getRowId={(r) => r.id}
+  expandable
+  expandedIds={expanded}
+  onExpandChange={setExpanded}
+  renderExpanded={(row) => <DetailPanel row={row} />}
+/>
+```
+
+## Loading and empty states
+
+- `loading` replaces the body with `loadingRows` skeleton rows (default 5) and sets `aria-busy` on the wrapper.
+- When `data` is empty, one row spans every column and shows `emptyMessage`. If that is not set, it shows `labels.empty`, then `'No data to display.'`.
+
+## Density, striping and sticky header
+
+```tsx
+<DataTable density="compact" striped stickyHeader className="deployments" />
+```
+
+`density` takes `'compact'`, `'default'` or `'comfortable'`. `stickyHeader` pins the header, but only inside a scroll container. The wrapper scrolls horizontally by default and does not cap its height, so add a max height to the wrapper with your own CSS:
+
+```css
+.deployments {
+  max-height: 320px;
+}
+```
+
+Setting `max-height` makes the wrapper scroll vertically as well, which gives the sticky header something to stick to.
+
+## Labels
+
+Every label is optional. Pass them to translate the built-in text or to make row checkboxes read well to screen readers.
+
+```tsx
+<DataTable
+  labels={{
+    selectAll: 'Select all deployments',
+    selectRow: (row) => `Select ${row.service}`,
+    expandRow: 'Show details',
+    collapseRow: 'Hide details',
+    empty: 'No deployments yet.',
+  }}
+/>
+```
+
+## Accessibility
+
+- Pass `caption` to name the table. It renders as a visually hidden `<caption>`.
+- Sortable headers are focusable and respond to Enter and Space. Non-sortable headers are not focusable.
+- Keys pressed inside a control in a sortable header (for example a filter input) do not trigger a sort.
+- Each row checkbox has an `aria-label`. The default is `Select row N`, so set `labels.selectRow` to use real names.
+
+## Props
+
+| Prop                | Type                                                 | Default                   | Description                                 |
+| ------------------- | ---------------------------------------------------- | ------------------------- | ------------------------------------------- |
+| `columns`           | `DataTableColumn<T>[]`                               | —                         | Column definitions                          |
+| `data`              | `T[]`                                                | —                         | Rows to render, already sorted and filtered |
+| `getRowId`          | `(row: T) => string`                                 | —                         | Stable unique id for each row               |
+| `labels`            | `DataTableLabels<T>`                                 | —                         | Built-in text and per-row labels            |
+| `sortColumn`        | `string \| null`                                     | —                         | Id of the sorted column                     |
+| `sortDirection`     | `'asc' \| 'desc' \| null`                            | —                         | Direction of the sorted column              |
+| `onSort`            | `(column: string, direction: SortDirection) => void` | —                         | Called when a sortable header is activated  |
+| `selectable`        | `boolean`                                            | `false`                   | Adds a checkbox column                      |
+| `selectedIds`       | `Set<string>`                                        | empty set                 | Selected row ids                            |
+| `onSelectionChange` | `(ids: Set<string>) => void`                         | —                         | Called with the next selection              |
+| `expandable`        | `boolean`                                            | `false`                   | Adds an expand column                       |
+| `expandedIds`       | `Set<string>`                                        | empty set                 | Expanded row ids                            |
+| `onExpandChange`    | `(ids: Set<string>) => void`                         | —                         | Called with the next set of expanded ids    |
+| `renderExpanded`    | `(row: T) => ReactNode`                              | —                         | Content of the expanded row                 |
+| `striped`           | `boolean`                                            | `false`                   | Tint alternate rows                         |
+| `stickyHeader`      | `boolean`                                            | `false`                   | Pin the header row                          |
+| `density`           | `'compact' \| 'default' \| 'comfortable'`            | `'default'`               | Row padding                                 |
+| `loading`           | `boolean`                                            | `false`                   | Show skeleton rows                          |
+| `loadingRows`       | `number`                                             | `5`                       | Number of skeleton rows while loading       |
+| `emptyMessage`      | `ReactNode`                                          | `labels.empty` or default | Shown when `data` is empty                  |
+| `caption`           | `string`                                             | —                         | Visually hidden table caption               |
+| `className`         | `string`                                             | —                         | Applied to the wrapper `div`                |
+| `tableClassName`    | `string`                                             | —                         | Applied to the `<table>`                    |
+
+`DataTable` also accepts native `div` attributes, which go to the wrapper. The ref points to the wrapper.
+
+## Guidelines
+
+**Do:**
+
+- Keep `data` sorted and filtered in your own state, and pass the result in
+- Use a stable `getRowId` that does not depend on the row's position
+- Right-align numeric columns with `align="end"`
+- Use `loading` while the first fetch is in flight
+
+**Don't:**
+
+- Don't put interactive controls inside a sortable header. A click on them also sorts the column.
+- Don't use `DataTable` for layout. Use `Table` or the layout primitives instead.

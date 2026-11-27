@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import * as React from 'react';
+import { usePortalIdentity } from '../../primitives/Portal';
 import { cn } from '../../utils/cn';
 
 export type SheetSide = 'left' | 'right' | 'top' | 'bottom';
@@ -15,34 +16,40 @@ export interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof
 export const SheetContent = React.forwardRef<
   React.ElementRef<typeof Dialog.Content>,
   SheetContentProps
->(({ className, children, side = 'right', ...props }, ref) => (
-  <Dialog.Portal>
-    <Dialog.Overlay className="mizu-sheet__overlay" />
-    <Dialog.Content
-      ref={ref}
-      data-component="mizu-sheet"
-      className={cn('mizu-sheet__content', className)}
-      data-side={side}
-      {...props}
-    >
-      {children}
-      <Dialog.Close className="mizu-sheet__close" aria-label="Close">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          width="16"
-          height="16"
+>(({ className, children, side = 'right', ...props }, forwardedRef) => {
+  const identity = usePortalIdentity<React.ElementRef<typeof Dialog.Content>>(forwardedRef);
+  return (
+    <>
+      {identity.anchor}
+      <Dialog.Portal>
+        <Dialog.Overlay ref={identity.applyIdentity} className="mizu-sheet__overlay" />
+        <Dialog.Content
+          ref={identity.ref}
+          data-component="mizu-sheet"
+          className={cn('mizu-sheet__content', className)}
+          data-side={side}
+          {...props}
         >
-          <path d="M18 6 6 18M6 6l12 12" />
-        </svg>
-      </Dialog.Close>
-    </Dialog.Content>
-  </Dialog.Portal>
-));
+          {children}
+          <Dialog.Close className="mizu-sheet__close" aria-label="Close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              width="16"
+              height="16"
+            >
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </>
+  );
+});
 SheetContent.displayName = 'SheetContent';
 
 export const SheetHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
@@ -67,6 +74,13 @@ export const SheetDescription = React.forwardRef<
   <Dialog.Description ref={ref} className={cn('mizu-sheet__description', className)} {...props} />
 ));
 SheetDescription.displayName = 'SheetDescription';
+
+export const SheetFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn('mizu-sheet__footer', className)} {...props} />
+  ),
+);
+SheetFooter.displayName = 'SheetFooter';
 
 export const SheetBody = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (

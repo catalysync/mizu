@@ -1,4 +1,4 @@
-import { VerticalBarChart } from '@aspect/charts';
+import { VerticalBarChart } from '@mizunagara/charts';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { channelBreakdown } from './_fixtures';
 

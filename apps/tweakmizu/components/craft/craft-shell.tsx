@@ -2,7 +2,7 @@
 
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useCraftStore } from '@/store/craft-store';
-import { Button, cn } from '@aspect/react';
+import { Button, cn } from '@mizunagara/react';
 import { ChevronLeft, Download, Eye, Menu, Redo2, Settings, Undo2, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

@@ -2,11 +2,13 @@ import * as React from 'react';
 import { Cell, Pie, PieChart as RPieChart } from 'recharts';
 
 import { ChartContainer } from './ChartContainer';
+import { ChartDataTable } from './ChartDataTable';
 import { ChartEmpty } from './ChartEmpty';
 import { ChartLegend, ChartLegendContent } from './ChartLegend';
 import { ChartSkeleton } from './ChartSkeleton';
 import { ChartTooltip, ChartTooltipContent } from './ChartTooltip';
 import { resolveColor } from './utils/colors';
+import { pieTable } from './utils/dataTable';
 import type { ChartConfig } from './utils/types';
 
 export interface PieChartItem {
@@ -93,7 +95,10 @@ export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(
         config={config}
         height={height}
         className={className}
-        role="img"
+        role="group"
+        dataTable={
+          <ChartDataTable caption={props['aria-label']} {...pieTable(data, valueFormatter)} />
+        }
         {...props}
       >
         <RPieChart accessibilityLayer>

@@ -1,4 +1,4 @@
-import { Button, Input, Popover, PopoverContent, PopoverTrigger, Stack } from '@aspect/react';
+import { Button, Input, Popover, PopoverContent, PopoverTrigger, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -17,7 +17,7 @@ export const Default: Story = {
         <Button variant="secondary">Edit name</Button>
       </PopoverTrigger>
       <PopoverContent showArrow>
-        <Stack gap="0.75rem">
+        <Stack gap="3">
           <span className="mizu-caption">App name</span>
           <Input defaultValue="frosty-mountain-1234" aria-label="App name" />
           <Button size="sm" variant="primary">
@@ -36,7 +36,7 @@ export const NoArrow: Story = {
         <Button variant="secondary">Details</Button>
       </PopoverTrigger>
       <PopoverContent>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           <span className="mizu-body--sm">
             A minimal popover without the pointer arrow — useful when the trigger context makes the
             relationship obvious.

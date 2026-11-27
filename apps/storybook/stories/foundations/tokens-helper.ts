@@ -1,8 +1,8 @@
-import tokens from '@aspect/tokens/json';
+import tokens from '@mizunagara/tokens/json';
 
 export type TokenValue = string | number;
 export type TokenEntry = {
-  /** PascalCase token name as exported from @aspect/tokens. */
+  /** PascalCase token name as exported from @mizunagara/tokens. */
   name: string;
   /** CSS custom-property name with the mizu-* prefix. */
   cssVar: string;
@@ -42,7 +42,7 @@ export function labelFromPrefix(name: string, prefix: string): string {
 /**
  * Filter the full tokens export down to entries whose name matches a
  * string prefix or regex pattern. Preserves the definition order from
- * `@aspect/tokens/json`, so ordered scales (Spacing0, Spacing1, ...) stay
+ * `@mizunagara/tokens/json`, so ordered scales (Spacing0, Spacing1, ...) stay
  * in source order.
  */
 export function tokensByPrefix(pattern: string | RegExp): TokenEntry[] {

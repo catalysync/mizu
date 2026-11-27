@@ -1,7 +1,7 @@
 'use client';
 
 import { authClient } from '@/lib/auth-client';
-import { Button, Inline, Input, Stack } from '@aspect/react';
+import { Button, Field, Inline, Input, Stack } from '@mizunagara/react';
 import { useRouter } from 'next/navigation';
 import { useState, type FormEvent } from 'react';
 
@@ -50,7 +50,7 @@ export function SignInForm() {
 
   return (
     <form onSubmit={handleSubmit} aria-label="Sign in form">
-      <Stack gap="1rem">
+      <Stack gap="4">
         <Inline gap="0.5rem" align="center">
           <Button
             type="button"
@@ -71,32 +71,31 @@ export function SignInForm() {
         </Inline>
 
         {mode === 'sign-up' ? (
-          <Input
-            label="Name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            required
-          />
+          <Field label="Name">
+            <Input value={name} onChange={(event) => setName(event.target.value)} required />
+          </Field>
         ) : null}
 
-        <Input
-          label="Email"
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-          autoComplete="email"
-        />
+        <Field label="Email">
+          <Input
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            required
+            autoComplete="email"
+          />
+        </Field>
 
-        <Input
-          label="Password"
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required
-          autoComplete={mode === 'sign-up' ? 'new-password' : 'current-password'}
-          minLength={6}
-        />
+        <Field label="Password">
+          <Input
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required
+            autoComplete={mode === 'sign-up' ? 'new-password' : 'current-password'}
+            minLength={6}
+          />
+        </Field>
 
         {error ? (
           <p className="text-danger text-sm" role="alert">

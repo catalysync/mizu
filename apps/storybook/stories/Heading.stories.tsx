@@ -1,4 +1,4 @@
-import { Heading, Stack } from '@aspect/react';
+import { Heading, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -41,7 +41,7 @@ export const AsOverride: Story = {
 
 export const AllLevels: Story = {
   render: () => (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Heading level={1}>H1 — Main page title</Heading>
       <Heading level={2}>H2 — Section title</Heading>
       <Heading level={3}>H3 — Sub-section title</Heading>

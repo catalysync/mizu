@@ -5,16 +5,17 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Field,
   Inline,
   Input,
   Stack,
   Switch,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 function SampleUI() {
   return (
-    <Stack gap="1.25rem">
+    <Stack gap="5">
       <Inline gap="0.5rem" align="center">
         <Button variant="primary">Primary</Button>
         <Button variant="secondary">Secondary</Button>
@@ -29,7 +30,9 @@ function SampleUI() {
         <Badge tone="danger">Failed</Badge>
         <Badge tone="info">New</Badge>
       </Inline>
-      <Input label="Email" placeholder="you@example.com" />
+      <Field label="Email">
+        <Input placeholder="you@example.com" />
+      </Field>
       <Card>
         <CardHeader title="Project settings" description="Configure your workspace." />
         <CardBody>

@@ -1,5 +1,5 @@
-import '@aspect/css/themes/customer-engagement';
-import { Badge, Button, Inline, Separator, Textarea } from '@aspect/react';
+import '@mizunagara/css/themes/customer-engagement';
+import { Badge, Button, Inline, Separator, Textarea } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ContactsPage } from './ContactsPage';
 import { ConversationsShell } from './ConversationsShell';

@@ -21,14 +21,14 @@
   line-height: var(--mizu-text-xl-line-height);
   letter-spacing: var(--mizu-text-xl-tracking);
   font-weight: var(--mizu-font-weight-semibold);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-section-header__description {
   margin: 0;
   font-size: var(--mizu-text-sm-size);
   line-height: var(--mizu-text-sm-line-height);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-section-header__actions {

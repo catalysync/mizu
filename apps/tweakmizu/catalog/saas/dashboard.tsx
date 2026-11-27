@@ -1,7 +1,7 @@
 import type { OutputFile, RenderContext } from '@/lib/patterns/types';
 import { definePattern } from '@/lib/patterns/types';
-import { DeltaIndicator, MetricTile, formatCurrency } from '@aspect/finance';
-import { Card, Grid, Inline, Stack } from '@aspect/react';
+import { DeltaIndicator, MetricTile, formatCurrency } from '@mizunagara/finance';
+import { Card, Grid, Inline, Stack } from '@mizunagara/react';
 
 interface Kpi {
   label: string;
@@ -25,7 +25,7 @@ function formatKpi(kpi: Kpi): string {
 
 function Preview() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <span className="text-muted-foreground text-sm">Last 30 days · vs previous period</span>
       </Inline>
@@ -40,7 +40,7 @@ function Preview() {
         ))}
       </Grid>
       <Card>
-        <Stack gap="0.5rem" style={{ padding: '1rem' }}>
+        <Stack gap="2" style={{ padding: '1rem' }}>
           <span className="mizu-heading-sm">Recent activity</span>
           <span className="mizu-caption" style={{ color: 'var(--mizu-text-secondary)' }}>
             Revenue, expansion, and churn events for the last 24 hours.
@@ -51,8 +51,8 @@ function Preview() {
   );
 }
 
-const TEMPLATE = `import { Card, Grid, Inline, Stack } from '@aspect/react';
-import { DeltaIndicator, MetricTile, formatCurrency } from '@aspect/finance';
+const TEMPLATE = `import { Card, Grid, Inline, Stack } from '@mizunagara/react';
+import { DeltaIndicator, MetricTile, formatCurrency } from '@mizunagara/finance';
 
 interface Kpi {
   label: string;
@@ -113,13 +113,13 @@ export const saasDashboard = definePattern({
     industries: ['saas-admin', 'fintech'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Grid',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
-      '@aspect/finance#MetricTile',
-      '@aspect/finance#DeltaIndicator',
-      '@aspect/finance#formatCurrency',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Grid',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
+      '@mizunagara/finance#MetricTile',
+      '@mizunagara/finance#DeltaIndicator',
+      '@mizunagara/finance#formatCurrency',
     ],
     sources: [
       {

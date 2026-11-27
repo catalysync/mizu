@@ -1,5 +1,5 @@
 import { StudioEditorShell } from '@/components/studio/editor/editor-shell';
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 import Link from 'next/link';
 
 export const metadata = {
@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function StudioEditorPage() {
   return (
-    <Stack gap="1.5rem">
-      <Stack gap="0.5rem">
+    <Stack gap="6">
+      <Stack gap="2">
         <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
           Editor
         </span>

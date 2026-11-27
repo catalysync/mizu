@@ -15,7 +15,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 const invoices = [
   { id: 'INV-2026-03', date: 'Mar 1, 2026', amount: '$49.00', status: 'paid' as const },
@@ -58,12 +58,12 @@ function UsageBar({ pct }: { pct: number }) {
 
 function Preview() {
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <Card>
         <CardHeader title="Current plan" />
         <CardBody>
           <Inline gap="1rem" align="center" style={{ justifyContent: 'space-between' }}>
-            <Stack gap="0.25rem">
+            <Stack gap="1">
               <Inline gap="0.5rem" align="center">
                 <span className="mizu-heading-md">Pro</span>
                 <Badge tone="success">Active</Badge>
@@ -82,7 +82,7 @@ function Preview() {
       <Card>
         <CardHeader title="Usage this period" description="Mar 1 – Mar 31, 2026" />
         <CardBody>
-          <Stack gap="0.75rem">
+          <Stack gap="3">
             {usage.map((u) => (
               <div key={u.resource}>
                 <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
@@ -102,14 +102,14 @@ function Preview() {
         <CardHeader title="Invoice history" />
         <CardBody>
           <Table density="compact">
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>Invoice</TableHeader>
-                <TableHeader>Date</TableHeader>
-                <TableHeader>Amount</TableHeader>
-                <TableHeader>Status</TableHeader>
+                <TableHead>Invoice</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               {invoices.map((inv) => (
                 <TableRow key={inv.id}>
@@ -144,10 +144,10 @@ const TEMPLATE = `import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
+  TableHead,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 const invoices = [
   { id: 'INV-2026-03', date: 'Mar 1, 2026', amount: '$49.00', status: 'paid' as const },
@@ -209,14 +209,14 @@ export default function BillingPage() {
         <CardHeader title="Invoice history" />
         <CardBody>
           <Table density="compact">
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>Invoice</TableHeader>
-                <TableHeader>Date</TableHeader>
-                <TableHeader>Amount</TableHeader>
-                <TableHeader>Status</TableHeader>
+                <TableHead>Invoice</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               {invoices.map((inv) => (
                 <TableRow key={inv.id}>
@@ -245,13 +245,13 @@ export const cloudBilling = definePattern({
     industries: ['cloud', 'saas-admin'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Badge',
-      '@aspect/react#Button',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
-      '@aspect/react#Table',
-      '@aspect/react#Separator',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
+      '@mizunagara/react#Table',
+      '@mizunagara/react#Separator',
     ],
     sources: [
       {

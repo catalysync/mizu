@@ -1,4 +1,4 @@
-import { AppContentHeader, Badge, Button, Card, CardBody, Inline, Stack } from '@aspect/react';
+import { AppContentHeader, Badge, Button, Card, CardBody, Inline, Stack } from '@mizunagara/react';
 
 const replies = [
   {
@@ -40,7 +40,7 @@ const replies = [
 
 export function SavedRepliesPage() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <AppContentHeader
         title="Saved Replies"
         description={`${replies.length} templates · Type the shortcut in any reply to insert`}
@@ -50,11 +50,11 @@ export function SavedRepliesPage() {
           </Button>
         }
       />
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         {replies.map((r) => (
           <Card key={r.id}>
             <CardBody>
-              <Stack gap="0.5rem">
+              <Stack gap="2">
                 <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
                   <Inline gap="0.5rem" align="center">
                     <strong className="mizu-body--sm">{r.title}</strong>

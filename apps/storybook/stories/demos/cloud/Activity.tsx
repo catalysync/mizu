@@ -1,4 +1,4 @@
-import { Badge, Button, Card, EmptyState, Stack } from '@aspect/react';
+import { Badge, Button, Card, EmptyState, Stack } from '@mizunagara/react';
 import * as React from 'react';
 import { mockActivity, type ActivityEntry } from './data';
 import { IconActivity } from './icons';
@@ -24,7 +24,7 @@ export function ActivityPage() {
 
   return (
     <Card>
-      <Stack gap="0">
+      <Stack gap="none">
         {mockActivity.map((entry) => (
           <div key={entry.id} className="mizu-activity-entry">
             <Badge tone={TYPE_TONE[entry.type]}>{entry.type}</Badge>

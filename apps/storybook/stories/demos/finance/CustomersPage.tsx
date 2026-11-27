@@ -1,4 +1,4 @@
-import { formatCurrency } from '@aspect/finance';
+import { formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -22,7 +22,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { useMemo, useState } from 'react';
 import { customers, invoices, type Customer, type CustomerStatus } from './data';
 
@@ -46,7 +46,7 @@ export function CustomersPage() {
   const totalBalance = customers.reduce((s, c) => s + c.balance, 0);
 
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppContentHeader
         title="Customers"
         description={`${customers.length} total · ${activeCount} active · ${formatCurrency(
@@ -57,7 +57,7 @@ export function CustomersPage() {
 
       <Card>
         <CardBody>
-          <Stack gap="1rem">
+          <Stack gap="4">
             <Input
               size="sm"
               placeholder="Search by name…"
@@ -68,16 +68,16 @@ export function CustomersPage() {
             />
 
             <Table>
-              <TableHead>
+              <TableHeader>
                 <TableRow>
-                  <TableHeader>Customer</TableHeader>
-                  <TableHeader>Email</TableHeader>
-                  <TableHeader className="finance-demo__th-end">Balance</TableHeader>
-                  <TableHeader className="finance-demo__th-end">Open invoices</TableHeader>
-                  <TableHeader>Last transaction</TableHeader>
-                  <TableHeader>Status</TableHeader>
+                  <TableHead>Customer</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead className="finance-demo__th-end">Balance</TableHead>
+                  <TableHead className="finance-demo__th-end">Open invoices</TableHead>
+                  <TableHead>Last transaction</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
-              </TableHead>
+              </TableHeader>
               <TableBody>
                 {visible.map((c) => (
                   <TableRow
@@ -128,8 +128,8 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
         <Badge tone={customer.status === 'active' ? 'success' : 'neutral'}>{customer.status}</Badge>
       </DrawerHeader>
       <DrawerBody>
-        <Stack gap="1rem">
-          <Stack gap="0.25rem">
+        <Stack gap="4">
+          <Stack gap="1">
             <strong>Contact</strong>
             <span className="finance-demo__muted">{customer.email}</span>
             <span className="finance-demo__muted">
@@ -137,7 +137,7 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
             </span>
           </Stack>
 
-          <Stack gap="0.25rem">
+          <Stack gap="1">
             <strong>Balance</strong>
             <span
               className={cn(
@@ -152,7 +152,7 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
             </span>
           </Stack>
 
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             <strong>Outstanding invoices</strong>
             {outstanding.length === 0 ? (
               <span className="finance-demo__muted">None</span>
@@ -168,7 +168,7 @@ function CustomerDrawer({ customer }: { customer: Customer }) {
             )}
           </Stack>
 
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             <strong>Recently paid</strong>
             {paid.length === 0 ? (
               <span className="finance-demo__muted">None</span>

@@ -14,7 +14,7 @@ import {
   ModalTrigger,
   ScrollArea,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { Braces, Check, Copy } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
@@ -45,7 +45,7 @@ export function CodeButton() {
           <ModalDescription>Paste this into your project to apply the theme.</ModalDescription>
         </ModalHeader>
         <ModalBody>
-          <Stack gap="0.75rem">
+          <Stack gap="3">
             <Inline gap="0.5rem">
               <Button
                 variant={scope === 'root' ? 'primary' : 'secondary'}

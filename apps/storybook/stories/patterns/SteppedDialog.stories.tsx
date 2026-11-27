@@ -15,7 +15,7 @@ import {
   Stack,
   StepFlow,
   Textarea,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
@@ -51,7 +51,7 @@ export const CreateReportFlow: Story = {
             <ModalDescription>Two quick steps.</ModalDescription>
           </ModalHeader>
           <ModalBody>
-            <Stack gap="1.25rem">
+            <Stack gap="5">
               <StepFlow
                 steps={STEPS}
                 activeStep={active}
@@ -59,7 +59,7 @@ export const CreateReportFlow: Story = {
                 allowSkip={false}
               />
               {active === 'type' && (
-                <Stack gap="1rem">
+                <Stack gap="4">
                   <Field label="Report type" required>
                     <Inline gap="0.5rem">
                       <Button variant="secondary">Revenue</Button>
@@ -70,7 +70,7 @@ export const CreateReportFlow: Story = {
                 </Stack>
               )}
               {active === 'details' && (
-                <Stack gap="1rem">
+                <Stack gap="4">
                   <Field label="Name" required>
                     <Input placeholder="Q2 revenue report" />
                   </Field>

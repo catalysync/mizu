@@ -1,13 +1,25 @@
 import * as React from 'react';
 import { cn } from '../../utils/cn';
+import { Logger } from '../../utils/logger';
+import { useValidateProps } from '../../utils/validate-props';
 
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   separator?: React.ReactNode;
 }
 
+/**
+ * @deprecated Use `AppBreadcrumbs` (ordered list, `maxVisible` overflow). This
+ * span-based family is kept for existing consumers and will be removed in a
+ * future major.
+ */
 export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
   ({ className, separator = '/', children, ...props }, ref) => {
     const items = React.Children.toArray(children);
+
+    useValidateProps(
+      () => Logger.deprecate('Breadcrumb', 'AppBreadcrumbs (from the shell exports)'),
+      [],
+    );
 
     return (
       <nav
@@ -33,6 +45,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
 );
 Breadcrumb.displayName = 'Breadcrumb';
 
+/** @deprecated Part of the span-based Breadcrumb family; use `AppBreadcrumbs`. */
 export const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
   React.AnchorHTMLAttributes<HTMLAnchorElement>
@@ -43,6 +56,7 @@ export const BreadcrumbLink = React.forwardRef<
 ));
 BreadcrumbLink.displayName = 'BreadcrumbLink';
 
+/** @deprecated Part of the span-based Breadcrumb family; use `AppBreadcrumbs`. */
 export const BreadcrumbCurrent = React.forwardRef<
   HTMLSpanElement,
   React.HTMLAttributes<HTMLSpanElement>

@@ -29,7 +29,7 @@
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   font-size: var(--mizu-font-size-sm);
   font-family: var(--mizu-font-family-sans);
 }
@@ -64,7 +64,7 @@
   height: 0.95rem;
   padding: 0;
   background: transparent;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   border: 1px solid transparent;
   border-radius: var(--mizu-radius-sm);
   cursor: pointer;
@@ -76,12 +76,13 @@
 }
 
 .mizu-number-input__stepper:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 8%, transparent);
-  color: var(--mizu-text-primary);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 8%, transparent);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-number-input__stepper:focus-visible {
-  outline: 2px solid var(--mizu-action-primary-default);
+  outline: var(--mizu-focus-ring-width, 2px) solid
+    var(--mizu-focus-ring-color, var(--mizu-action-primary-default, #2563eb));
   outline-offset: -1px;
 }
 

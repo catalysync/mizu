@@ -1,18 +1,18 @@
 /* mizu Design System — Component CSS
- * Framework-agnostic. Requires @aspect/tokens CSS variables to be loaded.
+ * Framework-agnostic. Requires @mizunagara/tokens CSS variables to be loaded.
  *
  * Usage (any framework):
- *   @import "@aspect/tokens/css";
- *   @import "@aspect/css";
+ *   @import "@mizunagara/tokens/css";
+ *   @import "@mizunagara/css";
  *
  * Usage (cherry-pick):
- *   @import "@aspect/css/components/button";
- *   @import "@aspect/css/layouts/stack";
+ *   @import "@mizunagara/css/components/button";
+ *   @import "@mizunagara/css/layouts/stack";
  */
 
 /* Shared utilities + scales */
 @import url("./utilities.css");
-@import url("./z-index.css");
+@import url("./focus.css");
 
 /* Components */
 @import url("./components/button.css");
@@ -38,9 +38,11 @@
 @import url("./components/filter-bar.css");
 @import url("./components/query-builder.css");
 @import url("./components/advanced-query-builder.css");
+@import url("./components/autocomplete.css");
 @import url("./components/avatar.css");
 @import url("./components/tag.css");
 @import url("./components/alert.css");
+@import url("./components/banner.css");
 @import url("./components/breadcrumb.css");
 @import url("./components/accordion.css");
 @import url("./components/progress.css");
@@ -70,6 +72,7 @@
 @import url("./components/collapsible.css");
 @import url("./components/context-menu.css");
 @import url("./components/toggle-group.css");
+@import url("./components/segmented-control.css");
 @import url("./components/hover-card.css");
 @import url("./components/chart.css");
 @import url("./components/resource-header.css");

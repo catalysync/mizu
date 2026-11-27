@@ -34,7 +34,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { useEffect, useRef } from 'react';
 
 interface MizuComponentsPreviewProps {
@@ -78,9 +78,9 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
         fontFamily: 'var(--mizu-font-family-sans)',
       }}
     >
-      <Stack gap="2rem">
+      <Stack gap="8">
         <Section title="Buttons">
-          <Stack gap="0.75rem">
+          <Stack gap="3">
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
               <Button variant="primary">Primary</Button>
               <Button variant="secondary">Secondary</Button>
@@ -138,7 +138,7 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
         <Section title="Form">
           <Card>
             <CardBody>
-              <Stack gap="1rem">
+              <Stack gap="4">
                 <div>
                   <label htmlFor="preview-email" className="mizu-body--sm">
                     Email
@@ -196,7 +196,7 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
         </Section>
 
         <Section title="Feedback">
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             <Alert tone="info">
               <AlertTitle>Heads up</AlertTitle>
               You can customize any semantic token in the sidebar.
@@ -231,13 +231,13 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
 
         <Section title="Table">
           <Table>
-            <TableHead>
+            <TableHeader>
               <TableRow>
-                <TableHeader>Name</TableHeader>
-                <TableHeader>Role</TableHeader>
-                <TableHeader>Status</TableHeader>
+                <TableHead>Name</TableHead>
+                <TableHead>Role</TableHead>
+                <TableHead>Status</TableHead>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               <TableRow>
                 <TableCell>
@@ -287,7 +287,7 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
               </TooltipTrigger>
               <TooltipContent>Tooltip powered by mizu</TooltipContent>
             </Tooltip>
-            <Stack gap="0.5rem" style={{ flex: 1, maxWidth: 300 }}>
+            <Stack gap="2" style={{ flex: 1, maxWidth: 300 }}>
               <Skeleton style={{ height: 12, width: '80%' }} />
               <Skeleton style={{ height: 12, width: '60%' }} />
               <Skeleton style={{ height: 12, width: '70%' }} />
@@ -296,7 +296,7 @@ export default function MizuComponentsPreview({ styles }: MizuComponentsPreviewP
         </Section>
 
         <Section title="Typography">
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             <h1 style={{ margin: 0, fontSize: '2rem', fontWeight: 700 }}>Heading 1</h1>
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 600 }}>Heading 2</h2>
             <p className="mizu-body" style={{ margin: 0 }}>

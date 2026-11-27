@@ -1,4 +1,4 @@
-import { formatCurrency } from '@aspect/finance';
+import { formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -14,7 +14,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { customers } from './data';
 
 export function CustomersPage() {
@@ -22,7 +22,7 @@ export function CustomersPage() {
   const totalSpent = customers.reduce((sum, c) => sum + c.spent, 0);
 
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <AppContentHeader
         title="Customers"
         description={`${customers.length} customers · ${activeCount} active`}
@@ -42,16 +42,16 @@ export function CustomersPage() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Customer</TableHeader>
-              <TableHeader>Email</TableHeader>
-              <TableHeader>Orders</TableHeader>
-              <TableHeader>Total spent</TableHeader>
-              <TableHeader>Last order</TableHeader>
-              <TableHeader>Status</TableHeader>
+              <TableHead>Customer</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Orders</TableHead>
+              <TableHead>Total spent</TableHead>
+              <TableHead>Last order</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {customers.map((c) => (
               <TableRow key={c.id}>
@@ -82,22 +82,22 @@ export function CustomersPage() {
       />
 
       <Card>
-        <Stack gap="0.5rem" style={{ padding: '1rem' }}>
+        <Stack gap="2" style={{ padding: '1rem' }}>
           <span className="mizu-heading-sm">Customer summary</span>
           <Inline gap="2rem">
-            <Stack gap="0.25rem">
+            <Stack gap="1">
               <span className="mizu-caption" style={{ color: 'var(--mizu-text-secondary)' }}>
                 Total customers
               </span>
               <span className="mizu-heading-lg">{customers.length}</span>
             </Stack>
-            <Stack gap="0.25rem">
+            <Stack gap="1">
               <span className="mizu-caption" style={{ color: 'var(--mizu-text-secondary)' }}>
                 Total revenue
               </span>
               <span className="mizu-heading-lg">{formatCurrency(totalSpent)}</span>
             </Stack>
-            <Stack gap="0.25rem">
+            <Stack gap="1">
               <span className="mizu-caption" style={{ color: 'var(--mizu-text-secondary)' }}>
                 Avg per customer
               </span>

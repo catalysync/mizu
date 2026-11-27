@@ -1,4 +1,4 @@
-import { Input, Stack } from '@aspect/react';
+import { Input, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -24,7 +24,7 @@ export const WithValue: Story = { args: { defaultValue: 'hello@example.com' } };
 
 export const AllSizes: Story = {
   render: () => (
-    <Stack gap="0.75rem" className="story-md">
+    <Stack gap="3" className="story-md">
       <Input size="sm" placeholder="Small" aria-label="Small" />
       <Input size="md" placeholder="Medium" aria-label="Medium" />
       <Input size="lg" placeholder="Large" aria-label="Large" />
@@ -34,7 +34,7 @@ export const AllSizes: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <Stack gap="0.25rem" className="story-md">
+    <Stack gap="1" className="story-md">
       <label htmlFor="email-input" className="mizu-label">
         Email
       </label>

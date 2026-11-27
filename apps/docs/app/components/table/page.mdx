@@ -2,21 +2,46 @@ export const metadata = { title: 'Table — mizu' };
 
 # Table
 
-Displays structured data in rows and columns. Supports density modes, sticky headers, selection, striped rows, and sticky first/last columns.
+Displays structured data in rows and columns. Supports density modes, sticky headers, striped and bordered variants, sticky first column, and clickable or selectable rows.
+
+For sorting, selection and expandable rows on top of a data array, use [DataTable](/components/data-table). `Table` is the lower-level, markup-first component.
 
 ## Import
 
 ```tsx
 import {
   Table,
-  TableHead,
+  TableHeader,
   TableBody,
   TableRow,
-  TableHeader,
+  TableHead,
   TableCell,
   TableCaption,
-} from '@aspect/react';
+} from '@mizunagara/react';
 ```
+
+## Usage
+
+```tsx
+<Table caption="Deployments">
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Region</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>api-gateway</TableCell>
+      <TableCell>us-east</TableCell>
+      <TableCell>Running</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+`Table` renders a wrapper `div` around the `<table>`. `className`, `style` and `ref` apply to that wrapper. The `<table>` itself receives the `density`, `striped`, `bordered` and `stickyHeader` state through classes and `data-*` attributes.
 
 ## Density
 
@@ -29,66 +54,96 @@ Control row padding with the `density` prop.
 
 ## Sticky header
 
-Pin the header row when scrolling vertically.
+Pin the header row when the body scrolls. Pair it with `maxHeight`, which caps the wrapper height and gives the body something to scroll inside.
 
 ```tsx
-<Table stickyHeader>...</Table>
+<Table stickyHeader maxHeight={320}>
+  ...
+</Table>
 ```
 
-## Sticky columns
+`maxHeight` takes a number (pixels) or any CSS length string such as `'40vh'`.
 
-Pin the first or last column for wide tables that scroll horizontally.
+## Sticky first column
 
-```html
-<table class="mizu-table mizu-table--sticky-first">
-  ...
-</table>
-<table class="mizu-table mizu-table--sticky-last">
-  ...
-</table>
-```
-
-## Row selection
+Pin the first column for wide tables that scroll horizontally.
 
 ```tsx
-<TableRow selected>...</TableRow>
+<Table stickyFirstColumn>...</Table>
 ```
 
-## Variants
+The stylesheet also defines `.mizu-table--sticky-last` for pinning the last column. `Table` has no prop for it yet, so use the plain `<table class="mizu-table mizu-table--sticky-last">` markup when you need it.
 
-Striped rows and bordered cells:
+## Striped and bordered
 
-```html
-<table class="mizu-table mizu-table--striped">
-  ...
-</table>
-<table class="mizu-table mizu-table--bordered">
-  ...
-</table>
+```tsx
+<Table striped>...</Table>
+<Table bordered>...</Table>
 ```
+
+## Row states
+
+`TableRow` takes two state props.
+
+- `selected` highlights the row and sets `data-selected`.
+- `selectable` exposes `aria-selected` on the row, so assistive tech announces the selection. Use it with `selected` for selectable rows.
+
+```tsx
+<TableRow selectable selected={isSelected}>
+  ...
+</TableRow>
+```
+
+When a row has an `onClick` (or `role="button"`), it becomes interactive. It gets `tabIndex={0}`, `data-clickable`, and Enter or Space runs the click handler. Keys pressed on a nested control, such as a checkbox inside the row, keep that control's own behaviour.
+
+```tsx
+<TableRow onClick={() => openDetails(row.id)}>...</TableRow>
+```
+
+## Caption
+
+Pass `caption` to `Table` for a `<caption>` element, or place a `TableCaption` as the first child. Captions are announced by screen readers and describe the table as a whole.
 
 ## Props (Table)
 
-| Prop           | Type                                      | Default     | Description          |
-| -------------- | ----------------------------------------- | ----------- | -------------------- |
-| `density`      | `'compact' \| 'default' \| 'comfortable'` | `'default'` | Row padding          |
-| `stickyHeader` | `boolean`                                 | `false`     | Pin header on scroll |
+| Prop                | Type                                      | Default     | Description                                               |
+| ------------------- | ----------------------------------------- | ----------- | --------------------------------------------------------- |
+| `density`           | `'compact' \| 'default' \| 'comfortable'` | `'default'` | Row padding                                               |
+| `stickyHeader`      | `boolean`                                 | `false`     | Pin the header row while the body scrolls                 |
+| `stickyFirstColumn` | `boolean`                                 | `false`     | Pin the first column while the table scrolls horizontally |
+| `striped`           | `boolean`                                 | `false`     | Tint alternate body rows                                  |
+| `bordered`          | `boolean`                                 | `false`     | Draw borders around every cell                            |
+| `maxHeight`         | `string \| number`                        | —           | Cap the wrapper height. Numbers are pixels.               |
+| `caption`           | `ReactNode`                               | —           | Rendered as the table's `<caption>`                       |
+| `className`         | `string`                                  | —           | Applied to the wrapper `div`, not the `<table>`           |
+| `style`             | `CSSProperties`                           | —           | Applied to the wrapper `div`, merged with `maxHeight`     |
+
+`Table` also accepts every native `<table>` attribute. Those reach the `<table>` element.
 
 ## Props (TableRow)
 
-| Prop       | Type      | Default | Description   |
-| ---------- | --------- | ------- | ------------- |
-| `selected` | `boolean` | `false` | Highlight row |
+| Prop         | Type       | Default | Description                                                |
+| ------------ | ---------- | ------- | ---------------------------------------------------------- |
+| `selected`   | `boolean`  | `false` | Highlight the row and set `data-selected`                  |
+| `selectable` | `boolean`  | `false` | Expose `aria-selected` so the selection state is announced |
+| `onClick`    | `function` | —       | Makes the row keyboard-operable (Enter and Space)          |
+
+## Props (TableHead)
+
+| Prop    | Type                                         | Default | Description                                |
+| ------- | -------------------------------------------- | ------- | ------------------------------------------ |
+| `scope` | `'col' \| 'row' \| 'colgroup' \| 'rowgroup'` | `'col'` | Header scope. Use `'row'` for row headers. |
 
 ## Guidelines
 
 **Do:**
 
 - Use compact density for data-heavy admin views
-- Use sticky header for long lists
+- Use sticky header with `maxHeight` for long lists
+- Give every table a `caption` or an accessible name
 - Align numbers to the right
 
 **Don't:**
 
 - Don't use tables for layout
-- Don't exceed 8-10 columns without sticky first/last
+- Don't exceed 8-10 columns without a sticky first column

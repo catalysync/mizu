@@ -1,6 +1,9 @@
+import { stylelintPlugins } from './packages/lint/src/stylelint.mjs';
+
 /** @type {import('stylelint').Config} */
 export default {
   extends: ['stylelint-config-standard'],
+  plugins: stylelintPlugins,
   ignoreFiles: [
     '**/dist/**',
     '**/node_modules/**',
@@ -26,4 +29,26 @@ export default {
     'custom-property-empty-line-before': null,
     'custom-property-pattern': null,
   },
+  overrides: [
+    {
+      files: ['packages/css/src/**/*.css'],
+      rules: { 'mizu/var-fallback': true },
+    },
+    {
+      // Themes are left out on purpose: a theme is where raw colour values are meant to live.
+      files: [
+        'packages/css/src/components/**/*.css',
+        'packages/css/src/layouts/**/*.css',
+        'packages/css/src/shell/**/*.css',
+        'packages/css/src/*.css',
+      ],
+      rules: { 'mizu/no-hex-color': true },
+    },
+    {
+      // Identity files set tokens only. Component selectors that cannot move to a token yet
+      // carry a stylelint-disable comment with the reason.
+      files: ['packages/css/src/themes/**/*.css'],
+      rules: { 'mizu/identity-tokens-only': true },
+    },
+  ],
 };

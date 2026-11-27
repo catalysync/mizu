@@ -87,30 +87,70 @@ describe('Input', () => {
   });
 
   it('sets aria-invalid when error is set', () => {
-    render(<Input error="Required" aria-label="X" />);
+    render(<Input error aria-label="X" />);
     expect(screen.getByRole('textbox')).toHaveAttribute('aria-invalid', 'true');
   });
 
-  it('renders error message text', () => {
-    render(<Input error="Required field" label="Name" />);
+  it('renders the error message through Field, not Input', () => {
+    const { container } = render(
+      <Field label="Name" errorMessage="Required field">
+        <Input error />
+      </Field>,
+    );
     expect(screen.getByText('Required field')).toBeInTheDocument();
+    expect(container.querySelector('.mizu-form-group__error')).toBeNull();
   });
 
-  // -- Help text --
-  it('renders help text', () => {
-    render(<Input helpText="Enter your full name" label="Name" />);
-    expect(screen.getByText('Enter your full name')).toBeInTheDocument();
+  it('points aria-describedby at the Field error element in the DOM', () => {
+    render(
+      <Field label="Name" errorMessage="Required field">
+        <Input error />
+      </Field>,
+    );
+    const input = screen.getByLabelText('Name');
+    const describedBy = input.getAttribute('aria-describedby') ?? '';
+    const errorEl = screen.getByText('Required field');
+    expect(describedBy.split(' ')).toContain(errorEl.id);
+    expect(document.getElementById(errorEl.id)).toBe(errorEl);
   });
 
-  it('hides help text when error is shown', () => {
-    render(<Input helpText="Help" error="Error" label="Name" />);
-    expect(screen.queryByText('Help')).not.toBeInTheDocument();
-    expect(screen.getByText('Error')).toBeInTheDocument();
+  it('references only description and error nodes that are in the DOM', () => {
+    render(
+      <Field label="Email" description="We won't share this." errorMessage="Required">
+        <Input error />
+      </Field>,
+    );
+    const ids = (screen.getByLabelText('Email').getAttribute('aria-describedby') ?? '')
+      .split(' ')
+      .filter(Boolean);
+    expect(ids).toHaveLength(2);
+    for (const id of ids) expect(document.getElementById(id)).not.toBeNull();
+  });
+
+  it('sets no aria-describedby without Field or ariaDescribedBy', () => {
+    render(<Input error aria-label="X" />);
+    expect(screen.getByRole('textbox')).not.toHaveAttribute('aria-describedby');
+  });
+
+  // -- Removed props (0.x breaking change: use <Field> instead) --
+  it('no longer accepts a label prop', () => {
+    render(<Input {...({ label: 'Email' } as object)} aria-label="Other" />);
+    expect(document.querySelector('label')).toBeNull();
+    expect(screen.getByRole('textbox', { name: 'Other' })).toBeInTheDocument();
+  });
+
+  it('no longer accepts a helpText prop', () => {
+    render(<Input {...({ helpText: 'Enter your full name' } as object)} aria-label="Name" />);
+    expect(screen.queryByText('Enter your full name')).not.toBeInTheDocument();
   });
 
   // -- Label --
-  it('renders an associated label', () => {
-    render(<Input label="Email" />);
+  it('renders an associated label through Field', () => {
+    render(
+      <Field label="Email">
+        <Input />
+      </Field>,
+    );
     expect(screen.getByLabelText('Email')).toBeInTheDocument();
   });
 
@@ -133,14 +173,48 @@ describe('Input', () => {
 
   // -- Character count --
   it('renders a character counter when maxCharacters is set', () => {
-    render(<Input maxCharacters={50} label="Bio" />);
+    render(<Input maxCharacters={50} aria-label="Bio" />);
     expect(screen.getByText('0/50')).toBeInTheDocument();
   });
 
   it('updates the counter as user types', async () => {
-    render(<Input maxCharacters={50} label="Bio" />);
+    render(<Input maxCharacters={50} aria-label="Bio" />);
     await userEvent.setup().type(screen.getByLabelText('Bio'), 'Hello');
     expect(screen.getByText('5/50')).toBeInTheDocument();
+  });
+
+  it('starts the counter from defaultValue', () => {
+    render(<Input maxCharacters={10} defaultValue="hello" aria-label="Bio" />);
+    expect(screen.getByText('5/10')).toBeInTheDocument();
+  });
+
+  it('starts the counter from a controlled value', () => {
+    render(<Input maxCharacters={10} value="hi" onChange={() => {}} aria-label="Bio" />);
+    expect(screen.getByText('2/10')).toBeInTheDocument();
+  });
+
+  it('follows a controlled value changed by the parent', () => {
+    const { rerender } = render(
+      <Input maxCharacters={10} value="hi" onChange={() => {}} aria-label="Bio" />,
+    );
+    rerender(<Input maxCharacters={10} value="" onChange={() => {}} aria-label="Bio" />);
+    expect(screen.getByText('0/10')).toBeInTheDocument();
+  });
+
+  it('adds password manager ignore attributes with passwordManagerIgnore', () => {
+    render(<Input passwordManagerIgnore aria-label="Code" />);
+    const input = screen.getByRole('textbox');
+    expect(input).toHaveAttribute('data-1p-ignore');
+    expect(input).toHaveAttribute('data-bwignore');
+    expect(input).toHaveAttribute('data-lpignore', 'true');
+  });
+
+  it('omits password manager ignore attributes by default', () => {
+    render(<Input aria-label="Code" />);
+    const input = screen.getByRole('textbox');
+    expect(input).not.toHaveAttribute('data-1p-ignore');
+    expect(input).not.toHaveAttribute('data-bwignore');
+    expect(input).not.toHaveAttribute('data-lpignore');
   });
 
   it('enforces maxLength from maxCharacters', () => {
@@ -197,6 +271,21 @@ describe('Input', () => {
     expect(onFocus).toHaveBeenCalledOnce();
   });
 
+  it('keeps the char counter live on focus when a consumer onFocus is passed', () => {
+    const onFocus = vi.fn();
+    const onBlur = vi.fn();
+    render(<Input maxCharacters={10} onFocus={onFocus} onBlur={onBlur} aria-label="Bio" />);
+    const input = screen.getByRole('textbox');
+    const counter = screen.getByText('0/10');
+    expect(counter).toHaveAttribute('aria-live', 'off');
+    fireEvent.focus(input);
+    expect(onFocus).toHaveBeenCalledOnce();
+    expect(counter).toHaveAttribute('aria-live', 'polite');
+    fireEvent.blur(input);
+    expect(onBlur).toHaveBeenCalledOnce();
+    expect(counter).toHaveAttribute('aria-live', 'off');
+  });
+
   // -- a11y --
   it('has no axe violations (plain)', async () => {
     const { container } = render(<Input aria-label="Name" />);
@@ -204,12 +293,38 @@ describe('Input', () => {
   });
 
   it('has no axe violations (with label)', async () => {
-    const { container } = render(<Input label="Email" />);
+    const { container } = render(
+      <Field label="Email">
+        <Input />
+      </Field>,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no axe violations (with error)', async () => {
-    const { container } = render(<Input label="Email" error="Required" />);
+    const { container } = render(
+      <Field label="Email" errorMessage="Required">
+        <Input error />
+      </Field>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (help and error states)', async () => {
+    const { container } = render(
+      <Field label="Email" description="We won't share this." errorMessage="Required">
+        <Input error />
+      </Field>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no axe violations (help state)', async () => {
+    const { container } = render(
+      <Field label="Email" description="We won't share this.">
+        <Input />
+      </Field>,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 

@@ -1,5 +1,5 @@
 ---
-'@aspect/finance': minor
+'@mizunagara/finance': minor
 ---
 
 add 6 finance components for nagara-finance (Wave 4):

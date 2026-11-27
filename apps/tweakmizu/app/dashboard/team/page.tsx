@@ -3,7 +3,7 @@ import { SiteHeader } from '@/components/site-header';
 import { db } from '@/db';
 import { team, teamMember } from '@/db/schema';
 import { tryGetCurrentUserId } from '@/lib/shared';
-import { Badge, Button, Card, CardBody, CardHeader, Inline, Stack } from '@aspect/react';
+import { Badge, Button, Card, CardBody, CardHeader, Inline, Stack } from '@mizunagara/react';
 import { eq } from 'drizzle-orm';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
@@ -55,7 +55,7 @@ export default async function TeamPage() {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-4xl px-4 py-10">
-          <Stack gap="2rem">
+          <Stack gap="8">
             <Button asChild variant="ghost" size="sm" className="self-start">
               <Link href="/dashboard">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -63,7 +63,7 @@ export default async function TeamPage() {
               </Link>
             </Button>
 
-            <Stack gap="0.5rem">
+            <Stack gap="2">
               <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
                 Team
               </span>
@@ -84,7 +84,7 @@ export default async function TeamPage() {
                 </CardBody>
               </Card>
             ) : (
-              <Stack gap="1rem">
+              <Stack gap="4">
                 {teams.map((t) => (
                   <Card key={t.id}>
                     <CardHeader title={t.name} description={`slug: ${t.slug}`} />

@@ -1,4 +1,4 @@
-import { RadioGroup, RadioItem } from '@aspect/react';
+import { RadioGroup, RadioItem } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

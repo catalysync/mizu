@@ -11,7 +11,7 @@ import {
   Grid,
   Inline,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { Check, Sparkles, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -69,7 +69,7 @@ export function PricingTable() {
   };
 
   return (
-    <Stack gap="2rem">
+    <Stack gap="8">
       <Inline
         gap="0.5rem"
         align="center"
@@ -97,7 +97,7 @@ export function PricingTable() {
         <Card>
           <CardHeader title="Free" description="Everything you need to ship a real product." />
           <CardBody>
-            <Stack gap="1rem">
+            <Stack gap="4">
               <div>
                 <span className="text-foreground text-4xl font-bold">$0</span>
                 <span className="text-muted-foreground"> / forever</span>
@@ -123,7 +123,7 @@ export function PricingTable() {
             description="The full studio, unlocked."
           />
           <CardBody>
-            <Stack gap="1rem">
+            <Stack gap="4">
               <div>
                 <span className="text-foreground text-4xl font-bold">
                   ${cadence === 'monthly' ? '15' : '12'}
@@ -155,7 +155,7 @@ export function PricingTable() {
             description="Pro, forever, one-time payment."
           />
           <CardBody>
-            <Stack gap="1rem">
+            <Stack gap="4">
               <div>
                 <span className="text-foreground text-4xl font-bold">$149</span>
                 <span className="text-muted-foreground"> one-time</span>
@@ -175,7 +175,7 @@ export function PricingTable() {
         </Card>
       </Grid>
 
-      <Stack gap="0.5rem" className="text-center">
+      <Stack gap="2" className="text-center">
         <p className="text-muted-foreground text-sm">
           Need enterprise pricing? Email{' '}
           <a href="mailto:sureife@gmail.com" className="underline">
@@ -190,7 +190,7 @@ export function PricingTable() {
 
 function FeatureList({ features, pick }: { features: Feature[]; pick: 'free' | 'pro' }) {
   return (
-    <Stack as="ul" gap="0.375rem" className="list-none p-0">
+    <Stack as="ul" gap="2" className="list-none p-0">
       {features.map((feature) => {
         const included = pick === 'free' ? feature.free : feature.pro;
         return (

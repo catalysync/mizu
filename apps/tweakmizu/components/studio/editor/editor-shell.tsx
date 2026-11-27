@@ -3,7 +3,7 @@
 import { useStudioStore } from '@/store/studio-store';
 import type { ThemeStyleProps } from '@/types/theme';
 import { cn } from '@/utils/cn';
-import { Badge, Button, Inline, Split, Stack } from '@aspect/react';
+import { Badge, Button, Inline, Split, Stack } from '@mizunagara/react';
 import { Palette, Redo2, RotateCcw, Ruler, Sparkles, Type, Undo2 } from 'lucide-react';
 import { useState } from 'react';
 import { CommandPalette } from './command-palette';
@@ -36,7 +36,7 @@ export function StudioEditorShell() {
   };
 
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <CommandPalette />
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <Inline gap="0.5rem" align="center">
@@ -77,8 +77,8 @@ export function StudioEditorShell() {
 
       {/* Mobile: stacked layout. Desktop: side-by-side via Split. */}
       <div className="flex flex-col gap-6 md:hidden">
-        <Stack gap="0.75rem">
-          <Stack as="nav" gap="0.25rem" aria-label="Editor tabs">
+        <Stack gap="3">
+          <Stack as="nav" gap="1" aria-label="Editor tabs">
             {TABS.map((tab) => {
               const Icon = tab.icon;
               const active = tab.id === activeTab;
@@ -121,8 +121,8 @@ export function StudioEditorShell() {
       {/* Desktop: original Split layout */}
       <div className="hidden md:block">
         <Split fraction="260px 1fr" gap="1.5rem">
-          <Stack gap="0.75rem">
-            <Stack as="nav" gap="0.25rem" aria-label="Editor tabs">
+          <Stack gap="3">
+            <Stack as="nav" gap="1" aria-label="Editor tabs">
               {TABS.map((tab) => {
                 const Icon = tab.icon;
                 const active = tab.id === activeTab;

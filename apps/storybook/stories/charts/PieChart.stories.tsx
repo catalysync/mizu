@@ -1,4 +1,4 @@
-import { PieChart } from '@aspect/charts';
+import { PieChart } from '@mizunagara/charts';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { productShare } from './_fixtures';
 

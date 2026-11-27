@@ -7,7 +7,7 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
@@ -49,7 +49,7 @@ export const Default: Story = {
 export const Tones: Story = {
   render: () => (
     <ToastProvider>
-      <Stack gap="0.5rem">
+      <Stack gap="2">
         <Toast open tone="success">
           <div className="mizu-toast__content">
             <ToastTitle>Deployed</ToastTitle>

@@ -1,11 +1,11 @@
-import { Badge, Card, CardBody, Heading, Inline, Link, Stack } from '@aspect/react';
+import { Badge, Card, CardBody, Heading, Inline, Link, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import './welcome.css';
 
 function Welcome() {
   return (
-    <Stack gap="2rem" className="mizu-welcome">
-      <Stack gap="0.75rem">
+    <Stack gap="8" className="mizu-welcome">
+      <Stack gap="3">
         <Inline gap="0.75rem" align="center">
           <img src="/mizu-logo.svg" alt="mizu" height={40} />
           <Badge tone="neutral">v0.x · pre-1.0</Badge>
@@ -22,7 +22,7 @@ function Welcome() {
 
       <Card>
         <CardBody>
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             <Heading level={2} size="md">
               mizu does not have a design language
             </Heading>
@@ -43,7 +43,7 @@ function Welcome() {
         </CardBody>
       </Card>
 
-      <Stack gap="1rem">
+      <Stack gap="4">
         <Heading level={2} size="lg">
           Architecture
         </Heading>
@@ -51,31 +51,31 @@ function Welcome() {
           mizu is a 4-tier pipeline. Each tier is a pnpm workspace package and can be consumed
           independently.
         </p>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           <ArchRow
             title="1. Tokens"
-            pkg="@aspect/tokens"
+            pkg="@mizunagara/tokens"
             desc="DTCG JSON → CSS variables, JSON, ES module, React Native via Style Dictionary 5."
           />
           <ArchRow
             title="2. CSS"
-            pkg="@aspect/css"
+            pkg="@mizunagara/css"
             desc="Framework-agnostic component styles. BEM class names prefixed mizu-, references --mizu-* custom properties. Usable from any framework."
           />
           <ArchRow
             title="3. React"
-            pkg="@aspect/react"
+            pkg="@mizunagara/react"
             desc="React 19 bindings. Wraps Radix primitives for overlay/focus/keyboard. CVA for variants. forwardRef + data-component throughout."
           />
           <ArchRow
             title="4. Tailwind bridge"
-            pkg="@aspect/tailwind-preset"
+            pkg="@mizunagara/tailwind-preset"
             desc="Tailwind v4 @theme block mapping mizu tokens → Tailwind utilities. Zero-JS bridge."
           />
         </Stack>
       </Stack>
 
-      <Stack gap="1rem">
+      <Stack gap="4">
         <Heading level={2} size="lg">
           Storybook sections
         </Heading>
@@ -99,7 +99,7 @@ function Welcome() {
         </Inline>
       </Stack>
 
-      <Stack gap="0.5rem">
+      <Stack gap="2">
         <Heading level={2} size="md">
           Links
         </Heading>
@@ -121,7 +121,7 @@ function ArchRow({ title, pkg, desc }: { title: string; pkg: string; desc: strin
   return (
     <Card>
       <CardBody>
-        <Stack gap="0.25rem">
+        <Stack gap="1">
           <Inline gap="0.5rem" align="baseline">
             <strong className="mizu-welcome__arch-title">{title}</strong>
             <code className="mizu-welcome__arch-pkg">{pkg}</code>

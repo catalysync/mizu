@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 /* Mizu design tokens (--mizu-* custom properties) */
-@import "@aspect/tokens/css";
+@import "@mizunagara/tokens/css";
 
 /* Mizu component CSS (.mizu-button, .mizu-popover, etc.) */
-@import "@aspect/css";
+@import "@mizunagara/css";
 
 /* Dark mode semantic overrides — applies when <html data-theme="dark"> is set */
-@import "@aspect/css/themes/dark";
+@import "@mizunagara/css/themes/dark";
 
 /* Color scheme hint so form controls, scrollbars, etc. follow dark mode too */
 html[data-theme="dark"] {

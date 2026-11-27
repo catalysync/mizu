@@ -1,4 +1,4 @@
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 import { CatalogBrowser } from './catalog-browser';
 
 export const metadata = {
@@ -9,8 +9,8 @@ export const metadata = {
 
 export default function StudioCatalog() {
   return (
-    <Stack gap="2rem">
-      <Stack gap="0.5rem">
+    <Stack gap="8">
+      <Stack gap="2">
         <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
           Catalog
         </span>
@@ -18,8 +18,8 @@ export default function StudioCatalog() {
           Patterns available in the studio
         </h1>
         <p className="text-muted-foreground max-w-2xl text-lg">
-          Each pattern is a re-implementation on top of <code>@aspect/react</code>, grounded in an
-          attributed source. The free tier ships these; Pro unlocks the full catalog.
+          Each pattern is a re-implementation on top of <code>@mizunagara/react</code>, grounded in
+          an attributed source. The free tier ships these; Pro unlocks the full catalog.
         </p>
       </Stack>
 

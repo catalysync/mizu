@@ -1,6 +1,6 @@
 .mizu-tooltip {
-  background: var(--mizu-text-primary);
-  color: var(--mizu-surface-default);
+  background: var(--mizu-text-primary, #0f172a);
+  color: var(--mizu-surface-default, #fff);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-xs);
   padding: var(--mizu-spacing-2) var(--mizu-spacing-3);
@@ -9,11 +9,15 @@
   z-index: var(--mizu-z-tooltip);
   user-select: none;
   animation: mizu-tooltip-in 120ms ease;
-  box-shadow: var(--mizu-shadow-md);
+  box-shadow: var(
+    --mizu-shadow-md,
+    0 4px 6px -1px rgb(0 0 0 / 10%),
+    0 2px 4px -2px rgb(0 0 0 / 10%)
+  );
 }
 
 .mizu-tooltip__arrow {
-  fill: var(--mizu-text-primary);
+  fill: var(--mizu-text-primary, #0f172a);
 }
 
 @keyframes mizu-tooltip-in {
@@ -26,8 +30,8 @@
 @media (prefers-reduced-motion: reduce) {
   .mizu-tooltip,
   .mizu-tooltip * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
   }
 }

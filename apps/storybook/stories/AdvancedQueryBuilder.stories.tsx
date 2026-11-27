@@ -1,6 +1,6 @@
-import type { Config, ImmutableTree, JsonGroup } from '@aspect/advanced-query-builder';
-import { BasicConfig, MizuAdvancedQueryBuilder, Utils } from '@aspect/advanced-query-builder';
-import { Card, Stack } from '@aspect/react';
+import type { Config, ImmutableTree, JsonGroup } from '@mizunagara/advanced-query-builder';
+import { BasicConfig, MizuAdvancedQueryBuilder, Utils } from '@mizunagara/advanced-query-builder';
+import { Card, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
@@ -73,7 +73,7 @@ function AdvancedQueryBuilderDemo() {
   }, []);
 
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <MizuAdvancedQueryBuilder config={config} value={initialValue} onChange={handleChange} />
       {output && (
         <Card>

@@ -1,4 +1,4 @@
-import { HoverCard, HoverCardContent, HoverCardTrigger, Stack } from '@aspect/react';
+import { HoverCard, HoverCardContent, HoverCardTrigger, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -27,7 +27,7 @@ export const Default: Story = {
         </a>
       </HoverCardTrigger>
       <HoverCardContent showArrow>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           <strong style={{ fontFamily: 'var(--mizu-font-family-sans)' }}>Acme Corporation</strong>
           <p className="mizu-body--sm" style={{ margin: 0, color: 'var(--mizu-text-secondary)' }}>
             Enterprise cloud platform with 50+ team members.
@@ -55,7 +55,7 @@ export const WithoutArrow: Story = {
         </a>
       </HoverCardTrigger>
       <HoverCardContent>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           <strong style={{ fontFamily: 'var(--mizu-font-family-sans)' }}>Jane Doe</strong>
           <p className="mizu-body--sm" style={{ margin: 0, color: 'var(--mizu-text-secondary)' }}>
             Senior engineer on the platform team.

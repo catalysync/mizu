@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Security fixes are published for the latest minor of each currently-supported major of the mizu packages (`@aspect/tokens`, `@aspect/css`, `@aspect/react`, `@aspect/tailwind-preset`, and the domain packs). Older majors are on a best-effort basis.
+Security fixes are published for the latest minor of each currently-supported major of the mizu packages (`@mizunagara/tokens`, `@mizunagara/css`, `@mizunagara/react`, `@mizunagara/tailwind-preset`, and the domain packs). Older majors are on a best-effort basis.
 
 ## Reporting a vulnerability
 

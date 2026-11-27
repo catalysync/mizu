@@ -1,4 +1,4 @@
-import { estimatePasswordStrength, Field, PasswordInput, Stack } from '@aspect/react';
+import { estimatePasswordStrength, Field, PasswordInput, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
@@ -47,7 +47,7 @@ export const LiveStrength: Story = {
   render: () => {
     const [value, setValue] = useState('');
     return (
-      <Stack gap="0.5rem" style={{ maxWidth: 400 }}>
+      <Stack gap="2" style={{ maxWidth: 400 }}>
         <Field label="New password" required>
           <PasswordInput
             value={value}

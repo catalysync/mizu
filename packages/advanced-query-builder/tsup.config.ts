@@ -10,7 +10,7 @@ export default defineConfig({
     'react',
     'react-dom',
     '@react-awesome-query-builder/ui',
-    '@aspect/react',
-    '@aspect/css',
+    '@mizunagara/react',
+    '@mizunagara/css',
   ],
 });

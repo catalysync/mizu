@@ -11,7 +11,7 @@ import {
   ModalTitle,
   ModalTrigger,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -62,7 +62,7 @@ export const WithForm: Story = {
           <ModalDescription>Update your configuration.</ModalDescription>
         </ModalHeader>
         <ModalBody>
-          <Stack gap="0.75rem">
+          <Stack gap="3">
             <div>
               <label className="mizu-label" htmlFor="modal-name">
                 App name
@@ -131,7 +131,7 @@ export const Destructive: Story = {
           <ModalDescription>All data will be permanently removed.</ModalDescription>
         </ModalHeader>
         <ModalBody>
-          <Stack gap="0.75rem">
+          <Stack gap="3">
             <p className="mizu-body--sm">
               Type <strong>DELETE</strong> to confirm.
             </p>

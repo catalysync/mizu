@@ -23,23 +23,16 @@
   --mizu-duration-fast: 120ms;
   --mizu-duration-normal: 200ms;
   --mizu-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --mizu-button-font-size: 0.8125rem;
+  --mizu-table-cell-padding: 0.375rem 0.75rem;
+  --mizu-table-cell-font-size: 0.8125rem;
+  --mizu-card-shadow: none;
+  --mizu-card-border-color: var(--mizu-border-default, #e2e8f0);
+  --mizu-card-hover-border-color: var(--mizu-border-default, #e2e8f0);
 }
 
-/* Precise structural: compact button with tighter padding */
+/* stylelint-disable mizu/identity-tokens-only -- padding on every button, including unsized ones, is a new declaration, and a token would override reset layers such as Tailwind preflight; kept as an identity rule */
 [data-mizu-identity="precise"] .mizu-button {
   padding: 0.3125rem 0.75rem;
-  font-size: 0.8125rem;
 }
-
-/* Precise structural: table compact by default */
-[data-mizu-identity="precise"] .mizu-table td,
-[data-mizu-identity="precise"] .mizu-table th {
-  padding: 0.375rem 0.75rem;
-  font-size: 0.8125rem;
-}
-
-/* Precise structural: cards use border, not shadow */
-[data-mizu-identity="precise"] .mizu-card {
-  box-shadow: none;
-  border: 1px solid var(--mizu-border-default);
-}
+/* stylelint-enable mizu/identity-tokens-only */

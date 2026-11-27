@@ -1,4 +1,4 @@
-import { Badge, Button, Cluster } from '@aspect/react';
+import { Badge, Button, Cluster } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

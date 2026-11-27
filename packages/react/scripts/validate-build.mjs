@@ -1,17 +1,30 @@
-import { readFileSync, existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
-const files = ['dist/index.js', 'dist/index.cjs', 'dist/index.d.ts', 'dist/index.d.cts'];
 let ok = true;
 
-for (const f of files) {
-  if (!existsSync(f)) {
-    console.error(`missing: ${f}`);
-    ok = false;
-  }
+// Export shape (publint + attw on the packed tarball) replaces the old file-exists check.
+const gate = fileURLToPath(new URL('../../../scripts/check-exports.mjs', import.meta.url));
+try {
+  execFileSync(process.execPath, [gate, fileURLToPath(new URL('..', import.meta.url))], {
+    stdio: 'inherit',
+  });
+} catch {
+  ok = false;
 }
 
-for (const f of ['dist/index.js', 'dist/index.cjs']) {
-  if (!existsSync(f)) continue;
+// A button-only bundle must not contain other components' code.
+const treeshake = fileURLToPath(new URL('./check-treeshake.mjs', import.meta.url));
+try {
+  execFileSync(process.execPath, [treeshake, 'button'], { stdio: 'inherit' });
+} catch {
+  ok = false;
+}
+
+for (const f of readdirSync('dist')
+  .filter((n) => /\.c?js$/.test(n))
+  .map((n) => `dist/${n}`)) {
   const content = readFileSync(f, 'utf8');
   if (!content.startsWith('"use client"')) {
     console.error(`missing "use client" directive: ${f}`);

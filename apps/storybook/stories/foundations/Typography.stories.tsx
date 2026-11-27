@@ -1,4 +1,4 @@
-import { Heading, Inline, Stack } from '@aspect/react';
+import { Heading, Inline, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { labelFromPrefix, tokensByPrefix } from './tokens-helper';
 
@@ -33,8 +33,8 @@ type Story = StoryObj<typeof meta>;
 export const Composite: Story = {
   name: 'Composite per-size (recommended)',
   render: () => (
-    <Stack gap="2rem">
-      <Stack gap="0.75rem">
+    <Stack gap="8">
+      <Stack gap="3">
         <Heading level={2} size="md" className="story-section-title">
           Composite per-size tokens
         </Heading>
@@ -50,7 +50,7 @@ export const Composite: Story = {
           </code>
           .
         </p>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           {textScale.map((step) => (
             <Inline key={step} gap="1rem" align="start">
               <code className="mizu-body--sm" style={{ width: '4rem', paddingTop: '0.25rem' }}>
@@ -71,7 +71,7 @@ export const Composite: Story = {
         </Stack>
       </Stack>
 
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         <Heading level={2} size="md" className="story-section-title">
           Utility classes
         </Heading>
@@ -82,7 +82,7 @@ export const Composite: Story = {
           Utility classes consume composite tokens, so size + line-height + tracking always pair
           correctly.
         </p>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           {utilities.map((cls) => (
             <Inline key={cls} gap="1rem" align="baseline">
               <code className="mizu-body--sm" style={{ width: '10rem' }}>
@@ -100,8 +100,8 @@ export const Composite: Story = {
 export const GenericScales: Story = {
   name: 'Generic scales (custom ramps)',
   render: () => (
-    <Stack gap="2rem">
-      <Stack gap="0.75rem">
+    <Stack gap="8">
+      <Stack gap="3">
         <Heading level={2} size="md" className="story-section-title">
           Generic scales
         </Heading>
@@ -116,11 +116,11 @@ export const GenericScales: Story = {
         </p>
       </Stack>
 
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         <Heading level={3} size="sm" className="story-section-title">
           Font sizes
         </Heading>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           {sizes.map((s) => (
             <Inline key={s.name} gap="1rem" align="baseline">
               <code className="mizu-body--sm" style={{ width: '4rem' }}>
@@ -135,11 +135,11 @@ export const GenericScales: Story = {
         </Stack>
       </Stack>
 
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         <Heading level={3} size="sm" className="story-section-title">
           Weights
         </Heading>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           {weights.map((w) => (
             <Inline key={w.name} gap="1rem" align="baseline">
               <code className="mizu-body--sm" style={{ width: '4rem' }}>
@@ -154,11 +154,11 @@ export const GenericScales: Story = {
         </Stack>
       </Stack>
 
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         <Heading level={3} size="sm" className="story-section-title">
           Line heights
         </Heading>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           {lineHeights.map((l) => {
             const label = labelFromPrefix(l.name, 'FontLineHeight');
             return (
@@ -182,11 +182,11 @@ export const GenericScales: Story = {
         </Stack>
       </Stack>
 
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         <Heading level={3} size="sm" className="story-section-title">
           Families
         </Heading>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           {families.map((f) => (
             <Inline key={f.name} gap="1rem" align="baseline">
               <code className="mizu-body--sm" style={{ width: '4rem' }}>

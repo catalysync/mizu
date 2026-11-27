@@ -4,7 +4,7 @@ import { getAllPatterns } from '@/lib/patterns/registry';
 import type { PatternModule } from '@/lib/patterns/types';
 import type { Industry } from '@/types/studio';
 import { cn } from '@/utils/cn';
-import { Badge, Cluster, Inline, Split, Stack } from '@aspect/react';
+import { Badge, Cluster, Inline, Split, Stack } from '@mizunagara/react';
 import { useMemo, useState } from 'react';
 
 type IndustryFilter = Industry | 'all';
@@ -36,7 +36,7 @@ export function CatalogBrowser() {
   const activeFilters: IndustryFilter[] = ['all', 'cloud', 'saas-admin', 'ecommerce'];
 
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <Cluster gap="0.5rem" role="tablist" aria-label="Filter patterns by industry">
         {activeFilters.map((id) => {
           const active = id === filter;
@@ -61,7 +61,7 @@ export function CatalogBrowser() {
       </Cluster>
 
       <Split fraction="280px 1fr" gap="1.5rem">
-        <Stack as="nav" gap="0.25rem" aria-label="Pattern list">
+        <Stack as="nav" gap="1" aria-label="Pattern list">
           {visible.length === 0 ? (
             <p className="text-muted-foreground text-sm">
               No patterns match the current filter yet.
@@ -104,7 +104,7 @@ function PatternListItem({
           : 'hover:border-border hover:bg-muted/60 border-transparent',
       )}
     >
-      <Stack gap="0.25rem" align="start">
+      <Stack gap="1" align="start">
         <Inline
           gap="0.5rem"
           align="center"
@@ -124,8 +124,8 @@ function PatternListItem({
 function PatternDetail({ pattern }: { pattern: PatternModule }) {
   const { meta, Preview } = pattern;
   return (
-    <Stack as="article" gap="1.25rem">
-      <Stack as="header" gap="0.5rem">
+    <Stack as="article" gap="5">
+      <Stack as="header" gap="2">
         <Inline gap="0.5rem" align="center">
           <h2 className="text-foreground text-xl font-semibold">{meta.name}</h2>
           <Badge tone="neutral">{meta.kind}</Badge>
@@ -145,11 +145,11 @@ function PatternDetail({ pattern }: { pattern: PatternModule }) {
         <Preview />
       </section>
 
-      <Stack as="section" gap="0.5rem" aria-label="Pattern sources">
+      <Stack as="section" gap="2" aria-label="Pattern sources">
         <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
           Sources
         </h3>
-        <Stack as="ul" gap="0.25rem" className="text-foreground text-sm">
+        <Stack as="ul" gap="1" className="text-foreground text-sm">
           {meta.sources.map((source, index) => (
             <li key={`${source.system}-${index}`}>
               <Inline gap="0.5rem">
@@ -164,7 +164,7 @@ function PatternDetail({ pattern }: { pattern: PatternModule }) {
         </Stack>
       </Stack>
 
-      <Stack as="section" gap="0.5rem" aria-label="Component dependencies">
+      <Stack as="section" gap="2" aria-label="Component dependencies">
         <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
           Depends on
         </h3>

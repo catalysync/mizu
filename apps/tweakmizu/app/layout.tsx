@@ -1,5 +1,5 @@
 import { ThemeScript } from '@/components/theme-script';
-import { TooltipProvider } from '@aspect/react';
+import { TooltipProvider } from '@mizunagara/react';
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 

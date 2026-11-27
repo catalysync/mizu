@@ -13,7 +13,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface Contact {
   id: string;
@@ -82,7 +82,7 @@ const PLAN_TONE: Record<Contact['plan'], 'neutral' | 'info' | 'success' | 'warni
 
 function Preview() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Inline gap="0.75rem" align="center">
         <Input size="sm" placeholder="Search contacts…" aria-label="Search contacts" />
         <Button size="sm" variant="primary">
@@ -92,20 +92,20 @@ function Preview() {
 
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Company</TableHeader>
-              <TableHeader>Conversations</TableHeader>
-              <TableHeader>Last seen</TableHeader>
-              <TableHeader>Plan</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Company</TableHead>
+              <TableHead>Conversations</TableHead>
+              <TableHead>Last seen</TableHead>
+              <TableHead>Plan</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {contacts.map((c) => (
               <TableRow key={c.id}>
                 <TableCell>
-                  <Stack gap="0.125rem" align="start">
+                  <Stack gap="1" align="start">
                     <strong>{c.name}</strong>
                     <span style={{ color: 'var(--mizu-text-secondary)', fontSize: '0.75rem' }}>
                       {c.email}
@@ -137,10 +137,10 @@ const TEMPLATE = `import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
+  TableHead,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 interface Contact {
   id: string;
@@ -176,15 +176,15 @@ export default function ContactsPage() {
       </Inline>
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Company</TableHeader>
-              <TableHeader>Conversations</TableHeader>
-              <TableHeader>Last seen</TableHeader>
-              <TableHeader>Plan</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Company</TableHead>
+              <TableHead>Conversations</TableHead>
+              <TableHead>Last seen</TableHead>
+              <TableHead>Plan</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {contacts.map((c) => (
               <TableRow key={c.id}>
@@ -213,13 +213,13 @@ export const conversationsContacts = definePattern({
     industries: ['saas-admin', 'other'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Table',
-      '@aspect/react#Badge',
-      '@aspect/react#Input',
-      '@aspect/react#Button',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Table',
+      '@mizunagara/react#Badge',
+      '@mizunagara/react#Input',
+      '@mizunagara/react#Button',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
     ],
     sources: [
       {

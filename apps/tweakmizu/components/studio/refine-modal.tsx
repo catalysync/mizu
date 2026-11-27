@@ -1,7 +1,7 @@
 'use client';
 
 import type { Plan } from '@/lib/studio/composer';
-import { Button, Inline, Stack, Textarea } from '@aspect/react';
+import { Button, Inline, Stack, Textarea } from '@mizunagara/react';
 import { Sparkles, X } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 
@@ -83,7 +83,7 @@ export function RefineModal({ plan, onRefined, onClose }: Props) {
         }}
       >
         <form onSubmit={handleSubmit}>
-          <Stack gap="1rem">
+          <Stack gap="4">
             <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
               <h2 className="text-foreground text-lg font-semibold">Refine with AI</h2>
               <Button

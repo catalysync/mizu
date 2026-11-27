@@ -1,4 +1,4 @@
-import { DatePicker, DateRangePicker, Field, Stack } from '@aspect/react';
+import { DatePicker, DateRangePicker, Field, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
@@ -48,7 +48,7 @@ export const Controlled: Story = {
   render: () => {
     const [date, setDate] = useState<string | null>('2026-04-11');
     return (
-      <Stack gap="0.5rem" style={{ maxWidth: 360 }}>
+      <Stack gap="2" style={{ maxWidth: 360 }}>
         <Field label="Invoice date">
           <DatePicker value={date} onValueChange={setDate} />
         </Field>
@@ -68,7 +68,7 @@ export const RangePicker: StoryObj<typeof DateRangePicker> = {
 
 export const Examples: Story = {
   render: () => (
-    <Stack gap="1.5rem" style={{ maxWidth: 480 }}>
+    <Stack gap="6" style={{ maxWidth: 480 }}>
       <Field label="Invoice date" required>
         <DatePicker defaultValue="2026-04-11" />
       </Field>

@@ -1,11 +1,11 @@
 .mizu-accordion {
-  border: 1px solid var(--mizu-border-default);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
   border-radius: var(--mizu-radius-md);
   overflow: hidden;
 }
 
 .mizu-accordion__item + .mizu-accordion__item {
-  border-top: 1px solid var(--mizu-border-default);
+  border-top: 1px solid var(--mizu-border-default, #e2e8f0);
 }
 
 .mizu-accordion__trigger {
@@ -17,8 +17,8 @@
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
   font-weight: var(--mizu-font-weight-medium);
-  color: var(--mizu-text-primary);
-  background: var(--mizu-surface-primary);
+  color: var(--mizu-text-primary, #0f172a);
+  background: var(--mizu-surface-default, #fff);
   border: none;
   cursor: pointer;
   text-align: left;
@@ -26,14 +26,18 @@
 }
 
 .mizu-accordion__trigger:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 4%, var(--mizu-surface-primary));
+  background: color-mix(
+    in srgb,
+    var(--mizu-text-primary, #0f172a) 4%,
+    var(--mizu-surface-default, #fff)
+  );
 }
 
 .mizu-accordion__chevron {
   flex-shrink: 0;
   width: 1rem;
   height: 1rem;
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   transition: transform var(--mizu-duration-fast) var(--mizu-easing-out);
 }
 
@@ -45,5 +49,5 @@
   padding: 0 var(--mizu-spacing-4) var(--mizu-spacing-3);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }

@@ -1,4 +1,4 @@
-import { Combobox, Field, Stack } from '@aspect/react';
+import { Combobox, Field, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
@@ -89,7 +89,7 @@ export const NoSearch: Story = {
 
 export const FormExample: Story = {
   render: () => (
-    <Stack gap="1rem" style={{ maxWidth: 360 }}>
+    <Stack gap="4" style={{ maxWidth: 360 }}>
       <Field label="Country" required>
         <Combobox options={COUNTRIES} />
       </Field>

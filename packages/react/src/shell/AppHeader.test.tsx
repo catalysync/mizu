@@ -19,6 +19,19 @@ describe('AppHeader', () => {
     expect(screen.getByRole('button', { name: 'Sign out' })).toBeInTheDocument();
   });
 
+  it('renders a spacer by default', () => {
+    const { container } = render(<AppHeader brand="X" />);
+    expect(container.querySelector('.mizu-app-header__spacer')).toBeInTheDocument();
+  });
+
+  it('renders no spacer div when spacer={false}', () => {
+    const { container } = render(
+      <AppHeader brand="X" actions={<button>Menu</button>} spacer={false} />,
+    );
+    expect(container.querySelector('.mizu-app-header__spacer')).toBeNull();
+    expect(screen.getByRole('button', { name: 'Menu' })).toBeInTheDocument();
+  });
+
   it('has no axe violations', async () => {
     const { container } = render(<AppHeader brand="mizu" actions={<button>Menu</button>} />);
     expect(await axe(container)).toHaveNoViolations();

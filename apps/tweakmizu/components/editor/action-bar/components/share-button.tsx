@@ -2,7 +2,7 @@
 
 import { useEditorStore } from '@/store/editor-store';
 import { buildShareUrl } from '@/utils/share-url';
-import { Button } from '@aspect/react';
+import { Button } from '@mizunagara/react';
 import { Check, Share2 } from 'lucide-react';
 import { useState } from 'react';
 

@@ -4,23 +4,28 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Field,
   Inline,
   Input,
   Select,
   Separator,
   Stack,
   Switch,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 export function SettingsPage() {
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <Card>
         <CardHeader title="General" description="Configure your account settings." />
         <CardBody>
-          <Stack gap="1rem">
-            <Input label="Team name" defaultValue="Aspect Labs" />
-            <Input label="Slug" defaultValue="aspect-labs" />
+          <Stack gap="4">
+            <Field label="Team name">
+              <Input defaultValue="Aspect Labs" />
+            </Field>
+            <Field label="Slug">
+              <Input defaultValue="aspect-labs" />
+            </Field>
             <Select label="Default region">
               <option value="us-east">US East (Virginia)</option>
               <option value="us-west">US West (Oregon)</option>
@@ -42,7 +47,7 @@ export function SettingsPage() {
       <Card>
         <CardHeader title="Notifications" description="Manage how you receive alerts." />
         <CardBody>
-          <Stack gap="0.75rem">
+          <Stack gap="3">
             <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
               <span className="mizu-body--sm">Deploy succeeded</span>
               <Switch aria-label="Deploy succeeded" defaultChecked />
@@ -70,7 +75,7 @@ export function SettingsPage() {
         <CardHeader title="Danger zone" />
         <CardBody>
           <Inline gap="1rem" align="center" style={{ justifyContent: 'space-between' }}>
-            <Stack gap="0.25rem">
+            <Stack gap="1">
               <span className="mizu-body--sm">
                 <strong>Delete team</strong>
               </span>

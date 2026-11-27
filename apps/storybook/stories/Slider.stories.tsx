@@ -1,4 +1,4 @@
-import { Slider, Stack } from '@aspect/react';
+import { Slider, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
@@ -44,7 +44,7 @@ export const Controlled: Story = {
   render: (args) => {
     const [value, setValue] = useState<number[]>([40]);
     return (
-      <Stack gap="0.75rem">
+      <Stack gap="3">
         <Slider {...args} value={value} onValueChange={setValue} />
         <div className="mizu-body--sm">Current: {value[0]}</div>
       </Stack>

@@ -1,0 +1,24 @@
+{
+  "control": {
+    "height": {
+      "sm": {
+        "$value": "2rem",
+        "$type": "dimension"
+      },
+      "md": {
+        "$value": "2.5rem",
+        "$type": "dimension"
+      },
+      "lg": {
+        "$value": "2.75rem",
+        "$type": "dimension"
+      }
+    }
+  },
+  "touch": {
+    "target": {
+      "$value": "44px",
+      "$type": "dimension"
+    }
+  }
+}

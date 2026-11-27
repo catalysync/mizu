@@ -3,7 +3,7 @@ import { ThemeStyleProps } from '@/types/theme';
 
 /**
  * Default mizu token values — these match the :root declarations
- * in @aspect/tokens dist/css/variables.css.
+ * in @mizunagara/tokens dist/css/variables.css.
  */
 export const defaultStyles: ThemeStyleProps = {
   // Action

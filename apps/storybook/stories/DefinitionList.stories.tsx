@@ -1,4 +1,4 @@
-import { DefinitionList } from '@aspect/react';
+import { DefinitionList } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

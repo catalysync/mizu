@@ -1,0 +1,89 @@
+# node-ts - the node-ts language layer of the Nagara CI/CD kit.
+# Vendored by cicd/adopt.sh to .depot/workflows/nagara-node-ts.yml with the layer's
+# working directory filled in; do not edit in a product repo (kit-integrity
+# fails). Per-repo commands go in .nagara-cicd (node-ts.<job>=...), read by
+# .depot/nagara/bin/ci-step.sh, which runs the same command locally.
+#
+# Checks: node-ts / lint, typecheck, test, audit, build
+# Depot CI: pull_request only, no secrets, no GITHUB_TOKEN, explicit cancel,
+# services on localhost and polled for readiness by ci-step.sh.
+name: node-ts
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nagara-node-ts-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+    working-directory: .
+
+jobs:
+  lint:
+    name: lint
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - run: '"$GITHUB_WORKSPACE/.depot/nagara/bin/ci-step.sh" node-ts lint'
+
+  typecheck:
+    name: typecheck
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - run: '"$GITHUB_WORKSPACE/.depot/nagara/bin/ci-step.sh" node-ts typecheck'
+
+  test:
+    name: test
+    runs-on: depot-ubuntu-24.04-4
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - run: '"$GITHUB_WORKSPACE/.depot/nagara/bin/ci-step.sh" node-ts test'
+
+  audit:
+    name: audit
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: '"$GITHUB_WORKSPACE/.depot/nagara/bin/ci-step.sh" node-ts audit'
+
+  build:
+    name: build
+    runs-on: depot-ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - run: '"$GITHUB_WORKSPACE/.depot/nagara/bin/ci-step.sh" node-ts build'

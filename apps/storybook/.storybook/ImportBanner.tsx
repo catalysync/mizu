@@ -38,7 +38,7 @@ function usePortalTarget() {
 }
 
 /**
- * Renders an `import { X } from "@aspect/Y"` code block at the top of each
+ * Renders an `import { X } from "@mizunagara/Y"` code block at the top of each
  * component's Docs page. Components that don't map to a published package
  * render nothing. Styles live in story-utils.css.
  */

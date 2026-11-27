@@ -1,4 +1,4 @@
-import { Textarea } from '@aspect/react';
+import { Textarea } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

@@ -1,4 +1,4 @@
-import { Field, Stack, useFieldContext } from '@aspect/react';
+import { Field, Stack, useFieldContext } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 // A thin wrapper that reads Field context and passes it to a raw input.
@@ -94,7 +94,7 @@ export const WithInfoLink: Story = {
 
 export const FormExample: Story = {
   render: () => (
-    <Stack gap="1rem" style={{ maxWidth: 480 }}>
+    <Stack gap="4" style={{ maxWidth: 480 }}>
       <Field label="Full name" required>
         <FieldInput />
       </Field>

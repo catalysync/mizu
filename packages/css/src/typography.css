@@ -1,6 +1,6 @@
 /*
  * Standalone typography sheet. Import only when you want type utility classes.
- *   @import "@aspect/css/typography";
+ *   @import "@mizunagara/css/typography";
  *
  * Two token APIs live side-by-side. Pick based on intent:
  *
@@ -21,7 +21,7 @@
 .mizu-h4 {
   font-family: var(--mizu-font-family-sans);
   font-weight: var(--mizu-font-weight-semibold);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   margin: 0;
 }
 
@@ -55,7 +55,7 @@
   line-height: var(--mizu-text-base-line-height);
   letter-spacing: var(--mizu-text-base-tracking);
   font-weight: var(--mizu-font-weight-regular);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-body--sm {
@@ -75,7 +75,7 @@
   font-size: var(--mizu-text-xs-size);
   line-height: var(--mizu-text-xs-line-height);
   letter-spacing: var(--mizu-text-xs-tracking);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
 }
 
 .mizu-mono {
@@ -91,6 +91,6 @@
   line-height: var(--mizu-text-sm-line-height);
   letter-spacing: var(--mizu-text-sm-tracking);
   font-weight: var(--mizu-font-weight-medium);
-  color: var(--mizu-text-primary);
+  color: var(--mizu-text-primary, #0f172a);
   margin-bottom: var(--mizu-spacing-1);
 }

@@ -1,20 +1,20 @@
-# @aspect/css
+# @mizunagara/css
 
-Framework-agnostic component CSS for the mizu design system. Uses `var(--mizu-*)` custom properties from `@aspect/tokens`.
+Framework-agnostic component CSS for the mizu design system. Uses `var(--mizu-*)` custom properties from `@mizunagara/tokens`.
 
 ## Usage
 
 ```css
-@import '@aspect/tokens/css';
-@import '@aspect/css';
+@import '@mizunagara/tokens/css';
+@import '@mizunagara/css';
 ```
 
 Or cherry-pick individual components:
 
 ```css
-@import '@aspect/css/components/button';
-@import '@aspect/css/layouts/stack';
-@import '@aspect/css/shell/app-layout';
+@import '@mizunagara/css/components/button';
+@import '@mizunagara/css/layouts/stack';
+@import '@mizunagara/css/shell/app-layout';
 ```
 
 ## Build

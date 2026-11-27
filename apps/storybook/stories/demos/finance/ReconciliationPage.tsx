@@ -1,4 +1,4 @@
-import { ReconciliationRow, formatCurrency } from '@aspect/finance';
+import { ReconciliationRow, formatCurrency } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -14,7 +14,7 @@ import {
   SelectValue,
   Stack,
   cn,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { reconciliation } from './data';
 
 export function ReconciliationPage() {
@@ -26,7 +26,7 @@ export function ReconciliationPage() {
   const difference = bankTotal - matchedTotal;
 
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppContentHeader
         title="Reconciliation"
         description="Match bank statement entries to ledger transactions."
@@ -71,7 +71,7 @@ export function ReconciliationPage() {
       <div className="finance-demo__reconcile-split">
         <Card>
           <CardBody>
-            <Stack gap="0.75rem">
+            <Stack gap="3">
               <Inline gap="0.5rem" align="center">
                 <strong>Unmatched</strong>
                 <Badge tone="warning">{unmatched.length}</Badge>
@@ -94,7 +94,7 @@ export function ReconciliationPage() {
 
         <Card>
           <CardBody>
-            <Stack gap="0.75rem">
+            <Stack gap="3">
               <Inline gap="0.5rem" align="center">
                 <strong>Matched</strong>
                 <Badge tone="success">{matched.length}</Badge>
@@ -119,19 +119,19 @@ export function ReconciliationPage() {
       <Card>
         <CardBody>
           <Inline gap="2.5rem" className="finance-demo__reconcile-totals">
-            <Stack gap="0.25rem" className="finance-demo__centered-stack">
+            <Stack gap="1" className="finance-demo__centered-stack">
               <span className="finance-demo__muted">Bank total</span>
               <strong className="finance-demo__reconcile-total-value">
                 {formatCurrency(bankTotal)}
               </strong>
             </Stack>
-            <Stack gap="0.25rem" className="finance-demo__centered-stack">
+            <Stack gap="1" className="finance-demo__centered-stack">
               <span className="finance-demo__muted">Matched in books</span>
               <strong className="finance-demo__reconcile-total-value">
                 {formatCurrency(matchedTotal)}
               </strong>
             </Stack>
-            <Stack gap="0.25rem" className="finance-demo__centered-stack">
+            <Stack gap="1" className="finance-demo__centered-stack">
               <span className="finance-demo__muted">Difference</span>
               <strong
                 className={cn(

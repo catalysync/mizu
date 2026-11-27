@@ -4,10 +4,11 @@
   padding: var(--mizu-spacing-3) var(--mizu-spacing-4);
   font-family: var(--mizu-font-family-sans);
   font-size: var(--mizu-font-size-sm);
-  border: 1px solid var(--mizu-border-default);
-  border-radius: var(--mizu-radius-md);
-  background: var(--mizu-surface-primary);
-  color: var(--mizu-text-primary);
+  border: 1px solid var(--mizu-border-default, #e2e8f0);
+  border-left-width: var(--mizu-alert-border-left-width, 1px);
+  border-radius: var(--mizu-alert-radius, var(--mizu-radius-md));
+  background: var(--mizu-surface-default, #fff);
+  color: var(--mizu-text-primary, #0f172a);
 }
 
 .mizu-alert__icon {
@@ -38,42 +39,46 @@
   background: none;
   border: none;
   border-radius: var(--mizu-radius-sm);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   cursor: pointer;
 }
 
 .mizu-alert__dismiss:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 6%, transparent);
+  background: color-mix(in srgb, var(--mizu-text-primary, #0f172a) 6%, transparent);
 }
 
 .mizu-alert--info {
-  border-color: var(--mizu-feedback-info-default);
-  background: color-mix(in srgb, var(--mizu-feedback-info-default) 6%, var(--mizu-surface-primary));
+  border-color: var(--mizu-feedback-info-default, #2563eb);
+  background: color-mix(
+    in srgb,
+    var(--mizu-feedback-info-default, #2563eb) 6%,
+    var(--mizu-surface-default, #fff)
+  );
 }
 
 .mizu-alert--success {
-  border-color: var(--mizu-feedback-success-default);
+  border-color: var(--mizu-feedback-success-default, #059669);
   background: color-mix(
     in srgb,
-    var(--mizu-feedback-success-default) 6%,
-    var(--mizu-surface-primary)
+    var(--mizu-feedback-success-default, #059669) 6%,
+    var(--mizu-surface-default, #fff)
   );
 }
 
 .mizu-alert--warning {
-  border-color: var(--mizu-feedback-warning-default);
+  border-color: var(--mizu-feedback-warning-default, #f59e0b);
   background: color-mix(
     in srgb,
-    var(--mizu-feedback-warning-default) 6%,
-    var(--mizu-surface-primary)
+    var(--mizu-feedback-warning-default, #f59e0b) 6%,
+    var(--mizu-surface-default, #fff)
   );
 }
 
 .mizu-alert--danger {
-  border-color: var(--mizu-feedback-danger-default);
+  border-color: var(--mizu-feedback-danger-default, #dc2626);
   background: color-mix(
     in srgb,
-    var(--mizu-feedback-danger-default) 6%,
-    var(--mizu-surface-primary)
+    var(--mizu-feedback-danger-default, #dc2626) 6%,
+    var(--mizu-surface-default, #fff)
   );
 }

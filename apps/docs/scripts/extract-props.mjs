@@ -1,12 +1,12 @@
 /**
- * Extracts prop interfaces from @aspect/react source files.
+ * Extracts prop interfaces from @mizunagara/react source files.
  * Outputs JSON files that docs pages can import.
  *
  * Usage: node scripts/extract-props.mjs
  */
 
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
-import { join, basename } from 'node:path';
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { basename, join } from 'node:path';
 
 const REACT_SRC = '../../packages/react/src/components';
 const OUT_DIR = './app/_props';

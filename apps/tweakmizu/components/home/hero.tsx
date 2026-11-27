@@ -4,7 +4,7 @@ import { useEditorStore } from '@/store/editor-store';
 import { useThemePresetStore } from '@/store/preset-store';
 import { cn } from '@/utils/cn';
 import { getPresetThemeStyles } from '@/utils/theme-preset-helper';
-import { Button } from '@aspect/react';
+import { Button } from '@mizunagara/react';
 import { ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
 

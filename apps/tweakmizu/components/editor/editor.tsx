@@ -12,7 +12,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { Sliders } from 'lucide-react';
 import React from 'react';
 import { ActionBar } from './action-bar/action-bar';

@@ -1,10 +1,10 @@
-import { ChartOfAccounts } from '@aspect/finance';
-import { AppContentHeader, Button, Card, CardBody, Inline, Stack } from '@aspect/react';
+import { ChartOfAccounts } from '@mizunagara/finance';
+import { AppContentHeader, Button, Card, CardBody, Inline, Stack } from '@mizunagara/react';
 import { accounts } from './data';
 
 export function ChartOfAccountsPage() {
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <AppContentHeader
         title="Chart of accounts"
         description="Hierarchical ledger of every account you track."

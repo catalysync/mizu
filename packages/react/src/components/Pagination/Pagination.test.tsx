@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import { Pagination } from './Pagination';
@@ -38,11 +39,87 @@ describe('Pagination', () => {
     expect(screen.getByRole('button', { name: 'Next page' })).toBeEnabled();
   });
 
+  it('reaches page buttons with Tab and activates them with Enter and Space', async () => {
+    const user = userEvent.setup();
+    const onPageChange = vi.fn();
+    render(<Pagination page={3} totalPages={10} onPageChange={onPageChange} />);
+    // Tab order: Previous, pages 1–4, 10, Next. Page 3 is current, Previous is enabled.
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Previous page' })).toHaveFocus();
+    await user.tab();
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Go to page 2' })).toHaveFocus();
+    await user.keyboard('{Enter}');
+    expect(onPageChange).toHaveBeenLastCalledWith(2);
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Next page' })).toHaveFocus();
+    await user.keyboard(' ');
+    expect(onPageChange).toHaveBeenLastCalledWith(4);
+    expect(onPageChange).toHaveBeenCalledTimes(2);
+  });
+
   it('clicking next advances the page', () => {
     const onPageChange = vi.fn();
     render(<Pagination page={3} totalPages={10} onPageChange={onPageChange} />);
     fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
     expect(onPageChange).toHaveBeenCalledWith(4);
+  });
+
+  it('fires one callback per click: onPrevious wins over onPageChange', () => {
+    const onPageChange = vi.fn();
+    const onPrevious = vi.fn();
+    render(
+      <Pagination page={3} totalPages={10} onPageChange={onPageChange} onPrevious={onPrevious} />,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Previous page' }));
+    expect(onPrevious).toHaveBeenCalledTimes(1);
+    expect(onPageChange).not.toHaveBeenCalled();
+  });
+
+  it('fires one callback per click: onNext wins over onPageChange', () => {
+    const onPageChange = vi.fn();
+    const onNext = vi.fn();
+    render(<Pagination page={3} totalPages={10} onPageChange={onPageChange} onNext={onNext} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
+    expect(onNext).toHaveBeenCalledTimes(1);
+    expect(onPageChange).not.toHaveBeenCalled();
+  });
+
+  it('calls onPageChange exactly once for previous when no onPrevious is given', () => {
+    const onPageChange = vi.fn();
+    render(<Pagination page={3} totalPages={10} onPageChange={onPageChange} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Previous page' }));
+    expect(onPageChange).toHaveBeenCalledTimes(1);
+    expect(onPageChange).toHaveBeenCalledWith(2);
+  });
+
+  it('renders no page-number buttons when totalPages is 0', () => {
+    render(<Pagination page={1} totalPages={0} />);
+    expect(screen.queryByRole('button', { name: /Go to page/ })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
+  });
+
+  it('uses custom labels for the navigation and its buttons', async () => {
+    const { container } = render(
+      <Pagination
+        page={3}
+        totalPages={10}
+        labels={{
+          navigation: 'Seitennavigation',
+          previous: 'Vorherige Seite',
+          next: 'Nächste Seite',
+          page: (p) => `Zur Seite ${p}`,
+        }}
+      />,
+    );
+    expect(screen.getByRole('navigation', { name: 'Seitennavigation' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Vorherige Seite' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Nächste Seite' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Zur Seite 2' })).toBeInTheDocument();
+    expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no axe violations', async () => {

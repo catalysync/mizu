@@ -1,1 +1,8 @@
-export { Alert, AlertTitle, type AlertProps } from './Alert';
+export {
+  Alert,
+  AlertTitle,
+  Callout,
+  MIZU_ALERT_VARIANTS,
+  type AlertProps,
+  type CalloutProps,
+} from './Alert';

@@ -1,6 +1,6 @@
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
-import { Button, Stack } from '@aspect/react';
+import { Button, Stack } from '@mizunagara/react';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { SignInForm } from './signin-form';
@@ -15,7 +15,7 @@ export default function SignInPage() {
       <SiteHeader />
       <main className="flex-1">
         <section className="mx-auto w-full max-w-md px-4 py-16">
-          <Stack gap="1.5rem">
+          <Stack gap="6">
             <Button asChild variant="ghost" size="sm" className="self-start">
               <Link href="/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -23,7 +23,7 @@ export default function SignInPage() {
               </Link>
             </Button>
 
-            <Stack gap="0.5rem">
+            <Stack gap="2">
               <h1 className="text-foreground text-3xl font-bold tracking-tight">Sign in</h1>
               <p className="text-muted-foreground text-sm">
                 Sign in to save themes, projects, and subscribe to Pro.

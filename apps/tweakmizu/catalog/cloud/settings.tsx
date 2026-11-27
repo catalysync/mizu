@@ -6,23 +6,30 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Field,
   Inline,
   Input,
   Separator,
   Stack,
   Switch,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 function Preview() {
   return (
-    <Stack gap="1.5rem">
+    <Stack gap="6">
       <Card>
         <CardHeader title="General" description="Configure your account settings." />
         <CardBody>
-          <Stack gap="1rem">
-            <Input label="Team name" defaultValue="Aspect Labs" />
-            <Input label="Slug" defaultValue="aspect-labs" />
-            <Input label="Default region" defaultValue="US East (Virginia)" />
+          <Stack gap="4">
+            <Field label="Team name">
+              <Input defaultValue="Aspect Labs" />
+            </Field>
+            <Field label="Slug">
+              <Input defaultValue="aspect-labs" />
+            </Field>
+            <Field label="Default region">
+              <Input defaultValue="US East (Virginia)" />
+            </Field>
           </Stack>
         </CardBody>
         <CardFooter>
@@ -38,7 +45,7 @@ function Preview() {
       <Card>
         <CardHeader title="Notifications" description="Manage how you receive alerts." />
         <CardBody>
-          <Stack gap="0.75rem">
+          <Stack gap="3">
             <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
               <span className="mizu-body--sm">Deploy succeeded</span>
               <Switch aria-label="Deploy succeeded" defaultChecked />
@@ -66,7 +73,7 @@ function Preview() {
         <CardHeader title="Danger zone" />
         <CardBody>
           <Inline gap="1rem" align="center" style={{ justifyContent: 'space-between' }}>
-            <Stack gap="0.25rem">
+            <Stack gap="1">
               <span className="mizu-body--sm">
                 <strong>Delete team</strong>
               </span>
@@ -90,13 +97,14 @@ const TEMPLATE = `import {
   CardBody,
   CardFooter,
   CardHeader,
+  Field,
   Inline,
   Input,
   Select,
   Separator,
   Stack,
   Switch,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 export default function SettingsPage() {
   return (
@@ -105,8 +113,12 @@ export default function SettingsPage() {
         <CardHeader title="General" description="Configure your account settings." />
         <CardBody>
           <Stack gap="1rem">
-            <Input label="Team name" defaultValue="Aspect Labs" />
-            <Input label="Slug" defaultValue="aspect-labs" />
+            <Field label="Team name">
+              <Input defaultValue="Aspect Labs" />
+            </Field>
+            <Field label="Slug">
+              <Input defaultValue="aspect-labs" />
+            </Field>
             <Select label="Default region">
               <option value="us-east">US East (Virginia)</option>
               <option value="us-west">US West (Oregon)</option>
@@ -177,14 +189,14 @@ export const cloudSettings = definePattern({
     industries: ['cloud', 'saas-admin'],
     tier: 'free',
     depends: [
-      '@aspect/react#Card',
-      '@aspect/react#Input',
-      '@aspect/react#Select',
-      '@aspect/react#Switch',
-      '@aspect/react#Separator',
-      '@aspect/react#Stack',
-      '@aspect/react#Inline',
-      '@aspect/react#Button',
+      '@mizunagara/react#Card',
+      '@mizunagara/react#Input',
+      '@mizunagara/react#Select',
+      '@mizunagara/react#Switch',
+      '@mizunagara/react#Separator',
+      '@mizunagara/react#Stack',
+      '@mizunagara/react#Inline',
+      '@mizunagara/react#Button',
     ],
     sources: [
       {

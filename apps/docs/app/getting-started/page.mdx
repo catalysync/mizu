@@ -9,17 +9,17 @@ export const metadata = {
 ### React projects
 
 ```bash
-pnpm add @aspect/react @aspect/css @aspect/tokens
+pnpm add @mizunagara/react @mizunagara/css @mizunagara/tokens
 ```
 
 ```css
 /* globals.css */
-@import '@aspect/tokens/css';
-@import '@aspect/css';
+@import '@mizunagara/tokens/css';
+@import '@mizunagara/css';
 ```
 
 ```tsx
-import { Button } from '@aspect/react';
+import { Button } from '@mizunagara/react';
 
 export default function Page() {
   return <Button variant="primary">Get started</Button>;
@@ -29,12 +29,12 @@ export default function Page() {
 ### Vue / Svelte / vanilla HTML
 
 ```bash
-pnpm add @aspect/css @aspect/tokens
+pnpm add @mizunagara/css @mizunagara/tokens
 ```
 
 ```css
-@import '@aspect/tokens/css';
-@import '@aspect/css';
+@import '@mizunagara/tokens/css';
+@import '@mizunagara/css';
 ```
 
 ```html
@@ -44,13 +44,13 @@ pnpm add @aspect/css @aspect/tokens
 ### With Tailwind v4 (any framework)
 
 ```bash
-pnpm add -D @aspect/tailwind-preset
+pnpm add -D @mizunagara/tailwind-preset
 ```
 
 ```css
 @import 'tailwindcss';
-@import '@aspect/tokens/css';
-@import '@aspect/tailwind-preset';
+@import '@mizunagara/tokens/css';
+@import '@mizunagara/tailwind-preset';
 ```
 
 You can now use `bg-primary`, `text-text-primary`, `rounded-lg`, `p-4`,

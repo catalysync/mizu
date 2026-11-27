@@ -1,6 +1,6 @@
-import { Banner, ResourceItem, Thumbnail } from '@aspect/commerce';
-import '@aspect/commerce/css';
-import { DeltaIndicator, formatCurrency, KpiCard } from '@aspect/finance';
+import { Banner, ResourceItem, Thumbnail } from '@mizunagara/commerce';
+import '@mizunagara/commerce/css';
+import { DeltaIndicator, formatCurrency, KpiCard } from '@mizunagara/finance';
 import {
   AppContentHeader,
   Badge,
@@ -13,7 +13,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CommerceShell } from './CommerceShell';
 import { CustomersPage } from './CustomersPage';
@@ -50,7 +50,7 @@ function OverviewPage() {
           <TabsTrigger value="orders">Orders</TabsTrigger>
         </TabsList>
         <TabsContent value="products">
-          <Stack gap="1rem">
+          <Stack gap="4">
             <AppContentHeader
               title="Products"
               description={`${products.length} items in your catalog`}
@@ -61,7 +61,7 @@ function OverviewPage() {
               }
             />
             <Card>
-              <Stack gap="0">
+              <Stack gap="none">
                 {products.map((p) => (
                   <ResourceItem
                     key={p.id}
@@ -99,10 +99,10 @@ function OverviewPage() {
           </Stack>
         </TabsContent>
         <TabsContent value="orders">
-          <Stack gap="1rem">
+          <Stack gap="4">
             <AppContentHeader title="Orders" description={`${orders.length} recent orders`} />
             <Card>
-              <Stack gap="0">
+              <Stack gap="none">
                 {orders.map((o) => (
                   <ResourceItem
                     key={o.id}

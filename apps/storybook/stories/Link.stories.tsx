@@ -1,4 +1,4 @@
-import { Link, Stack } from '@aspect/react';
+import { Link, Stack } from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
@@ -47,7 +47,7 @@ export const External: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Link href="#">inline link (default)</Link>
       <Link href="#" variant="subtle">
         subtle link

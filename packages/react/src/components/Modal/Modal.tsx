@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import * as React from 'react';
+import { usePortalIdentity } from '../../primitives/Portal';
 import { cn } from '../../utils/cn';
 
 export const Modal = Dialog.Root;
@@ -10,39 +11,84 @@ export type ModalSize = 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen';
 
 export interface ModalContentProps extends React.ComponentPropsWithoutRef<typeof Dialog.Content> {
   size?: ModalSize;
+  /** Extra classes for the scrim behind the content. */
+  overlayClassName?: string;
+  /** Extra props for the scrim, e.g. `data-*` hooks. */
+  overlayProps?: React.ComponentPropsWithoutRef<typeof Dialog.Overlay>;
+  /** When false, Escape and clicks or focus outside the content do not close it. Defaults to true. */
+  dismissable?: boolean;
+  /** When false, the built-in close icon is not rendered. Defaults to true. */
+  closeButton?: boolean;
 }
 
 export const ModalContent = React.forwardRef<
   React.ElementRef<typeof Dialog.Content>,
   ModalContentProps
->(({ className, children, size = 'md', ...props }, ref) => (
-  <Dialog.Portal>
-    <Dialog.Overlay className="mizu-dialog__overlay" />
-    <Dialog.Content
-      ref={ref}
-      data-component="mizu-modal"
-      className={cn('mizu-dialog__content', className)}
-      data-size={size}
-      {...props}
-    >
-      {children}
-      <Dialog.Close className="mizu-dialog__close" aria-label="Close">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          width="16"
-          height="16"
-        >
-          <path d="M18 6 6 18M6 6l12 12" />
-        </svg>
-      </Dialog.Close>
-    </Dialog.Content>
-  </Dialog.Portal>
-));
+>(
+  (
+    {
+      className,
+      children,
+      size = 'md',
+      overlayClassName,
+      overlayProps,
+      dismissable = true,
+      closeButton = true,
+      onEscapeKeyDown,
+      onInteractOutside,
+      ...props
+    },
+    forwardedRef,
+  ) => {
+    const identity = usePortalIdentity<React.ElementRef<typeof Dialog.Content>>(forwardedRef);
+    return (
+      <>
+        {identity.anchor}
+        <Dialog.Portal>
+          <Dialog.Overlay
+            ref={identity.applyIdentity}
+            {...overlayProps}
+            className={cn('mizu-dialog__overlay', overlayClassName, overlayProps?.className)}
+          />
+          <Dialog.Content
+            ref={identity.ref}
+            data-component="mizu-modal"
+            className={cn('mizu-dialog__content', className)}
+            data-size={size}
+            onEscapeKeyDown={(event) => {
+              if (!dismissable) event.preventDefault();
+              onEscapeKeyDown?.(event);
+            }}
+            // Radix routes pointer-down and focus-outside through this handler; preventing it keeps the dialog open.
+            onInteractOutside={(event) => {
+              if (!dismissable) event.preventDefault();
+              onInteractOutside?.(event);
+            }}
+            {...props}
+          >
+            {children}
+            {closeButton ? (
+              <Dialog.Close className="mizu-dialog__close" aria-label="Close">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  width="16"
+                  height="16"
+                >
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </Dialog.Close>
+            ) : null}
+          </Dialog.Content>
+        </Dialog.Portal>
+      </>
+    );
+  },
+);
 ModalContent.displayName = 'ModalContent';
 
 export const ModalHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(

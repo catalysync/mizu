@@ -1,5 +1,6 @@
 import * as Sel from '@radix-ui/react-select';
 import * as React from 'react';
+import { usePortalIdentity } from '../../primitives/Portal';
 import { cn } from '../../utils/cn';
 import { useFieldContext } from '../Field/field-context';
 
@@ -7,9 +8,16 @@ export const Select = Sel.Root;
 export const SelectGroup = Sel.Group;
 export const SelectValue = Sel.Value;
 
+export type SelectSize = 'sm' | 'md' | 'lg';
+
+export interface SelectTriggerProps extends React.ComponentPropsWithoutRef<typeof Sel.Trigger> {
+  /** Height and text size from the shared control scale. */
+  size?: SelectSize;
+}
+
 export const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof Sel.Trigger>,
-  React.ComponentPropsWithoutRef<typeof Sel.Trigger>
+  SelectTriggerProps
 >(
   (
     {
@@ -17,6 +25,7 @@ export const SelectTrigger = React.forwardRef<
       children,
       id,
       disabled,
+      size = 'md',
       'aria-invalid': ariaInvalidProp,
       'aria-describedby': ariaDescribedByProp,
       ...props
@@ -40,6 +49,7 @@ export const SelectTrigger = React.forwardRef<
         aria-describedby={resolvedDescribedBy}
         aria-required={ctx?.required || undefined}
         data-component="mizu-select"
+        data-size={size}
         className={cn('mizu-select__trigger', className)}
         {...props}
       >
@@ -63,20 +73,44 @@ export const SelectTrigger = React.forwardRef<
 );
 SelectTrigger.displayName = 'SelectTrigger';
 
+/**
+ * Renders one SelectItem per entry of an object map, keyed by value. Keeps option lists that already
+ * exist as `Record<value, label>` out of the JSX. Object key order applies: integer-like keys such
+ * as "2" and "10" come out in numeric order, not insertion order, and items cannot be disabled
+ * individually. Use separate SelectItem elements when either matters.
+ */
+export function SelectItems({ items }: { items: Record<string, React.ReactNode> }) {
+  return (
+    <>
+      {Object.entries(items).map(([value, label]) => (
+        <SelectItem key={value} value={value}>
+          {label}
+        </SelectItem>
+      ))}
+    </>
+  );
+}
+
 export const SelectContent = React.forwardRef<
   React.ElementRef<typeof Sel.Content>,
   React.ComponentPropsWithoutRef<typeof Sel.Content>
->(({ className, position = 'popper', sideOffset = 6, ...props }, ref) => (
-  <Sel.Portal>
-    <Sel.Content
-      ref={ref}
-      className={cn('mizu-select__content', className)}
-      position={position}
-      sideOffset={sideOffset}
-      {...props}
-    />
-  </Sel.Portal>
-));
+>(({ className, position = 'popper', sideOffset = 6, ...props }, forwardedRef) => {
+  const identity = usePortalIdentity<React.ElementRef<typeof Sel.Content>>(forwardedRef);
+  return (
+    <>
+      {identity.anchor}
+      <Sel.Portal>
+        <Sel.Content
+          ref={identity.ref}
+          className={cn('mizu-select__content', className)}
+          position={position}
+          sideOffset={sideOffset}
+          {...props}
+        />
+      </Sel.Portal>
+    </>
+  );
+});
 SelectContent.displayName = 'SelectContent';
 
 export const SelectItem = React.forwardRef<

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Inline, Stack, Textarea } from '@aspect/react';
+import { Button, Inline, Stack, Textarea } from '@mizunagara/react';
 import { Check, Sparkles, X } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 
@@ -57,7 +57,7 @@ export function RefactorPanel({ path, contents, substrate, onClose }: Props) {
   };
 
   return (
-    <Stack gap="0.75rem" className="border-border bg-muted/30 rounded-lg border p-4">
+    <Stack gap="3" className="border-border bg-muted/30 rounded-lg border p-4">
       <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
         <Inline gap="0.5rem" align="center">
           <Sparkles className="text-primary h-4 w-4" />
@@ -70,7 +70,7 @@ export function RefactorPanel({ path, contents, substrate, onClose }: Props) {
       </Inline>
 
       <form onSubmit={handleSubmit}>
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           <Textarea
             rows={3}
             value={instruction}
@@ -95,7 +95,7 @@ export function RefactorPanel({ path, contents, substrate, onClose }: Props) {
       </form>
 
       {result ? (
-        <Stack gap="0.5rem">
+        <Stack gap="2">
           <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
             <span className="text-muted-foreground text-xs tracking-wider uppercase">
               Proposed rewrite

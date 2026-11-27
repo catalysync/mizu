@@ -1,5 +1,5 @@
 {
-  "extends": "@aspect/tsconfig/base.json",
+  "extends": "@mizunagara/tsconfig/base.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",

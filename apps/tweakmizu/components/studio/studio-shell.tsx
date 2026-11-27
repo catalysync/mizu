@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 import { FileStack, Home, LayoutGrid, Menu, Sliders, Sparkles, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -67,7 +67,7 @@ export function StudioShell({ children }: { children: React.ReactNode }) {
   }, [sidebarOpen]);
 
   const navContent = (
-    <Stack gap="0.25rem">
+    <Stack gap="1">
       <span className="text-muted-foreground px-3 py-1 text-xs font-semibold tracking-wider uppercase">
         Studio
       </span>

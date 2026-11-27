@@ -1,4 +1,4 @@
-import { cn, Skeleton } from '@aspect/react';
+import { cn, Skeleton } from '@mizunagara/react';
 import * as React from 'react';
 import { formatAccounting } from '../../utils/currency';
 

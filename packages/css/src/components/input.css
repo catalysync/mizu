@@ -1,7 +1,7 @@
 .mizu-input {
-  --_border: var(--mizu-border-default);
-  --_border-hover: var(--mizu-border-strong);
-  --_focus-color: var(--mizu-action-primary-default);
+  --_border: var(--mizu-border-default, #e2e8f0);
+  --_border-hover: var(--mizu-border-strong, #94a3b8);
+  --_focus-color: var(--mizu-action-primary-default, #2563eb);
 
   display: inline-flex;
   align-items: center;
@@ -9,11 +9,12 @@
   height: 2.5rem;
   padding: 0 var(--mizu-spacing-3);
   font-family: var(--mizu-font-family-sans);
-  font-size: var(--mizu-font-size-sm);
-  color: var(--mizu-text-primary);
-  background: var(--mizu-surface-default);
-  border: 1px solid var(--_border);
+  font-size: var(--mizu-input-font-size, var(--mizu-font-size-sm));
+  color: var(--mizu-text-primary, #0f172a);
+  background: var(--mizu-surface-default, #fff);
+  border: var(--mizu-input-border-width, 1px) solid var(--_border);
   border-radius: var(--mizu-radius-md);
+  min-height: var(--mizu-input-min-height, unset);
   outline: none;
   transition:
     border-color var(--mizu-duration-fast) var(--mizu-easing-out),
@@ -21,7 +22,7 @@
 }
 
 .mizu-input::placeholder {
-  color: var(--mizu-text-disabled);
+  color: var(--mizu-text-disabled, #94a3b8);
 }
 
 .mizu-input:hover {
@@ -34,46 +35,50 @@
 }
 
 .mizu-input:disabled {
-  background: var(--mizu-surface-secondary);
-  color: var(--mizu-text-disabled);
+  background: var(--mizu-surface-secondary, #f8fafc);
+  color: var(--mizu-text-disabled, #94a3b8);
   cursor: not-allowed;
 }
 
 .mizu-input--error {
-  --_border: var(--mizu-feedback-danger-default);
-  --_border-hover: var(--mizu-feedback-danger-default);
-  --_focus-color: var(--mizu-feedback-danger-default);
+  --_border: var(--mizu-feedback-danger-default, #dc2626);
+  --_border-hover: var(--mizu-feedback-danger-default, #dc2626);
+  --_focus-color: var(--mizu-feedback-danger-default, #dc2626);
 }
 
 .mizu-input--warning {
-  --_border: var(--mizu-feedback-warning-default);
-  --_border-hover: var(--mizu-feedback-warning-default);
-  --_focus-color: var(--mizu-feedback-warning-default);
+  --_border: var(--mizu-feedback-warning-default, #f59e0b);
+  --_border-hover: var(--mizu-feedback-warning-default, #f59e0b);
+  --_focus-color: var(--mizu-feedback-warning-default, #f59e0b);
 }
 
 .mizu-input--sm {
   height: 2rem;
-  font-size: var(--mizu-font-size-xs);
+  font-size: var(--mizu-input-font-size, var(--mizu-font-size-xs));
 }
 
 .mizu-input--lg {
   height: 2.75rem;
-  font-size: var(--mizu-font-size-base);
+  font-size: var(--mizu-input-font-size, var(--mizu-font-size-base));
 }
 
 /* Appearance: filled — no visible border, tinted background */
 .mizu-input--filled {
   border-color: transparent;
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
 }
 
 .mizu-input--filled:hover {
-  background: color-mix(in srgb, var(--mizu-text-primary) 8%, var(--mizu-surface-secondary));
+  background: color-mix(
+    in srgb,
+    var(--mizu-text-primary, #0f172a) 8%,
+    var(--mizu-surface-secondary, #f8fafc)
+  );
 }
 
 .mizu-input--filled:focus-visible {
   border-color: var(--_focus-color);
-  background: var(--mizu-surface-default);
+  background: var(--mizu-surface-default, #fff);
 }
 
 /* Appearance: underline — only bottom border */
@@ -107,7 +112,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--mizu-text-secondary);
+  color: var(--mizu-text-secondary, #475569);
   font-size: var(--mizu-font-size-sm);
   font-family: var(--mizu-font-family-sans);
   pointer-events: none;
@@ -134,7 +139,7 @@
 .mizu-form-group__warning {
   display: block;
   font-size: var(--mizu-font-size-xs);
-  color: var(--mizu-feedback-warning-default);
+  color: var(--mizu-feedback-warning-default, #f59e0b);
   margin-top: var(--mizu-spacing-1);
 }
 
@@ -143,7 +148,15 @@
   display: block;
   text-align: end;
   font-size: var(--mizu-font-size-xs);
-  color: var(--mizu-text-tertiary);
+  color: var(--mizu-text-tertiary, #64748b);
   font-variant-numeric: tabular-nums;
   margin-top: var(--mizu-spacing-1);
+}
+
+/* These controls zero their outline and ring with box-shadow, which forced-colors drops. */
+@media (forced-colors: active) {
+  .mizu-input:focus-visible {
+    outline: var(--mizu-focus-ring-width, 2px) solid Highlight;
+    outline-offset: var(--mizu-focus-ring-offset, 2px);
+  }
 }

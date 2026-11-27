@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@aspect/react';
+} from '@mizunagara/react';
 
 const contacts = [
   {
@@ -72,7 +72,7 @@ const contacts = [
 
 export function ContactsPage() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <AppContentHeader
         title="Contacts"
         description={`${contacts.length} contacts`}
@@ -85,16 +85,16 @@ export function ContactsPage() {
       <Input size="sm" placeholder="Search contacts…" aria-label="Search contacts" />
       <Card>
         <Table density="compact">
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Email</TableHeader>
-              <TableHeader>Company</TableHeader>
-              <TableHeader>Conversations</TableHeader>
-              <TableHeader>Plan</TableHeader>
-              <TableHeader>Last seen</TableHeader>
+              <TableHead>Name</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Company</TableHead>
+              <TableHead>Conversations</TableHead>
+              <TableHead>Plan</TableHead>
+              <TableHead>Last seen</TableHead>
             </TableRow>
-          </TableHead>
+          </TableHeader>
           <TableBody>
             {contacts.map((c) => (
               <TableRow key={c.id}>

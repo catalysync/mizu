@@ -12,7 +12,7 @@ import {
   Grid,
   Inline,
   Stack,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import { FileStack, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useMemo } from 'react';
@@ -60,7 +60,7 @@ export function DashboardClient() {
   }
 
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Inline gap="0.75rem" align="center" style={{ justifyContent: 'space-between' }}>
         <span className="text-muted-foreground text-sm">
           {sorted.length} project{sorted.length === 1 ? '' : 's'}
@@ -78,7 +78,7 @@ export function DashboardClient() {
           <Card key={plan.id}>
             <CardHeader title={plan.intent.productName} description={plan.intent.description} />
             <CardBody>
-              <Stack gap="0.75rem">
+              <Stack gap="3">
                 <Inline gap="0.375rem" align="center">
                   <Badge tone="neutral">{plan.intent.industry}</Badge>
                   <Badge tone="info">{plan.intent.stack}</Badge>

@@ -12,7 +12,7 @@ import {
   Stack,
   StepFlow,
   Textarea,
-} from '@aspect/react';
+} from '@mizunagara/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
@@ -33,7 +33,7 @@ const STEPS = [
 
 function CompanyStep() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Field label="Company name" required>
         <Input placeholder="Acme Corp" />
       </Field>
@@ -58,7 +58,7 @@ function CompanyStep() {
 
 function BillingStep() {
   return (
-    <Stack gap="1rem">
+    <Stack gap="4">
       <Field label="Card number" required>
         <Input inputMode="numeric" placeholder="4242 4242 4242 4242" />
       </Field>
@@ -76,7 +76,7 @@ function BillingStep() {
 
 function ReviewStep() {
   return (
-    <Stack gap="0.75rem">
+    <Stack gap="3">
       <p>Everything looks good. Review your details and submit.</p>
       <ul style={{ margin: 0, paddingInlineStart: '1.25rem' }}>
         <li>Company: Acme Corp</li>
@@ -95,7 +95,7 @@ export const ThreeStep: Story = {
     const isFirst = activeIndex === 0;
 
     return (
-      <Stack gap="1.5rem">
+      <Stack gap="6">
         <StepFlow steps={STEPS} activeStep={active} onStepChange={setActive} allowSkip={false} />
         <Form
           title={STEPS[activeIndex].title}

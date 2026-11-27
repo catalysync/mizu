@@ -1,7 +1,7 @@
 'use client';
 
 import type { ThemeStyleProps } from '@/types/theme';
-import { Stack } from '@aspect/react';
+import { Stack } from '@mizunagara/react';
 
 interface Props {
   styles: ThemeStyleProps;
@@ -55,13 +55,13 @@ const GROUPS: Array<{
 
 export function ColorsTab({ styles, onChange }: Props) {
   return (
-    <Stack gap="1.25rem">
+    <Stack gap="5">
       {GROUPS.map((group) => (
-        <Stack key={group.label} gap="0.5rem">
+        <Stack key={group.label} gap="2">
           <h3 className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
             {group.label}
           </h3>
-          <Stack gap="0.5rem">
+          <Stack gap="2">
             {group.tokens.map((token) => (
               <ColorRow
                 key={token.key}

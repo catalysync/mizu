@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { createRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
-import { Button } from './Button';
+import { Button, MIZU_BUTTON_VARIANTS } from './Button';
 
 describe('Button', () => {
   // -- Rendering --
@@ -154,9 +154,52 @@ describe('Button', () => {
     expect(screen.getByRole('button')).toHaveAttribute('data-loading', 'true');
   });
 
-  it('disables the button when loading', () => {
+  it('marks the button aria-disabled when loading, without the disabled attribute', () => {
     render(<Button loading>Save</Button>);
-    expect(screen.getByRole('button')).toBeDisabled();
+    const btn = screen.getByRole('button');
+    expect(btn).toHaveAttribute('aria-disabled', 'true');
+    expect(btn).toBeEnabled();
+  });
+
+  it('keeps the accessible name while loading', () => {
+    render(<Button loading>Save</Button>);
+    expect(screen.getByRole('button', { name: 'Save' })).toBeInTheDocument();
+  });
+
+  it('keeps focus when loading starts', () => {
+    const { rerender } = render(<Button>Save</Button>);
+    const btn = screen.getByRole('button');
+    btn.focus();
+    rerender(<Button loading>Save</Button>);
+    expect(screen.getByRole('button', { name: 'Save' })).toHaveFocus();
+  });
+
+  it('does not fire onClick on Enter when loading', async () => {
+    const onClick = vi.fn();
+    const user = userEvent.setup();
+    render(
+      <Button onClick={onClick} loading>
+        Save
+      </Button>,
+    );
+    screen.getByRole('button').focus();
+    await user.keyboard('{Enter}');
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('does not submit the form on Enter when loading', async () => {
+    const onSubmit = vi.fn((e: React.FormEvent) => e.preventDefault());
+    const user = userEvent.setup();
+    render(
+      <form onSubmit={onSubmit}>
+        <Button type="submit" loading>
+          Save
+        </Button>
+      </form>,
+    );
+    screen.getByRole('button').focus();
+    await user.keyboard('{Enter}');
+    expect(onSubmit).not.toHaveBeenCalled();
   });
 
   it('renders a spinner when loading', () => {
@@ -280,12 +323,13 @@ describe('Button', () => {
     await userEvent.setup().click(btn);
     expect(btn).toHaveAttribute('aria-busy', 'true');
     expect(btn).toHaveAttribute('data-loading', 'true');
-    expect(btn).toBeDisabled();
+    expect(btn).toHaveAttribute('aria-disabled', 'true');
     resolve();
     await vi.waitFor(() => {
       expect(btn).not.toHaveAttribute('aria-busy');
     });
     expect(btn).not.toHaveAttribute('data-loading');
+    expect(btn).not.toHaveAttribute('aria-disabled');
     expect(btn).toBeEnabled();
   });
 
@@ -327,5 +371,14 @@ describe('Button', () => {
   it('has no axe violations with gradient variant', async () => {
     const { container } = render(<Button variant="gradient">Generate</Button>);
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  // -- Variant constants --
+  it('renders the class mapped by each exported variant constant', () => {
+    for (const [variant, className] of Object.entries(MIZU_BUTTON_VARIANTS.variant)) {
+      const { unmount } = render(<Button variant={variant as 'primary'}>Go</Button>);
+      expect(screen.getByRole('button')).toHaveClass(className);
+      unmount();
+    }
   });
 });

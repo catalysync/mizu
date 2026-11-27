@@ -2,7 +2,7 @@
 
 import { useStudioStore } from '@/store/studio-store';
 import type { ThemeStyleProps } from '@/types/theme';
-import { Button, Inline, Stack, Textarea } from '@aspect/react';
+import { Button, Inline, Stack, Textarea } from '@mizunagara/react';
 import { Sparkles, X } from 'lucide-react';
 import { useEffect, useState, type FormEvent } from 'react';
 
@@ -113,7 +113,7 @@ export function CommandPalette() {
           boxShadow: 'var(--mizu-shadow-xl)',
         }}
       >
-        <Stack gap="0.75rem">
+        <Stack gap="3">
           <Inline gap="0.5rem" align="center" style={{ justifyContent: 'space-between' }}>
             <Inline gap="0.375rem" align="center">
               <Sparkles className="text-primary h-4 w-4" />
@@ -131,7 +131,7 @@ export function CommandPalette() {
           </Inline>
 
           <form onSubmit={handleSubmit}>
-            <Stack gap="0.5rem">
+            <Stack gap="2">
               <Textarea
                 rows={2}
                 value={instruction}
@@ -158,11 +158,11 @@ export function CommandPalette() {
           ) : null}
 
           {proposed ? (
-            <Stack gap="0.5rem" className="border-border bg-muted/40 rounded-md border p-3">
+            <Stack gap="2" className="border-border bg-muted/40 rounded-md border p-3">
               {proposed.rationale ? (
                 <p className="text-muted-foreground text-xs">{proposed.rationale}</p>
               ) : null}
-              <Stack as="ul" gap="0.25rem" className="list-none p-0 text-xs">
+              <Stack as="ul" gap="1" className="list-none p-0 text-xs">
                 {Object.entries(proposed.edits).map(([key, value]) => (
                   <li key={key} className="text-foreground font-mono">
                     <strong>{key}</strong>: <span className="text-muted-foreground">{value}</span>

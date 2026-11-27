@@ -1,5 +1,5 @@
 .mizu-skeleton {
-  background: var(--mizu-surface-secondary);
+  background: var(--mizu-surface-secondary, #f8fafc);
   border-radius: var(--mizu-radius-md);
   animation: mizu-skeleton-pulse 1.5s ease-in-out infinite;
 }

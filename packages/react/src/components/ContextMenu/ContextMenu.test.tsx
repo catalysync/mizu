@@ -1,11 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
+import * as pkg from '../../index';
 import {
   ContextMenu,
+  ContextMenuCheckboxItem,
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuLabel,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
   ContextMenuSeparator,
   ContextMenuTrigger,
 } from './ContextMenu';
@@ -41,5 +46,73 @@ describe('ContextMenu', () => {
   it('has no axe violations (closed)', async () => {
     const { container } = render(<TestContextMenu />);
     expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
+describe('ContextMenu checkbox and radio items', () => {
+  function CheckableMenu({
+    onCheckedChange,
+    onValueChange,
+  }: {
+    onCheckedChange?: (checked: boolean) => void;
+    onValueChange?: (value: string) => void;
+  }) {
+    return (
+      <ContextMenu>
+        <ContextMenuTrigger>
+          <div>Canvas</div>
+        </ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuCheckboxItem checked onCheckedChange={onCheckedChange}>
+            Show grid
+          </ContextMenuCheckboxItem>
+          <ContextMenuSeparator />
+          <ContextMenuRadioGroup value="fit" onValueChange={onValueChange}>
+            <ContextMenuRadioItem value="fit">Fit</ContextMenuRadioItem>
+            <ContextMenuRadioItem value="fill">Fill</ContextMenuRadioItem>
+          </ContextMenuRadioGroup>
+        </ContextMenuContent>
+      </ContextMenu>
+    );
+  }
+
+  it('renders checkable items with their checked state', () => {
+    render(<CheckableMenu />);
+    fireEvent.contextMenu(screen.getByText('Canvas'));
+    const grid = screen.getByRole('menuitemcheckbox', { name: 'Show grid' });
+    expect(grid).toBeChecked();
+    expect(grid).toHaveClass('mizu-context-menu__item', 'mizu-context-menu__item--checkable');
+    expect(screen.getByRole('menuitemradio', { name: 'Fit' })).toBeChecked();
+    expect(screen.getByRole('menuitemradio', { name: 'Fill' })).not.toBeChecked();
+  });
+
+  it('reports changes through onCheckedChange and onValueChange', async () => {
+    const user = userEvent.setup();
+    const onCheckedChange = vi.fn();
+    const onValueChange = vi.fn();
+    const { unmount } = render(<CheckableMenu onCheckedChange={onCheckedChange} />);
+    fireEvent.contextMenu(screen.getByText('Canvas'));
+    await user.click(screen.getByRole('menuitemcheckbox', { name: 'Show grid' }));
+    expect(onCheckedChange).toHaveBeenCalledWith(false);
+    unmount();
+
+    render(<CheckableMenu onValueChange={onValueChange} />);
+    fireEvent.contextMenu(screen.getByText('Canvas'));
+    await user.click(screen.getByRole('menuitemradio', { name: 'Fill' }));
+    expect(onValueChange).toHaveBeenCalledWith('fill');
+  });
+
+  it('is exported from the package entry', () => {
+    expect(pkg.ContextMenuCheckboxItem).toBeDefined();
+    expect(pkg.ContextMenuRadioItem).toBeDefined();
+  });
+
+  it('has no axe violations when open', async () => {
+    render(<CheckableMenu />);
+    fireEvent.contextMenu(screen.getByText('Canvas'));
+    // Disable region rule — portaled content renders outside landmarks by design
+    expect(
+      await axe(document.body, { rules: { region: { enabled: false } } }),
+    ).toHaveNoViolations();
   });
 });

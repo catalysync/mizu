@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { createRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
-import { Alert, AlertTitle } from './Alert';
+import { Alert, AlertTitle, Callout } from './Alert';
 
 describe('Alert', () => {
   it('renders with text content', () => {
@@ -10,9 +10,55 @@ describe('Alert', () => {
     expect(screen.getByText('Something happened')).toBeInTheDocument();
   });
 
-  it('renders the alert role', () => {
-    render(<Alert>Info</Alert>);
+  it('uses role alert for danger', () => {
+    render(<Alert tone="danger">Failed</Alert>);
     expect(screen.getByRole('alert')).toBeInTheDocument();
+  });
+
+  it('uses role status for info, success and warning', () => {
+    const { rerender } = render(<Alert>Info</Alert>);
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    rerender(<Alert tone="success">OK</Alert>);
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    rerender(<Alert tone="warning">Careful</Alert>);
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+
+  it('lets an explicit role override the tone default', () => {
+    render(
+      <Alert tone="info" role="note">
+        Note
+      </Alert>,
+    );
+    expect(screen.getByRole('note')).toBeInTheDocument();
+  });
+
+  it('renders a default icon for each tone', () => {
+    const { container } = render(<Alert tone="warning">Careful</Alert>);
+    const icon = container.querySelector('.mizu-alert__icon svg');
+    expect(icon).not.toBeNull();
+    expect(icon).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('hides the icon when icon is null', () => {
+    const { container } = render(<Alert icon={null}>Plain</Alert>);
+    expect(container.querySelector('.mizu-alert__icon')).toBeNull();
+  });
+
+  it('uses a custom icon when provided', () => {
+    render(<Alert icon={<span data-testid="custom-icon" />}>X</Alert>);
+    expect(screen.getByTestId('custom-icon')).toBeInTheDocument();
+  });
+
+  it('labels the dismiss button with dismissLabel', () => {
+    render(
+      <Alert onDismiss={() => {}} dismissLabel="Close notice">
+        X
+      </Alert>,
+    );
+    expect(screen.getByRole('button', { name: 'Close notice' })).toBeInTheDocument();
+    expect(screen.queryByLabelText('Dismiss')).not.toBeInTheDocument();
   });
 
   it('renders AlertTitle', () => {
@@ -95,6 +141,56 @@ describe('Alert', () => {
         <AlertTitle>Warning</AlertTitle>
         Something might go wrong
       </Alert>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
+describe('Callout', () => {
+  it('renders with role note for info', () => {
+    render(<Callout tone="info">Tip</Callout>);
+    expect(screen.getByRole('note')).toHaveTextContent('Tip');
+  });
+
+  it('renders with role note by default', () => {
+    render(<Callout>Tip</Callout>);
+    expect(screen.getByRole('note')).toBeInTheDocument();
+  });
+
+  it('uses role note for success and warning', () => {
+    const { rerender } = render(<Callout tone="success">Saved</Callout>);
+    expect(screen.getByRole('note')).toBeInTheDocument();
+    rerender(<Callout tone="warning">Check this</Callout>);
+    expect(screen.getByRole('note')).toBeInTheDocument();
+  });
+
+  it('uses role alert for danger', () => {
+    render(<Callout tone="danger">Broken</Callout>);
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+  });
+
+  it('keeps the alert classes and tone', () => {
+    const { container } = render(<Callout tone="success">Done</Callout>);
+    expect(container.firstChild).toHaveClass('mizu-alert', 'mizu-alert--success');
+  });
+
+  it('lets role override the default', () => {
+    render(<Callout role="status">Live</Callout>);
+    expect(screen.getByRole('status')).toBeInTheDocument();
+  });
+
+  it('forwards ref', () => {
+    const ref = createRef<HTMLDivElement>();
+    render(<Callout ref={ref}>X</Callout>);
+    expect(ref.current).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it('has no axe violations', async () => {
+    const { container } = render(
+      <Callout tone="info">
+        <AlertTitle>Note</AlertTitle>
+        Details
+      </Callout>,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
